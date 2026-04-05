@@ -53,20 +53,22 @@ Rob (RSP_001) → Claude → GABRIEL → Agent Mesh
 ```
 DREAMCHAMBER/
 ├── README.md
+├── WALKING_IN_THE_DREAMS/
+│   └── README.md                    # OSC + Lemur + NOIZY vision essay
 ├── wisdom/
 │   └── prompts/
 │       ├── GABRIEL_PROMPT.md        # DONE
-│       ├── CLAUDE_PROMPT.md         # TO BUILD
-│       ├── LUCY_PROMPT.md           # TO BUILD
-│       ├── SHIRL_PROMPT.md          # TO BUILD
-│       ├── DREAM_PROMPT.md          # TO BUILD
-│       ├── POPS_PROMPT.md           # TO BUILD
-│       ├── ENGR_KEITH_PROMPT.md     # TO BUILD
-│       ├── CB01_PROMPT.md           # TO BUILD
-│       └── HEAVEN_PROMPT.md         # TO BUILD
+│       ├── CLAUDE_PROMPT.md         # DONE
+│       ├── LUCY_PROMPT.md           # DONE
+│       ├── SHIRL_PROMPT.md          # DONE
+│       ├── DREAM_PROMPT.md          # DONE
+│       ├── POPS_PROMPT.md           # DONE
+│       ├── ENGR_KEITH_PROMPT.md     # DONE
+│       ├── CB01_PROMPT.md           # DONE
+│       └── HEAVEN_PROMPT.md         # DONE
 ├── ops/
 │   └── agents/
-│       └── swarm.py                 # CrewAI swarm orchestration
+│       └── swarm.py                 # CrewAI swarm orchestration (scaffold)
 ├── app/
 │   ├── dreamchamber/                # DreamChamber app
 │   ├── dashboard/
@@ -147,11 +149,12 @@ DREAMCHAMBER/
 
 ## Next Steps
 
-- [ ] Create all 8 prompt files in `wisdom/prompts/` (Gabriel already done)
+- [x] Create all 9 prompt files in `wisdom/prompts/` (all agents defined)
 - [ ] Sort NOIZYVOX repo (3 branches of 2025 code) into proper directories
 - [ ] Wire each family member into the CrewAI swarm (`ops/agents/swarm.py`)
 - [ ] Verify noizy.ai domain DNS
 - [ ] Set up GitHub Copilot Pro+ extensions in VS Code, Cursor, and all IDEs
+- [ ] Build out `app/`, `contracts/`, `stream/`, `hooks/`, `heaven-dns/`, `scripts/` directories
 - [ ] Deploy DreamChamber app (`app/dreamchamber/`) to Cloudflare
 - [ ] Connect Notion mirror (`app/mirror/`) for live sync between Notion and codebase
 
