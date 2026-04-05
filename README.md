@@ -89,6 +89,7 @@ DREAMCHAMBER/
 │       ├── cloudflare-api.ts        # Cloudflare API
 │       └── noizy-template.ts        # NOIZY template
 ├── scripts/
+│   ├── rsync-dry-run-volumes.sh     # Root-level rsync dry run for all local volumes
 │   ├── deploy-all-brands.sh         # Deploy all brands
 │   └── check-all-services.sh        # Service health checks
 ├── fish/                            # NOIZYFISH codebase
