@@ -50,6 +50,8 @@ Rob (RSP_001) → Claude → GABRIEL → Agent Mesh
 
 ## Repository Structure
 
+### Current (on disk)
+
 ```
 DREAMCHAMBER/
 ├── README.md
@@ -57,18 +59,24 @@ DREAMCHAMBER/
 │   └── README.md                    # OSC + Lemur + NOIZY vision essay
 ├── wisdom/
 │   └── prompts/
-│       ├── GABRIEL_PROMPT.md        # DONE
-│       ├── CLAUDE_PROMPT.md         # DONE
-│       ├── LUCY_PROMPT.md           # DONE
-│       ├── SHIRL_PROMPT.md          # DONE
-│       ├── DREAM_PROMPT.md          # DONE
-│       ├── POPS_PROMPT.md           # DONE
-│       ├── ENGR_KEITH_PROMPT.md     # DONE
-│       ├── CB01_PROMPT.md           # DONE
-│       └── HEAVEN_PROMPT.md         # DONE
-├── ops/
-│   └── agents/
-│       └── swarm.py                 # CrewAI swarm orchestration (scaffold)
+│       ├── GABRIEL_PROMPT.md        # DONE — Release Commander & Swarm Leader
+│       ├── CLAUDE_PROMPT.md         # DONE — The Strategist / Creative Brain
+│       ├── LUCY_PROMPT.md           # DONE — Voice Estate Guardian
+│       ├── SHIRL_PROMPT.md          # DONE — Sample Intelligence Analyst
+│       ├── DREAM_PROMPT.md          # DONE — Creative Assistant & DAW Whisperer
+│       ├── POPS_PROMPT.md           # DONE — No-Code Orchestrator
+│       ├── ENGR_KEITH_PROMPT.md     # DONE — Infrastructure Engineer
+│       ├── CB01_PROMPT.md           # DONE — Consent & Contracts Bot
+│       └── HEAVEN_PROMPT.md         # DONE — DNS & Domain Sovereign
+└── ops/
+    └── agents/
+        └── swarm.py                 # CrewAI swarm orchestration (scaffold)
+```
+
+### Planned (to build)
+
+```
+DREAMCHAMBER/
 ├── app/
 │   ├── dreamchamber/                # DreamChamber app
 │   ├── dashboard/

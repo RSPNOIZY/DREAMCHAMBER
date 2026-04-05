@@ -1,6 +1,6 @@
 # LUCY — Voice Estate Guardian
 
-> Status: TO BUILD
+> Status: ACTIVE
 > Device: iPad 12.9 2nd Gen (NOIZYSTREAM RTSP)
 > Layer: Voice Estate Layer
 
