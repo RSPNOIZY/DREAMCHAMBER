@@ -58,7 +58,7 @@ jobs:
         run: |
           sleep 5
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            https://heaven.noizylab.workers.dev/health)
+            https://heaven.rsp-5f3.workers.dev/health)
           echo "HEAVEN /health → HTTP $STATUS"
           test "$STATUS" = "200" || exit 1
 
@@ -66,16 +66,16 @@ jobs:
         if: ${{ inputs.skip_smoke != 'true' }}
         run: |
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            https://heaven.noizylab.workers.dev/gabriel)
+            https://heaven.rsp-5f3.workers.dev/gabriel)
           echo "HEAVEN /gabriel → HTTP $STATUS"
           test "$STATUS" = "200" || exit 1
 
-      - name: Smoke test — dashboard renders
+      - name: Smoke test — API v1
         if: ${{ inputs.skip_smoke != 'true' }}
         run: |
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            https://heaven.noizylab.workers.dev/dashboard)
-          echo "HEAVEN /dashboard → HTTP $STATUS"
+            https://heaven.rsp-5f3.workers.dev/api/v1)
+          echo "HEAVEN /api/v1 → HTTP $STATUS"
           test "$STATUS" = "200" || exit 1
 
       # ── Proof bundle ────────────────────────────────────────────

@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Wrangler local state
+.wrangler/
+
+# Environment / Secrets (NEVER COMMIT)
+.dev.vars
+.env
+.env.*
+!.env.example
+!.dev.vars.example
+
+# Build output
+dist/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

@@ -1,0 +1,7 @@
+# Cloudflare API Token (Edit Workers permission for Fishmusicinc account)
+# Create at: https://dash.cloudflare.com/profile/api-tokens
+# Template: "Edit Cloudflare Workers"
+# Account: Fishmusicinc (2446d788cc4280f5ea22a9948410c355)
+
+CLOUDFLARE_API_TOKEN=
+CLOUDFLARE_ACCOUNT_ID=2446d788cc4280f5ea22a9948410c355

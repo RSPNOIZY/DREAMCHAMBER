@@ -1,39 +1,77 @@
-# Secrets
+# ═══════════════════════════════════════════════════════════════════════════
+# NOIZY EMPIRE .gitignore
+# ═══════════════════════════════════════════════════════════════════════════
+
+# Secrets (NEVER COMMIT)
 .env
+.env.*
+!.env.example
 .dev.vars
+!.dev.vars.example
+*.pem
+*.key
+*.secret
+credentials.json
 
 # Dependencies
 node_modules/
 dreamchamber/node_modules/
+.npm/
+
+# Wrangler local state
+.wrangler/
+
+# Build output
+dist/
+build/
+*.js.map
 
 # Logs
 *.log
+logs/
 dreamchamber/*.log
 dreamchamber/logs/
-logs/
+npm-debug.log*
 
 # OS
 .DS_Store
 Thumbs.db
+Desktop.ini
 
-# Wrangler
-.wrangler/
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
 
-# Build
-dist/
-
-# Empire docs (OneDrive mirror — large, not source code)
-docs/empire/
-venv/
+# Python
 __pycache__/
 *.pyc
 *.pyo
-
-# Large files - exclude from git
-archivist_catalog.json
-*.dylib
+.pytest_cache/
+venv/
+.venv/
 *.venv*/
 .venv*/
-__pycache__/
-*.pyc
-node_modules/
+
+# Deployment artifacts (generated)
+deployments.json
+audit-log.json
+.version.json
+
+# Empire docs (OneDrive mirror — large, not source code)
+docs/empire/
+
+# Large files
+archivist_catalog.json
+*.dylib
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temp files
+tmp/
+temp/
+*.tmp

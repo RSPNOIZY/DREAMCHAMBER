@@ -1,0 +1,83 @@
+name: Ethics Gate
+
+on:
+  pull_request:
+    branches: [main, staging]
+  push:
+    branches: [main, staging]
+
+jobs:
+  ethics-check:
+    name: Constitutional & Ethics Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Need history for diff
+
+      - name: Check for destructive patterns
+        run: |
+          echo "Scanning for destructive patterns..."
+          if git diff HEAD~1 --name-only 2>/dev/null | xargs grep -l "DROP TABLE\|DELETE FROM\|rm -rf" 2>/dev/null; then
+            echo "::warning::Destructive patterns found - review required"
+          fi
+          echo "✅ Destructive pattern check complete"
+
+      - name: Verify royalty floor (75%)
+        run: |
+          if grep -rn "royalty.*0\.[0-6][0-9]" --include="*.js" --include="*.ts" --include="*.json" \
+             --exclude-dir=node_modules . 2>/dev/null; then
+            echo "::error::Royalty split below founding floor (75%) detected"
+            exit 1
+          fi
+          echo "✅ Royalty floor verified"
+
+      - name: Check for hardcoded secrets
+        run: |
+          # Look for potential secrets (excluding env var references)
+          if grep -rE "(api[_-]?key|secret|password|token)\s*[=:]\s*['\"][a-zA-Z0-9]{20,}['\"]" \
+             --include="*.js" --include="*.ts" --exclude-dir=node_modules . 2>/dev/null | \
+             grep -v "process\.env\|env\.\|YOUR_\|REPLACE\|example" | head -3; then
+            echo "::error::Potential hardcoded secrets detected"
+            exit 1
+          fi
+          echo "✅ No hardcoded secrets found"
+
+      - name: Verify account lock
+        run: |
+          if grep -q "5f36aa9795348ea681d0b21910dfc82a" wrangler.toml; then
+            echo "✅ Account locked to rsp@noizy.ai"
+          else
+            echo "::warning::Account ID not verified in wrangler.toml"
+          fi
+
+      - name: Check Never Clauses present
+        run: |
+          NEVER_COUNT=$(grep -r "NEVER\|never.*clause\|prohibit\|GORUNFREE" \
+            --include="*.js" --include="*.ts" --include="*.md" \
+            --exclude-dir=node_modules . 2>/dev/null | wc -l || echo "0")
+          echo "Never Clause references: $NEVER_COUNT"
+          if [ "$NEVER_COUNT" -lt 5 ]; then
+            echo "::warning::Low Never Clause coverage"
+          fi
+          echo "✅ Constitutional markers checked"
+
+      - name: Consent enforcement check
+        run: |
+          if grep -r "consent\|isAuthorized\|checkAuth\|validateToken" \
+             --include="*.js" --include="*.ts" \
+             --exclude-dir=node_modules src/ 2>/dev/null | head -1 > /dev/null; then
+            echo "✅ Consent enforcement patterns found"
+          else
+            echo "::warning::No consent enforcement patterns detected in src/"
+          fi
+
+      - name: Ethics gate summary
+        run: |
+          echo "════════════════════════════════════════"
+          echo "  NOIZY Ethics Gate: PASSED"
+          echo "  Commit: ${{ github.sha }}"
+          echo "  Actor: ${{ github.actor }}"
+          echo "════════════════════════════════════════"

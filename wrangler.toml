@@ -1,20 +1,22 @@
 name = "heaven"
 main = "src/index.js"
-compatibility_date = "2026-01-01"
+compatibility_date = "2026-04-06"
 compatibility_flags = ["nodejs_compat"]
 account_id = "5f36aa9795348ea681d0b21910dfc82a"
 
-# ============================================================
-# CANONICAL BINDINGS — rsp@noizy.ai Account
+# ═══════════════════════════════════════════════════════════════════════════
+# CANONICAL BINDINGS — rsp@noizy.ai Account (NOIZY.AI)
 # Workers LIVE at *.rsp-5f3.workers.dev
-# To use noizy.ai domain: add zone to this account in CF dashboard
-# ============================================================
+# Custom domain: Add noizy.ai zone to this account in CF dashboard
+# ═══════════════════════════════════════════════════════════════════════════
 
+# ── D1 Database ────────────────────────────────────────────────────────────
 [[d1_databases]]
 binding = "GABRIEL_DB"
 database_name = "gabriel_db"
 database_id = "a31d68e2-f2d4-4203-a803-8039fdff31cb"
 
+# ── KV Namespaces ──────────────────────────────────────────────────────────
 [[kv_namespaces]]
 binding = "GABRIEL_KV"
 id = "f205b56a9914413da0ec454a9dc4c2bd"
@@ -23,11 +25,37 @@ id = "f205b56a9914413da0ec454a9dc4c2bd"
 binding = "GABRIEL_VOICE"
 id = "16532a32b2e8455486cc966403f3442e"
 
+# ── Feature Flags KV (Edge Runtime Control) ──────────────────────────────
+# To create: wrangler login && npx wrangler kv namespace create "FEATURE_FLAGS"
+# Then replace the id below with the returned namespace ID
+# Feature flags enable <1ms runtime behavior changes without deploys
+[[kv_namespaces]]
+binding = "FEATURE_FLAGS"
+id = "FEATURE_FLAGS_PLACEHOLDER"  # SETUP: Create namespace, update this ID
+
+# ── Environment Variables ──────────────────────────────────────────────────
 [vars]
 NOIZY_ENV = "production"
-NOIZY_VERSION = "17.8.0"
+NOIZY_VERSION = "17.9.0"
 FOUNDING_ACTOR_FLOOR = "85"
 STANDARD_ACTOR_FLOOR = "75"
 
+# ── Observability ──────────────────────────────────────────────────────────
 [observability]
 enabled = true
+
+# ── Environments ───────────────────────────────────────────────────────────
+# Preview environment (for PRs and testing)
+[env.preview]
+name = "heaven-preview"
+vars = { NOIZY_ENV = "preview" }
+
+# Canary environment (1-10% traffic)
+[env.canary]
+name = "heaven-canary"
+vars = { NOIZY_ENV = "canary" }
+
+# Production environment (full traffic)
+[env.production]
+name = "heaven"
+vars = { NOIZY_ENV = "production" }

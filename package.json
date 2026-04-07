@@ -1,16 +1,24 @@
 {
   "name": "noizylab",
-  "version": "17.0.0",
+  "version": "17.9.0",
   "description": "NOIZY Empire — HEAVEN Consent Kernel + DreamChamber AI Platform",
   "private": true,
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
+    "deploy": "./scripts/deploy-heaven.sh",
+    "deploy:force": "wrangler deploy",
+    "deploy:dry": "wrangler deploy --dry-run",
+    "deploy:canary": "./scripts/canary-deploy.sh",
+    "deploy:gradual": "./scripts/gradual-rollout.sh",
+    "doctor": "./scripts/wrangler-doctor.sh",
+    "smoke": "./scripts/smoke-test.sh",
+    "rollback": "./scripts/rollback.sh",
+    "audit": "./scripts/export-audit-log.sh",
     "tail": "wrangler tail heaven",
     "seed": "wrangler d1 execute gabriel_db --remote --file=seed.sql",
     "schema": "wrangler d1 execute gabriel_db --remote --file=schema.sql",
-    "health": "curl -s https://heaven.noizylab.workers.dev/health",
-    "smoke": "bash smoke_test.sh",
+    "health": "curl -s https://heaven.rsp-5f3.workers.dev/health | jq",
+    "status": "./scripts/full-status.sh",
     "readiness": "bash scripts/deploy-readiness.sh",
     "readiness:quick": "bash scripts/deploy-readiness.sh --quick",
     "check:placeholders": "bash scripts/check-placeholders.sh",
@@ -18,14 +26,27 @@
     "test:router": "cd workers/cb01-router && npm test",
     "test:proxy": "cd workers/claude-proxy && npm test",
     "dc:dev": "cd dreamchamber && npm run dev",
-    "dc:start": "cd dreamchamber && npm start"
+    "dc:start": "cd dreamchamber && npm start",
+    "deployments": "wrangler deployments list",
+    "ethics": "./scripts/ethics-gate.sh",
+    "canary:monitor": "./scripts/canary-monitor.sh",
+    "budget": "node scripts/check-error-budget.js",
+    "budget:mock": "node scripts/check-error-budget.js --mock",
+    "flags:setup": "./scripts/setup-feature-flags.sh",
+    "dr:quick": "./scripts/dr-drill.sh quick",
+    "dr:full": "./scripts/dr-drill.sh full",
+    "dr:tabletop": "./scripts/dr-drill.sh tabletop",
+    "multi-region": "./scripts/multi-region-health.sh"
   },
   "dependencies": {
     "docx": "^9.6.1",
     "express": "^5.2.1"
   },
+  "devDependencies": {
+    "wrangler": "^4"
+  },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "author": "Robert Stephen Plowman (RSP_001)",
   "license": "UNLICENSED"
