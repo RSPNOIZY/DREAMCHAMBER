@@ -1,6 +1,6 @@
 // NOIZY.AI Dashboard Extras — Activity Feed, Deploy Panel, Charts, Terminal
 
-const ACCOUNT_ID = '5ba03939f87a498d0bbed185ee123946';
+const ACCOUNT_ID = '5f36aa9795348ea681d0b21910dfc82a';
 const GITHUB_ORG = 'NOIZY.AI Enterprise';
 const GITHUB_RULE = 'All personal repos → ARCHIVE/ inside NOIZY.AI Enterprise';
 

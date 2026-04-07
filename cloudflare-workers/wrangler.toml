@@ -2,7 +2,7 @@ name = "noizyempire-email-ai"
 main = "src/index.js"
 compatibility_date = "2024-01-01"
 compatibility_flags = ["email_bindings"]
-account_id = "2446d788cc4280f5ea22a9948410c355"
+account_id = "5f36aa9795348ea681d0b21910dfc82a"
 # Added 2026-04-02 — was missing account_id entirely
 # See: docs/CLOUDFLARE_AUDIT_AND_MIGRATION.md
 

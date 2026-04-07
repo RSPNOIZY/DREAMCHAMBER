@@ -1,0 +1,63 @@
+name: DR Tabletop Drill
+
+on:
+  schedule:
+    # Weekly on Monday at 9am UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    inputs:
+      drill_type:
+        description: 'Drill type (quick/full)'
+        required: false
+        default: 'quick'
+
+jobs:
+  drill:
+    name: DR Readiness Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run DR drill
+        env:
+          # Use read-only token for DR verification
+          # In production, use secrets.DR_READONLY_TOKEN
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          chmod +x scripts/drill-dr.sh
+          ./scripts/drill-dr.sh
+
+      - name: Verify recovery docs exist
+        run: |
+          echo "Checking recovery documentation..."
+          test -f docs/DR-PLAYBOOK.md || (echo "Missing DR-PLAYBOOK.md" && exit 1)
+          test -f docs/EDGE-CORE-SPEC.md || (echo "Missing EDGE-CORE-SPEC.md" && exit 1)
+          test -f wrangler.toml || (echo "Missing wrangler.toml" && exit 1)
+          echo "✅ All recovery docs present"
+
+      - name: Upload drill results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dr-drill-${{ github.run_number }}
+          path: |
+            postmortems/
+            ~/.noizy-dr-drills.log
+          if-no-files-found: ignore
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::DR Drill failed - review recovery readiness"
+          # In production: add Slack/email notification here

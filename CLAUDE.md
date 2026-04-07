@@ -59,8 +59,8 @@ This is the NOIZY Empire. Two years of deep work. Treat it with that weight.
 
 | System | Status | Location |
 |--------|--------|----------|
-| **Heaven v17.2.0** — Consent Kernel API | LIVE | `heaven.noizylab.workers.dev` — 40 endpoints, myFamily + healing routes added |
-| **noizy.ai Landing** | LIVE | `noizy-landing.noizylab.workers.dev` — 396 Hz universe, platinum wordmark |
+| **Heaven v17.2.0** — Consent Kernel API | LIVE | `heaven.rsp-5f3.workers.dev` — 40 endpoints, myFamily + healing routes added |
+| **noizy.ai Landing** | LIVE | `noizy-landing.rsp-5f3.workers.dev` — 396 Hz universe, platinum wordmark |
 | **DreamChamber** — Multi-Model AI Command Center | LOCAL | Port 7777 — 11 providers, all streaming |
 | **Voice Bridge** — Phone → GOD.local | LOCAL | Port 8080 — Siri/Google → Power Automate → commands |
 | **DreamChamber Audio MCP** — Multi-AI voice mixing | BUILT | `dreamchamber-audio-mcp/` — 13 FastMCP tools |
@@ -72,9 +72,9 @@ This is the NOIZY Empire. Two years of deep work. Treat it with that weight.
 ## INFRASTRUCTURE IDs (AUTHORITATIVE — verified 2026-03-30)
 
 ```
-Worker:          heaven @ heaven.noizylab.workers.dev
+Worker:          heaven @ heaven.rsp-5f3.workers.dev
 Version:         17.2.0 (ID: 5544ec8a-afa2-4b56-83ac-3b46d5529933)
-Landing:         noizy-landing @ noizy-landing.noizylab.workers.dev
+Landing:         noizy-landing @ noizy-landing.rsp-5f3.workers.dev
 D1 Database:     gabriel_db — fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa  ← AUTHORITATIVE
 GABRIEL_KV:      6fe434a8020147c7bc4788e7057b843a
 GABRIEL_VOICE:   afef27e69f634d2b941482435d042167
@@ -94,8 +94,8 @@ bash smoke_test.sh                                      # 14 smoke tests
 cd dreamchamber && npm start                            # DreamChamber (7777)
 node voice-bridge-server.js                             # Voice Bridge (8080)
 cd noizy-landing && npx wrangler deploy                 # Deploy noizy.ai landing
-curl https://heaven.noizylab.workers.dev/health         # Health check
-curl https://heaven.noizylab.workers.dev/gabriel        # Full empire status + countdown
+curl https://heaven.rsp-5f3.workers.dev/health         # Health check
+curl https://heaven.rsp-5f3.workers.dev/gabriel        # Full empire status + countdown
 ```
 
 ## RULES DIRECTORY

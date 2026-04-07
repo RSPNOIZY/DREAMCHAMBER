@@ -14,7 +14,7 @@ import { z } from 'zod';
 
 // ── D1 CONFIG ──────────────────────────────────────────────
 const D1 = {
-  accountId: '5ba03939f87a498d0bbed185ee123946',
+  accountId: '5f36aa9795348ea681d0b21910dfc82a',
   databaseId: '7b813205-fd12-4a23-84a6-ce83bc49ec70',
   dbName: 'agent-memory',
 };

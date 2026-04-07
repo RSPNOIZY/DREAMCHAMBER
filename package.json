@@ -36,7 +36,10 @@
     "dr:quick": "./scripts/dr-drill.sh quick",
     "dr:full": "./scripts/dr-drill.sh full",
     "dr:tabletop": "./scripts/dr-drill.sh tabletop",
-    "multi-region": "./scripts/multi-region-health.sh"
+    "multi-region": "./scripts/multi-region-health.sh",
+    "change-freeze": "./scripts/change-freeze.sh",
+    "promote": "./scripts/promote-variant.sh",
+    "postmortem": "./scripts/capture-postmortem.sh"
   },
   "dependencies": {
     "docx": "^9.6.1",

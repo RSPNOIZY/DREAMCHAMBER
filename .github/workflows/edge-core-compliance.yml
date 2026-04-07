@@ -1,0 +1,109 @@
+name: EDGE CORE Compliance
+
+on:
+  pull_request:
+    branches: [main, staging]
+  push:
+    branches: [main]
+
+jobs:
+  compliance:
+    name: EDGE CORE Doctrine Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Make scripts executable
+        run: chmod +x scripts/edge-core/*.sh
+
+      # ═══════════════════════════════════════════════════════════════════
+      # EDGE CORE LAW: If it cannot be observed, slowed, or rolled back,
+      #                it does not ship.
+      # ═══════════════════════════════════════════════════════════════════
+
+      - name: EDGE CORE — Observability Check
+        run: ./scripts/edge-core/check-observability.sh
+
+      - name: EDGE CORE — Rollback Check
+        run: ./scripts/edge-core/check-rollback.sh
+
+      - name: EDGE CORE — Canary Execution Order
+        run: ./scripts/edge-core/check-route-canary-order.sh
+
+      - name: EDGE CORE — Error Budget Check
+        run: ./scripts/edge-core/check-error-budget.sh
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: EDGE CORE — DR Visibility Check
+        run: ./scripts/edge-core/check-dr.sh
+        env:
+          DR_ACCOUNT_ID: ${{ secrets.DR_ACCOUNT_ID }}
+
+      - name: EDGE CORE — Doctrine Verification
+        run: |
+          echo "Verifying EDGE CORE doctrine file..."
+
+          if [[ ! -f "docs/NOIZY_EDGE_CORE.md" ]]; then
+            echo "::error::docs/NOIZY_EDGE_CORE.md missing — doctrine must be documented"
+            exit 1
+          fi
+
+          # Verify core law is present
+          if ! grep -q "cannot be trusted" docs/NOIZY_EDGE_CORE.md; then
+            echo "::error::EDGE CORE doctrine appears corrupted — core law missing"
+            exit 1
+          fi
+
+          echo "✅ EDGE CORE doctrine verified"
+
+      - name: Compliance Summary
+        if: success()
+        run: |
+          echo ""
+          echo "════════════════════════════════════════════════════════════════"
+          echo "  EDGE CORE Compliance: PASSED"
+          echo "════════════════════════════════════════════════════════════════"
+          echo ""
+          echo "  This change is EDGE CORE compliant:"
+          echo "    ✓ Can be observed"
+          echo "    ✓ Can be slowed (gradual deployment)"
+          echo "    ✓ Can be rolled back"
+          echo "    ✓ Recovery is visible"
+          echo ""
+          echo "  Doctrine: docs/NOIZY_EDGE_CORE.md"
+          echo "  Checklist: docs/EDGE_CORE_AUDIT_CHECKLIST.md"
+          echo "════════════════════════════════════════════════════════════════"
+
+      - name: Compliance Failure Notice
+        if: failure()
+        run: |
+          echo ""
+          echo "════════════════════════════════════════════════════════════════"
+          echo "  ❌ EDGE CORE Compliance: FAILED"
+          echo "════════════════════════════════════════════════════════════════"
+          echo ""
+          echo "  This change violates EDGE CORE doctrine."
+          echo "  It does not ship."
+          echo ""
+          echo "  Review the failure above and reference:"
+          echo "    • docs/NOIZY_EDGE_CORE.md"
+          echo "    • docs/EDGE_CORE_AUDIT_CHECKLIST.md"
+          echo ""
+          echo "  Core Law: If the edge cannot observe itself, choose"
+          echo "            restraint, and roll back safely, the edge"
+          echo "            cannot be trusted."
+          echo "════════════════════════════════════════════════════════════════"

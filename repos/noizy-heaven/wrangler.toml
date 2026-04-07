@@ -10,7 +10,7 @@
 name               = "heaven"
 main               = "src/index.ts"
 compatibility_date = "2024-01-01"
-account_id         = "2446d788cc4280f5ea22a9948410c355"  # HEAVEN account (noizy.ai)
+account_id         = "5f36aa9795348ea681d0b21910dfc82a"  # HEAVEN account (noizy.ai)
 workers_dev        = true
 
 # ── Live Route — noizy.ai/* ──────────────────────────────────────────────────

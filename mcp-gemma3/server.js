@@ -24,7 +24,7 @@ const execAsync = promisify(exec);
 const OLLAMA_URL  = process.env.OLLAMA_URL  || 'http://localhost:11434';
 const GEMMA_MODEL = process.env.GEMMA_MODEL || 'gemma3:latest';
 const NOIZYLAB    = process.env.NOIZYLAB_DIR || '/Users/m2ultra/NOIZYLAB';
-const CF_ACCOUNT  = '5ba03939f87a498d0bbed185ee123946';
+const CF_ACCOUNT  = '5f36aa9795348ea681d0b21910dfc82a';
 
 // ═══════════════════════════════════════════════════════════
 //  MCP SERVER
