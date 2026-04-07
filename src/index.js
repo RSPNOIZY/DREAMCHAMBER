@@ -3,14 +3,14 @@
  * Cloudflare Worker — gabriel_db D1 backend
  *
  * Author: Robert Stephen Plowman (RSP_001)
- * Version: 17.7.0 — March 2026 (webhooks live)
+ * Version: 17.8.0 — April 2026 (GORUNFREE live)
  *
  * Consent as executable code.
  * Provenance as default.
  * Revocation as sacred.
  * Compensation as automatic.
  *
- * Routes (36 total):
+ * Routes (43 total):
  *   GET  /                                   (public — API index)
  *   GET  /health                             (public)
  *   GET  /dashboard                          (public — live HTML dashboard with health metrics)
@@ -49,12 +49,53 @@
  *   GET  /api/v1/kpi/quality
  *   GET  /api/v1/kpi/risk
  *   GET  /api/v1/enterprise/audit
+ *
+ * GORUNFREE Routes:
+ *   GET  /preflight                          (pre-flight insight)
+ *   GET  /provenance/:id                     (provenance trail)
+ *   GET  /provenance/:id/export              (export formats)
+ *   GET  /absence/gaps                       (creative gaps)
+ *   GET  /absence/archive                    (resurrection candidates)
+ *   POST /absence/commission                 (commission workflow)
+ *   GET  /absence/representation             (representation balance)
  */
 
 import { dashboardHTML } from "./dashboard.js";
 import { landingHTML } from "./landing.js";
 import { handleWebhook } from "./webhooks.js";
 import { handleDashboard, handleStatus } from "./routes/dashboard.js";
+
+// GORUNFREE routes
+import { handlePreflight } from "./routes/preflight.js";
+import { handleProvenance, handleProvenanceExport } from "./routes/provenance.js";
+import {
+  handleAbsenceGaps,
+  handleAbsenceArchive,
+  handleAbsenceCommission,
+  handleAbsenceRepresentation
+} from "./routes/absence.js";
+
+// Operator routes (audit-first pattern)
+import {
+  handleOperatorApprove,
+  handleTokenIssue,
+  handleTokenValidate,
+  handleOperatorStatus,
+  handleOperatorAudit,
+  handleFreezeRecord,
+  handleFreezeResolve
+} from "./routes/operator.js";
+
+// Creator trust routes (public, read-only, calm)
+import { handleTrustStatus, handleTrustChanges } from "./routes/trust.js";
+
+// EDGE CORE: Runtime startup assertions
+import { assertAuditReadyCached } from "./edge-core/startup_assertions.js";
+
+// Transparency and compliance routes
+import { handleTransparency } from "./routes/transparency.js";
+import { handleOperatorAuditDiff, handleCreatorDiff } from "./routes/audit-diff.js";
+import { handleComplianceExport } from "./routes/compliance-export.js";
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -176,6 +217,24 @@ export default {
       return new Response(null, { status: 204, headers: CORS_HEADERS });
     }
 
+    // EDGE CORE: Assert audit infrastructure is ready
+    // Skip for health check to allow monitoring during outages
+    if (path !== "/health") {
+      try {
+        await assertAuditReadyCached(env, ctx);
+      } catch (auditErr) {
+        console.error("[EDGE CORE]", auditErr.message);
+        return new Response(JSON.stringify({
+          success: false,
+          error: "Service unavailable — audit infrastructure not ready",
+          edge_core: auditErr.message
+        }), {
+          status: 503,
+          headers: { ...CORS_HEADERS, "Content-Type": "application/json" }
+        });
+      }
+    }
+
     try {
       // Rate limiting (60 req/min per IP, uses KV)
       const ip = request.headers.get("CF-Connecting-IP") || "unknown";
@@ -184,7 +243,7 @@ export default {
         return json({ error: "Rate limit exceeded", retry_after: rl.reset }, 429);
       }
 
-      // Auth check (skip for health, dashboard, status, root, api index, gabriel status, webhooks, OPTIONS)
+      // Auth check (skip for health, dashboard, status, root, api index, gabriel status, webhooks, GORUNFREE, OPTIONS)
       if (
         path !== "/health" &&
         path !== "/dashboard" &&
@@ -192,7 +251,10 @@ export default {
         path !== "/" &&
         path !== "/api/v1" &&
         path !== "/gabriel" &&
+        path !== "/preflight" &&
         !path.startsWith("/webhooks") &&
+        !path.startsWith("/provenance") &&
+        !path.startsWith("/absence") &&
         !authenticate(request, env)
       ) {
         return err("Unauthorized — provide X-NOIZY-Key header", 401);
@@ -1266,6 +1328,13 @@ export default {
             "GET  /api/v1/enterprise/audit",
             "POST /api/v1/ledger/append",
             "GET  /gabriel",
+            "GET  /preflight                   (GORUNFREE — pre-flight insight)",
+            "GET  /provenance/:id              (GORUNFREE — provenance trail)",
+            "GET  /provenance/:id/export       (GORUNFREE — export as PDF/JSON/C2PA)",
+            "GET  /absence/gaps                (GORUNFREE — creative gaps)",
+            "GET  /absence/archive             (GORUNFREE — resurrection candidates)",
+            "POST /absence/commission          (GORUNFREE — commission workflow)",
+            "GET  /absence/representation      (GORUNFREE — representation balance)",
             "POST /api/v1/family/members",
             "GET  /api/v1/family/members",
             "POST /api/v1/family/consent",
@@ -1475,6 +1544,125 @@ export default {
         ).all();
         return json({ outcomes: results, note: "Constitutional research data — anonymized by default" });
       }
+
+      // ═══════════════════════════════════════════════════════════════════════
+      // GORUNFREE Routes — Creator-Perceived Speed, Provenance, Absence
+      // ═══════════════════════════════════════════════════════════════════════
+
+      // ── Preflight (Pre-Flight Insight) ─────────────────────────────────────
+      if (path === "/preflight" && method === "GET") {
+        return handlePreflight(request, env);
+      }
+
+      // ── Provenance Trail ───────────────────────────────────────────────────
+      const provenanceExportMatch = path.match(/^\/provenance\/([^/]+)\/export$/);
+      if (provenanceExportMatch && method === "GET") {
+        return handleProvenanceExport(request, env);
+      }
+
+      const provenanceMatch = path.match(/^\/provenance\/([^/]+)$/);
+      if (provenanceMatch && method === "GET") {
+        return handleProvenance(request, env);
+      }
+
+      // ── Absence Intelligence ───────────────────────────────────────────────
+      if (path === "/absence/gaps" && method === "GET") {
+        return handleAbsenceGaps(request, env);
+      }
+
+      if (path === "/absence/archive" && method === "GET") {
+        return handleAbsenceArchive(request, env);
+      }
+
+      if (path === "/absence/commission" && method === "POST") {
+        return handleAbsenceCommission(request, env);
+      }
+
+      if (path === "/absence/representation" && method === "GET") {
+        return handleAbsenceRepresentation(request, env);
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════
+      // Operator Routes — Audit-First Pattern
+      // Requires authentication. Audit D1 write before state change.
+      // ═══════════════════════════════════════════════════════════════════════
+
+      if (path === "/operator/approve" && method === "POST") {
+        if (!authenticate(request, env)) {
+          return err("Unauthorized — provide X-NOIZY-Key header", 401);
+        }
+        return handleOperatorApprove(request, env);
+      }
+
+      if (path === "/operator/token/issue" && method === "POST") {
+        if (!authenticate(request, env)) {
+          return err("Unauthorized", 401);
+        }
+        return handleTokenIssue(request, env);
+      }
+
+      if (path === "/operator/token/validate" && method === "POST") {
+        if (!authenticate(request, env)) {
+          return err("Unauthorized", 401);
+        }
+        return handleTokenValidate(request, env);
+      }
+
+      if (path === "/operator/status" && method === "GET") {
+        if (!authenticate(request, env)) {
+          return err("Unauthorized", 401);
+        }
+        return handleOperatorStatus(request, env);
+      }
+
+      if (path === "/operator/audit" && method === "GET") {
+        if (!authenticate(request, env)) {
+          return err("Unauthorized", 401);
+        }
+        return handleOperatorAudit(request, env);
+      }
+
+      if (path === "/operator/freeze" && method === "POST") {
+        if (!authenticate(request, env)) {
+          return err("Unauthorized", 401);
+        }
+        return handleFreezeRecord(request, env);
+      }
+
+      if (path === "/operator/freeze/resolve" && method === "POST") {
+        if (!authenticate(request, env)) {
+          return err("Unauthorized", 401);
+        }
+        return handleFreezeResolve(request, env);
+      }
+
+      // ── Creator Trust Dashboard (public, read-only, calm) ─────────────────
+      if (path === "/trust/status" && method === "GET") {
+        return handleTrustStatus(request, env);
+      }
+
+      if (path === "/trust/changes" && method === "GET") {
+        return handleTrustChanges(request, env);
+      }
+
+      if (path === "/trust/transparency" && method === "GET") {
+        return handleTransparency(request, env);
+      }
+
+      if (path === "/trust/changes/diff" && method === "GET") {
+        return handleCreatorDiff(request, env);
+      }
+
+      // ── Operator Compliance & Audit Diff (authenticated) ────────────────────
+      if (path === "/operator/audit/diff" && method === "GET") {
+        return handleOperatorAuditDiff(request, env);
+      }
+
+      if (path === "/operator/compliance/export" && method === "GET") {
+        return handleComplianceExport(request, env);
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════
 
       // ── NOIZYVOX Platform info ────────────────────────────────────────────
       // noizyvox-platform runs locally on GOD.local:8421 (FastAPI)

@@ -33,6 +33,13 @@ id = "16532a32b2e8455486cc966403f3442e"
 binding = "FEATURE_FLAGS"
 id = "FEATURE_FLAGS_PLACEHOLDER"  # SETUP: Create namespace, update this ID
 
+# ── Gap Solver KV (GORUNFREE Absence Intelligence) ────────────────────────
+# To create: npx wrangler kv namespace create "GAP_SOLVER"
+# KV = fast hypothesis layer. D1 = durable truth. KV writes free, D1 writes earn.
+[[kv_namespaces]]
+binding = "GAP_SOLVER"
+id = "GAP_SOLVER_PLACEHOLDER"  # SETUP: Create namespace, update this ID
+
 # ── Environment Variables ──────────────────────────────────────────────────
 [vars]
 NOIZY_ENV = "production"

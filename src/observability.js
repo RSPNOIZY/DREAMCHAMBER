@@ -149,11 +149,45 @@ export class MetricsCollector {
   }
 }
 
+/**
+ * Log to observability layer (D1 ledger + console)
+ * Used by GORUNFREE routes for tracking events
+ * @param {Object} env - Worker environment bindings
+ * @param {string} eventType - Event type (e.g., 'preflight_complete', 'provenance_retrieved')
+ * @param {Object} data - Event data (sanitized)
+ */
+export async function logToObservability(env, eventType, data = {}) {
+  const entry = createLogEntry('info', eventType, data);
+
+  // Console log for Cloudflare dashboard
+  console.log(JSON.stringify(entry));
+
+  // Attempt to write to D1 ledger if available
+  if (env?.GABRIEL_DB) {
+    try {
+      await env.GABRIEL_DB.prepare(`
+        INSERT INTO noizy_ledger (event_id, event_type, payload_json, source_system, recorded_at)
+        VALUES (?, ?, ?, 'GORUNFREE', datetime('now'))
+      `)
+        .bind(
+          `nz-${Date.now().toString(36)}-${Math.random().toString(36).substr(2, 6)}`,
+          eventType,
+          JSON.stringify(data)
+        )
+        .run();
+    } catch (e) {
+      // Silent fail — observability should not break requests
+      console.error('[Observability] D1 write failed:', e.message);
+    }
+  }
+}
+
 export default {
   generateCorrelationId,
   createLogEntry,
   logRequest,
   logResponse,
   logError,
+  logToObservability,
   MetricsCollector,
 };
