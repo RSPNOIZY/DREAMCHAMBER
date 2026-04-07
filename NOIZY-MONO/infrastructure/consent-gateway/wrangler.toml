@@ -1,0 +1,38 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# CONSENT GATEWAY WORKER
+# The court of record for voice consent.
+# ═══════════════════════════════════════════════════════════════════════════
+
+name = "consent-gateway"
+main = "src/index.ts"
+compatibility_date = "2026-04-01"
+
+# Production route
+routes = [
+  { pattern = "consent.noizy.ai/*", zone_name = "noizy.ai" }
+]
+
+# D1 Database — consent records + audit log
+[[d1_databases]]
+binding = "CONSENT_DB"
+database_name = "consent_gateway"
+database_id = "{{CONSENT_GATEWAY_DB_ID}}"
+
+# KV — rate limiting + session cache
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "{{CONSENT_RATE_LIMIT_KV_ID}}"
+
+[vars]
+ENVIRONMENT = "production"
+LOG_LEVEL = "info"
+RATE_LIMIT_REQUESTS = "60"
+RATE_LIMIT_WINDOW = "60"
+
+# Build configuration
+[build]
+command = "npm run build"
+
+# Observability
+[observability]
+enabled = true

@@ -31,10 +31,11 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.4, delay: 0.2, ease: "easeOut" }}
-            className="text-5xl md:text-7xl lg:text-8xl text-white tracking-tight leading-[1.1]"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white tracking-tight leading-[1.1]"
           >
             Your voice.
-            <br />
+            <span className="hidden sm:inline"><br /></span>
+            <span className="sm:hidden"> </span>
             <span className="text-gradient-voice">Your terms.</span>
           </motion.h1>
 
@@ -87,7 +88,7 @@ export default function HomePage() {
       </section>
 
       {/* Voice is Identity */}
-      <section className="relative py-32 md:py-40">
+      <section className="relative py-20 sm:py-20 sm:py-32 md:py-40">
         <div className="max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -153,7 +154,7 @@ export default function HomePage() {
       </section>
 
       {/* For Creators Section */}
-      <section className="relative py-32 md:py-40 bg-sovereign-dark/30">
+      <section className="relative py-20 sm:py-32 md:py-40 bg-sovereign-dark/30">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -234,7 +235,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Voices */}
-      <section className="relative py-32 md:py-40">
+      <section className="relative py-20 sm:py-32 md:py-40">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -327,7 +328,7 @@ export default function HomePage() {
       </section>
 
       {/* Trust Section */}
-      <section className="relative py-32 md:py-40 bg-sovereign-dark/30">
+      <section className="relative py-20 sm:py-32 md:py-40 bg-sovereign-dark/30">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -359,7 +360,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-32 md:py-40">
+      <section className="relative py-20 sm:py-32 md:py-40">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
