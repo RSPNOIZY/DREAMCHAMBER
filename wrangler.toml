@@ -6,7 +6,8 @@ account_id = "5f36aa9795348ea681d0b21910dfc82a"
 
 # ============================================================
 # CANONICAL BINDINGS — rsp@noizy.ai Account
-# Updated 2026-04-07 to match authenticated account
+# Workers LIVE at *.rsp-5f3.workers.dev
+# To use noizy.ai domain: add zone to this account in CF dashboard
 # ============================================================
 
 [[d1_databases]]
