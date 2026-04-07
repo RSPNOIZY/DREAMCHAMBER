@@ -182,11 +182,12 @@ export default {
         return json({ error: "Rate limit exceeded", retry_after: rl.reset }, 429);
       }
 
-      // Auth check (skip for health, dashboard, root, gabriel status, webhooks, OPTIONS)
+      // Auth check (skip for health, dashboard, root, api index, gabriel status, webhooks, OPTIONS)
       if (
         path !== "/health" &&
         path !== "/dashboard" &&
         path !== "/" &&
+        path !== "/api/v1" &&
         path !== "/gabriel" &&
         !path.startsWith("/webhooks") &&
         !authenticate(request, env)
@@ -1265,12 +1266,13 @@ export default {
         });
       }
 
-      // ── Root — Landing Page ────────────────────────────────────────────────
-      if (path === "/" && method === "GET") {
+      // ── Root — Landing Page (GET + HEAD) ────────────────────────────────────
+      if (path === "/" && (method === "GET" || method === "HEAD")) {
         // Browser request → serve landing page
         const accept = request.headers.get("Accept") || "";
         if (accept.includes("text/html")) {
-          return new Response(landingHTML(), {
+          const body = method === "GET" ? landingHTML() : null;
+          return new Response(body, {
             status: 200,
             headers: {
               "Content-Type": "text/html; charset=utf-8",
@@ -1280,7 +1282,7 @@ export default {
           });
         }
         // API client → return JSON index
-        return json({
+        const indexData = {
           name: "HEAVEN",
           description: "NOIZY HVS Consent Kernel API",
           version: env.NOIZY_VERSION,
@@ -1331,6 +1333,40 @@ export default {
             "GET  /api/v1/heal/outcomes",
             "GET  /api/v1/noizyvox/*  (proxy → GOD.local:8421 — voices, calm, research)",
           ],
+          mission: "Consent as executable code.",
+        };
+        if (method === "HEAD") {
+          return new Response(null, { status: 200, headers: CORS_HEADERS });
+        }
+        return json(indexData);
+      }
+
+      // ── /api/v1 Index ─────────────────────────────────────────────────────────
+      if (path === "/api/v1" && (method === "GET" || method === "HEAD")) {
+        if (method === "HEAD") {
+          return new Response(null, { status: 200, headers: CORS_HEADERS });
+        }
+        return json({
+          api: "HEAVEN HVS Consent Kernel",
+          version: "v1",
+          base: "/api/v1",
+          resources: {
+            actors: "/api/v1/actors",
+            descendants: "/api/v1/descendants",
+            consent_tokens: "/api/v1/consent-tokens",
+            synth_requests: "/api/v1/synth-requests",
+            licenses: "/api/v1/licenses",
+            licensees: "/api/v1/licensees",
+            ledger: "/api/v1/ledger",
+            rate_table: "/api/v1/rate-table",
+            union_tiers: "/api/v1/union-tiers",
+            estates: "/api/v1/estates",
+            premis: "/api/v1/premis",
+            stats: "/api/v1/stats",
+            kpi: "/api/v1/kpi/*",
+            family: "/api/v1/family/*",
+            heal: "/api/v1/heal/*",
+          },
           mission: "Consent as executable code.",
         });
       }
