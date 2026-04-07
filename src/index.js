@@ -3,7 +3,7 @@
  * Cloudflare Worker — gabriel_db D1 backend
  *
  * Author: Robert Stephen Plowman (RSP_001)
- * Version: 17.8.0 — April 2026 (GORUNFREE live)
+ * Version: 17.9.0 — April 2026 (GORUNFREE + EDGE CORE live)
  *
  * Consent as executable code.
  * Provenance as default.
@@ -96,6 +96,9 @@ import { assertAuditReadyCached } from "./edge-core/startup_assertions.js";
 import { handleTransparency } from "./routes/transparency.js";
 import { handleOperatorAuditDiff, handleCreatorDiff } from "./routes/audit-diff.js";
 import { handleComplianceExport } from "./routes/compliance-export.js";
+import { handleVerifyBundle } from "./routes/verify-bundle.js";
+import { handleAnchorStatus, handleAnchorStatusWidget } from "./routes/anchor-status.js";
+import { handleProofCoverage, handleProofCoverageWidget } from "./routes/proof-coverage.js";
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -1660,6 +1663,27 @@ export default {
 
       if (path === "/operator/compliance/export" && method === "GET") {
         return handleComplianceExport(request, env);
+      }
+
+      if (path === "/operator/compliance/verify-bundle" && method === "GET") {
+        return handleVerifyBundle(request, env);
+      }
+
+      // ── Public Anchor Status Widget ────────────────────────────────────────
+      if (path === "/trust/anchor-status" && method === "GET") {
+        return handleAnchorStatus(request, env);
+      }
+
+      if (path === "/trust/anchor-status.html" && method === "GET") {
+        return handleAnchorStatusWidget(request, env);
+      }
+
+      if (path === "/trust/proof-coverage" && method === "GET") {
+        return handleProofCoverage(request, env);
+      }
+
+      if (path === "/trust/proof-coverage.html" && method === "GET") {
+        return handleProofCoverageWidget(request, env);
       }
 
       // ═══════════════════════════════════════════════════════════════════════

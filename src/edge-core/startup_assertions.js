@@ -17,36 +17,47 @@
  * - Manual wrangler deploys
  * - Misconfigured environments
  *
+ * HARDENING (locked 2026-04-07):
+ * - Uses "SELECT 1" pattern — query success alone is not readiness
+ * - Must return a row to prove table exists
+ * - Fails closed if binding missing OR table missing OR query fails
+ *
+ * Core Law: If a trust-sensitive action cannot produce a committed
+ *           audit row, it is not allowed to exist.
+ *
  * @param {Object} env - Cloudflare Worker env bindings
- * @throws {Error} If audit_events table is missing
+ * @throws {Error} If audit_events table is missing or binding absent
  */
 export async function assertAuditReady(env) {
-  // Check if D1 binding exists
+  // Gate 1: Binding must exist
   if (!env.GABRIEL_DB) {
     throw new Error(
-      "EDGE CORE: GABRIEL_DB binding missing — runtime halted"
+      "AUDIT_READINESS_GATE: GABRIEL_DB binding missing"
     );
   }
 
   try {
-    const check = await env.GABRIEL_DB.prepare(
-      "SELECT name FROM sqlite_master WHERE type='table' AND name='audit_events'"
+    // Gate 2: Assertive table existence check
+    // SELECT 1 returns a row only if the table exists
+    // A successful query with no row = table missing = fail
+    const result = await env.GABRIEL_DB.prepare(
+      "SELECT 1 FROM sqlite_master WHERE type='table' AND name='audit_events'"
     ).first();
 
-    if (!check) {
+    if (!result) {
       throw new Error(
-        "EDGE CORE: audit_events table missing — runtime halted. " +
-        "Run: npx wrangler d1 execute gabriel_db --remote --file migrations/002_audit_events.sql"
+        "AUDIT_READINESS_GATE: audit_events table missing. " +
+        "Run: npx wrangler d1 execute gabriel_db --remote --file ops/migrations/001_audit_events.sql"
       );
     }
   } catch (err) {
-    // Re-throw if it's our error
-    if (err.message.includes("EDGE CORE")) {
+    // Re-throw if it's our gate error
+    if (err.message.includes("AUDIT_READINESS_GATE")) {
       throw err;
     }
-    // D1 query failed — also halt
+    // D1 query failed — fail closed
     throw new Error(
-      `EDGE CORE: audit_events check failed (${err.message}) — runtime halted`
+      `AUDIT_READINESS_GATE: audit check failed (${err.message})`
     );
   }
 }

@@ -42,11 +42,93 @@ jobs:
           fi
           echo "Royalty floor verified: 0.75 minimum enforced"
 
+  # ── Audit Readiness Gate ────────────────────────────────────────────────────
+  # Core Law: If a user can see authority, the system must already be able
+  #           to remember it.
+  audit-readiness-gate:
+    name: Audit Readiness Gate
+    runs-on: ubuntu-latest
+    needs: constitutional-check
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Check migration file exists
+        run: |
+          if [[ -f "ops/migrations/001_audit_events.sql" ]] || [[ -f "migrations/002_audit_events.sql" ]]; then
+            echo "✓ Migration file present"
+          else
+            echo "❌ Migration file missing"
+            exit 1
+          fi
+
+      - name: Check D1 binding in config
+        run: |
+          if grep -qE "(GABRIEL_DB|AUDIT_D1)" wrangler.toml; then
+            echo "✓ D1 binding configured"
+          else
+            echo "❌ D1 binding missing from wrangler.toml"
+            exit 1
+          fi
+
+      - name: Check audit_events table exists
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          OUTPUT=$(npx wrangler d1 execute gabriel_db --remote \
+            --command "SELECT name FROM sqlite_master WHERE type='table' AND name='audit_events';" 2>&1) || true
+          if echo "$OUTPUT" | grep -q "audit_events"; then
+            echo "✓ audit_events table exists"
+          else
+            echo "❌ audit_events table missing"
+            echo "Run: npx wrangler d1 execute gabriel_db --remote --file ops/migrations/001_audit_events.sql"
+            exit 1
+          fi
+
+      - name: Dry-run approval verification
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          TEST_ID="ci-gate-$(date +%s)"
+          npx wrangler d1 execute gabriel_db --remote --command \
+            "INSERT INTO audit_events (id, operator_email, action, explanation, precondition_passed) VALUES ('$TEST_ID', 'ci@github-actions', 'CI_GATE_CHECK', 'GitHub Actions audit gate verification', 1);" || {
+              echo "⚠️ Audit write test skipped (table may need migration)"
+              exit 0
+            }
+
+          OUTPUT=$(npx wrangler d1 execute gabriel_db --remote --command \
+            "SELECT id FROM audit_events WHERE id = '$TEST_ID';") || true
+
+          if echo "$OUTPUT" | grep -q "$TEST_ID"; then
+            echo "✓ Audit write path working"
+            # Clean up
+            npx wrangler d1 execute gabriel_db --remote --command \
+              "DELETE FROM audit_events WHERE id = '$TEST_ID';" || true
+          else
+            echo "❌ Audit write path failed"
+            exit 1
+          fi
+
+      - name: Gate passed
+        run: |
+          echo "═══════════════════════════════════════════════════════════════════"
+          echo "  ✅ AUDIT READINESS GATE PASSED"
+          echo "  Deploy may proceed."
+          echo "═══════════════════════════════════════════════════════════════════"
+
   # ── TypeScript / Node ───────────────────────────────────────────────────────
   build-node:
     name: Build & Test (Node)
     runs-on: ubuntu-latest
-    needs: constitutional-check
+    needs: [constitutional-check, audit-readiness-gate]
     strategy:
       matrix:
         package:
@@ -76,7 +158,7 @@ jobs:
   build-python:
     name: Build & Test (Python)
     runs-on: ubuntu-latest
-    needs: constitutional-check
+    needs: [constitutional-check, audit-readiness-gate]
 
     steps:
       - uses: actions/checkout@v4

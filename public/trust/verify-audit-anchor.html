@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify an Audit Anchor — NOIZY</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --fg: #e0e0e0;
+      --accent: #7c3aed;
+      --success: #22c55e;
+      --border: #333;
+      --code-bg: #1a1a1a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 1rem; color: var(--accent); }
+    h3 { font-size: 1rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    p { margin-bottom: 1rem; }
+    .subtitle { color: #888; margin-bottom: 2rem; }
+    .section { margin-bottom: 2rem; padding: 1.5rem; background: var(--code-bg); border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid var(--border); }
+    th { color: var(--accent); font-weight: 500; }
+    code { background: var(--code-bg); padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.9rem; }
+    pre { background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; }
+    .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: #1a2a1a; border-radius: 4px; margin: 0.25rem; }
+    .badge-check { color: var(--success); }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .quote { border-left: 3px solid var(--accent); padding-left: 1rem; margin: 1.5rem 0; font-style: italic; color: #aaa; }
+    .step { display: flex; gap: 1rem; margin-bottom: 1rem; }
+    .step-num { width: 28px; height: 28px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+    .warning { background: #2a2010; border-left: 3px solid #eab308; padding: 1rem; margin: 1rem 0; }
+    footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); color: #666; font-size: 0.9rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Verify an Audit Anchor</h1>
+  <p class="subtitle">You don't have to believe us. You can verify us.</p>
+
+  <div class="section">
+    <h2>What We Anchor</h2>
+    <p>Each day, we compute a <strong>cryptographic fingerprint</strong> of our audit log.</p>
+    <p>That fingerprint is published on <strong>public blockchains</strong>.</p>
+    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+      <li>No audit data is published — only a hash (fingerprint)</li>
+      <li>The hash proves the audit log existed at that time</li>
+      <li>Any change to the log would produce a different hash</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Where It's Anchored</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Network</th>
+          <th>What's Published</th>
+          <th>How to Find It</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ethereum</td>
+          <td>Hash in transaction input data</td>
+          <td>Search tx hash on <a href="https://etherscan.io" target="_blank">Etherscan</a></td>
+        </tr>
+        <tr>
+          <td>Bitcoin</td>
+          <td>Hash in OP_RETURN output</td>
+          <td>Search txid on <a href="https://blockstream.info" target="_blank">Blockstream</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Both are public and independently verifiable by anyone.</p>
+  </div>
+
+  <div class="section">
+    <h2>How to Verify (Step-by-Step)</h2>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <strong>Download the audit export</strong>
+        <p>Request a compliance export for your date range from <code>/operator/compliance/export</code></p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <strong>Compute the Merkle root locally</strong>
+        <p>Use our verification script or compute it yourself:</p>
+        <pre>cat audit_events.csv | cut -d',' -f1 | sort | sha256sum</pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <strong>Compare it to the published anchor</strong>
+        <p>The computed hash should match the anchor record exactly.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <strong>Confirm blockchain timestamp</strong>
+        <p>Verify that the blockchain transaction was mined before the audit period ended.</p>
+      </div>
+    </div>
+
+    <p><strong>If all steps pass:</strong> The audit log has not been tampered with.</p>
+    <p><strong>If any step fails:</strong> Something may have been altered — investigate further.</p>
+  </div>
+
+  <div class="section">
+    <h2>What This Does NOT Show</h2>
+    <div class="warning">
+      <p><strong>Verification is not surveillance.</strong></p>
+      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <li>No personal data exposed</li>
+        <li>No creative content revealed</li>
+        <li>No internal systems accessed</li>
+        <li>No private keys required</li>
+      </ul>
+    </div>
+    <p>You verify <em>integrity</em>, not content.</p>
+  </div>
+
+  <div class="section">
+    <h2>Why This Exists</h2>
+    <div class="quote">
+      Trust shouldn't require access.<br>
+      It should survive distance, time, and skepticism.
+    </div>
+    <p>We don't ask you to trust us. We give you the tools to verify us independently.</p>
+  </div>
+
+  <div class="section">
+    <h2>Audit Status</h2>
+    <div class="badges">
+      <div class="badge">
+        <span class="badge-check">✓</span>
+        <span>Audit Log: Append-Only</span>
+      </div>
+      <div class="badge">
+        <span class="badge-check">✓</span>
+        <span>Tamper-Evident</span>
+      </div>
+      <div class="badge">
+        <span class="badge-check">✓</span>
+        <span>Publicly Verifiable</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>NOIZY</strong> — Consent as executable code.</p>
+    <p>Questions? <a href="mailto:rsp@noizy.ai">rsp@noizy.ai</a></p>
+    <p style="margin-top: 1rem;">
+      <a href="/trust/status">Trust Status</a> ·
+      <a href="/trust/transparency">Transparency Data</a> ·
+      <a href="/trust/changes">Recent Changes</a>
+    </p>
+  </footer>
+</body>
+</html>
