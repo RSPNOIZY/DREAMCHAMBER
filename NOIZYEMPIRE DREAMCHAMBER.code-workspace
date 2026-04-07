@@ -1,61 +1,42 @@
 {
-  "folders": [
-    {
-      "name": "NOIZYLAB",
-      "path": ".",
-    },
-    {
-      "name": "DreamChamber",
-      "path": "dreamchamber",
-    },
-  ],
-  "settings": {
-    "mcp": {
-      "servers": {
-        "io.github.github/github-mcp-server": {
-          "type": "stdio",
-          "command": "docker",
-          "args": [
-            "run",
-            "-i",
-            "--rm",
-            "-e",
-            "GITHUB_PERSONAL_ACCESS_TOKEN=${input:token}",
-            "ghcr.io/github/github-mcp-server:0.33.0",
-          ],
-          "gallery": "https://api.mcp.github.com",
-          "version": "0.33.0",
-        },
-        "github": {
-          "type": "http",
-          "url": "https://api.githubcopilot.com/mcp/",
-        },
-      },
-      "inputs": [
-        {
-          "id": "token",
-          "type": "promptString",
-          "description": "",
-          "password": true,
-        },
-      ],
-    },
-    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
-    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
-    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
-    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
-    "editor.autoIndentOnPaste": true,
-    "evenBetterToml.formatter.compactInlineTables": true,
-    "evenBetterToml.formatter.indentEntries": true,
-    "evenBetterToml.formatter.indentTables": true,
-    "evenBetterToml.formatter.inlineTableExpand": true,
-    "evenBetterToml.formatter.reorderInlineTables": true,
-    "evenBetterToml.formatter.reorderKeys": true,
-    "git-graph.dialog.fetchIntoLocalBranch.forceFetch": true,
-    "vim.easymotionDimBackground": false,
-    "editor.formatOnSave": true,
-    "files.autoSave": "onFocusChange",
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.fontSize": 14,
-  },
+	"folders": [
+		{
+			"name": "NOIZYLAB",
+			"path": "."
+		},
+		{
+			"name": "DreamChamber",
+			"path": "dreamchamber"
+		}
+	],
+	"settings": {
+		"mcp": {
+			"inputs": [
+				{
+					"id": "token",
+					"type": "promptString",
+					"description": "",
+					"password": true
+				}
+			],
+			"servers": {}
+		},
+		"javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+		"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+		"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+		"javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+		"editor.autoIndentOnPaste": true,
+		"evenBetterToml.formatter.compactInlineTables": true,
+		"evenBetterToml.formatter.indentEntries": true,
+		"evenBetterToml.formatter.indentTables": true,
+		"evenBetterToml.formatter.inlineTableExpand": true,
+		"evenBetterToml.formatter.reorderInlineTables": true,
+		"evenBetterToml.formatter.reorderKeys": true,
+		"git-graph.dialog.fetchIntoLocalBranch.forceFetch": true,
+		"vim.easymotionDimBackground": false,
+		"editor.formatOnSave": true,
+		"files.autoSave": "onFocusChange",
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.fontSize": 14
+	}
 }
