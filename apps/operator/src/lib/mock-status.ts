@@ -137,6 +137,6 @@ export const infrastructure = {
   voiceBridge: { url: "http://localhost:8080", status: "BLOCKED" as TruthStatus },
   ollama:      { url: "http://localhost:11434", status: "LIVE" as TruthStatus },
   d1Memory:    { id: "7b813205-fd12-4a23-84a6-ce83bc49ec70", name: "agent-memory", status: "LIVE" as TruthStatus },
-  cfHeaven:    { id: "5ba03939f87a498d0bbed185ee123946", label: "HEAVEN account" },
-  cfConsent:   { id: "5ba03939f87a498d0bbed185ee123946", label: "consent-gateway account" },
+  cfHeaven:    { id: "5f36aa9795348ea681d0b21910dfc82a", label: "HEAVEN account" },
+  cfConsent:   { id: "5f36aa9795348ea681d0b21910dfc82a", label: "consent-gateway account" },
 };

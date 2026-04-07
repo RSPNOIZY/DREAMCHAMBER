@@ -169,12 +169,12 @@ WARNINGS:
 
 | Resource | ID |
 |----------|-----|
-| D1 gabriel_db | fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa |
+| D1 gabriel_db | a31d68e2-f2d4-4203-a803-8039fdff31cb |
 | D1 agent-memory | 7b813205-fd12-4a23-84a6-ce83bc49ec70 |
 | D1 noizyanthropic | 932e36f7-b5a9-4063-a8d2-4e88cfc874c5 |
-| GABRIEL_KV | 6fe434a8020147c7bc4788e7057b843a |
-| GABRIEL_VOICE | afef27e69f634d2b941482435d042167 |
-| CF Account | Fishmusicinc — 2446d788 |
+| GABRIEL_KV | f205b56a9914413da0ec454a9dc4c2bd |
+| GABRIEL_VOICE | 16532a32b2e8455486cc966403f3442e |
+| CF Account | rsp@noizy.ai — 5f36aa9795348ea681d0b21910dfc82a |
 | CF Login | rsp@noizyfish.com (MIGRATE TO rsplowman@icloud.com) |
 
 ## Rules

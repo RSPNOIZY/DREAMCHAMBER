@@ -49,7 +49,7 @@ Registered in: `~/.codeium/windsurf/mcp_config.json`
 | Service | Type | Location | Port / URL |
 |---|---|---|---|
 | **HEAVEN** | Cloudflare Worker | `src/index.js` | `https://heaven.noizylab.workers.dev` |
-| **gabriel_db** | D1 SQLite | Cloudflare | binding `GABRIEL_DB` (fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa) |
+| **gabriel_db** | D1 SQLite | Cloudflare | binding `GABRIEL_DB` (a31d68e2-f2d4-4203-a803-8039fdff31cb) |
 | **DreamChamber** | Node.js/Express | `dreamchamber/` | `:7777` |
 | **Voice Bridge** | Node.js/Express | `voice-bridge-server.js` | `:8080` |
 | **Power Automate** | Azure Logic App | `power-automate-flows/` | → `GOD.local:8080` |
@@ -187,9 +187,9 @@ Registered in: `~/.codeium/windsurf/mcp_config.json`
 
 | Resource | Binding | ID |
 |---|---|---|
-| D1 Database | `GABRIEL_DB` | `fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa` |
-| KV (rate limit + cache) | `GABRIEL_KV` | `6fe434a8020147c7bc4788e7057b843a` |
-| KV (voice assets) | `GABRIEL_VOICE` | `afef27e69f634d2b941482435d042167` |
+| D1 Database | `GABRIEL_DB` | `a31d68e2-f2d4-4203-a803-8039fdff31cb` |
+| KV (rate limit + cache) | `GABRIEL_KV` | `f205b56a9914413da0ec454a9dc4c2bd` |
+| KV (voice assets) | `GABRIEL_VOICE` | `16532a32b2e8455486cc966403f3442e` |
 | Worker URL | — | `https://heaven.noizylab.workers.dev` |
 | Worker version | — | `6c7a12c5` (last deployed) |
 

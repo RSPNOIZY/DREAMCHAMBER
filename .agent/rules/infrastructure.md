@@ -15,8 +15,8 @@
 
 ```
 # TWO CLOUDFLARE ACCOUNTS — both real, both in use
-CF_HEAVEN:      5ba03939f87a498d0bbed185ee123946   ← HEAVEN worker, noizy.ai, KVs
-CF_CONSENT:     5ba03939f87a498d0bbed185ee123946   ← consent-gateway, wrangler auth
+CF_HEAVEN:      5f36aa9795348ea681d0b21910dfc82a   ← HEAVEN worker, noizy.ai, KVs
+CF_CONSENT:     5f36aa9795348ea681d0b21910dfc82a   ← consent-gateway, wrangler auth
 
 # D1 DATABASES
 agent-memory:   7b813205-fd12-4a23-84a6-ce83bc49ec70  (DB_MEMORY — CANONICAL)

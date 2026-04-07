@@ -194,9 +194,9 @@ if (!covenantResult.valid) {
 ## Infrastructure IDs
 
 ```
-D1:          gabriel_db — fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa
-GABRIEL_KV:  6fe434a8020147c7bc4788e7057b843a
-GABRIEL_VOICE: afef27e69f634d2b941482435d042167
+D1:          gabriel_db — a31d68e2-f2d4-4203-a803-8039fdff31cb
+GABRIEL_KV:  f205b56a9914413da0ec454a9dc4c2bd
+GABRIEL_VOICE: 16532a32b2e8455486cc966403f3442e
 Worker URL:  https://heaven.noizylab.workers.dev
 ```
 

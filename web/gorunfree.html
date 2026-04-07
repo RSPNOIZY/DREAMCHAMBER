@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GORUNFREE | NOIZY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #020408;
+      --surface: #0a0f14;
+      --border: rgba(255,255,255,0.06);
+      --text: #e8e8e8;
+      --muted: #6b7280;
+      --cyan: #00d4ff;
+      --gold: #d4a017;
+      --green: #10b981;
+      --purple: #8b5cf6;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 24px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+    }
+
+    .wordmark {
+      font-family: 'Cinzel', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      background: linear-gradient(135deg, #d4d4d4 0%, #fafafa 25%, #a8a8a8 50%, #e8e8e8 75%, #c0c0c0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--cyan);
+      margin-bottom: 32px;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-description {
+      max-width: 700px;
+      font-size: 1.2rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .hero-description strong {
+      color: var(--text);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    /* Section header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Three primitives */
+    .primitives {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+
+    .primitive {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .primitive::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .primitive.preflight::before { background: var(--cyan); }
+    .primitive.provenance::before { background: var(--gold); }
+    .primitive.absence::before { background: var(--purple); }
+
+    .primitive-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .primitive.preflight .primitive-icon { background: rgba(0, 212, 255, 0.1); }
+    .primitive.provenance .primitive-icon { background: rgba(212, 160, 23, 0.1); }
+    .primitive.absence .primitive-icon { background: rgba(139, 92, 246, 0.1); }
+
+    .primitive h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .primitive p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .primitive-features {
+      list-style: none;
+    }
+
+    .primitive-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .primitive-features li::before {
+      content: '→';
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+
+    /* Difference grid */
+    .difference {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+
+    @media (max-width: 768px) {
+      .difference { grid-template-columns: 1fr; }
+    }
+
+    .difference-col {
+      padding: 32px;
+      border-radius: 16px;
+    }
+
+    .difference-col.before {
+      background: rgba(233, 69, 96, 0.05);
+      border: 1px solid rgba(233, 69, 96, 0.2);
+    }
+
+    .difference-col.after {
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .difference-col h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .difference-col.before h3 { color: #e94560; }
+    .difference-col.after h3 { color: var(--green); }
+
+    .difference-col ul {
+      list-style: none;
+    }
+
+    .difference-col li {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .difference-col li::before {
+      position: absolute;
+      left: 0;
+    }
+
+    .difference-col.before li::before { content: '✗'; color: #e94560; }
+    .difference-col.after li::before { content: '✓'; color: var(--green); }
+
+    /* API preview */
+    .api-preview {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 80px;
+    }
+
+    .api-preview h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .api-endpoint {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 0.9rem;
+    }
+
+    .api-method {
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .api-method.get { background: rgba(16, 185, 129, 0.2); color: var(--green); }
+    .api-method.post { background: rgba(139, 92, 246, 0.2); color: var(--purple); }
+
+    .api-path { color: var(--cyan); }
+    .api-desc { color: var(--muted); margin-left: auto; font-size: 0.85rem; }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 64px 32px;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(139, 92, 246, 0.05));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+    }
+
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-button {
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta-button.primary {
+      background: linear-gradient(135deg, var(--cyan), #0099cc);
+      color: #000;
+    }
+
+    .cta-button.primary:hover {
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+    }
+
+    .cta-button.secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .cta-button.secondary:hover {
+      border-color: var(--cyan);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer a { color: var(--cyan); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .wordmark { font-size: 2.5rem; }
+      .tagline { font-size: 1.2rem; }
+      .primitives { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="wordmark">GORUNFREE</div>
+    <div class="tagline">Create Without Limits. Create Without Fear.</div>
+    <p class="hero-description">
+      <strong>GORUNFREE</strong> means creators move faster, with higher confidence, and with
+      less cognitive overhead—because NOIZY absorbs the risk, legality, and history for them.
+    </p>
+  </section>
+
+  <div class="container">
+    <div class="section-header">
+      <h2>The Three Primitives</h2>
+      <p>Everything a creator needs to know, surfaced at exactly the right moment.</p>
+    </div>
+
+    <div class="primitives">
+      <div class="primitive preflight">
+        <div class="primitive-icon">🔍</div>
+        <h3>Pre-Flight Insight</h3>
+        <p>Know before you start. What exists, what's missing, and why—surfaced before generation, not after.</p>
+        <ul class="primitive-features">
+          <li>See available consented voices instantly</li>
+          <li>Understand gaps before they surprise you</li>
+          <li>Get alternative recommendations</li>
+          <li>Consent status at a glance</li>
+        </ul>
+      </div>
+
+      <div class="primitive provenance">
+        <div class="primitive-icon">📜</div>
+        <h3>Provenance Trail</h3>
+        <p>Provenance as creative power, not compliance burden. Why this worked, and what you didn't copy.</p>
+        <ul class="primitive-features">
+          <li>Exportable proof bundles</li>
+          <li>"What you didn't copy" summary</li>
+          <li>Full consent chain visualization</li>
+          <li>C2PA content credentials</li>
+        </ul>
+      </div>
+
+      <div class="primitive absence">
+        <div class="primitive-icon">✨</div>
+        <h3>Absence Intelligence</h3>
+        <p>Detect what doesn't exist yet. Turn gaps into opportunities, not failures.</p>
+        <ul class="primitive-features">
+          <li>Pioneer territory detection</li>
+          <li>Archive resurrection candidates</li>
+          <li>Commission workflow integration</li>
+          <li>Representation balance analysis</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h2>What Changes</h2>
+      <p>Before and after GORUNFREE.</p>
+    </div>
+
+    <div class="difference">
+      <div class="difference-col before">
+        <h3>✗ Before GORUNFREE</h3>
+        <ul>
+          <li>Generate first, hope it's legal</li>
+          <li>Provenance is a compliance burden</li>
+          <li>Gaps feel like failures</li>
+          <li>AI generator identity</li>
+          <li>Content mill reputation</li>
+        </ul>
+      </div>
+
+      <div class="difference-col after">
+        <h3>✓ After GORUNFREE</h3>
+        <ul>
+          <li>Know the landscape before you start</li>
+          <li>Provenance is creative power</li>
+          <li>Gaps become opportunities</li>
+          <li>Trusted creative system identity</li>
+          <li>Culture-shaping instrument</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="api-preview">
+      <h3>API Endpoints</h3>
+
+      <div class="api-endpoint">
+        <span class="api-method get">GET</span>
+        <span class="api-path">/preflight</span>
+        <span class="api-desc">Pre-flight insight for any intent</span>
+      </div>
+
+      <div class="api-endpoint">
+        <span class="api-method get">GET</span>
+        <span class="api-path">/provenance/:id</span>
+        <span class="api-desc">Full provenance trail</span>
+      </div>
+
+      <div class="api-endpoint">
+        <span class="api-method get">GET</span>
+        <span class="api-path">/provenance/:id/export</span>
+        <span class="api-desc">Export as PDF, JSON, C2PA</span>
+      </div>
+
+      <div class="api-endpoint">
+        <span class="api-method get">GET</span>
+        <span class="api-path">/absence/gaps</span>
+        <span class="api-desc">Detected creative gaps</span>
+      </div>
+
+      <div class="api-endpoint">
+        <span class="api-method get">GET</span>
+        <span class="api-path">/absence/archive</span>
+        <span class="api-desc">Archive resurrection candidates</span>
+      </div>
+
+      <div class="api-endpoint">
+        <span class="api-method post">POST</span>
+        <span class="api-path">/absence/commission</span>
+        <span class="api-desc">Initiate commission workflow</span>
+      </div>
+
+      <div class="api-endpoint">
+        <span class="api-method get">GET</span>
+        <span class="api-path">/absence/representation</span>
+        <span class="api-desc">Representation balance analysis</span>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2>Run Free</h2>
+      <p>
+        GORUNFREE isn't a feature. It's how NOIZY thinks.
+        Creators run free because the system carries the weight.
+      </p>
+      <div class="cta-buttons">
+        <a href="safety.html" class="cta-button primary">How We Ship Safely →</a>
+        <a href="failures.html" class="cta-button secondary">How We Handle Failures</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>
+      NOIZY — Creator sovereignty through technology<br>
+      <a href="mailto:rsp@noizy.ai">rsp@noizy.ai</a>
+    </p>
+  </footer>
+</body>
+</html>

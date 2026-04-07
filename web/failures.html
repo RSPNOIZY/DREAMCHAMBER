@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How We Handle Failures | NOIZY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #020408;
+      --surface: #0a0f14;
+      --border: rgba(255,255,255,0.06);
+      --text: #e8e8e8;
+      --muted: #6b7280;
+      --cyan: #00d4ff;
+      --gold: #d4a017;
+      --red: #e94560;
+      --green: #10b981;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .wordmark {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      background: linear-gradient(135deg, #d4d4d4 0%, #fafafa 25%, #a8a8a8 50%, #e8e8e8 75%, #c0c0c0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* Section */
+    section {
+      margin-bottom: 64px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: var(--cyan);
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 32px 0 16px;
+      color: var(--text);
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--text);
+      opacity: 0.9;
+    }
+
+    /* Doctrine block */
+    .doctrine {
+      background: var(--surface);
+      border-left: 3px solid var(--cyan);
+      padding: 24px 32px;
+      margin: 32px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .doctrine p {
+      font-style: italic;
+      font-size: 1.1rem;
+      margin: 0;
+      color: var(--text);
+    }
+
+    /* Principle cards */
+    .principles {
+      display: grid;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .principle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .principle::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--cyan);
+    }
+
+    .principle-number {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .principle-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .principle-text {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Process flow */
+    .process {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 32px 0;
+    }
+
+    .process-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      background: var(--surface);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .process-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .process-icon.detect { background: rgba(0, 212, 255, 0.1); }
+    .process-icon.halt { background: rgba(233, 69, 96, 0.1); }
+    .process-icon.analyze { background: rgba(212, 160, 23, 0.1); }
+    .process-icon.fix { background: rgba(16, 185, 129, 0.1); }
+    .process-icon.publish { background: rgba(139, 92, 246, 0.1); }
+
+    .process-content h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .process-content p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* Postmortem list */
+    .postmortems {
+      margin-top: 32px;
+    }
+
+    .postmortem-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+
+    .postmortem-item:hover {
+      border-color: var(--cyan);
+    }
+
+    .postmortem-title {
+      font-weight: 500;
+    }
+
+    .postmortem-date {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .postmortem-status {
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .postmortem-status.resolved {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--green);
+    }
+
+    .postmortem-status.monitoring {
+      background: rgba(212, 160, 23, 0.1);
+      color: var(--gold);
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      margin-top: 80px;
+      padding: 48px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .cta h3 {
+      font-size: 1.5rem;
+      margin: 0 0 16px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 24px;
+    }
+
+    .cta-link {
+      display: inline-block;
+      padding: 12px 32px;
+      background: linear-gradient(135deg, var(--cyan), #0099cc);
+      color: #000;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .cta-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .wordmark { font-size: 1.8rem; }
+      .container { padding: 40px 16px; }
+      .stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="wordmark">NOIZY</div>
+      <p class="subtitle">How We Handle Failures</p>
+    </header>
+
+    <section>
+      <h2>Our Philosophy</h2>
+      <p>
+        Every system fails eventually. What matters is how you respond.
+        At NOIZY, we believe failures are opportunities to demonstrate
+        competence, transparency, and care for the people who trust us.
+      </p>
+
+      <div class="doctrine">
+        <p>
+          "We don't hide from failures. We mechanically prevent the worst ones,
+          and publicly account for the rest."
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Prevention First</h2>
+      <p>
+        Most failures never reach you because our systems are designed
+        to catch them automatically. Here's what runs on every change:
+      </p>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value">6</div>
+          <div class="stat-label">Automated checks per PR</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">4</div>
+          <div class="stat-label">Deployment stages</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">&lt;1%</div>
+          <div class="stat-label">Initial traffic exposure</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">0</div>
+          <div class="stat-label">Consent violations (ever)</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>When Things Go Wrong</h2>
+      <p>
+        When our automated systems detect an anomaly, here's what happens:
+      </p>
+
+      <div class="process">
+        <div class="process-step">
+          <div class="process-icon detect">🔍</div>
+          <div class="process-content">
+            <h4>1. Automatic Detection</h4>
+            <p>Our systems detect anomalies within seconds through real-time monitoring and error budgets.</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="process-icon halt">🛑</div>
+          <div class="process-content">
+            <h4>2. Automatic Halt</h4>
+            <p>Traffic to the affected version is stopped immediately. No human decision required.</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="process-icon analyze">🔬</div>
+          <div class="process-content">
+            <h4>3. Root Cause Analysis</h4>
+            <p>We investigate what happened, without blame. A postmortem draft is auto-generated.</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="process-icon fix">✅</div>
+          <div class="process-content">
+            <h4>4. Fix & Verify</h4>
+            <p>We fix the issue and verify through the same gradual deployment process.</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="process-icon publish">📝</div>
+          <div class="process-content">
+            <h4>5. Public Postmortem</h4>
+            <p>We publish what happened, what we learned, and what we changed. No hiding.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Our Principles</h2>
+
+      <div class="principles">
+        <div class="principle">
+          <div class="principle-number">PRINCIPLE 01</div>
+          <div class="principle-title">Blameless Culture</div>
+          <div class="principle-text">
+            We focus on systems, not individuals. Every postmortem asks
+            "what allowed this to happen?" not "who caused this?"
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-number">PRINCIPLE 02</div>
+          <div class="principle-title">Public Accountability</div>
+          <div class="principle-text">
+            Significant incidents get public postmortems. We believe transparency
+            builds more trust than silence ever could.
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-number">PRINCIPLE 03</div>
+          <div class="principle-title">Prevention Over Detection</div>
+          <div class="principle-text">
+            The best incident is the one that never reaches you. We invest
+            heavily in automated safeguards that catch issues before deployment.
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-number">PRINCIPLE 04</div>
+          <div class="principle-title">Never Compromise Trust</div>
+          <div class="principle-text">
+            Your voice, your consent, your data — these are never at risk.
+            Our systems are designed to fail closed, protecting you even
+            when things go wrong.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Recent Postmortems</h2>
+      <p>
+        Below are our public incident reports. We publish these because
+        we believe you deserve to know how we handle problems.
+      </p>
+
+      <div class="postmortems">
+        <div class="postmortem-item" style="opacity: 0.5; cursor: default;">
+          <div>
+            <div class="postmortem-title">No incidents to report</div>
+            <div class="postmortem-date">All systems operating normally</div>
+          </div>
+          <span class="postmortem-status resolved">CLEAR</span>
+        </div>
+      </div>
+
+      <p style="margin-top: 24px; font-size: 0.9rem; color: var(--muted);">
+        This section will be updated when incidents occur. The absence of
+        postmortems is by design — our systems prevent most issues automatically.
+      </p>
+    </section>
+
+    <div class="cta">
+      <h3>Want to see how we ship safely?</h3>
+      <p>
+        Learn about our EDGE CORE governance system that makes these
+        protections possible.
+      </p>
+      <a href="safety.html" class="cta-link">Read: How We Ship Safely →</a>
+    </div>
+
+    <footer>
+      <p>
+        NOIZY — Creator sovereignty through technology<br>
+        <a href="mailto:rsp@noizy.ai">rsp@noizy.ai</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

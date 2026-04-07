@@ -26,9 +26,31 @@ Changes must flow through these gates **in order**:
 
 ---
 
-## Gradual Deployments (Primary Mechanism)
+## 1. Observability Before Promotion
+
+No version may be promoted unless it emits the required telemetry needed to judge safety.
+
+**Required telemetry must be emitted by the new Worker version itself, not inferred from aggregate or upstream metrics.**
+
+Minimum required telemetry:
+- request volume
+- success rate
+- error rate
+- exception rate
+- latency signal appropriate to the service
+- deployment/version identifier
+- route or surface identifier where applicable
+
+Without version-specific observability, the deployment is flying blind.
+
+---
+
+## 2. Gradual Deployments (Primary Mechanism)
 
 Cloudflare Workers gradual deployments are the **primary progressive delivery primitive**.
+
+**Rule:**
+All promotions begin as gradual deployments unless an explicit exemption is documented, justified, and approved.
 
 ### Required
 
@@ -49,9 +71,12 @@ Default: `1% → 10% → 50% → 100%`
 
 ---
 
-## Route Canaries (Secondary Mechanism)
+## 3. Route Canaries (Secondary Mechanism)
 
 **Route canaries are invalid unless a version-split gradual deployment is already in place or explicitly introduced in the same change.**
+
+**Rule:**
+Route canaries do not satisfy the requirement for version-based gradual deployment.
 
 ### Why This Rule Exists
 
@@ -77,7 +102,28 @@ Using route canaries alone bypasses Cloudflare's primary safety mechanism.
 
 ---
 
-## Error Budget Authority
+## 4. Flags Are Not Governance by Themselves
+
+Feature flags (KV-backed) enable <1ms runtime behavior changes. They are useful but **insufficient for governance**.
+
+### Normal Flags (KV)
+- Enable/disable features
+- A/B experimentation
+- Gradual rollout by percentage
+
+### Restricted Flags (Hard-Stop Controls)
+- Consent validation
+- Kill Switch
+- Never Clause enforcement
+
+**Rule:**
+Any control capable of unblocking prohibited or trust-critical compute must be treated as a hard-stop control, not an ordinary feature flag.
+
+Hard-stop controls use Durable Objects and require explicit RSP_001 authorization.
+
+---
+
+## 5. Error Budget Authority
 
 Error budget gates **promotion**, not publication.
 

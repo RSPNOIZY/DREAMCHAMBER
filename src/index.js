@@ -10,10 +10,11 @@
  * Revocation as sacred.
  * Compensation as automatic.
  *
- * Routes (35 total):
+ * Routes (36 total):
  *   GET  /                                   (public — API index)
  *   GET  /health                             (public)
- *   GET  /dashboard                          (public — live HTML dashboard)
+ *   GET  /dashboard                          (public — live HTML dashboard with health metrics)
+ *   GET  /status                             (public — minimal JSON for monitoring systems)
  *   GET  /gabriel                            (public — Gabriel edge status)
  *   GET  /api/v1/actors
  *   GET  /api/v1/actors/:id
@@ -53,6 +54,7 @@
 import { dashboardHTML } from "./dashboard.js";
 import { landingHTML } from "./landing.js";
 import { handleWebhook } from "./webhooks.js";
+import { handleDashboard, handleStatus } from "./routes/dashboard.js";
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -182,10 +184,11 @@ export default {
         return json({ error: "Rate limit exceeded", retry_after: rl.reset }, 429);
       }
 
-      // Auth check (skip for health, dashboard, root, api index, gabriel status, webhooks, OPTIONS)
+      // Auth check (skip for health, dashboard, status, root, api index, gabriel status, webhooks, OPTIONS)
       if (
         path !== "/health" &&
         path !== "/dashboard" &&
+        path !== "/status" &&
         path !== "/" &&
         path !== "/api/v1" &&
         path !== "/gabriel" &&
@@ -1099,76 +1102,14 @@ export default {
         });
       }
 
-      // ── Dashboard ────────────────────────────────────────────────────────────
+      // ── Dashboard (comprehensive health & status) ──────────────────────────────
       if (path === "/dashboard" && method === "GET") {
-        const [healthRes, actorsRes, rateRes, statsRes] = await Promise.all([
-          db.prepare("SELECT COUNT(*) as c FROM hvs_actors").first(),
-          db.prepare("SELECT * FROM hvs_actors ORDER BY onboarded_at DESC").all(),
-          db.prepare("SELECT * FROM hvs_rate_table ORDER BY base_fee_cad").all(),
-          db.prepare("SELECT COUNT(*) as c FROM hvs_consent_tokens").first(),
-        ]);
-        const ledgerCount = await db.prepare("SELECT COUNT(*) as c FROM noizy_ledger").first();
-        const activeTokens = await db
-          .prepare("SELECT COUNT(*) as c FROM hvs_consent_tokens WHERE status = 'active'")
-          .first();
-        const descendants = await db.prepare("SELECT COUNT(*) as c FROM hvs_descendants").first();
-        const synthTotal = await db.prepare("SELECT COUNT(*) as c FROM hvs_synth_requests").first();
-        const synthBlocked = await db
-          .prepare("SELECT COUNT(*) as c FROM hvs_synth_requests WHERE status = 'blocked'")
-          .first();
-        const revenue = await db
-          .prepare(
-            "SELECT COALESCE(SUM(amount_cad),0) as total FROM noizy_ledger WHERE event_type = 'license.issued'",
-          )
-          .first();
+        return handleDashboard(request, env);
+      }
 
-        // Get never clauses for first actor (RSP_001)
-        const firstActor = actorsRes.results?.[0];
-        let neverClausesRes = { never_clauses: [] };
-        if (firstActor) {
-          const { results: nc } = await db
-            .prepare("SELECT * FROM hvs_never_clauses WHERE actor_id = ? ORDER BY clause_id")
-            .bind(firstActor.actor_id)
-            .all();
-          neverClausesRes = { never_clauses: nc };
-        }
-
-        const html = dashboardHTML({
-          health: {
-            status: "LIVE",
-            version: env.NOIZY_VERSION,
-            environment: env.NOIZY_ENV,
-            timestamp: now(),
-            mission:
-              "Consent as executable code. Provenance as default. Revocation as sacred. Compensation as automatic.",
-          },
-          actors: { actors: actorsRes.results },
-          neverClauses: neverClausesRes,
-          rateTable: { rate_table: rateRes.results },
-          stats: {
-            stats: {
-              actors: healthRes?.c || 0,
-              consent_tokens: {
-                total: statsRes?.c || 0,
-                active: activeTokens?.c || 0,
-              },
-              descendants: descendants?.c || 0,
-              synth_requests: {
-                total: synthTotal?.c || 0,
-                blocked: synthBlocked?.c || 0,
-              },
-              ledger_events: ledgerCount?.c || 0,
-              total_revenue_cad: revenue?.total || 0,
-            },
-          },
-        });
-        return new Response(html, {
-          status: 200,
-          headers: {
-            "Content-Type": "text/html; charset=utf-8",
-            "Cache-Control": "no-store",
-          },
-        });
+      // ── Status (minimal JSON for monitoring systems) ───────────────────────────
+      if (path === "/status" && method === "GET") {
+        return handleStatus(request, env);
       }
 
       // ── Ledger Append (external write from DreamChamber) ─────────────────────
@@ -1289,6 +1230,8 @@ export default {
           docs: "/health",
           endpoints: [
             "GET  /health",
+            "GET  /dashboard",
+            "GET  /status",
             "GET  /api/v1/actors",
             "POST /api/v1/actors",
             "GET  /api/v1/actors/:id",

@@ -13,7 +13,7 @@
     {
       "binding": "DB",
       "database_name": "gabriel_db",
-      "database_id": "fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa"
+      "database_id": "a31d68e2-f2d4-4203-a803-8039fdff31cb"
     }
   ],
 
@@ -21,7 +21,7 @@
     "NOIZY_ENV": "development",
     "SERVICE_NAME": "consent-gateway",
     "DEFAULT_REVOCATION_SLA_HOURS": "1",
-    "CF_ACCOUNT": "5ba03939f87a498d0bbed185ee123946"
+    "CF_ACCOUNT": "5f36aa9795348ea681d0b21910dfc82a"
   },
 
   // ── Staging ──────────────────────────────────────────────────────────
@@ -33,14 +33,14 @@
         {
           "binding": "DB",
           "database_name": "gabriel_db",
-          "database_id": "fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa"
+          "database_id": "a31d68e2-f2d4-4203-a803-8039fdff31cb"
         }
       ],
       "vars": {
         "NOIZY_ENV": "staging",
         "SERVICE_NAME": "consent-gateway",
         "DEFAULT_REVOCATION_SLA_HOURS": "1",
-        "CF_ACCOUNT": "5ba03939f87a498d0bbed185ee123946"
+        "CF_ACCOUNT": "5f36aa9795348ea681d0b21910dfc82a"
       }
     },
 
@@ -55,14 +55,14 @@
         {
           "binding": "DB",
           "database_name": "gabriel_db",
-          "database_id": "fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa"
+          "database_id": "a31d68e2-f2d4-4203-a803-8039fdff31cb"
         }
       ],
       "vars": {
         "NOIZY_ENV": "production",
         "SERVICE_NAME": "consent-gateway",
         "DEFAULT_REVOCATION_SLA_HOURS": "1",
-        "CF_ACCOUNT": "5ba03939f87a498d0bbed185ee123946"
+        "CF_ACCOUNT": "5f36aa9795348ea681d0b21910dfc82a"
       }
     }
   }

@@ -22,7 +22,7 @@ Before ANY deployment, verify all of these:
 2. **Smoke tests pass** — `bash smoke_test.sh` — all 14 must pass
 3. **Never Clauses intact** — Query `SELECT COUNT(*) FROM hvs_never_clauses WHERE is_active = 1` — must return 9
 4. **Ledger append-only** — Confirm no UPDATE/DELETE in any migration touching `noizy_ledger`
-5. **wrangler.toml correct** — D1 database_id = `fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa`
+5. **wrangler.toml correct** — D1 database_id = `a31d68e2-f2d4-4203-a803-8039fdff31cb`
 6. **Environment file present** — `.env` exists and contains NOIZY_API_KEY
 
 ## Service Deploy Procedures
@@ -32,7 +32,7 @@ Before ANY deployment, verify all of these:
 ```bash
 # 1. Verify wrangler.toml
 cat wrangler.toml | grep database_id
-# Must show: fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa
+# Must show: a31d68e2-f2d4-4203-a803-8039fdff31cb
 
 # 2. Deploy
 npx wrangler deploy
@@ -124,10 +124,10 @@ npx wrangler rollback
 | Resource | ID |
 |----------|-----|
 | Worker | heaven @ heaven.noizylab.workers.dev |
-| D1 Database | gabriel_db — `fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa` |
-| GABRIEL_KV | `6fe434a8020147c7bc4788e7057b843a` |
-| GABRIEL_VOICE | `afef27e69f634d2b941482435d042167` |
-| CF Account | Fishmusicinc — `2446d788...` |
+| D1 Database | gabriel_db — `a31d68e2-f2d4-4203-a803-8039fdff31cb` |
+| GABRIEL_KV | `f205b56a9914413da0ec454a9dc4c2bd` |
+| GABRIEL_VOICE | `16532a32b2e8455486cc966403f3442e` |
+| CF Account | rsp@noizy.ai — `5f36aa9795348ea681d0b21910dfc82a` |
 | CF Login | `rsp@noizyfish.com` (MUST migrate to rsplowman@icloud.com) |
 
 ## GoDaddy Exit Warning

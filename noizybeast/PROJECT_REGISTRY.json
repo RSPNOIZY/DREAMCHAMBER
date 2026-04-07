@@ -15,7 +15,7 @@
       "urls": { "live": "https://noizy.ai", "worker": "https://heaven.noizylab.workers.dev" },
       "repo": "~/Desktop/HEAVEN",
       "worker": "HEAVEN",
-      "cf_account": "5ba03939f87a498d0bbed185ee123946",
+      "cf_account": "5f36aa9795348ea681d0b21910dfc82a",
       "deploy": "cd ~/Desktop/HEAVEN && npx wrangler deploy",
       "blockers": ["CF email must change to rsplowman@icloud.com first"],
       "live_services": ["Heaven consent kernel", "agent-memory D1", "6 KV namespaces"],

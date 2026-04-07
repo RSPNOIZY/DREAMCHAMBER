@@ -58,7 +58,7 @@ Routes: `noizy.ai/*` and `noizy.ai`
 2. **NEVER deploy without running smoke tests first** — use `noizy-deploy` skill
 3. **NEVER deploy consent changes without running consent-audit skill first**
 4. **Single process mode** for DreamChamber — WebSocket + in-memory state require `instances: 1`
-5. **D1 database ID**: `fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa` — verify in `wrangler.toml`
+5. **D1 database ID**: `a31d68e2-f2d4-4203-a803-8039fdff31cb` — verify in `wrangler.toml`
 6. **deploy.sh URL**: must point to `noizylab.workers.dev` (not `rsplowman`)
 7. **macOS BSD compatibility**: use `sed '$d'` not `head -n -1` in shell scripts
 8. **CLOUDFLARE LOGIN**: Currently `rsp@noizy.ai` (via GoDaddy M365) — MUST change to `rsplowman@icloud.com` BEFORE killing M365

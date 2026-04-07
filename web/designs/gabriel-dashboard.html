@@ -232,7 +232,7 @@ footer{padding:12px 32px;border-top:1px solid var(--border);display:flex;align-i
     <div class="modal-title">⚡ Connect Cloudflare</div>
     <div class="modal-sub">Enter your Cloudflare API Token and Account ID to enable live data for Workers, R2, D1, KV, and Analytics across the NOIZY empire.</div>
     <input type="password" id="cfToken" placeholder="CF API Token (Bearer xxxx…)" />
-    <input type="text" id="cfAccount" value="5ba03939f87a498d0bbed185ee123946" placeholder="Account ID" />
+    <input type="text" id="cfAccount" value="5f36aa9795348ea681d0b21910dfc82a" placeholder="Account ID" />
     <input type="text" id="cfZone" placeholder="Zone ID for noizy.ai (optional)" />
     <div class="modal-btns">
       <button class="mbtn secondary" onclick="closeModal()">Cancel</button>
@@ -690,7 +690,7 @@ document.getElementById('cfModal').addEventListener('click',e=>{if(e.target===e.
 // CF Connect
 function saveCFCreds(){
   const t=document.getElementById('cfToken').value||document.getElementById('cfTokenInline').value;
-  const a=document.getElementById('cfAccount').value||'5ba03939f87a498d0bbed185ee123946';
+  const a=document.getElementById('cfAccount').value||'5f36aa9795348ea681d0b21910dfc82a';
   if(!t){alert('Please enter your Cloudflare API Token.');return;}
   localStorage.setItem('cf_token',t);
   if(a)localStorage.setItem('cf_account',a);

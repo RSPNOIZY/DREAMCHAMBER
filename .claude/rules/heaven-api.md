@@ -23,10 +23,10 @@ paths:
 
 ```
 Worker:        heaven @ heaven.noizylab.workers.dev
-D1 Database:   gabriel_db — fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa  ← LIVE
+D1 Database:   gabriel_db — a31d68e2-f2d4-4203-a803-8039fdff31cb  ← LIVE
                ⚠️ f75939d5 = DEAD. Never use.
-GABRIEL_KV:    6fe434a8020147c7bc4788e7057b843a
-GABRIEL_VOICE: afef27e69f634d2b941482435d042167
+GABRIEL_KV:    f205b56a9914413da0ec454a9dc4c2bd
+GABRIEL_VOICE: 16532a32b2e8455486cc966403f3442e
 NOIZY_API_KEY: in .env (NEVER COMMIT)
 ```
 
@@ -74,7 +74,7 @@ Cache invalidation fires on all write operations.
 
 | Database | ID | Size | Purpose |
 |----------|-----|------|---------|
-| gabriel_db | fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa | 565KB | Primary consent kernel |
+| gabriel_db | a31d68e2-f2d4-4203-a803-8039fdff31cb | 565KB | Primary consent kernel |
 | agent-memory | 7b813205-fd12-4a23-84a6-ce83bc49ec70 | 2.5MB | Agent persistent memory |
 | noizyanthropic | 932e36f7-b5a9-4063-a8d2-4e88cfc874c5 | 80KB | Anthropic integration |
 

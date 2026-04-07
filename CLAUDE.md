@@ -69,18 +69,19 @@ This is the NOIZY Empire. Two years of deep work. Treat it with that weight.
 | **21 Custom Skills** | LIVE | `.claude/skills/` — 11,909 lines across all domains |
 | **6 Prompt Templates** | LIVE | `.claude/prompts/` — deploy, onboard, status, endpoint, security, godaddy-exit |
 
-## INFRASTRUCTURE IDs (AUTHORITATIVE — verified 2026-03-30)
+## INFRASTRUCTURE IDs (AUTHORITATIVE — verified 2026-04-07)
 
 ```
+Account:         rsp@noizy.ai — 5f36aa9795348ea681d0b21910dfc82a ← CANONICAL
 Worker:          heaven @ heaven.rsp-5f3.workers.dev
-Version:         17.2.0 (ID: 5544ec8a-afa2-4b56-83ac-3b46d5529933)
+Version:         17.9.0 (ID: 5544ec8a-afa2-4b56-83ac-3b46d5529933)
 Landing:         noizy-landing @ noizy-landing.rsp-5f3.workers.dev
-D1 Database:     gabriel_db — fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa  ← AUTHORITATIVE
-GABRIEL_KV:      6fe434a8020147c7bc4788e7057b843a
-GABRIEL_VOICE:   afef27e69f634d2b941482435d042167
+D1 Database:     gabriel_db — a31d68e2-f2d4-4203-a803-8039fdff31cb ← AUTHORITATIVE
+GABRIEL_KV:      f205b56a9914413da0ec454a9dc4c2bd
+GABRIEL_VOICE:   16532a32b2e8455486cc966403f3442e
 NOIZY_API_KEY:   in .env (NEVER COMMIT) — set via: npx wrangler secret put NOIZY_API_KEY
 PORTALS:         NOIZYVOX · NOIZYFISH · NOIZYKIDZ · NOIZYLAB · WISDOM · myFAMILY
-DEADLINE:        April 17, 2026 — 18 days
+DEADLINE:        April 17, 2026 — 10 days
 ```
 
 ## QUICK COMMANDS

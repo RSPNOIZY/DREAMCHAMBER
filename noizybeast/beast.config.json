@@ -26,8 +26,8 @@
   },
 
   "infrastructure": {
-    "cf_account":    "5ba03939f87a498d0bbed185ee123946",
-    "d1_gabriel":    "fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa",
+    "cf_account":    "5f36aa9795348ea681d0b21910dfc82a",
+    "d1_gabriel":    "a31d68e2-f2d4-4203-a803-8039fdff31cb",
     "d1_repairs":    "75bba892-80a8-46f2-a552-610f38bcb36d",
     "d1_noizyai":    "ebcf576f-51e3-4e3d-829e-219f8fe6001c",
     "gabriel_local": "http://GOD.local:7777",

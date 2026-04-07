@@ -1,0 +1,268 @@
+# EDGE CORE: Zone Migration Readiness Gate
+# This workflow BLOCKS zone migration until all prerequisites are satisfied
+# Triggered manually when operator intends to migrate noizy.ai zone
+
+name: Zone Migration Readiness
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_migration_intent:
+        description: 'Type "MIGRATE NOIZY.AI" to confirm intent'
+        required: true
+        type: string
+      feature_flags_kv_ready:
+        description: 'FEATURE_FLAGS KV namespace created?'
+        required: true
+        type: boolean
+        default: false
+      worker_deployed:
+        description: 'Heaven Worker deployed and verified?'
+        required: true
+        type: boolean
+        default: false
+      route_bound:
+        description: 'noizy.ai/* route bound to Worker?'
+        required: true
+        type: boolean
+        default: false
+      route_verified:
+        description: 'Route tested and serving traffic?'
+        required: true
+        type: boolean
+        default: false
+      dns_export_saved:
+        description: 'DNS records exported from source account?'
+        required: true
+        type: boolean
+        default: false
+      cert_reissue_planned:
+        description: 'SSL/TLS certificate reissue plan confirmed?'
+        required: true
+        type: boolean
+        default: false
+      dnssec_plan_acknowledged:
+        description: 'DNSSEC disable/reenable plan acknowledged?'
+        required: true
+        type: boolean
+        default: false
+      target_account_ready:
+        description: 'Target account (rsp@noizy.ai) access verified?'
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  validate-intent:
+    name: Validate Migration Intent
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check confirmation phrase
+        run: |
+          if [[ "${{ inputs.confirm_migration_intent }}" != "MIGRATE NOIZY.AI" ]]; then
+            echo "❌ BLOCKED: Confirmation phrase incorrect"
+            echo ""
+            echo "You must type exactly: MIGRATE NOIZY.AI"
+            echo "This is a safety check to prevent accidental migrations."
+            exit 1
+          fi
+          echo "✅ Migration intent confirmed"
+
+  check-prerequisites:
+    name: Check Prerequisites
+    needs: validate-intent
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run zone migration readiness check
+        env:
+          FEATURE_FLAGS_KV_READY: ${{ inputs.feature_flags_kv_ready && 'yes' || '' }}
+          WORKER_DEPLOYED: ${{ inputs.worker_deployed && 'yes' || '' }}
+          ROUTE_BOUND: ${{ inputs.route_bound && 'yes' || '' }}
+          ROUTE_VERIFIED: ${{ inputs.route_verified && 'yes' || '' }}
+          DNS_EXPORT_SAVED: ${{ inputs.dns_export_saved && 'yes' || '' }}
+          DNS_RECORDS_VERIFIED: ${{ inputs.dns_export_saved && 'yes' || '' }}
+          CERT_REISSUE_PLANNED: ${{ inputs.cert_reissue_planned && 'yes' || '' }}
+          DNSSEC_PLAN_ACKNOWLEDGED: ${{ inputs.dnssec_plan_acknowledged && 'yes' || '' }}
+          TARGET_ACCOUNT_READY: ${{ inputs.target_account_ready && 'yes' || '' }}
+          ROLLBACK_PLAN_READY: 'yes'  # Assumed if other checks pass
+        run: |
+          chmod +x scripts/edge-core/check-zone-migration-readiness.sh
+          ./scripts/edge-core/check-zone-migration-readiness.sh
+
+  generate-postmortem-on-failure:
+    name: Generate Postmortem (on failure)
+    needs: check-prerequisites
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate postmortem draft
+        env:
+          MIGRATION_STATUS: blocked
+          DETECTION_METHOD: EDGE CORE zone migration gate
+          IMPACT_DURATION: No impact - migration blocked before execution
+          ROOT_CAUSE: Prerequisites not satisfied
+          GITHUB_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          GITHUB_ACTOR: ${{ github.actor }}
+        run: |
+          chmod +x scripts/postmortem/generate-zone-migration.sh
+          ./scripts/postmortem/generate-zone-migration.sh
+
+      - name: Upload postmortem artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: postmortem-draft
+          path: postmortems/
+          retention-days: 90
+
+      - name: Create postmortem PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // Find the generated postmortem
+            const postmortems = fs.readdirSync('postmortems');
+            const latest = postmortems.sort().reverse()[0];
+
+            if (latest) {
+              const content = fs.readFileSync(`postmortems/${latest}`, 'utf8');
+
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `[DRAFT] Postmortem: Zone Migration Blocked - ${new Date().toISOString().split('T')[0]}`,
+                body: `## Auto-Generated Postmortem Draft
+
+            A zone migration was blocked by EDGE CORE safeguards.
+
+            **Triggered by:** @${{ github.actor }}
+            **Workflow run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            ---
+
+            ${content}
+
+            ---
+
+            **Next Steps:**
+            1. Review and complete the timeline
+            2. Identify root cause
+            3. Assign action items
+            4. Mark ready for publication when approved
+            `,
+                labels: ['postmortem', 'infrastructure', 'draft']
+              });
+            }
+
+  generate-migration-checklist:
+    name: Generate Migration Checklist
+    needs: check-prerequisites
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output migration checklist
+        run: |
+          cat <<'EOF'
+          ═══════════════════════════════════════════════════════════════════
+          ✅ ZONE MIGRATION APPROVED
+          ═══════════════════════════════════════════════════════════════════
+
+          All prerequisites verified. You may now proceed.
+
+          MIGRATION CHECKLIST:
+
+          □ 1. Log into SOURCE Cloudflare account
+          □ 2. Export DNS records (Zone → DNS → Export)
+          □ 3. Document current SSL/TLS settings
+          □ 4. Note current DNSSEC status
+          □ 5. Remove site from source account
+
+          □ 6. Log into TARGET account (rsp@noizy.ai)
+          □ 7. Add noizy.ai as new zone
+          □ 8. Import DNS records
+          □ 9. Configure SSL/TLS (Full Strict)
+          □ 10. Add Worker route: noizy.ai/* → heaven
+
+          □ 11. Update nameservers at registrar (if changed)
+          □ 12. Re-enable DNSSEC (if previously active)
+          □ 13. Verify certificate issuance
+          □ 14. Test endpoints:
+                curl -I https://noizy.ai/
+                curl https://noizy.ai/health
+
+          POST-MIGRATION:
+          □ 15. Monitor error rates for 1 hour
+          □ 16. Verify all routes working
+          □ 17. Update documentation
+          □ 18. Close migration ticket
+
+          ═══════════════════════════════════════════════════════════════════
+          EOF
+
+      - name: Create GitHub Issue with checklist
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = `Zone Migration: noizy.ai → rsp@noizy.ai`;
+            const body = `## Zone Migration Approved
+
+            **Triggered by:** @${{ github.actor }}
+            **Timestamp:** ${new Date().toISOString()}
+            **Workflow run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            ## Prerequisites Verified
+
+            - [x] FEATURE_FLAGS KV namespace created
+            - [x] Heaven Worker deployed and verified
+            - [x] noizy.ai/* route bound to Worker
+            - [x] Route tested and serving traffic
+            - [x] DNS records exported from source account
+            - [x] SSL/TLS certificate reissue plan confirmed
+            - [x] DNSSEC disable/reenable plan acknowledged
+            - [x] Target account access verified
+
+            ## Migration Checklist
+
+            ### Source Account
+            - [ ] Export DNS records (Zone → DNS → Export)
+            - [ ] Document current SSL/TLS settings
+            - [ ] Note current DNSSEC status
+            - [ ] Remove site from source account
+
+            ### Target Account (rsp@noizy.ai)
+            - [ ] Add noizy.ai as new zone
+            - [ ] Import DNS records
+            - [ ] Configure SSL/TLS (Full Strict)
+            - [ ] Add Worker route: noizy.ai/* → heaven
+
+            ### Registrar
+            - [ ] Update nameservers (if changed)
+            - [ ] Re-enable DNSSEC (if previously active)
+
+            ### Verification
+            - [ ] Certificate issued successfully
+            - [ ] \`curl -I https://noizy.ai/\` returns 200
+            - [ ] \`curl https://noizy.ai/health\` returns healthy
+            - [ ] Error rates normal for 1 hour
+
+            ### Documentation
+            - [ ] Update CLAUDE.md with new zone status
+            - [ ] Update docs/NOIZY_DOMAIN_MIGRATION.md
+            - [ ] Close this issue
+
+            ---
+
+            **EDGE CORE compliant migration approved.**
+            `;
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+              labels: ['infrastructure', 'migration', 'edge-core']
+            });

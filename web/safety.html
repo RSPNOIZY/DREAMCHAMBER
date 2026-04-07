@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>How We Ship Safely — NOIZY</title>
+<meta name="description" content="EDGE CORE: The mechanically enforced system that protects your voice. We can't deploy changes that violate consent.">
+<meta name="theme-color" content="#020408">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  width:100%;min-height:100vh;
+  background:#020408;color:#c8cad8;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+  line-height:1.7;
+}
+
+/* ═══════════ ANIMATED BACKGROUND ═══════════ */
+.bg-grid{
+  position:fixed;inset:0;z-index:0;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(0,212,255,0.03) 0%, transparent 50%),
+    linear-gradient(rgba(0,212,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.02) 1px, transparent 1px);
+  background-size:100% 100%, 60px 60px, 60px 60px;
+  animation:pulse 8s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:0.4}
+  50%{opacity:0.7}
+}
+
+/* ═══════════ LAYOUT ═══════════ */
+.container{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 2rem}
+
+/* ═══════════ HEADER ═══════════ */
+header{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:4rem 2rem;position:relative;
+}
+
+/* Platinum wordmark */
+.wordmark{
+  font-family:'Cinzel',serif;
+  font-size:clamp(2.5rem,10vw,6rem);
+  font-weight:900;
+  letter-spacing:.12em;
+  line-height:1;
+  background:linear-gradient(
+    180deg,
+    #f8f8f8 0%,
+    #e8e4df 15%,
+    #d4cfc8 30%,
+    #f0ece6 45%,
+    #c8c2b8 55%,
+    #e0dbd4 70%,
+    #b8b2a8 85%,
+    #d0cbc4 100%
+  );
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  filter:drop-shadow(0 0 60px rgba(212,160,23,.08)) drop-shadow(0 4px 20px rgba(0,0,0,.5));
+  opacity:0;
+  animation:fadeIn 2s cubic-bezier(.16,1,.3,1) 0.3s forwards;
+  user-select:none;
+}
+
+.page-title{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1.2rem,3vw,2rem);
+  font-weight:600;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:rgba(0,212,255,.6);
+  margin-top:1.5rem;
+  opacity:0;
+  animation:fadeIn 2s ease 1s forwards;
+}
+
+.hero-doctrine{
+  font-family:"SF Mono","Fira Code",monospace;
+  font-size:clamp(.7rem,1.2vw,.85rem);
+  color:rgba(200,196,188,.35);
+  max-width:700px;
+  margin-top:2rem;
+  line-height:2;
+  opacity:0;
+  animation:fadeIn 2s ease 1.5s forwards;
+}
+.hero-doctrine em{
+  font-style:normal;
+  color:rgba(233,69,96,.7);
+}
+
+/* 396 Hz indicator */
+.freq-indicator{
+  position:absolute;
+  bottom:3rem;
+  font-family:'Cinzel',serif;
+  font-size:.65rem;
+  letter-spacing:.35em;
+  text-transform:uppercase;
+  color:rgba(0,212,255,.15);
+  opacity:0;
+  animation:fadeIn 2s ease 2s forwards;
+}
+.freq-indicator::before{
+  content:'';
+  display:inline-block;
+  width:8px;height:8px;
+  background:radial-gradient(circle,rgba(0,212,255,.4),transparent);
+  border-radius:50%;
+  margin-right:12px;
+  animation:pulse396 3s ease-in-out infinite;
+}
+@keyframes pulse396{
+  0%,100%{transform:scale(1);opacity:0.4}
+  50%{transform:scale(1.5);opacity:0.8}
+}
+
+.scroll-arrow{
+  position:absolute;
+  bottom:1.5rem;
+  width:20px;height:20px;
+  border-right:1px solid rgba(0,212,255,.2);
+  border-bottom:1px solid rgba(0,212,255,.2);
+  transform:rotate(45deg);
+  animation:bob 3s ease-in-out infinite;
+  opacity:0;
+  animation:bob 3s ease-in-out infinite, fadeIn 2s ease 2.5s forwards;
+}
+
+@keyframes fadeIn{
+  to{opacity:1}
+}
+@keyframes bob{
+  0%,100%{transform:translateY(0) rotate(45deg)}
+  50%{transform:translateY(8px) rotate(45deg)}
+}
+
+/* ═══════════ SECTIONS ═══════════ */
+section{
+  padding:6rem 2rem;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 1s cubic-bezier(.16,1,.3,1);
+}
+section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+h2{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1.5rem,4vw,2.2rem);
+  font-weight:700;
+  color:rgba(240,236,230,.9);
+  letter-spacing:.08em;
+  margin-bottom:1.5rem;
+  text-align:center;
+}
+h2 em{
+  font-style:normal;
+  background:linear-gradient(90deg,#d4a017,#e8c840);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+h3{
+  font-family:'Cinzel',serif;
+  font-size:1.1rem;
+  font-weight:600;
+  color:rgba(0,212,255,.7);
+  letter-spacing:.1em;
+  margin:2rem 0 1rem;
+}
+
+p{
+  color:rgba(200,202,216,.6);
+  font-size:.95rem;
+  margin-bottom:1rem;
+  max-width:700px;
+  margin-left:auto;
+  margin-right:auto;
+}
+p.center{text-align:center}
+
+/* ═══════════ PROMISE CARDS ═══════════ */
+.promise-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:1.5rem;
+  margin-top:2rem;
+}
+
+.promise-card{
+  background:rgba(8,10,16,.8);
+  border:1px solid rgba(40,42,56,.6);
+  border-radius:16px;
+  padding:2rem;
+  backdrop-filter:blur(20px);
+  transition:all 0.4s ease;
+  position:relative;
+  overflow:hidden;
+}
+.promise-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,transparent,rgba(233,69,96,.6),transparent);
+  opacity:0;
+  transition:opacity 0.4s;
+}
+.promise-card:hover{
+  border-color:rgba(233,69,96,.3);
+  transform:translateY(-4px);
+}
+.promise-card:hover::before{opacity:1}
+
+.promise-icon{
+  width:48px;height:48px;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.2rem;
+  font-size:1.5rem;
+}
+.promise-icon.red{background:rgba(233,69,96,.1);border:1px solid rgba(233,69,96,.2)}
+.promise-icon.cyan{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2)}
+.promise-icon.gold{background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.2)}
+.promise-icon.green{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.2)}
+
+.promise-card h4{
+  font-family:'Cinzel',serif;
+  font-size:1rem;
+  font-weight:600;
+  color:rgba(240,236,230,.85);
+  letter-spacing:.05em;
+  margin-bottom:0.8rem;
+}
+
+.promise-card .cannot{
+  font-family:"SF Mono","Fira Code",monospace;
+  font-size:.7rem;
+  color:rgba(233,69,96,.8);
+  background:rgba(233,69,96,.08);
+  padding:.3rem .6rem;
+  border-radius:4px;
+  display:inline-block;
+  margin-bottom:1rem;
+  letter-spacing:.05em;
+}
+
+.promise-card p{
+  font-size:.85rem;
+  color:rgba(200,202,216,.5);
+  margin:0;
+  line-height:1.7;
+}
+
+/* ═══════════ FLOW DIAGRAM ═══════════ */
+.flow-diagram{
+  background:rgba(8,10,16,.9);
+  border:1px solid rgba(40,42,56,.5);
+  border-radius:20px;
+  padding:3rem 2rem;
+  margin:3rem auto;
+  max-width:800px;
+  backdrop-filter:blur(30px);
+}
+
+.flow-stages{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  position:relative;
+}
+
+.flow-stage{
+  display:flex;
+  align-items:center;
+  gap:1.5rem;
+  padding:1.5rem 0;
+  position:relative;
+}
+.flow-stage:not(:last-child)::after{
+  content:'';
+  position:absolute;
+  left:24px;
+  top:calc(50% + 24px);
+  width:2px;
+  height:calc(100% - 48px);
+  background:linear-gradient(180deg,rgba(0,212,255,.4),rgba(0,212,255,.1));
+}
+
+.flow-percent{
+  width:48px;height:48px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"SF Mono","Fira Code",monospace;
+  font-size:.85rem;
+  font-weight:700;
+  flex-shrink:0;
+  position:relative;
+  z-index:1;
+}
+.flow-percent.p1{background:rgba(0,212,255,.15);color:#00d4ff;border:2px solid rgba(0,212,255,.3)}
+.flow-percent.p10{background:rgba(0,212,255,.2);color:#00d4ff;border:2px solid rgba(0,212,255,.4)}
+.flow-percent.p50{background:rgba(0,255,136,.15);color:#00ff88;border:2px solid rgba(0,255,136,.3)}
+.flow-percent.p100{background:rgba(212,160,23,.15);color:#d4a017;border:2px solid rgba(212,160,23,.4)}
+
+.flow-content{flex:1}
+.flow-content h5{
+  font-family:'Cinzel',serif;
+  font-size:.9rem;
+  color:rgba(240,236,230,.8);
+  margin-bottom:.4rem;
+}
+.flow-content p{
+  font-size:.8rem;
+  color:rgba(200,202,216,.45);
+  margin:0;
+}
+.flow-content .duration{
+  font-family:"SF Mono","Fira Code",monospace;
+  font-size:.65rem;
+  color:rgba(0,212,255,.5);
+  margin-top:.4rem;
+}
+
+.flow-action{
+  font-family:"SF Mono","Fira Code",monospace;
+  font-size:.65rem;
+  padding:.35rem .7rem;
+  border-radius:4px;
+  white-space:nowrap;
+}
+.flow-action.rollback{
+  background:rgba(233,69,96,.1);
+  color:rgba(233,69,96,.8);
+  border:1px solid rgba(233,69,96,.2);
+}
+.flow-action.proceed{
+  background:rgba(0,255,136,.1);
+  color:rgba(0,255,136,.8);
+  border:1px solid rgba(0,255,136,.2);
+}
+
+/* ═══════════ TRUST ARCHITECTURE ═══════════ */
+.trust-stack{
+  background:rgba(8,10,16,.85);
+  border:1px solid rgba(40,42,56,.5);
+  border-radius:20px;
+  padding:2.5rem;
+  margin:2rem auto;
+  max-width:700px;
+  backdrop-filter:blur(30px);
+}
+
+.trust-layer{
+  display:flex;
+  align-items:center;
+  gap:1.2rem;
+  padding:1.2rem 1.5rem;
+  margin:.5rem 0;
+  border-radius:12px;
+  transition:all 0.3s ease;
+}
+.trust-layer:hover{
+  background:rgba(255,255,255,.02);
+}
+
+.trust-layer .layer-num{
+  font-family:"SF Mono","Fira Code",monospace;
+  font-size:.7rem;
+  color:rgba(0,212,255,.4);
+  width:20px;
+}
+
+.trust-layer .layer-icon{
+  width:36px;height:36px;
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;
+}
+.trust-layer:nth-child(1) .layer-icon{background:rgba(233,69,96,.1)}
+.trust-layer:nth-child(2) .layer-icon{background:rgba(0,212,255,.1)}
+.trust-layer:nth-child(3) .layer-icon{background:rgba(0,255,136,.1)}
+.trust-layer:nth-child(4) .layer-icon{background:rgba(212,160,23,.1)}
+
+.trust-layer .layer-text{flex:1}
+.trust-layer .layer-text h5{
+  font-family:'Cinzel',serif;
+  font-size:.85rem;
+  color:rgba(240,236,230,.8);
+  margin-bottom:.2rem;
+}
+.trust-layer .layer-text p{
+  font-size:.75rem;
+  color:rgba(200,202,216,.4);
+  margin:0;
+}
+
+/* ═══════════ DOCTRINE BLOCK ═══════════ */
+.doctrine-block{
+  background:linear-gradient(135deg,rgba(8,10,16,.9),rgba(20,15,30,.9));
+  border:1px solid rgba(212,160,23,.2);
+  border-radius:20px;
+  padding:3rem 2.5rem;
+  margin:3rem auto;
+  max-width:700px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.doctrine-block::before{
+  content:'';
+  position:absolute;
+  top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:radial-gradient(circle at center,rgba(212,160,23,.03),transparent 40%);
+  animation:rotate 20s linear infinite;
+}
+@keyframes rotate{
+  to{transform:rotate(360deg)}
+}
+
+.doctrine-block blockquote{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1rem,2vw,1.3rem);
+  color:rgba(212,160,23,.8);
+  font-style:italic;
+  line-height:1.8;
+  position:relative;
+  z-index:1;
+}
+
+.doctrine-block .source{
+  font-family:"SF Mono","Fira Code",monospace;
+  font-size:.7rem;
+  color:rgba(200,196,188,.25);
+  margin-top:1.5rem;
+  letter-spacing:.15em;
+}
+
+/* ═══════════ CODE BLOCK ═══════════ */
+.code-block{
+  background:rgba(8,10,16,.95);
+  border:1px solid rgba(40,42,56,.6);
+  border-radius:12px;
+  padding:1.5rem;
+  margin:1.5rem auto;
+  max-width:600px;
+  overflow-x:auto;
+}
+.code-block pre{
+  font-family:"SF Mono","Fira Code",monospace;
+  font-size:.75rem;
+  color:rgba(0,212,255,.6);
+  line-height:2;
+  margin:0;
+}
+.code-block .comment{color:rgba(200,196,188,.25)}
+.code-block .keyword{color:rgba(233,69,96,.7)}
+.code-block .string{color:rgba(0,255,136,.6)}
+.code-block .number{color:rgba(212,160,23,.7)}
+
+/* ═══════════ FINAL CTA ═══════════ */
+.final-section{
+  text-align:center;
+  padding:8rem 2rem;
+  position:relative;
+}
+
+.final-wordmark{
+  font-family:'Cinzel',serif;
+  font-size:clamp(2rem,6vw,4rem);
+  font-weight:900;
+  letter-spacing:.12em;
+  background:linear-gradient(180deg,#f8f8f8 0%,#d4cfc8 50%,#b8b2a8 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:1.5rem;
+}
+
+.final-tagline{
+  font-family:'Cinzel',serif;
+  font-size:clamp(.8rem,1.5vw,1rem);
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:rgba(0,212,255,.4);
+  margin-bottom:3rem;
+}
+
+.final-link{
+  display:inline-block;
+  font-family:'Cinzel',serif;
+  font-size:.85rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:rgba(240,236,230,.7);
+  text-decoration:none;
+  padding:1rem 2.5rem;
+  border:1px solid rgba(212,160,23,.3);
+  border-radius:8px;
+  transition:all 0.4s ease;
+}
+.final-link:hover{
+  background:rgba(212,160,23,.1);
+  border-color:rgba(212,160,23,.5);
+  color:rgba(212,160,23,.9);
+}
+
+/* ═══════════ FOOTER ═══════════ */
+footer{
+  text-align:center;
+  padding:3rem 2rem;
+  border-top:1px solid rgba(40,42,56,.3);
+}
+footer p{
+  font-size:.7rem;
+  color:rgba(200,196,188,.2);
+  letter-spacing:.1em;
+}
+footer a{
+  color:rgba(0,212,255,.4);
+  text-decoration:none;
+  transition:color 0.3s;
+}
+footer a:hover{color:rgba(0,212,255,.7)}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:768px){
+  .container{padding:0 1.5rem}
+  section{padding:4rem 1.5rem}
+  .promise-grid{grid-template-columns:1fr}
+  .flow-diagram,.trust-stack,.doctrine-block{padding:2rem 1.5rem}
+  .flow-stage{flex-wrap:wrap;gap:1rem}
+  .flow-action{margin-top:.5rem;width:100%;text-align:center}
+  .trust-layer{flex-wrap:wrap;padding:1rem}
+}
+
+@media(max-width:480px){
+  .wordmark{letter-spacing:.08em}
+  .page-title{letter-spacing:.15em}
+  h2{font-size:1.3rem}
+  .flow-percent{width:40px;height:40px;font-size:.75rem}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<header>
+  <div class="wordmark">NOIZY</div>
+  <div class="page-title">How We Ship Safely</div>
+  <p class="hero-doctrine">
+    Your voice is sovereign. Our deployment system is built so that
+    <em>we cannot</em> ship changes that compromise your consent.
+    This is not policy. This is mechanically enforced behavior.
+  </p>
+  <div class="freq-indicator">396 Hz Liberation Frequency</div>
+  <div class="scroll-arrow"></div>
+</header>
+
+<div class="container">
+
+  <!-- PROMISES SECTION -->
+  <section id="promises">
+    <h2>The <em>Four Promises</em></h2>
+    <p class="center">These aren't just commitments. They're technical constraints built into our infrastructure.</p>
+
+    <div class="promise-grid">
+      <div class="promise-card">
+        <div class="promise-icon red">&#128274;</div>
+        <span class="cannot">WE CAN'T</span>
+        <h4>Deploy Changes That Violate Consent</h4>
+        <p>Every deployment passes through consent verification gates. If your consent rules aren't satisfied, the code physically cannot reach production. No override exists.</p>
+      </div>
+
+      <div class="promise-card">
+        <div class="promise-icon cyan">&#8634;</div>
+        <span class="cannot">WE CAN'T</span>
+        <h4>Bypass Rollback</h4>
+        <p>Every change ships with an automatic undo switch. If something goes wrong, we roll back instantly. There's no "push through anyway" button. Rollback is sacred.</p>
+      </div>
+
+      <div class="promise-card">
+        <div class="promise-icon gold">&#128065;</div>
+        <span class="cannot">WE CAN'T</span>
+        <h4>Hide Failures Behind Flags</h4>
+        <p>Feature flags control behavior, but they can never mask consent violations or safety failures. Critical controls require cryptographic authorization that flags cannot bypass.</p>
+      </div>
+
+      <div class="promise-card">
+        <div class="promise-icon green">&#128200;</div>
+        <span class="cannot">WE CAN'T</span>
+        <h4>Skip Progressive Testing</h4>
+        <p>Every change is tested on real traffic: first 1%, then 10%, then 50%, finally 100%. We observe. We measure. Only then do we expand. Skipping steps is impossible.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRESSIVE DEPLOYMENT SECTION -->
+  <section id="progressive">
+    <h2>The <em>Promotion Flow</em></h2>
+    <p class="center">Changes flow through these stages in order. There are no shortcuts.</p>
+
+    <div class="flow-diagram">
+      <div class="flow-stages">
+        <div class="flow-stage">
+          <div class="flow-percent p1">1%</div>
+          <div class="flow-content">
+            <h5>Canary Release</h5>
+            <p>A tiny slice of traffic sees the change. We watch for errors, latency spikes, consent violations.</p>
+            <div class="duration">Observation: 30 minutes minimum</div>
+          </div>
+          <span class="flow-action rollback">If errors spike: ROLLBACK</span>
+        </div>
+
+        <div class="flow-stage">
+          <div class="flow-percent p10">10%</div>
+          <div class="flow-content">
+            <h5>Expanded Canary</h5>
+            <p>More traffic, more signal. Statistical confidence grows. Any consent anomaly triggers automatic halt.</p>
+            <div class="duration">Observation: 1 hour minimum</div>
+          </div>
+          <span class="flow-action rollback">If errors spike: ROLLBACK</span>
+        </div>
+
+        <div class="flow-stage">
+          <div class="flow-percent p50">50%</div>
+          <div class="flow-content">
+            <h5>Majority Split</h5>
+            <p>Half of all traffic. The change is proving itself. We investigate any anomalies before proceeding.</p>
+            <div class="duration">Observation: 2 hours minimum</div>
+          </div>
+          <span class="flow-action rollback">If issues found: INVESTIGATE</span>
+        </div>
+
+        <div class="flow-stage">
+          <div class="flow-percent p100">100%</div>
+          <div class="flow-content">
+            <h5>Full Production</h5>
+            <p>The change is live for everyone. Monitoring continues. Rollback remains available indefinitely.</p>
+            <div class="duration">Continuous monitoring</div>
+          </div>
+          <span class="flow-action proceed">STABLE</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <pre><span class="comment">// What happens at every gate:</span>
+<span class="keyword">if</span> (!observability.canMeasure(version)) <span class="keyword">return</span> <span class="string">"BLOCKED"</span>;
+<span class="keyword">if</span> (!consent.isValid(change)) <span class="keyword">return</span> <span class="string">"BLOCKED"</span>;
+<span class="keyword">if</span> (errorBudget.exhausted()) <span class="keyword">return</span> <span class="string">"FREEZE"</span>;
+<span class="comment">// Only then: proceed to next stage</span></pre>
+    </div>
+  </section>
+
+  <!-- TRUST ARCHITECTURE SECTION -->
+  <section id="trust">
+    <h2>The <em>Trust Architecture</em></h2>
+    <p class="center">Four layers of protection. Your voice sits at the top.</p>
+
+    <div class="trust-stack">
+      <div class="trust-layer">
+        <span class="layer-num">01</span>
+        <div class="layer-icon">&#128081;</div>
+        <div class="layer-text">
+          <h5>Creator Sovereignty</h5>
+          <p>Your consent rules are law. Voice Estate protects identity. Kill Switch is always available.</p>
+        </div>
+      </div>
+
+      <div class="trust-layer">
+        <span class="layer-num">02</span>
+        <div class="layer-icon">&#128274;</div>
+        <div class="layer-text">
+          <h5>Consent Verification</h5>
+          <p>Every synthesis request checks live consent before processing. No token, no compute.</p>
+        </div>
+      </div>
+
+      <div class="trust-layer">
+        <span class="layer-num">03</span>
+        <div class="layer-icon">&#128200;</div>
+        <div class="layer-text">
+          <h5>Observability Gates</h5>
+          <p>Nothing promotes without measurement. Error budgets control velocity. Truth before expansion.</p>
+        </div>
+      </div>
+
+      <div class="trust-layer">
+        <span class="layer-num">04</span>
+        <div class="layer-icon">&#128260;</div>
+        <div class="layer-text">
+          <h5>Progressive Delivery</h5>
+          <p>1% to 10% to 50% to 100%. Gradual rollout with instant rollback at every stage.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>What This Means For You</h3>
+    <p class="center">
+      When we ship an update to NOIZY, it doesn't touch your voice protections until
+      it has proven itself safe. And if anything goes wrong, we revert instantly.
+      Your consent state is never at risk from a deployment.
+    </p>
+  </section>
+
+  <!-- DOCTRINE SECTION -->
+  <section id="doctrine">
+    <h2>The <em>Core Law</em></h2>
+
+    <div class="doctrine-block">
+      <blockquote>
+        "If the edge cannot observe itself, choose restraint, and roll back safely, the edge cannot be trusted."
+      </blockquote>
+      <div class="source">EDGE CORE DOCTRINE</div>
+    </div>
+
+    <p class="center">
+      This isn't philosophy. It's production law. Every system we build is designed
+      to say "no" by default. Permission must be earned through observation,
+      measurement, and proof.
+    </p>
+
+    <h3>The Never Clauses</h3>
+    <p class="center">
+      Some things are immovable. They're not policies that can be debated or
+      exceptions that can be granted. They're hard constraints burned into our
+      infrastructure:
+    </p>
+
+    <div class="code-block">
+      <pre><span class="comment">// IMMOVABLE PROHIBITIONS</span>
+<span class="keyword">NEVER</span> synthesize without valid consent token
+<span class="keyword">NEVER</span> bypass Never Clause enforcement
+<span class="keyword">NEVER</span> delete from the consent ledger
+<span class="keyword">NEVER</span> override Kill Switch decisions
+<span class="keyword">NEVER</span> ship without rollback capability</pre>
+    </div>
+  </section>
+
+  <!-- WHY IT MATTERS SECTION -->
+  <section id="why">
+    <h2>Why <em>Artists</em> Should Care</h2>
+
+    <p class="center">
+      Most platforms ask you to trust them. We built NOIZY so you don't have to.
+    </p>
+
+    <p class="center">
+      When a streaming service says "we'll protect your music," that's a promise.
+      Promises can be broken. When NOIZY says "we can't violate your consent,"
+      that's architecture. Architecture doesn't break promises because it doesn't make them.
+      It simply cannot do what it wasn't built to do.
+    </p>
+
+    <p class="center">
+      Your voice is not a feature flag we can toggle. Your consent is not a
+      policy we can update. Your creative sovereignty is the foundation
+      everything else is built on top of.
+    </p>
+
+    <div class="doctrine-block">
+      <blockquote>
+        "Consent as executable code. Provenance as default. Revocation as sacred. Compensation as automatic."
+      </blockquote>
+      <div class="source">THE NOIZY MISSION</div>
+    </div>
+  </section>
+
+</div>
+
+<section class="final-section">
+  <div class="final-wordmark">NOIZY</div>
+  <div class="final-tagline">Human Voice Sovereignty</div>
+  <a href="/" class="final-link">Return to NOIZY</a>
+</section>
+
+<footer>
+  <p>
+    EDGE CORE v1.0 &mdash; Effective 2026<br>
+    <a href="mailto:rsp@noizy.ai">rsp@noizy.ai</a>
+  </p>
+</footer>
+
+<script>
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+});
+
+document.querySelectorAll('section').forEach(section => {
+  observer.observe(section);
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

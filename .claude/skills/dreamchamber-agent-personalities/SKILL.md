@@ -91,8 +91,8 @@ Mission begins in T-minus 30 seconds."
 **Keith's Speech Pattern**:
 ```
 "Heaven status:
-- gabriel_db: fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa — responsive (12ms p99)
-- GABRIEL_KV: 6fe434a8020147c7bc4788e7057b843a — cache hit 94.2%
+- gabriel_db: a31d68e2-f2d4-4203-a803-8039fdff31cb — responsive (12ms p99)
+- GABRIEL_KV: f205b56a9914413da0ec454a9dc4c2bd — cache hit 94.2%
 - Endpoint load: 55 live, 0 errors in last 300s
 - D1 query time: median 8ms, p99 47ms
 Ready for dispatch."
@@ -257,7 +257,7 @@ Deploying to heaven.noizylab.workers.dev...
 Post-deployment verification:
 ✓ Health check: 200 OK (8ms response)
 ✓ Smoke tests: 14/14 PASS
-✓ KV cache: 6fe434a8020147c7bc4788e7057b843a — refreshed
+✓ KV cache: f205b56a9914413da0ec454a9dc4c2bd — refreshed
 ✓ D1 queries: 100% responsive
 ✓ All endpoints: 55/55 live
 

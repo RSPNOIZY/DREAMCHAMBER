@@ -29,8 +29,8 @@ const execAsync  = promisify(exec);
 // ── Constants ─────────────────────────────────────────────────
 const GOD_IP   = '10.90.90.10';
 const CFG = {
-  accountHeaven:  '5ba03939f87a498d0bbed185ee123946',
-  accountConsent: '5ba03939f87a498d0bbed185ee123946',
+  accountHeaven:  '5f36aa9795348ea681d0b21910dfc82a',
+  accountConsent: '5f36aa9795348ea681d0b21910dfc82a',
   d1Memory:       '7b813205-fd12-4a23-84a6-ce83bc49ec70',
   d1Repairs:      '2bd4aa06-f9b2-4761-b235-e92e8a21fe45',
   ollama:         'http://localhost:11434',

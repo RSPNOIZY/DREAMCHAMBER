@@ -1,7 +1,7 @@
 /**
  * NOIZY.AI — HEAVEN Claude Proxy Worker
  * TypeScript · Cloudflare Worker · 2026-03-27
- * Account: 5ba03939f87a498d0bbed185ee123946
+ * Account: 5f36aa9795348ea681d0b21910dfc82a
  *
  * Routes: /claude/* /voice/* /crew/* /status /ncp/* /models
  * Auth: Bearer token (NOIZY_SECRET) or X-NOIZY-Secret header
@@ -284,7 +284,7 @@ export default {
     return cors(json({
       empire: 'NOIZY.AI',
       protocol: 'GORUNFREE',
-      account: '5ba03939f87a498d0bbed185ee123946',
+      account: '5f36aa9795348ea681d0b21910dfc82a',
       towers: Object.keys(TOWERS),
       routes: ['/claude/messages', '/voice/ingest', '/crew/broadcast', '/ncp/consent', '/models', '/gospel', '/never-clauses', '/status'],
     }));
@@ -509,7 +509,7 @@ async function handleStatus(env: Env): Promise<Response> {
   return json({
     empire: 'NOIZY.AI',
     protocol: 'GORUNFREE · 5th Epoch',
-    account: '5ba03939f87a498d0bbed185ee123946',
+    account: '5f36aa9795348ea681d0b21910dfc82a',
     founder: 'Robert Stephen Plowman (RSP_001)',
     standard: 'The Plowman Standard — 75/25 creator split',
     machine: 'GOD.local — M2 Ultra 192GB @ 10.90.90.10',

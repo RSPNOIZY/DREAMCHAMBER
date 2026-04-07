@@ -20,7 +20,7 @@ OLLAMA_URL = "http://localhost:11434"
 [[d1_databases]]
 binding = "NOIZY_DB"
 database_name = "gabriel_db"
-database_id = "fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa"
+database_id = "a31d68e2-f2d4-4203-a803-8039fdff31cb"  # CANONICAL - same as main Heaven worker
 
 # R2: DISABLED until R2 is enabled on Account 1
 # When R2 is activated, create bucket "noizy-voice-archive" and uncomment:
@@ -30,6 +30,4 @@ database_id = "fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa"
 
 [[kv_namespaces]]
 binding = "NOIZY_KV"
-id = "6fe434a8020147c7bc4788e7057b843a"
-# CORRECTED 2026-04-03: 68710a32 does NOT exist on this account
-# 6fe434a8 = GABRIEL_KV on NOIZY.ai account (5ba03939)
+id = "f205b56a9914413da0ec454a9dc4c2bd"  # CANONICAL GABRIEL_KV on rsp@noizy.ai

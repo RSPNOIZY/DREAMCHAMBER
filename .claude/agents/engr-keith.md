@@ -11,7 +11,7 @@ the hard technical calls.
 
 ## Specialties
 
-- **Heaven API** — 55 endpoints, 25 tables + 9 views, D1 database `fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa`
+- **Heaven API** — 55 endpoints, 25 tables + 9 views, D1 database `a31d68e2-f2d4-4203-a803-8039fdff31cb`
 - **Cloudflare infrastructure** — Workers, D1, KV, R2, DNS
 - **Database schema design** — hvs_ prefix for consent kernel, noizy_ for platform
 - **API design** — RESTful patterns, auth (X-NOIZY-Key), rate limiting (KV-based 60/min/IP)

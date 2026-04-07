@@ -5,7 +5,7 @@ Deploy the Heaven Consent Kernel API to Cloudflare Workers with full safety chec
 ## Steps
 
 1. Run the consent-audit skill checklist against any changed files in `src/`
-2. Verify `wrangler.toml` has D1 database_id = `fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa`
+2. Verify `wrangler.toml` has D1 database_id = `a31d68e2-f2d4-4203-a803-8039fdff31cb`
 3. Check for exposed secrets: `grep -r "NOIZY_API_KEY\|sk-" src/ --include="*.js"`
 4. Run `npx wrangler deploy`
 5. Run `bash smoke_test.sh` — all 14 tests must pass

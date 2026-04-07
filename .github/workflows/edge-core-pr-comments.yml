@@ -1,0 +1,411 @@
+name: EDGE CORE PR Comments
+
+on:
+  pull_request:
+    branches: [main, staging]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  edge-core-checks:
+    name: EDGE CORE Compliance with PR Comments
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Make scripts executable
+        run: chmod +x scripts/edge-core/*.sh
+
+      # ═══════════════════════════════════════════════════════════════════
+      # Run all EDGE CORE checks and capture results
+      # ═══════════════════════════════════════════════════════════════════
+
+      - name: EDGE CORE — Observability Check
+        id: observability
+        continue-on-error: true
+        run: |
+          set +e
+          OUTPUT=$(./scripts/edge-core/check-observability.sh 2>&1)
+          EXIT_CODE=$?
+          echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "output<<$EOF" >> $GITHUB_OUTPUT
+          echo "$OUTPUT" >> $GITHUB_OUTPUT
+          echo "$EOF" >> $GITHUB_OUTPUT
+          exit 0
+
+      - name: EDGE CORE — Rollback Check
+        id: rollback
+        continue-on-error: true
+        run: |
+          set +e
+          OUTPUT=$(./scripts/edge-core/check-rollback.sh 2>&1)
+          EXIT_CODE=$?
+          echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "output<<$EOF" >> $GITHUB_OUTPUT
+          echo "$OUTPUT" >> $GITHUB_OUTPUT
+          echo "$EOF" >> $GITHUB_OUTPUT
+          exit 0
+
+      - name: EDGE CORE — Error Budget Check
+        id: error_budget
+        continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set +e
+          OUTPUT=$(./scripts/edge-core/check-error-budget.sh 2>&1)
+          EXIT_CODE=$?
+          echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "output<<$EOF" >> $GITHUB_OUTPUT
+          echo "$OUTPUT" >> $GITHUB_OUTPUT
+          echo "$EOF" >> $GITHUB_OUTPUT
+          exit 0
+
+      - name: EDGE CORE — DR Visibility Check
+        id: dr
+        continue-on-error: true
+        env:
+          DR_ACCOUNT_ID: ${{ secrets.DR_ACCOUNT_ID }}
+        run: |
+          set +e
+          OUTPUT=$(./scripts/edge-core/check-dr.sh 2>&1)
+          EXIT_CODE=$?
+          echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "output<<$EOF" >> $GITHUB_OUTPUT
+          echo "$OUTPUT" >> $GITHUB_OUTPUT
+          echo "$EOF" >> $GITHUB_OUTPUT
+          exit 0
+
+      - name: EDGE CORE — Route Canary Order Check
+        id: route_canary
+        continue-on-error: true
+        run: |
+          set +e
+          OUTPUT=$(./scripts/edge-core/check-route-canary-order.sh 2>&1)
+          EXIT_CODE=$?
+          echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "output<<$EOF" >> $GITHUB_OUTPUT
+          echo "$OUTPUT" >> $GITHUB_OUTPUT
+          echo "$EOF" >> $GITHUB_OUTPUT
+          exit 0
+
+      # ═══════════════════════════════════════════════════════════════════
+      # Post PR comment if any check failed
+      # ═══════════════════════════════════════════════════════════════════
+
+      - name: Post EDGE CORE Violation Comment
+        if: |
+          steps.observability.outputs.exit_code != '0' ||
+          steps.rollback.outputs.exit_code != '0' ||
+          steps.error_budget.outputs.exit_code != '0' ||
+          steps.dr.outputs.exit_code != '0' ||
+          steps.route_canary.outputs.exit_code != '0'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const observabilityFailed = '${{ steps.observability.outputs.exit_code }}' !== '0';
+            const rollbackFailed = '${{ steps.rollback.outputs.exit_code }}' !== '0';
+            const errorBudgetFailed = '${{ steps.error_budget.outputs.exit_code }}' !== '0';
+            const drFailed = '${{ steps.dr.outputs.exit_code }}' !== '0';
+            const routeCanaryFailed = '${{ steps.route_canary.outputs.exit_code }}' !== '0';
+
+            let comment = `## EDGE CORE Compliance Violation
+
+            > **If the edge cannot observe itself, choose restraint, and roll back safely, the edge cannot be trusted.**
+
+            This PR violates one or more EDGE CORE requirements. Please address the following before merging:
+
+            `;
+
+            // Observability violation
+            if (observabilityFailed) {
+              comment += `
+            ---
+
+            ### Observability Check Failed
+
+            **Violated Section: [1. Observability Before Promotion](docs/EDGE_CORE_PROMOTION_POLICY.md#1-observability-before-promotion)**
+
+            > No version may be promoted unless it emits the required telemetry needed to judge safety.
+            >
+            > **Required telemetry must be emitted by the new Worker version itself, not inferred from aggregate or upstream metrics.**
+            >
+            > Minimum required telemetry:
+            > - request volume
+            > - success rate
+            > - error rate
+            > - exception rate
+            > - latency signal appropriate to the service
+            > - deployment/version identifier
+            > - route or surface identifier where applicable
+            >
+            > Without version-specific observability, the deployment is flying blind.
+
+            <details>
+            <summary>Check Output</summary>
+
+            \`\`\`
+            ${{ steps.observability.outputs.output }}
+            \`\`\`
+
+            </details>
+
+            **Action Required:**
+            - Add observability patterns to \`src/\`
+            - Create \`src/observability.js\` or \`src/observability.ts\`
+            - Ensure all catch blocks log errors
+
+            `;
+            }
+
+            // Rollback violation
+            if (rollbackFailed) {
+              comment += `
+            ---
+
+            ### Rollback Check Failed
+
+            **Violated Section: [2. Gradual Deployments (Primary Mechanism)](docs/EDGE_CORE_PROMOTION_POLICY.md#2-gradual-deployments-primary-mechanism)**
+
+            > **Rule:**
+            > All promotions begin as gradual deployments unless an explicit exemption is documented, justified, and approved.
+            >
+            > ### Required
+            >
+            > - Use \`wrangler versions deploy --percentage\` for traffic splitting
+            > - Monitor at each stage before expanding
+            > - **Rollback must be available at every percentage**
+
+            <details>
+            <summary>Check Output</summary>
+
+            \`\`\`
+            ${{ steps.rollback.outputs.output }}
+            \`\`\`
+
+            </details>
+
+            **Action Required:**
+            - Create \`scripts/rollback.sh\`
+            - Wire rollback capability into CI workflows
+            - Remove any deploy bypass patterns (\`--force\`, \`SKIP_ROLLBACK\`)
+
+            `;
+            }
+
+            // Error Budget violation
+            if (errorBudgetFailed) {
+              comment += `
+            ---
+
+            ### Error Budget Check Failed
+
+            **Violated Section: [5. Error Budget Authority](docs/EDGE_CORE_PROMOTION_POLICY.md#5-error-budget-authority)**
+
+            > Error budget gates **promotion**, not publication.
+            >
+            > ### When Budget Is Exhausted
+            >
+            > - Feature deployments **freeze**
+            > - Rollbacks remain allowed
+            > - Reliability fixes bypass freeze
+            > - Route canaries cannot expand risk
+
+            <details>
+            <summary>Check Output</summary>
+
+            \`\`\`
+            ${{ steps.error_budget.outputs.output }}
+            \`\`\`
+
+            </details>
+
+            **Action Required:**
+            - Create \`src/error-budget.js\` or \`src/error-budget.ts\`
+            - Create \`scripts/check-error-budget.js\`
+            - If budget is exhausted, only reliability fixes are allowed
+
+            `;
+            }
+
+            // DR visibility violation
+            if (drFailed) {
+              comment += `
+            ---
+
+            ### DR Visibility Check Failed
+
+            **Violated Doctrine: DR Visibility Requirement**
+
+            From \`docs/EDGE_CORE_PROMOTION_POLICY.md\`:
+
+            > **Doctrine Reference:**
+            > - \`docs/DR-PLAYBOOK.md\` - Recovery procedures
+
+            Every production system must have visible read-only recovery account and documented recovery procedures.
+
+            <details>
+            <summary>Check Output</summary>
+
+            \`\`\`
+            ${{ steps.dr.outputs.output }}
+            \`\`\`
+
+            </details>
+
+            **Action Required:**
+            - Create \`docs/DR-PLAYBOOK.md\`
+            - Create \`scripts/dr-drill.sh\`
+            - Ensure \`wrangler.toml\` is version-controlled
+            - Configure DR account if required
+
+            `;
+            }
+
+            // Route Canary Order violation
+            if (routeCanaryFailed) {
+              comment += `
+            ---
+
+            ### Route Canary Order Check Failed
+
+            **Violated Section: [3. Route Canaries (Secondary Mechanism)](docs/EDGE_CORE_PROMOTION_POLICY.md#3-route-canaries-secondary-mechanism)**
+
+            > **Route canaries are invalid unless a version-split gradual deployment is already in place or explicitly introduced in the same change.**
+            >
+            > **Rule:**
+            > Route canaries do not satisfy the requirement for version-based gradual deployment.
+            >
+            > ### Why This Rule Exists
+            >
+            > Route canaries isolate traffic by path (e.g., \`/api/*\` -> canary worker).
+            > They do **not** provide version comparison, metrics splitting, or automatic rollback.
+            >
+            > Using route canaries alone bypasses Cloudflare's primary safety mechanism.
+            >
+            > ### Valid Configurations
+            >
+            > | Version Canary | Route Canary | Valid? |
+            > |----------------|--------------|--------|
+            > | Yes | No | Yes - gradual deployment |
+            > | Yes | Yes | Yes - full progressive delivery |
+            > | No | Yes | **No - EDGE CORE violation** |
+            > | No | No | Yes - direct deploy (if budget healthy) |
+
+            <details>
+            <summary>Check Output</summary>
+
+            \`\`\`
+            ${{ steps.route_canary.outputs.output }}
+            \`\`\`
+
+            </details>
+
+            **Action Required:**
+            - Add a gradual version deployment first (use \`wrangler versions deploy --percentage\`)
+            - Or remove the route canary configuration
+
+            `;
+            }
+
+            // PagerDuty incident link (if available)
+            const pdIncident = process.env.PD_INCIDENT_URL;
+            if (pdIncident) {
+              comment += `
+            ---
+
+            ### Active Incident
+
+            **PagerDuty:** ${pdIncident}
+
+            This promotion is blocked until the incident is resolved.
+            `;
+            }
+
+            comment += `
+            ---
+
+            ### Documentation
+
+            - [EDGE CORE Promotion Policy](docs/EDGE_CORE_PROMOTION_POLICY.md)
+            - [EDGE CORE Audit Checklist](docs/EDGE_CORE_AUDIT_CHECKLIST.md)
+            - [DR Playbook](docs/DR-PLAYBOOK.md)
+            - [EDGE CORE Clause Map](docs/EDGE_CORE_CLAUSE_MAP.json)
+
+            ---
+
+            *This is not policy. This is mechanically enforced behavior.*
+            `;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: comment
+            });
+
+      # ═══════════════════════════════════════════════════════════════════
+      # Final status - fail the workflow if any check failed
+      # ═══════════════════════════════════════════════════════════════════
+
+      - name: EDGE CORE Final Status
+        if: |
+          steps.observability.outputs.exit_code != '0' ||
+          steps.rollback.outputs.exit_code != '0' ||
+          steps.error_budget.outputs.exit_code != '0' ||
+          steps.dr.outputs.exit_code != '0' ||
+          steps.route_canary.outputs.exit_code != '0'
+        run: |
+          echo "════════════════════════════════════════════════════════════════"
+          echo "  EDGE CORE Compliance: FAILED"
+          echo "════════════════════════════════════════════════════════════════"
+          echo ""
+          echo "  This change violates EDGE CORE doctrine."
+          echo "  A detailed comment has been posted to the PR."
+          echo ""
+          echo "  Core Law: If the edge cannot observe itself, choose"
+          echo "            restraint, and roll back safely, the edge"
+          echo "            cannot be trusted."
+          echo "════════════════════════════════════════════════════════════════"
+          exit 1
+
+      - name: EDGE CORE Passed
+        if: |
+          steps.observability.outputs.exit_code == '0' &&
+          steps.rollback.outputs.exit_code == '0' &&
+          steps.error_budget.outputs.exit_code == '0' &&
+          steps.dr.outputs.exit_code == '0' &&
+          steps.route_canary.outputs.exit_code == '0'
+        run: |
+          echo "════════════════════════════════════════════════════════════════"
+          echo "  EDGE CORE Compliance: PASSED"
+          echo "════════════════════════════════════════════════════════════════"
+          echo ""
+          echo "  This change is EDGE CORE compliant:"
+          echo "    - Can be observed"
+          echo "    - Can be slowed (gradual deployment)"
+          echo "    - Can be rolled back"
+          echo "    - Recovery is visible"
+          echo ""
+          echo "════════════════════════════════════════════════════════════════"
