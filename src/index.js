@@ -100,6 +100,10 @@ import { handleVerifyBundle } from "./routes/verify-bundle.js";
 import { handleAnchorStatus, handleAnchorStatusWidget } from "./routes/anchor-status.js";
 import { handleProofCoverage, handleProofCoverageWidget } from "./routes/proof-coverage.js";
 
+// Chaos Arena and Voice Market
+import { handleChaosArenaAPI } from "./chaos-arena/index.js";
+import { handleVoiceMarketAPI } from "./voice-market/index.js";
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function uuid() {
@@ -1855,6 +1859,26 @@ export default {
         });
 
         return new Response(null, { status: 101, webSocket: client });
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════
+      // CHAOS ARENA — Public Trust Verification Surface
+      // "Break the proof if you can."
+      // ═══════════════════════════════════════════════════════════════════════
+      if (path.startsWith("/chaos-arena")) {
+        return handleChaosArenaAPI(request, env);
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════
+      // VOICE MARKET — Higher-Trust Voice Licensing
+      // Monetization on verified governance
+      // ═══════════════════════════════════════════════════════════════════════
+      if (path.startsWith("/voice-market")) {
+        // Require auth for write operations
+        if (method !== "GET" && method !== "OPTIONS" && !authenticate(request, env)) {
+          return err("Unauthorized — provide X-NOIZY-Key header", 401);
+        }
+        return handleVoiceMarketAPI(request, env);
       }
 
       // ── 404 ──────────────────────────────────────────────────────────────
