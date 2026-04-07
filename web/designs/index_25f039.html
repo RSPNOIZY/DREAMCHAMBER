@@ -1,0 +1,1478 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="en">
+  <head lang="en">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Ozone Application - Ozone 8 Documentation</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/en/ozone-app-overview/">
+    <meta property="og:title" content="Ozone 8 Documentation">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone 8 Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | Ozone Application</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Introduction" href="../index.html">
+	
+	Introduction
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8 Overview" href="../ozone-overview/index.html">
+	
+	Ozone 8 Overview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Ozone Application" href="index.html">
+	
+	Ozone Application
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Preset System" href="../preset-system/index.html">
+	
+	Preset System
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="General Functions" href="../general-functions/index.html">
+	
+	General Functions
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Common Module Controls" href="../common-module-controls/index.html">
+	
+	Common Module Controls
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dynamics" href="../dynamics/index.html">
+	
+	Dynamics
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dynamic EQ" href="../dynamic-eq/index.html">
+	
+	Dynamic EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Equalizer" href="../equalizer/index.html">
+	
+	Equalizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Exciter" href="../exciter/index.html">
+	
+	Exciter
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Imager" href="../imager/index.html">
+	
+	Imager
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Maximizer" href="../maximizer/index.html">
+	
+	Maximizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectral Shaper" href="../spectral-shaper/index.html">
+	
+	Spectral Shaper
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Compressor" href="../vintage-compressor/index.html">
+	
+	Vintage Compressor
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage EQ" href="../vintage-eq/index.html">
+	
+	Vintage EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Limiter" href="../vintage-limiter/index.html">
+	
+	Vintage Limiter
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Tape" href="../vintage-tape/index.html">
+	
+	Vintage Tape
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Codec Preview" href="../codec-preview/index.html">
+	
+	Codec Preview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dither" href="../dither/index.html">
+	
+	Dither
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Master Assistant" href="../master-assistant/index.html">
+	
+	Master Assistant
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Track Referencing" href="../track-referencing/index.html">
+	
+	Track Referencing
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tonal Balance Control" href="../tonal-balance-control/index.html">
+	
+	Tonal Balance Control
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Options" href="../options/index.html">
+	
+	Options
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plug-in Automation" href="../plug-in-automation/index.html">
+	
+	Plug-in Automation
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tips &amp; Examples" href="../tips-and-examples/index.html">
+	
+	Tips &amp; Examples
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Authorization" href="../authorization/index.html">
+	
+	Authorization
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotope Customer Care" href="../customer-care/index.html">
+	
+	iZotope Customer Care
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information" href="../license-information/index.html">
+	
+	License Information
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA" href="../eula/index.html">
+	
+	EULA
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../ja/ozone-app-overview/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>Ozone Application </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">Languages:</span>
+<br />
+    
+
+       
+       <a href="../../ja/ozone-app-overview/index.html"><button class="lang-btn-active">English</button></a>
+       
+        
+       <a href="../../ja/ozone-app-overview/index.html"><button class="lang-btn-clickable">日本語</button></a>
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+
+
+
+<nav>
+  
+  <h4>Table of Contents</h4>
+  <ul>
+    
+      
+      
+
+      
+
+      
+      
+      <li>
+        <a href="index.html#overview">Overview</a>
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#ozone-app-interface">Ozone App Interface</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#file-menu">File Menu</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#importing-audio">Importing Audio</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#exporting-audio">Exporting Audio</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#transport">Transport</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#multiple-file-workflow">Multiple File Workflow</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#saving-ozone-projects">Saving Ozone Projects</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#edit-menu">Edit Menu</a>
+
+          
+            
+          
+      
+    
+
+    
+    
+    
+
+  </ul>
+</nav>
+
+
+
+
+    
+
+	
+
+<h2 id="overview">Overview</h2>
+
+<p>Ozone 8’s standalone application allows you to use its mastering tools outside of your digital audio workstation.</p>
+
+<p><img src="../images/app.png" alt="app-interface-guide" /></p>
+
+<h2 id="ozone-app-interface">Ozone App Interface</h2>
+
+<ul>
+<li><strong>Transport Bar</strong>: Includes playback controls and transport counter information.</li>
+<li><strong>Track Tabs</strong>: Each tab represents an audio file and its associated settings within the current Ozone project.</li>
+<li><strong>Waveform Display</strong>: A graphical representation of the currently selected track.</li>
+<li><strong>Module Chain</strong>: A fully customizable signal chain for Ozone modules.</li>
+<li><strong>Module Control Panel</strong>: Contains the controls and metering for the selected module.</li>
+<li><strong>Presets</strong>: Opens the Preset Manager.</li>
+<li><strong>Master Assistant</strong>: Opens the Master Assistant panel.</li>
+<li><strong>Input/Output Section</strong>: Contains Input/Output Gain controls &amp; metering.</li>
+<li><strong>Audition Section</strong>: Contains Global Bypass, Gain Match, Sum to Mono, Swap Channels, Reference, Codec Preview [ADV], and Dither.</li>
+</ul>
+
+<h2 id="file-menu">File Menu</h2>
+
+<p>Ozone’s file menu contains the different commands you use to perform functions such as:</p>
+
+<ul>
+<li>Importing audio files into an Ozone project for processing.</li>
+<li>Saving the project.</li>
+<li>Exporting the processed audio files.</li>
+</ul>
+
+<h2 id="importing-audio">Importing Audio</h2>
+
+<p>You can import up to 16 audio files into an Ozone project using the following methods:</p>
+
+<ul>
+<li>Click on the File menu at the top of the screen, then “Import Audio Files.”</li>
+<li>Click on the “plus” icon at the top-left area of the interface.</li>
+<li>Use keyboard shortcut Cmd+I or Ctrl+I; A standard dialog box will appear where you can navigate to the desired file, then click “Open” to import it into the project.</li>
+<li>Drag and drop audio files into the Ozone interface.</li>
+</ul>
+
+<h3 id="supported-import-file-types">Supported Import File Types</h3>
+
+<table>
+<thead>
+<tr>
+<th>FILE FORMATS</th>
+<th>BIT DEPTH(S)</th>
+<th>SAMPLE RATE(S)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>.wav</td>
+<td>16-bit</td>
+<td>11,250 Hz</td>
+</tr>
+
+<tr>
+<td>.aiff</td>
+<td>20-bit</td>
+<td>22,050 Hz</td>
+</tr>
+
+<tr>
+<td>.mp3</td>
+<td>24-bit</td>
+<td>44,100 Hz</td>
+</tr>
+
+<tr>
+<td>.aac</td>
+<td></td>
+<td>48,000 Hz</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>88,200 Hz</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>96,000 Hz</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>176,400 Hz</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>192,000 Hz</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">Sample Rates</p>
+<p><ul>
+<li>The project sample rate defaults to the sample rate of the first file that is loaded.</li>
+<li>If a file is loaded after with a different or higher sample rate, it is converted to the original sampling rate set for the project by the first file, or manually set before the second file is loaded.</li>
+<li>The conversion process will not convert previously converted/processed files (which are copied as working files upon load); Ozone will simply go back to the original files, create new copies, and then convert all files to the new sample rate for their new working copies.</li>
+</ul>
+</p>
+</div>
+
+<h2 id="exporting-audio">Exporting Audio</h2>
+
+<p>You can export processed audio files from the Ozone application using the following methods:</p>
+
+<ul>
+<li>Click on the File menu, and then select “Export Audio Files.”</li>
+<li>Use the keyboard shortcut Command+E (Mac) or Ctrl+E (Windows).</li>
+</ul>
+
+<p>A dialog box will appear, offering various options for the files you are about to export.</p>
+
+<h3 id="current-track-vs-all-tracks">Current Track vs. All Tracks</h3>
+
+<ul>
+<li>Click on “Current Track” to only export the audio file in the currently highlighted tab.</li>
+<li>Click on “All Tracks” to export separate audio files for each audio file loaded into the current project.</li>
+</ul>
+
+<h4 id="current-track">Current Track</h4>
+
+<p><img src="../images/export.png" alt="export" /></p>
+
+<h3 id="filename-available-on-current-track-only">Filename (Available on Current Track Only)</h3>
+
+<p>Type the desired name into this field; the exported file will be labeled with the name you have typed.</p>
+
+<h4 id="all-tracks">All Tracks</h4>
+
+<p><img src="../images/export-all-tracks.png" alt="export" /></p>
+
+<h3 id="append-text-available-on-all-tracks-only">Append Text (Available on All Tracks Only)</h3>
+
+<p>Type in the desired text into the field; it will be automatically added to each of the exported tracks. You can also select whether to add the text before or after the file name. This function is useful for “tagging” the titles of a group of audio files with a common label; for example, you could append a group of files with a label such as “January 18th 2014 session.”</p>
+
+<h3 id="add-track-numbers-available-on-all-tracks-only">Add Track Numbers (Available on All Tracks Only)</h3>
+
+<p>You can add track numbers to your exports in the “All Tracks” section of the Export dialog. Select the “Add Track Numbers” checkbox and your exported files will be numbered in the order they appear in your Ozone project.</p>
+
+<h3 id="format">Format</h3>
+
+<p>Select the format of the exported file(s): WAV, AIFF, MP3, or AAC.</p>
+
+<div class="admonition note">
+<p class="admonition-title">AAC &amp; MP3 Codecs used by Ozone</p>
+<p>For AAC Ozone uses Fraunhofer’s codec.
+For MP3 the LAME codec is used (www.mp3dev.org).</p>
+</div>
+
+<h3 id="bit-rate-available-on-mp3-and-aac-only">Bit Rate (Available on MP3 and AAC Only)</h3>
+
+<p>Set the bit rate for compressed file formats. Audio quality improves with increasing bit rate.</p>
+
+<h3 id="save-path">Save Path</h3>
+
+<p>Click on the Set Path button to select, through the resulting dialog box, where your exported audio file(s) will be saved.</p>
+
+<ul>
+<li>If the project is unsaved, the default save path is your Documents folder.</li>
+<li>If the project has already been saved, the default save path is an Exported Audio Files folder in the same location as the project.</li>
+</ul>
+
+<h3 id="sample-rate">Sample Rate</h3>
+
+<p>Select a sample rate to export your audio file. If you select a sample rate that differs from the original sample rate of the imported file, Ozone will apply high-quality sample rate conversion to the file.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Sample Rate when exporting to AAC or MP3 formats</p>
+<p>Please note, if MP3 or AAC format is selected, files will be exported with a 44.1kHz sampling rate.</p>
+</div>
+
+<h3 id="bit-depth">Bit Depth</h3>
+
+<p>Select a Bit Depth value for your audio file.</p>
+
+<h3 id="enable-dither">Enable Dither</h3>
+
+<p>Ozone processes files at 32-bit so dither is desirable for files being exported to values lower than 32-bit. When exporting to a bit depth lower than 32-bit, checking this box will apply high-quality dithering to the exported file.</p>
+
+<p>This allows you to preserve the sound quality and dynamic range of a higher bit depth, when exporting the audio file to a lower bit depth.</p>
+
+<p>For example, a common workflow is to record audio at 24-bit resolution, then import and process the audio in an application such as Ozone, which will process at a higher resolution of 32-bits.</p>
+
+<p>However, if you are releasing the audio material on a commercial CD, it must be converted to 16-bit audio, the required bit depth of the “Red Book” CD audio format.</p>
+
+<h3 id="help">Help</h3>
+
+<p>Click this button to launch the help documentation for Ozone 8.</p>
+
+<h3 id="cancel">Cancel</h3>
+
+<p>Click this button to cancel the export process and return to the main interface.</p>
+
+<h3 id="export">Export</h3>
+
+<p>Click this button to begin the export process (or launch the Track Info screen for MP3 and AAC). A dialog box will appear that shows the progress of the export operation, which occurs faster than real time.</p>
+
+<h3 id="track-info-available-for-mp3-and-aac-only">Track Info (Available for MP3 and AAC Only)</h3>
+
+<p>When MP3 or AAC is selected, the Track Info screen will appear after clicking Export. Here you can enter metadata for the encoded audio file that will used by MP3 &amp; AAC players to display information about the file. MP3 will be tagged using ID3v2.3. AAC uses iTunes style tags.</p>
+
+<h2 id="transport">Transport</h2>
+
+<p>Ozone provides Transport controls at the top of the interface, which allow you to easily navigate the playback functions of an imported audio file.</p>
+
+<p>The transport bar includes the following functions:</p>
+
+<h3 id="play">Play</h3>
+
+<p>Start playback by clicking the Play button or pressing spacebar.</p>
+
+<h3 id="stop">Stop</h3>
+
+<p>Click the Stop button to stop playback.</p>
+
+<h3 id="return-to-zero-skip-back">Return to Zero/Skip Back</h3>
+
+<p>The behavior of this button depends on the current position of the playhead:</p>
+
+<ul>
+<li>If the playhead is located more than two seconds into the audio file, clicking the button invokes a “return to Zero” function, moving the playhead back to the beginning of the current file.</li>
+<li>If the playhead is near the very beginning of the file, clicking the button acts as a “skip back” button, skipping back to the previous audio file.</li>
+</ul>
+
+<h3 id="skip-forward">Skip Forward</h3>
+
+<p>Click this button to skip to the next track tab in the project.</p>
+
+<h3 id="playhead-follows-playback">Playhead Follows Playback</h3>
+
+<p>Click this button to change the playhead behavior when playback is stopped.</p>
+
+<p>When enabled, the playhead will stop at its current location on the timeline.</p>
+
+<h3 id="loop">Loop</h3>
+
+<p>To loop playback of a specific section of audio, click and drag on the mouse and highlight a portion of the audio file; the section will highlight in blue and the “loop” icon in the transport bar will also highlight.</p>
+
+<p>When you next press Play, the transport will loop playback repeatedly for the highlighted section only.</p>
+
+<p>To stop looping audio, click on the Loop button again. The button will de-illuminate and looping will no longer be active, even though the area of the waveform will remain highlighted. The Loop button can be manually clicked again if you wish to again loop the audio.</p>
+
+<h3 id="transport-readouts"><strong>Transport Readouts</strong></h3>
+
+<h3 id="track-number">Track Number</h3>
+
+<p>This number displays the track number of the currently selected track.</p>
+
+<h3 id="time-counter">Time Counter</h3>
+
+<p>Displays the current time position within the audio file, displaying in minutes/seconds/milliseconds.</p>
+
+<h3 id="total-time">Total Time</h3>
+
+<p>This smaller display shows you the total length of all tracks in the project.</p>
+
+<h2 id="multiple-file-workflow">Multiple File Workflow</h2>
+
+<p>You can load up to 16 files into the same project and navigate to each file by clicking on the corresponding track tab.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><ul>
+<li>Ozone only allows you to import a file once per project.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="re-ordering-tracks">Re-ordering Tracks</h3>
+
+<p>Click and drag track tabs to change the order of tracks in the project.</p>
+
+<h3 id="removing-tracks">Removing Tracks</h3>
+
+<p>You can remove tracks from a project using the following methods:</p>
+
+<ul>
+<li>Right-click on a track tab and select “Remove Track.”</li>
+<li>Click on a tab to highlight it, then click on the “X” button.</li>
+</ul>
+
+<p>When removing a file, a dialog box will appear offering you three different options:</p>
+
+<ul>
+<li><strong>Delete</strong> Removes the original file from the Imported Audio Files folder of the Ozone project directory.</li>
+<li><strong>Keep</strong> Removes the track from the session, but retains the file in the Imported Audio Files folder of the Ozone project directory.</li>
+</ul>
+
+<h2 id="saving-ozone-projects">Saving Ozone Projects</h2>
+
+<p>An Ozone project contains the following components:</p>
+
+<ul>
+<li>An Ozone session file (.OZN).</li>
+<li>An Imported Audio Files folder.</li>
+<li>An Exported Audio Files folder.</li>
+</ul>
+
+<h3 id="save-project-as">Save Project As&hellip;</h3>
+
+<p>Creates a copy of the current project directory with a new name.</p>
+
+<h3 id="ozone-session-files-ozn">Ozone Session Files (.OZN)</h3>
+
+<p>An Ozone session file contains all of the session data including:</p>
+
+<ul>
+<li>Imported audio tracks</li>
+<li>Ozone module settings</li>
+<li>Track Trim &amp; Fade settings</li>
+<li>Global I/O settings</li>
+</ul>
+
+<h3 id="save-ozn-as">Save (.OZN) As&hellip;</h3>
+
+<p>Saves a new copy of the session file within the current Ozone project directory. Useful for versioning your Ozone projects over time. Using this method will not create copies of the imported audio files, but instead will reference the files included in the Imported Audio Files folder of the current project directory.</p>
+
+<h3 id="close-project">Close Project</h3>
+
+<p>When closing a project, a dialog will appear with the following options:</p>
+
+<ul>
+<li><strong>Cancel:</strong> Cancels out of the close operation; the current project will stay loaded.</li>
+<li><strong>Don’t Save:</strong> All changes made since last save will be discarded.</li>
+<li><strong>Save:</strong> All changes will be saved.</li>
+</ul>
+
+<h3 id="create-new-project">Create New Project</h3>
+
+<p>Creates a new Ozone project directory.</p>
+
+<h3 id="open-project">Open Project</h3>
+
+<p>Opens a previously saved Ozone project.</p>
+
+<h2 id="edit-menu">Edit Menu</h2>
+
+<p>Allows you to adjust Audio Device settings or open the Ozone Options window.</p>
+
+<h3 id="audio-devices"><strong>Audio Devices</strong></h3>
+
+<h3 id="buffer-size">Buffer Size</h3>
+
+<p>Adjusts the Buffer Size of the current Ozone session.</p>
+
+<h3 id="output-devices">Output Devices</h3>
+
+<p>Selects the hardware device used by the Ozone session to play back audio.</p>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../ozone-overview/index.html" title="Ozone 8 Overview">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Ozone 8 Overview
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../preset-system/index.html" title="Preset System">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Preset System
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../ja/ozone-app-overview/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8 Help Documentation 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

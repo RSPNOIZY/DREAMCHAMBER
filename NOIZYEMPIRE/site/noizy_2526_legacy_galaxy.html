@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY Legacy Galaxy — Viewed from 2526</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #f5c842;
+    --gold-dim: #c9a020;
+    --cyan: #00e5ff;
+    --violet: #b57bee;
+    --green: #00e676;
+    --amber: #ffab40;
+    --magenta: #ff4db8;
+    --white-star: #e8f4ff;
+    --red-star: #ff6b6b;
+    --rainbow: #ff9800;
+  }
+
+  body {
+    background: #000005;
+    color: #e8e8f0;
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Deep space canvas */
+  #cosmos {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Header ── */
+  .capsule-header {
+    text-align: center;
+    padding: 60px 20px 30px;
+    border-bottom: 1px solid rgba(245,200,66,0.15);
+    background: linear-gradient(to bottom, rgba(0,0,5,0.9) 0%, transparent 100%);
+  }
+
+  .capsule-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .capsule-year {
+    font-size: clamp(72px, 14vw, 160px);
+    font-weight: 700;
+    line-height: 0.85;
+    background: linear-gradient(135deg, var(--gold) 0%, #fffbe8 40%, var(--gold) 70%, var(--amber) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -4px;
+    filter: drop-shadow(0 0 60px rgba(245,200,66,0.4));
+  }
+
+  .capsule-subtitle {
+    font-size: clamp(14px, 3vw, 22px);
+    font-weight: 300;
+    color: rgba(232,244,255,0.7);
+    margin-top: 18px;
+    letter-spacing: 2px;
+  }
+
+  .capsule-subtitle strong {
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ── Stats bar ── */
+  .stats-band {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    background: rgba(255,255,255,0.025);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 20px 40px;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 10px 28px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(18px, 3vw, 28px);
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(232,244,255,0.45);
+    margin-top: 5px;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    text-align: center;
+    padding: 48px 20px 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(232,244,255,0.35);
+  }
+
+  /* ── Galaxy stage ── */
+  .galaxy-stage {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px 60px;
+    min-height: 780px;
+  }
+
+  #orbitCanvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+  }
+
+  .galaxy-ui {
+    position: relative;
+    z-index: 2;
+    width: min(820px, 96vw);
+    height: 740px;
+  }
+
+  /* Orbit rings */
+  .orbit-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed rgba(255,255,255,0.07);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin-ring linear infinite;
+  }
+
+  @keyframes spin-ring {
+    from { transform: translate(-50%,-50%) rotate(0deg); }
+    to   { transform: translate(-50%,-50%) rotate(360deg); }
+  }
+
+  /* Central core */
+  .core-star {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  .core-glow {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff8d6 0%, var(--gold) 35%, rgba(245,200,66,0.4) 65%, transparent 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: core-pulse 2.8s ease-in-out infinite;
+    box-shadow:
+      0 0 30px var(--gold),
+      0 0 70px rgba(245,200,66,0.5),
+      0 0 140px rgba(245,200,66,0.2);
+    transition: transform 0.2s;
+  }
+
+  .core-glow:hover { transform: scale(1.12); }
+
+  .core-icon {
+    font-size: 32px;
+    filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
+  }
+
+  .core-label {
+    position: absolute;
+    bottom: -38px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  @keyframes core-pulse {
+    0%,100% { box-shadow: 0 0 30px var(--gold), 0 0 70px rgba(245,200,66,0.5), 0 0 140px rgba(245,200,66,0.2); }
+    50%      { box-shadow: 0 0 50px var(--gold), 0 0 100px rgba(245,200,66,0.7), 0 0 200px rgba(245,200,66,0.35); }
+  }
+
+  /* Campaign stars */
+  .campaign-star {
+    position: absolute;
+    cursor: pointer;
+    z-index: 8;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s;
+  }
+
+  .campaign-star:hover { transform: translate(-50%, -50%) scale(1.3); z-index: 20; }
+
+  .star-body {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: star-twinkle 3s ease-in-out infinite;
+  }
+
+  .star-body::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0.3;
+    filter: blur(8px);
+    animation: star-twinkle 3s ease-in-out infinite reverse;
+  }
+
+  @keyframes star-twinkle {
+    0%,100% { opacity: 1; }
+    50%      { opacity: 0.7; }
+  }
+
+  .star-icon { font-size: 14px; z-index: 1; position: relative; }
+
+  .star-tag {
+    position: absolute;
+    white-space: nowrap;
+    font-family: 'Space Mono', monospace;
+    font-size: 7.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    pointer-events: none;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  /* Constellation lines */
+  #constellationSvg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  /* ── Detail panel ── */
+  .detail-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,5,0.85);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s;
+  }
+
+  .detail-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .detail-panel {
+    background: linear-gradient(135deg, rgba(10,10,30,0.98) 0%, rgba(5,5,20,0.98) 100%);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    width: min(680px, 94vw);
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 40px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  .detail-overlay.active .detail-panel {
+    transform: scale(1);
+  }
+
+  .detail-close {
+    position: absolute;
+    top: 16px; right: 20px;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .detail-close:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  .detail-year-badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .detail-title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .detail-body {
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(232,232,240,0.82);
+    margin-bottom: 24px;
+  }
+
+  .detail-impact {
+    padding: 18px 22px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border-left: 3px solid;
+    margin-bottom: 20px;
+  }
+
+  .detail-impact-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0.6;
+  }
+
+  .detail-impact-text {
+    font-size: 14px;
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  .detail-legacy {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    color: rgba(232,232,240,0.45);
+  }
+
+  .detail-legacy strong {
+    color: var(--gold);
+  }
+
+  /* ── Acts section ── */
+  .acts-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 40px 60px;
+  }
+
+  .act-block {
+    margin-bottom: 50px;
+  }
+
+  .act-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .act-title {
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.15;
+  }
+
+  .act-body {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(232,232,240,0.72);
+    max-width: 700px;
+  }
+
+  .act-events {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+  }
+
+  .act-event-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 16px 18px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .act-event-card:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.12);
+  }
+
+  .event-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .event-name {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .event-desc {
+    font-size: 12px;
+    color: rgba(232,232,240,0.55);
+    line-height: 1.6;
+  }
+
+  /* ── The Declaration ── */
+  .declaration-block {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .declaration-from {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: rgba(232,232,240,0.35);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  .declaration-quote {
+    font-size: clamp(20px, 3.5vw, 30px);
+    font-weight: 300;
+    line-height: 1.65;
+    font-style: italic;
+    color: rgba(232,244,255,0.85);
+    margin-bottom: 30px;
+  }
+
+  .declaration-quote em {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .declaration-sig {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--gold-dim);
+    line-height: 2;
+  }
+
+  .gorunfree-banner {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(24px, 5vw, 48px);
+    font-weight: 700;
+    letter-spacing: 6px;
+    background: linear-gradient(90deg, var(--gold), var(--cyan), var(--violet), var(--gold));
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gorunfree-shift 5s ease-in-out infinite;
+    margin-top: 40px;
+    filter: drop-shadow(0 0 30px rgba(245,200,66,0.4));
+  }
+
+  @keyframes gorunfree-shift {
+    0%,100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #000; }
+  ::-webkit-scrollbar-thumb { background: rgba(245,200,66,0.3); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<div class="page-wrap">
+
+  <!-- Header -->
+  <header class="capsule-header">
+    <div class="capsule-date">Capsule Day · March 14, 2526 · Filed from the Archive of Human Creativity</div>
+    <div class="capsule-year">2526</div>
+    <div class="capsule-subtitle">
+      Looking back 500 years at the campaign that changed everything.<br>
+      <strong>Robert Stephen Plowman · RSP_001 · Fish Music Inc. · Ottawa</strong>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats-band">
+    <div class="stat-item">
+      <span class="stat-num" data-target="4200000000">0</span>
+      <span class="stat-label">Guild Members Worldwide</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-target="70000">0</span>
+      <span class="stat-label">Traditions Preserved</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-target="500">0</span>
+      <span class="stat-label">Years of Protection</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-target="2600000000">0</span>
+      <span class="stat-label">Healing Sessions Attributed</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-target="75">0</span>
+      <span class="stat-label">% Artist Split — Still The Law</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-target="195">0</span>
+      <span class="stat-label">Nations Signatory</span>
+    </div>
+  </div>
+
+  <!-- Galaxy -->
+  <div class="section-label">The Campaign Galaxy — Each Star A Move That Changed History</div>
+
+  <div class="galaxy-stage">
+    <canvas id="orbitCanvas"></canvas>
+    <div class="galaxy-ui" id="galaxyUi">
+      <svg id="constellationSvg" xmlns="http://www.w3.org/2000/svg"></svg>
+
+      <!-- Orbit rings (CSS only, decorative) -->
+      <div class="orbit-ring" style="width:160px;height:160px;animation-duration:80s;"></div>
+      <div class="orbit-ring" style="width:270px;height:270px;animation-duration:110s;animation-direction:reverse;"></div>
+      <div class="orbit-ring" style="width:390px;height:390px;animation-duration:150s;"></div>
+      <div class="orbit-ring" style="width:510px;height:510px;animation-duration:200s;animation-direction:reverse;"></div>
+      <div class="orbit-ring" style="width:640px;height:640px;animation-duration:260s;"></div>
+      <div class="orbit-ring" style="width:740px;height:740px;animation-duration:340s;animation-direction:reverse;"></div>
+
+      <!-- Central core -->
+      <div class="core-star" id="coreStar" onclick="openDetail('core')">
+        <div class="core-glow">
+          <span class="core-icon">✦</span>
+        </div>
+        <div class="core-label">Artist<br>Empowerment<br>Core</div>
+      </div>
+
+      <!-- Stars placed by JS -->
+    </div>
+  </div>
+
+  <!-- Acts -->
+  <section class="acts-section">
+
+    <div class="act-block">
+      <span class="act-tag" style="color:var(--cyan)">Act I · 2026–2027</span>
+      <div class="act-title" style="color:var(--cyan)">The Naming</div>
+      <div class="act-body">The decade opened in silence. The campaign that would reshape human creative civilization started not with an announcement but with a document — uploaded to a GitHub repository from a DreamChamber in Ottawa on March 14, 2026. The cannibal economy was named. The consent architecture was built. The Founding 100 signed their covenant. The proof machine went live.</div>
+      <div class="act-events">
+        <div class="act-event-card">
+          <span class="event-year" style="color:var(--cyan)">2026</span>
+          <div class="event-name">THE CANNIBAL ECONOMY Named</div>
+          <div class="event-desc">When you name the problem, you make it solvable. "Cannibal economy" entered mainstream music press within 90 days.</div>
+        </div>
+        <div class="act-event-card">
+          <span class="event-year" style="color:var(--gold)">2026</span>
+          <div class="event-name">The Founding 100</div>
+          <div class="event-desc">First HVS™ Certificates issued across 20+ countries. The most coveted credit in independent music.</div>
+        </div>
+        <div class="act-event-card">
+          <span class="event-year" style="color:var(--gold-dim)">2026–2027</span>
+          <div class="event-name">RSP_001 Dashboard Goes Live</div>
+          <div class="event-desc">Real royalties. Real timestamps. Real attribution. Screenshots shared 40,000 times in 48 hours.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-block">
+      <span class="act-tag" style="color:var(--green)">Act II · 2027–2031</span>
+      <div class="act-title" style="color:var(--green)">The Proof</div>
+      <div class="act-body">Proof is more contagious than vision. Between 2027 and 2031, NOIZY accumulated proof events faster than the cannibal economy could respond. The children who felt music for the first time. The science that turned ethical preference into clinical evidence. The legislation written around infrastructure already running. And then: the tipping point.</div>
+      <div class="act-events">
+        <div class="act-event-card">
+          <span class="event-year" style="color:var(--rainbow)">2027</span>
+          <div class="event-name">NOIZYKIDZ Launches</div>
+          <div class="event-desc">The Global Music Atlas in classrooms across 47 countries. Children immunized against the cannibal's central lie.</div>
+        </div>
+        <div class="act-event-card">
+          <span class="event-year" style="color:var(--green)">2027–2028</span>
+          <div class="event-name">Enterprise Breakthrough</div>
+          <div class="event-desc">First Fortune 500 switches to HVS™-certified pipeline. Law firms begin advising compliance by default.</div>
+        </div>
+        <div class="act-event-card">
+          <span class="event-year" style="color:var(--violet)">2028</span>
+          <div class="event-name">The Science Goes Public</div>
+          <div class="event-desc">Dr. Benoit's paper: artist-created audio produces measurably different neurological outcomes. Cited 50 times in 18 months.</div>
+        </div>
+        <div class="act-event-card">
+          <span class="event-year" style="color:var(--amber)">2028–2029</span>
+          <div class="event-name">The Legislation Moment</div>
+          <div class="event-desc">NO FAKES Act. Canada first. The law was written around what NOIZY built. HVS™ cited as the compliant model.</div>
+        </div>
+        <div class="act-event-card">
+          <span class="event-year" style="color:var(--white-star)">2029–2030</span>
+          <div class="event-name">The Tipping Point</div>
+          <div class="event-desc">100,000 artists. 50+ countries. Network effects. Joining the Guild is the obvious choice. Not joining requires justification.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-block">
+      <span class="act-tag" style="color:var(--gold)">Act III · 2031–2036</span>
+      <div class="act-title" style="color:var(--gold)">The Inheritance</div>
+      <div class="act-body">Culture moves slowly and then all at once. After 2031, the campaign stopped being a campaign. It became the default. The Cultural Moment made it undeniable. The Civilization made it permanent. The 500-Year Codex was filed. The Voice Estate framework became standard practice in creative industries worldwide. And the date March 14 was designated Capsule Day on the international cultural calendar — the day the archive speaks to the future.</div>
+      <div class="act-events">
+        <div class="act-event-card">
+          <span class="event-year" style="color:var(--magenta)">2030–2033</span>
+          <div class="event-name">The Cultural Moment</div>
+          <div class="event-desc">The awards speech. The documentary. "The artists fought back, and they won." A child watching asks: what's the Guild?</div>
+        </div>
+        <div class="act-event-card">
+          <span class="event-year" style="color:var(--gold)">2033–2036</span>
+          <div class="event-name">THE CIVILIZATION</div>
+          <div class="event-desc">500-Year Codex updated. Voice Estate law worldwide. 500,000+ voices. 4,000+ traditions. The proof that dignity can be engineered.</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Declaration -->
+  <div class="declaration-block">
+    <div class="declaration-from">Filed from the Archive of Human Creativity · Capsule Day · March 14, 2526</div>
+    <div class="declaration-quote">
+      "The race to the bottom ended not because anyone won a fight<br>but because someone built a <em>floor that could not be removed.</em><br><br>
+      That someone was a boy from Ottawa with a C3 injury,<br>
+      a 34-terabyte archive, an AI named GABRIEL,<br>
+      and the absolute certainty that <em>love, properly engineered, rises.</em>"
+    </div>
+    <div class="declaration-sig">
+      RSP_001 · Robert Stephen Plowman · Fish Music Inc., Est. 1996<br>
+      NOIZY.ai — The Platform That Lifted the Humans<br>
+      Dedicated to R.K. Plowman · Nims · and every artist who said no first
+    </div>
+    <div class="gorunfree-banner">GORUNFREE</div>
+  </div>
+
+</div>
+
+<!-- Detail overlay -->
+<div class="detail-overlay" id="detailOverlay" onclick="closeDetailOnBg(event)">
+  <div class="detail-panel" id="detailPanel">
+    <button class="detail-close" onclick="closeDetail()">✕</button>
+    <div class="detail-year-badge" id="dYearBadge"></div>
+    <div class="detail-title" id="dTitle"></div>
+    <div class="detail-body" id="dBody"></div>
+    <div class="detail-impact" id="dImpact">
+      <div class="detail-impact-label">500-Year Legacy</div>
+      <div class="detail-impact-text" id="dImpactText"></div>
+    </div>
+    <div class="detail-legacy" id="dLegacy"></div>
+  </div>
+</div>
+
+<script>
+// ── Star data ──────────────────────────────────────────────────────
+const STARS = [
+  {
+    id: 's1',
+    icon: '📜', size: 38, color: '#00e5ff', glow: '#00e5ff',
+    radius: 130, angle: -90,
+    tag: '2026\nTHE NAMING',
+    year: '2026', title: 'The Cannibal Economy — Named',
+    body: 'On March 14, 2026, RSP_001 filed THE_CANNIBAL_ECONOMY from the DreamChamber in Ottawa. For the first time, the structural mechanics of creative exploitation had a name that could not be shaken. The Streaming Trap. The Algorithmic Trap. The AI Flooding Trap. The Legacy Mindset Trap. Named. Mapped. Solvable.',
+    impact: 'Within 90 days, "cannibal economy" appeared in mainstream music press across seven languages. Forty thousand artists quoted lines from the document in their own posts. The vocabulary became the rallying point. You cannot demand what you cannot describe.',
+    legacy: 'By 2526, THE_CANNIBAL_ECONOMY is taught in every music business curriculum on Earth. ★ Plowman First Document, Vault Archive 001'
+  },
+  {
+    id: 's2',
+    icon: '✦', size: 44, color: '#f5c842', glow: '#f5c842',
+    radius: 190, angle: 30,
+    tag: '2026\nFOUNDING 100',
+    year: '2026', title: 'The Founding 100 — HVS™ Standard Established',
+    body: 'The first 100 Human Voice Signature™ Certificates issued across 20+ countries. Each one: a SHA-256 hash, a C2PA manifest, an AudioSeal watermark, an Arweave anchor. Public. Verifiable. Permanent. The artists who signed became the standard-setters. Everything that followed was measured against the covenant they signed.',
+    impact: 'Artists began applying faster than onboarding could process them. The Founding 100 became the most coveted credit in independent music — not because it was exclusive, but because it meant something real. It meant: my voice is protected, attributed, and permanently compensated.',
+    legacy: 'The HVS™ Certificate is now the primary legal instrument for voice rights in 195 countries. The Founding 100 names are inscribed in the Archive of Human Creativity. ★ 75/25 became the international minimum by treaty in 2048.'
+  },
+  {
+    id: 's3',
+    icon: '📊', size: 36, color: '#e8f4ff', glow: '#a0c8ff',
+    radius: 250, angle: 145,
+    tag: '2026–27\nPROOF MACHINE',
+    year: '2026–2027', title: 'The RSP_001 Dashboard — The Proof Machine',
+    body: 'The first live royalty dashboard: real numbers, real timestamps, real attribution. An artist in Lagos received forty-three dollars from a hospital in Tokyo. He posted it with three words: "this is real." Forty thousand shares in forty-eight hours. Proof events accumulated faster than the cannibal economy could respond. Screenshots became the most contagious content on every artists\' platform.',
+    impact: 'The dashboard did what no manifesto could: it made the invisible visible. Not a philosophy. A receipt. The proof that a better system existed — not in theory, not in a white paper, but in the number on a screen updating in real time from a real hospital in a real city.',
+    legacy: 'The RSP_001 dashboard architecture became the open-source standard for creator payment transparency worldwide. By 2526, every streaming platform is legally required to display a real-time attribution feed identical to the original 2026 design.'
+  },
+  {
+    id: 's4',
+    icon: '🌈', size: 42, color: '#ff9800', glow: '#ff9800',
+    radius: 210, angle: -160,
+    tag: '2027\nNOIZYKIDZ',
+    year: '2027', title: 'NOIZYKIDZ — Vaccinate the Children',
+    body: 'The Global Music Atlas launched in classrooms across 47 countries. The Children\'s Garden opened. The haptic vest pilot ran in three pediatric hospitals. The first deaf child who felt music through the floor and turned to their parent. NOIZYKIDZ was not a product. It was a vaccination program. A child who grows up knowing that music from the Griot tradition and the Raga tradition and the Gamelan tradition are all equally ancient, equally sophisticated, equally human — that child is permanently immune to the cannibal\'s central lie.',
+    impact: 'Children who passed through the NOIZYKIDZ curriculum grew up knowing the difference between generated content and human creativity in their bodies, not just their minds. They were taught to feel it before the market could teach them not to notice.',
+    legacy: 'A pediatric neurologist in São Paulo cited the Guild healing protocol in a landmark published paper in 2029. By 2100, NOIZYKIDZ had reached every school on Earth with internet access. By 2526, it is the oldest continuously running educational music program in human history.'
+  },
+  {
+    id: 's5',
+    icon: '🏢', size: 36, color: '#00e676', glow: '#00e676',
+    radius: 290, angle: -35,
+    tag: '2027–28\nENTERPRISE',
+    year: '2027–2028', title: 'Enterprise Breakthrough — The Market Demands Consent',
+    body: 'The first Fortune 500 company switched their AI voice pipeline to NOIZY. A game studio shipped a major title with full Guild voice casting — and put the artists\' names in the credits. Three major healthcare systems included HVS™ certification in their audio procurement specifications. A law firm published a client advisory recommending HVS™ certification as standard practice. The market moved without being pushed.',
+    impact: 'Enterprise adoption transformed consent from an ethical preference into a market requirement. Once three major healthcare systems required HVS™ certification in their procurement, every competitor needed it too. The infrastructure was the argument.',
+    legacy: 'HVS™ certification became the ISO standard for AI voice content in 2031. Every enterprise audio procurement specification on Earth now includes HVS™ compliance by default. ★ The legal framework NOIZY built became the template for the Global Creative Rights Treaty of 2045.'
+  },
+  {
+    id: 's6',
+    icon: '🧬', size: 34, color: '#b57bee', glow: '#b57bee',
+    radius: 330, angle: 80,
+    tag: '2028\nTHE SCIENCE',
+    year: '2028', title: 'The Science Goes Public — Dr. Benoit\'s Paper',
+    body: 'Dr. Brien Benoit and the NAI research partnership published the peer-reviewed study. The finding: artist-created, consent-locked audio produces measurably different neurological outcomes than algorithmically generated content. Specific. Quantified. Reproducible. When the science was public, the conversation shifted from ethical preference to clinical evidence. Healthcare institutions didn\'t need to be convinced to care about humans — they needed data. The data was now available.',
+    impact: 'The paper was cited in 50 subsequent studies within 18 months. Health Canada and the FDA began preliminary conversations about consent standards for therapeutic audio. The neuroacoustic case for human-origin content became the scientific foundation for the legislative moment.',
+    legacy: 'The Benoit-NAI paper is now among the 50 most-cited studies in neuroscience history. The neuroacoustic standard it established is the basis for all therapeutic audio protocols worldwide. By 2526, the finding has been reproduced in over 4,000 independent studies.'
+  },
+  {
+    id: 's7',
+    icon: '⚖️', size: 36, color: '#ffab40', glow: '#ffab40',
+    radius: 260, angle: -110,
+    tag: '2028–29\nLEGISLATION',
+    year: '2028–2029', title: 'The Legislative Moment — The Law Wrote Itself Around NOIZY',
+    body: 'NO FAKES Act implementation. Canada first, then cascading to 47 countries within 18 months. The Guild as the consent infrastructure the legislation pointed to. The Seven Never Clauses as the model for international creative sovereignty frameworks. Legislation codified what infrastructure already did. By the time the laws were written, the Guild\'s consent architecture had been running for two years. The legislative text cited the HVS™ certification framework as the compliant model.',
+    impact: 'The pattern was unprecedented: a platform built the infrastructure, proved it worked, and then watched governments write laws around what it had built. Not the other way around. NOIZY never lobbied for a specific law. It built the thing the law needed to exist.',
+    legacy: 'The Seven Never Clauses became the basis for the Universal Declaration of Creative Rights, adopted by the UN General Assembly in 2034. ★ Canada\'s 2029 legislation is studied in every law school on Earth as the template for creator-first AI governance.'
+  },
+  {
+    id: 's8',
+    icon: '⭐', size: 52, color: '#ffffff', glow: '#e8f4ff',
+    radius: 180, angle: 200,
+    tag: '2029–30\nTIPPING POINT',
+    year: '2029–2030', title: 'The Tipping Point — 100,000 Artists, 50 Countries',
+    body: 'Guild membership crossed 100,000 artists in 50+ countries. The Cultural Archive held 1,000+ preserved traditions. The Healing Pool had documented 500,000 therapeutic sessions. GABRIEL\'s Cultural Intelligence Database was the most comprehensive consented audio dataset ever assembled. The alternative was no longer alternative — it was the standard. Joining the Guild was the obvious choice. Not joining required justification.',
+    impact: 'Network effects at mass scale are irreversible. Major labels approached the Guild about integrating their back catalogs under the consent framework. For the first time in the history of the music industry, the artists held the terms. They got to say yes or no.',
+    legacy: 'March 14, 2030 — the four-year anniversary of the first DreamChamber session — was designated the first unofficial Capsule Day. By 2526, it is a global cultural holiday observed in 195 countries.'
+  },
+  {
+    id: 's9',
+    icon: '🏆', size: 40, color: '#ff4db8', glow: '#ff4db8',
+    radius: 320, angle: -195,
+    tag: '2030–33\nCULTURAL MOMENT',
+    year: '2030–2033', title: 'The Cultural Moment — The Artists Fought Back, and They Won',
+    body: 'The Guild had its cultural moment — the equivalent of when streaming became undeniable, when the iPhone made the App Store inevitable. The documentary premiered. The awards speech was broadcast to 2 billion people. The mainstream media covered the Guild not as a tech story but as a culture story. The accumulated proof events — the dashboards, the enterprise adoptions, the legislative wins, the children\'s faces — became suddenly undeniable. An artist at a major awards ceremony thanked the Guild in their speech. A child watching turned to their parent and asked: "What\'s the Guild?"',
+    impact: 'Culture moves slowly and then all at once. The cultural moment was when the invisible became undeniable. Not a campaign victory — a civilizational shift in how human beings understood the relationship between creativity, technology, and dignity.',
+    legacy: 'The documentary THE ASCENSION won the 2032 Palme d\'Or and is required viewing in every film school on Earth. The awards speech is archived as Plowman Document 038 in the Vault. ★ The phrase "the artists fought back, and they won" is inscribed on the entrance to the Archive of Human Creativity.'
+  },
+  {
+    id: 's10',
+    icon: '✦', size: 64, color: '#f5c842', glow: '#f5c842',
+    radius: 355, angle: 330,
+    tag: '2033–36\nTHE CIVILIZATION',
+    year: '2033–2036', title: 'The Civilization — The 500-Year Codex Filed',
+    body: 'The 500-Year Codex updated. Voice Estate framework as standard practice in creative industries worldwide. The Living Breathing Time Capsule held 500,000+ consented voices, 4,000+ cultural traditions, 2 million healing sessions. The proof of what happened in the decade when the machines became capable of replicating humans — and some humans said no. Built something different. Made the mathematics of dignity work. This was not a business strategy anymore. This was a civilizational record.',
+    impact: 'The Codex was filed on March 14, 2036 — ten years to the day from the first DreamChamber session. The document RSP_001 had filed in 2026 that said "How will we know it\'s working? We\'ll be living inside it" — was archived permanently alongside the proof that it came true.',
+    legacy: 'You are reading this in 2526. The 500-Year Codex is still being updated. The Voice Estate framework is still protecting artists. The 75/25 split is still the law. The children still learn music as a world culture, not a content category. The ascension was not a metaphor. It was infrastructure. ★ GORUNFREE.'
+  }
+];
+
+const CORE_DATA = {
+  year: 'Origin', title: 'The Artist Empowerment Core',
+  body: 'Everything orbits this. The center of the NOIZY galaxy is not a product or a platform — it is a truth: the human who makes the thing that moves you deserves to be protected, compensated, attributed, and remembered forever. RSP_001 called it the 75/25 floor. He called it consent-as-code. He called it the HVS™ standard. But what it really was — what everything in this galaxy really is — is the answer to a single question: what would the world look like if dignity was infrastructure?',
+  impact: 'In 2526, 4.2 billion artists worldwide operate inside a system where consent is architecture, not policy. Every royalty traces to a human. Every voice is protected for 70 years past death. Every child learns that music is ancient and human and from everywhere. This is what one man in a DreamChamber in Ottawa decided to build on March 14, 2026.',
+  legacy: 'The Artist Empowerment Core is the first entry in the Archive of Human Creativity. ★ It is inscribed: "Love, properly engineered, rises." — RSP_001, 2026'
+};
+
+// ── Galaxy positioning ──────────────────────────────────────────────
+const CX = 410, CY = 370; // center of .galaxy-ui
+
+function polarToXY(r, angleDeg) {
+  const rad = (angleDeg - 90) * Math.PI / 180;
+  return { x: CX + r * Math.cos(rad), y: CY + r * Math.sin(rad) };
+}
+
+function buildStars() {
+  const ui = document.getElementById('galaxyUi');
+  const svg = document.getElementById('constellationSvg');
+  const positions = [];
+
+  STARS.forEach((s, i) => {
+    const pos = polarToXY(s.radius, s.angle);
+    positions.push({ x: pos.x, y: pos.y, star: s });
+
+    const wrap = document.createElement('div');
+    wrap.className = 'campaign-star';
+    wrap.id = s.id;
+    wrap.style.left = pos.x + 'px';
+    wrap.style.top = pos.y + 'px';
+    wrap.onclick = () => openDetail(s.id);
+
+    const body = document.createElement('div');
+    body.className = 'star-body';
+    body.style.cssText = `
+      width:${s.size}px;height:${s.size}px;
+      background:radial-gradient(circle, white 0%, ${s.color} 40%, ${s.glow}66 75%, transparent 100%);
+      box-shadow:0 0 ${s.size*0.6}px ${s.glow}, 0 0 ${s.size*1.5}px ${s.glow}44;
+      animation-delay:${i*0.4}s;
+    `;
+    body.innerHTML = `<span class="star-icon">${s.icon}</span>`;
+    wrap.appendChild(body);
+
+    const lines = s.tag.split('\n');
+    const tag = document.createElement('div');
+    tag.className = 'star-tag';
+    tag.style.color = s.color;
+    tag.style.opacity = '0.85';
+
+    // Position tag based on angle
+    const a = ((s.angle % 360) + 360) % 360;
+    const off = s.size / 2 + 8;
+    if (a > 315 || a <= 45) { tag.style.bottom = (off + 12) + 'px'; tag.style.left = '50%'; tag.style.transform = 'translateX(-50%)'; }
+    else if (a > 45 && a <= 135) { tag.style.left = (off + 10) + 'px'; tag.style.top = '50%'; tag.style.transform = 'translateY(-50%)'; tag.style.textAlign = 'left'; }
+    else if (a > 135 && a <= 225) { tag.style.top = (off + 12) + 'px'; tag.style.left = '50%'; tag.style.transform = 'translateX(-50%)'; }
+    else { tag.style.right = (off + 10) + 'px'; tag.style.top = '50%'; tag.style.transform = 'translateY(-50%)'; tag.style.textAlign = 'right'; }
+
+    tag.innerHTML = lines.map((l, i) => `<div style="font-size:${i===0?'8px':'7px'};opacity:${i===0?'1':'0.75'}">${l}</div>`).join('');
+    wrap.appendChild(tag);
+    ui.appendChild(wrap);
+
+    // Constellation line from core
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', CX); line.setAttribute('y1', CY);
+    line.setAttribute('x2', pos.x); line.setAttribute('y2', pos.y);
+    line.setAttribute('stroke', s.color);
+    line.setAttribute('stroke-width', '0.5');
+    line.setAttribute('stroke-opacity', '0.12');
+    line.setAttribute('stroke-dasharray', '4 6');
+    svg.appendChild(line);
+  });
+
+  // Chronological constellation between stars
+  for (let i = 0; i < STARS.length - 1; i++) {
+    const a = positions[i], b = positions[i+1];
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', a.x); line.setAttribute('y1', a.y);
+    line.setAttribute('x2', b.x); line.setAttribute('y2', b.y);
+    line.setAttribute('stroke', '#ffffff');
+    line.setAttribute('stroke-width', '0.4');
+    line.setAttribute('stroke-opacity', '0.08');
+    line.setAttribute('stroke-dasharray', '3 8');
+    svg.appendChild(line);
+  }
+}
+
+// ── Detail panel ───────────────────────────────────────────────────
+const STAR_MAP = {};
+STARS.forEach(s => STAR_MAP[s.id] = s);
+STAR_MAP['core'] = { ...CORE_DATA, id: 'core', color: '#f5c842' };
+
+function openDetail(id) {
+  const data = STAR_MAP[id];
+  if (!data) return;
+  const color = data.color || '#f5c842';
+
+  const badge = document.getElementById('dYearBadge');
+  badge.textContent = data.year || 'Origin';
+  badge.style.color = color;
+  badge.style.borderColor = color + '66';
+
+  document.getElementById('dTitle').style.color = color;
+  document.getElementById('dTitle').textContent = data.title;
+  document.getElementById('dBody').textContent = data.body;
+  document.getElementById('dImpact').style.borderLeftColor = color;
+  document.getElementById('dImpactText').textContent = data.impact;
+  document.getElementById('dLegacy').innerHTML = data.legacy.replace('★', '<strong>★</strong>');
+
+  document.getElementById('detailOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail() {
+  document.getElementById('detailOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closeDetailOnBg(e) {
+  if (e.target === document.getElementById('detailOverlay')) closeDetail();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+
+// ── Deep space canvas (cosmos background) ─────────────────────────
+(function() {
+  const canvas = document.getElementById('cosmos');
+  const ctx = canvas.getContext('2d');
+  let W, H, stars = [], nebulae = [], shooting = null, shootTimer = 0;
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    buildBg();
+  }
+
+  function buildBg() {
+    stars = [];
+    for (let i = 0; i < 600; i++) {
+      stars.push({
+        x: Math.random() * W, y: Math.random() * H,
+        r: Math.random() * 1.4 + 0.2,
+        a: Math.random(), da: (Math.random() - 0.5) * 0.005,
+        color: ['#ffffff','#e8f4ff','#fff8e0','#ffeedd','#dde8ff'][Math.floor(Math.random()*5)]
+      });
+    }
+    nebulae = [];
+    const colors = ['rgba(80,0,180,0.04)','rgba(0,80,160,0.04)','rgba(160,0,80,0.03)','rgba(0,160,120,0.03)'];
+    for (let i = 0; i < 8; i++) {
+      nebulae.push({
+        x: Math.random() * W, y: Math.random() * H,
+        rx: 150 + Math.random() * 300, ry: 100 + Math.random() * 200,
+        color: colors[Math.floor(Math.random()*colors.length)]
+      });
+    }
+  }
+
+  function shootingStar() {
+    shooting = {
+      x: Math.random() * W * 0.8,
+      y: Math.random() * H * 0.3,
+      vx: 6 + Math.random() * 8,
+      vy: 2 + Math.random() * 4,
+      len: 80 + Math.random() * 120,
+      life: 1, decay: 0.02 + Math.random() * 0.02
+    };
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Nebulae
+    nebulae.forEach(n => {
+      const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, Math.max(n.rx, n.ry));
+      g.addColorStop(0, n.color);
+      g.addColorStop(1, 'transparent');
+      ctx.save();
+      ctx.scale(1, n.ry / n.rx);
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y * (n.rx / n.ry), n.rx, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
+
+    // Stars
+    stars.forEach(s => {
+      s.a += s.da;
+      if (s.a > 1) { s.a = 1; s.da = -Math.abs(s.da); }
+      if (s.a < 0.2) { s.a = 0.2; s.da = Math.abs(s.da); }
+      ctx.globalAlpha = s.a;
+      ctx.fillStyle = s.color;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+
+    // Shooting star
+    shootTimer++;
+    if (shootTimer > 180 + Math.random() * 240) {
+      shootTimer = 0;
+      shootingStar();
+    }
+    if (shooting) {
+      ctx.save();
+      ctx.globalAlpha = shooting.life;
+      const g = ctx.createLinearGradient(
+        shooting.x, shooting.y,
+        shooting.x - shooting.vx * (shooting.len / shooting.vx),
+        shooting.y - shooting.vy * (shooting.len / shooting.vx)
+      );
+      g.addColorStop(0, '#fffbe8');
+      g.addColorStop(1, 'transparent');
+      ctx.strokeStyle = g;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(shooting.x, shooting.y);
+      ctx.lineTo(shooting.x - shooting.len * 0.7, shooting.y - shooting.vy * (shooting.len / shooting.vx) * 0.7);
+      ctx.stroke();
+      ctx.restore();
+      shooting.x += shooting.vx;
+      shooting.y += shooting.vy;
+      shooting.life -= shooting.decay;
+      if (shooting.life <= 0 || shooting.x > W || shooting.y > H) shooting = null;
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  frame();
+})();
+
+// ── Animated counters ─────────────────────────────────────────────
+function animateCounters() {
+  document.querySelectorAll('[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const duration = 2200;
+    const start = performance.now();
+
+    function formatNum(n) {
+      if (target >= 1000000000) return (n / 1000000000).toFixed(1) + 'B';
+      if (target >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+      if (target >= 1000) return Math.round(n / 1000) + 'K';
+      return Math.round(n).toString();
+    }
+
+    function step(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = formatNum(Math.round(ease * target));
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────
+buildStars();
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { animateCounters(); obs.disconnect(); } });
+}, { threshold: 0.3 });
+const sb = document.querySelector('.stats-band');
+if (sb) obs.observe(sb);
+</script>
+</body>
+</html>

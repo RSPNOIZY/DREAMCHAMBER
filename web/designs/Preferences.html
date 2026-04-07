@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Preferences</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="Preferences" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer109" class="Basic-Text-Frame">
+			<p id="_idParaDest-55" class="heading-1"><a id="_idTextAnchor057"></a>Understanding the Preferences menu</p>
+			<p id="_idParaDest-56" class="heading-2"><a id="_idTextAnchor058"></a>Audio</p>
+			<p class="heading-3"><img src="image/image_44AO3XTT3MY6EVNKBJMYIYCIHQ2V3TU4" alt="" /></p>
+			<p class="heading-3">Driver Type</p>
+			<p class="Normal">Allows you to select a sound card driver model to use for playback and recording.</p>
+			<p class="Normal">Note: Some hardware devices monopolize the audio drivers when sending audio clips to RX via RX Connect. If you are not able to hear the audio sent to RX from your DAW via RX Connect, change the audio driver to RX Monitor in the Driver type menu. See <a target="mainFrame" href="RX_Monitor.html#_idTextAnchor248"><span class="Hyperlink">RX Monitor</span></a>.</p>
+			<p class="Normal">The rest of the dialog contains settings for your audio device and also includes a test tone generator.</p>
+			<p class="heading-3">Input/Output Device</p>
+			<p class="Normal">Choose the device/sound card you want RX to use for playback and recording.</p>
+			<p class="heading-3">Buffer Size</p>
+			<p class="Normal">The total playback buffer size. In general, lowering these buffer sizes will improve meter responsiveness and lower latency, but increase CPU needs. Raising buffer sizes will lower CPU cost but increase latency. It&apos;s worth exploring these ranges to find values that work best on your system.</p>
+			<p class="heading-3">Num Buffers</p>
+			<p class="Normal">Number of playback sub-buffers. (MME Only.)</p>
+			<p class="heading-3">Channel Routing</p>
+			<p class="Normal">For ASIO and CoreAudio drivers, click this button to choose which input and output channels RX uses. Click the Channel Routing button to open the Channel Routing dialog box.</p>
+			<p class="heading-3">Configure Driver</p>
+			<p class="Normal">Launches the manufacturer’s driver configuration dialog.</p>
+			<p class="heading-3">Release when not in use</p>
+			<p class="Normal">Auto-closes the audio device when playback in RX stops, freeing it for use in other audio applications. Disable this if playback from RX isn’t responsive enough.</p>
+			<p class="heading-3">Test Tone</p>
+			<p class="Normal">The test tone generator is useful for testing your speakers, audio hardware and listening environment. Tones at set frequencies or at a custom frequency can be used as test tones, as can white or pink noise. In addition, a Channel Identification mode will identify left and right speakers. </p>
+			<p class="heading-3">Enable</p>
+			<p class="Normal">Starts playback of a test tone.</p>
+			<p class="heading-3">Type</p>
+			<p class="Normal">Sets the type of test tone to play.</p>
+			<p class="heading-3">Volume</p>
+			<p class="Normal">Sets the volume of the test tone.</p>
+			<p class="heading-3">Frequency</p>
+			<p class="Normal">Sets the frequency of the test tone.</p>
+			<p class="heading-3">Output Gain </p>
+			<p class="Normal">Output gain allows you to nondestructively adjust the playback level of RX 5 Audio Editor.</p>
+			<p id="_idParaDest-57" class="heading-2"><a id="_idTextAnchor059"></a>Display</p>
+			<p class="Inline-Art"><img src="image/image_5WXAVCVPP6DBALMILMDNHHBQGHDFCUGZ" alt="" /></p>
+			<p class="heading-3">Show tooltips</p>
+			<p class="Normal">When enabled, hovering over an RX feature with the mouse cursor will show a short description of the feature.</p>
+			<p class="heading-3">Display cursor coordinates in status bar</p>
+			<p class="Normal">When this is enabled, the time coordinate of the cursor is shown in the status bar at the bottom of the RX main window. The amplitude of the audio at the cursor position and the frequency at the cursor position is also shown.</p>
+			<p class="heading-3">Show analog waveform</p>
+			<p class="Normal">When digital audio is played back, it is converted to analog. The peak values in the analog waveform can be larger than the peaks in the digital waveform, leading to clipping in the output of a digital-to-analog converter. When Show analog waveform is enabled, RX will compute an analog waveform in the background. Any peaks will be highlighted in red on top of the existing digital waveform.</p>
+			<p class="Normal">At very extreme zoom levels, RX always displays an analog waveform.</p>
+			<p class="heading-3">Offload waveform calculations</p>
+			<p class="Normal">When this is enabled, RX&apos;s waveform display will be computed in the background. This allows very large files to be loaded very quickly, but it slows down RX&apos;s waveform displays.</p>
+			<p class="heading-3">Waveform interpolation order</p>
+			<p class="Normal">If you zoom into the waveform so that individual samples become visible, RX will display an upsampled analog waveform as well as the individual digital samples. The interpolation order controls the quality of upsampling. Higher values yield more accurate analog waveforms at the expense of CPU usage.</p>
+			<p class="heading-3">Brightness</p>
+			<p class="Normal">Adjusts the general brightness of the RX interface, allowing you to make RX more readable on your specific display.</p>
+			<p class="heading-3">Floating window opacity</p>
+			<p class="Normal">Changes the opacity for RX&apos;s floating windows. This can be useful if you wish to leave floating windows on top of the spectrogram and waveform without completely obscuring the display<span>.</span></p>
+			<p id="_idParaDest-58" class="heading-2"><a id="_idTextAnchor060"></a>Keyboard Shortcuts</p>
+			<p class="Inline-Art"><img src="image/image_UEHWSWKBTWCQS4EBISSDWIG5KJTLSVFS" alt="" /></p>
+			<p class="Normal">While RX includes default keyboard shortcuts, you can also customize them to your liking.</p>
+			<p class="heading-3">Presets</p>
+			<p class="Normal">Save groups of key assignments with this tool.</p>
+			<p class="heading-3">Show commands containing</p>
+			<p class="Normal">Lets you search by keyword for a command you want to assign to a keystroke.</p>
+			<p class="heading-3">Shortcuts for selected command</p>
+			<p class="Normal">Shows if there are any keystrokes assigned to the command selected in the above menu.</p>
+			<p class="heading-3">Remove</p>
+			<p class="Normal">Removes the currently assigned keystroke from a command.</p>
+			<p class="heading-3">Press Shortcut Key</p>
+			<p class="Normal">To assign a new keystroke to a command, select the command from the menu, then click in this field and press a key or combination of keys.</p>
+			<p class="heading-3">Assign</p>
+			<p class="Normal">Assigns the entered keystroke to the current command. The shortcut will only be assigned to the current command if you press this button.</p>
+			<p class="heading-3">Shortcut key currently used by</p>
+			<p class="Normal">Lists commands that the current keystroke is assigned to.</p>
+			<p class="Normal">Note: On Windows systems, by default, "Alt + a letter" will open the corresponding menu for your currently open application. Alt + V for example will open RX&apos;s View menu drop down. By default, none of RX&apos;s shortcuts should conflict with these keyboard shortcuts, however if you wish to assign Alt + V to another operation, it will take precedence over the View menu.</p>
+			<p id="_idParaDest-59" class="heading-2"><a id="_idTextAnchor061"></a>Miscellaneous</p>
+			<p class="heading-3"><img src="image/image_UBDYYWIXKXYARB6CHENRH2J5Z5RDHLA7" alt="" /></p>
+			<p class="heading-3">Session data folder</p>
+			<p class="Normal">Allows you to choose a different folder to save RX&apos;s temporary session data. These files are created to allow actions to be undone and sessions to be recalled in RX. Because these can be very large, it is best to set this to the drive on your computer with the most free space.</p>
+			<p class="heading-3">Time scale frame rate</p>
+			<p class="Normal">This sets the frame rate used to draw the time scale when RX is set to display the time code (see View menu or right-click the time ruler to change this setting). Choose from a list of standard frame rates or click in the combo box to define a custom frame rate.</p>
+			<p class="heading-3">Default full-bandwidth paste mode</p>
+			<p class="Normal">This controls RX&apos;s behavior when pasting a full-bandwidth audio selection. Insert will move aside existing audio, Replace will overwrite existing audio, and Mix will add to existing audio.</p>
+			<p class="heading-3">Default limited-bandwidth paste mode</p>
+			<p class="Normal">Similar to the full-bandwidth paste mode, this controls RX&apos;s behavior when pasting a limited-bandwidth audio selected.</p>
+			<p class="heading-3">Resume last editing session when app starts</p>
+			<p class="Normal">On RX&apos;s start-up, the last audio file will be reloaded along with full history list of any edits made.</p>
+			<p class="heading-3">Automatically open files ending with .L and .R as split stereo</p>
+			<p class="Normal">Mono audio files with (.L and .R) as well as (.1 and .2) extensions will be opened as stereo files when this option is enabled.</p>
+			<p class="heading-3">Recall selections during undo/redo</p>
+			<p class="Normal">When this is enabled, RX will recall the selection used for an item in the undo history. When browsing the undo history, the selected region will be restored along with the audio.</p>
+			<p class="Normal">Sometimes it is useful to turn this off if you need to compare undo history items and not break your current selection (like a useful loop).</p>
+			<p class="heading-3">Play only selected channels</p>
+			<p class="Normal">If only a single channel of audio is selected and this option is enabled, all other channels will be muted during playback.</p>
+			<p class="heading-3">Calculate RMS using AES-17</p>
+			<p class="Normal">Uses the AES-17 1998 standard for RMS calculations (0 dB is a full scale sine wave) in the level meter, Waveform Statistics and Leveler modules. The other option is when 0 dB is the RMS of a full-scale square wave. These options differ by 3 dB.</p>
+			<p class="heading-3">Pre- and Post-Roll during preview (ms)</p>
+			<p class="Normal">When Previewing audio processing in any module, the specified time amount will be added to the beginning and end of the previewed selection in order to provide contrast between unprocessed and preview-processed audio.</p>
+			<p class="heading-3">Selection Feathering (ms)</p>
+			<p class="Normal">This control allows for crossfading of processed and unprocessed audio when processing. If you need to make more precise edits, set this to 0.</p>
+			<p id="_idParaDest-60" class="heading-2"><a id="_idTextAnchor062"></a>Authorization &amp; Updates</p>
+			<p class="Normal">This tab enables you to authorize and deauthorize the software, as explained <a target="mainFrame" href="Authorization.html#_idTextAnchor002"><span class="Hyperlink">Authorization</span></a>.</p>
+			<p id="_idParaDest-61" class="heading-2"><a id="_idTextAnchor063"></a>Plug-ins</p>
+			<p class="Inline-Art"><img src="image/image_LRJ7K7BSVAB5VDYQVUTXZAZG4TIUBX5B" alt="" /></p>
+			<p class="Normal">Use these options to manage your third party audio processing plug-ins.</p>
+			<p class="heading-3">VST/Audio Unit/DirectX plug-ins</p>
+			<p class="Normal">These areas show what plug-ins are available for the specified format, which may vary depending on your OS. You can also enable or disable every plug-in for the specified format using the Enable/Disable button.</p>
+			<p class="heading-3">VST plug-in folders</p>
+			<p class="Normal">Lets you add or remove custom VST plug-in folders. RX uses the system VST plug-in folder by default. If your VST plug-ins do not show up, try using this option to add the directory where they are kept.</p>
+			<p class="Normal">RX will also scan the first level of subfolders in this folder. If some of your plug-ins do not show up when you scan them, and you know they’re in a subfolder of your plug-in folder, try moving them up one directory level.</p>
+			<p class="heading-3">Group plug-ins by name in plug-in menus</p>
+			<p class="Normal">When enabled, the RX plug-in menu will group plug-ins by common first words, usually the manufacturer’s name.</p>
+			<p class="Normal">When disabled, the RX plug-in menu will appear as a single, alphabetically sorted list.</p>
+			<p class="heading-3">Rescan</p>
+			<p class="Normal">If RX detects that a plug-in is unstable, it will blacklist it and prevent it from being opened.</p>
+			<p class="Normal">This option allows you to clear RX’s blacklist of unsupported plug-ins and rescan all installed plug-ins in case an RX update or an update from the plug-in manufacturer resolves the issue.</p>
+		</div>
+	</body>
+</html>

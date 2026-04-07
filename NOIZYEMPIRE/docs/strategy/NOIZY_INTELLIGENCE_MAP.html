@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY Global Intelligence Map — The Complete AI Music & Creator Rights Landscape</title>
+<style>
+  :root {
+    --gold: #f0b429;
+    --amber: #d97706;
+    --electric: #0a9ebd;
+    --fire: #e85d04;
+    --deep: #7c4dff;
+    --green: #22c55e;
+    --dream: #c94070;
+    --red: #ef4444;
+    --sky: #38bdf8;
+    --ink: #030406;
+    --mist: #eef0f5;
+    --pale: rgba(238,240,245,0.7);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--ink);
+    color: var(--mist);
+    font-family: 'Georgia', serif;
+    overflow-x: hidden;
+  }
+
+  #stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(3,4,6,0.92); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(56,189,248,0.15);
+    padding: 13px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-brand { font-size: 11px; letter-spacing: 4px; color: var(--sky); text-transform: uppercase; }
+  .nav-links { display: flex; gap: 22px; }
+  .nav-links a {
+    color: rgba(238,240,245,0.45); font-size: 10px; letter-spacing: 2px;
+    text-decoration: none; text-transform: uppercase; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--sky); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 140px 40px 100px;
+  }
+  .hero-label {
+    font-size: 10px; letter-spacing: 5px; color: rgba(56,189,248,0.6);
+    text-transform: uppercase; margin-bottom: 22px;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+  }
+  .hero-label.visible { opacity: 1; transform: translateY(0); }
+  .hero-title {
+    font-size: clamp(26px, 6vw, 76px);
+    font-weight: bold; line-height: 1.0; color: var(--mist); margin-bottom: 10px;
+    text-shadow: 0 0 80px rgba(56,189,248,0.1);
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+  }
+  .hero-title.visible { opacity: 1; transform: translateY(0); }
+  .hero-title span { color: var(--sky); }
+  .hero-sub {
+    font-size: clamp(13px, 1.8vw, 17px);
+    color: var(--pale); max-width: 660px; line-height: 1.75;
+    font-style: italic; margin-bottom: 52px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.7s ease 0.45s, transform 0.7s ease 0.45s;
+  }
+  .hero-sub.visible { opacity: 1; transform: translateY(0); }
+  .hero-battles {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    max-width: 680px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.7s ease 0.6s, transform 0.7s ease 0.6s;
+  }
+  .hero-battles.visible { opacity: 1; transform: translateY(0); }
+  .hb-item {
+    border: 1px solid rgba(56,189,248,0.2);
+    border-radius: 4px; padding: 16px 14px; text-align: center;
+    background: rgba(56,189,248,0.04);
+  }
+  .hb-icon { font-size: 24px; margin-bottom: 8px; }
+  .hb-battle { font-size: 13px; font-weight: bold; color: var(--mist); margin-bottom: 4px; }
+  .hb-sub { font-size: 11px; color: rgba(56,189,248,0.5); font-style: italic; }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── SECTION ── */
+  section {
+    position: relative; z-index: 1;
+    max-width: 1140px; margin: 0 auto;
+    padding: 80px 40px;
+  }
+  .section-header { text-align: center; margin-bottom: 52px; }
+  .section-label { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+  .section-title { font-size: clamp(22px, 3.5vw, 38px); font-weight: bold; color: var(--mist); margin-bottom: 12px; }
+  .divider { max-width: 1140px; margin: 0 auto; height: 1px; }
+
+  /* ── INTEL CARD ── */
+  .intel-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  @media(max-width:900px){ .intel-grid { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:560px){ .intel-grid { grid-template-columns: 1fr; } }
+
+  .intel-card {
+    border: 1px solid; border-radius: 4px; padding: 24px;
+    background: rgba(3,4,6,0.8);
+    transition: background 0.3s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .intel-card:hover { transform: translateY(-2px); }
+  .intel-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    opacity: 0.6;
+  }
+  .intel-status {
+    display: inline-block; font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 2px;
+    margin-bottom: 10px;
+  }
+  .intel-name { font-size: 15px; font-weight: bold; color: var(--mist); margin-bottom: 6px; }
+  .intel-cat { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+  .intel-desc { font-size: 12px; color: var(--pale); line-height: 1.6; margin-bottom: 12px; }
+  .intel-weakness { font-size: 12px; font-style: italic; padding-left: 10px; border-left-width: 2px; border-left-style: solid; line-height: 1.5; margin-bottom: 10px; }
+  .intel-noizy { font-size: 11px; color: var(--gold); font-style: italic; line-height: 1.5; }
+
+  /* Competitor colors */
+  .comp-voice { border-color: rgba(239,68,68,0.2); }
+  .comp-voice::before { background: var(--red); }
+  .comp-voice .intel-cat { color: var(--red); }
+  .comp-voice .intel-status { background: rgba(239,68,68,0.1); color: var(--red); border: 1px solid rgba(239,68,68,0.2); }
+  .comp-voice .intel-weakness { color: var(--red); border-left-color: rgba(239,68,68,0.3); }
+
+  .comp-music { border-color: rgba(232,88,4,0.2); }
+  .comp-music::before { background: var(--fire); }
+  .comp-music .intel-cat { color: var(--fire); }
+  .comp-music .intel-status { background: rgba(232,88,4,0.1); color: var(--fire); border: 1px solid rgba(232,88,4,0.2); }
+  .comp-music .intel-weakness { color: var(--fire); border-left-color: rgba(232,88,4,0.3); }
+
+  .comp-blockchain { border-color: rgba(124,77,255,0.2); }
+  .comp-blockchain::before { background: var(--deep); }
+  .comp-blockchain .intel-cat { color: var(--deep); }
+  .comp-blockchain .intel-status { background: rgba(124,77,255,0.1); color: var(--deep); border: 1px solid rgba(124,77,255,0.2); }
+  .comp-blockchain .intel-weakness { color: var(--deep); border-left-color: rgba(124,77,255,0.3); }
+
+  .comp-provenance { border-color: rgba(10,158,189,0.2); }
+  .comp-provenance::before { background: var(--electric); }
+  .comp-provenance .intel-cat { color: var(--electric); }
+  .comp-provenance .intel-status { background: rgba(10,158,189,0.1); color: var(--electric); border: 1px solid rgba(10,158,189,0.2); }
+  .comp-provenance .intel-weakness { color: var(--electric); border-left-color: rgba(10,158,189,0.3); }
+
+  .comp-research { border-color: rgba(34,197,94,0.2); }
+  .comp-research::before { background: var(--green); }
+  .comp-research .intel-cat { color: var(--green); }
+  .comp-research .intel-status { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.2); }
+  .comp-research .intel-weakness { color: var(--green); border-left-color: rgba(34,197,94,0.3); }
+
+  .comp-legal { border-color: rgba(240,180,41,0.2); }
+  .comp-legal::before { background: var(--gold); }
+  .comp-legal .intel-cat { color: var(--gold); }
+  .comp-legal .intel-status { background: rgba(240,180,41,0.1); color: var(--amber); border: 1px solid rgba(240,180,41,0.2); }
+  .comp-legal .intel-weakness { color: var(--gold); border-left-color: rgba(240,180,41,0.3); }
+
+  /* ── BATTLE TABLE ── */
+  .battle-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+  }
+  .battle-table th {
+    padding: 12px 20px;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    border-bottom: 1px solid rgba(56,189,248,0.2);
+    background: rgba(56,189,248,0.04); text-align: left;
+    color: var(--sky);
+  }
+  .battle-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--pale);
+  }
+  .battle-table tr:last-child td { border-bottom: none; }
+  .battle-table td:first-child { color: var(--sky); font-weight: bold; }
+  .battle-table td.noizy-col { color: var(--green); font-style: italic; }
+
+  /* ── LEVERAGE MAP ── */
+  .leverage-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  @media(max-width:900px){ .leverage-grid { grid-template-columns: 1fr 1fr; } }
+  .leverage-card {
+    border: 1px solid rgba(56,189,248,0.15);
+    border-radius: 4px; padding: 24px;
+    background: rgba(56,189,248,0.03);
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .leverage-card:hover { background: rgba(56,189,248,0.07); }
+  .lv-layer { font-size: 10px; letter-spacing: 3px; color: var(--sky); text-transform: uppercase; margin-bottom: 8px; }
+  .lv-title { font-size: 15px; font-weight: bold; color: var(--mist); margin-bottom: 8px; }
+  .lv-gap { font-size: 12px; color: var(--red); font-style: italic; margin-bottom: 10px; line-height: 1.5; }
+  .lv-noizy { font-size: 12px; color: var(--green); line-height: 1.5; }
+
+  /* ── LAWS TABLE ── */
+  .laws-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  @media(max-width:800px){ .laws-grid { grid-template-columns: 1fr 1fr; } }
+
+  .law-card {
+    border: 1px solid rgba(240,180,41,0.15);
+    border-radius: 4px; padding: 22px;
+    background: rgba(240,180,41,0.02);
+    transition: background 0.3s;
+  }
+  .law-card:hover { background: rgba(240,180,41,0.05); }
+  .law-region { font-size: 10px; letter-spacing: 3px; color: var(--amber); text-transform: uppercase; margin-bottom: 8px; }
+  .law-name { font-size: 14px; font-weight: bold; color: var(--mist); margin-bottom: 8px; }
+  .law-status { font-size: 11px; color: rgba(240,180,41,0.6); font-style: italic; margin-bottom: 8px; }
+  .law-desc { font-size: 12px; color: var(--pale); line-height: 1.6; margin-bottom: 10px; }
+  .law-noizy { font-size: 11px; color: var(--green); border-left: 2px solid rgba(34,197,94,0.3); padding-left: 10px; line-height: 1.5; }
+
+  /* ── RESEARCH TABLE ── */
+  .research-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  @media(max-width:800px){ .research-grid { grid-template-columns: 1fr 1fr; } }
+
+  .research-card {
+    border: 1px solid rgba(34,197,94,0.15);
+    border-radius: 4px; padding: 22px;
+    background: rgba(34,197,94,0.02);
+    transition: background 0.3s;
+  }
+  .research-card:hover { background: rgba(34,197,94,0.05); }
+  .rc-inst { font-size: 10px; letter-spacing: 3px; color: var(--green); text-transform: uppercase; margin-bottom: 8px; }
+  .rc-name { font-size: 14px; font-weight: bold; color: var(--mist); margin-bottom: 8px; }
+  .rc-focus { font-size: 11px; color: rgba(34,197,94,0.6); font-style: italic; margin-bottom: 8px; }
+  .rc-desc { font-size: 12px; color: var(--pale); line-height: 1.6; margin-bottom: 10px; }
+  .rc-noizy { font-size: 11px; color: var(--electric); border-left: 2px solid rgba(10,158,189,0.3); padding-left: 10px; line-height: 1.5; }
+
+  /* ── EPOCH TABLE ── */
+  .epoch-progression {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 0;
+    border: 1px solid rgba(56,189,248,0.15);
+    border-radius: 4px; overflow: hidden;
+  }
+  @media(max-width:900px){ .epoch-progression { grid-template-columns: repeat(3,1fr); } }
+  .ep-item {
+    padding: 22px 14px; text-align: center;
+    border-right: 1px solid rgba(56,189,248,0.08);
+  }
+  .ep-item:last-child { border-right: none; }
+  .ep-era { font-size: 12px; font-weight: bold; color: var(--mist); margin-bottom: 4px; }
+  .ep-power { font-size: 11px; color: var(--sky); font-style: italic; margin-bottom: 4px; }
+  .ep-years { font-size: 10px; color: rgba(238,240,245,0.35); letter-spacing: 1px; }
+  .ep-item.current { background: rgba(56,189,248,0.06); }
+  .ep-item.current .ep-era { color: var(--sky); }
+  .ep-item.noizy-epoch { background: rgba(34,197,94,0.06); }
+  .ep-item.noizy-epoch .ep-era { color: var(--green); }
+  .ep-item.noizy-epoch .ep-power { color: var(--green); }
+
+  /* ── GAP MAP ── */
+  .gap-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+  }
+  .gap-table th {
+    padding: 12px 20px;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    border-bottom: 1px solid rgba(56,189,248,0.2);
+    background: rgba(56,189,248,0.04); text-align: left;
+    color: var(--sky);
+  }
+  .gap-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--pale);
+  }
+  .gap-table tr:last-child td { border-bottom: none; }
+  .gap-table td:first-child { color: var(--mist); font-weight: bold; }
+  .gap-table td.gap-bad { color: rgba(239,68,68,0.7); }
+  .gap-table td.gap-good { color: var(--green); font-weight: bold; }
+
+  /* ── TIMELINE 2026-2035 ── */
+  .timeline-2035 { display: flex; flex-direction: column; gap: 0; }
+  .tl-item {
+    display: grid; grid-template-columns: 100px 1fr;
+    border-bottom: 1px solid rgba(56,189,248,0.06);
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-year {
+    padding: 20px 20px 20px 0;
+    font-size: 16px; font-weight: bold; color: var(--sky);
+    border-right: 1px solid rgba(56,189,248,0.15);
+    display: flex; align-items: flex-start; justify-content: flex-end;
+    padding-right: 24px; letter-spacing: 1px;
+  }
+  .tl-content { padding: 20px 0 20px 28px; }
+  .tl-title { font-size: 14px; font-weight: bold; color: var(--mist); margin-bottom: 6px; }
+  .tl-desc { font-size: 13px; color: var(--pale); line-height: 1.55; }
+  .tl-noizy { font-size: 12px; color: var(--green); margin-top: 6px; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer-nav {
+    position: relative; z-index: 1;
+    background: rgba(3,4,6,0.95);
+    border-top: 1px solid rgba(56,189,248,0.1);
+    padding: 40px; text-align: center;
+  }
+  .footer-nav-label { font-size: 9px; letter-spacing: 5px; color: var(--sky); text-transform: uppercase; margin-bottom: 18px; }
+  .footer-nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .footer-nav-links a {
+    color: rgba(238,240,245,0.45); font-size: 11px;
+    text-decoration: none; border: 1px solid rgba(56,189,248,0.12);
+    padding: 6px 14px; border-radius: 2px; letter-spacing: 1px;
+    transition: color 0.3s, border-color 0.3s; font-family: 'Georgia', serif;
+  }
+  .footer-nav-links a:hover { color: var(--sky); border-color: rgba(56,189,248,0.35); }
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+
+<nav>
+  <span class="nav-brand">NOIZY Global Intelligence Map</span>
+  <div class="nav-links">
+    <a href="NOIZY_AI_HOME.html">Home</a>
+    <a href="NOIZY_MOAT_MAP.html">Moat Map</a>
+    <a href="NOIZY_BILLION_ARCHITECTURE.html">$1B Architecture</a>
+    <a href="NOIZYVOX_AIVA_PLATFORM.html">A.I.V.A.</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════ HERO -->
+<div class="hero">
+  <p class="hero-label" id="hl">Global AI Music & Creator Rights Intelligence · March 2026</p>
+  <h1 class="hero-title" id="ht">THE GLOBAL<br><span>INTELLIGENCE MAP</span></h1>
+  <p class="hero-sub" id="hs">
+    Every AI voice platform, AI music platform, legal battle, provenance initiative,
+    blockchain music attempt, academic research lab, and emerging regulation —
+    mapped in full. Where the gaps are. Where NOIZY has leverage. Where the world is going.
+  </p>
+  <div class="hero-battles" id="hb">
+    <div class="hb-item">
+      <div class="hb-icon">⚔️</div>
+      <div class="hb-battle">Battle 1: Training Rights</div>
+      <div class="hb-sub">Who owns the data that trains AI?</div>
+    </div>
+    <div class="hb-item">
+      <div class="hb-icon">🎤</div>
+      <div class="hb-battle">Battle 2: Voice & Identity</div>
+      <div class="hb-sub">Who controls digital likeness?</div>
+    </div>
+    <div class="hb-item">
+      <div class="hb-icon">🔐</div>
+      <div class="hb-battle">Battle 3: Provenance</div>
+      <div class="hb-sub">How do we verify authenticity?</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ EPOCH PROGRESSION -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(56,189,248,0.15),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--sky);">The Macro Context</span>
+    <h2 class="section-title" style="color:var(--mist);">Six <span style="color:var(--sky);">Eras of Music Power</span></h2>
+    <p style="font-size:13px;color:rgba(238,240,245,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      Power shifts to whoever controls the next distribution mechanism.
+      NOIZY's thesis: the next mechanism is protocol infrastructure, not a platform.
+    </p>
+  </div>
+
+  <div class="epoch-progression reveal">
+    <div class="ep-item">
+      <div class="ep-era">Sheet Music</div>
+      <div class="ep-power">Publishers</div>
+      <div class="ep-years">1400s–1920s</div>
+    </div>
+    <div class="ep-item">
+      <div class="ep-era">Records / CDs</div>
+      <div class="ep-power">Labels</div>
+      <div class="ep-years">1920s–1990s</div>
+    </div>
+    <div class="ep-item">
+      <div class="ep-era">MP3 / Downloads</div>
+      <div class="ep-power">iTunes</div>
+      <div class="ep-years">2000s</div>
+    </div>
+    <div class="ep-item current">
+      <div class="ep-era">Streaming</div>
+      <div class="ep-power">Spotify / Apple</div>
+      <div class="ep-years">2010s–Present</div>
+    </div>
+    <div class="ep-item">
+      <div class="ep-era">AI Generation</div>
+      <div class="ep-power">Unknown → ???</div>
+      <div class="ep-years">2023–2026</div>
+    </div>
+    <div class="ep-item noizy-epoch">
+      <div class="ep-era">Protocol / Consent</div>
+      <div class="ep-power">Infrastructure</div>
+      <div class="ep-years">2026+ · NOIZY ★</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ AI VOICE PLATFORMS -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(239,68,68,0.12),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--red);">Competitive Intelligence</span>
+    <h2 class="section-title">AI Voice <span style="color:var(--red);">Platforms</span> — Full Dossier</h2>
+    <p style="font-size:13px;color:rgba(238,240,245,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      Every major AI voice platform — their capabilities, their weaknesses, and exactly where NOIZY has leverage over each.
+    </p>
+  </div>
+
+  <div class="intel-grid reveal">
+    <div class="intel-card comp-voice">
+      <div class="intel-status">COMPETITOR · HIGH THREAT</div>
+      <div class="intel-name">ElevenLabs</div>
+      <div class="intel-cat">AI Voice · Text-to-Speech · Voice Cloning</div>
+      <div class="intel-desc">Most advanced voice cloning available. Multilingual TTS. Massive creator adoption. Voice marketplace. Backed by a16z. Scaling aggressively in creator economy.</div>
+      <div class="intel-weakness">No consent architecture. No Voice Estate. No perpetual royalty. Creators upload voices and get licensing fees — ElevenLabs retains the model, the training data, and the commercial rights. Creator protection is contractual, not structural.</div>
+      <div class="intel-noizy">NOIZY advantage: Consent-as-Code + 75/25 perpetual + Voice Estate inheritance. When regulation arrives, ElevenLabs has to retrofit what NOIZY built first.</div>
+    </div>
+    <div class="intel-card comp-voice">
+      <div class="intel-status">COMPETITOR · MEDIUM THREAT</div>
+      <div class="intel-name">PlayHT</div>
+      <div class="intel-cat">AI Voice · Commercial TTS · Voice API</div>
+      <div class="intel-desc">High-quality commercial TTS. Strong API ecosystem. Developer-first approach. Used heavily in podcasting, content creation, and enterprise applications.</div>
+      <div class="intel-weakness">Pure extraction model — no creator rights framework. Voices are commodities. No consent protocol. No royalty to the voice source.</div>
+      <div class="intel-noizy">NOIZY advantage: NOIZY is not competing for the same customer. NOIZY is building for the creator behind the voice PlayHT is using. These are complementary markets that NOIZY owns the upstream of.</div>
+    </div>
+    <div class="intel-card comp-voice">
+      <div class="intel-status">COMPETITOR · MEDIUM THREAT</div>
+      <div class="intel-name">Resemble AI</div>
+      <div class="intel-cat">AI Voice · Enterprise · Custom Voice Models</div>
+      <div class="intel-desc">Enterprise-focused voice platform. Custom model training for brands. Real-time voice conversion. Localization tools. Strong in gaming and media production.</div>
+      <div class="intel-weakness">Enterprise extraction model. Voices built for brands — no creator-first ownership. No consent ledger. No Voice Estate framework.</div>
+      <div class="intel-noizy">NOIZY advantage: When brands want to license a specific creator's voice model through NOIZYVOX, NOIZY is the rights infrastructure they must come through. Resemble becomes a downstream user.</div>
+    </div>
+    <div class="intel-card comp-voice">
+      <div class="intel-status">COMPETITOR · LOW-MEDIUM THREAT</div>
+      <div class="intel-name">Replica Studios</div>
+      <div class="intel-cat">AI Voice · Games · Animation · Localization</div>
+      <div class="intel-desc">Voice AI for games and animation. Partnered with SAG-AFTRA for ethical voice AI in gaming. Strong creator relationships in entertainment. Revenue share model.</div>
+      <div class="intel-weakness">Gaming-specific focus limits scope. SAG-AFTRA partnership is voluntary — not infrastructure-level enforcement. Revenue share is not perpetual or inheritance-capable.</div>
+      <div class="intel-noizy">NOIZY advantage: NOIZY's Voice Estate framework covers gaming as one use case among many. Replica's SAG-AFTRA alignment actually validates NOIZY's consent thesis — but NOIZY's implementation goes deeper.</div>
+    </div>
+    <div class="intel-card comp-voice">
+      <div class="intel-status">COMPETITOR · LOW THREAT</div>
+      <div class="intel-name">Speechify</div>
+      <div class="intel-cat">Text-to-Speech · Accessibility · Consumer</div>
+      <div class="intel-desc">Consumer-focused TTS for accessibility and productivity. Celebrity voice partnerships. Strong brand recognition in accessibility market.</div>
+      <div class="intel-weakness">Consumer product, not creator infrastructure. No Voice Estate. No consent protocol. Creator licensing is one-time fee based.</div>
+      <div class="intel-noizy">NOIZY advantage: Speechify could become a NOIZYVOX protocol licensee — using Voice Estate registered voices with consent and royalty routing already built in.</div>
+    </div>
+    <div class="intel-card comp-voice">
+      <div class="intel-status">MONITOR · EMERGING</div>
+      <div class="intel-name">Murf AI</div>
+      <div class="intel-cat">AI Voice · Professional · Studio Grade</div>
+      <div class="intel-desc">Studio-quality AI voice for professional content creation. Strong in e-learning, explainer video, corporate communications. Growing creator marketplace.</div>
+      <div class="intel-weakness">No creator rights framework. Platform-owned voice models. No heritage or estate planning features.</div>
+      <div class="intel-noizy">NOIZY advantage: NOIZY's Voice Estate architecture gives Murf users something Murf cannot provide — permanence, inheritance, and consent infrastructure that survives any platform.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ AI MUSIC PLATFORMS -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(232,88,4,0.12),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--fire);">Competitive Intelligence</span>
+    <h2 class="section-title">AI Music <span style="color:var(--fire);">Platforms</span> — Full Dossier</h2>
+    <p style="font-size:13px;color:rgba(238,240,245,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      AI music generators are building for consumption, not for creator rights.
+      That is the gap NOIZY was built to fill.
+    </p>
+  </div>
+
+  <div class="intel-grid reveal">
+    <div class="intel-card comp-music">
+      <div class="intel-status">COMPETITOR · HIGH THREAT</div>
+      <div class="intel-name">Suno AI</div>
+      <div class="intel-cat">AI Music Generation · Consumer · Viral</div>
+      <div class="intel-desc">Fastest-growing AI music generator. Creates full songs with lyrics and production from text prompts. Viral adoption. Backed by major VC. Massive catalogue growing daily.</div>
+      <div class="intel-weakness">Black-box training system — no consent for source material. No creator attribution. No royalty to human source artists. Facing multiple lawsuits from RIAA and major labels.</div>
+      <div class="intel-noizy">NOIZY advantage: Suno is the best example of why Consent-as-Code is necessary. Its legal exposure from RIAA lawsuits is exactly the problem NOIZY's architecture solves. Suno could eventually become a NOIZY PROOF licensee.</div>
+    </div>
+    <div class="intel-card comp-music">
+      <div class="intel-status">COMPETITOR · HIGH THREAT</div>
+      <div class="intel-name">Udio</div>
+      <div class="intel-cat">AI Music Generation · High Fidelity · Studio</div>
+      <div class="intel-desc">High-fidelity AI music generation. More advanced audio quality than most competitors. Strong backing. Growing creator community. Exploring licensing frameworks.</div>
+      <div class="intel-weakness">Same structural problem as Suno — training data consent unresolved. No creator rights infrastructure. No Voice Estate equivalent for composers.</div>
+      <div class="intel-noizy">NOIZY advantage: NOIZY's Cultural Resonance Engine and creator attribution system is exactly what Udio lacks. If Udio faces the same legal exposure as Suno, NOIZY's infrastructure becomes their compliance layer.</div>
+    </div>
+    <div class="intel-card comp-music">
+      <div class="intel-status">MONITOR · DECLINING</div>
+      <div class="intel-name">Boomy</div>
+      <div class="intel-cat">AI Music · Consumer · High Volume</div>
+      <div class="intel-desc">Mass AI music generation for non-musicians. Removed 7% of its catalogue from Spotify due to streaming manipulation concerns. Demonstrates risks of volume-first approach.</div>
+      <div class="intel-weakness">The Boomy/Spotify crisis is the cautionary tale for volume-based AI music. No quality filter, no consent, no creator rights — and the platform paid the price.</div>
+      <div class="intel-noizy">NOIZY advantage: The Boomy incident is marketing content for NOIZY. It proves that unethical AI music generates short-term revenue and long-term damage — the opposite of the NOIZY model.</div>
+    </div>
+    <div class="intel-card comp-music">
+      <div class="intel-status">MONITOR · NICHE</div>
+      <div class="intel-name">Soundful</div>
+      <div class="intel-cat">AI Music · Background · Licensing</div>
+      <div class="intel-desc">AI-generated background music for content creators. Royalty-free licensing model. Strong in YouTube, podcasting, and video production markets.</div>
+      <div class="intel-weakness">Royalty-free model erodes music value by design. No creator attribution chain. The "royalty-free" category is NOIZY's conceptual opposite.</div>
+      <div class="intel-noizy">NOIZY advantage: NOIZY's Living Score and Guild tools serve the same market but with creator attribution and royalty tracking. Every Soundful use case is a NOIZY use case done ethically.</div>
+    </div>
+    <div class="intel-card comp-music">
+      <div class="intel-status">COMPETITOR · MEDIUM THREAT</div>
+      <div class="intel-name">Spotify / AI DJ</div>
+      <div class="intel-cat">Streaming + AI Features · Platform Giant</div>
+      <div class="intel-desc">Spotify is integrating AI DJing, AI-generated content, and personalized recommendations. 40M+ AI tracks on platform. The dominant distribution layer is now also an AI creation layer.</div>
+      <div class="intel-weakness">Spotify's integration of AI creation creates direct conflict of interest with human creators. As both distributor and AI creator, Spotify has incentive to favor AI over human content in playlisting.</div>
+      <div class="intel-noizy">NOIZY advantage: NOIZY's Charter Article VII (right to know when you're hearing AI) is a direct regulatory pressure point on Spotify's practice of mixing AI and human content without disclosure.</div>
+    </div>
+    <div class="intel-card comp-music">
+      <div class="intel-status">MONITOR · CHANGING</div>
+      <div class="intel-name">Bandcamp / DistroKid</div>
+      <div class="intel-cat">Music Distribution · Creator Economy</div>
+      <div class="intel-desc">Bandcamp: creator-first music sales with direct artist payment. DistroKid: mass distribution at low cost. Both focus on distribution, not creation rights or AI consent infrastructure.</div>
+      <div class="intel-weakness">Neither has built an AI consent layer or Voice Estate framework. Bandcamp's creator-first values align with NOIZY's mission — making it a potential partner, not just a competitor.</div>
+      <div class="intel-noizy">NOIZY advantage: Bandcamp's community values make it the ideal NOIZY Charter endorsement target. An endorsed protocol from Bandcamp reaches their entire creator community instantly.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ LEGAL BATTLES -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(240,180,41,0.12),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--gold);">Active Legal Landscape</span>
+    <h2 class="section-title">The <span style="color:var(--gold);">Legal Battles</span> — Who's Fighting What</h2>
+    <p style="font-size:13px;color:rgba(238,240,245,0.45);font-style:italic;margin-top:10px;max-width:600px;margin-left:auto;margin-right:auto;">
+      Every lawsuit is a data point proving the creator rights gap exists.
+      NOIZY's infrastructure is the solution these plaintiffs are fighting for in court.
+    </p>
+  </div>
+
+  <div class="laws-grid reveal">
+    <div class="law-card">
+      <div class="law-region">USA · Federal</div>
+      <div class="law-name">RIAA vs. Suno AI & Udio</div>
+      <div class="law-status">Filed June 2024 · Ongoing</div>
+      <div class="law-desc">Recording Industry Association of America filed suit against Suno and Udio for copyright infringement in AI training. Seeking billions in damages. The core allegation: AI companies ingested copyrighted music without consent or compensation.</div>
+      <div class="law-noizy">NOIZY's Consent-as-Code and NOIZY PROOF are the technical infrastructure that would have made these lawsuits unnecessary. This case is NOIZY's best marketing asset.</div>
+    </div>
+    <div class="law-card">
+      <div class="law-region">USA · Federal</div>
+      <div class="law-name">Authors Guild vs. OpenAI / Meta</div>
+      <div class="law-status">Filed 2023 · Multiple Cases</div>
+      <div class="law-desc">Writers suing AI companies over training data. Parallel to music industry cases. Establishes legal precedent that training on copyrighted creative work without consent is actionable.</div>
+      <div class="law-noizy">The Authors Guild cases validate the entire NOIZY thesis. Consent before training is not just ethical — it is increasingly the legal standard. NOIZY is pre-compliant.</div>
+    </div>
+    <div class="law-card">
+      <div class="law-region">USA · Labor</div>
+      <div class="law-name">SAG-AFTRA AI Voice Protections</div>
+      <div class="law-status">Active · 2023–2024 Agreements</div>
+      <div class="law-desc">SAG-AFTRA negotiated AI voice protections into studio contracts. Requires consent before digital likeness creation. Revenue share provisions. Sets a union standard for voice actor AI rights.</div>
+      <div class="law-noizy">NOIZY's consent architecture exceeds SAG-AFTRA requirements — enforced in code, not in contract. This makes NOIZY the union's natural infrastructure partner, not its competition.</div>
+    </div>
+    <div class="law-card">
+      <div class="law-region">European Union</div>
+      <div class="law-name">EU AI Act — Article 53 Transparency</div>
+      <div class="law-status">In Force · Aug 2024 · Phased Requirements</div>
+      <div class="law-desc">EU AI Act requires general-purpose AI providers to publish summaries of training data. Music and voice content trained without consent may face compliance requirements. C2PA alignment will likely be required.</div>
+      <div class="law-noizy">NOIZY's consent ledger (D1/KV) is exactly the "training data transparency" the EU AI Act requires. NOIZY is EU AI Act compliant by design — a massive advantage for European market entry.</div>
+    </div>
+    <div class="law-card">
+      <div class="law-region">USA · State Level</div>
+      <div class="law-name">Voice Likeness Protection Laws</div>
+      <div class="law-status">Multiple States · 2024–2026</div>
+      <div class="law-desc">Tennessee's ELVIS Act (2024), California AB 2602 (2024), and similar legislation in multiple states protect against unauthorized AI voice replication. Growing bipartisan support.</div>
+      <div class="law-noizy">NOIZY's Voice Estate Registry is the technical infrastructure for complying with these laws. As more states pass voice protection legislation, NOIZYVOX becomes the compliance layer every AI company needs.</div>
+    </div>
+    <div class="law-card">
+      <div class="law-region">Canada</div>
+      <div class="law-name">AIDA (Artificial Intelligence and Data Act)</div>
+      <div class="law-status">In Development · C-27 Bill</div>
+      <div class="law-desc">Canada's Bill C-27 includes the Artificial Intelligence and Data Act. Requires high-impact AI systems to assess and mitigate risks, including to creators and performers. Canada's framework is more creator-protective than US equivalent.</div>
+      <div class="law-noizy">As a Canadian company, NOIZY's alignment with AIDA is natural. This gives NOIZY a regulatory home court advantage — and NRC IRAP funding eligibility — that no US competitor has.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ PROVENANCE INITIATIVES -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(10,158,189,0.12),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--electric);">Authentication Infrastructure</span>
+    <h2 class="section-title">Digital <span style="color:var(--electric);">Provenance</span> — Who's Building What</h2>
+    <p style="font-size:13px;color:rgba(238,240,245,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      The world is solving image and video provenance. Audio is the gap.
+      NOIZY PROOF fills it.
+    </p>
+  </div>
+
+  <div class="intel-grid reveal">
+    <div class="intel-card comp-provenance">
+      <div class="intel-status">PARTNER TARGET · ALIGN</div>
+      <div class="intel-name">Content Authenticity Initiative (CAI)</div>
+      <div class="intel-cat">Coalition · Adobe Led · Image/Video</div>
+      <div class="intel-desc">Led by Adobe. 2,800+ members including Microsoft, Google, Nikon, Reuters. Building the C2PA standard for content provenance in images and video. Massive industry momentum.</div>
+      <div class="intel-weakness">Audio provenance is a gap in CAI's current focus. The technical specification exists for images and video but audio implementation is incomplete.</div>
+      <div class="intel-noizy">NOIZY PROOF is the audio-specific C2PA implementation. Joining CAI as the audio provenance specialist gives NOIZY standard-setting authority and 2,800+ member distribution for the protocol.</div>
+    </div>
+    <div class="intel-card comp-provenance">
+      <div class="intel-status">PARTNER TARGET · ALIGN</div>
+      <div class="intel-name">C2PA (Coalition for Content Provenance)</div>
+      <div class="intel-cat">Technical Standard · ISO Aligned</div>
+      <div class="intel-desc">The technical standard for content credentials. Cryptographic metadata attached to content at creation. Major tech companies are implementing. Likely to become mandatory under various AI regulations.</div>
+      <div class="intel-weakness">C2PA spec for audio is less developed than for image. Audio-specific implementation guidance is limited.</div>
+      <div class="intel-noizy">NOIZY contributes the audio reference implementation to C2PA. This positions NOIZY as the definitive voice and music provenance authority — an impossible position to compete with once established.</div>
+    </div>
+    <div class="intel-card comp-provenance">
+      <div class="intel-status">MONITOR · BLOCKCHAIN ATTEMPT</div>
+      <div class="intel-name">Audius</div>
+      <div class="intel-cat">Blockchain Music · Decentralized · Audio NFT</div>
+      <div class="intel-desc">Decentralized music streaming platform on blockchain. Creator-owned, direct royalties, no intermediaries. 7M+ monthly active users. First large-scale attempt at creator-owned music infrastructure.</div>
+      <div class="intel-weakness">Crypto complexity limits mainstream adoption. Token volatility creates unreliable income. UX is significantly harder than Spotify. Demonstrates that protocols must be invisible to succeed.</div>
+      <div class="intel-noizy">NOIZY learns from Audius: the protocol must disappear into the infrastructure. NOIZY's Cloudflare-based architecture is fast, familiar, and friction-free — the Web2 delivery layer that Audius couldn't achieve.</div>
+    </div>
+    <div class="intel-card comp-provenance">
+      <div class="intel-status">MONITOR · LIMITED TRACTION</div>
+      <div class="intel-name">Opulous</div>
+      <div class="intel-cat">Music NFTs · Artist Financing · Royalties</div>
+      <div class="intel-desc">Music financing through NFTs. Artists sell royalty-backed NFTs to fans. Attempts to democratize music investment. Limited mainstream traction.</div>
+      <div class="intel-weakness">Same complexity problem as Audius. NFT market volatility damages the value proposition. Creator adoption limited to crypto-native artists.</div>
+      <div class="intel-noizy">NOIZY's lesson from Opulous: the financing innovation is interesting, but the delivery mechanism must not require crypto literacy. Voice Estate inheritance works without blockchain UX.</div>
+    </div>
+    <div class="intel-card comp-provenance">
+      <div class="intel-status">PARTNER TARGET · COMMERCIAL</div>
+      <div class="intel-name">Adobe Content Credentials</div>
+      <div class="intel-cat">Creative Tools · Provenance · C2PA</div>
+      <div class="intel-desc">Adobe implementing Content Credentials across Photoshop, Firefly, and other creative tools. AI-generated content labeled at creation. C2PA standard embedded in the world's most-used creative software.</div>
+      <div class="intel-weakness">Adobe's implementation is image/video focused. Audio creative tools (Audition, Premiere audio) lack equivalent provenance infrastructure.</div>
+      <div class="intel-noizy">NOIZY PROOF + Adobe Content Credentials = the complete creative suite provenance story. Adobe partnership would give NOIZY instant distribution to 30M+ creative professionals.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ ACADEMIC RESEARCH -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(34,197,94,0.12),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--green);">Research Intelligence</span>
+    <h2 class="section-title">Academic <span style="color:var(--green);">Research</span> Labs — What They're Building</h2>
+    <p style="font-size:13px;color:rgba(238,240,245,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      The labs pushing the frontier. Where NOIZY's NAI partnership with Dr. Brien Benoit
+      puts it at the intersection of commercial and academic.
+    </p>
+  </div>
+
+  <div class="research-grid reveal">
+    <div class="research-card">
+      <div class="rc-inst">MIT Media Lab</div>
+      <div class="rc-name">Music, AI & Cognition Group</div>
+      <div class="rc-focus">Music perception · AI composition · Accessibility</div>
+      <div class="rc-desc">Leading research in AI music generation, music perception, and adaptive music systems. Exploring haptic music and multi-sensory integration for accessibility. Direct relevance to NOIZYKIDZ and Living Score.</div>
+      <div class="rc-noizy">NOIZY's NAI partnership with Dr. Brien Benoit covers overlapping territory. Research partnership with MIT Media Lab is a logical second step after Dr. Benoit's engagement.</div>
+    </div>
+    <div class="research-card">
+      <div class="rc-inst">Stanford CCRMA</div>
+      <div class="rc-name">Center for Computer Research in Music</div>
+      <div class="rc-focus">Music AI · Synthesis · Music Cognition</div>
+      <div class="rc-desc">Pioneer in computer music and AI synthesis. Developing music information retrieval tools, neural audio models, and music cognition research. Strong industry partnerships.</div>
+      <div class="rc-noizy">CCRMA's synthesis research directly aligns with NOIZY's SUPERSONIC AI STACK. Academic partnership opens access to pre-commercial synthesis techniques before competitors.</div>
+    </div>
+    <div class="research-card">
+      <div class="rc-inst">Google DeepMind</div>
+      <div class="rc-name">AudioLM / MusicLM / Lyria</div>
+      <div class="rc-focus">Generative audio · Music foundation models</div>
+      <div class="rc-desc">Building foundation models for audio generation. AudioLM generates high-quality speech and music. MusicLM generates music from text descriptions. Lyria powers YouTube's Dream Track feature.</div>
+      <div class="rc-noizy">DeepMind's models are the most capable audio AI in existence — and they have no creator rights infrastructure. NOIZY's consent layer is the ethics wrapper that Google's legal team increasingly needs.</div>
+    </div>
+    <div class="research-card">
+      <div class="rc-inst">Suno Research / ACE Studio</div>
+      <div class="rc-name">Commercial AI Music Research</div>
+      <div class="rc-focus">Vocal AI · Music generation · Creator tools</div>
+      <div class="rc-desc">ACE Studio from ByteDance builds AI vocal synthesis for Chinese market. Research focus on emotional vocal expression. VIVO project from various labs exploring voice identity verification.</div>
+      <div class="rc-noizy">NOIZY's HVS (Human Voice Signature) system is more comprehensive than any academic voice identity research currently published. Filing for patents before publishing creates a prior art advantage.</div>
+    </div>
+    <div class="research-card">
+      <div class="rc-inst">Ottawa Civic Hospital / Health Canada</div>
+      <div class="rc-name">Dr. Brien Benoit — NAI Partnership</div>
+      <div class="rc-focus">Neuro-acoustics · Music cognition · Accessibility</div>
+      <div class="rc-desc">NOIZY's exclusive research partner. Neurosurgery and music neuroscience intersection. Health Canada PMPRB Chair credentials. Directly powers Living Score and NOIZYKIDZ haptics research.</div>
+      <div class="rc-noizy">This is NOIZY's proprietary research moat. No other music AI company has a practicing neurosurgeon research partner with Health Canada access. This is not a feature — it is a civilization-scale distinction.</div>
+    </div>
+    <div class="research-card">
+      <div class="rc-inst">Berklee Online / Music Industry</div>
+      <div class="rc-name">Music Business & AI Ethics Research</div>
+      <div class="rc-focus">Creator economy · AI ethics · Music business</div>
+      <div class="rc-desc">Berklee Online and similar institutions are building AI ethics curricula for music industry professionals. Growing demand for creator rights education. Potential NOIZY curriculum partners.</div>
+      <div class="rc-noizy">NOIZY's Guild mentorship infrastructure and Creator Charter are ready-made curriculum content. Educational institution partnerships scale creator recruitment to every graduating class of music professionals.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ GAP MAP -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(56,189,248,0.12),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--sky);">The Unbuilt Category</span>
+    <h2 class="section-title">The <span style="color:var(--sky);">Gap Map</span> — What Nobody Has Built</h2>
+    <p style="font-size:13px;color:rgba(238,240,245,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      Every cell marked ✗ is a market gap. NOIZY fills every one.
+    </p>
+  </div>
+
+  <div class="reveal" style="overflow:auto;">
+    <table class="gap-table">
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th>ElevenLabs</th>
+          <th>Suno / Udio</th>
+          <th>Audius</th>
+          <th>CAI/C2PA</th>
+          <th>NOIZY.ai</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Consent-as-Code (infrastructure level)</td>
+          <td class="gap-bad">✗ Contract only</td>
+          <td class="gap-bad">✗ None</td>
+          <td class="gap-bad">✗ Partial</td>
+          <td class="gap-bad">✗ Not audio</td>
+          <td class="gap-good">✓ Cloudflare D1/KV</td>
+        </tr>
+        <tr>
+          <td>75/25 Perpetual Royalty Split</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗ Variable</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-good">✓ Protocol Level</td>
+        </tr>
+        <tr>
+          <td>Voice Estate IP (Inheritable Asset)</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-good">✓ HVS + D1 Registry</td>
+        </tr>
+        <tr>
+          <td>Cryptographic Audio Watermark</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">Partial · Images</td>
+          <td class="gap-good">✓ NOIZY PROOF</td>
+        </tr>
+        <tr>
+          <td>6-Layer Voice Identity System</td>
+          <td class="gap-bad">✗ Acoustic only</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-good">✓ HVS (6 layers)</td>
+        </tr>
+        <tr>
+          <td>Real-Time Royalty Dashboard (per use)</td>
+          <td class="gap-bad">✗ Monthly reports</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">Partial</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-good">✓ Real-Time GABRIEL</td>
+        </tr>
+        <tr>
+          <td>Haptic Music / Accessibility Pipeline</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-good">✓ NOIZYKIDZ</td>
+        </tr>
+        <tr>
+          <td>Neuro-Acoustic Research Partner</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-good">✓ Dr. Brien Benoit</td>
+        </tr>
+        <tr>
+          <td>Creator-Founder Proof of Concept</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-good">✓ RSP_001</td>
+        </tr>
+        <tr>
+          <td>40-Year Creator Archive (training verified)</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-good">✓ 34TB THE_AQUARIUM</td>
+        </tr>
+        <tr>
+          <td>Cultural Provenance / Attribution Engine</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-good">✓ Cultural Resonance Engine</td>
+        </tr>
+        <tr>
+          <td>500-Year Civilizational Vision / Codex</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-bad">✗</td>
+          <td class="gap-good">✓ DreamChamber Codex</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ 2026-2035 TIMELINE -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(56,189,248,0.12),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--sky);">Forward Intelligence</span>
+    <h2 class="section-title">2026 → 2035 — <span style="color:var(--sky);">What's Coming</span></h2>
+    <p style="font-size:13px;color:rgba(238,240,245,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      The technologies and regulations that will define the next decade of AI music.
+      NOIZY builds for these now, before they arrive.
+    </p>
+  </div>
+
+  <div class="timeline-2035 reveal" style="border:1px solid rgba(56,189,248,0.12);border-radius:4px;overflow:hidden;">
+    <div class="tl-item">
+      <div class="tl-year">2026</div>
+      <div class="tl-content">
+        <div class="tl-title">RIAA Lawsuits Settled / Precedent Set</div>
+        <div class="tl-desc">Suno/Udio cases set legal precedent for AI training consent. Every AI music platform faces the choice: retrofit consent or face liability. The legal environment forces the industry toward NOIZY's position.</div>
+        <div class="tl-noizy">NOIZY is pre-compliant. The settlement terms will describe exactly what NOIZY already built.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2026</div>
+      <div class="tl-content">
+        <div class="tl-title">EU AI Act Audio Provisions Active</div>
+        <div class="tl-desc">EU AI Act's high-risk provisions include AI systems affecting creative workers. Training data transparency requirements become enforceable. European AI music platforms must provide consent documentation.</div>
+        <div class="tl-noizy">NOIZY's D1 consent ledger is the exact documentation required. European market entry is frictionless where competitors face months of compliance work.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2027</div>
+      <div class="tl-content">
+        <div class="tl-title">Voice Likeness Laws in 30+ US States</div>
+        <div class="tl-desc">The ELVIS Act model spreads. 30+ states have voice protection legislation. Federal VOICE Act proposed. Every AI voice platform must maintain a voice consent registry — or face statutory damages per violation.</div>
+        <div class="tl-noizy">NOIZYVOX Voice Estate Registry becomes the compliance solution every platform needs. NOIZY transitions from creator platform to industry infrastructure.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2027</div>
+      <div class="tl-content">
+        <div class="tl-title">C2PA Mandatory for AI-Generated Audio</div>
+        <div class="tl-desc">Major streaming platforms (Spotify, Apple Music, YouTube) begin requiring C2PA credentials for AI-generated content. Publishers and labels require provenance documentation for any AI-assisted sync license.</div>
+        <div class="tl-noizy">NOIZY PROOF is the audio C2PA reference implementation. Every compliance request for AI audio provenance runs through NOIZY's infrastructure.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2028</div>
+      <div class="tl-content">
+        <div class="tl-title">First Major Platform Adopts NOIZY Protocol</div>
+        <div class="tl-desc">A major streaming platform, gaming company, or AI tool integrates NOIZY's Consent-as-Code API and Voice Estate Registry. The first protocol licensing deal converts NOIZY from a creator platform to industry infrastructure.</div>
+        <div class="tl-noizy">Protocol licensing revenue begins. The $1B pathway opens. Every use of a NOIZY-registered voice anywhere in the world generates royalty flow.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2030</div>
+      <div class="tl-content">
+        <div class="tl-title">AI Music Personalization Becomes Standard</div>
+        <div class="tl-desc">Living Score and adaptive music systems reach mainstream consumer products. Music that responds to emotional and physiological state becomes standard in healthcare, education, gaming, and wellness. Neuro-acoustic research drives product development.</div>
+        <div class="tl-noizy">NOIZY's Living Score + Dr. Benoit's NAI research is 4 years ahead of when the market reaches this point. NOIZY is the reference implementation by the time mainstream adoption arrives.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2035</div>
+      <div class="tl-content">
+        <div class="tl-title">Creator Rights Protocol = Industry Standard</div>
+        <div class="tl-desc">Consent-as-Code, Voice Estate, and cryptographic audio provenance are global standards embedded in every AI audio system. The creator economy operates on a consent-and-royalty protocol layer. The 5th Epoch is established.</div>
+        <div class="tl-noizy">NOIZY planted the civilization in 2026. This is what it looks like nine years later. The balance was tipped.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ CLOSING -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(56,189,248,0.12),transparent);"></div>
+<section style="max-width:800px;text-align:center;padding-bottom:100px;">
+  <div class="reveal">
+    <div style="font-size:11px;letter-spacing:5px;color:rgba(56,189,248,0.5);text-transform:uppercase;margin-bottom:20px;">The Intelligence Summary</div>
+    <p style="font-size:clamp(14px,2vw,17px);color:var(--pale);line-height:1.8;font-style:italic;max-width:640px;margin:0 auto 24px;">
+      The global landscape has three simultaneous wars: training rights, voice identity, and content provenance.
+      Every competitor is fighting one of them. <strong style="color:var(--sky);">NOIZY is the infrastructure that resolves all three.</strong>
+      The lawsuits are marketing. The regulations are tailwinds. The gaps are revenue.
+      The balance tips when the world realizes what was built in Ottawa in 2026.
+    </p>
+    <p style="font-size:11px;color:rgba(56,189,248,0.4);letter-spacing:3px;text-transform:uppercase;">NOIZY Global Intelligence Map · RSP_001 · March 2026</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ FOOTER -->
+<div class="footer-nav">
+  <div class="footer-nav-label">The NOIZYLAB Collection · 16 Documents</div>
+  <div class="footer-nav-links">
+    <a href="NOIZY_AI_HOME.html">Home</a>
+    <a href="NOIZY_FOUNDER_BLUEPRINT.html">Founder Blueprint</a>
+    <a href="NOIZY_BILLION_ARCHITECTURE.html">$1B Architecture</a>
+    <a href="NOIZY_MOAT_MAP.html">Moat Map</a>
+    <a href="NOIZYVOX_AIVA_PLATFORM.html">A.I.V.A.</a>
+    <a href="NOIZY_CREATOR_CHARTER.html">Charter</a>
+    <a href="THE_PLOWMANS_CHRONICLES.html">Chronicles</a>
+    <a href="NOIZY_GUILD_FAMILY.html">Guild</a>
+    <a href="NOIZYKIDZ_WORLD_MUSIC_THEORY.html">NOIZYKIDZ</a>
+    <a href="NOIZY_GREAT_RESTORATION.html">Restoration</a>
+    <a href="NOIZY_ASCENSION_MAP.html">Ascension Map</a>
+    <a href="NOIZY_ECONOMIC_ENGINE.html">Economic Engine</a>
+    <a href="NOIZY_MOVEMENT_MANIFESTO.html">Manifesto</a>
+    <a href="NOIZY_HARMONY_CAMPAIGN.html">Harmony Campaign</a>
+    <a href="NOIZY_2526_ARCHIVE.html">2526 Archive</a>
+    <a href="DREAMCHAMBER_FIX_MAP.html">DreamChamber</a>
+  </div>
+</div>
+
+<script>
+  const canvas=document.getElementById('stars');
+  const ctx=canvas.getContext('2d');
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resize(); window.addEventListener('resize',resize);
+  const stars=Array.from({length:160},()=>({
+    x:Math.random()*window.innerWidth, y:Math.random()*window.innerHeight,
+    size:Math.random()*1.2+0.15, speed:Math.random()*0.12+0.02,
+    drift:(Math.random()-0.5)*0.04, alpha:Math.random()*0.35+0.07,
+    phase:Math.random()*Math.PI*2, phaseSpeed:Math.random()*0.009+0.003
+  }));
+  function animStars(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    stars.forEach(s=>{
+      s.phase+=s.phaseSpeed;
+      const a=s.alpha*(0.6+0.4*Math.sin(s.phase));
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.size,0,Math.PI*2);
+      ctx.fillStyle=`rgba(200,220,255,${a})`; ctx.fill();
+      s.y-=s.speed; s.x+=s.drift;
+      if(s.y<-4){s.y=canvas.height+4;s.x=Math.random()*canvas.width;}
+    });
+    requestAnimationFrame(animStars);
+  }
+  requestAnimationFrame(animStars);
+
+  setTimeout(()=>{
+    ['hl','ht','hs','hb'].forEach((id,i)=>{
+      setTimeout(()=>document.getElementById(id).classList.add('visible'),i*130);
+    });
+  },150);
+
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}
+    });
+  },{threshold:0.05,rootMargin:'0px 0px -20px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

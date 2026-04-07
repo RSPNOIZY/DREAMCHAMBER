@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AUDIO UNIVERSE STATUS</title>
+    <style>
+        body { 
+            background-color: #050505; 
+            color: #00ff9d; 
+            font-family: 'Courier New', monospace; 
+            margin: 0; 
+            padding: 40px; 
+            background-image: radial-gradient(circle at 50% 50%, #111 0%, #000 100%);
+            min-height: 100vh;
+        }
+        h1 { 
+            font-size: 48px; 
+            letter-spacing: 5px; 
+            text-shadow: 0 0 10px #00ff9d; 
+            margin-bottom: 10px; 
+            text-align: center;
+        }
+        h2 {
+            font-size: 18px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card { 
+            border: 1px solid #333; 
+            padding: 25px; 
+            background: rgba(10, 10, 10, 0.8); 
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.05); 
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 255, 157, 0.15);
+            border-color: #00ff9d;
+        }
+        .stat-value { 
+            font-size: 42px; 
+            font-weight: bold; 
+            color: #fff; 
+            margin-bottom: 5px;
+        }
+        .stat-label { 
+            font-size: 12px; 
+            opacity: 0.7; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            color: #888;
+        }
+        .bar { 
+            height: 4px; 
+            background: #222; 
+            margin-top: 15px; 
+            width: 100%; 
+            position: relative; 
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .fill { 
+            height: 100%; 
+            background: linear-gradient(90deg, #00ff9d, #00ccff); 
+            width: 0%; 
+            box-shadow: 0 0 10px #00ff9d; 
+            transition: width 1s ease-out;
+        }
+        .log { 
+            margin-top: 60px; 
+            border-top: 1px solid #333; 
+            padding-top: 20px; 
+            font-size: 12px; 
+            color: #444; 
+            text-align: center;
+        }
+        .blink { animation: blink 2s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        
+        .pulse { animation: pulse 3s infinite; color: #ff0055; text-shadow: 0 0 10px #ff0055; }
+        @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; text-shadow: 0 0 20px #ff0055; } 100% { opacity: 0.8; } }
+
+        .focus-text { color: #00ccff; text-shadow: 0 0 10px #00ccff; }
+    </style>
+</head>
+
+<body>
+    <h1>AUDIO UNIVERSE <span class="blink">●</span></h1>
+    <h2>SYSTEM STATUS DASHBOARD [v2.0-TURBO]</h2>
+    
+    <div class="grid">
+        <div class="card">
+            <div class="stat-value pulse">60%</div>
+            <div class="stat-label">System Vibe (Relationship)</div>
+            <div class="bar"><div class="fill" style="width: 60%; background: #ff0055; box-shadow: 0 0 10px #ff0055;"></div></div>
+        </div>
+
+        <div class="card">
+            <div class="stat-value focus-text">Volume Scanner:..</div>
+            <div class="stat-label">Current Focus</div>
+        </div>
+
+        <div class="card">
+            <div class="stat-value">1,424</div>
+            <div class="stat-label">Indexed Samples</div>
+            <div class="bar"><div class="fill" style="width: 100%"></div></div>
+        </div>
+        
+        <div class="card">
+            <div class="stat-value">21</div>
+            <div class="stat-label">Active Plugins</div>
+            <div class="bar"><div class="fill" style="width: 10.5%"></div></div>
+        </div>
+        
+        <div class="card">
+            <div class="stat-value">22</div>
+            <div class="stat-label">Total Memories</div>
+        </div>
+
+        <div class="card">
+            <div class="stat-value">11:39:48</div>
+            <div class="stat-label">Last Database Sync</div>
+        </div>
+    </div>
+    
+    <div class="log">
+        SYSTEM ID: MC96-OMEGA-TURBO<br>
+        LOC: /Users/m2ultra/.gemini/antigravity/playground/infinite-omega/Audio_Unitor/Database/universe.db<br>
+        STATUS: OPTIMAL
+    </div>
+</body>
+</html>

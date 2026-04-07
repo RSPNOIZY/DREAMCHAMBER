@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Time_and_Pitch</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="Time_and_Pitch" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer190" class="Basic-Text-Frame">
+			<p id="_idParaDest-168" class="heading-1"><a id="_idTextAnchor170"></a>Time &amp; Pitch <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Inline-Art"><img src="image/image_J7XGUGOCK7RHOZQ22UD3ZWHU3N2VXKQ4" alt="" /></p>
+			<p class="Normal">Time &amp; Pitch uses iZotope’s sophisticated Radius™ algorithm to give you independent control over the length and pitch of your audio. It is useful for retuning audio to fit in a mix better, or adjusting the length of audio to deal with BPM or time code changes.</p>
+			<p class="Normal">Time &amp; Pitch’s <a target="mainFrame" href="Time_and_Pitch.html#_idTextAnchor177"><span class="Hyperlink">Pitch Contour tab</span></a> can be used for faster pitch shifting with the ability to correct variations in pitch over time.</p>
+			<p id="_idParaDest-169" class="heading-2"><a id="_idTextAnchor171"></a>iZotope Radius</p>
+			<p class="Normal">iZotope Radius™ is a world-class time-stretching and pitch-shifting algorithm. You can easily change the pitch of a single instrument, voice, or entire ensemble while preserving the timing and acoustic space of the original recording. iZotope Radius is designed to match the natural timbres even with extreme pitch shifts. </p>
+			<p id="_idParaDest-170" class="heading-2"><a id="_idTextAnchor172"></a>Algorithm</p>
+			<p class="Normal">You should use Solo mode only when processing a single instrument with a clearly defined pitch. The human voice is a good candidate for solo mode, as are most stringed instruments, brass instruments, and woodwinds. For most other types of source material, Radius mode will usually offer better results. If speed is important, use the Radius RT mode.</p>
+			<p id="_idParaDest-171" class="heading-2"><a id="_idTextAnchor173"></a>Solo</p>
+			<p class="Normal">In Solo mode, the adaptive window size can significantly affect the quality of Radius&apos;s output. If the adaptive window size is too small, you will hear a squeaking noise which sounds like the pitch of the audio is changing very rapidly. If the adaptive window size is too large then the sound will become grainy as you will begin to hear portions of it being repeated.</p>
+			<p class="Normal">A good approach is to start with the default window size of 37 ms. If the results are unsatisfactory, increase the window size until the squeaking noise described above does not occur. If you cannot get the distortion to disappear, switch to Radius mode for processing.</p>
+			<p class="Normal">Lower pitched instruments and voices may require a longer adaptive window size than the default, but very long adaptive window sizes can cause audible repeating slices of audio.</p>
+			<p id="_idParaDest-172" class="heading-2"><a id="_idTextAnchor174"></a>Formant Correction</p>
+			<p class="Normal">Formants are the resonant frequency components of voice that tend to be perceived as characteristics like age and gender. You can shift formants independently of pitch and time by enabling Shift Formants.</p>
+			<p class="Normal">Typically you will leave the Formant Shift Strength set to 1 (full strength) and the Formant Shift Semitones set to 0. If you hear what sounds like an EQ adjustment to your audio, you can try lowering the strength to reduce this artifact. To achieve special effects, for example to change the perceived gender of a human voice, try adjusting the semitones to a value other than 0.</p>
+			<p id="_idParaDest-173" class="heading-2"><a id="_idTextAnchor175"></a>Stretch &amp; Shift Controls</p>
+			<p class="Inline-Art"><img src="image/image_UACN3NGWXMTNLBUTX5BDQHEWS5Q3W7Z5" alt="" /></p>
+			<p class="heading-3">Stretch Ratio</p>
+			<p class="Normal">Determines how much the resulting audio will be stretched in time. Values between 12.5% and 100% will cause the audio to speed up without affecting pitch, resulting in a shorter audio file. Values between 100% and 800% will cause the audio to slow down without affecting pitch, giving you a longer audio file.</p>
+			<p class="heading-3">BPM Calculator</p>
+			<p class="Normal">If you are using Radius to process audio for a tempo change, you can also adjust the stretch ratio with the BPM Calculator.</p>
+			<p class="heading-3">Pitch Shift</p>
+			<p class="Normal">Controls the amount of pitch shifting up or down that will be applied to the audio.</p>
+			<p class="heading-3">Algorithm</p>
+			<p class="Normal">The Algorithm drop-down menu has three options:</p>
+			<ul>
+				<li class="Unordered-List"><span class="Bold">Radius</span> — designed to work well with polyphonic material such as mixes with more than one instrument, as well as non-harmonic material such as drum loops or rhythmic audio. This is the highest-quality option for most sources.</li>
+				<li class="Unordered-List"><span class="Bold">Solo Instrument</span> — designed for monophonic pitched material such as a stringed instrument or human voice.</li>
+				<li class="Unordered-List"><span class="Bold">Radius RT</span> — good quality, polyphonic, but faster than Radius.</li>
+			</ul>
+			<p class="heading-3">Transient Sensitivity </p>
+			<p class="Normal">Determines the algorithm’s handling of transient material. Higher values will result in better preservation of individual transients after processing.</p>
+			<p class="Normal">When stretching percussive material, you usually want transient sensitivity set to its default value of 1. If transients in your audio are being "smeared", a higher value of 2 will tighten up transience at the expense of incurring heavier processing on non-transient audio.</p>
+			<p class="Normal">Bowed instruments such as the violin and cello are especially affected by the transient sensitivity setting. If you hear a stuttering artifact, lower the transient sensitivity to eliminate it.</p>
+			<p class="heading-3">Noise Generation (Radius mode only) </p>
+			<p class="Normal">Helps noisy material (like sibilance or snare drums) sound more natural when processed.</p>
+			<p class="Normal">This control will generate noise instead of stretching the noise that is already present in the signal and creating new tones. Higher values of the noise generation parameter will cause Radius to generate noise more often, but can cause some phase artifacts.</p>
+			<p class="heading-3">Pitch Coherence (Radius mode only) </p>
+			<p class="Normal">Controls the preservation of the natural timbre of the processed audio.</p>
+			<p class="Normal">The Pitch coherence control in the Radius control panel helps preserve the timbre for pitched solo voices, such as human speech, saxophone or vocals. While traditional vocoders can smear these signals in time and randomize phase, the pitch coherence parameter of Radius preserves phase coherence for these signals.</p>
+			<p class="Normal">High values of pitch coherence will avoid phasiness in Radius&apos;s output at the expense of roughness (modulation) in processed polyphonic recordings. Try turning this up for better results if you’re processing a solo voice or a small group of related instruments.</p>
+			<p class="heading-3">Phase Coherence (Mix mode only) </p>
+			<p class="Normal">Preserves the coherence of phase between the left and right channels of the processed audio.</p>
+			<p class="Normal">This should be increased if there&apos;s any change in the perceived stereo image after using Radius. It can be decreased when processing a multichannel signal where different channels contain completely different instruments.</p>
+			<p class="heading-3">Adaptive Window Size (ms) (Solo mode only) </p>
+			<p class="Normal">Adjusts the window size in milliseconds of Radius&apos; Solo algorithm.</p>
+			<p class="Normal">If the adaptive window size is too small, you will hear a squeaking noise which sounds like the pitch of the audio is changing very rapidly. If the adaptive window size is too large then the sound will become grainy as you will begin to hear portions of it being repeated.</p>
+			<p class="Normal">Increase this if you have trouble getting good results pitching or stretching low-pitched instruments or voices.</p>
+			<p class="heading-3">Shift Formants </p>
+			<p class="Normal">Processes formant frequencies independently of other pitch and time processing.</p>
+			<p class="Normal">When this option is enabled, formant frequencies can be shifted independently of other pitch shifting performed by Radius.</p>
+			<p class="Normal">When Radius performs pitch-shifting without Formant Correction, it will shift these resonant frequencies along with the rest of the audio.</p>
+			<ul>
+				<li class="Unordered-List"><span class="Bold">Strength</span> — adjusts the amplitude strength of the formant correction filter.</li>
+				<li class="Unordered-List"><span class="Bold">Shift</span> — how much formant frequencies are shifted. Typically this control can be set to 0, which leaves the formant frequencies unshifted during processing. Adjust this control to fine-tune the formant correction algorithm or for special effects.</li>
+				<li class="Unordered-List"><span class="Bold">Width</span> — controls the bandwidth of the formant detection filter. Smaller values of this control will offer more precise formant correction in the processed audio. Higher values will include a wider band of formant frequencies.</li>
+			</ul>
+			<p class="Normal">Pitch shifting single instruments (especially bass instruments) can benefit from some adjustments to formant correction. Try enabling formant correction and moving the strength between 0.1 and 0.2. Move the Formant Correction semitones part of the way towards your pitch shift amount. For example, if you&apos;re pitch shifting +4 semitones, move the Formant Correction Semitones between 2 and 3. This can help bring back subtle percussive elements in the original source material.</p>
+			<p class="Normal">The formant frequencies of the human voice can actually shift slightly when we sing. You can use the Formant Correction Semitones control to compensate for this. For example, if pitch shifting a human voice by +7 semitones, try setting the Formant Correction semitones between 0 and +2 for more natural results.</p>
+			<p id="_idParaDest-174" class="heading-2"><a id="_idTextAnchor176"></a>Pitch Contour Controls</p>
+			<p class="Normal">The Pitch Contour mode of the Time &amp; Pitch module lets you change the pitch of a selection over time. This can be used to quickly correct small pitch variations or gradual pitch drifts over time.</p>
+			<p class="Normal">The Pitch Contour changes pitch by continuously changing the playback speed of the audio. The effect is similar to speeding up or slowing down a record or tape deck while it is playing back.</p>
+			<p class="Normal">Because the Pitch Contour uses resampling to synchronously change time and pitch, it cannot be used to adjust pitch without also adjusting time.</p>
+			<p class="heading-3"><img src="image/image_7RFEEUIPBWMFPX3MZULO2PBYORE5JQ4E" alt="" /></p>
+			<p class="heading-3"><a id="_idTextAnchor177"></a>Pitch Contour</p>
+			<p class="Normal">The horizontal axis shows the length of your current selection. If you have no selection, the horizontal axis represents the entire length of your file.</p>
+			<p class="Normal">The vertical axis shows the amount of pitch shifting that will be applied. A curve through the top half of the display will create a higher shift in pitch and shorten the audio correspondingly. A curve through the lower half of the display will create a lower shift in pitch and lengthen the audio correspondingly.</p>
+			<p class="Normal">You can correct a gradual pitch drift over time by adjusting the points at the far left or right of the display, drawing a straight sloping line from the beginning of your selection to the end. These points are locked to the vertical axis.</p>
+			<p class="Normal">Clicking on the contour display will create a new pitch node. You can create up to 20 pitch nodes to achieve very complicated pitch shifts.</p>
+			<p class="Normal">Clicking and dragging a pitch node to move it around will change the pitch curve.</p>
+			<p class="Normal">Double clicking on a pitch node will set its value to 0 (no change at that point).</p>
+			<p class="Normal">Right clicking on a pitch node will delete it.</p>
+			<p class="Normal">Holding control/command while dragging will give you fine control over a pitch node’s position.</p>
+			<p class="heading-3">Smoothing</p>
+			<p class="Normal">Larger values create a smoother pitch curve when multiple pitch nodes are present. This is useful when correcting a nonlinear change in pitch.</p>
+			<p class="heading-3">Reset</p>
+			<p class="Normal">Clears all pitch nodes and returns the Smoothing control to its default value.</p>
+		</div>
+	</body>
+</html>

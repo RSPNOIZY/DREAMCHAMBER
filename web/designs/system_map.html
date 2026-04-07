@@ -1,0 +1,41 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>SYSTEM CARTOGRAPHY</title>
+        <link rel="stylesheet" href="nexus.css">
+        <style>
+             /* Map-specific overrides */
+             body { padding: 20px; background: transparent; }
+             .hotspot { 
+                 border: 1px solid #333; 
+                 margin-bottom: 5px; 
+                 padding: 8px; 
+                 background: rgba(10,10,10,0.8); 
+                 display: flex; 
+                 justify-content: space-between; 
+                 align-items: center;
+                 font-family: 'Courier New', monospace;
+             }
+             .hotspot:hover { border-color: var(--main); background: rgba(0, 255, 157, 0.1); }
+             .path { color: #fff; font-size: 0.9em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max_width: 70%; }
+             .stats { display: flex; gap: 15px; font-size: 0.8em; }
+             .audio { color: #00ffff; }
+             .visual { color: #ff00ff; }
+             .project { color: #ffff00; }
+        </style>
+    </head>
+    <body>
+        <div class="flex-between mb-10">
+            <h2 class="mt-0 text-main">DENSITY CLUSTERS</h2>
+            <div class="text-small text-dim">TOP 500 HOTSPOTS</div>
+        </div>
+    
+        <div class="hotspot">
+            <div class="path" title="/Users/m2ultra/.gemini/antigravity/playground/infinite-omega/Audio_Unitor/Visual_Hunt">~/Audio_Unitor/Visual_Hunt</div>
+            <div class="stats">
+                <span class="audio">A:0</span>
+                <span class="visual">V:166</span>
+                <span class="project">P:0</span>
+            </div>
+        </div>
+        </body></html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZYLAB — Full Ecosystem Map</title>
+<style>
+:root{--bg:#06060c;--s1:#0e0e1a;--s2:#16162a;--b:#1e1e3a;--t:#e0e0f0;--dim:#666680;--acc:#00d4ff;--grn:#00e676;--red:#ff4444;--org:#ffaa00;--pur:#b388ff;--pk:#ff66ab}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro',sans-serif;background:var(--bg);color:var(--t);line-height:1.5;padding:20px;max-width:1400px;margin:0 auto}
+.hero{text-align:center;padding:50px 0 30px;border-bottom:1px solid var(--b);margin-bottom:30px}
+.hero h1{font-size:3em;font-weight:800;letter-spacing:6px;background:linear-gradient(135deg,var(--acc),var(--pur),var(--pk));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .sub{color:var(--dim);font-size:1em;margin-top:8px}
+.hero .stats{display:flex;justify-content:center;gap:40px;margin-top:24px;flex-wrap:wrap}
+.hero .stat{text-align:center}
+.hero .stat .n{font-size:2.2em;font-weight:700}
+.hero .stat .l{font-size:0.75em;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+.n-acc{color:var(--acc)}.n-grn{color:var(--grn)}.n-org{color:var(--org)}.n-pur{color:var(--pur)}.n-red{color:var(--red)}.n-pk{color:var(--pk)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:20px;margin-bottom:24px}
+.card{background:var(--s1);border:1px solid var(--b);border-radius:14px;overflow:hidden}
+.card-head{padding:18px 22px;border-bottom:1px solid var(--b);display:flex;align-items:center;gap:10px}
+.card-head h2{font-size:1.05em;font-weight:600;flex:1}
+.badge{font-size:0.65em;padding:3px 10px;border-radius:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.b-g{background:rgba(0,230,118,.12);color:var(--grn)}.b-r{background:rgba(255,68,68,.12);color:var(--red)}
+.b-o{background:rgba(255,170,0,.12);color:var(--org)}.b-a{background:rgba(0,212,255,.12);color:var(--acc)}
+.b-p{background:rgba(179,136,255,.12);color:var(--pur)}
+.card-body{padding:18px 22px;font-size:0.88em}
+table{width:100%;border-collapse:collapse}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--b)}
+th{color:var(--dim);font-size:0.72em;text-transform:uppercase;letter-spacing:1px}
+.ok{color:var(--grn)}.bad{color:var(--red)}.mid{color:var(--org)}.unk{color:var(--dim)}
+.item{padding:10px 0;border-bottom:1px solid rgba(30,30,58,.5);display:flex;justify-content:space-between;align-items:center}
+.item:last-child{border-bottom:none}
+.item .name{font-weight:500}.item .val{color:var(--dim);font-size:0.85em}
+.tag{display:inline-block;font-size:0.65em;padding:2px 8px;border-radius:8px;margin-left:6px;font-weight:600}
+.t-a{background:rgba(0,212,255,.1);color:var(--acc)}
+.t-p{background:rgba(179,136,255,.1);color:var(--pur)}
+.t-g{background:rgba(0,230,118,.1);color:var(--grn)}
+.t-o{background:rgba(255,170,0,.1);color:var(--org)}
+.t-pk{background:rgba(255,102,171,.1);color:var(--pk)}
+.full{grid-column:1/-1}
+.pipe{background:var(--s2);border-radius:8px;padding:12px 16px;margin:8px 0;font-size:0.85em}
+.pipe .steps{color:var(--dim);margin-top:4px;font-size:0.9em}
+.pipe .status{float:right;font-size:0.75em;text-transform:uppercase}
+h3{font-size:0.9em;color:var(--acc);margin:16px 0 8px;font-weight:600;letter-spacing:0.5px}
+.kv-grid{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.kv-chip{font-size:0.72em;padding:4px 10px;border-radius:6px;background:var(--s2);border:1px solid var(--b);color:var(--t)}
+footer{text-align:center;padding:30px;color:var(--dim);font-size:0.75em;border-top:1px solid var(--b);margin-top:30px}
+@media(max-width:500px){.grid{grid-template-columns:1fr}.hero h1{font-size:2em}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>NOIZYLAB</h1>
+  <div class="sub">Complete Ecosystem Map — 12 Months of Building, Unified</div>
+  <div class="stats">
+    <div class="stat"><div class="n n-acc">3</div><div class="l">Devices</div></div>
+    <div class="stat"><div class="n n-pur">11</div><div class="l">Databases</div></div>
+    <div class="stat"><div class="n n-grn">53</div><div class="l">KV Stores</div></div>
+    <div class="stat"><div class="n n-org">47</div><div class="l">Repair Tables</div></div>
+    <div class="stat"><div class="n n-pk">4</div><div class="l">Pipelines</div></div>
+    <div class="stat"><div class="n n-acc">5</div><div class="l">Domains</div></div>
+  </div>
+</div>
+
+<!-- DEVICE NETWORK -->
+<div class="grid">
+<div class="card">
+  <div class="card-head"><h2>Device Network (10.90.90.x)</h2><span class="badge b-a">3 MACHINES</span></div>
+  <div class="card-body">
+    <table>
+      <tr><th>Device</th><th>IP</th><th>Hardware</th><th>Role</th></tr>
+      <tr><td><strong>GOD</strong></td><td>10.90.90.10</td><td>Mac Studio M2 Ultra / 128GB</td><td class="ok">Primary</td></tr>
+      <tr><td><strong>GABRIEL</strong></td><td>10.90.90.20</td><td>HP Omen / 32GB</td><td style="color:var(--pur)">AI Brain</td></tr>
+      <tr><td><strong>DaFixer</strong></td><td>10.90.90.40</td><td>MacBook Pro / 16GB</td><td class="mid">Mobile</td></tr>
+    </table>
+    <h3>Key Services on GOD</h3>
+    <div class="item"><span class="name">Ollama</span><span class="val">127.0.0.1:11434</span></div>
+    <div class="item"><span class="name">AirPlay</span><span class="val">:5000 / :7000</span></div>
+    <div class="item"><span class="name">Apple Remote Desktop</span><span class="val">:3283</span></div>
+    <div class="item"><span class="name">Universal Audio</span><span class="val">:4710 / :4720 / :4793</span></div>
+  </div>
+</div>
+
+<!-- GABRIEL ORCHESTRATION -->
+<div class="card">
+  <div class="card-head"><h2>GABRIEL Orchestration Engine</h2><span class="badge b-p">31 TABLES</span></div>
+  <div class="card-body">
+    <h3>Core Systems</h3>
+    <div class="item"><span class="name">CF01 Framework</span><span class="val">tools, tasks, agents, schedules, webhooks</span></div>
+    <div class="item"><span class="name">MCP Layer</span><span class="val">servers, events, debug, alerts, metrics, sessions</span></div>
+    <div class="item"><span class="name">Memory Graph</span><span class="val">cells + edges (knowledge graph)</span></div>
+    <div class="item"><span class="name">Portal Consciousness</span><span class="val">cross-device context transfer</span></div>
+    <div class="item"><span class="name">Hive Mind</span><span class="val">multi-Claude coordination</span></div>
+    <div class="item"><span class="name">Voice Commands</span><span class="val">voice → action pipeline</span></div>
+    <div class="item"><span class="name">DazeFlow</span><span class="val">daily summaries & insights</span></div>
+    <h3>Agents Registered</h3>
+    <div class="item"><span class="name">Claude Web <span class="tag t-g">ONLINE</span></span><span class="val">claude.ai — CF, Canva, GDrive, Web</span></div>
+    <div class="item"><span class="name">Claude Code <span class="tag t-o">OFFLINE</span></span><span class="val">local:god — bash, files, git, mcp</span></div>
+    <div class="item"><span class="name">GOD <span class="tag t-o">REGISTERED</span></span><span class="val">bash, git, docker, brew, system</span></div>
+    <div class="item"><span class="name">GABRIEL <span class="tag t-o">REGISTERED</span></span><span class="val">bash, git, docker</span></div>
+    <div class="item"><span class="name">DaFixer <span class="tag t-o">REGISTERED</span></span><span class="val">bash, git</span></div>
+  </div>
+</div>
+</div>
+
+<!-- BUSINESS -->
+<div class="grid">
+<div class="card">
+  <div class="card-head"><h2>NOIZYLAB Repairs</h2><span class="badge b-g">47 TABLES</span></div>
+  <div class="card-body">
+    <div style="background:var(--s2);border-radius:8px;padding:14px;margin-bottom:12px">
+      <div style="color:var(--pk);font-weight:700;font-size:1.1em">$89/repair &rarr; Target: $389K/year @ 12/day</div>
+    </div>
+    <h3>Core Operations</h3>
+    <div class="item"><span class="name">repairs, cases, devices, diagnostics</span><span class="val">intake → repair → complete</span></div>
+    <div class="item"><span class="name">customers, clients, loyalty, referrals</span><span class="val">CRM + retention</span></div>
+    <div class="item"><span class="name">invoices, payments, orders</span><span class="val">Stripe + PayPal</span></div>
+    <div class="item"><span class="name">bookings, appointments</span><span class="val">scheduling system</span></div>
+    <div class="item"><span class="name">inventory, warranties</span><span class="val">parts + guarantees</span></div>
+    <h3>Communication</h3>
+    <div class="item"><span class="name">sms_log (Twilio)</span><span class="val">SMS notifications</span></div>
+    <div class="item"><span class="name">notifications, emails</span><span class="val">multi-channel outreach</span></div>
+    <div class="item"><span class="name">contact_submissions, support_tickets</span><span class="val">inbound</span></div>
+    <h3>Intelligence</h3>
+    <div class="item"><span class="name">NoizyCheck</span><span class="val">automated diagnostic + risk scoring</span></div>
+    <div class="item"><span class="name">analytics, business_metrics, daily_metrics</span><span class="val">BI layer</span></div>
+    <div class="item"><span class="name">guardian_subscriptions</span><span class="val">recurring revenue plans</span></div>
+    <div class="item"><span class="name">remote_sessions (AnyDesk)</span><span class="val">remote repair capability</span></div>
+    <div class="item"><span class="name">service_tiers, service_packages, coupons</span><span class="val">pricing engine</span></div>
+    <h3>NoizyVox (embedded)</h3>
+    <div class="item"><span class="name">vox_artists, vox_signups</span><span class="val">artist platform</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head"><h2>Pipelines & Automation</h2><span class="badge b-o">NEVER RUN</span></div>
+  <div class="card-body">
+    <h3>Defined Pipelines</h3>
+    <div class="pipe">
+      <strong>GORUNFREE_MORNING</strong> <span class="status mid">IDLE</span>
+      <div class="steps">health check → network scan → brew update → git sync</div>
+    </div>
+    <div class="pipe">
+      <strong>GORUNFREE_DEPLOY</strong> <span class="status mid">IDLE</span>
+      <div class="steps">git pull → npm install → npm build → wrangler deploy</div>
+    </div>
+    <div class="pipe">
+      <strong>GORUNFREE_BACKUP</strong> <span class="status mid">IDLE</span>
+      <div class="steps">backup DB → backup configs → sync aquarium</div>
+    </div>
+    <div class="pipe">
+      <strong>MC96_HEALTH_CHECK</strong> <span class="status mid">IDLE</span>
+      <div class="steps">ping GOD → ping GABRIEL → ping DaFixer → network report</div>
+    </div>
+
+    <h3>Scheduled Jobs (4 defined, 0 running)</h3>
+    <div class="item"><span class="name">morning_health</span><span class="val">7am daily &rarr; system_health</span></div>
+    <div class="item"><span class="name">hourly_metrics</span><span class="val">every hour &rarr; collect_metrics</span></div>
+    <div class="item"><span class="name">nightly_backup</span><span class="val">2am daily &rarr; backup_all</span></div>
+    <div class="item"><span class="name">network_scan</span><span class="val">every 15 min &rarr; 10.90.90.0/24</span></div>
+
+    <h3>Tools Registered (20)</h3>
+    <div class="kv-grid">
+      <span class="kv-chip">List Workers</span>
+      <span class="kv-chip">D1 Query</span>
+      <span class="kv-chip">KV List</span>
+      <span class="kv-chip">R2 List</span>
+      <span class="kv-chip">Bash Execute</span>
+      <span class="kv-chip">File Read</span>
+      <span class="kv-chip">File Write</span>
+      <span class="kv-chip">Git Status</span>
+      <span class="kv-chip">Git Commit</span>
+      <span class="kv-chip">Git Pull</span>
+      <span class="kv-chip">Brew Update</span>
+      <span class="kv-chip">Docker PS</span>
+      <span class="kv-chip">System Info</span>
+      <span class="kv-chip">Disk Usage</span>
+      <span class="kv-chip">Task Queue</span>
+      <span class="kv-chip">Pipeline Run</span>
+      <span class="kv-chip">Alert Check</span>
+      <span class="kv-chip">Metrics Collect</span>
+      <span class="kv-chip">Webhook Trigger</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- DOMAINS & EMAIL -->
+<div class="grid">
+<div class="card">
+  <div class="card-head"><h2>Domains & Email</h2><span class="badge b-o">2 STUCK ON GODADDY</span></div>
+  <div class="card-body">
+    <table>
+      <tr><th>Domain</th><th>Registrar</th><th>Email</th><th>Status</th></tr>
+      <tr><td>noizylab.ca</td><td class="ok">Cloudflare</td><td>rsp@, help@, rob@, repairs@, support@</td><td class="ok">Active</td></tr>
+      <tr><td>fishmusicinc.com</td><td class="ok">Cloudflare</td><td>rsp@, rob@, info@</td><td class="ok">Active</td></tr>
+      <tr><td>noizy.ai</td><td class="ok">Cloudflare</td><td>—</td><td class="ok">Active</td></tr>
+      <tr><td>noizyvox.com</td><td class="ok">Cloudflare</td><td>—</td><td class="ok">Active</td></tr>
+      <tr><td>noizylab.com</td><td class="bad">GoDaddy</td><td>—</td><td class="mid">Locked</td></tr>
+      <tr><td>noizyfish.com</td><td class="bad">GoDaddy</td><td>—</td><td class="mid">Locked</td></tr>
+    </table>
+    <div style="margin-top:12px;padding:10px;background:var(--s2);border-radius:8px;font-size:0.85em">
+      <strong style="color:var(--org)">Google Business Profile:</strong> Not yet created<br>
+      <strong style="color:var(--org)">Google Workspace:</strong> Not yet set up<br>
+      <strong style="color:var(--dim)">Email routing:</strong> Cloudflare → rsplowman@icloud.com (receive only)
+    </div>
+  </div>
+</div>
+
+<!-- MEMORY GRAPH -->
+<div class="card">
+  <div class="card-head"><h2>Knowledge Graph (cells + edges)</h2><span class="badge b-p">LIVE BRAIN</span></div>
+  <div class="card-body">
+    <h3>Root Nodes</h3>
+    <div class="item">
+      <span class="name">LIVE_FEEDS <span class="tag t-a">ROOT</span></span>
+      <span class="val">apple_notes, claude, chatgpt, cursor, windsurf, api</span>
+    </div>
+    <div class="item">
+      <span class="name">NOIZYLAB_FORENSICS <span class="tag t-pk">ROOT</span></span>
+      <span class="val">$89/repair diagnostic knowledge base</span>
+    </div>
+    <h3>Intelligence Nodes</h3>
+    <div class="item">
+      <span class="name">god_baseline_20260106</span>
+      <span class="val">macOS 15.7.4, Darwin 24.6.0, Ollama, 35 binaries</span>
+    </div>
+    <div class="item">
+      <span class="name">god_issues_20260106</span>
+      <span class="val">gabriel exit 127, hyperdrive exit 2, m2g not running</span>
+    </div>
+    <div class="item">
+      <span class="name">noizylab_forensics_dyld_001</span>
+      <span class="val">DYLD_SYMBOL_MISSING pattern → 95% confidence</span>
+    </div>
+    <div style="margin-top:12px;padding:10px;background:var(--s2);border-radius:8px;font-size:0.85em;color:var(--grn)">
+      <strong>FIXED:</strong> gabriel exit code 127 (command not found) resolved — startup scripts now exist at GABRIEL/bin/
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CLOUDFLARE INFRASTRUCTURE -->
+<div class="grid">
+<div class="card full">
+  <div class="card-head"><h2>Cloudflare Infrastructure</h2><span class="badge b-a">FULL INVENTORY</span></div>
+  <div class="card-body">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div>
+        <h3>D1 Databases (11)</h3>
+        <div class="item"><span class="name">gabriel_db</span><span class="val">292KB — orchestration core</span></div>
+        <div class="item"><span class="name">agent-memory</span><span class="val">2.4MB — largest DB</span></div>
+        <div class="item"><span class="name">noizylab-repairs</span><span class="val">420KB — 47 tables, full repair ops</span></div>
+        <div class="item"><span class="name">email-command-center</span><span class="val">244KB — email routing + analytics</span></div>
+        <div class="item"><span class="name">rsp-master-budget</span><span class="val">820KB — finances</span></div>
+        <div class="item"><span class="name">godaddy-escape-tracker</span><span class="val">92KB — domain migration</span></div>
+        <div class="item"><span class="name">ai-router-brain</span><span class="val">96KB — AI routing logic</span></div>
+        <div class="item"><span class="name">mc96-command-central</span><span class="val">220KB — MC96 ecosystem</span></div>
+        <div class="item"><span class="name">aquarium-archive</span><span class="val">208KB — archive/backup</span></div>
+        <div class="item"><span class="name">tencc-pipeline</span><span class="val">148KB — 10CC pipeline</span></div>
+        <div class="item"><span class="name">subscription-killer</span><span class="val">56KB — subscription mgmt</span></div>
+      </div>
+      <div>
+        <h3>KV Namespaces (53) — Key Groups</h3>
+        <div style="margin-bottom:12px"><strong style="color:var(--acc);font-size:0.85em">NOIZYLAB Core</strong></div>
+        <div class="kv-grid">
+          <span class="kv-chip">noizylab-customers</span><span class="kv-chip">noizylab-edge-config</span>
+          <span class="kv-chip">noizylab-submissions</span><span class="kv-chip">noizylab-rate-limiter</span>
+          <span class="kv-chip">noizylab-sessions</span>
+        </div>
+        <div style="margin:12px 0 4px"><strong style="color:var(--pk);font-size:0.85em">NoizyVox Platform</strong></div>
+        <div class="kv-grid">
+          <span class="kv-chip">noizyvox-signups</span><span class="kv-chip">noizyvox-royalties</span>
+          <span class="kv-chip">noizyvox-guild</span><span class="kv-chip">noizyvox-personas</span>
+          <span class="kv-chip">noizyvox-manifests</span><span class="kv-chip">noizyvox-academy</span>
+          <span class="kv-chip">noizyvox-artist-profiles</span>
+        </div>
+        <div style="margin:12px 0 4px"><strong style="color:var(--pur);font-size:0.85em">GABRIEL & AI</strong></div>
+        <div class="kv-grid">
+          <span class="kv-chip">GABRIEL_VOICE</span><span class="kv-chip">GABRIEL_KV</span>
+          <span class="kv-chip">agent-state</span><span class="kv-chip">model-performance</span>
+          <span class="kv-chip">voice-commands</span><span class="kv-chip">VEO3_KV</span>
+        </div>
+        <div style="margin:12px 0 4px"><strong style="color:var(--org);font-size:0.85em">Systems</strong></div>
+        <div class="kv-grid">
+          <span class="kv-chip">gorunfree-execution-state</span><span class="kv-chip">god-kernel-state</span>
+          <span class="kv-chip">conductor-locks</span><span class="kv-chip">conductor-workers</span>
+          <span class="kv-chip">emergency-alerts</span><span class="kv-chip">realtime-status</span>
+          <span class="kv-chip">flow-logs</span><span class="kv-chip">session-cache</span>
+        </div>
+        <div style="margin:12px 0 4px"><strong style="color:var(--grn);font-size:0.85em">Specialty</strong></div>
+        <div class="kv-grid">
+          <span class="kv-chip">mc96-hotrod-cache</span><span class="kv-chip">antigravity-cache</span>
+          <span class="kv-chip">aeon-protocol-state</span><span class="kv-chip">lifeluv-cache</span>
+          <span class="kv-chip">noizymem-sessions</span><span class="kv-chip">discord-queue</span>
+          <span class="kv-chip">discord-hub-queue</span><span class="kv-chip">command-queue</span>
+          <span class="kv-chip">godaddy-escape-state</span><span class="kv-chip">CRAWLER_KV</span>
+          <span class="kv-chip">tencc-locks</span><span class="kv-chip">tencc-pipeline-state</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- WHAT WE FIXED -->
+<div class="grid">
+<div class="card full">
+  <div class="card-head"><h2>What We Built & Fixed Today (Feb 5, 2026)</h2><span class="badge b-g">12 FILES DELIVERED</span></div>
+  <div class="card-body">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div>
+        <h3>Voice Engine</h3>
+        <div class="item"><span class="name">noizylab_voice.py</span><span class="val ok">Upgraded — 8 voices, queue, GABRIEL</span></div>
+        <div class="item"><span class="name">noizylab_voice.talon</span><span class="val ok">Voice commands for speech</span></div>
+        <div class="item"><span class="name">setup_voice_ssh.sh</span><span class="val ok">Automated SSH key setup</span></div>
+        <h3>System Control</h3>
+        <div class="item"><span class="name">noizylab_system.py</span><span class="val ok">Voice-activated infrastructure control</span></div>
+        <div class="item"><span class="name">noizylab_system.talon</span><span class="val ok">System voice commands</span></div>
+      </div>
+      <div>
+        <h3>GABRIEL (previously missing — exit 127 FIXED)</h3>
+        <div class="item"><span class="name">GABRIEL/bin/start_server.sh</span><span class="val ok">Orchestration engine startup</span></div>
+        <div class="item"><span class="name">GABRIEL/bin/start_bridge.sh</span><span class="val ok">Edge ↔ local bridge</span></div>
+        <div class="item"><span class="name">GABRIEL/bin/health_check.sh</span><span class="val ok">Full diagnostic with --fix</span></div>
+        <div class="item"><span class="name">GABRIEL/bin/install_launchd.sh</span><span class="val ok">4 auto-start services</span></div>
+        <h3>CODEMASTER (previously missing)</h3>
+        <div class="item"><span class="name">CHECK_ANTHROPIC_STATUS.sh</span><span class="val ok">API health + voice</span></div>
+        <div class="item"><span class="name">AI_MORNING_NEWS.sh</span><span class="val ok">Morning intelligence briefing</span></div>
+        <h3>Dashboard</h3>
+        <div class="item"><span class="name">NOIZYLAB_GOOGLE_BUSINESS_SETUP.html</span><span class="val ok">Google & domain setup guide</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer>
+  NOIZYLAB Ecosystem Map — Generated Feb 5, 2026 by Claude for Rob Plowman<br>
+  GORUNFREE
+</footer>
+
+</body>
+</html>

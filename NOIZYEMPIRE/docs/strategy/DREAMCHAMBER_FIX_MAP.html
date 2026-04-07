@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DreamChamber Fix Map — The Blueprint for a Creator-First World</title>
+<style>
+  :root {
+    --gold: #f0b429;
+    --fire: #e85d04;
+    --electric: #0a9ebd;
+    --dream: #c94070;
+    --deep: #7c4dff;
+    --green: #22c55e;
+    --amber: #fbbf24;
+    --black: #06060f;
+    --ink: #0d0d1a;
+    --glass: rgba(255,255,255,0.04);
+    --line: rgba(255,255,255,0.07);
+    --text: #e8e8f0;
+    --muted: rgba(232,232,240,0.55);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ─── STARFIELD ─── */
+  #starfield { position: fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+
+  /* ─── ATMOSPHERE ─── */
+  .atmosphere {
+    position: fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,64,112,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 10% 60%, rgba(124,77,255,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 40% at 90% 40%, rgba(10,158,189,0.07) 0%, transparent 50%);
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(6,6,15,0.88); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 56px;
+  }
+  .nav-brand { font-weight:900; font-size:1.05rem; letter-spacing:0.12em; color:var(--dream); }
+  .nav-badge {
+    background: linear-gradient(135deg, var(--dream), var(--deep));
+    color:#fff; font-size:0.72rem; font-weight:800; letter-spacing:0.1em;
+    padding: 4px 14px; border-radius:20px;
+  }
+  .nav-links { display:flex; gap:20px; list-style:none; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:0.82rem; letter-spacing:0.05em; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--dream); }
+
+  /* ─── SECTIONS ─── */
+  section { position:relative; z-index:1; padding:100px 48px 80px; max-width:1280px; margin:0 auto; }
+
+  .section-eyebrow { font-size:0.72rem; letter-spacing:0.3em; text-transform:uppercase; font-weight:700; margin-bottom:12px; color:var(--dream); }
+  .section-title { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:900; line-height:1.1; letter-spacing:-0.01em; margin-bottom:16px; }
+  .section-sub { color:var(--muted); max-width:680px; font-size:1.05rem; margin-bottom:60px; }
+
+  /* ─── REVEAL ─── */
+  .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .d1 { transition-delay:0.1s; }
+  .d2 { transition-delay:0.2s; }
+  .d3 { transition-delay:0.3s; }
+  .d4 { transition-delay:0.4s; }
+
+  .glow-band {
+    width:100%; height:1px; position:relative; z-index:1;
+    background: linear-gradient(90deg, transparent, rgba(201,64,112,0.5) 30%, rgba(124,77,255,0.5) 50%, rgba(10,158,189,0.5) 70%, transparent);
+  }
+
+  /* ════════════════════════
+     HERO
+  ════════════════════════ */
+  .hero {
+    min-height:100vh; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    padding-top:80px; max-width:100%;
+  }
+  .hero-eyebrow { font-size:0.78rem; letter-spacing:0.3em; color:var(--dream); font-weight:700; margin-bottom:20px; text-transform:uppercase; }
+  .hero-title { font-size:clamp(2.6rem,6.5vw,5.5rem); font-weight:900; line-height:1.0; letter-spacing:-0.02em; margin-bottom:20px; }
+  .hero-title .t1 { color:var(--dream); }
+  .hero-title .t2 {
+    background: linear-gradient(135deg, var(--deep), var(--electric), var(--green));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+  .hero-sub { font-size:clamp(1rem,2vw,1.25rem); color:var(--muted); max-width:680px; margin:0 auto 40px; }
+
+  /* ─── GALAXY CONTAINER ─── */
+  .galaxy-wrapper {
+    position:relative; width:100%; display:flex; justify-content:center;
+    margin-bottom:80px; padding:40px 0;
+  }
+
+  #galaxyCanvas { border-radius:50%; }
+
+  .galaxy-label {
+    position:absolute; font-size:0.78rem; font-weight:800; letter-spacing:0.1em;
+    text-transform:uppercase; white-space:nowrap; pointer-events:none;
+    text-shadow: 0 0 20px currentColor;
+  }
+
+  /* ════════════════════════
+     CRACKS TABLE
+  ════════════════════════ */
+  .cracks-table { width:100%; border-collapse:separate; border-spacing:0 8px; margin-bottom:60px; }
+  .cracks-table thead th {
+    text-align:left; font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--muted); padding:8px 20px; font-weight:700;
+  }
+  .cracks-table tbody tr { }
+  .cracks-table tbody td {
+    padding:18px 20px; font-size:0.9rem; background:var(--glass);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .cracks-table tbody td:first-child { border-left:1px solid var(--line); border-radius:12px 0 0 12px; border-left:3px solid var(--fire); }
+  .cracks-table tbody td:last-child { border-right:1px solid var(--line); border-radius:0 12px 12px 0; }
+  .crack-name { font-weight:700; color:var(--fire); }
+  .crack-fix { color:var(--green); font-weight:700; }
+  .crack-result { color:var(--muted); }
+
+  /* ════════════════════════
+     ZONE CARDS
+  ════════════════════════ */
+  .zones-grid {
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr));
+    gap:28px; margin-bottom:60px;
+  }
+
+  .zone-card {
+    border-radius:20px; padding:36px; position:relative; overflow:hidden;
+    border: 1px solid;
+    transition: transform 0.2s;
+  }
+  .zone-card:hover { transform:translateY(-3px); }
+
+  .zone-card.zone-a { border-color:rgba(240,180,41,0.3); background:linear-gradient(135deg, rgba(240,180,41,0.06), rgba(232,93,4,0.04)); }
+  .zone-card.zone-b { border-color:rgba(124,77,255,0.3); background:linear-gradient(135deg, rgba(124,77,255,0.06), rgba(10,158,189,0.04)); }
+  .zone-card.zone-c { border-color:rgba(10,158,189,0.3); background:linear-gradient(135deg, rgba(10,158,189,0.06), rgba(34,197,94,0.04)); }
+  .zone-card.zone-d { border-color:rgba(201,64,112,0.3); background:linear-gradient(135deg, rgba(201,64,112,0.06), rgba(124,77,255,0.04)); }
+  .zone-card.zone-e { border-color:rgba(34,197,94,0.3); background:linear-gradient(135deg, rgba(34,197,94,0.06), rgba(10,158,189,0.04)); }
+
+  .zone-letter {
+    font-size:3rem; font-weight:900; line-height:1; margin-bottom:12px;
+  }
+  .zone-a .zone-letter { color:var(--gold); }
+  .zone-b .zone-letter { color:var(--deep); }
+  .zone-c .zone-letter { color:var(--electric); }
+  .zone-d .zone-letter { color:var(--dream); }
+  .zone-e .zone-letter { color:var(--green); }
+
+  .zone-name { font-size:1.05rem; font-weight:800; margin-bottom:6px; color:var(--text); }
+  .zone-purpose { font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; margin-bottom:16px; }
+  .zone-a .zone-purpose { color:var(--gold); }
+  .zone-b .zone-purpose { color:var(--deep); }
+  .zone-c .zone-purpose { color:var(--electric); }
+  .zone-d .zone-purpose { color:var(--dream); }
+  .zone-e .zone-purpose { color:var(--green); }
+
+  .zone-tools { list-style:none; margin-bottom:16px; }
+  .zone-tools li { font-size:0.88rem; color:var(--muted); padding:5px 0; border-bottom:1px solid var(--line); line-height:1.5; }
+  .zone-tools li:last-child { border-bottom:none; }
+  .zone-tools li::before { content:'◆ '; font-size:0.6rem; font-weight:700; }
+  .zone-a .zone-tools li::before { color:var(--gold); }
+  .zone-b .zone-tools li::before { color:var(--deep); }
+  .zone-c .zone-tools li::before { color:var(--electric); }
+  .zone-d .zone-tools li::before { color:var(--dream); }
+  .zone-e .zone-tools li::before { color:var(--green); }
+
+  .zone-effect {
+    margin-top:16px; padding:14px; border-radius:10px;
+    font-size:0.84rem; font-weight:600; color:var(--text); line-height:1.6;
+  }
+  .zone-a .zone-effect { background:rgba(240,180,41,0.1); }
+  .zone-b .zone-effect { background:rgba(124,77,255,0.1); }
+  .zone-c .zone-effect { background:rgba(10,158,189,0.1); }
+  .zone-d .zone-effect { background:rgba(201,64,112,0.1); }
+  .zone-e .zone-effect { background:rgba(34,197,94,0.1); }
+
+  /* ════════════════════════
+     FLOW DIAGRAM
+  ════════════════════════ */
+  .flow-chain {
+    display:flex; align-items:center; flex-wrap:wrap; gap:0;
+    margin-bottom:60px; background:var(--glass); border:1px solid var(--line);
+    border-radius:20px; padding:32px 24px; justify-content:center;
+  }
+  .flow-node {
+    text-align:center; padding:16px 24px; min-width:130px;
+    position:relative;
+  }
+  .flow-icon { font-size:2rem; margin-bottom:8px; display:block; }
+  .flow-label { font-size:0.78rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; }
+  .flow-sub { font-size:0.72rem; color:var(--muted); margin-top:4px; }
+  .flow-arrow { font-size:1.6rem; color:var(--muted); padding:0 4px; align-self:center; }
+
+  /* ════════════════════════
+     PRINCIPLE BLOCK
+  ════════════════════════ */
+  .principle-block {
+    background: linear-gradient(135deg, rgba(201,64,112,0.08), rgba(124,77,255,0.08));
+    border: 1px solid rgba(201,64,112,0.25);
+    border-radius:20px; padding:48px; margin-bottom:60px; text-align:center;
+  }
+  .principle-block h3 { font-size:clamp(1.6rem,3vw,2.4rem); font-weight:900; color:var(--dream); margin-bottom:20px; }
+  .principle-block p { color:var(--muted); font-size:1.05rem; line-height:1.8; max-width:720px; margin:0 auto 16px; }
+  .principle-block p strong { color:var(--text); }
+
+  /* ─── LINKS ─── */
+  .link-bar {
+    display:flex; flex-wrap:wrap; gap:14px; justify-content:center;
+    margin-top:48px; padding-top:48px; border-top:1px solid var(--line);
+  }
+  .link-btn {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 22px; border-radius:30px; font-size:0.82rem; font-weight:700;
+    letter-spacing:0.08em; text-decoration:none; border:1px solid; transition:all 0.2s;
+  }
+  .link-btn:hover { transform:translateY(-2px); }
+  .btn-dream { color:var(--dream); border-color:rgba(201,64,112,0.4); }
+  .btn-dream:hover { background:rgba(201,64,112,0.1); }
+  .btn-gold { color:var(--gold); border-color:rgba(240,180,41,0.4); }
+  .btn-gold:hover { background:rgba(240,180,41,0.1); }
+  .btn-electric { color:var(--electric); border-color:rgba(10,158,189,0.4); }
+  .btn-electric:hover { background:rgba(10,158,189,0.1); }
+  .btn-green { color:var(--green); border-color:rgba(34,197,94,0.4); }
+  .btn-green:hover { background:rgba(34,197,94,0.1); }
+  .btn-deep { color:var(--deep); border-color:rgba(124,77,255,0.4); }
+  .btn-deep:hover { background:rgba(124,77,255,0.1); }
+
+  footer {
+    position:relative; z-index:1; border-top:1px solid var(--line);
+    padding:48px 32px; text-align:center; color:var(--muted); font-size:0.85rem;
+  }
+  .footer-title { font-size:1.1rem; font-weight:900; color:var(--dream); letter-spacing:0.1em; margin-bottom:8px; }
+
+  @media (max-width:768px) {
+    section { padding:80px 24px 60px; }
+    .flow-chain { flex-direction:column; }
+    .flow-arrow { transform:rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div class="atmosphere"></div>
+
+<nav>
+  <div class="nav-brand">DREAMCHAMBER</div>
+  <ul class="nav-links">
+    <li><a href="#cracks">The Cracks</a></li>
+    <li><a href="#zones">Fix Zones</a></li>
+    <li><a href="#flow">The Flow</a></li>
+    <li><a href="#principle">The Principle</a></li>
+  </ul>
+  <div class="nav-badge">FIX MAP</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="max-width:100%; padding-top:56px;">
+  <div class="hero-eyebrow reveal">THE DREAMCHAMBER</div>
+  <h1 class="hero-title">
+    <div class="t1 reveal d1">FIX MAP.</div>
+    <div class="t2 reveal d2">EVERY CRACK.<br>EVERY LEVER.<br>EVERY FIX.</div>
+  </h1>
+  <p class="hero-sub reveal d3">
+    A galaxy-scale blueprint for transforming cannibalistic platforms
+    into creator-first, ethical, AI-human symbiosis.
+    Five zones. Every crack exposed. The poop sinks here.
+  </p>
+
+  <!-- GALAXY CANVAS -->
+  <div class="galaxy-wrapper reveal d4" style="width:min(700px,90vw); height:min(700px,90vw);">
+    <canvas id="galaxyCanvas" style="width:min(700px,90vw); height:min(700px,90vw);"></canvas>
+  </div>
+</section>
+
+<div class="glow-band"></div>
+
+<!-- THE CRACKS -->
+<div id="cracks" style="position:relative; z-index:1; background:rgba(232,93,4,0.03); border-top:1px solid rgba(232,93,4,0.1); border-bottom:1px solid rgba(232,93,4,0.1);">
+<section>
+  <div class="section-eyebrow reveal">STRUCTURAL ANALYSIS</div>
+  <h2 class="section-title reveal">The Five Cracks<br>Where Creators Get Eaten Alive</h2>
+  <p class="section-sub reveal">These aren't bugs. They're features of a system designed to extract value from creators. Every crack has a fix. Here they are.</p>
+
+  <table class="cracks-table reveal">
+    <thead>
+      <tr>
+        <th>THE CRACK</th>
+        <th>HOW IT EATS YOU</th>
+        <th>THE FIX</th>
+        <th>THE RESULT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="crack-name">Algorithm Favors Cheap</span></td>
+        <td style="color:var(--muted);">Virality &gt; craft. 30-second clips &gt; 5-minute compositions. The platform buries what took you years to build.</td>
+        <td><span class="crack-fix">Humanity-Weighted Scoring</span><br><span style="font-size:0.82rem; color:var(--muted);">Time invested + creative complexity + originality = elevated signal</span></td>
+        <td class="crack-result">Race-to-bottom becomes structurally impossible. Depth rises automatically.</td>
+      </tr>
+      <tr>
+        <td><span class="crack-name">IP Theft & AI Remixing</span></td>
+        <td style="color:var(--muted);">Models train on your signature style. Derivatives flood the market. Your unique voice appears everywhere — credited to no one.</td>
+        <td><span class="crack-fix">Consent-as-Code + HVS</span><br><span style="font-size:0.82rem; color:var(--muted);">6-layer biometric fingerprint. Rights embedded at infrastructure level.</span></td>
+        <td class="crack-result">Ownership enforced automatically. Violation technically impossible.</td>
+      </tr>
+      <tr>
+        <td><span class="crack-name">Invisible Revenue</span></td>
+        <td style="color:var(--muted);">$0.003/stream. Pro-rata black box. AI derivatives generate revenue you never see. Micro-payments too small to track, aggregate to millions for platforms.</td>
+        <td><span class="crack-fix">LifeLUV Micro-Splits + Dashboard</span><br><span style="font-size:0.82rem; color:var(--muted);">Full provenance: who, when, where, how much — real-time, auditable.</span></td>
+        <td class="crack-result">Artists paid instantly & fairly. Every use tracked back to the chain.</td>
+      </tr>
+      <tr>
+        <td><span class="crack-name">Isolation & Churn</span></td>
+        <td style="color:var(--muted);">Algorithms pit creators against each other. Community replaced by engagement metrics. Artists become isolated inputs to a content machine.</td>
+        <td><span class="crack-fix">Guild + Mentorship Chains</span><br><span style="font-size:0.82rem; color:var(--muted);">Co-creation rewards, mentorship income, 4-tier community architecture.</span></td>
+        <td class="crack-result">Community and collaboration replace algorithmic competition. Creation chains build legacy.</td>
+      </tr>
+      <tr>
+        <td><span class="crack-name">Loss of Creative Memory</span></td>
+        <td style="color:var(--muted);">Originals erased by derivative churn. The process and intent behind a work becomes invisible. Future AI trains on the copy, not the original.</td>
+        <td><span class="crack-fix">Legacy Vault + NOIZY PROOF</span><br><span style="font-size:0.82rem; color:var(--muted);">Cryptographic watermarking. Process recordings. Inheritable estate. Unalterable provenance.</span></td>
+        <td class="crack-result">Creative memory preserved permanently. Children inherit a living, generating archive.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+</div>
+
+<div class="glow-band"></div>
+
+<!-- THE FIVE ZONES -->
+<div id="zones" style="position:relative; z-index:1;">
+<section>
+  <div class="section-eyebrow reveal">GALAXY ARCHITECTURE</div>
+  <h2 class="section-title reveal">The Five Zones<br>of the DreamChamber</h2>
+  <p class="section-sub reveal">
+    Every zone in the galaxy serves a function. The Core protects.
+    The Rings align. The Halo connects. Together, they form an
+    ecosystem where creativity, ethics, and AI coexist symbiotically.
+  </p>
+
+  <div class="zones-grid">
+
+    <div class="zone-card zone-a reveal">
+      <div class="zone-letter">A</div>
+      <div class="zone-name">Creator Fortification Zone</div>
+      <div class="zone-purpose">The Core — Protect Everything</div>
+      <ul class="zone-tools">
+        <li>Consent-as-Code: permissions baked into infrastructure, not contracts</li>
+        <li>NOIZYVOX HVS: 6-layer biometric fingerprint — Acoustic, Neural, Emotional, Health, Identity, Narrative</li>
+        <li>Voice Estate: creative output inheritable, traceable, and perpetually owned</li>
+        <li>NOIZY PROOF: cryptographic watermark in every file, unalterable</li>
+        <li>Legacy Vault: process recordings, sketches, unreleased sessions — all protected</li>
+      </ul>
+      <div class="zone-effect">
+        Effect: Artists own their legacy even when AI interacts with their work.
+        The Core glows at the center of the galaxy — it cannot be extinguished.
+      </div>
+    </div>
+
+    <div class="zone-card zone-b reveal d1">
+      <div class="zone-letter">B</div>
+      <div class="zone-name">Algorithm Alignment Zone</div>
+      <div class="zone-purpose">First Orbit — Reorient Everything</div>
+      <ul class="zone-tools">
+        <li>NOIZY Depth Score: quality signal built from human-origin + cultural attribution</li>
+        <li>Humanity-weight metrics: time invested, creative complexity, originality coefficient</li>
+        <li>Penalize cheap imitation, spam, exploitative derivatives at the protocol level</li>
+        <li>Quality surfaces automatically — not through curation, through architecture</li>
+        <li>AI amplifies human intent — never generates without a human signature as primary</li>
+      </ul>
+      <div class="zone-effect">
+        Effect: "Race to the bottom" becomes irrelevant. Craft rises to the top without anyone having to fight for it.
+      </div>
+    </div>
+
+    <div class="zone-card zone-c reveal d2">
+      <div class="zone-letter">C</div>
+      <div class="zone-name">Transparency & Audit Zone</div>
+      <div class="zone-purpose">Second Orbit — Make Everything Visible</div>
+      <ul class="zone-tools">
+        <li>Full provenance dashboard: who used your work, where, when, for how much</li>
+        <li>Cryptographic ledger for every AI-processed output</li>
+        <li>Real-time LifeLUV royalty tracking — fully automated 75/25 splits</li>
+        <li>Recursive micro-splits: every sample, every moment, tracked back to the origin chain</li>
+        <li>Black box eliminated: every revenue flow auditable by the creator in real time</li>
+      </ul>
+      <div class="zone-effect">
+        Effect: Artists can see, verify, and monetize every interaction with their work — forever.
+      </div>
+    </div>
+
+    <div class="zone-card zone-d reveal">
+      <div class="zone-letter">D</div>
+      <div class="zone-name">Community & Co-Creation Zone</div>
+      <div class="zone-purpose">Third Orbit — Connect Everything</div>
+      <ul class="zone-tools">
+        <li>Guild 4-tier system: Apprentice → Journeyman → Master → Legend</li>
+        <li>Mentorship chains: knowledge flows forward; credit flows back perpetually</li>
+        <li>Co-creation rewards: collaborative works share splits equitably, automatically</li>
+        <li>Aquarium: blind-listen immersive events in 50+ cities — human connection as product</li>
+        <li>DreamChamber sessions: ambient creative workspace, GABRIEL-assisted, DREAM-named</li>
+      </ul>
+      <div class="zone-effect">
+        Effect: Artists feel valued, visible, and interconnected. Isolation is structurally impossible.
+      </div>
+    </div>
+
+    <div class="zone-card zone-e reveal d1">
+      <div class="zone-letter">E</div>
+      <div class="zone-name">Education & Advocacy Zone</div>
+      <div class="zone-purpose">The Halo — Shift the Culture</div>
+      <ul class="zone-tools">
+        <li>NOIZYKIDZ: 128 scale structures, 64 rhythm archetypes, all traditions since 60,000 BCE</li>
+        <li>Teach ethical AI creation principles at Guild school level globally</li>
+        <li>Expose platform abuses: public audit data showing moral cost of extraction economy</li>
+        <li>Promote creator-first adoption as the aspirational standard — not the alternative</li>
+        <li>NOIZY Carriers: 8 vectors spreading the restoration through every community</li>
+      </ul>
+      <div class="zone-effect">
+        Effect: Humanity's moral compass guides technology. The next generation grows up inside the 5th Epoch as native citizens.
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<div class="glow-band"></div>
+
+<!-- THE FLOW -->
+<div id="flow" style="position:relative; z-index:1; background:rgba(124,77,255,0.03); border-top:1px solid rgba(124,77,255,0.1); border-bottom:1px solid rgba(124,77,255,0.1);">
+<section>
+  <div class="section-eyebrow reveal">AI + HUMAN FLOW</div>
+  <h2 class="section-title reveal">How Energy Moves<br>Through the DreamChamber</h2>
+  <p class="section-sub reveal">
+    The old system: imagination → platform → exploitation → creator gets scraps.
+    The DreamChamber flow: imagination → protection → amplification → perpetual value.
+  </p>
+
+  <div class="flow-chain reveal">
+    <div class="flow-node">
+      <span class="flow-icon">🧠</span>
+      <div class="flow-label" style="color:var(--dream);">Human Imagination</div>
+      <div class="flow-sub">The origin of all value</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <span class="flow-icon">🔒</span>
+      <div class="flow-label" style="color:var(--gold);">Consent Lock</div>
+      <div class="flow-sub">Zone A activates instantly</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <span class="flow-icon">🤖</span>
+      <div class="flow-label" style="color:var(--deep);">AI Amplification</div>
+      <div class="flow-sub">DreamChamber tools</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <span class="flow-icon">🔍</span>
+      <div class="flow-label" style="color:var(--electric);">Quality Surface</div>
+      <div class="flow-sub">Depth Score ranks it</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <span class="flow-icon">🌍</span>
+      <div class="flow-label" style="color:var(--green);">World Release</div>
+      <div class="flow-sub">Provenance attached</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <span class="flow-icon">💫</span>
+      <div class="flow-label" style="color:var(--gold);">Perpetual Value</div>
+      <div class="flow-sub">75% forever. Legacy Vault.</div>
+    </div>
+  </div>
+
+  <!-- CONTRAST FLOW -->
+  <h3 class="reveal" style="font-size:1.1rem; font-weight:800; color:var(--muted); margin-bottom:20px;">Old Flow (the cannibalistic loop):</h3>
+  <div class="flow-chain reveal" style="background:rgba(232,93,4,0.05); border-color:rgba(232,93,4,0.2);">
+    <div class="flow-node">
+      <span class="flow-icon">🧠</span>
+      <div class="flow-label" style="color:var(--muted);">Human Imagination</div>
+    </div>
+    <div class="flow-arrow" style="color:var(--fire);">→</div>
+    <div class="flow-node">
+      <span class="flow-icon">📤</span>
+      <div class="flow-label" style="color:var(--fire);">Upload to Platform</div>
+      <div class="flow-sub">ToS signed away rights</div>
+    </div>
+    <div class="flow-arrow" style="color:var(--fire);">→</div>
+    <div class="flow-node">
+      <span class="flow-icon">📊</span>
+      <div class="flow-label" style="color:var(--fire);">Algorithm Buries It</div>
+      <div class="flow-sub">Unless viral in 48hr</div>
+    </div>
+    <div class="flow-arrow" style="color:var(--fire);">→</div>
+    <div class="flow-node">
+      <span class="flow-icon">🤖</span>
+      <div class="flow-label" style="color:var(--fire);">AI Trains On It</div>
+      <div class="flow-sub">No credit. No consent.</div>
+    </div>
+    <div class="flow-arrow" style="color:var(--fire);">→</div>
+    <div class="flow-node">
+      <span class="flow-icon">💸</span>
+      <div class="flow-label" style="color:var(--fire);">$0.003 / stream</div>
+      <div class="flow-sub">Platform keeps the rest</div>
+    </div>
+    <div class="flow-arrow" style="color:var(--fire);">→</div>
+    <div class="flow-node">
+      <span class="flow-icon">🗑️</span>
+      <div class="flow-label" style="color:var(--fire);">Catalog Disappears</div>
+      <div class="flow-sub">Children inherit nothing</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="glow-band"></div>
+
+<!-- THE PRINCIPLE -->
+<div id="principle" style="position:relative; z-index:1;">
+<section>
+  <div class="section-eyebrow reveal">THE CORE PRINCIPLE</div>
+  <h2 class="section-title reveal">The DreamChamber<br>Is Not a Product. It Is a Stance.</h2>
+
+  <div class="principle-block reveal">
+    <h3>The System Eats Creators Because It's Designed to Ignore Humanity.</h3>
+    <p>
+      The cracks aren't accidents. They're architecture.
+      <strong>Every platform that exploits a creator made a deliberate choice</strong>
+      to build the exploit into the foundation.
+      Consent-as-an-afterthought. Rights-as-a-negotiation. Value-as-a-fraction.
+    </p>
+    <p>
+      The DreamChamber doesn't fight the old system.
+      <strong>It makes the old system structurally irrelevant.</strong>
+      When creators can see every payment, own every derivative,
+      inherit every legacy, and amplify without surrendering —
+      why would they choose the platform that eats them?
+    </p>
+    <p>
+      <strong>Where others see "impossible," we see a lever.</strong>
+      Every crack is a place to insert a protocol.
+      Every exploit is a place to insert consent.
+      Every black box is a place to insert a dashboard.
+    </p>
+    <p>
+      <strong>AI as Servant, not Predator.</strong>
+      The machine amplifies your intention.
+      You are always the composer. It is always the instrument.
+      That is the law. That is the only acceptable architecture.
+    </p>
+    <p>
+      The poop sinks because <strong>quality, properly surfaced and properly paid,
+      is more satisfying than quantity at every level of the experience</strong> —
+      for listeners, for creators, for investors, for culture.
+      The galaxy doesn't need to destroy the cheap stuff.
+      It just needs to be undeniable enough that the cheap stuff becomes invisible.
+    </p>
+  </div>
+
+  <div class="link-bar reveal">
+    <a href="NOIZY_ASCENSION_MAP.html" class="link-btn btn-gold">🗺️ Ascension Map 2026→2036</a>
+    <a href="NOIZY_GREAT_RESTORATION.html" class="link-btn" style="color:var(--fire); border-color:rgba(232,93,4,0.4);">🚨 The Great Restoration</a>
+    <a href="NOIZY_GUILD_FAMILY.html" class="link-btn btn-dream">🔥 Global Guild Family</a>
+    <a href="NOIZYKIDZ_WORLD_MUSIC_THEORY.html" class="link-btn btn-electric">🌍 NOIZYKIDZ Atlas</a>
+    <a href="NOIZY_AI_HOME.html" class="link-btn btn-green">🏠 NOIZY.AI Home</a>
+    <a href="THE_PLOWMANS_CHRONICLES.html" class="link-btn btn-deep">📖 Plowman's Chronicles</a>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="footer-title">DREAMCHAMBER FIX MAP</div>
+  <p style="margin-top:8px;">Built by POPS & GABRIEL · NOIZY.AI · For DREAM, who named this room.</p>
+  <p style="margin-top:4px; font-size:0.75rem; color:rgba(232,232,240,0.3);">Every crack is a lever. Every lever points up.</p>
+</footer>
+
+<script>
+// ─── STARFIELD ───
+const sf = document.getElementById('starfield');
+const sctx = sf.getContext('2d');
+let stars = [];
+function resizeSF() { sf.width = window.innerWidth; sf.height = window.innerHeight; }
+function initSF() {
+  stars = [];
+  for (let i = 0; i < 200; i++) stars.push({
+    x: Math.random()*sf.width, y: Math.random()*sf.height,
+    r: Math.random()*1.3+0.2, alpha: Math.random()*0.5+0.1,
+    speed: Math.random()*0.12+0.02, drift: (Math.random()-0.5)*0.06
+  });
+}
+function drawSF() {
+  sctx.clearRect(0,0,sf.width,sf.height);
+  stars.forEach(s => {
+    sctx.beginPath(); sctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    sctx.fillStyle = `rgba(255,255,255,${s.alpha})`; sctx.fill();
+    s.y -= s.speed; s.x += s.drift;
+    if (s.y < -2) { s.y = sf.height+2; s.x = Math.random()*sf.width; }
+    if (s.x < -2) s.x = sf.width+2;
+    if (s.x > sf.width+2) s.x = -2;
+  });
+  requestAnimationFrame(drawSF);
+}
+resizeSF(); initSF(); drawSF();
+window.addEventListener('resize', () => { resizeSF(); initSF(); });
+
+// ─── GALAXY CANVAS ───
+const gc = document.getElementById('galaxyCanvas');
+const gctx = gc.getContext('2d');
+let gw, gh, cx, cy, t = 0;
+
+function resizeGalaxy() {
+  const size = Math.min(700, window.innerWidth * 0.88);
+  gc.width = size; gc.height = size;
+  gw = gc.width; gh = gc.height;
+  cx = gw/2; cy = gh/2;
+}
+
+// Zone data
+const zones = [
+  { label:'A — Creator\nFortification', color:'#f0b429', ring:0, orbitSpeed:0, baseAngle:0, particles:30 },
+  { label:'B — Algorithm\nAlignment',   color:'#7c4dff', ring:1, orbitSpeed:0.008, baseAngle:0, particles:25 },
+  { label:'C — Transparency\n& Audit',  color:'#0a9ebd', ring:2, orbitSpeed:0.006, baseAngle:1.2, particles:20 },
+  { label:'D — Community\n& Co-Creation',color:'#c94070',ring:3, orbitSpeed:0.004, baseAngle:2.4, particles:18 },
+  { label:'E — Education\n& Advocacy',  color:'#22c55e', ring:4, orbitSpeed:0.002, baseAngle:3.6, particles:14 },
+];
+
+const radii = [0, 90, 160, 230, 300];
+let gParticles = [];
+
+function initGalaxy() {
+  gParticles = [];
+  zones.forEach((z, zi) => {
+    for (let i=0; i<z.particles; i++) {
+      const angle = z.baseAngle + (i/z.particles) * Math.PI*2;
+      const r = radii[zi] + (Math.random()-0.5)*20;
+      gParticles.push({
+        zoneIdx: zi,
+        color: z.color,
+        angle: angle,
+        radius: r,
+        orbitSpeed: z.orbitSpeed * (0.8+Math.random()*0.4) * (Math.random()>0.5?1:-1),
+        size: Math.random()*2+0.8,
+        alpha: Math.random()*0.6+0.3
+      });
+    }
+  });
+}
+
+function drawGalaxy() {
+  gctx.clearRect(0,0,gw,gh);
+  t += 0.005;
+
+  // Background glow
+  const bg = gctx.createRadialGradient(cx,cy,0,cx,cy,cx);
+  bg.addColorStop(0,'rgba(201,64,112,0.06)');
+  bg.addColorStop(0.4,'rgba(124,77,255,0.04)');
+  bg.addColorStop(1,'rgba(0,0,0,0)');
+  gctx.fillStyle = bg; gctx.fillRect(0,0,gw,gh);
+
+  // Orbit rings
+  const maxR = Math.min(cx, cy) - 10;
+  radii.forEach((r, i) => {
+    if (i===0) return;
+    const scaledR = (r/300) * (maxR-20);
+    gctx.beginPath();
+    gctx.arc(cx, cy, scaledR, 0, Math.PI*2);
+    gctx.strokeStyle = `rgba(255,255,255,0.05)`;
+    gctx.lineWidth = 1;
+    gctx.stroke();
+  });
+
+  // Particles
+  gParticles.forEach(p => {
+    p.angle += p.orbitSpeed;
+    const r = (p.radius/300) * (maxR-20);
+    const px = cx + Math.cos(p.angle)*r;
+    const py = cy + Math.sin(p.angle)*r;
+    gctx.beginPath();
+    gctx.arc(px, py, p.size, 0, Math.PI*2);
+    const hex = p.color;
+    const alpha = p.alpha * (0.7 + 0.3*Math.sin(t*2+p.angle));
+    gctx.fillStyle = hex.replace(')', `,${alpha})`).replace('rgb','rgba').replace('#','');
+    // simpler approach:
+    gctx.fillStyle = p.color + Math.round(alpha*255).toString(16).padStart(2,'0');
+    gctx.shadowBlur = 8;
+    gctx.shadowColor = p.color;
+    gctx.fill();
+    gctx.shadowBlur = 0;
+  });
+
+  // Core sphere — Zone A
+  const coreGrad = gctx.createRadialGradient(cx,cy,0,cx,cy,38);
+  coreGrad.addColorStop(0,'rgba(255,220,80,0.9)');
+  coreGrad.addColorStop(0.4,'rgba(240,180,41,0.6)');
+  coreGrad.addColorStop(1,'rgba(240,180,41,0)');
+  gctx.beginPath(); gctx.arc(cx,cy,38,0,Math.PI*2);
+  gctx.fillStyle = coreGrad; gctx.fill();
+
+  // Core pulse
+  const pulseR = 38 + 8*Math.sin(t*3);
+  gctx.beginPath(); gctx.arc(cx,cy,pulseR,0,Math.PI*2);
+  gctx.strokeStyle = `rgba(240,180,41,${0.3+0.2*Math.sin(t*3)})`;
+  gctx.lineWidth = 2; gctx.stroke();
+
+  // Zone labels
+  const labelRadii = [0, 95, 165, 235, 305];
+  const labelAngles = [0, Math.PI*0.3, Math.PI*0.9, Math.PI*1.5, Math.PI*0.6];
+  zones.forEach((z,i) => {
+    if (i===0) {
+      gctx.fillStyle = '#000';
+      gctx.font = 'bold 11px sans-serif';
+      gctx.textAlign = 'center';
+      gctx.fillText('CORE', cx, cy+4);
+      return;
+    }
+    const r2 = (labelRadii[i]/300)*(maxR-20);
+    const a = labelAngles[i] + t*z.orbitSpeed*20;
+    const lx = cx + Math.cos(a)*r2;
+    const ly = cy + Math.sin(a)*r2;
+    gctx.fillStyle = z.color;
+    gctx.font = 'bold 9px sans-serif';
+    gctx.textAlign = 'center';
+    const lines = z.label.split('\n');
+    lines.forEach((line, li) => {
+      gctx.fillText(line, lx, ly + li*12 - 6);
+    });
+  });
+
+  requestAnimationFrame(drawGalaxy);
+}
+
+resizeGalaxy(); initGalaxy(); drawGalaxy();
+window.addEventListener('resize', () => { resizeGalaxy(); initGalaxy(); });
+
+// ─── REVEAL ───
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold:0.08 });
+reveals.forEach(el => obs.observe(el));
+document.querySelectorAll('.hero .reveal').forEach(el => {
+  setTimeout(() => el.classList.add('visible'), 200);
+});
+</script>
+</body>
+</html>

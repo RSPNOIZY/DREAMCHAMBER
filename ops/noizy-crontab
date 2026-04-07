@@ -1,0 +1,19 @@
+# ═══════════════════════════════════════════════════════════
+# NOIZY.AI — Crontab for GOD (M2 Ultra)
+#
+# Install: crontab /Users/m2ultra/NOIZYLAB/ops/noizy-crontab
+#
+# Built for NOIZY.AI by Robert Stephen Plowman
+# ═══════════════════════════════════════════════════════════
+
+# PATH for node/npx
+PATH=/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:/Users/m2ultra/.nvm/versions/node/v20.11.1/bin
+
+# Lucy Nightly Analysis — 3:00 AM ET daily
+0 3 * * * /Users/m2ultra/NOIZYLAB/ops/noizy-cron.sh lucy-nightly
+
+# Full Test Suite — 4:00 AM ET daily  
+0 4 * * * /Users/m2ultra/NOIZYLAB/ops/noizy-cron.sh test-all
+
+# Daily Standup Generation — 7:00 AM ET daily
+0 7 * * * /Users/m2ultra/NOIZYLAB/ops/noizy-cron.sh standup

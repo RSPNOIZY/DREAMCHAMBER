@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="ja"><![endif]--><!--[if IE 7 ]><html class="no-js ie7" lang="ja"><![endif]--><!--[if IE 8 ]><html class="no-js ie8" lang="ja"><![endif]--><!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>トランジェント・シェイパー (Transient Shaper) - Neutron 3 Help Documentation</title>
+<meta name="generator" content="Hugo 0.58.0" />
+
+<meta name="description" content="Neutron 3 Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Neutron 3 Help Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/ja/transient-shaper/index.html">
+<meta property="og:title" content="Neutron 3 Help Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+      <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  <link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/style-overrides.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-33', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+<body class="palette-primary-neutron3 palette-accent-neutron3">
+  <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html">
+          <img src="../images/header.svg" alt="Neutron 3 docs header image"
+                 width="200px" height="50px"> トランジェント・シェイパー (Transient Shaper)</a>
+          </div>
+      </div>
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+<div class="drawer">
+  <nav aria-label="Navigation">
+<form action="../search/index.html"><div class="group">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+  </form>
+</nav>
+  <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+    <a title="はじめに" href="../index.html"><span class=""></span>  はじめに</a>
+</li>
+<li>
+    <a title="さあ、始めましょう" href="../getting-started/index.html"><span class=""></span>  さあ、始めましょう</a>
+</li>
+<li>
+    <a title="全般的な操作項目" href="../general-controls/index.html"><span class=""></span>  全般的な操作項目</a>
+</li>
+<li>
+    <a title="アシスタント機能" href="../assistants/index.html"><span class=""></span>  アシスタント機能</a>
+</li>
+<li>
+    <a title="ゲート" href="../gate/index.html"><span class=""></span>  ゲート</a>
+</li>
+<li>
+    <a title="イコライザー" href="../equalizer/index.html"><span class=""></span>  イコライザー</a>
+</li>
+<li>
+    <a title="マスキング・メーター" href="../masking-meter/index.html"><span class=""></span>  マスキング・メーター</a>
+</li>
+<li>
+    <a title="コンプレッサー" href="../compressor/index.html"><span class=""></span>  コンプレッサー</a>
+</li>
+<li>
+    <a class="current"title="トランジェント・シェイパー" href="index.html"><span class=""></span>  トランジェント・シェイパー</a>
+<ul id="scrollspy">
+</ul>
+</li>
+<li>
+    <a title="エキサイター" href="../exciter/index.html"><span class=""></span>  エキサイター</a>
+</li>
+<li>
+    <a title="スカルプター" href="../sculptor/index.html"><span class=""></span>  スカルプター</a>
+</li>
+<li>
+    <a title="ヴィジュアル・ミキサー" href="../visual-mixer/index.html"><span class=""></span>  ヴィジュアル・ミキサー</a>
+</li>
+<li>
+    <a title="リレイ" href="../relay/index.html"><span class=""></span>  リレイ</a>
+</li>
+<li>
+    <a title="プリセット" href="../presets/index.html"><span class=""></span>  プリセット</a>
+</li>
+<li>
+    <a title="オプション" href="../options/index.html"><span class=""></span>  オプション</a>
+</li>
+<li>
+    <a title="用語集" href="../glossary/index.html"><span class=""></span>  用語集</a>
+</li>
+<li>
+    <a title="カスタマー・ケア" href="../customer-care/index.html"><span class=""></span>  カスタマー・ケア</a>
+</li>
+<li>
+    <a title="ライセンス情報" href="../license-information/index.html"><span class=""></span>  ライセンス情報</a>
+</li>
+<li>
+    <a title="エンドユーザー向け使用許諾契約" href="../eula/index.html"><span class=""></span>  エンドユーザー向け使用許諾契約</a>
+</li>
+</ul>
+      <hr />
+<span class="section">iZotopeと接続する</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+<li>
+    <a href="https://www.izotope.com/en/products/mix/neutron.html" target="_blank" title="iZotope Product Page"><span class="icon icon-sphere"></span>  iZotope.com</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a>
+  </li>
+</ul>
+<hr /><ul>
+  <li>
+<a href="../../en/transient-shaper/index.html"><i class="icon icon-eye"></i>View page in English</a>
+</li>
+</ul></div>
+  </div>
+</div>
+</div>
+<article class="article">
+    <div class="wrapper">
+
+      
+
+<h1>トランジェント・シェイパー (Transient Shaper) </h1>
+<div class="lang-btn-box">
+<a class="lang-btn clickable" href="../../en/transient-shaper/index.html">English</a>
+<a class="lang-btn active" href="../../en/transient-shaper/index.html">日本語</a>
+</div>
+
+
+
+<h2 id="概要">概要</h2>
+
+<p>Transient Shaper（トランジェント・シェイパー）は、音のアタックやサステインのキャラクターに加工を施して、全体的
+なレベルを変化させることなく音に存在感を与えることができます。</p>
+
+<hr />
+
+<h2 id="モジュール-インターフェイス">モジュール・インターフェイス</h2>
+
+<figure ><img src="../images/transient-shaper/module-interf.png" alt="Transient Shaper Module Interface" /></figure>
+
+<p>Transient Shaperモジュールの操作項目と機能は以下の通りです。</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>番号</strong></th>
+<th><strong>セクション</strong></th>
+<th><strong>操作項目と機能</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Plug-in Instance Name" /></figure></td>
+<td>メーターとディスプレイ</td>
+<td><a href="index.html#波形ディスプレイ">波形ディスプレイ</a>、<a href="index.html#ゲイン-エンベロープ-トレース">ゲイン・エンベロープ・トレース</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Plug-in Instance Name" /></figure></td>
+<td>モジュール・ヘッダー</td>
+<td><a href="index.html#マルチバンド-クロスオーバー-スペクトラム-ビュー">マルチバンド・クロスオーバー・スペクトラム・ビュー</a>、<a href="index.html#エンベロープ-モード">エンベロープ・モード</a>、<a href="index.html#learn-学習機能">Learn（学習機能）</a>、<a href="index.html#lfe-低域効果音">LFE（低域効果音）</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="Plug-in Instance Name" /></figure></td>
+<td>HUDの操作項目</td>
+<td><a href="index.html#attack-アタック">Attack（アタック）</a>、<a href="index.html#contour-コントゥアー">Contour（コントゥアー）</a>、<a href="index.html#sustain-サステイン">Sustain（サステイン）</a>, <a href="index.html#gain-difference-meter-ゲイン-ディファレンス-メーター">Gain Difference Meter（ゲイン・ディファレンス・メーター）</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="メーターとディスプレイ">メーターとディスプレイ</h2>
+
+<p>メーターとディスプレイは、Transient Shaperモジュールが入力信号に対してどのように反応/処理するかを表示します。</p>
+
+<figure ><img src="../images/transient-shaper/meters-displays.png" alt="Transient Shaper Meters and Displays" /></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>番号</strong></th>
+<th><strong>セクション</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="label-1" /></figure></td>
+<td><a href="index.html#波形ディスプレイ">波形ディスプレイ</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="label-2" /></figure></td>
+<td><a href="index.html#ゲイン-エンベロープ-トレース">ゲイン・エンベロープ・トレース</a></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="波形ディスプレイ">波形ディスプレイ</h3>
+
+<ul>
+<li><strong>入力信号</strong>の波形は出力信号の波形の背景に <strong>ダークグレー</strong>で表示されます。</li>
+<li><strong>出力信号</strong>の波形は入力信号の波形の前に <strong>ライトグレー</strong>で表示されます。</li>
+</ul>
+
+<h3 id="ゲイン-エンベロープ-トレース">ゲイン・エンベロープ・トレース</h3>
+
+<p>エンベロープの設定に応じて適用されたゲインの量と入力信号を合成させたカーブがリアルタイム表示されます。</p>
+
+<div class="admonition tip">
+<p class="admonition-title">ヒント：ゲイン・エンベロープ・トレースでモニタリング</p>
+<p class="admonition-body"><strong>ゲイン・エンベロープ・トレース</strong> は、レスポンス・タイム（AttackとRelease）を調節しながら適用されるゲインの動
+きを確認する時に便利です。また、エンベロープ・モードを変更した時に、エンベロープの動きが変化することも確認でき
+ます。</p>
+</div>
+
+
+<h2 id="モジュール-ヘッダー">モジュール・ヘッダー</h2>
+
+<figure ><img src="../images/transient-shaper/module-header.png" alt=" Transient Shaper Module Header" /></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>番号</strong></th>
+<th><strong>セクション</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="label-1 Multiband Crossover Mini-Spectrum" /></figure></td>
+<td><a href="index.html#マルチバンド-クロスオーバー-スペクトラム-ビュー">マルチバンド・クロスオーバー・スペクトラム・ビュー</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2 Envelope Modes" /></figure></td>
+<td><a href="index.html#エンベロープ-モード">エンベロープ・モード</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="Label-3 Learn" /></figure></td>
+<td><a href="index.html#learn-学習機能">Learn（学習機能）</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-4.png" alt="Label-4 Reset" /></figure></td>
+<td><a href="index.html#reset-リセット">Reset（リセット）</a></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="マルチバンド-クロスオーバー-スペクトラム-ビュー">マルチバンド・クロスオーバー・スペクトラム・ビュー</h3>
+
+<p>マルチバンド・クロスオーバー・スペクトラム・ビューにアクセスします。詳細については、<br />
+<a href="../general-controls/index.html#マルチバンド-クロスオーバー-スペクトラム-ビュ"><strong>マルチバンド・クロスオーバー・スペクトラム・ビュー</strong></a>
+のセクションをご覧ください。</p>
+
+<h3 id="検出フィルター-ビュー">検出フィルター・ビュー</h3>
+
+<p>検出フィルター・ビューにアクセスします。詳細については、<a href="../general-controls/index.html#検出フィルター-ビュー"><strong>Detection Filter View (検出フィルター・ビュー)</strong></a><br />
+のセクションをご覧ください。</p>
+
+<h3 id="エンベロープ-モード">エンベロープ・モード</h3>
+
+<p>入力信号に適用するADSRエンベロープの種類を選択します。３つの選択肢は以下の通りです。</p>
+
+<ul>
+<li><strong>PRECISE（プリサイス）:</strong> 次のトランジェントへのリカバリー・タイムが最も速く、アタックの設定によっては最も
+正確で敏感なエンベロープになります。</li>
+<li><strong>BALANCED（バランス）:</strong> PRECISEとLOOSEの中間となるモードです。複数のトランジェントに、速いアタックと程よい
+リリース・タイムを適用します。</li>
+<li><strong>LOOSE（ルース）:</strong> リカバリー・タイムが最も遅く、長めのサステインを追加します。</li>
+</ul>
+
+<h3 id="learn-学習機能">Learn（学習機能）</h3>
+
+<p><strong>Learn</strong> ボタンをクリックすると、オーディオの周波数スペクトラムから複数の最低値を特定するなどの基準に基づい
+て、自然なクロスオーバー・ポイントが配置されます。歯擦音やレゾナンス、そして低音の暴れなど、オーディオ信号の中
+で目立つ周波数をインテリジェントに特定してクロスオーバー・ポイントが配置されます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">メモ：Learn機能の自動オフ</p>
+<p class="admonition-body">最適なクロスオーバー・ポイントが確定されるとLearnボタンは自動でオフになります。Learn機能が動作している最中で
+も、Learnボタンを再度クリックすることで中止できます。</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">注意：Learn使用時の入力信号について</p>
+<p class="admonition-body">Learn機能を正確に動作させるには、モジュールが正しくオーディオ入力信号を受け取る必要があります。また、マルチバ
+ンド・モジュールで使用しているバンド数がひとつの時には、Learn機能が無効になります。</p>
+</div>
+
+<h3 id="reset-リセット">Reset（リセット）</h3>
+
+<p><strong>Reset</strong> ボタンをクリックすると、Transient Shaperモジュールにおける全ての操作項目が初期設定に戻されます。</p>
+
+<h3 id="lfe-低域効果音">LFE（低域効果音）</h3>
+
+<p><strong>LFE</strong>ボタンは、LFE チャンネルを含むサラウンド・トラック (5.1 または 7.1など) で Neutron3 Advancedマザーシッ
+プ・プラグインを挿入した場合のみ表示されます。LFEを無効にすると、LFEチャンネルにおける全てのオーディオ情報は、
+レイテンシー補正されながら、未処理の状態でモジュールを通過します。詳細については、
+<a href="../general-controls/index.html#lfe-low-frequency-effects-低域効果音">LFE</a>のセクションをご覧ください。</p>
+
+<hr />
+
+<h2 id="hud-の操作項目">HUD の操作項目</h2>
+
+<p>HUDの操作項目を調節して音の「形」を作っていきます。詳細は以下の通りです。</p>
+
+<ul>
+<li><a href="index.html#attack-アタック">Attack（アタック）</a></li>
+<li><a href="index.html#contour-コントゥアー">Contour（コントゥアー）</a></li>
+<li><a href="index.html#sustain-サステイン">Sustain（サステイン）</a></li>
+<li><a href="index.html#gain-difference-meter-ゲイン-ディファレンス-メーター">Gain Difference Meter（ゲイン・ディファレンス・メーター）</a></li>
+</ul>
+
+<figure ><img src="../images/transient-shaper/hud.png" alt="Transient Shaper HUD" /></figure>
+
+<h3 id="attack-アタック">Attack（アタック）</h3>
+
+<p>トランジェントの頭の部分に適用するレベル（dB）を調節します。</p>
+
+<ul>
+<li>Attackを上げていくと、パンチの強いサウンドになっていきます。</li>
+<li>Attackを下げていくと、ソフトであたたかいサウンドになっていきます。</li>
+</ul>
+
+<h3 id="contour-コントゥアー">Contour（コントゥアー）</h3>
+
+<p>マルチバンド・スペクトラムにおける各バンドのレスポンスを選択します。</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>シェイプ</strong></th>
+<th></th>
+<th align="center"><strong>説明</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure class="pad-even"><img src="../images/transient-shaper/sharp.png" alt="Transient Shaper Contour Sharp Curve" /></figure></td>
+<td><strong>SHARP（シャープ）</strong></td>
+<td align="center">タイトで速いリリース・タイム。短めでスタッカートのようなサウンドに便利です。</td>
+</tr>
+
+<tr>
+<td><figure class="pad-even"><img src="../images/transient-shaper/medium.png" alt="Transient Shaper Contour Medium Curve" /></figure></td>
+<td><strong>MEDIUM（ミディアム）</strong></td>
+<td align="center">透明な線形のエンベロープ。殆どのサウンドに使用できます。</td>
+</tr>
+
+<tr>
+<td><figure class="pad-even"><img src="../images/transient-shaper/smooth.png" alt="Transient Shaper Contour Smooth Curve" /></figure></td>
+<td><strong>SMOOTH（スムース）</strong></td>
+<td align="center">３つの中では最もスローなエンベロープで、Sustainに僅かな影響を与えます。サステインが長めのサウンドに便利です。</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="sustain-サステイン">Sustain（サステイン）</h3>
+
+<p>トランジェントのサステインに適用するレベル（dB）を調節します。</p>
+
+<ul>
+<li>Sustainを上げていくと、音の密度が高くぼんやりしサウンドになります。</li>
+<li>Sustainを下げていくと、タイトでアグレッシブなサウンドになっていきます。</li>
+</ul>
+
+<h3 id="gain-difference-meter-ゲイン-ディファレンス-メーター">Gain Difference Meter（ゲイン・ディファレンス・メーター）</h3>
+
+<p>信号に適用されたゲイン・リダクションの平均値を表示します(dB)。</p>
+
+
+    </div>
+  </article>
+<footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../compressor/index.html" title="コンプレッサー (Compressor)">
+        <span class="direction">前</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">コンプレッサー (Compressor)</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../exciter/index.html" title="エキサイター (Exciter)">
+        <span class="direction">次</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">エキサイター (Exciter)</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+<a href="../../en/transient-shaper/index.html"><i class="icon icon-eye"></i> View page in English</a>
+<br />
+&copy; 2019 iZotope, Inc. - Neutron 3.1.0
+  </div>
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </main>
+</body>
+</html>

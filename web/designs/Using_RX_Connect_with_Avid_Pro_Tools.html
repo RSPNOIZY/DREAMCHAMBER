@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Using_RX_Connect_with_Avid_Pro_Tools</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="Using_RX_Connect_with_Avid_Pro_Tools" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer239" class="Basic-Text-Frame">
+			<p id="_idParaDest-245" class="heading-1"><a id="_idTextAnchor251"></a>Using RX Connect with Avid Pro Tools</p>
+			<p class="Inline-Art"><img src="image/image_3YWFIKTYTMWJ44SRPTHBPBNFYEPUJ5YJ" alt="" /></p>
+			<p id="_idParaDest-246" class="heading-2"><a id="_idTextAnchor252"></a>Workflow</p>
+			<ol>
+				<li class="Numbered-List" value="1">Send your audio to the RX Audio Editor by selecting the audio clip(s) in the timeline that you want to edit, and opening RX Connect from the AudioSuite ‘Noise Reduction’ menu. </li>
+				<li class="Numbered-List">If you just need to load a noise profile or analyze some audio, choose ‘Reference’ to send the audio one-way, but for the complete round-trip workflow click ‘Repair’ and then hit ‘Send’. You’ll see this opens the audio in the RX Audio Editor. </li>
+				<li class="Numbered-List">With HDX systems, Pro Tools will has control of your audio drivers, so you aren’t able to hear the output of the RX Audio Editor. However, the RX Monitor tool is built to solve just this problem. In Pro Tools, create a dedicated aux track for monitoring RX, and insert RX Monitor from the ‘Noise Reduction’ or ‘Sound Field’ menus, </li>
+				<li class="Numbered-List">Then, go to the ‘Preferences’ menu in the RX Audio Editor by clicking on the wrench icon in the top-right of the window. In the ‘Audio’ tab, set your Driver type to be ‘RX Monitor’. Now we can hear the output of the RX Audio Editor through your Pro Tools output chain.</li>
+				<li class="Numbered-List">After you’ve made the desired edits in RX, click ‘Send Back’ at the top of the window. Back at the RX Connect window inside of ProTools, click ‘Render’, and the repaired audio will be placed back into your session.</li>
+				<li class="Numbered-List">Some engineers might choose to create duplicate playlists before making any repairs to their audio, but you can ‘undo’ these RX Connect changes just like any AudioSuite process.</li>
+				<li class="Numbered-List">If you make extensive repairs inside of the RX Audio Editor, you can also save an .rxdoc of the file, which will preserve all your adjustments so you can modify them later if you need to.</li>
+			</ol>
+			<p id="_idParaDest-247" class="heading-2"><a id="_idTextAnchor253"></a>Audiosuite modes</p>
+			<p class="Inline-Art"><img src="image/image_OMY23HQ7ODW3CN4COI45O5UIMII5EUE2" alt="" /></p>
+			<p class="Normal">When using Audiosuite plug-ins, there are various user definable input and output behaviors, which affect how you may use RX Connect. These behaviors are:</p>
+			<p class="heading-3">Input</p>
+			<ul>
+				<li class="Unordered-List">Clip-by-clip</li>
+				<li class="Unordered-List">Entire selection</li>
+			</ul>
+			<p class="heading-3">Modes</p>
+			<ul>
+				<li class="Unordered-List">Mono</li>
+				<li class="Unordered-List">Multi-input</li>
+			</ul>
+			<p class="heading-3">Output</p>
+			<ul>
+				<li class="Unordered-List">Overwrite files</li>
+				<li class="Unordered-List">Create individual files</li>
+				<li class="Unordered-List">Create continuous files</li>
+			</ul>
+			<p class="Normal">For the most up to date information on the expected behaviors when using the recommended configurations, please <a target="mainFrame" href="https://www.izotope.com/en/support/support-information/support/kb/index.php/kb/article/701-rx_connect_behaviors_in_avid_pro_tools_11.3.1+"><span class="Hyperlink">click here</span></a>.</p>
+		</div>
+	</body>
+</html>

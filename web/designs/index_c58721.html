@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="ja"><![endif]--><!--[if IE 7 ]><html class="no-js ie7" lang="ja"><![endif]--><!--[if IE 8 ]><html class="no-js ie8" lang="ja"><![endif]--><!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>オプション - Neutron 3 Help Documentation</title>
+<meta name="generator" content="Hugo 0.58.0" />
+
+<meta name="description" content="Neutron 3 Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Neutron 3 Help Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/ja/options/index.html">
+<meta property="og:title" content="Neutron 3 Help Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+      <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  <link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/style-overrides.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-33', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+<body class="palette-primary-neutron3 palette-accent-neutron3">
+  <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html">
+          <img src="../images/header.svg" alt="Neutron 3 docs header image"
+                 width="200px" height="50px"> オプション</a>
+          </div>
+      </div>
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+<div class="drawer">
+  <nav aria-label="Navigation">
+<form action="../search/index.html"><div class="group">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+  </form>
+</nav>
+  <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+    <a title="はじめに" href="../index.html"><span class=""></span>  はじめに</a>
+</li>
+<li>
+    <a title="さあ、始めましょう" href="../getting-started/index.html"><span class=""></span>  さあ、始めましょう</a>
+</li>
+<li>
+    <a title="全般的な操作項目" href="../general-controls/index.html"><span class=""></span>  全般的な操作項目</a>
+</li>
+<li>
+    <a title="アシスタント機能" href="../assistants/index.html"><span class=""></span>  アシスタント機能</a>
+</li>
+<li>
+    <a title="ゲート" href="../gate/index.html"><span class=""></span>  ゲート</a>
+</li>
+<li>
+    <a title="イコライザー" href="../equalizer/index.html"><span class=""></span>  イコライザー</a>
+</li>
+<li>
+    <a title="マスキング・メーター" href="../masking-meter/index.html"><span class=""></span>  マスキング・メーター</a>
+</li>
+<li>
+    <a title="コンプレッサー" href="../compressor/index.html"><span class=""></span>  コンプレッサー</a>
+</li>
+<li>
+    <a title="トランジェント・シェイパー" href="../transient-shaper/index.html"><span class=""></span>  トランジェント・シェイパー</a>
+</li>
+<li>
+    <a title="エキサイター" href="../exciter/index.html"><span class=""></span>  エキサイター</a>
+</li>
+<li>
+    <a title="スカルプター" href="../sculptor/index.html"><span class=""></span>  スカルプター</a>
+</li>
+<li>
+    <a title="ヴィジュアル・ミキサー" href="../visual-mixer/index.html"><span class=""></span>  ヴィジュアル・ミキサー</a>
+</li>
+<li>
+    <a title="リレイ" href="../relay/index.html"><span class=""></span>  リレイ</a>
+</li>
+<li>
+    <a title="プリセット" href="../presets/index.html"><span class=""></span>  プリセット</a>
+</li>
+<li>
+    <a class="current"title="オプション" href="index.html"><span class=""></span>  オプション</a>
+<ul id="scrollspy">
+</ul>
+</li>
+<li>
+    <a title="用語集" href="../glossary/index.html"><span class=""></span>  用語集</a>
+</li>
+<li>
+    <a title="カスタマー・ケア" href="../customer-care/index.html"><span class=""></span>  カスタマー・ケア</a>
+</li>
+<li>
+    <a title="ライセンス情報" href="../license-information/index.html"><span class=""></span>  ライセンス情報</a>
+</li>
+<li>
+    <a title="エンドユーザー向け使用許諾契約" href="../eula/index.html"><span class=""></span>  エンドユーザー向け使用許諾契約</a>
+</li>
+</ul>
+      <hr />
+<span class="section">iZotopeと接続する</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+<li>
+    <a href="https://www.izotope.com/en/products/mix/neutron.html" target="_blank" title="iZotope Product Page"><span class="icon icon-sphere"></span>  iZotope.com</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a>
+  </li>
+</ul>
+<hr /><ul>
+  <li>
+<a href="../../en/options/index.html"><i class="icon icon-eye"></i>View page in English</a>
+</li>
+</ul></div>
+  </div>
+</div>
+</div>
+<article class="article">
+    <div class="wrapper">
+
+      
+
+<h1>オプション </h1>
+<div class="lang-btn-box">
+<a class="lang-btn clickable" href="../../en/options/index.html">English</a>
+<a class="lang-btn active" href="../../en/options/index.html">日本語</a>
+</div>
+
+
+
+<h2 id="概要">概要</h2>
+
+<p>オプション・ウインドウでは、オーソライゼーションの管理、アップデートのチェック、プラグインの全体的な設定をする
+ことができます。<strong>Neutron 3のインターフェイス右上部にある歯車ボタンをクリックして、オプション・ウインドウを開
+きます。</strong></p>
+
+<figure ><img src="../images/options/gear-button-highlight.png" alt="Options Menu Button" /></figure>
+
+<p>オプション・ウインドウには３つのセクションがあります。</p>
+
+<figure ><img src="../images/options/options-window-labeled.png" alt="Labeled Options Window" /></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>番号</strong></th>
+<th><strong>セクション</strong></th>
+<th><strong>設定項目</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1 Options Tabs" /></figure></td>
+<td>オプション・タブ</td>
+<td>オプション・ウインドウのヘッダーにあるタブを選択して、様々な設定を行います。</td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2 Per-Tab Options" /></figure></td>
+<td>オプション・タブの設定項目</td>
+<td>各オプション・タブにある設定項目が表示されます。</td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="Label-3 Options Window Controls" /></figure></td>
+<td>オプション・ウインドウの操作項目</td>
+<td>プション・ウインドウ下部には、以下の操作項目が表示されています。<ul><li><strong>「？」ボタン</strong>: オプションのマニュアルが開きます。<li><strong>Okボタン:</strong> オプションの設定変更を保存して、オプション・ウインドウを閉じます。<li><strong>Cancelボタン:</strong> 設定変更を保存せずにOptionsウインドウを閉じます。<li>** Resetボタン:** 全ての設定項目を初期設定値にリセットします。</ul></td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="general-全般">General（全般）</h2>
+
+<p>Generalのタブで設定できる項目は以下の通りです。</p>
+
+<figure ><img src="../images/options/general-options.png" alt="General Options Tab" /></figure>
+
+<ul>
+<li><strong>Enable Tooltips</strong>: ボタンやパラメータなどカーソルを当てた時に表示される注釈（英語）のオン/オフを切り替えま
+す。</li>
+<li><strong>Auto Gain</strong>: 処理された出力信号のレベルにマッチさせるため、バイパスされた出力信号のゲインを自動で調整しま
+す。</li>
+<li><strong>True Bypass:</strong> モジュールがバイパスされた時、そのモジュールのレイテンシーが解消されます。モジュールのバイ
+パスをオン/オフにする時にクリック音が発生しますが、不必要なレイテンシー補正やcpu使用率を防ぎます。<br />
+<div class="admonition note">
+<p class="admonition-title">True BypassとAuto Gainの注意</p>
+<p class="admonition-body"><strong>Auto GainとTrue Bypassは同時にオンにすることはできません。</strong> True Bypassをオンにすると、Auto Gainから
+  チェック・マークが外れて無効になります。</p>
+</div><br /></li>
+<li><strong>Enable Analytics</strong>: 今後の製品改良に役立てるため、使用データが匿名でiZotopeに送信されます。</li>
+<li><strong>Channel Delay</strong>:
+
+<ul>
+<li><strong>Left &amp; Right</strong>: Left &amp; Right：左右チャンネルそれぞれに適用するディレイの量を調節します（単位：ミリセカン
+ド）。</li>
+<li><strong>Link</strong>: 左右チャンネル両方に適用するディレイの調節量をリンクします。</li>
+</ul></li>
+</ul>
+
+<h3 id="updates-アップデート">Updates（アップデート）</h3>
+
+<ul>
+<li><strong>Download Product Portal</strong>: iZotopeのProduct Portalをダウンロードします。</li>
+<li><strong>Check for Updates</strong>: このボタンをクリックすると、Product Portalが開いてアップデートの有無をチェックしま
+す。</li>
+<li><strong>Download Update</strong>: アップデートがある場合、黄色い点が表示されます。オプション・ウインドウからDownload
+Updateのボタンをクリックすると、Product Portalが開いてアップデートのページが表示されます。</li>
+</ul>
+
+<h3 id="authorization-オーソライゼーション">Authorization（オーソライゼーション）</h3>
+
+<p>現在オーサライズされている製品名が表示されます。</p>
+
+<ul>
+<li>Neutron 3をオーサライズするには、<strong>Authorize</strong> ボタンをクリックして、オーソライゼーション・ウィザードを立ち
+上げます。</li>
+<li>使用中のNeutron 3がオーソライズされている時、<strong>Remove Authorization</strong> ボタンをクリックするとオーソライズが解
+除されます。</li>
+<li><strong>More information</strong> ボタンをクリックすると、お使いのブラウザにiZotopeホームページ内のオーソライズに関するサ
+ポート・ページが表示されます。</li>
+</ul>
+
+<p>詳細については、<a href="../getting-started/index.html#Neutronのオーソライゼーション">オーソライゼーション</a> のセクション
+をご覧ください。</p>
+
+<hr />
+
+<h2 id="meteringタブ">Meteringタブ</h2>
+
+<p>Meteringタブで設定できる項目は以下の通りです。</p>
+
+<figure ><img src="../images/options/metering-options.png" alt="Metering Options Window" /></figure>
+
+<h3 id="i-o">I/O</h3>
+
+<ul>
+<li><strong>Meter Display Type</strong>: Di/Oの表示タイプを設定します。
+
+<ul>
+<li><strong>Rms + Peak</strong>: RMSメーターとPeakメーターのコンビネーションです。このメーターでは、低い位置で明るく表示さ
+れているバーが平均レベル（RMS）、高い位置で薄暗く表示されているバーがピーク・レベルになっています。更に、
+その上で動いているラインがピークホールドになります。</li>
+<li><strong>Short Term + Peak</strong>: ショート・ターム・ラウドネス（3秒単位のラウドネス値）の測定方法を用いて、Rmsよりも
+正確なレベルを表示します。より細かいラウドネスの動きをモニタリングするのに便利です。</li>
+</ul></li>
+<li><strong>Detect True Peaks</strong>: デジタルからアナログに変換した時の信号を正確に測定するには、ここにチェック・マークを
+付けてください。I/Oメーターは初期設定でデジタル領域でのみ発生するクリッピングを表示します。</li>
+</ul>
+
+<h3 id="spectrum-スペクトラム">Spectrum（スペクトラム）</h3>
+
+<ul>
+<li><strong>Spectrum Type:</strong> スペクトラム・アナライザーの表示タイプを変更します。選択肢は以下の通りです。
+
+<ul>
+<li><strong>Linear（リニア：線形）</strong>: 算出されたスペクトラムの点を繋ぎ合わせたひと続きの線で表示します。</li>
+<li><strong>1/3 Octave</strong>: スペクトラムを1/3オクターブの幅で分割した「棒グラフ」で表示します。スペクトラムは分割され
+た周波数帯域で表示されますが、低域の分解能が高くなるオプションになります。</li>
+<li><strong>Critical</strong>: 私たちが普段どのように異なる周波数を音として聴き分けているかに基づいてスペクトラムを分割して
+います。分割された周波数帯域は、周波数と「近い」と考えられるサウンドを表しています。</li>
+<li><strong>Full Octave</strong>: スペクトラムを１オクターブの幅で分割した周波数帯域で表示します。</li>
+</ul></li>
+<li><strong>Peak Hold Time</strong>: どれくらい長くスペクトラム・ピークが表示され続けるかを設定します。 <strong>5 Ms、250 ms、500
+ms、1,000 ms、5,000 ms、Infinite（無限）</strong> から選択できます。</li>
+<li><strong>Average Time</strong>: この設定に応じてスペクトラムの時間的な表示方法が変化します。秒数をあげるほど平均的なトーナ
+ル・バランスを見ることができる一方、秒数を下げるほどリアルタイムな表示となります。<strong>Real Time、1 Sec、3
+Sec、5 Sec、10 Sec、Infinite（無限）</strong> から選択できます。</li>
+<li><strong>Show Peak Hold</strong>: ピークホールドを表示させるか否かの切替えをします。</li>
+</ul>
+
+<hr />
+
+<h2 id="socialタブ">Socialタブ</h2>
+
+<p>Socialタブには、iZotopeの公式SNSアカウント（Facebook、Twitter、Instagram）に加え、ホームページの『Tips &amp;
+Tutorials』（ヒント＆チュートリアル）へアクセスするためのリンクが用意されています。</p>
+
+<figure ><img src="../images/options/social-options.png" alt="Social Options Window" /></figure>
+
+<hr />
+
+<h2 id="equalizerのオプション-メニュー">Equalizerのオプション・メニュー</h2>
+
+<figure ><img src="../images/options/eq-options.png" alt="EQ Options Window" /></figure>
+
+<ul>
+<li><strong>Show Spectrum</strong>: Equalizerモジュールのスペクトラム・アナライザーがリアルタイムで表示されます。周波数パラン
+スのチェックや、EQ操作の確認などに便利です。</li>
+<li><strong>Spectrum Frequency Scale</strong>: EQの周波数スケールを選択します。</li>
+<li><strong>Alt-Solo Q</strong>: Equalizerモジュールにおける、Alt-Solo機能のQ（帯域幅）を調節します。</li>
+</ul>
+
+<h3 id="masking-meter-マスキング-メーター">Masking Meter（マスキング・メーター）</h3>
+
+<ul>
+<li><strong>Gain Offset</strong>: DAW側のフェイダー・レベルとマッチさせるために、マスキング・メーターへの入力レベルを調節しま
+す。</li>
+<li><strong>Collision Histogram Peak Hold Time</strong>: <a href="index.html#マスキング-ヒストグラム">マスキング・ヒストグラム</a> に表示される
+ピークの計算方法を選択します。
+
+<ul>
+<li><strong>400 ms</strong>: 400ミリ秒単位で発生するマスキングを計算します。</li>
+<li><strong>3,000 ms</strong>: 最も便利な設定です。３秒単位で発生するマスキングを計算します。</li>
+<li><strong>Infinite</strong>: オーディオの最初か最後までに発生する全てのマスキングをチェックするのに便利です。</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="その他のモジュールのオプション-メニュー">その他のモジュールのオプション・メニュー</h2>
+
+<p>ここでは、Compressor、Transient Shaper、Exciter、Gateモジュールで共通するオプション・メニューを説明します。</p>
+
+<figure ><img src="../images/options/module-options.png" alt="Modules Options Window" /></figure>
+
+<h3 id="crossovers-クロスオーバー">Crossovers（クロスオーバー）</h3>
+
+<p>Compress、Transient、Exciter、Gateタブでは、マルチバンド処理におけるクロスオーバーの設定が可能です。</p>
+
+<ul>
+<li><strong>ZERO LATENCY (ANALOG)</strong>: ナチュラルなアナログ特性のクロスオーバー。若干の位相歪みが付加されます。</li>
+<li><strong>TRANSPARENT (HYBRID)</strong>: IIRのアナログ・クロスオーバーで、他のアナログ・クロスオーバーで見られる位相の歪み
+や周波数の歪みを減少させつつ、正確なクロスオーバー・ポイントとアナログ・クロスオーバーが持つあたたかみを維持
+します。（IIRは「Infinite Impulse Response」の略で「無限インパルス応答 」を意味します)</li>
+</ul>
+
+
+    </div>
+  </article>
+<footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../presets/index.html" title="プリセット (Presets)">
+        <span class="direction">前</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">プリセット (Presets)</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../glossary/index.html" title="用語集">
+        <span class="direction">次</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">用語集</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+<a href="../../en/options/index.html"><i class="icon icon-eye"></i> View page in English</a>
+<br />
+&copy; 2019 iZotope, Inc. - Neutron 3.1.0
+  </div>
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </main>
+</body>
+</html>

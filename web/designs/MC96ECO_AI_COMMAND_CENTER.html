@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MC96ECO AI OS — Command Center</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap');
+
+:root {
+  --gold: #D4A017;
+  --teal: #0D9488;
+  --signal: #00D4FF;
+  --nerve: #E8A87C;
+  --restore: #00FFB3;
+  --pulse: #FF4D6D;
+  --soul: #B185DB;
+  --deep: #0A0E17;
+  --mid: #111827;
+  --surface: #1A1F2E;
+  --silver: #94A3B8;
+  --dim: #64748B;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'IBM Plex Mono', monospace;
+  background: var(--deep);
+  color: #E2E8F0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ═══ SCANLINE OVERLAY ═══ */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,212,255,0.015) 2px, rgba(0,212,255,0.015) 4px);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ═══ PARTICLE CANVAS ═══ */
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ═══ MAIN LAYOUT ═══ */
+.app {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: 64px 1fr;
+  min-height: 100vh;
+}
+
+/* ═══ TOP BAR ═══ */
+.topbar {
+  grid-column: 1 / -1;
+  background: rgba(17,24,39,0.95);
+  border-bottom: 1px solid rgba(212,160,23,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  backdrop-filter: blur(12px);
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar-brand h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+.topbar-brand .tag {
+  font-size: 10px;
+  padding: 3px 10px;
+  background: rgba(0,212,255,0.15);
+  color: var(--signal);
+  border: 1px solid rgba(0,212,255,0.3);
+  border-radius: 12px;
+  letter-spacing: 1px;
+}
+
+.topbar-status {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 11px;
+  color: var(--silver);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  animation: pulse-dot 2s ease infinite;
+}
+
+.status-dot.live { background: var(--restore); box-shadow: 0 0 8px var(--restore); }
+.status-dot.warn { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+.status-dot.dead { background: var(--pulse); box-shadow: 0 0 8px var(--pulse); }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ═══ SIDEBAR ═══ */
+.sidebar {
+  background: rgba(17,24,39,0.9);
+  border-right: 1px solid rgba(212,160,23,0.12);
+  padding: 20px 0;
+  overflow-y: auto;
+  backdrop-filter: blur(8px);
+}
+
+.sidebar-section {
+  padding: 0 16px;
+  margin-bottom: 24px;
+}
+
+.sidebar-section h3 {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-left: 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--silver);
+  transition: all 0.2s;
+  position: relative;
+}
+
+.nav-item:hover { background: rgba(212,160,23,0.08); color: #E2E8F0; }
+.nav-item.active { background: rgba(212,160,23,0.12); color: var(--gold); }
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  background: var(--gold);
+  border-radius: 0 3px 3px 0;
+}
+
+.nav-icon { width: 18px; text-align: center; }
+
+.nav-badge {
+  margin-left: auto;
+  font-size: 9px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.badge-live { background: rgba(0,255,179,0.15); color: var(--restore); }
+.badge-warn { background: rgba(212,160,23,0.15); color: var(--gold); }
+.badge-dead { background: rgba(255,77,109,0.15); color: var(--pulse); }
+.badge-num { background: rgba(0,212,255,0.1); color: var(--signal); }
+
+/* ═══ MAIN CONTENT ═══ */
+.main {
+  padding: 24px;
+  overflow-y: auto;
+  max-height: calc(100vh - 64px);
+}
+
+/* ═══ STATS ROW ═══ */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid rgba(212,160,23,0.12);
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.stat-card.gold::before { background: linear-gradient(90deg, var(--gold), transparent); }
+.stat-card.signal::before { background: linear-gradient(90deg, var(--signal), transparent); }
+.stat-card.restore::before { background: linear-gradient(90deg, var(--restore), transparent); }
+.stat-card.pulse::before { background: linear-gradient(90deg, var(--pulse), transparent); }
+.stat-card.soul::before { background: linear-gradient(90deg, var(--soul), transparent); }
+.stat-card.nerve::before { background: linear-gradient(90deg, var(--nerve), transparent); }
+
+.stat-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stat-sub {
+  font-size: 11px;
+  color: var(--silver);
+  margin-top: 6px;
+}
+
+/* ═══ PANELS ═══ */
+.panel {
+  background: var(--surface);
+  border: 1px solid rgba(212,160,23,0.1);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(212,160,23,0.08);
+}
+
+.panel-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--gold);
+}
+
+.panel-body { padding: 20px; }
+
+/* ═══ AI FAMILY GRID ═══ */
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.agent-card {
+  background: rgba(10,14,23,0.6);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.agent-card:hover {
+  border-color: rgba(212,160,23,0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.agent-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.agent-card[data-agent="gabriel"]::after { background: var(--pulse); }
+.agent-card[data-agent="lucy"]::after { background: var(--signal); }
+.agent-card[data-agent="shirl"]::after { background: var(--nerve); }
+.agent-card[data-agent="pops"]::after { background: var(--soul); }
+.agent-card[data-agent="dream"]::after { background: var(--restore); }
+.agent-card[data-agent="keith"]::after { background: var(--silver); }
+.agent-card[data-agent="cb01"]::after { background: var(--gold); }
+
+.agent-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.agent-role {
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.agent-load {
+  height: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.agent-load-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+.agent-task {
+  font-size: 11px;
+  color: var(--silver);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ═══ INFRASTRUCTURE TABLE ═══ */
+.infra-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.infra-table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--dim);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(212,160,23,0.1);
+}
+
+.infra-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  color: var(--silver);
+}
+
+.infra-table tr:hover td { background: rgba(212,160,23,0.04); }
+
+.tag-live { color: var(--restore); }
+.tag-stale { color: var(--gold); }
+.tag-empty { color: var(--pulse); }
+.tag-blocked { color: var(--pulse); opacity: 0.6; }
+
+/* ═══ SEARCH ═══ */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(10,14,23,0.6);
+  border: 1px solid rgba(212,160,23,0.15);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #E2E8F0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+}
+
+.search-box input::placeholder { color: var(--dim); }
+
+.search-icon { color: var(--gold); font-size: 16px; }
+
+/* ═══ ROADMAP ═══ */
+.roadmap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.phase-card {
+  background: rgba(10,14,23,0.6);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+}
+
+.phase-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.phase-card.p1::before { background: var(--pulse); }
+.phase-card.p2::before { background: var(--gold); }
+.phase-card.p3::before { background: var(--restore); }
+
+.phase-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.phase-card.p1 .phase-label { color: var(--pulse); }
+.phase-card.p2 .phase-label { color: var(--gold); }
+.phase-card.p3 .phase-label { color: var(--restore); }
+
+.phase-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #E2E8F0;
+  margin-bottom: 4px;
+}
+
+.phase-dates {
+  font-size: 10px;
+  color: var(--dim);
+  margin-bottom: 14px;
+}
+
+.phase-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 11px;
+  color: var(--silver);
+}
+
+.phase-check {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 9px;
+}
+
+.phase-check.done {
+  background: rgba(0,255,179,0.2);
+  border-color: var(--restore);
+  color: var(--restore);
+}
+
+.phase-check:hover { border-color: var(--gold); }
+
+/* ═══ MONETIZATION ═══ */
+.pipeline-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 0;
+  flex-wrap: wrap;
+}
+
+.pipeline-node {
+  background: rgba(10,14,23,0.8);
+  border: 1px solid rgba(212,160,23,0.2);
+  border-radius: 10px;
+  padding: 14px 20px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.pipeline-node .node-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.pipeline-node .node-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.pipeline-arrow {
+  color: var(--dim);
+  font-size: 18px;
+}
+
+/* ═══ CONTENT SECTIONS (hidden/shown) ═══ */
+.content-section { display: none; }
+.content-section.active { display: block; }
+
+/* ═══ GODADDY ESCAPE ═══ */
+.escape-progress {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.escape-step {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: var(--dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.escape-step.done {
+  background: rgba(0,255,179,0.2);
+  border-color: var(--restore);
+  color: var(--restore);
+}
+
+.escape-step:hover { border-color: var(--gold); color: var(--gold); }
+
+.escape-list {
+  list-style: none;
+}
+
+.escape-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-size: 12px;
+  color: var(--silver);
+  cursor: pointer;
+}
+
+.escape-list li .step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,160,23,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.escape-list li.done .step-num {
+  background: rgba(0,255,179,0.2);
+  border-color: var(--restore);
+  color: var(--restore);
+}
+
+.escape-list li.done { text-decoration: line-through; color: var(--dim); }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .roadmap { grid-template-columns: 1fr; }
+}
+
+/* ═══ CUSTOM SCROLLBAR ═══ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--deep); }
+::-webkit-scrollbar-thumb { background: rgba(212,160,23,0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(212,160,23,0.4); }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="app">
+  <!-- ═══ TOP BAR ═══ -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <h1>MC96ECO AI OS</h1>
+      <span class="tag">COMMAND CENTER v1.0</span>
+    </div>
+    <div class="topbar-status">
+      <span><span class="status-dot live"></span>Cloudflare</span>
+      <span><span class="status-dot live"></span>GitHub</span>
+      <span><span class="status-dot warn"></span>GoDaddy</span>
+      <span><span class="status-dot dead"></span>R2 Storage</span>
+      <span style="color:var(--gold);">RSP_001</span>
+      <span style="color:var(--dim);">March 19, 2026</span>
+    </div>
+  </header>
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <nav class="sidebar">
+    <div class="sidebar-section">
+      <h3>Command</h3>
+      <div class="nav-item active" data-section="overview">
+        <span class="nav-icon">&#9670;</span> Overview
+      </div>
+      <div class="nav-item" data-section="agents">
+        <span class="nav-icon">&#9733;</span> AI Family
+        <span class="nav-badge badge-num">7</span>
+      </div>
+      <div class="nav-item" data-section="infrastructure">
+        <span class="nav-icon">&#9881;</span> Infrastructure
+        <span class="nav-badge badge-warn">11 D1</span>
+      </div>
+      <div class="nav-item" data-section="roadmap">
+        <span class="nav-icon">&#9654;</span> Roadmap
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Operations</h3>
+      <div class="nav-item" data-section="godaddy">
+        <span class="nav-icon">&#10060;</span> GoDaddy Escape
+        <span class="nav-badge badge-dead">0/13</span>
+      </div>
+      <div class="nav-item" data-section="monetization">
+        <span class="nav-icon">&#9733;</span> Monetization
+      </div>
+      <div class="nav-item" data-section="ip">
+        <span class="nav-icon">&#128274;</span> IP Catalog
+        <span class="nav-badge badge-num">326</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Projects</h3>
+      <div class="nav-item" data-section="noizyvox">
+        <span class="nav-icon" style="color:var(--pulse);">&#9679;</span> NOIZYVOX
+        <span class="nav-badge badge-live">P1</span>
+      </div>
+      <div class="nav-item" data-section="noizyai">
+        <span class="nav-icon" style="color:var(--signal);">&#9679;</span> NOIZY.AI
+      </div>
+      <div class="nav-item" data-section="dreamchamber">
+        <span class="nav-icon" style="color:var(--restore);">&#9679;</span> DreamChamber
+      </div>
+      <div class="nav-item" data-section="noizykidz">
+        <span class="nav-icon" style="color:var(--nerve);">&#9679;</span> NOIZYKIDZ
+      </div>
+      <div class="nav-item" data-section="lifeluv">
+        <span class="nav-icon" style="color:var(--soul);">&#9679;</span> LIFELUV
+      </div>
+    </div>
+
+    <div class="sidebar-section" style="margin-top:auto; padding-top:20px; border-top:1px solid rgba(212,160,23,0.08);">
+      <div style="padding:0 12px; font-size:10px; color:var(--dim); line-height:1.6;">
+        <div style="color:var(--gold); font-family:'Cormorant Garamond',serif; font-size:13px; margin-bottom:4px;">Robert Stephen Plowman</div>
+        Founder & Architect<br>
+        NOIZYFISH INC.<br>
+        <span style="color:var(--nerve); font-style:italic;">"Peace, Love & Understanding"</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="main">
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <span class="search-icon">&#9906;</span>
+      <input type="text" id="globalSearch" placeholder="Search the MC96ECO Universe... projects, agents, databases, IP..." />
+    </div>
+
+    <!-- ═══ OVERVIEW SECTION ═══ -->
+    <div class="content-section active" id="sec-overview">
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card gold">
+          <div class="stat-label">Active Projects</div>
+          <div class="stat-value">8</div>
+          <div class="stat-sub">NOIZYVOX, NOIZY.AI, DreamChamber, NOIZYKIDZ, LIFELUV, NOIZYLAB, HEAVEN17, GORUNFREE</div>
+        </div>
+        <div class="stat-card signal">
+          <div class="stat-label">AI Agents</div>
+          <div class="stat-value">7</div>
+          <div class="stat-sub">GABRIEL, LUCY, SHIRL, POPS, DREAM, KEITH, CB01</div>
+        </div>
+        <div class="stat-card restore">
+          <div class="stat-label">Memcells</div>
+          <div class="stat-value">326</div>
+          <div class="stat-sub">88 types across 5 agents in agent-memory D1</div>
+        </div>
+        <div class="stat-card pulse">
+          <div class="stat-label">Domains</div>
+          <div class="stat-value">5</div>
+          <div class="stat-sub">3 on CF, 2 stuck at GoDaddy</div>
+        </div>
+        <div class="stat-card soul">
+          <div class="stat-label">D1 Databases</div>
+          <div class="stat-value">11</div>
+          <div class="stat-sub">3 live, 3 stale, 5 need cleanup</div>
+        </div>
+        <div class="stat-card nerve">
+          <div class="stat-label">GoDaddy Escape</div>
+          <div class="stat-value" id="godaddy-score">0/13</div>
+          <div class="stat-sub">3 months overdue. Start NOW.</div>
+        </div>
+      </div>
+
+      <!-- Priority Actions -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">PRIORITY ACTIONS — THIS WEEK</span>
+          <span style="font-size:10px; color:var(--pulse);">CRITICAL PATH</span>
+        </div>
+        <div class="panel-body">
+          <table class="infra-table">
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Owner</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Blocker</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:#E2E8F0; font-weight:500;">Enable R2 Storage</td>
+                <td>ROB (manual)</td>
+                <td><span class="tag-live">P0</span></td>
+                <td><span class="tag-empty">BLOCKED</span></td>
+                <td>Requires Cloudflare Dashboard action</td>
+              </tr>
+              <tr>
+                <td style="color:#E2E8F0; font-weight:500;">Deploy HEAVEN17 Worker</td>
+                <td>KEITH + GABRIEL</td>
+                <td><span class="tag-live">P1</span></td>
+                <td><span class="tag-stale">READY</span></td>
+                <td>Code exists — needs wrangler deploy</td>
+              </tr>
+              <tr>
+                <td style="color:#E2E8F0; font-weight:500;">Configure DNS (all 5 domains)</td>
+                <td>KEITH + CB01</td>
+                <td><span class="tag-live">P1</span></td>
+                <td><span class="tag-empty">NOT STARTED</span></td>
+                <td>Depends on Worker deploy</td>
+              </tr>
+              <tr>
+                <td style="color:#E2E8F0; font-weight:500;">Unlock GoDaddy domains</td>
+                <td>ROB + CB01</td>
+                <td><span class="tag-live">P1</span></td>
+                <td><span class="tag-empty">NOT STARTED</span></td>
+                <td>Requires account login</td>
+              </tr>
+              <tr>
+                <td style="color:#E2E8F0; font-weight:500;">Write RSP_001 consent_ledger entry</td>
+                <td>GABRIEL</td>
+                <td><span class="tag-live">P1</span></td>
+                <td><span class="tag-stale">PENDING</span></td>
+                <td>None — can do now</td>
+              </tr>
+              <tr>
+                <td style="color:#E2E8F0; font-weight:500;">Archive Slack Consent Blueprint</td>
+                <td>LUCY</td>
+                <td style="color:var(--gold);">P2</td>
+                <td><span class="tag-stale">PENDING</span></td>
+                <td>None — content identified</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- AI Family Quick View -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">AI FAMILY — LIVE STATUS</span>
+          <span style="font-size:10px; color:var(--signal); cursor:pointer;" onclick="showSection('agents')">VIEW ALL &#8594;</span>
+        </div>
+        <div class="panel-body">
+          <div class="agent-grid" id="agent-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ AGENTS SECTION ═══ -->
+    <div class="content-section" id="sec-agents">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--gold); margin-bottom:8px;">AI Family Architecture</h2>
+      <p style="font-size:12px; color:var(--silver); margin-bottom:24px;">7 agents. Clear roles. Clear accountability. All serving Robert Stephen Plowman and the MC96ECO Universe.</p>
+      <div class="agent-grid" id="agent-grid-full"></div>
+
+      <div class="panel" style="margin-top:24px;">
+        <div class="panel-header">
+          <span class="panel-title">ASSIGNMENT MATRIX</span>
+        </div>
+        <div class="panel-body">
+          <table class="infra-table">
+            <thead>
+              <tr><th>Project</th><th>GABRIEL</th><th>LUCY</th><th>SHIRL</th><th>POPS</th><th>DREAM</th><th>KEITH</th><th>CB01</th></tr>
+            </thead>
+            <tbody id="assignment-matrix"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ INFRASTRUCTURE SECTION ═══ -->
+    <div class="content-section" id="sec-infrastructure">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--gold); margin-bottom:8px;">Infrastructure</h2>
+      <p style="font-size:12px; color:var(--silver); margin-bottom:24px;">Cloudflare Workers, D1 Databases, KV Namespaces, R2 Storage, Domains & DNS</p>
+
+      <div class="stats-row" style="grid-template-columns: repeat(6, 1fr);">
+        <div class="stat-card gold"><div class="stat-label">Workers</div><div class="stat-value">1</div><div class="stat-sub">STUB — needs deploy</div></div>
+        <div class="stat-card signal"><div class="stat-label">D1 Databases</div><div class="stat-value">11</div><div class="stat-sub">3 live data</div></div>
+        <div class="stat-card soul"><div class="stat-label">KV Namespaces</div><div class="stat-value">20</div><div class="stat-sub">15 keep, 5 cleanup</div></div>
+        <div class="stat-card pulse"><div class="stat-label">R2 Buckets</div><div class="stat-value">0</div><div class="stat-sub">NOT ENABLED</div></div>
+        <div class="stat-card restore"><div class="stat-label">Domains (CF)</div><div class="stat-value">3</div><div class="stat-sub">0 DNS configured</div></div>
+        <div class="stat-card nerve"><div class="stat-label">Domains (GD)</div><div class="stat-value">2</div><div class="stat-sub">NEED TRANSFER</div></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header"><span class="panel-title">D1 DATABASES</span></div>
+        <div class="panel-body">
+          <table class="infra-table">
+            <thead><tr><th>Database</th><th>Status</th><th>Records</th><th>Owner</th><th>Action</th></tr></thead>
+            <tbody id="d1-table"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header"><span class="panel-title">DOMAINS & DNS</span></div>
+        <div class="panel-body">
+          <table class="infra-table">
+            <thead><tr><th>Domain</th><th>Registrar</th><th>DNS Status</th><th>Target</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td style="color:#E2E8F0;">noizy.ai</td><td>Cloudflare</td><td><span class="tag-empty">NO RECORDS</span></td><td>HEAVEN17 Worker</td><td>Configure CNAME + TXT</td></tr>
+              <tr><td style="color:#E2E8F0;">noizylab.ca</td><td>Cloudflare</td><td><span class="tag-empty">NO RECORDS</span></td><td>HEAVEN17 Worker</td><td>Configure CNAME</td></tr>
+              <tr><td style="color:#E2E8F0;">fishmusicinc.com</td><td>Cloudflare</td><td><span class="tag-empty">NO RECORDS</span></td><td>Legacy redirect</td><td>301 redirect to noizy.ai</td></tr>
+              <tr><td style="color:#E2E8F0;">noizyfish.com</td><td style="color:var(--pulse);">GoDaddy</td><td><span class="tag-blocked">LOCKED</span></td><td>Transfer to CF</td><td>Unlock + auth code</td></tr>
+              <tr><td style="color:#E2E8F0;">noizylab.com</td><td style="color:var(--pulse);">GoDaddy</td><td><span class="tag-blocked">LOCKED</span></td><td>Transfer to CF</td><td>Unlock + auth code</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ROADMAP SECTION ═══ -->
+    <div class="content-section" id="sec-roadmap">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--gold); margin-bottom:8px;">Build-Forward Roadmap</h2>
+      <p style="font-size:12px; color:var(--silver); margin-bottom:24px;">Three phases. Foundation, prototype, launch. Every item is real, every timeline is honest.</p>
+      <div class="roadmap" id="roadmap-grid"></div>
+    </div>
+
+    <!-- ═══ GODADDY SECTION ═══ -->
+    <div class="content-section" id="sec-godaddy">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--pulse); margin-bottom:8px;">GoDaddy Escape — 13-Step Migration</h2>
+      <p style="font-size:12px; color:var(--silver); margin-bottom:16px;">Originally targeted December 2025. 3+ months overdue. 0 of 13 milestones completed. Time to finish this.</p>
+
+      <div class="escape-progress" id="escape-progress"></div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">ESCAPE MILESTONES</span>
+          <span style="font-size:11px; color:var(--dim);" id="escape-counter">0 / 13 complete</span>
+        </div>
+        <div class="panel-body">
+          <ul class="escape-list" id="escape-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MONETIZATION SECTION ═══ -->
+    <div class="content-section" id="sec-monetization">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--gold); margin-bottom:8px;">Monetization Pipeline</h2>
+      <p style="font-size:12px; color:var(--silver); margin-bottom:24px;">From creative asset to recurring revenue. The MC96ECO value chain.</p>
+
+      <div class="pipeline-flow">
+        <div class="pipeline-node"><div class="node-label">Capture</div><div class="node-value">Voice, Music, Code, Ideas</div></div>
+        <span class="pipeline-arrow">&#8594;</span>
+        <div class="pipeline-node"><div class="node-label">Process</div><div class="node-value">AI Structure & Organize</div></div>
+        <span class="pipeline-arrow">&#8594;</span>
+        <div class="pipeline-node"><div class="node-label">Package</div><div class="node-value">Voice Packs, AI Models, Tools</div></div>
+        <span class="pipeline-arrow">&#8594;</span>
+        <div class="pipeline-node"><div class="node-label">Distribute</div><div class="node-value">NOIZYVOX Marketplace</div></div>
+        <span class="pipeline-arrow">&#8594;</span>
+        <div class="pipeline-node" style="border-color:var(--restore);"><div class="node-label">Revenue</div><div class="node-value" style="color:var(--restore);">75/25 Split</div></div>
+      </div>
+
+      <div class="panel" style="margin-top:24px;">
+        <div class="panel-header"><span class="panel-title">REVENUE STREAMS</span></div>
+        <div class="panel-body">
+          <table class="infra-table">
+            <thead><tr><th>Stream</th><th>Model</th><th>Source Project</th><th>Status</th><th>Est. Timeline</th></tr></thead>
+            <tbody>
+              <tr><td style="color:#E2E8F0;">Voice Licensing (RSP_001)</td><td>Per-use + subscription</td><td>NOIZYVOX</td><td><span class="tag-stale">BUILDING</span></td><td>Q2 2026</td></tr>
+              <tr><td style="color:#E2E8F0;">Artist Marketplace Fees</td><td>75/25 split, 4 tiers</td><td>NOIZYVOX</td><td><span class="tag-stale">DESIGNING</span></td><td>Q3 2026</td></tr>
+              <tr><td style="color:#E2E8F0;">Consent-as-Code Licensing</td><td>Enterprise SaaS</td><td>NOIZYVOX / NOIZYLAB</td><td><span class="tag-empty">CONCEPT</span></td><td>Q4 2026</td></tr>
+              <tr><td style="color:#E2E8F0;">Voice DNA Provenance</td><td>Per-verification fee</td><td>NOIZY PROOF</td><td><span class="tag-empty">CONCEPT</span></td><td>2027</td></tr>
+              <tr><td style="color:#E2E8F0;">NOIZYKIDZ Content</td><td>Subscription + licensing</td><td>NOIZYKIDZ</td><td><span class="tag-empty">CONCEPT</span></td><td>2027</td></tr>
+              <tr><td style="color:#E2E8F0;">DreamChamber Access</td><td>Invitation-only, premium</td><td>DreamChamber</td><td><span class="tag-empty">CONCEPT</span></td><td>Q3 2026</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:20px;">
+        <div class="panel-header"><span class="panel-title">NOIZYVOX PRICING MODEL</span></div>
+        <div class="panel-body">
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
+            <div style="background:rgba(10,14,23,0.6); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:16px; text-align:center;">
+              <div style="font-size:10px; color:var(--dim); letter-spacing:2px; text-transform:uppercase;">Dreamer</div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--restore); font-weight:700;">FREE</div>
+              <div style="font-size:11px; color:var(--silver); margin-top:8px;">1 voice, basic protection, consent dashboard</div>
+            </div>
+            <div style="background:rgba(10,14,23,0.6); border:1px solid rgba(212,160,23,0.2); border-radius:10px; padding:16px; text-align:center;">
+              <div style="font-size:10px; color:var(--dim); letter-spacing:2px; text-transform:uppercase;">Creator</div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--gold); font-weight:700;">$29</div>
+              <div style="font-size:11px; color:var(--silver); margin-top:8px;">5 voices, Voice Guardian, marketplace listing</div>
+            </div>
+            <div style="background:rgba(10,14,23,0.6); border:1px solid rgba(0,212,255,0.2); border-radius:10px; padding:16px; text-align:center;">
+              <div style="font-size:10px; color:var(--dim); letter-spacing:2px; text-transform:uppercase;">Professional</div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--signal); font-weight:700;">$99</div>
+              <div style="font-size:11px; color:var(--silver); margin-top:8px;">Unlimited voices, Voice DNA, Income Smoothing</div>
+            </div>
+            <div style="background:rgba(10,14,23,0.6); border:1px solid rgba(177,133,219,0.2); border-radius:10px; padding:16px; text-align:center;">
+              <div style="font-size:10px; color:var(--dim); letter-spacing:2px; text-transform:uppercase;">Guild</div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--soul); font-weight:700;">$499</div>
+              <div style="font-size:11px; color:var(--silver); margin-top:8px;">Voice Unions, Legacy Vault, collective bargaining</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ IP CATALOG SECTION ═══ -->
+    <div class="content-section" id="sec-ip">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--gold); margin-bottom:8px;">IP Catalog</h2>
+      <p style="font-size:12px; color:var(--silver); margin-bottom:24px;">326 memcells. 88 types. 15+ projects. 3 years of creation. Every piece mapped and tracked.</p>
+
+      <div class="panel">
+        <div class="panel-header"><span class="panel-title">KEY IP DOCUMENTS</span></div>
+        <div class="panel-body">
+          <table class="infra-table">
+            <thead><tr><th>Document</th><th>Location</th><th>Created</th><th>Significance</th></tr></thead>
+            <tbody>
+              <tr><td style="color:#E2E8F0;">NOIZY-Founder-Blueprint-2026</td><td>Google Drive</td><td>Mar 14, 2026</td><td style="color:var(--restore);">THE strategic document. 5th Epoch framework.</td></tr>
+              <tr><td style="color:#E2E8F0;">Consent Architecture Blueprint</td><td>Slack DM (Mar 5)</td><td>Mar 5, 2026</td><td style="color:var(--restore);">Consent Kernel vs ElevenLabs. EU AI Act refs.</td></tr>
+              <tr><td style="color:#E2E8F0;">IP Catalog v2.0</td><td>NOIZYANTHROPIC repo</td><td>Mar 2026</td><td>611 lines. Full inventory of all IP.</td></tr>
+              <tr><td style="color:#E2E8F0;">Voice Archive (Montreal 2020)</td><td>Google Drive</td><td>Feb 2020</td><td style="color:var(--nerve);">6 folders. Foundation for RSP_001.</td></tr>
+              <tr><td style="color:#E2E8F0;">thenoizyman Skill</td><td>Claude / Anthropic</td><td>Mar 2026</td><td>TypeScript engineering blueprint. Core types.</td></tr>
+              <tr><td style="color:#E2E8F0;">HEAVEN17 Worker</td><td>GitHub</td><td>Dec 2025</td><td>450+ line master router. NEVER DEPLOYED.</td></tr>
+              <tr><td style="color:#E2E8F0;">GORUNFREE Protocol</td><td>GitHub</td><td>2025</td><td>13 operational rules for AI agent behavior.</td></tr>
+              <tr><td style="color:#E2E8F0;">RSP_001 Voice Model</td><td>Consent signed Jan 6, 2026</td><td>Jan 6, 2026</td><td style="color:var(--gold);">Rob's voice. VOX_MC96_UNIVERSE_001.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PROJECT SECTIONS ═══ -->
+    <div class="content-section" id="sec-noizyvox">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--pulse); margin-bottom:8px;">NOIZYVOX</h2>
+      <p style="font-size:12px; color:var(--silver); margin-bottom:24px;">The voice consent platform. 75/25 artist-first split. Voice Unions. Voice Guardian. Voice DNA. Not another AI voice factory — a guild.</p>
+      <div class="panel"><div class="panel-header"><span class="panel-title">STATUS</span></div><div class="panel-body">
+        <p style="font-size:12px; color:var(--silver); line-height:1.8;">
+          <strong style="color:var(--gold);">Consent Kernel:</strong> Designed (4 primitives). Not yet coded as smart contracts.<br>
+          <strong style="color:var(--gold);">RSP_001:</strong> Voice model consent signed Jan 6, 2026. Foundation artist.<br>
+          <strong style="color:var(--gold);">Artist Portal:</strong> HTML prototype built. Needs backend (HEAVEN17 + D1).<br>
+          <strong style="color:var(--gold);">Pricing:</strong> 4 tiers — FREE / $29 / $99 / $499. 75/25 split.<br>
+          <strong style="color:var(--gold);">Blockers:</strong> R2 not enabled (voice file storage). Worker not deployed. DNS not configured.
+        </p>
+      </div></div>
+    </div>
+
+    <div class="content-section" id="sec-noizyai">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--signal); margin-bottom:8px;">NOIZY.AI</h2>
+      <p style="font-size:12px; color:var(--silver); margin-bottom:24px;">The intelligence layer. A.I.V.A. — Actors, Intelligently & Interactively, Voice Acting. The public face of the MC96ECO AI ecosystem.</p>
+      <div class="panel"><div class="panel-header"><span class="panel-title">STATUS</span></div><div class="panel-body">
+        <p style="font-size:12px; color:var(--silver); line-height:1.8;">
+          <strong style="color:var(--signal);">Prototype:</strong> NOIZY_AI_DREAMCHAMBER.html (1,537 lines) — built in this session.<br>
+          <strong style="color:var(--signal);">A.I.V.A. Animation:</strong> Hero morphing cycle implemented. Scroll-animated letterform breakdown.<br>
+          <strong style="color:var(--signal);">Domain:</strong> noizy.ai on Cloudflare. DNS not yet configured.<br>
+          <strong style="color:var(--signal);">RAG Pipeline:</strong> Designed in thenoizyman skill. Not yet deployed.
+        </p>
+      </div></div>
+    </div>
+
+    <div class="content-section" id="sec-dreamchamber">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--restore); margin-bottom:8px;">DreamChamber</h2>
+      <p style="font-size:12px; color:var(--silver); margin-bottom:24px;">The 500-Year Codex. Invitation-only creative sanctuary. VR experience with 6 floating project nodes.</p>
+      <div class="panel"><div class="panel-header"><span class="panel-title">STATUS</span></div><div class="panel-body">
+        <p style="font-size:12px; color:var(--silver); line-height:1.8;">
+          <strong style="color:var(--restore);">VR Demo:</strong> A-Frame experience built (NOIZYANTHROPIC/DEMOS/VR). Star field, 6 nodes, hand tracking.<br>
+          <strong style="color:var(--restore);">HTML Prototype:</strong> Integrated into NOIZY_AI_DREAMCHAMBER.html.<br>
+          <strong style="color:var(--restore);">Target:</strong> Invitation-only launch Q3 2026.
+        </p>
+      </div></div>
+    </div>
+
+    <div class="content-section" id="sec-noizykidz">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--nerve); margin-bottom:8px;">NOIZYKIDZ</h2>
+      <p style="font-size:12px; color:var(--silver); margin-bottom:24px;">Music education for children. Podcast framework. SHIRL + POPS as nurturing AI guides.</p>
+      <div class="panel"><div class="panel-header"><span class="panel-title">STATUS</span></div><div class="panel-body">
+        <p style="font-size:12px; color:var(--silver); line-height:1.8;">
+          <strong style="color:var(--nerve);">Concept:</strong> Defined. SHIRL (nurturing aunt) + POPS (wise father) as 24/7 AI guides.<br>
+          <strong style="color:var(--nerve);">Podcast:</strong> Framework design pending. Target Q4 2026.<br>
+          <strong style="color:var(--nerve);">Safety:</strong> Enhanced content safety. Age-appropriate interactions only.
+        </p>
+      </div></div>
+    </div>
+
+    <div class="content-section" id="sec-lifeluv">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--soul); margin-bottom:8px;">LIFELUV</h2>
+      <p style="font-size:12px; color:var(--silver); margin-bottom:24px;">The human connection layer. Peace, love, and understanding as design goals — not slogans.</p>
+      <div class="panel"><div class="panel-header"><span class="panel-title">STATUS</span></div><div class="panel-body">
+        <p style="font-size:12px; color:var(--silver); line-height:1.8;">
+          <strong style="color:var(--soul);">Vision:</strong> Technology that serves humanity, protects identity, and leaves the world more humane.<br>
+          <strong style="color:var(--soul);">Status:</strong> Conceptual. Woven into the DNA of every other project.
+        </p>
+      </div></div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ═══ DATA ═══
+const agents = [
+  { id: 'gabriel', name: 'GABRIEL', role: 'Warrior Executor', color: '#FF4D6D', load: 85, task: 'Deploy HEAVEN17 + Consent Ledger v1', projects: ['NOIZYVOX', 'Consent Kernel', 'HEAVEN17'] },
+  { id: 'lucy', name: 'LUCY', role: 'Organizer / Archivist', color: '#00D4FF', load: 60, task: 'Maintain NOIZYANTHROPIC repo', projects: ['NOIZY.AI', 'DreamChamber', 'IP Catalog'] },
+  { id: 'shirl', name: 'SHIRL', role: 'Nurturing Aunt 24/7', color: '#E8A87C', load: 30, task: 'KIDZ podcast framework', projects: ['NOIZYKIDZ', 'LIFELUV'] },
+  { id: 'pops', name: 'POPS', role: 'Wise Father 24/7', color: '#B185DB', load: 25, task: 'Ethics review, mentorship', projects: ['NOIZYKIDZ', 'NOIZYVOX advisory'] },
+  { id: 'dream', name: 'DREAM', role: 'Visionary', color: '#00FFB3', load: 70, task: 'DreamChamber prototype + 500yr Codex', projects: ['DreamChamber', 'NOIZY.AI', 'A.I.V.A.'] },
+  { id: 'keith', name: 'ENGR_KEITH', role: 'Engineering Spirit', color: '#94A3B8', load: 90, task: 'Cloudflare cleanup + DNS config', projects: ['NOIZYLAB', 'Infrastructure', 'Consent'] },
+  { id: 'cb01', name: 'CB01', role: 'Operational', color: '#D4A017', load: 75, task: 'Domain transfers + monitoring', projects: ['Infrastructure', 'GoDaddy Escape'] },
+];
+
+const d1Databases = [
+  { name: 'agent-memory', status: 'LIVE', records: '326 memcells, 5 agents', owner: 'GABRIEL', action: 'KEEP — THE BRAIN' },
+  { name: 'rsp-master-budget', status: 'LIVE', records: '68 subs, 437 accounts', owner: 'CB01', action: 'KEEP — UPDATE' },
+  { name: 'aquarium-archive', status: 'LIVE', records: 'Archive data', owner: 'LUCY', action: 'KEEP — ARCHIVE' },
+  { name: 'noizylab-repairs', status: 'LIVE', records: 'Repair logs', owner: 'KEITH', action: 'KEEP — VERIFY' },
+  { name: 'godaddy-escape-tracker', status: 'LIVE', records: '13 milestones', owner: 'CB01', action: 'KEEP — UPDATE' },
+  { name: 'ai-router-brain', status: 'STALE', records: 'Old routing data', owner: 'KEITH', action: 'UPGRADE' },
+  { name: 'mc96-command-central', status: 'STALE', records: 'Old command data', owner: 'CB01', action: 'UPGRADE' },
+  { name: 'subscription-killer', status: 'STALE', records: 'Need population', owner: 'CB01', action: 'POPULATE' },
+  { name: 'gabriel_db', status: 'EMPTY', records: '0', owner: 'GABRIEL', action: 'MERGE INTO agent-memory' },
+  { name: 'email-command-center', status: 'EMPTY', records: '0', owner: 'CB01', action: 'MERGE OR DELETE' },
+  { name: 'tencc-pipeline', status: 'EMPTY', records: '0', owner: 'CB01', action: 'VERIFY OR DELETE' },
+];
+
+const assignments = [
+  { project: 'NOIZYVOX', matrix: ['★','○','','△','','○','○'] },
+  { project: 'Consent Kernel', matrix: ['★','','','△','','○',''] },
+  { project: 'HEAVEN17 Worker', matrix: ['★','','','','','★','○'] },
+  { project: 'NOIZY.AI', matrix: ['','★','','','○','',''] },
+  { project: 'DreamChamber', matrix: ['','○','','','★','',''] },
+  { project: 'NOIZYKIDZ', matrix: ['','','★','★','○','',''] },
+  { project: 'LIFELUV', matrix: ['','','○','○','★','',''] },
+  { project: 'Cloudflare Infra', matrix: ['','','','','','★','★'] },
+  { project: 'GoDaddy Escape', matrix: ['','','','','','','★'] },
+  { project: 'IP Catalog', matrix: ['','★','','','','',''] },
+  { project: 'GORUNFREE', matrix: ['★','','','△','','',''] },
+];
+
+const escapeSteps = [
+  'Inventory all 6 GoDaddy accounts and document Customer IDs',
+  'Get all Customer IDs for each account',
+  'Unlock noizyfish.com and noizylab.com domains',
+  'Obtain authorization codes for both domains',
+  'Add payment method to Cloudflare Registrar',
+  'Initiate transfer: noizyfish.com to Cloudflare',
+  'Initiate transfer: noizylab.com to Cloudflare',
+  'Approve all transfers at GoDaddy end',
+  'Remove GoDaddy M365 partner link',
+  'Kill fishmusicinc.com M365 tenant at GoDaddy',
+  'Verify Microsoft account is unblocked',
+  'Confirm all transfers complete',
+  'Close ALL 6 GoDaddy accounts — TOTAL FREEDOM',
+];
+
+const roadmapPhases = [
+  { phase: 'Phase 1: Foundation', dates: 'March – April 2026', cls: 'p1', items: [
+    'Enable R2 Storage on Cloudflare', 'Deploy HEAVEN17 Worker', 'Configure DNS for all 5 domains',
+    'Transfer noizyfish.com + noizylab.com', 'Close all 6 GoDaddy accounts', 'Merge gabriel_db into agent-memory',
+    'Write RSP_001 consent_ledger entry', 'Archive Slack Consent Blueprint'
+  ]},
+  { phase: 'Phase 2: Prototype', dates: 'May – June 2026', cls: 'p2', items: [
+    'Consent Ledger v1 — real smart contracts', 'RSP_001 Voice Estate functional', 'Artist Portal MVP',
+    'Voice Guardian basic detection', 'RAG Pipeline for NOIZY.AI', 'NOIZYKIDZ podcast framework'
+  ]},
+  { phase: 'Phase 3: Launch', dates: 'July – September 2026', cls: 'p3', items: [
+    'NOIZYVOX public beta (10 artists)', 'Voice Unions pilot', 'Real-time bidding marketplace',
+    'DreamChamber invitation-only launch', 'NOIZY.AI public demo', 'Investor materials with prototype'
+  ]},
+];
+
+// ═══ RENDER FUNCTIONS ═══
+function renderAgents(containerId) {
+  const grid = document.getElementById(containerId);
+  grid.innerHTML = agents.map(a => `
+    <div class="agent-card" data-agent="${a.id}">
+      <div class="agent-name" style="color:${a.color}">${a.name}</div>
+      <div class="agent-role">${a.role}</div>
+      <div class="agent-load"><div class="agent-load-bar" style="width:${a.load}%; background:${a.color};"></div></div>
+      <div class="agent-task">${a.task}</div>
+    </div>
+  `).join('');
+}
+
+function renderD1Table() {
+  const tbody = document.getElementById('d1-table');
+  tbody.innerHTML = d1Databases.map(db => `
+    <tr>
+      <td style="color:#E2E8F0; font-weight:500;">${db.name}</td>
+      <td><span class="tag-${db.status.toLowerCase()}">${db.status}</span></td>
+      <td>${db.records}</td>
+      <td>${db.owner}</td>
+      <td>${db.action}</td>
+    </tr>
+  `).join('');
+}
+
+function renderAssignmentMatrix() {
+  const tbody = document.getElementById('assignment-matrix');
+  tbody.innerHTML = assignments.map(a => `
+    <tr>
+      <td style="color:#E2E8F0; font-weight:500;">${a.project}</td>
+      ${a.matrix.map(m => `<td style="text-align:center; color:${m === '★' ? '#D4A017' : m === '△' ? '#B185DB' : '#64748B'}; font-size:${m === '★' ? '16px' : '14px'};">${m || '—'}</td>`).join('')}
+    </tr>
+  `).join('');
+}
+
+function renderRoadmap() {
+  const grid = document.getElementById('roadmap-grid');
+  grid.innerHTML = roadmapPhases.map(p => `
+    <div class="phase-card ${p.cls}">
+      <div class="phase-label">${p.phase}</div>
+      <div class="phase-dates">${p.dates}</div>
+      ${p.items.map((item, i) => `
+        <div class="phase-item">
+          <div class="phase-check" data-phase="${p.cls}" data-idx="${i}" onclick="togglePhaseItem(this)">&nbsp;</div>
+          <span>${item}</span>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+}
+
+function renderGoDaddyEscape() {
+  const progress = document.getElementById('escape-progress');
+  const list = document.getElementById('escape-list');
+
+  progress.innerHTML = escapeSteps.map((_, i) => `<div class="escape-step" data-idx="${i}" onclick="toggleEscapeStep(${i})">${i + 1}</div>`).join('');
+
+  list.innerHTML = escapeSteps.map((step, i) => `
+    <li data-idx="${i}" onclick="toggleEscapeStep(${i})">
+      <span class="step-num">${i + 1}</span>
+      <span>${step}</span>
+    </li>
+  `).join('');
+}
+
+// ═══ INTERACTIONS ═══
+function showSection(sectionId) {
+  document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+  const sec = document.getElementById('sec-' + sectionId);
+  if (sec) sec.classList.add('active');
+
+  const nav = document.querySelector(`.nav-item[data-section="${sectionId}"]`);
+  if (nav) nav.classList.add('active');
+}
+
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const section = item.getAttribute('data-section');
+    if (section) showSection(section);
+  });
+});
+
+let escapeState = new Array(13).fill(false);
+
+function toggleEscapeStep(idx) {
+  escapeState[idx] = !escapeState[idx];
+  const done = escapeState.filter(Boolean).length;
+
+  document.querySelectorAll('.escape-step').forEach((el, i) => {
+    el.classList.toggle('done', escapeState[i]);
+  });
+  document.querySelectorAll('.escape-list li').forEach((el, i) => {
+    el.classList.toggle('done', escapeState[i]);
+  });
+
+  document.getElementById('escape-counter').textContent = `${done} / 13 complete`;
+  document.getElementById('godaddy-score').textContent = `${done}/13`;
+}
+
+function togglePhaseItem(el) {
+  el.classList.toggle('done');
+  if (el.classList.contains('done')) {
+    el.textContent = '✓';
+  } else {
+    el.innerHTML = '&nbsp;';
+  }
+}
+
+// Search
+document.getElementById('globalSearch').addEventListener('input', function(e) {
+  const q = e.target.value.toLowerCase();
+  if (!q) return;
+
+  const sections = ['agents','infrastructure','godaddy','monetization','ip','noizyvox','noizyai','dreamchamber','noizykidz','lifeluv','roadmap'];
+  const keywords = {
+    'agents': ['agent','gabriel','lucy','shirl','pops','dream','keith','cb01','family','ai family'],
+    'infrastructure': ['cloudflare','d1','kv','worker','dns','domain','r2','database','heaven17'],
+    'godaddy': ['godaddy','transfer','escape','migration','unlock'],
+    'monetization': ['money','revenue','pricing','tier','split','subscription','marketplace','monetize','income'],
+    'ip': ['ip','catalog','memcell','consent','blueprint','document','voice archive','gorunfree','rsp_001'],
+    'noizyvox': ['noizyvox','vox','voice','consent','artist','guild'],
+    'noizyai': ['noizy.ai','aiva','a.i.v.a','intelligence'],
+    'dreamchamber': ['dreamchamber','dream chamber','vr','codex','500 year'],
+    'noizykidz': ['noizykidz','kidz','children','podcast','education'],
+    'lifeluv': ['lifeluv','peace','love','understanding','humanity'],
+    'roadmap': ['roadmap','phase','timeline','plan','foundation','prototype','launch'],
+  };
+
+  for (const [section, kws] of Object.entries(keywords)) {
+    if (kws.some(kw => kw.includes(q) || q.includes(kw))) {
+      showSection(section);
+      return;
+    }
+  }
+});
+
+// ═══ PARTICLE SYSTEM ═══
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function createParticles() {
+  particles = [];
+  const count = Math.floor((canvas.width * canvas.height) / 12000);
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 1.5 + 0.5,
+      a: Math.random() * 0.5 + 0.1,
+    });
+  }
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (const p of particles) {
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(212, 160, 23, ${p.a})`;
+    ctx.fill();
+  }
+  requestAnimationFrame(drawParticles);
+}
+
+window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
+resizeCanvas();
+createParticles();
+drawParticles();
+
+// ═══ INIT ═══
+renderAgents('agent-grid');
+renderAgents('agent-grid-full');
+renderD1Table();
+renderAssignmentMatrix();
+renderRoadmap();
+renderGoDaddyEscape();
+</script>
+
+</body>
+</html>

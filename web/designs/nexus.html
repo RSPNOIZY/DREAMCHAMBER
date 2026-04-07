@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUDIO UNITOR | NEXUS</title>
+    <link rel="stylesheet" href="nexus.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        <h1>AUDIO UNITOR // NEXUS</h1>
+        <div class="status-box">
+            <div class="status-online">● ONLINE</div>
+            <div class="status-health">❤️ HEALTH: [██████████] 100%</div>
+        </div>
+    </div>
+
+    <!-- STATS DECK -->
+    <div class="cyber-panel">
+        <div class="stats-grid">
+            <div>
+                <div class="stat-val" id="stat-files">0</div>
+                <div class="stat-label">Indexed Files</div>
+            </div>
+            <div>
+                <div class="stat-val" id="stat-size">0 TB</div>
+                <div class="stat-label">Total Volume</div>
+            </div>
+            <div>
+                <div class="stat-val" id="stat-waste">0 GB</div>
+                <div class="stat-label" style="color:var(--danger)">Wasted Space</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MEMCELL INTELLIGENCE (CHRONOS UPGRADE) -->
+    <div class="cyber-panel">
+        <div class="flex-between">
+             <h3 class="mt-0">🧠 MEMCELL CHRONOS (INTELLIGENCE)</h3>
+             <button onclick="trigger('overlap')" class="btn-small">⏳ ANALYZE OVERLAP</button>
+        </div>
+        
+        <div class="chronos-panel">
+            <!-- 1. TEMPORAL HEATMAP -->
+            <div class="text-small text-dim">ACTIVITY HEATMAP (24H)</div>
+            <div class="heatmap-container" id="heatmap">
+                <div class="heat-bar" style="height:10%"></div>
+            </div>
+            <div class="flex-between text-tiny text-dim">
+                <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>23:00</span>
+            </div>
+
+            <!-- 2. IDENTITY MATRIX -->
+            <div class="identity-badges" id="identity-matrix">
+                <div class="id-badge shirl">
+                    <div class="badge-count" id="count-shirl">0</div>
+                    <div class="badge-name">SHIRL</div>
+                </div>
+                <div class="id-badge engr">
+                    <div class="badge-count" id="count-engr">0</div>
+                    <div class="badge-name">ENGR</div>
+                </div>
+                <div class="id-badge core">
+                    <div class="badge-count" id="count-core">0</div>
+                    <div class="badge-name">CORE</div>
+                </div>
+            </div>
+
+            <!-- 3. ACTIVE SUBJECTS -->
+             <div class="text-center mt-10">
+                 <div class="stat-label mb-5">ACTIVE SUBJECTS</div>
+                 <div id="active-tags" class="text-main text-bold">Loading...</div>
+             </div>
+        </div>
+    </div>
+
+    <!-- 5. OMEGA PROTOCOL -->
+    <div class="deck" style="border-color: #FFD700; box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);">
+        <div class="deck-header">
+            <div class="icon">⛩️</div>
+            <h2>OMEGA PROTOCOL</h2>
+        </div>
+        <div class="status-row">
+            <span class="label">STATUS</span>
+            <span class="value" style="color: #FFD700">READY</span>
+        </div>
+        <button class="action-btn btn-omega" onclick="trigger('omega_start')">
+            🚀 INITIATE UNIFICATION
+        </button>
+    </div>
+
+    <!-- 6. TIME MACHINE (Quantum Safety) -->
+    <div class="deck" style="border-color: #00FFFF; box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);">
+        <div class="deck-header">
+            <div class="icon">⏳</div>
+            <h2>TIME MACHINE</h2>
+        </div>
+        <div class="status-row">
+            <span class="label">SNAPSHOTS</span>
+            <span class="value" style="color: #00FFFF">ACTIVE</span>
+        </div>
+        <button class="action-btn" onclick="trigger('open_time_machine')">
+            📂 OPEN ARCHIVES
+        </button>
+    </div>
+
+    <!-- STATUS DECK -->
+    <div class="cyber-panel">
+        <h3 class="mt-0">SYSTEM STATUS</h3>
+        <div id="status">INITIATING LINK...</div>
+    </div>
+
+    <!-- CONTROL DECK -->
+    <div class="cyber-panel">
+        <h3 class="mt-0">COMMAND CENTER</h3>
+        <button onclick="trigger('ingest')">🌪️ ASSIMILATE EXTERNAL DATA</button>
+        <button onclick="trigger('dedup')">🧬 OPTIMIZE GENETIC CODE (DEDUP)</button>
+        <button class="danger" onclick="location.reload()">↻ REFRESH SYS</button>
+    </div>
+
+    <!-- NEURAL LINK -->
+    <div class="cyber-panel">
+        <h3 class="mt-0">🧠 NEURAL LINK (SEARCH & COMMAND)</h3>
+        <input type="text" class="search-bar" placeholder="ENTER COMMAND OR SEARCH QUERY..." onkeyup="doSearch(this.value)">
+        <div class="results-list" id="results"></div>
+    </div>
+
+    <!-- SENTINEL DECK -->
+    <div class="cyber-panel">
+        <div class="flex-between">
+            <h3 class="mt-0">SENTINEL STATUS (WATCHING ~/Downloads)</h3>
+            <div id="sentinel-indicator" class="sentinel-offline">● OFFLINE</div>
+        </div>
+        <div id="sentinel-logs" class="sentinel-logs">
+            Waiting for logs...
+        </div>
+        <div class="mt-10">
+             <button onclick="trigger('sentinel_start')">🛡️ ACTIVATE SENTINEL</button>
+        </div>
+    </div>
+
+    <!-- ALCHEMIST LAB -->
+    <div class="cyber-panel">
+        <h3 class="mt-0">⚗️ ALCHEMIST LAB (STANDARDIZATION)</h3>
+        <div class="text-small text-dim mb-10">
+            Target: 44.1kHz / 16-bit WAV (Industry Standard)
+        </div>
+        <div class="flex-gap-10">
+            <button onclick="trigger('convert')" class="btn-success">⚗️ STANDARDIZE AUDIO ALCHEMY</button>
+        </div>
+    </div>
+
+    <!-- SINGULARITY DECK -->
+    <div class="cyber-panel">
+        <h3 class="mt-0">⚫ SINGULARITY (TOTAL CLEANUP)</h3>
+        <div class="text-small text-dim mb-10">
+            Action: 1. Vacuum Empty Dirs/Junk  2. Auto-Nuke Duplicates
+        </div>
+        <div class="flex-gap-10">
+            <button onclick="trigger('black_hole')" class="btn-danger-outline">⚫ EXECUTE SINGULARITY CLEANUP</button>
+        </div>
+    </div>
+
+    <!-- LIBRARIAN DECK -->
+    <div class="cyber-panel">
+        <h3 class="mt-0">📚 LIBRARIAN (METADATA INJECTION)</h3>
+        <div class="text-small text-dim mb-10">
+            Target: Finder/Spotlight Metadata (BPM, Key, Artist)
+        </div>
+        <div class="flex-gap-10">
+            <button onclick="trigger('inject_metadata')" class="btn-magic">🔮 INJECT METADATA CONSCIOUSNESS</button>
+        </div>
+    </div>
+
+    <!-- MAP DECK -->
+    <div class="cyber-panel panel-no-pad">
+        <div class="map-header">SYSTEM CARTOGRAPHY</div>
+        <iframe src="system_map.html" title="System Map"></iframe>
+    </div>
+
+    <script>
+        // Fetch Stats (Includes Chronos Data)
+        fetch('/api/stats')
+            .then(r => r.json())
+            .then(d => {
+                document.getElementById('stat-files').innerText = d.files.toLocaleString();
+                document.getElementById('stat-size').innerText = formatBytes(d.size);
+                document.getElementById('stat-waste').innerText = formatBytes(d.waste);
+
+                // Render Identity Matrix
+                if(d.identities) {
+                    document.getElementById('count-shirl').innerText = d.identities['SHIRL'] || 0;
+                    document.getElementById('count-engr').innerText = d.identities['ENGR'] || 0;
+                    document.getElementById('count-core').innerText = d.identities['CORE'] || 0;
+                }
+                
+                // Render Recent Tags
+                if(d.subjects) {
+                     document.getElementById('active-tags').innerText = d.subjects;
+                }
+
+                // Render Heatmap
+                if(d.heatmap) {
+                    const container = document.getElementById('heatmap');
+                    container.innerHTML = '';
+                    const maxVal = Math.max(...d.heatmap, 1); // Avoid 0 division
+                    d.heatmap.forEach((val, hour) => {
+                        const bar = document.createElement('div');
+                        bar.className = 'heat-bar';
+                        const h = (val / maxVal) * 100;
+                        bar.style.height = Math.max(h, 2) + '%'; // Min 2% visibility
+                        bar.setAttribute('data-val', val);
+                        bar.title = `Hour ${hour}: ${val} events`;
+                        
+                        // Color coding based on intensity
+                        if(val > 0) bar.style.backgroundColor = 'var(--main)';
+                        if(val > 5) bar.style.backgroundColor = 'var(--warn)';
+                        if(val > 10) bar.style.backgroundColor = '#fff';
+                        
+                        container.appendChild(bar);
+                    });
+                }
+            });
+
+        // Fetch Sentinel Logs
+        setInterval(() => {
+            fetch('/api/sentinel')
+                .then(r => r.text())
+                .then(txt => {
+                    const logDiv = document.getElementById('sentinel-logs');
+                    const indicator = document.getElementById('sentinel-indicator');
+                    
+                    if(txt.includes("Sentinel Log not found")) {
+                        indicator.innerHTML = "● OFFLINE";
+                        indicator.style.color = "red";
+                        logDiv.innerText = "Sentinel is sleeping...";
+                    } else if (txt.includes("Error")) {
+                        indicator.innerHTML = "● ERROR";
+                        indicator.style.color = "orange";
+                    } else {
+                        indicator.innerHTML = "● WATCHING";
+                        indicator.style.color = "#00ffcc";
+                        logDiv.innerText = txt;
+                        logDiv.scrollTop = logDiv.scrollHeight;
+                    }
+                });
+        }, 2000);
+
+        function doSearch(q) {
+            if (q.length < 2) return;
+            fetch('/api/search?q=' + encodeURIComponent(q))
+                .then(r => r.json())
+                .then(res => {
+                    const list = document.getElementById('results');
+                    list.innerHTML = "";
+                    res.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'result-item';
+                        div.innerHTML = `
+                            <div>
+                                <div class="text-white text-bold">${item.name}</div>
+                                <div class="text-small text-dim">${item.path}</div>
+                            </div>
+                            <div class="result-meta">
+                                <span class="text-main">${item.bpm ? item.bpm+' BPM' : ''}</span>
+                                <span class="text-warn">${item.key || ''}</span>
+                                <div class="text-small">${item.tags || ''}</div>
+                            </div>
+                        `;
+                        list.appendChild(div);
+                    });
+                });
+        }
+
+        function trigger(action) {
+            // if(confirm('Execute ' + action + '?')) {
+                fetch('/api/action?cmd=' + action)
+                 .then(r => r.json())
+                 .then(d => alert('Command Sent: ' + d.status));
+            // }
+        }
+
+        function formatBytes(bytes, decimals = 2) {
+            if (!+bytes) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+        }
+    </script>
+</body>
+</html>

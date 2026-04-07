@@ -1,0 +1,128 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // ─── Platform API ───────────────────────────────────────
+    {
+      "name": "Platform API (port 8090)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["app.main:app", "--reload", "--port", "8090"],
+      "cwd": "${workspaceFolder}/noizy_platform",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/noizy_platform"
+      }
+    },
+
+    // ─── Rob-AVA Server ─────────────────────────────────────
+    {
+      "name": "Rob-AVA Server (port 8091)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["rob_ava.server:app", "--reload", "--port", "8091"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+
+    // ─── Rob-AVA 50-line Variant ────────────────────────────
+    {
+      "name": "Rob-AVA 50-line (port 8092)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["rob_ava.rob_ava_50line:app", "--reload", "--port", "8092"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+
+    // ─── Debug: Current Python File ─────────────────────────
+    {
+      "name": "Debug Python File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+
+    // ─── Debug: NOIZYLAB System ─────────────────────────────
+    {
+      "name": "NOIZYLAB System",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/noizylab_system.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "cwd": "${workspaceFolder}"
+    },
+
+    // ─── Node: WhatsApp Bot ─────────────────────────────────
+    {
+      "name": "WhatsApp/Cohere Bot",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/whatsapp-cohere-bot.js",
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/.env"
+    },
+
+    // ─── NOIZY Voice Extension (F5 to test) ─────────────────
+    {
+      "name": "NOIZY Voice Extension (Dev Host)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/noizy-voice",
+        "--profile=NOIZY"
+      ],
+      "outFiles": ["${workspaceFolder}/noizy-voice/out/**/*.js"],
+      "preLaunchTask": "Extension: Compile NOIZY Voice",
+      "presentation": {
+        "group": "Extension",
+        "order": 1
+      }
+    },
+
+    // ─── DreamChamber Extension (F5 to test) ─────────────────
+    {
+      "name": "DreamChamber (Dev Host)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/dreamchamber-extension",
+        "--profile=NOIZY"
+      ],
+      "outFiles": ["${workspaceFolder}/dreamchamber-extension/out/**/*.js"],
+      "preLaunchTask": "DreamChamber: Compile",
+      "presentation": {
+        "group": "Extension",
+        "order": 2
+      }
+    }
+  ],
+
+  // ─── Compounds ───────────────────────────────────────────
+  "compounds": [
+    {
+      "name": "NOIZY Full Stack",
+      "configurations": ["Platform API (port 8090)", "Rob-AVA Server (port 8091)"],
+      "presentation": {
+        "hidden": false,
+        "group": "Stack",
+        "order": 1
+      }
+    }
+  ]
+}

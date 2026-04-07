@@ -1,0 +1,980 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="ja">
+  <head lang="ja">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>ビンテージコンプレッサー [ADV] - Ozone8ユーザーズマニュアル</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/ja/vintage-compressor/">
+    <meta property="og:title" content="Ozone8ユーザーズマニュアル">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone8ユーザーズマニュアル">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | ビンテージコンプレッサー [ADV]</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="はじめに" href="../index.html">
+	
+	はじめに
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8の概要" href="../ozone-overview/index.html">
+	
+	Ozone 8の概要
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone応用" href="../ozone-app-overview/index.html">
+	
+	Ozone応用
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プリセットシステム" href="../preset-system/index.html">
+	
+	プリセットシステム
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="全般的な機能" href="../general-functions/index.html">
+	
+	全般的な機能
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="モジュールの標準的な操作項目" href="../common-module-controls/index.html">
+	
+	モジュールの標準的な操作項目
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミクス" href="../dynamics/index.html">
+	
+	ダイナミクス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミックEQ" href="../dynamic-eq/index.html">
+	
+	ダイナミックEQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イコライザー" href="../equalizer/index.html">
+	
+	イコライザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="エキサイター" href="../exciter/index.html">
+	
+	エキサイター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イメージャー" href="../imager/index.html">
+	
+	イメージャー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マキシマイザー" href="../maximizer/index.html">
+	
+	マキシマイザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="スペクトラル成形" href="../spectral-shaper/index.html">
+	
+	スペクトラル成形
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="ビンテージコンプレッサー" href="index.html">
+	
+	ビンテージコンプレッサー
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージEQ " href="../vintage-eq/index.html">
+	
+	ビンテージEQ 
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージリミッター" href="../vintage-limiter/index.html">
+	
+	ビンテージリミッター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージテープ" href="../vintage-tape/index.html">
+	
+	ビンテージテープ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="コーデックプレビュー" href="../codec-preview/index.html">
+	
+	コーデックプレビュー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ディザー" href="../dither/index.html">
+	
+	ディザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マスターアシスタント" href="../master-assistant/index.html">
+	
+	マスターアシスタント
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トラックリファレンス" href="../track-referencing/index.html">
+	
+	トラックリファレンス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トーナルバランスコントロール" href="../tonal-balance-control/index.html">
+	
+	トーナルバランスコントロール
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オプション" href="../options/index.html">
+	
+	オプション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プラグインオートメーション" href="../plug-in-automation/index.html">
+	
+	プラグインオートメーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ヒントと用例" href="../tips-and-examples/index.html">
+	
+	ヒントと用例
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーソリゼーション" href="../authorization/index.html">
+	
+	オーソリゼーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotopeカスタマーケアー" href="../customer-care/index.html">
+	
+	iZotopeカスタマーケアー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information (ライセンス情報)" href="../license-information/index.html">
+	
+	License Information (ライセンス情報)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA (エンドユーザー向け使用許諾契約)" href="../eula/index.html">
+	
+	EULA (エンドユーザー向け使用許諾契約)
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../en/vintage-compressor/index.html"><i class="icon icon-eye"></i> View in English</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>ビンテージコンプレッサー [ADV] </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">言語:</span>
+<br />
+    
+
+       
+       <a href="../../en/vintage-compressor/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+        <a href="../../en/vintage-compressor/index.html"><button class="lang-btn-active">日本語</button></a>
+       
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+    
+
+	
+
+<h2 id="概要">概要</h2>
+
+<p>ビンテージコンプレッサーは、これまで存在したことのない、正確にアナログをエミュレートしたコンプレッサーであると言えます。我々はビンテージアナログコンプレッサーの持つ最高の要素を掛け合わせてこのアルゴリズムを作り上げました。</p>
+
+<p>ビンテージコンプレッサーはフィードバックコンプレッサーです。通常のコンプレッサーは信号レベルを検知し、信号がスレッシュホルドを超えるとゲインを減退させます。これに対し、フィードバックコンプレッサーは、コンプレッサーの入力ではなく出力でレベルの検知を行います。この設計は古いアナログのコンプレッサーでは一般的でしたが、先行予測型トポロジーを用いるデジタルのコンプレッサーでは一般的ではありません。フィードバック圧縮は、アナログ回路では自然ですが、デジタル的に実行するのは困難がつきまといます。フィードバックにより、コンプレッサーの出力は即座にそれ自体に依存することになり、これはコンピューターにとって必ずしも好ましいことではありません。我々のアルゴリズムは洗練された技術のもと、この問題を解決し、フィードバックループ内の擬制のディレイを回避することで、この上なく正確なアナログエミュレーションを実現しました。</p>
+
+<p>コンプレッサーの音像ではアタックとリリースの衝撃が重要な位置を占めます。リリースはプログラム依存であるため、トランジエントのリリース時間は、一定時間持続する圧縮に比べると格段に速くなりますので、ポンピングとディストーションの軽減に繋がります。更に、フィードバック圧縮のユニークな点は、発生する圧縮の量に応じてアタックとリリース時間が変化するところです。</p>
+
+<p>このアルゴリズムには、フィードバックループ内に配された多機能検知フィルターが内包されます。これは、レベル検知機を通過し、コンプレッサーをトリガーする信号のコンポーネントを変化させる信号をフィルターする機能です。コンプレッサーによっては、ハイパスフィルター、またはハイシェルフブーストでポンピングの軽減を行うものもあります。また、高周波数帯での広域ブーストでコンプレッサーの高周波数成分をドライブするコンプレッサーもあります。Ozoneのビンテージコンプレッサーはこれら全てのフィルターを併せ持ったコンプレッサーです。</p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<p><img src="../images/vcomp-trace.png" alt="vcomp" /></p>
+
+<h3 id="threshold-スレッシュホルド">Threshold（スレッシュホルド）</h3>
+
+<p>コンプレッサーのスレッシュホルド値を調整し、ダイナミクス処理の発生するポイントを設定します。モードによっては膝値があるため、このポイントの下方でも柔らかい圧縮が発生することがあります。</p>
+
+<h3 id="ratio-比率">Ratio（比率）</h3>
+
+<p>信号がスレッシュホルドを通過した際に適用される減衰の量を設定します。比率が高い程、極度の圧縮がかかります。</p>
+
+<h3 id="attack-release-アタックとリリース">Attack &amp; Release（アタックとリリース）</h3>
+
+<p>アタックとリリースで、ビンテージプロセッサーがスレッシュホルドを超えたオーディオに対し、如何に迅速に反応するかを調整します。</p>
+
+<ul>
+<li><strong>ATTACK:</strong> アタックでビンテージプロセッサーがスレッシュホルド超過時に如何に迅速に反応するかを調節します。</li>
+<li><strong>RELEASE:</strong> リリースは、信号がスレッシュホルドを下回った際、ビンテージプロセッサーが如何に迅速に通常レベルに戻るかを定義します。この操作項目ではトランジエントのリリース時間を設定します。継続的圧縮では、リリース時間は著しく長くなります。</li>
+</ul>
+
+<h3 id="モード">モード</h3>
+
+<p>モードセレクターでビンテージコンプレッサーの信号依存型内部衝撃を調整し、全体的な音像の性質を好みの状態に仕立て上げます。ビンテージコンプレッサーには以下のモードがあります:</p>
+
+<ul>
+<li><strong>SHARP（シャープ）:</strong> 明確なダイナミクスがトランジエントを強調しつつ信号のボディを制御して保ちます。</li>
+<li><strong>BALANCED（バランス）:</strong> 信号のボディのダイナミクス保持と全体的な増進の間で信号依存のバランスを提供します。</li>
+<li><strong>SMOOTH（スムース）:</strong> その名称に相応しく、トランジエントとダイナミクスを平滑にしつつ、その他の信号を増進させることにより、分厚く満たされた音像を実現します。</li>
+</ul>
+
+<h3 id="gain-ゲイン">Gain（ゲイン）</h3>
+
+<p>ビンテージコンプレッサーモジュールの出力ゲインを調整します。これは圧縮後のレベル減少を補う際などに有益です。</p>
+
+<h3 id="auto-gain-自動ゲイン">Auto Gain（自動ゲイン）</h3>
+
+<p>Autoボタンをクリックすると、自動ゲインコントロールがコンプレッサーの各クロスオーバーバンドの入出力のRMSレベルを算出し、出力信号に然るべきゲインを適用して差異を補正します。</p>
+
+<p>これにより、自動的にオーディオのレベルが未処理の状態のオーディオと同等になるため、スマート“埋め合わせゲイン”コントロールとしての役割をミックスの中で果たすことになります。これは、モジュールの異なる設定を、聴官上のゲインを保ったまま比較する際にも便利な機能です。</p>
+
+<h2 id="mid-sideプロセッシング">Mid/Sideプロセッシング</h2>
+
+<p>ビンテージコンプレッサーにはステレオ及びMid/Sideの処理モードがあります。詳細は<a href="../common-module-controls/index.html#module-channel-processing-modes">モジュールの標準的な操作項目</a>の処理モードのセクションをご参照ください。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="スレッシュホルドメーター">スレッシュホルドメーター</h3>
+
+<p><img src="../images/vcomp-threshold.png" alt="vintage comp threshold" /></p>
+
+<p>スレッシュホルドメーターには、モジュールの入力レベルと、モジュール処理によるゲイン削減が並べて表示されます。スレッシュホルドメーター画面で左右一番外側のメーターは入力オーディオレベルを表しており、入力メーターの間にある2本のメーターは適用されたゲイン削減量を表します。</p>
+
+<h3 id="ミニメーター表示">ミニメーター表示</h3>
+
+<h3 id="detection-filter-検知フィルター">Detection Filter（検知フィルター）</h3>
+
+<p><img src="../images/vcomp-det-filter.png" alt="vcomp det filter" /></p>
+
+<p>この画面では、ビンテージコンプレッサーが使用する検知回路の周波数特性を特定することができますので、周波数帯に応じた感度の高低を設定することが可能です。検知フィルターはこの画面に表示されるフィルター操作点で調整することができます。</p>
+
+<p>画面左上の“Solo Detection Filter”ボタンをクリックすると、検知回路がビンテージコンプレッサーをトリガーする際に使用するフィルターされた信号をモニターすることができます。これは、ビンテージコンプレッサー処理をトリガーするのに使用している入力信号を手早く聴く際に便利です。</p>
+
+<h3 id="gain-reduction-trace-ゲイン削減トレース表示">Gain Reduction Trace（ゲイン削減トレース表示）</h3>
+
+<p><img src="../images/vcomp-trace-sm.png" alt="trace sm" /></p>
+
+<p>この画面では、入力信号の波形にゲイン削減の分量がリアルタイムでスーパーインポーズされた曲線が表示されるスクロールメーターが表示されます。ゲイン削減トレース表示はアタックとリリースを正しく設定し、ゲイン削減のエンベロープをモニターする上での一助となります。</p>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../spectral-shaper/index.html" title="スペクトラル成形 [ADV]">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              スペクトラル成形 [ADV]
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../vintage-eq/index.html" title="ビンテージEQ [ADV]">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              ビンテージEQ [ADV]
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../en/vintage-compressor/index.html"><i class="icon icon-eye"></i> View in English</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8ヘルプドキュメント 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

@@ -1,0 +1,1372 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="en">
+  <head lang="en">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Master Assistant - Ozone 8 Documentation</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/en/master-assistant/">
+    <meta property="og:title" content="Ozone 8 Documentation">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone 8 Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | Master Assistant</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Introduction" href="../index.html">
+	
+	Introduction
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8 Overview" href="../ozone-overview/index.html">
+	
+	Ozone 8 Overview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone Application" href="../ozone-app-overview/index.html">
+	
+	Ozone Application
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Preset System" href="../preset-system/index.html">
+	
+	Preset System
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="General Functions" href="../general-functions/index.html">
+	
+	General Functions
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Common Module Controls" href="../common-module-controls/index.html">
+	
+	Common Module Controls
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dynamics" href="../dynamics/index.html">
+	
+	Dynamics
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dynamic EQ" href="../dynamic-eq/index.html">
+	
+	Dynamic EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Equalizer" href="../equalizer/index.html">
+	
+	Equalizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Exciter" href="../exciter/index.html">
+	
+	Exciter
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Imager" href="../imager/index.html">
+	
+	Imager
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Maximizer" href="../maximizer/index.html">
+	
+	Maximizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectral Shaper" href="../spectral-shaper/index.html">
+	
+	Spectral Shaper
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Compressor" href="../vintage-compressor/index.html">
+	
+	Vintage Compressor
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage EQ" href="../vintage-eq/index.html">
+	
+	Vintage EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Limiter" href="../vintage-limiter/index.html">
+	
+	Vintage Limiter
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Tape" href="../vintage-tape/index.html">
+	
+	Vintage Tape
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Codec Preview" href="../codec-preview/index.html">
+	
+	Codec Preview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dither" href="../dither/index.html">
+	
+	Dither
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Master Assistant" href="index.html">
+	
+	Master Assistant
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Track Referencing" href="../track-referencing/index.html">
+	
+	Track Referencing
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tonal Balance Control" href="../tonal-balance-control/index.html">
+	
+	Tonal Balance Control
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Options" href="../options/index.html">
+	
+	Options
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plug-in Automation" href="../plug-in-automation/index.html">
+	
+	Plug-in Automation
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tips &amp; Examples" href="../tips-and-examples/index.html">
+	
+	Tips &amp; Examples
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Authorization" href="../authorization/index.html">
+	
+	Authorization
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotope Customer Care" href="../customer-care/index.html">
+	
+	iZotope Customer Care
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information" href="../license-information/index.html">
+	
+	License Information
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA" href="../eula/index.html">
+	
+	EULA
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../ja/master-assistant/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>Master Assistant </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">Languages:</span>
+<br />
+    
+
+       
+       <a href="../../ja/master-assistant/index.html"><button class="lang-btn-active">English</button></a>
+       
+        
+       <a href="../../ja/master-assistant/index.html"><button class="lang-btn-clickable">日本語</button></a>
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+
+
+
+<nav>
+  
+  <h4>Table of Contents</h4>
+  <ul>
+    
+      
+      
+
+      
+
+      
+      
+      <li>
+        <a href="index.html#overview">Overview</a>
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#genre-classes-ampamp-research-findings">Genre Classes &amp; Research Findings</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#workflow">Workflow</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#processing-steps">Processing Steps</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#eq">EQ</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#dynamics">Dynamics</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#maximizer">Maximizer</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#dynamic-eq">Dynamic EQ</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#accept/cancel">Accept/Cancel</a>
+
+          
+            
+          
+      
+    
+
+    
+    
+    
+
+  </ul>
+</nav>
+
+
+
+
+    
+
+	
+
+<h2 id="overview">Overview</h2>
+
+<p>Master Assistant is the latest advancement in assistive technology, machine learning, and intelligence in Ozone 8 Elements, Standard, and Advanced. It is designed to give you a starting point that is intelligently tailored to your music to help you create a professional sounding master regardless of your experience level.</p>
+
+<p>Master Assistant is included in the main Ozone 8 plug-in and Ozone 8 standalone application. The Master Assistant panel can be opened by clicking the &ldquo;Master Assistant&rdquo; button to the left of the preset display.</p>
+
+<h2 id="genre-classes-research-findings">Genre Classes &amp; Research Findings</h2>
+
+<p>Master Assistant utilizes target genre curves that were born from a mixture of internal discussion and research. We started by grouping a large variety of audio files into ten classes of musical genre. These genre classes were then analyzed for their spectral characteristics. Based on our research, we created ten genre target curves that represent the typical spectral characteristics for each genre class.</p>
+
+<p>In addition to analyzing typical spectral characteristics, we also trained a neural net classifier to map incoming audio to a unique target curve that represents a mixture of the 10 genre classes.</p>
+
+<p>Note: Though we are categorizing into 10 different genres, our research has shown that most curves fall within three broad categories. We included combination target curves that represent these three broad categories with the <a href="../tonal-balance-control/index.html">Tonal Balance Control</a> plug-in.</p>
+
+<p>These three representative categories are:</p>
+
+<ul>
+<li>Bass Heavy (EDM, Hip/Hop, etc.)</li>
+<li>Orchestral (Broad instrumental, etc.)</li>
+<li>Modern (Pop, Rock, etc.)</li>
+</ul>
+
+<p>See the <a href="index.html#processing-steps">Processing Steps</a> section below for more information on how these curves are used during Master Assistant processing.</p>
+
+<h2 id="workflow">Workflow</h2>
+
+<p>Master Assistant is available in the main Ozone 8 plug-in and the Ozone 8 application. You can open the Master Assistant panel by clicking on the &ldquo;Master Assistant&rdquo; button to the left of the preset display.</p>
+
+<p><img src="../images/master-assistant/ma-button.png" alt="MA button" /></p>
+
+<h3 id="target-selection">Target Selection</h3>
+
+<p>Before running Master Assistant, select your Target output in the first screen that appears.</p>
+
+<h4 id="streaming">Streaming</h4>
+
+<p><img src="../images/master-assistant/streaming.png" alt="MA streaming" /></p>
+
+<ul>
+<li>Informs the Maximizer Threshold in order to meet a loudness target value (in LUFS).</li>
+<li>The Streaming option will set the target loudness to -14 LUFS by default. This target value is based on the typical loudness value used by popular streaming services.</li>
+<li>This value can also be customized in the General tab of the Ozone Options menu.</li>
+</ul>
+
+<h4 id="cd">CD</h4>
+
+<p><img src="../images/master-assistant/cd.png" alt="MA cd" /></p>
+
+<p>Informs the Maximizer Threshold setting in order to achieve the loudest possible output for the selected Intensity option.</p>
+
+<h4 id="cd-intensity">CD: Intensity</h4>
+
+<p><img src="../images/master-assistant/intensity.png" alt="MA intensity" /></p>
+
+<p>Informs the Maximizer Threshold value by specifying how often the limiter will be triggered by the incoming audio.</p>
+
+<h4 id="reference">Reference</h4>
+
+<p><img src="../images/master-assistant/reference.png" alt="MA target screen" /></p>
+
+<ul>
+<li>Allows you to choose any reference track that is currently loaded in the <a href="../track-referencing/index.html">Reference</a> panel as your target.</li>
+<li>When this option is selected, the target loudness and target EQ curves will be calculated from the loudness and EQ curve of the selected reference track.</li>
+</ul>
+
+<p>These Target choices influence the analysis and results of Master Assistant in different ways. The steps below explain how the Target selection affects a given processing step.</p>
+
+<h3 id="playback-audio">Playback Audio</h3>
+
+<p>After selecting a target, hit Next to run Master Assistant.</p>
+
+<p><img src="../images/master-assistant/next.png" alt="next button" /></p>
+
+<div class="admonition note">
+<p class="admonition-title">Useful Tips</p>
+<p><ul>
+<li><strong>Master Assistant needs audio input:</strong> Make sure you are playing back audio in the Ozone 8 application and/or your host application.</li>
+<li><strong>For best results, we recommend running Master Assistant on the loudest portion of the track.</strong></li>
+<li>Master Assistant needs approximately 30 seconds of audio during analysis. If you want Master Assistant to analyze a section that is less than 30 seconds long, we recommend looping playback prior to running Master Assistant.</li>
+</ul>
+</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">Notes about Reference Target selection</p>
+<p><ul>
+<li>You need to have a Reference track loaded in the Reference panel in order to run Master Assistant with Reference selected as the target. You will need to exit Master Assistant and load a reference file in order to proceed.</li>
+<li>Note that Reference files need to finish loading completely before being available to select in the Master Assistant Reference track dropdown menu.</li>
+</ul>
+</p>
+</div>
+
+<h2 id="processing-steps">Processing Steps</h2>
+
+<p>Below is an outline of the steps Master Assistant works through after making a target selection and clicking on the &lsquo;Next&rsquo; button.</p>
+
+<h3 id="analyze-audio">Analyze Audio</h3>
+
+<p>After clicking the &ldquo;Next&rdquo; button Master Assistant will listen to the incoming audio for roughly 5 seconds.</p>
+
+<p><img src="../images/master-assistant/working.png" alt="analyze" /></p>
+
+<div class="admonition note">
+<p class="admonition-title">Waiting For Audio screen</p>
+<p>If Master Assistant is not receiving audio a &ldquo;Waiting for audio&rdquo; screen will appear. To dismiss the Waiting screen, simply playback audio.</p>
+</div>
+
+<h3 id="generate-unique-target-curve">Generate Unique Target Curve</h3>
+
+<p>After listening to your audio for a few seconds, Master Assistant will generate a unique target curve to use in the EQ processing step (explained below).</p>
+
+<div class="admonition note">
+<p class="admonition-title">How does master assistant generate unique target curves?</p>
+<p><ul>
+<li>During the initial listening pass, Master Assistant will analyze your audio and determine how similar it is to the 10 predetermined genre class curves (these curves are explained in the <a href="../index.html#genre-classes">Genre Classes</a> section above).</li>
+<li>A percentage of similarity is assigned to each genre class curve.</li>
+<li>Master Assistant will then create a unique target curve that is based on the genre class percentages detected in your audio.</li>
+<li><strong>For example:</strong> if Master Assistant classifies your track with the following percentages: 60% Pop, 30% Rock, and 10% Country. The resulting unique target curve will be a mix of 60% of the Pop target, 30% of the Rock target and 10% of the Country target.</li>
+</ul>
+</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">Target curve is based on Reference audio</p>
+<p><ul>
+<li>When &ldquo;Reference&rdquo; is chosen as the Master Assistant Target, the unique target curve is derived from the selected Reference track and not by calculating the genre classes of your input audio.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="apply-preset">Apply Preset</h3>
+
+<p>After generating a unique target curve, Master Assistant will load a preset that is based on the genre class we detected with the highest percentage of similarity. These presets are used to provide starting points for the modules utilized in Master Assistant processing and will set parameters that are not learned from your input audio, such as: IRC Mode in the Maximizer, Attack &amp; Release times in Dynamics, etc. The Master Assistant presets are more subtle than the presets used in Neutron&rsquo;s Track Assistant processing.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Module chain contents after running Master Assistant</p>
+<p><ul>
+<li>The modules included and their order in the signal chain will always be the same after running Master Assistant.</li>
+<li>In some circumstances (depending on your input audio) Master Assistant will bypass the Dynamics module. Keep reading the steps below for more information on how this decision is made.</li>
+<li>To reiterate: The modules in the signal chain after running Master Assistant are meant to function as a suggestion or starting point for your master. Ozone has a wealth of processing modules available and we encourage you to add or remove modules to suit your track.</li>
+</ul>
+</p>
+</div>
+
+<h2 id="eq">EQ</h2>
+
+<p>After applying a preset, Master Assistant will modify the settings in the EQ module.</p>
+
+<p>Master Assistant will intelligently modify the EQ settings by comparing the input audio to the unique target curve generated in the first processing step. EQ nodes are adjusted with the goal of modifying the EQ curve to more closely match your incoming audio to the unique target curve.</p>
+
+<div class="admonition note">
+<p class="admonition-title">EQ band settings</p>
+<p><ul>
+<li>Master Assistant will always enable Low Shelf &amp; High Shelf filters on Bands 1 &amp; 8 (respectively).</li>
+<li>Master Assistant will add up to 6 Peak Bell filters in Bands 2-7 in order to match the target curve.</li>
+</ul>
+</p>
+</div>
+
+<h2 id="dynamics">Dynamics</h2>
+
+<p>After setting the EQ module, Master Assistant will modify the settings of the Dynamics module. Applying some light low-end compression to overly dynamic audio will allow the Maximizer to operate more transparently. Master Assistant measures the Crest Factor of your incoming audio in order to determine if applying Dynamics processing will positively affect the output of the Maximizer.</p>
+
+<p>If the detected genre class falls under the broad &ldquo;Orchestral&rdquo; category, crest factor will be calculated based on the full bandwidth of your signal. Otherwise, Crest Factor will be calculated for the low band of your input audio.</p>
+
+<p>If the Crest Factor measurement is higher than a predetermined cutoff value (this cutoff was determined as a result of our internal research) we will enable the Dynamics module. If the Crest Factor measurement falls under our pre-determined cutoff value, the Dynamics module will be disabled.</p>
+
+<div class="admonition note">
+<p class="admonition-title">What is Crest Factor?</p>
+<p>Crest Factor is a measurement of peak amplitude value divided by the RMS value of a waveform. This measurement is used to indicate how extreme peaks are in a given waveform, which can be equated to the dynamic range of a signal.
+The total Crest Factor range used by Master Assistant is -1 to 14 and the “ideal” Crest Factor range is 3 to 10.
+If the Crest Factor measurement is lower than 3, it can be considered “too compressed.” If the Crest Factor measurement is higher than 10, it can be considered “too dynamic.”</p>
+</div>
+
+<p>The Compressor threshold values are learned based on the average level of your input audio to ensure that the Compressor is affecting your audio.</p>
+
+<h2 id="maximizer">Maximizer</h2>
+
+<p>After setting the Dynamics module, Master Assistant will move on to adjusting the settings in the Maximizer.</p>
+
+<h3 id="ceiling">Ceiling</h3>
+
+<p>The Ceiling value is set based on the Target selection you made in the first screen of Master Assistant.</p>
+
+<ul>
+<li><strong>Streaming:</strong> -1dB</li>
+<li><strong>CD</strong> (for all Intensity values): -0.3dB</li>
+<li><strong>Reference:</strong> -0.3dB</li>
+</ul>
+
+<h3 id="threshold">Threshold</h3>
+
+<p>The Threshold value is set based on your input audio and the learning behavior defined by your Master Assistant Target selection.</p>
+
+<h3 id="streaming-1">Streaming</h3>
+
+<ul>
+<li>Target loudness value for the Maximizer Threshold is set to -14 LUFS (common loudness for popular streaming services)</li>
+<li>Loudness Target can be manually set in the <a href="../options/index.html#general">Options &gt; General</a> tab</li>
+</ul>
+
+<h3 id="cd-1">CD</h3>
+
+<ul>
+<li>Sets the Maximizer Threshold to give you the loudest possible master based on your input audio and Intensity selection.</li>
+</ul>
+
+<h3 id="cd-intensity-1">CD: Intensity</h3>
+
+<p>Determines how often the Limiter should be engaged when learning the Maximizer Threshold.</p>
+
+<ul>
+<li>Low: Limiter is engaged 0% of the time</li>
+<li>Medium: Limiter is engaged 1% of the time</li>
+<li>High: Limiter is engaged 2% of the time</li>
+</ul>
+
+<h3 id="reference-1">Reference</h3>
+
+<ul>
+<li>Target loudness value (in LUFS) for the Maximizer Threshold is calculated from the loudness of the selected reference track.</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><ul>
+<li>If your track is louder than the Target Loudness value, Master Assistant will not make it any quieter than the difference introduced by the Ceiling value.</li>
+</ul>
+</p>
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">Important Note</p>
+<p>It is important to play the loudest portion of your track when running Master Assistant. Learning the Maximizer Threshold on a quiet portion will maximize the loudness for <em>that portion</em> of the track.
+This has the potential to introduce distortion in louder sections of the track because the Threshold was learned for lower level signals.</p>
+</div>
+
+<h2 id="dynamic-eq">Dynamic EQ</h2>
+
+<p>Master Assistant will compare the input and output signals of the Maximizer to determine which frequencies are hitting the Limiter the hardest.</p>
+
+<p>Dynamic EQ nodes are placed at peak frequencies to reduce potential distortion introduced by the Maximizer. The Threshold values are learned based on the input audio to the Dynamic EQ bands.</p>
+
+<h2 id="accept-cancel">Accept/Cancel</h2>
+
+<p>When Master Assistant has finished, you can Accept or Cancel the changes.</p>
+
+<p><img src="../images/master-assistant/ma-accept.png" alt="accept" /></p>
+
+<ul>
+<li><strong>Accept</strong> will dismiss the Master Assistant panel and retain all settings modified by Master Assistant.</li>
+<li>If you Accept changes and decide to revert them, you can undo Master Assistant changes in the Undo History window.</li>
+<li><strong>Cancel</strong> will dismiss the Master Assistant panel and revert your settings to the state they were in prior to running Master Assistant.</li>
+</ul>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../dither/index.html" title="Dither">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Dither
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../track-referencing/index.html" title="Track Referencing">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Track Referencing
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../ja/master-assistant/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8 Help Documentation 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

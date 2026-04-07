@@ -1,0 +1,973 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="ja">
+  <head lang="ja">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>ビンテージリミッター - Ozone8ユーザーズマニュアル</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/ja/vintage-limiter/">
+    <meta property="og:title" content="Ozone8ユーザーズマニュアル">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone8ユーザーズマニュアル">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | ビンテージリミッター</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="はじめに" href="../index.html">
+	
+	はじめに
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8の概要" href="../ozone-overview/index.html">
+	
+	Ozone 8の概要
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone応用" href="../ozone-app-overview/index.html">
+	
+	Ozone応用
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プリセットシステム" href="../preset-system/index.html">
+	
+	プリセットシステム
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="全般的な機能" href="../general-functions/index.html">
+	
+	全般的な機能
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="モジュールの標準的な操作項目" href="../common-module-controls/index.html">
+	
+	モジュールの標準的な操作項目
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミクス" href="../dynamics/index.html">
+	
+	ダイナミクス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミックEQ" href="../dynamic-eq/index.html">
+	
+	ダイナミックEQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イコライザー" href="../equalizer/index.html">
+	
+	イコライザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="エキサイター" href="../exciter/index.html">
+	
+	エキサイター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イメージャー" href="../imager/index.html">
+	
+	イメージャー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マキシマイザー" href="../maximizer/index.html">
+	
+	マキシマイザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="スペクトラル成形" href="../spectral-shaper/index.html">
+	
+	スペクトラル成形
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージコンプレッサー" href="../vintage-compressor/index.html">
+	
+	ビンテージコンプレッサー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージEQ " href="../vintage-eq/index.html">
+	
+	ビンテージEQ 
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="ビンテージリミッター" href="index.html">
+	
+	ビンテージリミッター
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージテープ" href="../vintage-tape/index.html">
+	
+	ビンテージテープ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="コーデックプレビュー" href="../codec-preview/index.html">
+	
+	コーデックプレビュー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ディザー" href="../dither/index.html">
+	
+	ディザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マスターアシスタント" href="../master-assistant/index.html">
+	
+	マスターアシスタント
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トラックリファレンス" href="../track-referencing/index.html">
+	
+	トラックリファレンス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トーナルバランスコントロール" href="../tonal-balance-control/index.html">
+	
+	トーナルバランスコントロール
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オプション" href="../options/index.html">
+	
+	オプション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プラグインオートメーション" href="../plug-in-automation/index.html">
+	
+	プラグインオートメーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ヒントと用例" href="../tips-and-examples/index.html">
+	
+	ヒントと用例
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーソリゼーション" href="../authorization/index.html">
+	
+	オーソリゼーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotopeカスタマーケアー" href="../customer-care/index.html">
+	
+	iZotopeカスタマーケアー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information (ライセンス情報)" href="../license-information/index.html">
+	
+	License Information (ライセンス情報)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA (エンドユーザー向け使用許諾契約)" href="../eula/index.html">
+	
+	EULA (エンドユーザー向け使用許諾契約)
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../en/vintage-limiter/index.html"><i class="icon icon-eye"></i> View in English</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>ビンテージリミッター </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">言語:</span>
+<br />
+    
+
+       
+       <a href="../../en/vintage-limiter/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+        <a href="../../en/vintage-limiter/index.html"><button class="lang-btn-active">日本語</button></a>
+       
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+    
+
+	
+
+<h2 id="概要">概要</h2>
+
+<p>ビンテージリミッターはダイナミックレンジをリミッティングし、ミックスの全体的なレベルをブーストすることで、ラウドかつ満たされたマスターの作成を実現します。これはフィードバックベースの真空管コンプレッサー/リミッターであるFairchild 670をモデルに設計され、フィードバック技術の差異により若干異なるアタックとリリースを持ったリミッターです。IRC Iリミッターはクリッピングを防止すべく真空管処理を模して作られました。ビンテージリミッターはマキシマイザー同様、ミックスの全帯域に適用されますので、マルチバンド効果ではありません。ビンテージリミッターは温かいアナログ感とデジタル最大化の微細さを併せ持つモジュールです。</p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<p><img src="../images/vlim.png" alt="vlim" /></p>
+
+<h3 id="モード">モード</h3>
+
+<p>それぞれ特徴のある音像の3種類のリミッティングモードからリミッティングの仕方を選択します:</p>
+
+<ul>
+<li><strong>ANALOG（アナログ）:</strong> 速いアタックと可変リリース時間により、このモードでは分厚いリミッティング品質によるタイトなベース特性が実現します。アナログ回路特有の平滑さを保ちつつ、ローエンドのトランジエントを取り除きます。</li>
+<li><strong>TUBE（真空管）:</strong> これは可変アタック及び可変リリース時間により最もバランスの取れたモードとなっており、入力信号により異なる広い音質特性と平滑なフィードバックが実現します。ノンリニアであるにもかかわらず、このモードではクリップとピークを防止しつつ、モダンな微細さを再現することができます。</li>
+<li><strong>MODERN（モダン）:</strong> これは真の意味で新旧のハイブリッドと言え、分厚いビンテージな特性とノンリニアの広域性、そして今日的なIRCリミッティング、可変リリース時間、そして可変トランジエント再生成といった機能を兼ね備えています。</li>
+</ul>
+
+<h3 id="threshold-スレッシュホルド">Threshold（スレッシュホルド）</h3>
+
+<p>スレッシュホルドでは、ビンテージリミッターがリミッティングを開始するレベルを決めます。入力信号がスレッシュホルドを超過すると、リミッターが作動します。この操作項目では、スレッシュホルドを下げることにより、ゲインが加わります。信号より更にスレッシュホルドを下げると、全体的なミックスの音量は上がります。
+言い換えると、スレッシュホルドを下げることにより、ミックスのダイナミックレンジが限定されますので、ビンテージリミッターは出力レベルを最大化するため、自動的に比例する量のゲインを加えるのです。</p>
+
+<h3 id="ceiling-シーリング">Ceiling（シーリング）</h3>
+
+<p>シーリングでビンテージリミッターの出力する最高レベルを設定します。</p>
+
+<div class="admonition note">
+<p class="admonition-title">推奨値</p>
+<p>一般的に、ディザー使用時は-0.3 dBが推奨値となりますが、マスタリングされるオーディオを.mp3または.aacへ変換する場合は、将来的なクリッピングを防止すべく、更に低いレベル(-0.6から-0.8)が推奨されます。詳細は <a href="../codec-preview/index.html">コーデック試聴</a>の項をご参照ください。</p>
+</div>
+
+<h3 id="link-threshold-ceiling-スレッシュホルドとシーリングをリンク">Link Threshold &amp; Ceiling（スレッシュホルドとシーリングをリンク）</h3>
+
+<p>有効の場合、スレッシュホルドとシーリングの操作がリンクされます。どちらか片方の操作で調整を行うと、もう片方も同じ分量だけ変化します。</p>
+
+<h3 id="true-peak-limiting-真正ピークリミッティング">True Peak Limiting（真正ピークリミッティング）</h3>
+
+<p>各デジタルサンプルのレベルのみならず、D/A変換後のアナログ信号のレベルも鑑みたリミッティングを行う場合は、真正ピークリミッティング機能を有効化します。アナログ信号のピーク値とデジタル信号のピーク値とでは、一致する値であっても実際は3dB以上アナログの方が高い場合がありますので、時としてこの機能が必要となります。</p>
+
+<div class="admonition note">
+<p class="admonition-title">真正ピークリミッティングとCPU使用率</p>
+<p>この機能を使用すると僅かながらCPU使用率が上がりますが、ミックスのレベルが高めに設定されている場合は、D/A変換の段階でディストーションが発生しないよう、この機能を有効化する方が確実と言えます。</p>
+</div>
+
+<h3 id="character-処理性質">Character（処理性質）</h3>
+
+<p>キャラクターコントロールでビンテージリミッターのアタックとリリース時間を調節します。これは選択されたモードにより、速(0.0)から遅(10.0)までの連続的な数値で分量を定義します。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="スレッシュホルドメーター">スレッシュホルドメーター</h3>
+
+<p><img src="../images/vlim-threshold.png" alt="VLIM Threshold meter" /></p>
+
+<p>スレッシュホルドメーターは、モジュールの処理により発生しているゲインリダクションの量を表示します。外側の2本のメーターが入力信号を示し、ゲインリダクションが発生すると、中央のメーターでその分量が表示されます。</p>
+
+<h3 id="ミニメーター画面">ミニメーター画面</h3>
+
+<h4 id="gain-reduction-trace-ゲイン削減トレース表示">Gain Reduction Trace（ゲイン削減トレース表示）</h4>
+
+<p><img src="../images/vlim-trace.png" alt="trace" /></p>
+
+<p>この画面では、入力信号の波形にゲイン削減の分量がリアルタイムでスーパーインポーズされた曲線が表示されるスクロールメーターが表示されます。ゲイン削減トレース表示はアタックとリリースを正しく設定し、ゲイン削減のエンベロープをモニターする上での一助となります。</p>
+
+<h4 id="spectrum-analyzer-スペクトラムアナライザー">Spectrum Analyzer（スペクトラムアナライザー）</h4>
+
+<p><img src="../images/vlim-spectrum.png" alt="vlim spectrum" /></p>
+
+<p>Ozoneの出力がリアルタイムで表示されるスペクトラムアナライザーです。</p>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../vintage-eq/index.html" title="ビンテージEQ [ADV]">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              ビンテージEQ [ADV]
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../vintage-tape/index.html" title="ビンテージテープ [ADV]">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              ビンテージテープ [ADV]
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../en/vintage-limiter/index.html"><i class="icon icon-eye"></i> View in English</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8ヘルプドキュメント 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

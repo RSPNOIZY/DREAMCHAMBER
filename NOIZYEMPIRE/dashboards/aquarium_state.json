@@ -1,0 +1,43 @@
+{
+  "items": [],
+  "composer_guild": [
+    {
+      "id": "composer-rob-visionary-140120",
+      "name": "rob visionary",
+      "status": "composer",
+      "joined": "2026-03-12 14:01:20 EDT",
+      "source": "dreamchamber-aquarium"
+    },
+    {
+      "id": "composer-maya-chen-140149",
+      "name": "maya chen",
+      "status": "teacher",
+      "joined": "2026-03-12 14:01:49 EDT",
+      "source": "dreamchamber-aquarium",
+      "teacher_since": "2026-03-12 14:01:49 EDT"
+    },
+    {
+      "id": "composer-river-stone-140518",
+      "name": "river stone",
+      "status": "teacher",
+      "joined": "2026-03-12 14:05:18 EDT",
+      "source": "dreamchamber-aquarium",
+      "teacher_since": "2026-03-12 14:05:29 EDT"
+    }
+  ],
+  "noizykidz_teachers": [
+    {
+      "id": "composer-maya-chen-140149",
+      "name": "maya chen",
+      "joined": "2026-03-12 14:01:49 EDT",
+      "teacher_since": "2026-03-12 14:01:49 EDT"
+    },
+    {
+      "id": "composer-river-stone-140518",
+      "name": "river stone",
+      "joined": "2026-03-12 14:05:18 EDT",
+      "teacher_since": "2026-03-12 14:05:29 EDT"
+    }
+  ],
+  "last_updated": "2026-03-12 14:05:29 EDT"
+}

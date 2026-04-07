@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]> 
+<!--><html class="no-js" lang="en"><!--<![endif]-->
+	<head lang="en">    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Tonal Balance Control Help Documentation - Tonal Balance Control Documentation</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+    <meta name="description" content="Tonal Balance Control Documentation">
+    <link rel="canonical" href="index.html">
+    <meta name="author" content="iZotope">
+    <meta property="og:url" content="http://www.izotope-tonal_balance_control-docs.com/en/print/index.html">
+    <meta property="og:title" content="Tonal Balance Control Documentation">
+    
+    <meta name="apple-mobile-web-app-title" content="Tonal Balance Control Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+    
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/palettes.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+    
+    
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css"><link rel="stylesheet" href="../stylesheets/ie7.css">
+    <script src="../javascripts/modernizr.js"></script>
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-17', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    </head>
+<body class="palette-primary-print-page palette-accent-print-page">
+
+  <div class="backdrop">
+    <div class="backdrop-paper"></div>
+  </div>
+  <input class="toggle" type="checkbox" id="toggle-drawer">
+  <input class="toggle" type="checkbox" id="toggle-search">
+  <label class="toggle-button overlay" for="toggle-drawer"></label>
+  <header class="header">    <nav aria-label="Header">
+      <div class="bar default">
+        <div class="button button-menu" role="button" aria-label="Menu">
+          <label class="toggle-button icon icon-menu" for="toggle-drawer">
+            <span></span>
+          </label>
+        </div>
+        <div class="stretch">
+          <div class="title">
+            <a href="../index.html" >
+            <img src="../images/header-intro-site/site-header.png">   Tonal Balance Control Help Documentation</a>
+          </div>
+        </div>
+            
+      </div>
+      <div class="bar search">
+        <div class="button button-close" role="button" aria-label="Close">
+          <label class="toggle-button icon icon-back" for="toggle-search"></label>
+        </div>
+        <div class="stretch">
+          <div class="field">
+            <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+          </div>
+        </div>
+        <div class="button button-reset" role="button" aria-label="Search">
+          <button class="toggle-button icon icon-close" id="reset-search"></button>
+        </div>
+      </div>
+    </nav></header>
+  <main class="main">
+    <div class="drawer">
+  
+</div>
+    <article class="article">
+      <div class="wrapper">
+	<img src="../images/header-intro-site/site-header-print.png" alt="iZotope Tonal Balance Control">
+	<h1>Tonal Balance Control Documentation</h1>
+  
+  
+	<hr /><h1><span class="icon icon-bookmark"></span>  Meters &amp; Target Curves</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Tonal Balance Control displays spectrum metering information for the track it is currently inserted on relative to a target curve. This is particularly useful when dealing with tonal balance issues that arise during mixing and mastering. Tonal Balance Control can help provide context and direction toward resolving issues with a mix or master lacking the low-end power or high-end brilliance found in professionally produced, radio-ready material.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Tonal Balance Control should live at the end of your processing chain</p>
+<p><ul>
+<li>To get the most out of the Tonal Balance Control plug-in, we recommend that it is inserted at the end of the processing chain on your master bus track.<br /></li>
+<li>This ensures that the spectrum curve you are comparing to the currently selected target curve is after all other processing in your session.<br /></li>
+<li>When Tonal Balance Control is last in the processing chain, it ensures that adjustments made to Neutron 2 or Ozone 8 EQ instances will affect the spectrum curve displayed in Tonal Balance Control.<br /></li>
+</ul>
+</p>
+</div>
+
+<p>The factory target curves in Tonal Balance Control represent typical spectral shapes found in different styles of music. These target curves were created by analyzing the spectral characteristics of numerous tracks across different genres/styles of music. The target curves display ranges of typical spectral variation for these similar styles of music.</p>
+
+<h2 id="meters">Meters</h2>
+
+<h2 id="broad-view">Broad View</h2>
+
+<p><img src="../images/tbc-target-curves-meters/broad-view.png" alt="Broad View" /></p>
+
+<p>Broad View displays target curve ranges split into four frequency bands.</p>
+
+<ul>
+<li>Low: 20 Hz - 250 Hz<br /></li>
+<li>Low-mid: 250 Hz - 2 kHz<br /></li>
+<li>Mid: 2kHz - 8 kHz<br /></li>
+<li>High-mid: 8 kHz - 20 kHz<br />
+<br /></li>
+</ul>
+
+<p>The blue bars shown in each frequency band represent the typical range of spectral variation for the selected target curve.</p>
+
+<p>The white lines will update to show how your track compares to the target curve. You can make adjustments to Ozone and Neutron EQ instances to modify your mix to fall within the blue target ranges.</p>
+
+<h2 id="fine-view">Fine View</h2>
+
+<p><img src="../images/tbc-target-curves-meters/fine-view.png" alt="Fine View" /></p>
+
+<p>Fine View displays the selected target curve range in blue across the frequency spectrum. The white spectrum curve in this view represents your current track.</p>
+
+<h2 id="band-indicators">Band Indicators</h2>
+
+<p><img src="../images/tbc-target-curves-meters/target-selection.png" alt="Band Indicators" /></p>
+
+<p>The frequency band labels will turn white when your current track is within the typical range for the selected target curve.</p>
+
+<h2 id="crest-factor">Crest Factor</h2>
+
+<p><img src="../images/tbc-target-curves-meters/crest-factor-close.png" alt="Crest Factor" /></p>
+
+<p>The Crest Factor meter shows information about the low end dynamic range of your track. When the meter is weighted to the left, it indicates that your mix is &lsquo;too dynamic&rsquo; in the low end. When weighted to the right, it indicates that your mix is &lsquo;too compressed&rsquo; in the low end.</p>
+
+<h2 id="target-curves">Target Curves</h2>
+
+<p><img src="../images/tbc-target-curves-meters/target-selection.png" alt="Target Menu" /></p>
+
+<p>Tonal Balance Control comes with 3 factory target curves that represent the typical spectral curves found in major musical styles.</p>
+
+<ul>
+<li><strong>ORCHESTRAL</strong><br /></li>
+<li><strong>BASS HEAVY</strong><br /></li>
+<li><strong>MODERN</strong><br />
+<br /></li>
+</ul>
+
+<h2 id="custom-target-curves">Custom Target Curves</h2>
+
+<p>Clicking on the menu button to the right of the target curve dropdown menu exposes options for creating your own target curves.</p>
+
+<table>
+<thead>
+<tr>
+<th>Supported File Formats</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>AIFF</td>
+</tr>
+
+<tr>
+<td>WAV</td>
+</tr>
+
+<tr>
+<td>MP3</td>
+</tr>
+
+<tr>
+<td>M4A</td>
+</tr>
+
+<tr>
+<td>FLAC</td>
+</tr>
+
+<tr>
+<td>OGG</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="create-custom-target-curve-from-file">Create custom target curve from file&hellip;</h3>
+
+<p>Opens a system window that allows you to select an audio file to create a custom target curve.</p>
+
+<h3 id="create-custom-target-from-folder-of-files">Create custom target from folder of files&hellip;</h3>
+
+<p>Allows you to select a folder of audio files. Tonal Balance Control will create a single target curve based on all audio files included in the selected folder.</p>
+
+<h3 id="save-custom-target-curve">Save custom target curve&hellip;</h3>
+
+<p>Save the custom target curve you created to use again in the future.</p>
+
+<h3 id="change-target-curve-folder">Change target curve folder&hellip;</h3>
+
+<p>Allows you to select a different location to store and recall target curves.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Default Target Curve folder locations</p>
+<p><ul>
+<li><strong>Mac</strong>: Users/username/Documents/iZotope/Tonal Balance Control/Target Curves<br /></li>
+<li><strong>Windows</strong>: C:\Users\username\Documents\iZotope\Tonal Balance Control\Target Curves<br /></li>
+</ul>
+</p>
+</div>
+
+<h3 id="show-target-curve-folder-in-finder-explorer">Show target curve folder in finder/explorer&hellip;</h3>
+
+<p>Opens a Finder (Mac) or Explorer (Windows) window to the current target curve directory.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  Ozone 8 in Tonal Balance Control</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Select Ozone 8 instances from the plug-in selection menu in Tonal Balance Control to modify EQ parameters remotely or view the spectrum metering of any Ozone 8 plug-in.</p>
+
+<p><img src="../images/tbc-o8/o8-eq-display.png" alt="Ozone 8 instance selected" /></p>
+
+<p>The following table outlines the controls and displays available when the associated Ozone 8 plug-in is selected as the incoming instance in Tonal Balance Control.</p>
+
+<table>
+<thead>
+<tr>
+<th>Plug-in/Module Name</th>
+<th>EQ Controls</th>
+<th>Spectrum Display</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Ozone 8 / EQ module</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 / Post EQ module</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 EQ</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Dynamic EQ</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Dynamics</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Exciter</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Imager</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Maximizer</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Spectral Shaper</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Vintage Limiter</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Vintage EQ</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Vintage Tape</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Vintage Compressor</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+
+<p>Ozone 8 plug-ins with no EQ controls will look something like this when selected in Tonal Balance Control:<br />
+<img src="../images/tbc-o8/o8-plugin-no-eq-controls.png" alt="No EQ Controls" /></p>
+
+<p>Ozone 8 plug-ins with compatible EQ controls will look something like this when selected in Tonal Balance Control:<br />
+<img src="../images/tbc-o8/o8-eq-params-close.png" alt="EQ Controls" /></p>
+
+<h2 id="global-eq-controls">Global EQ Controls</h2>
+
+<p><img src="../images/tbc-o8/o8-global-bar.png" alt="global control bar" /></p>
+
+<h3 id="source-plug-in-selection-menu"><strong>SOURCE PLUG-IN SELECTION MENU</strong></h3>
+
+<p>Allows you to select the instance to display/control from within the Tonal Balance Control interface.</p>
+
+<h3 id="analog-digital-surgical"><strong>ANALOG/DIGITAL/SURGICAL</strong></h3>
+
+<p>Sets the global EQ processing mode.</p>
+
+<ul>
+<li><strong>ANALOG</strong> When selected, all EQ bands will use analog-modeled filters with minimum phase response.<br /></li>
+<li><strong>DIGITAL</strong> When selected, all EQ bands will use filter shapes with adjustable phase response<br /></li>
+<li><strong>SURGICAL</strong> When selected, all EQ bands will use precise digital filter shapes. Only select filter shapes are available in Surgical mode.<br />
+<br /></li>
+</ul>
+
+<h3 id="bypass"><strong>BYPASS</strong></h3>
+
+<p>Momentarily bypasses EQ processing in the selected Ozone 8 plug-in. This bypass control is useful for quick A/B comparisons.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note about EQ Bypass state</p>
+<p><ul>
+<li>If the selected EQ is bypassed in the plug-in, the controls will appear dimmed in Tonal Balance Control. To enable the EQ in the selected plug-in, you will need to open the plug-in window and unbypass the EQ. EQ bypass state of a selected plug-in can&rsquo;t be changed from the Tonal Balance Control interface.<br /></li>
+</ul>
+</p>
+</div>
+
+<h3 id="show-hide-selected-plug-in-display">Show/Hide Selected Plug-in Display</h3>
+
+<p>Toggles the incoming instance display panel open or closed.</p>
+
+<h2 id="metering-navigation">Metering &amp; Navigation</h2>
+
+<p><img src="../images/tbc-o8/o8-spectrum-close-up.png" alt="Spectrum and EQ curve" /></p>
+
+<h3 id="spectrum-metering">Spectrum Metering</h3>
+
+<p>Displays spectrum metering for the selected instance. Ozone 8 plug-ins will display their spectrum metering in blue.</p>
+
+<h3 id="eq-curve">EQ Curve</h3>
+
+<p>If the selected Ozone 8 instance supports EQ control, the EQ curve controls will be displayed in the spectrum meter area.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Tips for working with EQ nodes</p>
+<p><ul>
+<li><strong>Change filter shapes:</strong> You can change filter shapes of any visible node by right-clicking on the node and selecting the filter shape from the context menu that appears.<br /></li>
+<li><strong>Reset node to default:</strong> Double-click on a node to reset it to default values.<br /></li>
+<li><strong>Enable bands with double-click:</strong> Double-click in an empty spot in the spectrum display to enable a band at that frequency/gain.<br /></li>
+</ul>
+</p>
+</div>
+
+<h3 id="band-selection-enable-disable-controls">Band Selection &amp; Enable/Disable Controls</h3>
+
+<p><img src="../images/tbc-o8/o8-band-selection-enable-disable-bar.png" alt="Band select and enable bar" /></p>
+
+<ul>
+<li>EQ bands can be enabled or disabled by clicking on the power button to the left of the band number.<br /></li>
+<li>Click on the band number directly to view the controls associated with that band.<br />
+<br /></li>
+</ul>
+
+<h2 id="eq-controls">EQ Controls</h2>
+
+<p>EQ controls for the currently selected Ozone EQ are located in the bottom bar of the Tonal Balance Control interface.</p>
+
+<p><img src="../images/tbc-o8/o8-static-band-controls.png" alt="EQ Controls" /></p>
+
+<ul>
+<li><strong>BAND SHAPE:</strong> Selects the filter shape used by the selected band.<br /></li>
+<li><strong>FREQUENCY:</strong> Sets the center frequency for the selected filter.<br /></li>
+<li><strong>GAIN:</strong> Sets the positive/negative gain applied to the selected filter.<br /></li>
+<li><strong>Q:</strong> Sets the bandwidth of current filter.<br /></li>
+<li><strong>PHASE (Digital/Surgical Mode Only):</strong>  Controls the mixed phase response of the current band. 0% = Linear phase response; 100% = minimum phase response.<br />
+<br /></li>
+</ul>
+
+<h2 id="general-notes">General Notes</h2>
+
+<h3 id="control-availability">Control Availability</h3>
+
+<p>The following controls are accessible in the Ozone 8 EQ/Post EQ modules and EQ component plug-in, but cannot be accessed from the Tonal Balance Control interface:</p>
+
+<ul>
+<li>EQ module/plug-in Bypass<br /></li>
+<li>Matching EQ controls<br /></li>
+<li>Mid/Side or Left/Right processing mode controls<br /></li>
+<li>EQ module reset<br /></li>
+<li>I/O or Channel Ops controls<br />
+<br /></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">M/S &amp; L/R control limitation in Tonal Balance Control</p>
+<p>If the Ozone EQ instance selected in Tonal Balance Control is using Mid/Side or Left/Right processing modes, the EQ controls will not appear in the Tonal Balance Control interface. Currently, Tonal Balance Control only supports controlling Ozone EQs that are utilizing Stereo processing mode.</p>
+</div>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  Neutron 2 in Tonal Balance Control</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Select Neutron 2 instances from the plug-in selection menu in Tonal Balance Control to modify EQ parameters remotely or view the spectrum metering of any Neutron 2 plug-in.</p>
+
+<p><img src="../images/tbc-n2/n2-eq-display.png" alt="Neutron 2 instance selected" /></p>
+
+<p>The following table outlines the controls and displays available when the associated Neutron 2 plug-in is selected as the incoming instance in Tonal Balance Control.</p>
+
+<table>
+<thead>
+<tr>
+<th>Plug-in Name</th>
+<th>EQ Controls</th>
+<th>Spectrum Display</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Neutron 2</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 EQ</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 Compressor</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 Gate</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 Exciter</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 Transient Shaper</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 Mix Tap</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 Visual Mixer</td>
+<td>No</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+
+<p>Neutron 2 plug-ins with no EQ controls will look like this when selected in Tonal Balance Control:<br />
+<img src="../images/tbc-n2/n2-plugin-no-eq-controls.png" alt="No EQ Controls" /></p>
+
+<p>Neutron 2 plug-ins with compatible EQ controls will look like this when selected in Tonal Balance Control:<br />
+<img src="../images/tbc-n2/n2-eq-params-close.png" alt="EQ Controls" /></p>
+
+<h2 id="global-eq-controls">Global EQ Controls</h2>
+
+<p><img src="../images/tbc-n2/n2-global-bar.png" alt="global control bar" /></p>
+
+<ul>
+<li><strong>PLUG-IN SELECTION MENU:</strong> Allows you to select the instance to display/control from within the Tonal Balance Control interface.<br /></li>
+<li><strong>SOFT SATURATION:</strong> Enables/disables Soft Saturation in the selected Neutron 2 EQ. When enabled, this button will be colored orange.<br /></li>
+<li><strong>BYPASS:</strong> Momentarily bypasses EQ processing in the selected Neutron 2 plug-in. This bypass control is useful for quick A/B comparisons.<br />
+<div class="admonition note">
+<p class="admonition-title">Note about EQ Bypass state</p>
+<p><ul>
+<li>If the selected EQ is bypassed in the plug-in, the controls will appear dimmed in Tonal Balance Control. To enable the EQ in the selected plug-in, you will need to open the plug-in window and unbypass the EQ. EQ bypass state of a selected plug-in can&rsquo;t be changed from the Tonal Balance Control interface.<br /></li>
+</ul>
+</p>
+</div><br /></li>
+<li><strong>SHOW/HIDE SELECTED PLUG-IN DISPLAY:</strong> Toggles the incoming instance display panel open or closed.<br />
+<br /></li>
+</ul>
+
+<h2 id="metering-navigation">Metering &amp; Navigation</h2>
+
+<p><img src="../images/tbc-n2/n2-spectrum-close-up.png" alt="Spectrum and EQ curve" /></p>
+
+<ul>
+<li><strong>SPECTRUM METERING:</strong> Displays spectrum metering for the selected instance. Neutron 2 plug-ins will display their spectrum metering in orange.<br /></li>
+<li><strong>EQ CURVE:</strong> If the selected Neutron 2 instance supports EQ control, the EQ curve controls will be displayed in the spectrum meter area.<br />
+<div class="admonition note">
+<p class="admonition-title">Tips for working with EQ nodes</p>
+<p><ul>
+<li><strong>Change filter shapes:</strong> You can change filter shapes of any visible node by right-clicking on the node and selecting the filter shape from the context menu that appears.<br /></li>
+<li><strong>Reset node to default:</strong> Double-click on a node to reset it to default values.<br /></li>
+<li><strong>Enable bands with double-click:</strong> Double-click in an empty spot in the spectrum display to enable a band at that frequency.<br /></li>
+</ul>
+</p>
+</div><br /></li>
+<li><strong>BAND SELECTION &amp; ENABLE/DISABLE CONTROLS:</strong><br />
+<img src="../images/tbc-n2/n2-band-selection-enable-disable-bar.png" alt="Band select and enable bar" /><br />
+
+<ul>
+<li>EQ bands can be enabled or disabled by clicking on the power button to the left of the band number/shape.<br /></li>
+<li>Click on the band number/shape icon directly to view the controls associated with that band.<br />
+<br /></li>
+</ul></li>
+</ul>
+
+<h2 id="static-eq-controls">Static EQ Controls</h2>
+
+<p>Static EQ controls for the selected Neutron 2 EQ are located on the left side of the bottom bar in the Tonal Balance Control interface.</p>
+
+<p><img src="../images/tbc-n2/n2-static-band-controls.png" alt="Static EQ Controls" /></p>
+
+<ul>
+<li><strong>BAND SHAPE:</strong> Selects the filter shape used by the selected band.<br /></li>
+<li><strong>FREQUENCY:</strong> Sets the center frequency for the selected filter.<br /></li>
+<li><strong>GAIN:</strong> Sets the positive/negative gain applied to the selected filter.<br /></li>
+<li><strong>Q:</strong> Sets the bandwidth of current filter.<br />
+<br /></li>
+</ul>
+
+<h2 id="dynamic-mode-controls">Dynamic Mode Controls</h2>
+
+<p>Dynamic mode controls are accessible to the right of the static controls and can be enabled for each band individually.</p>
+
+<p><img src="../images/tbc-n2/n2-dynamic-filter-controls.png" alt="Dyn EQ Controls" /></p>
+
+<ul>
+<li><strong>DYNAMIC MODE ENABLE/DISABLE:</strong> Enables Dynamic mode operation for the selected band.<br /></li>
+<li><strong>DYNAMIC TRIGGER DIRECTION:</strong> Determines the direction of the dynamic filter for the selected band.<br /></li>
+<li><strong>THRESHOLD:</strong> Determines the dynamic trigger threshold level for the selected band. When signals exceed the Threshold level the filter will be triggered.<br /></li>
+<li><strong>SIDECHAIN:</strong> Enables or disables the use of a Sidechain input source for the Dynamic triggering of the currently selected band.<br /></li>
+<li><strong>SIDECHAIN SOURCE SELECTION:</strong> When Sidechain is enabled, sets the Sidechain input source for the currently selected band.<br />
+<br /></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">Dynamic Mode Indicators</p>
+<p><ul>
+<li>When Dynamic mode is enabled for an EQ band, a directional arrow will be displayed above or below the applicable node in the EQ curve display. The arrow icon direction reflects the selected Dynamic Trigger Direction.<br /></li>
+</ul>
+</p>
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">Note about HP/LP Bands</p>
+<p><ul>
+<li>The HP and LP bands (first &amp; last bands) in Neutron 2 do not support Dynamic Mode operation.<br /></li>
+</ul>
+</p>
+</div>
+
+<h2 id="general-notes">General Notes</h2>
+
+<h3 id="control-availability">Control Availability</h3>
+
+<p>The following controls are accessible in the Neutron 2 EQ module and component plug-in, but cannot be accessed from the Tonal Balance Control interface:</p>
+
+<ul>
+<li>EQ module/plug-in Bypass<br /></li>
+<li>EQ Node Learn<br /></li>
+<li>Masking Meter controls<br /></li>
+<li>EQ module reset<br /></li>
+<li>I/O or Channel Ops controls<br /></li>
+</ul>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  Options</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>You can access the Options menu by clicking the gear button in the upper right hand corner of the Tonal Balance Control interface.</p>
+
+<p><img src="../images/tbc-options/tonal-balance-control-options.png" alt="Options Window" /></p>
+
+<h3 id="version-string">Version String</h3>
+
+<p>The current Tonal Balance Control version and build number are listed in a string located in the upper right hand corner of the Options window.</p>
+
+<h3 id="reset">Reset</h3>
+
+<p>Resets all Tonal Balance Control options to their factory default values.</p>
+
+<h3 id="cancel">Cancel</h3>
+
+<p>Exits the Options window without saving any changes made since last opening the Options window.</p>
+
+<h3 id="ok">Ok</h3>
+
+<p>Exits the Options window and saves any changes made since last opening the Options window.</p>
+
+<h2 id="general">General</h2>
+
+<h3 id="enable-analytics">Enable Analytics</h3>
+
+<p>When checked, <strong>anonymous</strong> usage data will be sent to help iZotope improve future products.</p>
+
+<h3 id="enable-tooltips">Enable Tooltips</h3>
+
+<p>When checked, tooltips with information about a control will appear when hovering the cursor over most controls in the Tonal Balance Control interface.</p>
+
+<h2 id="spectrum">Spectrum</h2>
+
+<h3 id="average-time">Average Time</h3>
+
+<p>Averages the spectrum according to this setting. Higher average times can be useful for viewing the overall tonal balance of a mix, while shorter average times provide a more real-time display.</p>
+
+<h3 id="frequency-scale">Frequency Scale</h3>
+
+<p>Sets the frequency scale used by the Tonal Balance Control meter. Choices include:</p>
+
+<ul>
+<li><strong>FLAT LOG</strong><br /></li>
+<li><strong>EXTENDED LOG</strong><br /></li>
+<li><strong>PIANO ROLL</strong><br />
+<br /></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can access and change the frequency scale option without opening the options window by right-clicking on the frequency ruler in the Tonal Balance Control interface.</p>
+</div>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  Authorization</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>The Authorization window allows you to:</p>
+
+<ul>
+<li><strong>TRIAL:</strong> Start or continue a Trial period evaluation prior to purchasing<br /></li>
+<li><strong>DEMO:</strong> Continue evaluating the product with Demo limitations (<em>after the 10 day Trial period has been exceeded</em>)<br /></li>
+<li><strong>AUTHORIZE:</strong> Authorize the product with a serial number<br />
+<br /></li>
+</ul>
+
+<h2 id="trial-demo-modes">Trial &amp; Demo Modes</h2>
+
+<p>A 10 day trial period will start upon first opening the Tonal Balance Control plug-in. After the 10 day trial period has expired, Tonal Balance Control will enter demo mode. To disable Trial or Demo mode, you must authorize the product with a valid serial number.</p>
+
+<h3 id="trial-mode"><strong>Trial mode</strong></h3>
+
+<p>Trial mode begins when Tonal Balance Control is first instantiated in a DAW/NLE. The authorization wizard window will display the number of days remaining in your trial period.</p>
+
+<p>Clicking on the &ldquo;Continue&rdquo; button will dismiss the Authorization window and allow you to continue evaluating Tonal Balance Control in trial mode.</p>
+
+<h3 id="demo-mode"><strong>Demo mode</strong></h3>
+
+<p>After 10 days, Tonal Balance Control will operate in Demo mode. When in demo mode, all metering in Tonal Balance Control is suspended. If you would like to continue evaluating Tonal Balance Control in demo mode, click the &ldquo;Demo&rdquo; button.</p>
+
+<h2 id="authorization-methods">Authorization Methods</h2>
+
+<p>We offer three main methods for authorizing Tonal Balance Control:</p>
+
+<ul>
+<li><strong>Online Authorization:</strong> Use this method to authorize Tonal Balance Control on a machine that is connected to the internet.<br /></li>
+<li><strong>Offline Authorization:</strong> Use this method to authorize Tonal Balance Control on a machine that is not connected to the internet.<br /></li>
+<li><strong>iLok Authorization:</strong> Use this method to authorize Tonal Balance Control using an iLok.<br />
+<br /></li>
+</ul>
+
+<h2 id="more-information">More Information</h2>
+
+<p>For information on authorization, please visit the iZotope website: <a href="https://www.izotope.com/authorization">https://www.izotope.com/authorization</a></p>
+
+<h3 id="for-additional-help-with-authorizing-tonal-balance-control"><strong>For additional help with authorizing Tonal Balance Control:</strong></h3>
+
+<ul>
+<li>Check out the Customer Care pages on iZotope website: <a href="http://www.izotope.com/support">http://www.izotope.com/support</a><br /></li>
+<li>Contact our Customer Care department at <a href="mailto:support@izotope.com">support@izotope.com</a><br />
+<br /></li>
+</ul>
+
+<p>More information on iZotope’s Customer Care department and policies can be found in the <a href="../customer-care/index.html">iZotope Customer Care</a> chapter.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  Customer Care</h1>
+  
+
+<h2 id="purchasing">Purchasing</h2>
+
+<p>If you are using the demo version of Tonal Balance Control and would like the full version, you can purchase Tonal Balance Control direct from the iZotope online store: <a href="https://www.izotope.com/store">www.izotope.com/store</a></p>
+
+<p>Once your purchase is complete, you will be sent an email confirmation and a full version serial number that can be used to fully authorize your current installation of Tonal Balance Control.</p>
+
+<h2 id="izotope-customer-care-policy">iZotope Customer Care policy</h2>
+
+<p>iZotope is happy to provide professional technical Customer Care to all registered users absolutely free of charge.<br />
+<a href="https://www.izotope.com/support/contact/index.php">www.izotope.com/support/contact/index.php</a></p>
+
+<p>We also offer valuable pre-sales technical Customer Care to customers who may be interested in purchasing an iZotope product. Before contacting iZotope Customer Care, you can search our <a href="https://www.izotope.com/support/kb/index.php/kb/browse/32-iZotope_Knowledgebase">Product Knowledgebase</a> to see if the solution to your problem has already been published.</p>
+
+<p><strong>How long does iZotope provide customer support for purchased products?</strong></p>
+
+<p>You can email us with any question for 12 months after you buy any iZotope product. Past 12 months, we’ll still help you with your account and authorization but will not provide technical support for in-depth product questions. If you need more detailed help on how to use the product, please check out our FAQs and Tutorials.</p>
+
+<p><strong>How long does iZotope support its products?</strong></p>
+
+<p>Although we can’t guarantee it, we do our best to keep our products up to date with the operating systems and plug-in hosts that we support. Sometimes, other companies make changes that we’re not able to support, but we actively work with other companies to avoid these sorts of compatibility problems. We also do our best to address bug fixes within the product itself to ensure our products operate in accordance with our specifications.</p>
+
+<p>We will provide software updates for 12 months from product release. After 12 months, no software updates will be provided.</p>
+
+<p>For details on what operating systems and plug-in host software are officially supported for a product, please check that product&rsquo;s Specs page.</p>
+
+<h2 id="contacting-izotope-customer-care">Contacting iZotope Customer Care</h2>
+
+<p>For additional help with Tonal Balance Control:</p>
+
+<ul>
+<li>Check out the Customer Care pages on our web site at <a href="https://www.izotope.com/support">www.izotope.com/support</a><br /></li>
+<li>Contact our Customer Care department at <a href="mailto:support@izotope.com">support@izotope.com</a><br />
+<br /></li>
+</ul>
+
+<p>iZotope’s highly trained Customer Care team is committed to responding to all requests within one (1) business day and frequently respond faster. Please try to explain your problem with as much detail and clarity as possible. This will ensure our ability to solve your problem accurately, the first time around. Please include all system specs and the build/version of Tonal Balance Control that you are using.</p>
+
+<p>Once your Customer Care request is submitted, you will receive a confirmation email from iZotope Customer Care. If you do not receive this email within a few minutes, please check your spam folder and make sure our responses are not getting blocked. To prevent this from happening please add <a href="mailto:support@izotope.com">support@izotope.com</a> to your list of allowed email addresses.</p>
+
+<h2 id="international-distribution">International distribution</h2>
+
+<p>Customer Care is also available from our international distributors worldwide for any customers who purchased their iZotope products through a certified iZotope distributor.</p>
+
+<p>Check with your local distributor for availability. If you would like help locating your local distributor please contact iZotope Customer Care.</p>
+
+<p>Thanks for using Tonal Balance Control!</p>
+
+<p>-The iZotope Team</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  EULA</h1>
+  <p><br /></p>
+
+<hr />
+
+<p><strong>END USER LICENSE AGREEMENT</strong></p>
+
+<p>READ CAREFULLY THE TERMS AND CONDITIONS OF THIS AGREEMENT (“AGREEMENT”) BEFORE YOU CLICK ON THE “ACCEPT” BUTTON OR OTHERWISE USE THE PRODUCT. CLICKING ON THE “ACCEPT” BUTTON OR OTHERWISE DOWNLOADING, INSTALLING AND/OR USING THE LICENSED SOFTWARE OR ANY TECHNOLOGY, IDEA, DATA AND DATABASES, ALGORITHM OR INFORMATION CONTAINED THEREIN OR PROVIDED THEREWITH (COLLECTIVELY, THE “SOFTWARE”), ESTABLISHES A BINDING AGREEMENT BETWEEN YOU AS THE PERSON LICENSING THE SOFTWARE, EITHER ON BEHALF OF YOURSELF OR ANY THIRD PARTY ENTITY (“YOU” OR &ldquo;LICENSEE&rdquo;) AND IZOTOPE, INC. (“IZOTOPE”), YOU (WHETHER AN INDIVIDUAL OR FORMAL LEGAL ENTITY) (HEREINAFTER REFERRED TO AS “YOU”), AGREE TO BE BOUND BY THE TERMS AND CONDITIONS OF THIS AGREEMENT WITH RESPECT TO YOUR USE OF THE SOFTWARE.</p>
+
+<p>BY INSTALLING AND/OR BY USING THE SOFTWARE, YOU REPRESENT AND WARRANT THAT YOU HAVE THE LEGAL CAPACITY AND AUTHORITY TO ENTER INTO A BINDING AGREEMENT TO ADHERE TO THE TERMS AND CONDITIONS SET FORTH HEREIN, AND THAT THE SOFTWARE WILL BE USED ONLY IN ACCORDANCE WITH THESE TERMS AND CONDITIONS AND WITH ALL APPLICABLE LAWS. IF AN INDIVIDUAL IS REGISTERING OR USING THE SOFTWARE ON BEHALF OF AN ENTITY OR ORGANIZATION, THAT INDIVIDUAL WARRANTS, REPRESENTS, AND COVENANTS TO IZOTOPE THAT SUCH INDIVIDUAL IS DULY AUTHORIZED TO AGREE TO THESE TERMS AND CONDITIONS ON BEHALF OF THE ORGANIZATION AND TO BIND THE ORGANIZATION TO THEM.</p>
+
+<p><strong>LICENSE.</strong> Subject to all the terms and conditions of this Agreement, iZotope hereby grants to Licensee a license to use the Software accompanying this Agreement, as well as any presets and documentation provided, whether in printed, &ldquo;online&rdquo; or electronic form, either on a stand-alone computer or on a network, on any one computer at any one time. If more than one user will be using the Software at any one time, you must obtain from iZotope additional license(s) for each additional concurrent user of the Software. The Software is &ldquo;in use&rdquo; on a computer when loaded into memory (RAM). You may make one copy of the Software solely for backup or archival purposes if all copyright and other notices are reproduced on that copy, or you may copy the Software to a single hard disk provided you keep the original solely for backup or archival purposes. If the Software is an upgrade, you must have a license for the Software from which it is upgraded. If you receive the Software in more than one media, that does not affect the number of licenses you are receiving or any other term of this Agreement.</p>
+
+<p><strong>OWNERSHIP.</strong> The copyrights, patents, trade secrets, trademarks, and all other intellectual property rights in the Software and documentation (including any images, photographs, animations, video, audio, music and text incorporated in them) are owned by iZotope or its suppliers and are protected by the copyright, patent and other laws of the United States and other countries and by international treaty provisions. iZotope retains all rights not expressly granted in this Agreement. You shall not remove any product identification, trademark, copyright or other notices contained in or on the Software.</p>
+
+<p><strong>OTHER RESTRICTIONS.</strong> You may not modify, adapt, decompile, disassemble or otherwise reverse engineer the Software, except to the extent this restriction is expressly prohibited by applicable law, nor may you create derivative works based upon the Software, or to permit third parties to do so. You may not loan, rent, lease, or license the Software, or use the Software as a service bureau, as an application service provider, to perform consulting or training services for a third party or in any commercial time share arrangement, but you may permanently transfer your rights under this Agreement provided you transfer this Agreement, the Software, and all accompanying printed materials and retain no copies, and the recipient agrees to the terms of this Agreement. Any such transfer must include the most recent update and all prior versions.</p>
+
+<p><strong>LIMITED WARRANTY.</strong> iZotope warrants that, for a period of thirty (30) days from the date the Software is made available to you for download, the Software will substantially conform to the applicable user documentation provided with the Software.  Any implied warranties which may exist despite the disclaimer herein will be limited to thirty (30) days (“Warranty Period”). This limited warranty is void if you buy from an unauthorized reseller, you violate the terms of this Agreement, or if the failure of the Software is due to accident, abuse or misapplication. Some states/jurisdictions do not allow limitations on duration of an implied warranty, so this limitation may not apply to you.</p>
+
+<p><strong>YOUR REMEDIES.</strong> iZotope&rsquo;s sole obligation and your exclusive remedy for any breach of warranty will be, at iZotope&rsquo;s sole option, either the return of the purchase price you paid or the repair or replacement of the Software, media and documentation, provided you in all instances return the Software, together with all media and documentation and a copy of your receipt, to the location where you obtained it during the Warranty Period.  Outside the United States, neither these remedies nor any support services are available without proof of purchase from an authorized non-U.S. source.</p>
+
+<p><strong>SUPPORT.</strong> Subject to the limited warranty stated above, and further subject to you not being in violation of any term of this Agreement, iZotope will provide email support for the Software to the original purchaser, for a period of 12 months from the original purchase date.</p>
+
+<p><strong>REGISTRATION INFORMATION.</strong> When you activate the Software, iZotope may collect your name and email address and other contact information you choose to provide.  IZotope may use this information to contact you regarding upgrades and new products.  iZotope does not collect or retain any financial information (such as credit card information).</p>
+
+<p><strong>USAGE INFORMATION.</strong>  When you activate and/or use the Software, iZotope may collect certain information about your computer and your interaction with the Software via the internet (“Usage Information”).  Usage Information is information on how you interact with the Software, and is then utilized by iZotope for statistical analysis for improving the Software, and to provide you with a more relevant user experience.  No direct personal information or audio files/samples are collected as part of this Usage Information. Usage Information is generally collected in the aggregate form, without identifying any user individually, although IP addresses, computer and session ids in relation to purchases and downloads/installations of the Software may be tracked as part of iZotope&rsquo;s customer order review, statistical analysis, and fraud and piracy prevention efforts.  This Usage Information may be sent to an iZotope web or third-party cloud server for storage or further processing by iZotope and/or its partners, subsidiaries or affiliates, including, but not limited to, Google Analytics. The Software includes an opt-out provision if you do not wish to provide iZotope with such Usage Information.</p>
+
+<p><strong>DISCLAIMER.</strong> THE SOFTWARE IS PROVIDED “AS IS.”  TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, EXCEPT FOR THE EXPRESS WARRANTY SET FORTH HEREIN, IZOTOPE DISCLAIMS ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. IZOTOPE DOES NOT WARRANT THAT THE SOFTWARE WILL MEET YOUR REQUIREMENTS OR THAT THE SOFTWARE WILL OPERATE UNINTERRUPTED OR ERROR-FREE. THE WARRANTY AND REMEDIES SET FORTH HEREIN ARE EXCLUSIVE AND IN LIEU OF ALL OTHERS, ORAL OR WRITTEN, EXPRESS OR IMPLIED. No dealer, distributor, agent or employee of iZotope is authorized to change or add to the warranty and remedies set forth herein. Any other software furnished with or accompanying the Software is not warranted by iZotope.</p>
+
+<p><strong>LIMITATION OF LIABILITY.</strong> TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL IZOTOPE BE LIABLE FOR ANY AMOUNTS EXCEEDING THE AMOUNTS RECEIVED FROM YOU FOR YOUR LICENSE OF THE SOFTWARE, REGARDLESS OF THE FORM OF ACTION, AND WHETHER ARISING OUT OF THE USE OF OR INABILITY TO USE THE SOFTWARE (INCLUDING, WITHOUT LIMITATION, DAMAGES OR COSTS FOR LOSS OF PROFITS, BUSINESS, GOODWILL, DATA OR OTHER ASSETS, OR COMPUTER PROGRAMS) EVEN IF IZOTOPE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. Some jurisdictions do not allow exclusion or limitation of liability for consequential or incidental damages, so this limitation may not apply to you.</p>
+
+<p><strong>TERMINATION.</strong> The Agreement will terminate automatically if you fail to comply with any of its terms. On termination, you must immediately cease using and destroy all copies of the Software.</p>
+
+<p><strong>LICENSES TO U.S. GOVERNMENT.</strong> This paragraph applies to all acquisitions of the Software by or for the federal government, or by any prime contractor or subcontractor (at any tier) under any contract, grant, cooperative agreement or other activity with the United States government (collectively, the “Government”). By clicking “I ACCEPT”, you are agreeing on behalf of the Government that the Software and any documentation related thereto are respectively “commercial computer software” and “commercial computer software documentation” within the meaning of the acquisition regulation(s) applicable to this procurement. These terms and conditions alone will govern the Government’s use of the Software and will supersede any conflicting contractual terms or conditions. If the license granted by these terms and conditions fails to meet the Government’s needs or is inconsistent in any respect with Federal law, the Government must return the Software unused to iZotope. Contractor/Manufacturer is iZotope, Inc., 60 Hampshire Street, Cambridge, MA 02139.</p>
+
+<p><strong>GENERAL.</strong> The export of the Software from the United States and re-export from any other country is governed by the U.S. Department of Commerce under the export control laws and regulations of the United States and by any applicable law of such other country, and the Software may not be exported or re-exported in violation of any such laws or regulations. This Agreement is the complete and exclusive statement of the agreement between you and iZotope and supersedes any proposal or prior agreement, oral or written, and any other communications relating to the subject matter of this Agreement. This Agreement will be governed by and interpreted under the laws of the Commonwealth of Massachusetts, United States of America, without regard to conflicts of law provisions. The application of the United Nations Convention of Contracts for the International Sale of Goods is expressly excluded. This Agreement is in the English language only, which language will be controlling in all respects, and all versions of this Agreement in any other language will be for accommodation only.</p>
+
+<p>IN ADDITION, ANY SUCH LEGAL PROCEEDING SHALL NOT BE HEARD BEFORE A JURY. EACH PARTY GIVES UP ANY RIGHT TO A JURY TRIAL. To the extent permitted by law, you agree that you will not bring any class action lawsuit against iZotope or be a representative plaintiff or plaintiff class member in any such lawsuit.</p>
+
+<p>Should you have any questions about this Agreement or iZotope&rsquo;s software use policies, or if you desire to contact iZotope for any other reason, in the U.S., please email sales@izotope.com; outside the U.S., please contact the iZotope representative or affiliate serving your country or, if you are unsure whom to contact, iZotope at the above location.<br />
+Please indicate that you understand and accept these terms by clicking the “Accept” option. If you do not accept these terms, installation will terminate.</p>
+
+<hr />
+
+<p>January 2018</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  License Information</h1>
+  
+
+<h2 id="anti-grain-geometry">Anti-Grain Geometry</h2>
+
+<p>Version 2.4</p>
+
+<p>Copyright &copy; 2002-2005 Maxim Shemanarev (McSeem).</p>
+
+<p>Redistribution and use in source and binary forms, with or without<br />
+modification, are permitted provided that the following conditions are<br />
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright<br />
+ notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright<br />
+ notice, this list of conditions and the following disclaimer in the<br />
+ documentation and/or other materials provided with the<br />
+ distribution.</p></li>
+
+<li><p>The name of the author may not be used to endorse or promote<br />
+ products derived from this software without specific prior written<br />
+ permission.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS&rdquo; AND ANY EXPRESS OR<br />
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED<br />
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE<br />
+DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,<br />
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES<br />
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR<br />
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)<br />
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,<br />
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN<br />
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE<br />
+POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="better-enums">Better Enums</h2>
+
+<p>Version 0.11.1</p>
+
+<p>Copyright &copy; 2012-2016, Anton Bachin.  All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without<br />
+modification, are permitted provided that the following conditions are<br />
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright<br />
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright<br />
+notice, this list of conditions and the following disclaimer in the<br />
+documentation and/or other materials provided with the distribution.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS<br />
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED<br />
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A<br />
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT<br />
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,<br />
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED<br />
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR<br />
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF<br />
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING<br />
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS<br />
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="fmt">fmt</h2>
+
+<p>Version 4.0.0</p>
+
+<p>Copyright &copy; 2012 - 2016, Victor Zverovich</p>
+
+<p>All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without<br />
+modification, are permitted provided that the following conditions are<br />
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright<br />
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright<br />
+notice, this list of conditions and the following disclaimer in the<br />
+documentation and/or other materials provided with the distribution.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS<br />
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED<br />
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A<br />
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER<br />
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,<br />
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,<br />
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR<br />
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF<br />
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING<br />
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS<br />
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="freetype">FreeType</h2>
+
+<p>FreeType is licensed under the FreeType Project LICENSE.</p>
+
+<p>Portions of this software are copyright © 1996-2002, 2006 The FreeType<br />
+Project (www.freetype.org).  All rights reserved.</p>
+
+<h2 id="gsl">gsl</h2>
+
+<p>Copyright &copy; 2015 Microsoft Corporation. All rights reserved.</p>
+
+<p>This code is licensed under the MIT License (MIT).</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br />
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal<br />
+in the Software without restriction, including without limitation the rights<br />
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies<br />
+of the Software, and to permit persons to whom the Software is furnished to do<br />
+so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all<br />
+copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br />
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE<br />
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br />
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,<br />
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN<br />
+THE SOFTWARE.</p>
+
+<h2 id="jsoncpp">JsonCpp</h2>
+
+<p>Version 1.2.1</p>
+
+<p>Copyright &copy; 2007-2010 Baptiste Lepilleur and The JsonCpp Authors</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a<br />
+copy of this software and associated documentation files (the<br />
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including<br />
+without limitation the rights to use, copy, modify, merge, publish,<br />
+distribute, sublicense, and/or sell copies of the Software, and to<br />
+permit persons to whom the Software is furnished to do so, subject to<br />
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included<br />
+in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS<br />
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF<br />
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND<br />
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE<br />
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION<br />
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION<br />
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h2 id="libxml2">LibXML2</h2>
+
+<p>Version 2.7.8</p>
+
+<p>Except where otherwise noted in the source code (e.g. the files hash.c,<br />
+list.c and the trio files, which are covered by a similar licence but<br />
+with different Copyright notices) all the files are:</p>
+
+<p>Copyright &copy; 1998-2003 Daniel Veillard.  All Rights Reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br />
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal<br />
+in the Software without restriction, including without limitation the rights<br />
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell<br />
+copies of the Software, and to permit persons to whom the Software is fur-<br />
+nished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in<br />
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FIT-<br />
+NESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE<br />
+DANIEL VEILLARD BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER<br />
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CON-<br />
+NECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<p>Except as contained in this notice, the name of Daniel Veillard shall not<br />
+be used in advertising or otherwise to promote the sale, use or other deal-<br />
+ings in this Software without prior written authorization from him.</p>
+
+<h2 id="material-docs-theme">Material Docs Theme</h2>
+
+<p>Copyright &copy; 2016 Digitalcraftsman <a href="mailto:digitalcraftsman@protonmail.com">digitalcraftsman@protonmail.com</a><br/><br />
+Copyright &copy; 2016 Martin Donath <a href="mailto:martin.donath@squidfunk.com">martin.donath@squidfunk.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br />
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to<br />
+deal in the Software without restriction, including without limitation the<br />
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or<br />
+sell copies of the Software, and to permit persons to whom the Software is<br />
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in<br />
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br />
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE<br />
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br />
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br />
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS<br />
+IN THE SOFTWARE.</p>
+
+<h2 id="nanomsg">nanomsg</h2>
+
+<p>Version 0.5-beta</p>
+
+<p>Copyright &copy; 2012-2013 Martin Sustrik  All rights reserved.<br/><br />
+Copyright &copy; 2013 GoPivotal, Inc.  All rights reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br />
+of this software and associated documentation files (the &ldquo;Software&rdquo;),<br />
+to deal in the Software without restriction, including without limitation<br />
+the rights to use, copy, modify, merge, publish, distribute, sublicense,<br />
+and/or sell copies of the Software, and to permit persons to whom<br />
+the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included<br />
+in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br />
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br />
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br />
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br />
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS<br />
+IN THE SOFTWARE.</p>
+
+<p>&ldquo;nanomsg&rdquo; is a trademark of Martin Sustrik</p>
+
+<h2 id="readerwriterqueue">readerwriterqueue</h2>
+
+<p>Copyright &copy; 2013-2015, Cameron Desrochers<br />
+All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without modification,<br />
+are permitted provided that the following conditions are met:</p>
+
+<ul>
+<li>Redistributions of source code must retain the above copyright notice, this list of<br />
+conditions and the following disclaimer.<br /></li>
+<li>Redistributions in binary form must reproduce the above copyright notice, this list of<br />
+conditions and the following disclaimer in the documentation and/or other materials<br />
+provided with the distribution.<br />
+<br /></li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS IS&rdquo; AND ANY<br />
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF<br />
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL<br />
+THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,<br />
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT<br />
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)<br />
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR<br />
+TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,<br />
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="tinyxml">TinyXML</h2>
+
+<p>Copyright &copy; 2000-2002 Lee Thomason (www.grinninglizard.com)</p>
+
+<p>This software is provided &lsquo;as-is&rsquo;, without any express or implied<br />
+warranty. In no event will the authors be held liable for any<br />
+damages arising from the use of this software.</p>
+
+<p>Permission is granted to anyone to use this software for any<br />
+purpose, including commercial applications, and to alter it and<br />
+redistribute it freely, subject to the following restrictions:</p>
+
+<ol>
+<li><p>The origin of this software must not be misrepresented; you must<br />
+not claim that you wrote the original software. If you use this<br />
+software in a product, an acknowledgment in the product documentation<br />
+would be appreciated but is not required.</p></li>
+
+<li><p>Altered source versions must be plainly marked as such, and<br />
+must not be misrepresented as being the original software.</p></li>
+
+<li><p>This notice may not be removed or altered from any source<br />
+distribution.</p></li>
+</ol>
+
+<h2 id="tipue-search">Tipue Search</h2>
+
+<p>Copyright &copy; 2017 Tipue</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining<br />
+a copy of this software and associated documentation files (the<br />
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including<br />
+without limitation the rights to use, copy, modify, merge, publish,<br />
+distribute, sublicense, and/or sell copies of the Software, and to<br />
+permit persons to whom the Software is furnished to do so, subject to<br />
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be<br />
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND,<br />
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF<br />
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND<br />
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE<br />
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION<br />
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION<br />
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h2 id="vectorize">vectorize</h2>
+
+<p>Copyright &copy; 2012 Aaron Wishnick.  All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without<br />
+modification, are permitted provided that the following conditions are met:</p>
+
+<ul>
+<li><p>Redistributions of source code must retain the above copyright<br />
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright<br />
+notice, this list of conditions and the following disclaimer in the<br />
+documentation and/or other materials provided with the distribution.</p></li>
+
+<li><p>Neither the name of the <organization> nor the<br />
+names of its contributors may be used to endorse or promote products<br />
+derived from this software without specific prior written permission.</p></li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS IS&rdquo; AND<br />
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED<br />
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE<br />
+DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY<br />
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES<br />
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;<br />
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND<br />
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT<br />
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS<br />
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="zeromq">ZeroMQ</h2>
+
+<p>Copyright &copy; 2007-2015 iMatix Corporation<br />
+Copyright &copy; 2009-2011 250bpm s.r.o.<br />
+Copyright &copy; 2010-2011 Miru Limited<br />
+Copyright &copy; 2011 VMware, Inc.<br />
+Copyright &copy; 2012 Spotify AB<br />
+Copyright &copy; 2013 Ericsson AB<br />
+Copyright &copy; 2014 AppDynamics Inc.</p>
+
+<p>Distributed under the<br />
+<a href="https://www.gnu.org/licenses/lgpl-3.0.txt">GNU Lesser General Public License v3 (LGPLv3)</a> with the following<br />
+&ldquo;Static linking exception&rdquo;:</p>
+
+<p>The copyright holders give you permission to link this library with independent<br />
+modules to produce an executable, regardless of the license terms of these<br />
+independent modules, and to copy and distribute the resulting executable under<br />
+terms of your choice, provided that you also meet, for each linked independent<br />
+module, the terms and conditions of the license of that module. An independent<br />
+module is a module which is not derived from or based on this library. If you<br />
+modify this library, you must extend this exception to your version of the<br />
+library.</p>
+
+<p>Full text of the license is available here:<br />
+<a href="https://www.gnu.org/licenses/lgpl-3.0.txt">https://www.gnu.org/licenses/lgpl-3.0.txt</a></p>
+
+<p>To receive a copy of the source code for the ZeroMQ library<br />
+distributed with this product under the under the terms of the LGPLv3<br />
+please contact <a href="mailto:devsupport@izotope.com">devsupport@izotope.com</a>.</p>
+
+<h2 id="zlib">zlib</h2>
+
+<p>Copyright &copy; 1995-2004 Jean-loup Gailly and Mark Adler.</p>
+
+<p>This software is provided &lsquo;as-is&rsquo;, without any express or implied<br />
+warranty.  In no event will the authors be held liable for any damages<br />
+arising from the use of this software.</p>
+
+<p>Permission is granted to anyone to use this software for any purpose,<br />
+including commercial applications, and to alter it and redistribute it<br />
+freely, subject to the following restrictions:</p>
+
+<ol>
+<li><p>The origin of this software must not be misrepresented; you must not<br />
+ claim that you wrote the original software. If you use this software<br />
+ in a product, an acknowledgment in the product documentation would be<br />
+ appreciated but is not required.</p></li>
+
+<li><p>Altered source versions must be plainly marked as such, and must not be<br />
+ misrepresented as being the original software.</p></li>
+
+<li><p>This notice may not be removed or altered from any source distribution.</p></li>
+</ol>
+
+<p>Jean-loup Gailly jloup@gzip.org</p>
+
+<p>Mark Adler madler@alumni.caltech.edu</p>
+
+<hr />
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div></div>
+    </article>
+    <footer class="footer">
+
+</footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>  <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </main>
+  </body>
+</html>

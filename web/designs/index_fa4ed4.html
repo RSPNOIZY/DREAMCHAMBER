@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="ja"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="ja"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="ja"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head lang="ja">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+  <title>コンプレッサー - Neutron 2 Help Documentation</title>
+  <meta name="generator" content="Hugo 0.40.3" />
+  <meta name="description" content="Neutron 2 User Manual">
+  <link rel="canonical" href="index.html">
+  <meta name="author" content="iZotope">
+  <meta property="og:url" content="http://www.neutron2helpdocs.com/ja/compressor/index.html">
+  <meta property="og:title" content="Neutron 2 Help Documentation">
+  
+  <meta name="apple-mobile-web-app-title" content="Neutron 2 Help Documentation">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <style>
+    @font-face {
+      font-family: 'icon';
+      src: url('../fonts/icon.eot');
+      src: url('../fonts/icon.eot')
+             format('embedded-opentype'),
+           url('../fonts/icon.woff')
+             format('woff'),
+           url('../fonts/icon.ttf')
+             format('truetype'),
+           url('../fonts/icon.svg')
+             format('svg');
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+  <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+  <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    }
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+  
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  
+  <script src="../javascripts/modernizr.js"></script>
+  
+<script>
+  (function(i,s,o,g,r,a,m){
+    i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+    []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+    m.parentNode.insertBefore(a,m)
+  })(window, document,
+    'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+   
+  ga('create', 'UA-63445037-15', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+
+<script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+
+</head>
+<body class="palette-primary-docs palette-accent-docs">
+	
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	
+
+  <div class="backdrop">
+    <div class="backdrop-paper"></div>
+  </div>
+  <input class="toggle" type="checkbox" id="toggle-drawer">
+  <input class="toggle" type="checkbox" id="toggle-search">
+  <label class="toggle-button overlay" for="toggle-drawer"></label>
+  <header class="header">    <nav aria-label="Header">
+      <div class="bar default">
+        <div class="button button-menu" role="button" aria-label="Menu">
+          <label class="toggle-button icon icon-menu" for="toggle-drawer">
+            <span></span>
+          </label>
+        </div>
+        <div class="stretch">
+          <div class="title">
+            <a href="../index.html" >
+            <img src="../images/header-intro-site/site-header.png">    コンプレッサー</a>
+          </div>
+        </div>
+            
+      </div>
+      <div class="bar search">
+        <div class="button button-close" role="button" aria-label="Close">
+          <label class="toggle-button icon icon-back" for="toggle-search"></label>
+        </div>
+        <div class="stretch">
+          <div class="field">
+            <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+          </div>
+        </div>
+        <div class="button button-reset" role="button" aria-label="Search">
+          <button class="toggle-button icon icon-close" id="reset-search"></button>
+        </div>
+      </div>
+    </nav></header>
+  <main class="main">    <div class="drawer">
+      <nav aria-label="Navigation">
+        <form action="../search/index.html">
+           <div class="group">      
+              <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+              <span class="highlight"></span>
+              <span class="underline"></span>
+              <label>サーチ</label>
+              <div style="clear: both;"></div>
+           </div>
+        </form>
+      </nav>
+      
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="toc">
+          
+            <ul>
+
+
+<li>
+  
+    <a  title="はじめに" href="../index.html">はじめに</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Neutron 2の概要" href="../neutron-overview/index.html">Neutron 2の概要</a>
+  
+</li>
+
+
+<li>
+  
+    <a class="current" title="コンプレッサー" href="index.html">コンプレッサー</a><ul id="scrollspy">
+</ul>
+  
+</li>
+
+
+<li>
+  
+    <a  title="イコライザー" href="../equalizer/index.html">イコライザー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="エキサイター" href="../exciter/index.html">エキサイター</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ゲート" href="../gate/index.html">ゲート</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トランジエント成形" href="../transient-shaper/index.html">トランジエント成形</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トラックアシスタント" href="../track-assistant/index.html">トラックアシスタント</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="マスキングメーター" href="../masking-meter/index.html">マスキングメーター</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="I/Oセクション" href="../io-section/index.html">I/Oセクション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ミックスタップ" href="../mix-tap/index.html">ミックスタップ</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ビジュアルミキサー" href="../visual-mixer/index.html">ビジュアルミキサー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トーナルバランスコントロ" href="../tonal-balance-control/index.html">トーナルバランスコントロ</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="プリセットシステム" href="../preset-system/index.html">プリセットシステム</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="オプション" href="../options/index.html">オプション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="取り消し履歴" href="../undo-history/index.html">取り消し履歴</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ヒントと使用例" href="../tips-and-examples/index.html">ヒントと使用例</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="オーソリゼーション" href="../authorization/index.html">オーソリゼーション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="カスタマーケアー" href="../customer-care/index.html">カスタマーケアー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ライセンス情報" href="../license-information/index.html">ライセンス情報</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="EULA" href="../eula/index.html">EULA</a>
+  
+</li>
+
+
+</ul>
+          
+          
+                  <hr />
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+          
+          
+            <ul>
+            
+              <li><a href="../../en/compressor/index.html"><i class="icon icon-eye"></i> View page in English</a></li>
+            
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </div><article class="article">
+      <div class="wrapper">
+	<h1>コンプレッサー </h1>
+    
+      
+              <div class="lang-buttons-box">
+      <span class="lang-header">言語:</span>
+      <br />
+        
+      
+        <a href="../../en/compressor/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+            <a href="../../en/compressor/index.html"><button class="lang-btn-active">日本語</button></a>
+            
+          
+      </div>
+      
+    
+    
+    
+
+    
+    
+    
+	
+
+<h2 id="概要">概要</h2>
+
+<p>コンプレッサーを使うと、オーディオ信号のダイナミックレンジを減少させることができます。ダイナミックレンジとは、信号の最も静かなレベルと最もうるさいレベルの差異のことです。コンプレッサーは、特定のスレッシュホルド値を超過した信号のレベルを下げる（“下方”圧縮）、あるいは特定のスレッシュホルド値を下回った信号のレベルを上げる（“上方”圧縮）ことにより、ダイナミックレンジを減らします。Neutronは、マルチバンド圧縮、柔軟性に富んだサイドチェーン機能、そして便利な視覚的フィードバックを持った2基のコンプレッサーモジュールを搭載します。</p>
+
+<p><img src="../images/compressor/compressor.png" alt="Compressor module" /></p>
+
+<h2 id="グローバル操作">グローバル操作</h2>
+
+<p><img src="../images/compressor/global.png" alt="global bar" /></p>
+
+<h3 id="digital-vintage-デジタル-ビンテージモード">Digital/Vintage（デジタル/ビンテージモード)</h3>
+
+<p>Neutronのコンプレッサーは、Digitalモード、そしてVintageモードと、2つの全く異なるスタイルでの圧縮が可能です。“Vintage Mode”モードのボタンをトグルすると、このモードを切り替えることができます。</p>
+
+<h4 id="デジタルモード">デジタルモード</h4>
+
+<p>デジタルモードが選択されていると、ゲインリダクション形跡メーターは、そのとき選択されている帯域のゲインリダクションを表示します。</p>
+
+<p><img src="../images/compressor/digital.png" alt="digital mode selected" />
+デジタルはよりトランスペアレントかつ整形的なコンプレッサーであるのに対し、ビンテージの方はよりカラフルで、昔から愛されてきた古いアナログコンプレッサーの音的特徴をエミュレートしたコンプレッサーです。</p>
+
+<h4 id="ビンテージモード">ビンテージモード</h4>
+
+<p>ビンテージモードが選択されていると、VUメーターが各アクティブ帯域のゲインリダクションを表示します。</p>
+
+<p><img src="../images/compressor/vintage.png" alt="vintage mode selected" /></p>
+
+<p>ビンテージモードでは、アタックでより迅速な反応を見せ（確かにUREI 1176はとても遅いアタック時間にも対応しています）、その後、緩和されるのでパンチの効いた音がしますが、デジタルモードほどトランスペアレントではありません。ビンテージモードではスレッシュホルド操作に対応しているため、膝値は調整できません。</p>
+
+<h3 id="output-gain-出力ゲイン">Output Gain（出力ゲイン）</h3>
+
+<p>ここでは圧縮後の信号のゲイン調整ができますので、ダイナミック処理によりレベルが損なわれた、あるいは加えられた場合の帳尻合わせが可能です。ここは信号処理チェーン上にある次のモジュールの入力と繋がっていますので、信号レベルの管理にも便利な機能です。連続で2つのコンプレッサーを使用する場合、先頭のコンプレッサーの出力ゲインを調整すると、2台目のコンプレッサーへ入力される信号レベルを管理することができますので、2台目のコンプレッサーがサウンドに与える影響を自在にコントロールすることができます。</p>
+
+<h3 id="lfe-bypass-lfeバイパス-サラウンドのみ">LFE Bypass（LFEバイパス: サラウンドのみ）</h3>
+
+<p><img src="../images/compressor/lfe.png" alt="LFE Channel enabled" /></p>
+
+<div class="admonition note">
+<p class="admonition-title">サラウンド処理とLFEバイパス</p>
+<p><ul>
+<li>このボタンは、NeutronがLFEを含むサラウンド構成（5.1または7.1など）で起動している時のみ表示されます。</li>
+<li>サラウンドサウンドの構成下では、Neutronは全チャンネルを均等に処理します。</li>
+</ul>
+</p>
+</div>
+
+<p>LFEバイパスが有効の場合、LFEチャンネルにある全てのオーディオ情報は関連するモジュールを未処理のまま通過します。処理後も全チャンネルの時間が揃うよう、（実際にモジュールで遅延が発生する場合）処理のされないLEFチャンネルに遅延補正が適用されます。LEFバイパスとサラウンド処理に関する詳細については<a href="../io-section/index.html#lfe-bypass">I/Oセクション</a>の章をご覧ください。</p>
+
+<h3 id="level-detection-mode-レベル検知モード">Level Detection Mode（レベル検知モード）</h3>
+
+<p><img src="../images/compressor/detection-modes.png" alt="Level Detection Modes" /></p>
+
+<p>コンプレッサーモジュールの全帯域で使用されるレベル検知モードを設定します。これにより、検知フィルターに入るレベルをコンプレッサーがどのように計算するかが把握できます。レベル検知モードでは以下が選択可能です:</p>
+
+<ul>
+<li><strong>RMS (Root Mean Square):</strong> Neutronは入力信号の平均レベルを見に行きます。RMS検知は、音のキャラクターを変えることなく、全体的なボリュームレベルを上げたいときに便利です。</li>
+<li><strong>PEAK:</strong> Neutronの検知回路は入力信号のピーク値を見に行きます。一般的には、これは音楽の突発的なトランジエントを一定にする際に便利です。</li>
+<li><strong>TRUE:</strong> RMSモードと同じように動作しますが、幾つか鍵となる利点があります。RMSと異なり、Trueモードでは、全周波数を通して同一レベルとなります。これに加え、Trueモードでは、RMS検知では生じ得る人工音やエイリアスが発生しません（これはNeutronに限らず、全てのRMAベースのコンプレッサーに共通する動作です）。</li>
+</ul>
+
+<h3 id="learn-分析">Learn（分析）</h3>
+
+<p><img src="../images/compressor/learn.png" alt="Learn Active" /></p>
+
+<p>ここが有効の場合、クロスオーバー分析機能が作動し、入力オーディオの周波数スペクトラム内の最小値を検出するなど、幾つかの基準を使ってマルチバンド処理に適した自然なクロスオーバーのカットオフ点が探し出されます。分析機能がアクティブの間はボタンがオレンジで表示されます。クロスオーバーカットオフの最適な値が見つかると、ボタンは自動的に消灯します。分析機能がアクティブの間に分析ボタンをクリックすると、手動でこの機能を切ることができます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">クロスオーバー分析に関する注</p>
+<p><ul>
+<li>分析機能が正常に作動するには、分析が有効の状態でモジュールがオーディオ入力を受け取っている必要があります。</li>
+<li>マルチバンド機能のあるモジュールで単一の帯域のみ選択されている場合、分析ボタンは無効となります。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="reset-リセット">Reset（リセット）</h3>
+
+<p><img src="../images/compressor/reset.png" alt="Reset Active" /></p>
+
+<p>コンプレッサー全体をリセットし、デフォルトの状態に戻します。このボタンをクリックした後に、その前の状態に戻したい場合は、取り消し履歴を使えば、リセットする前の設定に戻すことができます。</p>
+
+<h3 id="auto-gain-自動ゲイン">Auto Gain（自動ゲイン）</h3>
+
+<p><img src="../images/compressor/auto-gain.png" alt="Auto Gain" /></p>
+
+<p>自動ゲインが選択されていると、コンプレッサーが入力（非圧縮信号）と出力（圧縮信号）のレベルの差異を算出し、自動的に入出力のレベルを合わせるのに必要なゲインを適用します。</p>
+
+<h3 id="auto-release-自動リリース">Auto Release（自動リリース）</h3>
+
+<p><img src="../images/compressor/auto-rel.png" alt="Auto Release" /></p>
+
+<p>これは、入力信号の分析に応じてコンプレッサーのリリース時間を自動的に調整する機能です。トランジエントな信号が検知されると、ポンピング減少のためリリース時間は短く設定されます。サステインのある音が検知されると、ディストーション減少のため、リリース時間は長めに設定されます。
+自動リリースの分量は、設定されたリリース時間の値に応じて決まります。例えば、リリース時間を100ミリ秒に設定してコンプレッサーを使用すると、リリース時間は20ミリ秒から200ミリ秒の範囲内で信号のタイプに応じて自動的に調整されます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p>ビンテージモードでは、自動リリースは常時オンになっています。</p>
+</div>
+
+<h3 id="global-mix-グローバルミックス">Global Mix（グローバルミックス）</h3>
+
+<p><img src="../images/compressor/mix-module-chain.png" alt="Compressor Module Tile" /></p>
+
+<p>ミックススライダーはパラレル圧縮を可能とする便利な機能です。100%に設定されていると、コンプレッサーにより処理されたオーディオのみ再生されますが、50%に設定されていると、圧縮処理のかかったオーディオと未処理のオーディオが半々にブレンドされます。多くの場合、極度の圧縮設定に未圧縮信号をブレンドすると（50 - 80%ドライ、50 - 30%ウェットが典型的な使用例）、音楽性を損なうことなく、より平滑で洗練された音質が実現できます。これはグローバル設定ですので、未処理とはコンプレッサーの入力音であり、処理された信号とはコンプレッサーの出力を意味します。バンド毎のミックス操作により、コンプレッサーの出力にはドライのオーディオが含まれる可能性があります。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="gain-reduction-trace-ゲインリダクション形跡">Gain Reduction Trace（ゲインリダクション形跡）</h3>
+
+<p><img src="../images/compressor/gr-trace.png" alt="Gain Reduction Trace" /></p>
+
+<p>これは、入力信号の波形とゲインリダクション量を表す重複曲線をリアルタイムで同時に表示するスクロールメーターを提供する機能です。ここでは圧縮状況を分かり易く表示するよう、修正した波形が使用されます。ゲインリダクション形跡は、アタックとリリース時間を適正に設定し、ゲインリダクションのエンベロープを観察する上での助けとなります。</p>
+
+<h3 id="vu-meters-vuメーター">VU Meters（VUメーター）</h3>
+
+<p><img src="../images/compressor/vu-meters.png" alt="VU Meters" /></p>
+
+<p>ビンテージモードでは、バンド毎のゲインリダクションメーターにVUメーターが使用されます。起こっているゲインリダクションと、それを視覚化するVUメーターの動きという、オーディオと視覚の組み合われには、名状し難い関係性があるようです。</p>
+
+<h3 id="crossover-mini-spectrum-クロスオーバー-ミニスペクトラム">Crossover Mini-Spectrum（クロスオーバー・ミニスペクトラム）</h3>
+
+<p>マルチバンドモジュールでは、クロスオーバー・ミニスペクトラムのメーター画面で、クロスオーバー周波数の調整や視聴を行うことができます。</p>
+
+<p><img src="../images/compressor/crossover.png" alt="Crossover meter" /></p>
+
+<h3 id="adjusting-crossover-cutoffs-クロスオーバーカットオフ調整">Adjusting Crossover Cutoffs（クロスオーバーカットオフ調整）</h3>
+
+<p>クロスオーバー・ミニスペクトラム画面にて、マルチバンドのクロスオーバー点を手動で調整することができます。マルチバンドのクロスオーバー点は以下の方法で手動調整してください:</p>
+
+<ul>
+<li><strong>カットオフ操作ハンドルをクリック&amp;ドラッグ</strong> クロスオーバーカットオフは、白いクロスオーバー操作ハンドルを左クリックし、動かしたいポイントへドラッグすることで調節できます。このハンドルを動かす際、マウスのカーソルは左右の矢印に表示が変わります。</li>
+<li><strong>テキスト入力</strong> 表示されたクロスオーバーカットオフ値（カットオフ操作ハンドル直下の白いテキスト）をダブルクリックすると、テキスト入力用のフィールドが表示されます。ここにクロスオーバーカットオフとして設定したい周波数を入力し、その上でEnterキーまたはReturnキーを押して変更を確定します。</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><ul>
+<li>クロスオーバーカットオフ点はマルチバンドモジュール間で共有されるものではありません。ひとつのモジュールで設定したクロスオーバー点が他のマルチバンドモジュールのクロスオーバー点に影響を与えることはありません。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="detection-filter-検知フィルター">Detection Filter（検知フィルター）</h2>
+
+<p>ここでは、コンプレッサーの検知回路の周波数特性を調整します。検知フィルターは、クロスオーバー・ミニスペクトラムメーター下にある検知フィルターボタンをクリックして有効にします。</p>
+
+<p><img src="../images/compressor/det-filter-enabled.png" alt="Detection Filter Enabled" /></p>
+
+<p>検知フィルターが作動していると、クロスオーバー・ミニスペクトラムメーター上部に、調整可能なハイパスとローパスフィルターの操作点が表示されます。操作点を上下にドラッグするとフィルターのゲインが調節でき、左右にドラッグすると中央周波数が調節できます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">ヒント: 検知フィルターの使用について</p>
+<p><ul>
+<li>検知フィルターを調整すると、コンプレッサーの異なる周波数に対する感度の違いを調整することができます。コンプレッサーをシングルバンドモードで使用する際は、これが大きな効果を生みます。</li>
+<li><strong>例:</strong> もし、コンプレッサーを低域に比べ、より歯擦音や耳障りな音のする帯域で敏感に反応させたいのであれば、ハイパスフィルターで低域をフィルターし、レゾナントローパスフィルターで狙い撃ちする帯域をブーストすると、入力信号に対し効果的にコンプレッサーを作動させることができます。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="detection-filter-solo-検知フィルターソロ">Detection Filter Solo（検知フィルターソロ）</h3>
+
+<p><img src="../images/compressor/det-filter-solo.png" alt="Detection Filter Solo Enabled" /></p>
+
+<p>ここが有効の場合、検知フィルターの出力が視聴できます。これは、検知フィルターの操作点を調節する際に便利な機能です。</p>
+
+<h2 id="バンド毎の操作">バンド毎の操作</h2>
+
+<h3 id="threshold-スレッシュホルド">Threshold（スレッシュホルド）</h3>
+
+<p>スレッシュホルドでダイナミック処理の始まるポイントを設定します。ここがプラスの比率（下降圧縮）の場合、信号がスレッシュホルドを通過することで処理がトリガーされます。ここがマイナスの比率（上昇圧縮）の場合、信号がスレッシュホルドより下降することで処理がトリガーされます。</p>
+
+<h3 id="ratio-比率">Ratio（比率）</h3>
+
+<p>比率では、入力信号に対しコンプレッサーが適用するレベルの量を調整します。例えば、比率が3:1の場合、スレッシュホルドを3 dB通過した信号に対し、1 dBのみのゲインが適用されます。</p>
+
+<p>Neutronのコンプレッサーは、上方向の圧縮（比率がマイナス値）も、下方向の圧縮（比率がプラス値）も行うことができます。これに加え、コンプレッサーはリミッターレベルのプラス比率をサポートしますので、これにマルチバンド処理能力を合わせると、エレクトロニックサウンドや高RMS値に分類されるジャンルを扱う際に便利です。アコースティック素材に対しては、低い比率の寛容な圧縮が推奨されます。これにより、圧縮過多を防止できます。</p>
+
+<h3 id="knee-膝値">Knee（膝値）</h3>
+
+<p>この可変膝値により、要求する圧縮の性質を調整することができます。“性質=キャラクター”は間違いなくオーディオの世界で最も多用される言葉ですが、ここでは、設定が高いと“ソフトな膝値”となり、繊細でナチュラルな音質の圧縮となりますが、設定が低いと“ハードな膝値”となり、よりアグレッシブな音質の圧縮となります。このアグレッシブな圧縮は、キックドラムやスネアなどに意図的にしようされることがしばしばあります。</p>
+
+<h3 id="attack-and-release-アタックとリリース">Attack and Release（アタックとリリース）</h3>
+
+<p>アタックとリリースを調整し、スレッシュホルドを越えたオーディオに対し、コンプレッサーモジュールがどれだけ迅速に反応するかを設定します。</p>
+
+<h3 id="mix-ミックス">Mix（ミックス）</h3>
+
+<p>このスライダーで未処理の音と処理された音（ドライ/ウェット）のミックス調整を行います。</p>
+
+<h3 id="gain-ゲイン">Gain（ゲイン）</h3>
+
+<p>これは前述の出力ゲインパラメーターと同じ機能ですが、こちらでは選択された帯域にのみ作用します。</p>
+
+<h3 id="サイドチェーン">サイドチェーン</h3>
+
+<p>Neutronのコンプレッサーはパワフルかつきめ細かいサイドチェーンをサポートしますので、各帯域のダイナミックな動作を幅広い入力信号で検知することができます。</p>
+
+<ul>
+<li><strong>INTERNAL SIDECHAIN SOURCE（内部サイドチェーン源）:</strong> デフォルトでは、各帯域は、それ自身のオーディオ入力によりトリガーされますが、内部機能を使うことで、コンプレッサーのその他の帯域を選択することも可能です。従って、ギターの温かみのある中域で（例えばここではバンド2としますが）、響き過ぎて濁りのある低域（ここではバンド2とします）をトリガーして、流動的にレベルを上下させることができます。これは、信号のバランスを内部的に完結する上で、飛び抜けて便利なツールです。帯域を特定せず、オーディオ信号の全帯域に対しトリガーする、Internal Full（内部フル）を選択することもできます。</li>
+<li><strong>EXTERNAL SIDECHAIN SOURCE（外部サイドチェーン源）:</strong> サイドチェーンのソースをホストアプリケーションのサイドチェーン入力を使用する外部に設定することもできます。この場合、外部サイドチェーンの全帯域を選択することも、その時のコンプレッサーのクロスオーバー設定に応じて帯域を分割することもできます。</li>
+</ul>
+
+<h3 id="bypass-バイパス">Bypass（バイパス）</h3>
+
+<p>Bボタンを使用すると、その帯域のみ未処理の信号が再生されます。</p>
+
+<h3 id="solo-ソロ">Solo（ソロ）</h3>
+
+<p>Sボタンを使用すると、その帯域の出力がソロ状態になります。</p>
+
+<h3 id="add-remove-band-バンドの追加と削除">Add/Remove Band（バンドの追加と削除）</h3>
+
+<p>各帯域にある電源ボタン（SとBボタンの隣）でその帯域の追加と削除が行えます。</p>
+
+<h2 id="更なる情報">更なる情報</h2>
+
+<p>リミッター/コンプレッサーは、元々、ラジオ放送信号のオーバーモジュレーションを防止するために発明されました。時が経つにつれ、エンジニアたちは、より実践的かつ美学的な使用ケースを考えつくようになり、コンプレッサーは今日的なレコーディング、ミキシング、そしてマスタリングで最も多用されるオーディオ処理技術のひとつとなりました。これらは、ボーカルの明瞭度の向上や、過度にアグレッシブなスネアの管理に役立つほか、ミックス全体のダイナミックレンジを制限することで、リスナーによる再生システムでの頻繁なボリュームを不要にします。</p>
+
+<p>コンプレッサーは我々が最も頻繁に耳にするエフェクトのひとつであすが、正しく使えば、リスナーはその存在に気がつきません。多くのミックスエンジニアは、オーディオに対する色付けとしてコンプレッサーの使用を好みますが、ミキシングにおいては平明性が鍵となります。効果的にダイナミックレンジを制限するにあたり、異なる周波数帯のスペクトラムには、それぞれ異なる圧縮設定が必要になるというのが、ミキシングエンジニアが直面する試練のひとつです。個別にアタック時間、あるいはコンプレッサーがゲインを減少し始めるまでの時間の長さを設定することが鍵となります。</p>
+
+<p>例えば、明るいギターとバスドラの信号が共に短いアタック時間のコンプレッサーに送られたとすると、ギターのトランジエントは管理することができますが、バスドラはアタック感を失い、詰まった感じになってしまします。これは、短いアタック時間では、バスドラの低域にあるトランジエント情報に対し、圧縮が行われる前に通り抜ける時間が十分に確保されていないからです。しかし、アタック時間が長いと、バスドラには望みのパンチが得られるかもしれませんが、これではギターが耳障りに聞こえるでしょう。これは、高域のトランジエントが短い時間で圧縮前に通過し、ギターに対し、殆どコンプレッサーが作動していないためです。</p>
+
+</div>
+    </article>
+    <footer class="footer">
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../neutron-overview/index.html" title="Neutron 2の概要">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Neutron 2の概要
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  <div class="next">
+  
+      <a href="../equalizer/index.html" title="イコライザー">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              イコライザー
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+<div class="copyright">
+
+  
+  
+  <a href="../../en/compressor/index.html"><i class="icon icon-eye"></i> View page in English</a>
+  
+
+  <br />
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Neutron 2ヘルプドキュメント 
+
+</div></footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>  <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </main>
+  </body>
+</html>

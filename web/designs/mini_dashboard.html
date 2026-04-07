@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MC96 MINI</title>
+    <style>
+        :root {
+            --bg: #121212;
+            --surface: #1e1e1e;
+            --primary: #00ff9d;
+            --accent: #7c3aed;
+            --danger: #ff3366;
+            --text: #ffffff;
+            --dim: #4a4a4a;
+        }
+
+        * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 10px;
+            height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            gap: 10px;
+            overflow: hidden;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 10px;
+            background: var(--surface);
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        .status-led {
+            width: 12px;
+            height: 12px;
+            background: var(--dim);
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+            transition: all 0.2s;
+        }
+
+        .status-led.on {
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* MAIN GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .pad-btn {
+            background: var(--surface);
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: var(--dim);
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.1s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pad-btn:active, .pad-btn.active {
+            background: var(--primary);
+            color: var(--bg);
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+            transform: scale(0.98);
+        }
+
+        .pad-btn.danger:active {
+            background: var(--danger);
+            border-color: var(--danger);
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.3);
+        }
+
+        .pad-btn span {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        /* FADERS SECTION */
+        .faders {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            height: 120px;
+        }
+
+        .fader-track {
+            background: var(--surface);
+            border-radius: 6px;
+            position: relative;
+            border: 1px solid #333;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .fader-fill {
+            background: linear-gradient(to top, var(--accent), var(--primary));
+            width: 100%;
+            transition: height 0.3s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+            opacity: 0.8;
+        }
+
+        .fader-label {
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 10px;
+            color: rgba(255,255,255,0.7);
+            z-index: 2;
+            text-shadow: 0 1px 2px black;
+        }
+        
+        .fader-val {
+            position: absolute;
+            top: 5px;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div style="font-weight:900; letter-spacing:1px">MC96<span style="color:var(--primary)">MINI</span></div>
+        <div class="status-led on" id="sys-led"></div>
+    </div>
+
+    <div class="grid">
+        <button class="pad-btn" onclick="trigger('scan')"><span>🔍</span>SCAN</button>
+        <button class="pad-btn" onclick="trigger('heal')"><span>🌍</span>HEAL</button>
+        <button class="pad-btn" onclick="trigger('find')"><span>🎵</span>FIND</button>
+        <button class="pad-btn danger" onclick="trigger('opt')"><span>⚡</span>OPT</button>
+        
+        <button class="pad-btn" onclick="trigger('shirl')"><span>💜</span>SHIRL</button>
+        <button class="pad-btn" onclick="trigger('engr')"><span>⚙️</span>ENGR</button>
+        <button class="pad-btn" onclick="trigger('rmt')"><span>📱</span>RMT</button>
+        <button class="pad-btn" onclick="trigger('go')"><span>🚀</span>GO</button>
+    </div>
+
+    <div class="faders">
+        <div class="fader-track">
+            <div class="fader-fill" style="height: 68%"></div>
+            <div class="fader-label">SYS LOAD</div>
+            <div class="fader-val">68%</div>
+        </div>
+        <div class="fader-track">
+            <div class="fader-fill" style="height: 100%"></div>
+            <div class="fader-label">EFFICIENCY</div>
+            <div class="fader-val">100%</div>
+        </div>
+    </div>
+
+    <script>
+        function trigger(action) {
+            // Visual feedback
+            const led = document.getElementById('sys-led');
+            led.style.boxShadow = `0 0 20px var(--primary)`;
+            setTimeout(() => led.style.boxShadow = '', 200);
+
+            console.log(`[OSC] /mc96/trigger/${action} 1.0`);
+            
+            // Haptic feedack if available
+            if (navigator.vibrate) navigator.vibrate(20);
+        }
+
+        // Simulate live data
+        setInterval(() => {
+            const led = document.getElementById('sys-led');
+            led.classList.toggle('on');
+            
+            // Randomize load slighly
+            const load = 65 + Math.random() * 5;
+            document.querySelector('.fader-fill').style.height = `${load}%`;
+            document.querySelector('.fader-val').innerText = `${Math.round(load)}%`;
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1701 @@
+{
+  "version": "0.1",
+  "status": "high_coverage_seed_registry",
+  "source_documents": [
+    "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-global-sonic-map.md",
+    "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-global-music-atlas.md",
+    "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-prototype-spec.md",
+    "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-biome-matrix.json",
+    "NOIZY_ARCHIVE/03_PRODUCTS/global-music-genome.md",
+    "NOIZY_ARCHIVE/02_RESEARCH/world-instrument-atlas.md",
+    "NOIZY_ARCHIVE/02_RESEARCH/world-style-lineages-atlas.md",
+    "NOIZY_ARCHIVE/02_RESEARCH/noizy-64-rhythm-archetypes.md",
+    "NOIZY_ARCHIVE/02_RESEARCH/noizy-128-scale-structures.md",
+    "NOIZY_ARCHIVE/02_RESEARCH/world-timbre-atlas.md"
+  ],
+  "runtime_targets": {
+    "xr": [
+      "meta_quest_openxr"
+    ],
+    "engines": [
+      "unreal_5",
+      "unity_xr"
+    ],
+    "audio_middleware": [
+      "fmod_studio",
+      "wwise"
+    ]
+  },
+  "spatial_axes": {
+    "distance": "wetness, environmental depth, and ensemble proximity",
+    "height": "register, overtone altitude, and melodic lift",
+    "azimuth": "lineage corridor or section identity",
+    "orbit_speed": "cycle density and temporal pressure",
+    "cluster_radius": "ensemble spread versus intimacy",
+    "floor_weight": "percussive gravity and body impact",
+    "ceiling_bloom": "drone, shimmer, and resonance halo",
+    "light_temperature": "tonal gravity and emotional contour"
+  },
+  "human_function_legend": {
+    "communication": "signal, answer, narrate, or call others into relation",
+    "celebration": "collective lift, dance, release, and social joy",
+    "mourning": "grief, remembrance, lament, and witnessing",
+    "memory": "lineage transmission, archive, and identity retention",
+    "invocation": "calling presence, opening ceremony, and orienting attention",
+    "devotion": "prayer, offering, reverence, and disciplined attentiveness",
+    "movement": "procession, circle dance, work pulse, and locomotor entrainment",
+    "guidance": "direction through emotional or ceremonial passage",
+    "contemplation": "stillness, breath, tonal sensitivity, and spaciousness",
+    "transformation": "threshold crossing, ecstatic rise, release, and reinvention",
+    "exploration": "curiosity, world entry, speculative discovery, and experimental play"
+  },
+  "rhythm_families": [
+    {
+      "id": "pulse_foundations",
+      "label": "Pulse Foundations",
+      "archetype_range": [
+        "R01",
+        "R08"
+      ],
+      "count": 8,
+      "spatial_bias": {
+        "layout": "centered_floor_pulse",
+        "motion": "step_linked",
+        "density_curve": "stable_to_motor"
+      }
+    },
+    {
+      "id": "cycles_and_return_points",
+      "label": "Cycles And Return Points",
+      "archetype_range": [
+        "R09",
+        "R16"
+      ],
+      "count": 8,
+      "spatial_bias": {
+        "layout": "rings_and_orbits",
+        "motion": "return_marker_navigation",
+        "density_curve": "loop_memory"
+      }
+    },
+    {
+      "id": "additive_and_aksak_motion",
+      "label": "Additive And Aksak Motion",
+      "archetype_range": [
+        "R17",
+        "R24"
+      ],
+      "count": 8,
+      "spatial_bias": {
+        "layout": "staggered_lanes",
+        "motion": "uneven_stepping_paths",
+        "density_curve": "swinging_asymmetry"
+      }
+    },
+    {
+      "id": "cross_rhythm_and_polyrhythm",
+      "label": "Cross-Rhythm And Polyrhythm",
+      "archetype_range": [
+        "R25",
+        "R32"
+      ],
+      "count": 8,
+      "spatial_bias": {
+        "layout": "crossing_circles",
+        "motion": "offset_grid_navigation",
+        "density_curve": "layered_tension"
+      }
+    },
+    {
+      "id": "interlock_and_hocket",
+      "label": "Interlock And Hocket",
+      "archetype_range": [
+        "R33",
+        "R40"
+      ],
+      "count": 8,
+      "spatial_bias": {
+        "layout": "node_meshes",
+        "motion": "relay_and_role_swap",
+        "density_curve": "composite_patterning"
+      }
+    },
+    {
+      "id": "pocket_swing_and_microtiming",
+      "label": "Pocket, Swing, And Microtiming",
+      "archetype_range": [
+        "R41",
+        "R48"
+      ],
+      "count": 8,
+      "spatial_bias": {
+        "layout": "groove_lanes",
+        "motion": "social_gravity_pockets",
+        "density_curve": "elastic_pulse"
+      }
+    },
+    {
+      "id": "elastic_and_breath_led_time",
+      "label": "Elastic And Breath-Led Time",
+      "archetype_range": [
+        "R49",
+        "R56"
+      ],
+      "count": 8,
+      "spatial_bias": {
+        "layout": "phrase_clouds",
+        "motion": "breath_linked_expansion",
+        "density_curve": "open_and_close"
+      }
+    },
+    {
+      "id": "ritual_trance_and_procession",
+      "label": "Ritual, Trance, And Procession",
+      "archetype_range": [
+        "R57",
+        "R64"
+      ],
+      "count": 8,
+      "spatial_bias": {
+        "layout": "threshold_gates_and_procession_arcs",
+        "motion": "ascent_and_release",
+        "density_curve": "entrain_rise_resolve"
+      }
+    }
+  ],
+  "scale_families": [
+    {
+      "id": "recitation_and_narrow_fields",
+      "label": "Recitation And Narrow-Field Structures",
+      "structure_range": [
+        "S001",
+        "S016"
+      ],
+      "count": 16,
+      "spatial_bias": {
+        "layout": "close_source_intimacy",
+        "motion": "cadence_portals",
+        "pitch_behavior": "narrow_corridors"
+      }
+    },
+    {
+      "id": "pentatonic_structures",
+      "label": "Pentatonic Structures",
+      "structure_range": [
+        "S017",
+        "S032"
+      ],
+      "count": 16,
+      "spatial_bias": {
+        "layout": "open_navigable_rooms",
+        "motion": "low_friction_entry",
+        "pitch_behavior": "stable_ladders"
+      }
+    },
+    {
+      "id": "hexatonic_structures",
+      "label": "Hexatonic Structures",
+      "structure_range": [
+        "S033",
+        "S048"
+      ],
+      "count": 16,
+      "spatial_bias": {
+        "layout": "six_point_constellations",
+        "motion": "omission_aware_paths",
+        "pitch_behavior": "partial_symmetry"
+      }
+    },
+    {
+      "id": "heptatonic_structures",
+      "label": "Heptatonic Structures",
+      "structure_range": [
+        "S049",
+        "S064"
+      ],
+      "count": 16,
+      "spatial_bias": {
+        "layout": "wide_harmonic_halls",
+        "motion": "mode_switch_routes",
+        "pitch_behavior": "layered_progression"
+      }
+    },
+    {
+      "id": "modal_segment_and_jins_chains",
+      "label": "Modal Segment And Jins-Chain Structures",
+      "structure_range": [
+        "S065",
+        "S080"
+      ],
+      "count": 16,
+      "spatial_bias": {
+        "layout": "corridors_and_junctions",
+        "motion": "cadence_doors",
+        "pitch_behavior": "segment_chain_navigation"
+      }
+    },
+    {
+      "id": "raga_drone_and_pathway_structures",
+      "label": "Raga, Drone, And Pathway Structures",
+      "structure_range": [
+        "S081",
+        "S096"
+      ],
+      "count": 16,
+      "spatial_bias": {
+        "layout": "spirals_and_drone_centers",
+        "motion": "ascent_descent_arcs",
+        "pitch_behavior": "time_of_day_and_pathway_logic"
+      }
+    },
+    {
+      "id": "microtonal_and_intonation_sensitive_structures",
+      "label": "Microtonal And Intonation-Sensitive Structures",
+      "structure_range": [
+        "S097",
+        "S112"
+      ],
+      "count": 16,
+      "spatial_bias": {
+        "layout": "flexible_lanes",
+        "motion": "sliding_centers",
+        "pitch_behavior": "intonation_sensitive_gesture_mapping"
+      }
+    },
+    {
+      "id": "symmetric_hybrid_electronic_and_future_structures",
+      "label": "Symmetric, Hybrid, Electronic, And Future Structures",
+      "structure_range": [
+        "S113",
+        "S128"
+      ],
+      "count": 16,
+      "spatial_bias": {
+        "layout": "grids_and_spectral_fields",
+        "motion": "adaptive_planes",
+        "pitch_behavior": "modular_morphing"
+      }
+    }
+  ],
+  "regional_nodes": [
+    {
+      "biome_id": "west_africa_rhythm_plaza",
+      "region": "West Africa and Sahel",
+      "coverage_note": "seed pairings only; expand with lineage notes",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Mande",
+          "instrument": "kora"
+        },
+        {
+          "culture": "Yoruba",
+          "instrument": "talking_drum"
+        },
+        {
+          "culture": "Wolof",
+          "instrument": "sabar"
+        },
+        {
+          "culture": "Ewe",
+          "instrument": "bell_and_drum"
+        },
+        {
+          "culture": "Mande",
+          "instrument": "balafon"
+        }
+      ],
+      "style_lineages": [
+        "praise_song",
+        "drum_conversation",
+        "dance_circle",
+        "griot_memory"
+      ],
+      "human_functions": [
+        "communication",
+        "celebration",
+        "memory",
+        "movement"
+      ],
+      "seed_rhythm_ids": [
+        "R11",
+        "R13",
+        "R25",
+        "R35",
+        "R60"
+      ],
+      "seed_scale_ids": [
+        "S017",
+        "S018",
+        "S027",
+        "S063"
+      ],
+      "timbre_fields": [
+        "skin_depth",
+        "metal_rattle",
+        "buzzing_string_edge",
+        "wood_attack"
+      ],
+      "spatial_template": {
+        "shape": "circle_plaza",
+        "distance_rule": "walking_changes_density",
+        "height_rule": "higher_nodes_lift_bell_and_kora_lines",
+        "ceiling_rule": "dust_and_response_towers"
+      },
+      "interaction_model": [
+        "walking_changes_density",
+        "palm_open_cues_responses",
+        "arm_sweep_rotates_lead_role"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "pulse_density",
+          "response_intensity",
+          "ensemble_width"
+        ],
+        "mix_bias": [
+          "transient_clarity",
+          "low_mid_body"
+        ]
+      }
+    },
+    {
+      "biome_id": "east_central_africa_resonance_village",
+      "region": "East and Central Africa",
+      "coverage_note": "seed pairings only; expand with lineage notes",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Shona",
+          "instrument": "mbira"
+        },
+        {
+          "culture": "Congo",
+          "instrument": "ngoma"
+        },
+        {
+          "culture": "Swahili",
+          "instrument": "chorus_voice"
+        },
+        {
+          "culture": "Great_Lakes",
+          "instrument": "lamellophone_cluster"
+        }
+      ],
+      "style_lineages": [
+        "cyclical_chorus",
+        "trance_repetition",
+        "layered_communal_groove"
+      ],
+      "human_functions": [
+        "communication",
+        "memory",
+        "contemplation",
+        "transformation"
+      ],
+      "seed_rhythm_ids": [
+        "R09",
+        "R14",
+        "R33",
+        "R38",
+        "R57"
+      ],
+      "seed_scale_ids": [
+        "S017",
+        "S018",
+        "S032",
+        "S064"
+      ],
+      "timbre_fields": [
+        "tine_shimmer",
+        "wood_resonance",
+        "chorus_grain",
+        "drum_heart"
+      ],
+      "spatial_template": {
+        "shape": "clustered_village_lattice",
+        "distance_rule": "movement_opens_layered_pulse_cells",
+        "height_rule": "mbira_and_chorus_live_above_drum_heart",
+        "ceiling_rule": "woven_resonance_canopy"
+      },
+      "interaction_model": [
+        "hand_taps_add_interlock_layers",
+        "stillness_reveals_overtone_fields"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "interlock_density",
+          "chorus_bloom",
+          "room_warmth"
+        ],
+        "mix_bias": [
+          "midrange_resonance",
+          "gentle_transient_presence"
+        ]
+      }
+    },
+    {
+      "biome_id": "north_africa_desert_gate",
+      "region": "North Africa, Maghreb, and Nile Thresholds",
+      "coverage_note": "seed pairings only; expand with lineage notes",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Amazigh",
+          "instrument": "bendir"
+        },
+        {
+          "culture": "Gnawa",
+          "instrument": "guembri"
+        },
+        {
+          "culture": "Arab_Andalusian",
+          "instrument": "oud"
+        },
+        {
+          "culture": "Maghrebi",
+          "instrument": "qraqeb"
+        }
+      ],
+      "style_lineages": [
+        "procession",
+        "devotional_chant",
+        "trance_threshold",
+        "courtyard_ensemble"
+      ],
+      "human_functions": [
+        "devotion",
+        "invocation",
+        "movement",
+        "transformation"
+      ],
+      "seed_rhythm_ids": [
+        "R12",
+        "R57",
+        "R59",
+        "R62",
+        "R63"
+      ],
+      "seed_scale_ids": [
+        "S065",
+        "S066",
+        "S071",
+        "S100"
+      ],
+      "timbre_fields": [
+        "frame_drum_sand",
+        "guembri_bass_pull",
+        "reed_edge",
+        "metal_clatter"
+      ],
+      "spatial_template": {
+        "shape": "threshold_gate_to_courtyard",
+        "distance_rule": "forward_motion_opens_processional_depth",
+        "height_rule": "higher_nodes_lift_reed_calls",
+        "ceiling_rule": "sunlit_resonance_arches"
+      },
+      "interaction_model": [
+        "forward_motion_opens_segments",
+        "turns_reveal_alternate_cadence_routes"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "procession_drive",
+          "modal_lift",
+          "resonance_tail"
+        ],
+        "mix_bias": [
+          "low_bass_ground",
+          "clattering_transient_detail"
+        ]
+      }
+    },
+    {
+      "biome_id": "middle_east_modal_corridor",
+      "region": "Middle East, Anatolia, and Persia",
+      "coverage_note": "seed pairings only; expand with lineage notes",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Arab",
+          "instrument": "oud"
+        },
+        {
+          "culture": "Turkish",
+          "instrument": "saz"
+        },
+        {
+          "culture": "Persian_adjacent",
+          "instrument": "qanun"
+        },
+        {
+          "culture": "Levantine",
+          "instrument": "ney"
+        },
+        {
+          "culture": "Armenian_adjacent",
+          "instrument": "duduk_like_reed"
+        }
+      ],
+      "style_lineages": [
+        "maqam_recitation",
+        "lament",
+        "ecstatic_ascent",
+        "frame_drum_devotion"
+      ],
+      "human_functions": [
+        "communication",
+        "mourning",
+        "devotion",
+        "transformation"
+      ],
+      "seed_rhythm_ids": [
+        "R15",
+        "R50",
+        "R51",
+        "R59",
+        "R62"
+      ],
+      "seed_scale_ids": [
+        "S065",
+        "S067",
+        "S068",
+        "S079",
+        "S110"
+      ],
+      "timbre_fields": [
+        "reed_lament",
+        "plucked_wood",
+        "skin_articulation",
+        "chest_resonance"
+      ],
+      "spatial_template": {
+        "shape": "pitch_arch_corridor",
+        "distance_rule": "lanes_extend_with_modal_depth",
+        "height_rule": "higher_paths_carry_reed_and_voice_lift",
+        "ceiling_rule": "mirage_bends_and_cadence_doors"
+      },
+      "interaction_model": [
+        "wrist_motion_bends_pitch",
+        "gaze_holds_cadential_gravity"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "pitch_bend_depth",
+          "cadence_pull",
+          "reed_presence"
+        ],
+        "mix_bias": [
+          "midrange_expression",
+          "dry_attack_detail"
+        ]
+      }
+    },
+    {
+      "biome_id": "northern_asia_overtone_cavern",
+      "region": "Northern Asia and Arctic Lineages",
+      "coverage_note": "seed pairings only; expand with lineage notes",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Tuvan",
+          "instrument": "overtone_voice"
+        },
+        {
+          "culture": "Sakha",
+          "instrument": "khomus"
+        },
+        {
+          "culture": "Arctic_shamanic",
+          "instrument": "frame_drum"
+        }
+      ],
+      "style_lineages": [
+        "journey_trance",
+        "overtone_invocation",
+        "threshold_crossing"
+      ],
+      "human_functions": [
+        "invocation",
+        "guidance",
+        "contemplation",
+        "transformation"
+      ],
+      "seed_rhythm_ids": [
+        "R49",
+        "R53",
+        "R57",
+        "R63"
+      ],
+      "seed_scale_ids": [
+        "S014",
+        "S016",
+        "S104",
+        "S111"
+      ],
+      "timbre_fields": [
+        "overtone_halo",
+        "jaw_harp_buzz",
+        "low_drum_earth",
+        "cold_air"
+      ],
+      "spatial_template": {
+        "shape": "cavern_shaft",
+        "distance_rule": "deeper_travel_darkens_and_lengthens_resonance",
+        "height_rule": "higher_pillars_emphasize_harmonic_partials",
+        "ceiling_rule": "glacial_overtone_bloom"
+      },
+      "interaction_model": [
+        "sustained_tone_narrows_light",
+        "breath_length_deepens_cavern"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "drone_bloom",
+          "overtone_emphasis",
+          "cavern_size"
+        ],
+        "mix_bias": [
+          "harmonic_detail",
+          "low_frequency_ground"
+        ]
+      }
+    },
+    {
+      "biome_id": "south_asia_raga_mandala",
+      "region": "South Asia",
+      "coverage_note": "seed pairings only; expand with lineage notes",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Hindustani",
+          "instrument": "sitar"
+        },
+        {
+          "culture": "Hindustani",
+          "instrument": "sarangi"
+        },
+        {
+          "culture": "Hindustani",
+          "instrument": "bansuri"
+        },
+        {
+          "culture": "Hindustani",
+          "instrument": "tabla"
+        },
+        {
+          "culture": "Carnatic_adjacent",
+          "instrument": "vina"
+        }
+      ],
+      "style_lineages": [
+        "raga_unfolding",
+        "tala_cycle",
+        "devotional_immersion",
+        "alap_expansion"
+      ],
+      "human_functions": [
+        "devotion",
+        "contemplation",
+        "memory",
+        "transformation"
+      ],
+      "seed_rhythm_ids": [
+        "R11",
+        "R12",
+        "R44",
+        "R54",
+        "R56"
+      ],
+      "seed_scale_ids": [
+        "S081",
+        "S083",
+        "S089",
+        "S094",
+        "S096"
+      ],
+      "timbre_fields": [
+        "tanpura_halo",
+        "tabla_skin_snap",
+        "reed_breath",
+        "ornament_shimmer"
+      ],
+      "spatial_template": {
+        "shape": "spiral_mandala",
+        "distance_rule": "orbiting_advances_cycle_depth",
+        "height_rule": "higher_lanes_carry_alap_and_bansuri",
+        "ceiling_rule": "drone_center_with_radiant_petals"
+      },
+      "interaction_model": [
+        "circular_travel_advances_cycle",
+        "mudra_like_gestures_shape_ornament"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "tala_phase",
+          "drone_lock",
+          "ornament_density"
+        ],
+        "mix_bias": [
+          "mid_high_detail",
+          "stable_drone_foundation"
+        ]
+      }
+    },
+    {
+      "biome_id": "himalaya_bowl_vault",
+      "region": "Himalaya and Tibetan Sphere",
+      "coverage_note": "seed pairings only; expand with lineage notes",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Tibetan",
+          "instrument": "singing_bowls"
+        },
+        {
+          "culture": "Tibetan",
+          "instrument": "long_horns"
+        },
+        {
+          "culture": "Himalayan",
+          "instrument": "overtone_chant"
+        },
+        {
+          "culture": "Himalayan",
+          "instrument": "bells"
+        }
+      ],
+      "style_lineages": [
+        "ceremonial_chamber",
+        "prayer_procession",
+        "sonic_offering"
+      ],
+      "human_functions": [
+        "devotion",
+        "invocation",
+        "contemplation",
+        "transformation"
+      ],
+      "seed_rhythm_ids": [
+        "R49",
+        "R53",
+        "R58",
+        "R62"
+      ],
+      "seed_scale_ids": [
+        "S014",
+        "S016",
+        "S095",
+        "S104",
+        "S112"
+      ],
+      "timbre_fields": [
+        "bronze_shimmer",
+        "horn_bloom",
+        "overtone_cloud",
+        "long_decay"
+      ],
+      "spatial_template": {
+        "shape": "resonance_vault",
+        "distance_rule": "stillness_increases_bloom",
+        "height_rule": "higher_nodes_carry_bell_and_harmonic_air",
+        "ceiling_rule": "hanging_resonance_bodies"
+      },
+      "interaction_model": [
+        "stillness_increases_bloom",
+        "slow_arm_lift_opens_harmonic_vault"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "decay_time",
+          "shimmer_spread",
+          "harmonic_bloom"
+        ],
+        "mix_bias": [
+          "long_tail_reverb",
+          "gentle_low_mid_presence"
+        ]
+      }
+    },
+    {
+      "biome_id": "east_asia_cloud_garden",
+      "region": "East Asia",
+      "coverage_note": "seed pairings only; expand with lineage notes",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Chinese",
+          "instrument": "guzheng"
+        },
+        {
+          "culture": "Chinese",
+          "instrument": "erhu"
+        },
+        {
+          "culture": "Japanese",
+          "instrument": "shakuhachi"
+        },
+        {
+          "culture": "Japanese",
+          "instrument": "koto"
+        },
+        {
+          "culture": "Korean",
+          "instrument": "gayageum"
+        }
+      ],
+      "style_lineages": [
+        "breath_phrase",
+        "court_refinement",
+        "silence_framed_lyricism",
+        "contemplative_motion"
+      ],
+      "human_functions": [
+        "contemplation",
+        "communication",
+        "memory"
+      ],
+      "seed_rhythm_ids": [
+        "R49",
+        "R52",
+        "R54",
+        "R56"
+      ],
+      "seed_scale_ids": [
+        "S023",
+        "S024",
+        "S028",
+        "S052",
+        "S064"
+      ],
+      "timbre_fields": [
+        "bamboo_breath",
+        "silk_string",
+        "bow_grain",
+        "negative_space"
+      ],
+      "spatial_template": {
+        "shape": "terraced_cloud_garden",
+        "distance_rule": "gentle_motion_reveals_hidden_nodes",
+        "height_rule": "higher_paths_carry_flute_air_and_high_strings",
+        "ceiling_rule": "mist_and_silence_layers"
+      },
+      "interaction_model": [
+        "slower_motion_reveals_tone_and_silence",
+        "held_gaze_thins_texture"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "air_noise",
+          "note_bloom",
+          "silence_frame"
+        ],
+        "mix_bias": [
+          "detail_and_space",
+          "minimal_low_end"
+        ]
+      }
+    },
+    {
+      "biome_id": "southeast_asia_gong_constellation",
+      "region": "Southeast Asia",
+      "coverage_note": "seed pairings only; expand with lineage notes",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Javanese",
+          "instrument": "gamelan_metallophones"
+        },
+        {
+          "culture": "Balinese",
+          "instrument": "gong_cycle"
+        },
+        {
+          "culture": "Southeast_Asian",
+          "instrument": "bamboo_percussion"
+        }
+      ],
+      "style_lineages": [
+        "gong_cycle",
+        "interlock",
+        "dance_ritual",
+        "shimmer_architecture"
+      ],
+      "human_functions": [
+        "celebration",
+        "movement",
+        "communication",
+        "transformation"
+      ],
+      "seed_rhythm_ids": [
+        "R11",
+        "R13",
+        "R36",
+        "R40",
+        "R60"
+      ],
+      "seed_scale_ids": [
+        "S041",
+        "S105",
+        "S106",
+        "S107"
+      ],
+      "timbre_fields": [
+        "bronze_shimmer",
+        "bamboo_click",
+        "bell_cluster_haze"
+      ],
+      "spatial_template": {
+        "shape": "orbital_constellation",
+        "distance_rule": "proximity_changes_interlocking_emphasis",
+        "height_rule": "higher_nodes_carry_shimmer_and_resonance",
+        "ceiling_rule": "gongs_trace_orbits"
+      },
+      "interaction_model": [
+        "proximity_changes_interlocking_emphasis",
+        "step_timing_rotates_cycles"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "cycle_phase",
+          "metallophone_brightness",
+          "ensemble_mesh"
+        ],
+        "mix_bias": [
+          "upper_mid_shimmer",
+          "controlled_decay"
+        ]
+      }
+    },
+    {
+      "biome_id": "indigenous_north_america_circle_fire_ring",
+      "region": "Indigenous North America",
+      "coverage_note": "seed pairings only; expand with lineage notes and permissions",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Powwow_lineages",
+          "instrument": "big_drum"
+        },
+        {
+          "culture": "Woodlands_adjacent",
+          "instrument": "cedar_flute"
+        },
+        {
+          "culture": "Pan_tribal_song_practice",
+          "instrument": "vocables_and_hand_rhythm"
+        }
+      ],
+      "style_lineages": [
+        "circle_song",
+        "all_night_song",
+        "witnessing",
+        "prayer_gathering"
+      ],
+      "human_functions": [
+        "devotion",
+        "memory",
+        "movement",
+        "communication"
+      ],
+      "seed_rhythm_ids": [
+        "R14",
+        "R57",
+        "R59",
+        "R62"
+      ],
+      "seed_scale_ids": [
+        "S017",
+        "S031",
+        "S032",
+        "S015"
+      ],
+      "timbre_fields": [
+        "drum_heart",
+        "flute_air",
+        "chorus_cry",
+        "rattle_edge"
+      ],
+      "spatial_template": {
+        "shape": "fire_ring",
+        "distance_rule": "collective_presence_thickens_pulse",
+        "height_rule": "higher_nodes_carry_flute_and_voice",
+        "ceiling_rule": "night_sky_and_smoke_trails"
+      },
+      "interaction_model": [
+        "collective_presence_thickens_pulse",
+        "breath_controls_flute_line"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "group_synchrony",
+          "drum_depth",
+          "flute_proximity"
+        ],
+        "mix_bias": [
+          "monophonic_center_strength",
+          "focused_midrange"
+        ]
+      }
+    },
+    {
+      "biome_id": "amazonia_canopy_corridor",
+      "region": "Amazonia and Forest Ceremonial Lineages",
+      "coverage_note": "seed pairings only; expand with lineage notes and permissions",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Amazonian_lineages",
+          "instrument": "icaro_voice"
+        },
+        {
+          "culture": "Amazonian_lineages",
+          "instrument": "seed_rattle"
+        },
+        {
+          "culture": "Amazonian_lineages",
+          "instrument": "bamboo_flute"
+        }
+      ],
+      "style_lineages": [
+        "guidance_song",
+        "canopy_ceremony",
+        "directional_singing",
+        "forest_relation"
+      ],
+      "human_functions": [
+        "guidance",
+        "invocation",
+        "communication",
+        "transformation"
+      ],
+      "seed_rhythm_ids": [
+        "R49",
+        "R58",
+        "R62",
+        "R63"
+      ],
+      "seed_scale_ids": [
+        "S002",
+        "S012",
+        "S015",
+        "S032",
+        "S112"
+      ],
+      "timbre_fields": [
+        "seed_shimmer",
+        "canopy_insects",
+        "breath_flute",
+        "whispered_voice_grain"
+      ],
+      "spatial_template": {
+        "shape": "living_canopy_corridor",
+        "distance_rule": "forward_travel_changes_ecosystem_density",
+        "height_rule": "higher_nodes_carry_bird_and_flute_response",
+        "ceiling_rule": "leaf_and_mist_layers"
+      },
+      "interaction_model": [
+        "voice_input_shifts_pathway",
+        "forward_travel_changes_ecosystem_response"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "vocal_follower",
+          "environmental_density",
+          "route_guidance"
+        ],
+        "mix_bias": [
+          "surround_ambience",
+          "voice_clarity"
+        ]
+      }
+    },
+    {
+      "biome_id": "mesoamerica_invocation_chamber",
+      "region": "Mesoamerica",
+      "coverage_note": "seed pairings only; expand with lineage notes and permissions",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Mesoamerican",
+          "instrument": "shell_horn"
+        },
+        {
+          "culture": "Mesoamerican",
+          "instrument": "huehuetl"
+        },
+        {
+          "culture": "Mesoamerican",
+          "instrument": "teponaztli"
+        },
+        {
+          "culture": "Mesoamerican",
+          "instrument": "ceremonial_flute"
+        }
+      ],
+      "style_lineages": [
+        "invocation",
+        "stair_step_procession",
+        "temple_cadence",
+        "cosmic_marking"
+      ],
+      "human_functions": [
+        "invocation",
+        "memory",
+        "movement",
+        "devotion"
+      ],
+      "seed_rhythm_ids": [
+        "R12",
+        "R59",
+        "R60",
+        "R62",
+        "R63"
+      ],
+      "seed_scale_ids": [
+        "S016",
+        "S017",
+        "S026",
+        "S058"
+      ],
+      "timbre_fields": [
+        "carved_wood_strike",
+        "shell_bloom",
+        "chant_edge",
+        "stone_reflections"
+      ],
+      "spatial_template": {
+        "shape": "stepped_invocation_chamber",
+        "distance_rule": "ascending_steps_raise_density",
+        "height_rule": "upper_landings_hold_horn_and_flute_lines",
+        "ceiling_rule": "solar_sight_line_opening"
+      },
+      "interaction_model": [
+        "ascending_steps_raise_density",
+        "pauses_trigger_ceremonial_markers"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "threshold_intensity",
+          "horn_bloom",
+          "cadence_markers"
+        ],
+        "mix_bias": [
+          "stone_reflection_presence",
+          "low_mid_impact"
+        ]
+      }
+    },
+    {
+      "biome_id": "latin_caribbean_festival_bridge",
+      "region": "Latin America and the Caribbean",
+      "coverage_note": "seed pairings only; expand with lineage notes",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Afro_Caribbean",
+          "instrument": "conga_and_clave"
+        },
+        {
+          "culture": "Brazilian",
+          "instrument": "samba_battery"
+        },
+        {
+          "culture": "Andean_adjacent",
+          "instrument": "charango"
+        },
+        {
+          "culture": "River_Plate",
+          "instrument": "bandoneon"
+        },
+        {
+          "culture": "Pacific_Latin",
+          "instrument": "marimba"
+        }
+      ],
+      "style_lineages": [
+        "carnival_pulse",
+        "procession",
+        "lament_and_lift",
+        "social_dance_propulsion"
+      ],
+      "human_functions": [
+        "celebration",
+        "movement",
+        "mourning",
+        "transformation"
+      ],
+      "seed_rhythm_ids": [
+        "R13",
+        "R28",
+        "R43",
+        "R48",
+        "R60"
+      ],
+      "seed_scale_ids": [
+        "S020",
+        "S026",
+        "S053",
+        "S109",
+        "S127"
+      ],
+      "timbre_fields": [
+        "hand_percussion_sparkle",
+        "brass_lift",
+        "reed_warmth",
+        "bass_sway"
+      ],
+      "spatial_template": {
+        "shape": "festival_bridge",
+        "distance_rule": "forward_motion_crossfades_groove_families",
+        "height_rule": "higher_nodes_carry_brass_and_reed_lift",
+        "ceiling_rule": "parade_streamers_and_light_arcs"
+      },
+      "interaction_model": [
+        "foot_rhythm_shifts_groove_family",
+        "turns_crossfade_sections"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "swing_depth",
+          "percussion_width",
+          "brass_rise"
+        ],
+        "mix_bias": [
+          "dance_floor_low_end",
+          "bright_transients"
+        ]
+      }
+    },
+    {
+      "biome_id": "celtic_nordic_knot_field",
+      "region": "Celtic and Nordic Worlds",
+      "coverage_note": "seed pairings only; expand with lineage notes",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Celtic",
+          "instrument": "harp"
+        },
+        {
+          "culture": "Irish",
+          "instrument": "uilleann_pipes"
+        },
+        {
+          "culture": "Nordic",
+          "instrument": "hardanger_fiddle"
+        },
+        {
+          "culture": "Nordic",
+          "instrument": "bowed_drone_strings"
+        }
+      ],
+      "style_lineages": [
+        "reel",
+        "lament",
+        "fireside_song",
+        "mythic_procession"
+      ],
+      "human_functions": [
+        "memory",
+        "mourning",
+        "celebration",
+        "movement"
+      ],
+      "seed_rhythm_ids": [
+        "R10",
+        "R18",
+        "R43",
+        "R52",
+        "R59"
+      ],
+      "seed_scale_ids": [
+        "S025",
+        "S050",
+        "S054",
+        "S060"
+      ],
+      "timbre_fields": [
+        "bowed_resin",
+        "pipe_air",
+        "harp_shimmer",
+        "drum_skin"
+      ],
+      "spatial_template": {
+        "shape": "braided_knot_field",
+        "distance_rule": "path_choice_braids_melody_lines",
+        "height_rule": "higher_nodes_carry_pipe_and_fiddle_lift",
+        "ceiling_rule": "aurora_and_low_cloud_drones"
+      },
+      "interaction_model": [
+        "stepping_paths_braid_melody_lines",
+        "held_stance_strengthens_drone"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "drone_hold",
+          "bow_sheen",
+          "melodic_braid"
+        ],
+        "mix_bias": [
+          "mid_high_string_detail",
+          "controlled_room_tail"
+        ]
+      }
+    },
+    {
+      "biome_id": "europe_constellation_hall",
+      "region": "Europe Orchestral and Choral",
+      "coverage_note": "seed pairings only; expand with lineage notes",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Western_orchestral",
+          "instrument": "strings"
+        },
+        {
+          "culture": "Western_orchestral",
+          "instrument": "winds"
+        },
+        {
+          "culture": "Western_orchestral",
+          "instrument": "brass"
+        },
+        {
+          "culture": "Liturgical",
+          "instrument": "choir"
+        },
+        {
+          "culture": "Liturgical",
+          "instrument": "organ"
+        }
+      ],
+      "style_lineages": [
+        "requiem",
+        "theater",
+        "procession",
+        "counterpoint",
+        "massed_ensemble"
+      ],
+      "human_functions": [
+        "memory",
+        "mourning",
+        "devotion",
+        "transformation"
+      ],
+      "seed_rhythm_ids": [
+        "R03",
+        "R10",
+        "R39",
+        "R56",
+        "R59"
+      ],
+      "seed_scale_ids": [
+        "S049",
+        "S052",
+        "S056",
+        "S117"
+      ],
+      "timbre_fields": [
+        "string_halo",
+        "brass_bloom",
+        "choral_body",
+        "organ_air"
+      ],
+      "spatial_template": {
+        "shape": "constellation_hall",
+        "distance_rule": "section_distance_changes_hall_mass",
+        "height_rule": "higher_nodes_carry_choir_and_upper_strings",
+        "ceiling_rule": "stellar_section_markers"
+      },
+      "interaction_model": [
+        "arm_gestures_conduct_rises_and_collapses",
+        "selection_revoices_sections"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "sectional_balance",
+          "harmonic_tension",
+          "hall_size"
+        ],
+        "mix_bias": [
+          "wide_dynamic_range",
+          "clear_sectional_imaging"
+        ]
+      }
+    },
+    {
+      "biome_id": "oceania_earth_resonance_plain",
+      "region": "Oceania and Australia",
+      "coverage_note": "seed pairings only; expand with lineage notes and permissions",
+      "culture_instrument_pairs": [
+        {
+          "culture": "First_Nations_Australia",
+          "instrument": "didgeridoo"
+        },
+        {
+          "culture": "First_Nations_Australia",
+          "instrument": "clapsticks"
+        },
+        {
+          "culture": "Pacific_Islands",
+          "instrument": "slit_drum"
+        },
+        {
+          "culture": "Pacific_Islands",
+          "instrument": "nose_flute"
+        }
+      ],
+      "style_lineages": [
+        "land_linked_resonance",
+        "drone_ceremony",
+        "pathway_memory",
+        "communal_marking"
+      ],
+      "human_functions": [
+        "memory",
+        "movement",
+        "contemplation",
+        "guidance"
+      ],
+      "seed_rhythm_ids": [
+        "R54",
+        "R57",
+        "R59",
+        "R60"
+      ],
+      "seed_scale_ids": [
+        "S010",
+        "S014",
+        "S089",
+        "S095"
+      ],
+      "timbre_fields": [
+        "drone_ground",
+        "wood_click",
+        "breath_resonance",
+        "earth_hum"
+      ],
+      "spatial_template": {
+        "shape": "earth_plain",
+        "distance_rule": "breathing_thickens_low_drone_field",
+        "height_rule": "higher_nodes_carry_flute_and_harmonic_air",
+        "ceiling_rule": "wide_horizon_resonance"
+      },
+      "interaction_model": [
+        "breathing_thickens_drone",
+        "stance_changes_floor_vibration"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "drone_body",
+          "click_pulse",
+          "environmental_resonance"
+        ],
+        "mix_bias": [
+          "low_frequency_ground",
+          "open_spatial_width"
+        ]
+      }
+    },
+    {
+      "biome_id": "black_atlantic_signal_cathedral",
+      "region": "Black Atlantic and Electronic Futures",
+      "coverage_note": "seed pairings only; expand with lineage notes",
+      "culture_instrument_pairs": [
+        {
+          "culture": "Sound_system",
+          "instrument": "dub_bass"
+        },
+        {
+          "culture": "Electronic",
+          "instrument": "drum_machine"
+        },
+        {
+          "culture": "Club",
+          "instrument": "modular_synth"
+        },
+        {
+          "culture": "Diasporic_vocal",
+          "instrument": "chopped_voice"
+        }
+      ],
+      "style_lineages": [
+        "sound_system_ritual",
+        "club_propulsion",
+        "future_gospel",
+        "diasporic_transformation"
+      ],
+      "human_functions": [
+        "celebration",
+        "movement",
+        "transformation",
+        "communication"
+      ],
+      "seed_rhythm_ids": [
+        "R08",
+        "R41",
+        "R48",
+        "R61",
+        "R64"
+      ],
+      "seed_scale_ids": [
+        "S020",
+        "S053",
+        "S109",
+        "S113",
+        "S123",
+        "S127"
+      ],
+      "timbre_fields": [
+        "sub_bass_pressure",
+        "tape_saturation",
+        "chopped_air",
+        "spectral_smear"
+      ],
+      "spatial_template": {
+        "shape": "signal_cathedral",
+        "distance_rule": "bass_field_expands_with_floor_pressure",
+        "height_rule": "higher_nodes_carry_vocal_chops_and_spectral_air",
+        "ceiling_rule": "laser_like_signal_vault"
+      },
+      "interaction_model": [
+        "spatial_sculpting_reshapes_bass_field",
+        "hand_cuts_gate_layers"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "bass_pressure",
+          "transient_gate",
+          "saturation_depth"
+        ],
+        "mix_bias": [
+          "sub_energy",
+          "wide_mid_side_motion"
+        ]
+      }
+    },
+    {
+      "biome_id": "xr_speculative_unknown_world",
+      "region": "Unknown World and XR Future",
+      "coverage_note": "speculative biome; keep clearly marked as experimental",
+      "culture_instrument_pairs": [
+        {
+          "culture": "XR_future",
+          "instrument": "sensor_choir"
+        },
+        {
+          "culture": "XR_future",
+          "instrument": "biometric_strings"
+        },
+        {
+          "culture": "XR_future",
+          "instrument": "light_drums"
+        },
+        {
+          "culture": "XR_future",
+          "instrument": "gesture_reeds"
+        }
+      ],
+      "style_lineages": [
+        "future_ritual",
+        "adaptive_ensemble",
+        "unknown_world_invocation"
+      ],
+      "human_functions": [
+        "communication",
+        "exploration",
+        "invocation",
+        "transformation"
+      ],
+      "seed_rhythm_ids": [
+        "R31",
+        "R40",
+        "R63",
+        "R64"
+      ],
+      "seed_scale_ids": [
+        "S119",
+        "S123",
+        "S125",
+        "S126",
+        "S128"
+      ],
+      "timbre_fields": [
+        "spectral_glass",
+        "synthetic_grain",
+        "biometric_shimmer",
+        "impossible_bloom"
+      ],
+      "spatial_template": {
+        "shape": "morphing_geometry_field",
+        "distance_rule": "topology_rewrites_with_session_state",
+        "height_rule": "pitch_planes_adapt_to_participant_state",
+        "ceiling_rule": "speculative_resonance_mesh"
+      },
+      "interaction_model": [
+        "gestures_rewrite_topology",
+        "system_adapts_pitch_field_to_session_state"
+      ],
+      "middleware_focus": {
+        "rtpcs": [
+          "adaptive_scale",
+          "topology_morph",
+          "speculative_resonance"
+        ],
+        "mix_bias": [
+          "spectral_width",
+          "controlled_unfamiliarity"
+        ]
+      }
+    }
+  ],
+  "pairing_templates": [
+    {
+      "id": "cross_rhythm_maqam_andes_bass",
+      "inputs": {
+        "rhythm_id": "R25",
+        "scale_id": "S066",
+        "timbre_note": "Andean_flute_timbre_plus_Black_Atlantic_bass_architecture"
+      },
+      "output_behavior": "offset_pulse_room_with_bent_melodic_arches_and_moving_floor_weight"
+    },
+    {
+      "id": "raga_gong_spiral",
+      "inputs": {
+        "rhythm_id": "R12",
+        "scale_id": "S096",
+        "timbre_note": "Southeast_Asian_bronze_shimmer"
+      },
+      "output_behavior": "slow_orbital_chamber_with_tala_like_return_points_and_metallic_harmonic_bloom"
+    },
+    {
+      "id": "overtone_guidance_canopy",
+      "inputs": {
+        "rhythm_id": "R58",
+        "scale_id": "S104",
+        "timbre_note": "Amazonian_directional_song"
+      },
+      "output_behavior": "voice_guided_canopy_route_with_harmonic_pillars_and_rattle_entrainment"
+    },
+    {
+      "id": "celtic_modal_cathedral",
+      "inputs": {
+        "rhythm_id": "R52",
+        "scale_id": "S050",
+        "timbre_note": "orchestral_string_halo"
+      },
+      "output_behavior": "drifting_lament_hall_with_braided_melody_paths_and_large_reflective_tails"
+    },
+    {
+      "id": "desert_procession_sound_system",
+      "inputs": {
+        "rhythm_id": "R59",
+        "scale_id": "S067",
+        "timbre_note": "dub_saturation"
+      },
+      "output_behavior": "corridor_to_nave_transition_where_procession_becomes_sub_bass_ceremony"
+    },
+    {
+      "id": "pentatonic_circle_fire",
+      "inputs": {
+        "rhythm_id": "R57",
+        "scale_id": "S017",
+        "timbre_note": "flute_and_drum_intimacy"
+      },
+      "output_behavior": "centered_fire_ring_meditation_built_from_heartbeat_pulse_and_open_melodic_steps"
+    }
+  ],
+  "guardrails": [
+    "no source lineage should be reduced to a mood tag alone",
+    "no healing or therapy claim should appear in runtime copy without evidence and compliance review",
+    "no catalyst-aware route should be the default entry",
+    "indigenous, ceremonial, and devotional material should keep explicit lineage notes and consent context",
+    "the unknown-world biome must stay clearly marked as speculative"
+  ]
+}

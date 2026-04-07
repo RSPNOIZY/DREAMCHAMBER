@@ -1,0 +1,39 @@
+{
+  "recommendations": [
+    // ─── Already here ──────────────────────────────────────
+    "bierner.markdown-mermaid",
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens",
+    "marp-team.marp-vscode",
+    "yzhang.markdown-all-in-one",
+    "ritwickdey.liveserver",
+    "usernamehw.errorlens",
+
+    // ─── Talon Voice / Adaptive Input ──────────────────────
+    "pokey.command-server",       // REQUIRED: Talon ↔ VSCode command bridge
+    "pokey.cursorless",           // Hands-free code editing via Talon voice
+    "knistner.talon",             // .talon file syntax highlighting
+
+    // ─── Python Stack ──────────────────────────────────────
+    "ms-python.python",
+    "ms-python.pylance",
+    "ms-python.black-formatter",
+    "ms-python.isort",
+    "ms-toolsai.jupyter",         // Research notebooks
+
+    // ─── API / REST Testing ────────────────────────────────
+    "humao.rest-client",          // .http files → test Platform API, Rob-AVA, GABRIEL
+
+    // ─── Config Files ──────────────────────────────────────
+    "redhat.vscode-yaml",
+    "tamasfe.even-better-toml",
+    "mechatroner.rainbow-csv",    // CSV/TSV colouring for data files
+
+    // ─── Navigation & Intelligence ─────────────────────────
+    "christian-kohler.path-intellisense",
+    "gruntfuggly.todo-tree",      // NOIZY custom tag tree
+
+    // ─── Remote / SSH ──────────────────────────────────────
+    "ms-vscode-remote.remote-ssh" // SSH into other NOIZYLAB machines
+  ]
+}

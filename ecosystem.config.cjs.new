@@ -1,0 +1,8 @@
+// APPEND to apps array in ecosystem.config.cjs
+{
+  name: 'noizy-airplay',
+  script: '/Users/m2ultra/NOIZYLAB/apps/noizy-airplay/src/server.js',
+  cwd: '/Users/m2ultra/NOIZYLAB/apps/noizy-airplay',
+  watch: false,
+  env: { PORT: '3001', NODE_ENV: 'production', DREAMCHAMBER_URL: 'http://localhost:7777' },
+}

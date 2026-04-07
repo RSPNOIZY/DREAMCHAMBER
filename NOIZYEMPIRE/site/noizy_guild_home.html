@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONE FAMILY · ONE GUILD — NOIZY.ai</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --night: #050508;
+  --deep: #0A0A12;
+  --mid: #12121E;
+  --gold: #FFD700;
+  --ember: #FF6B2B;
+  --warm: #FF9F4A;
+  --cream: #FFF8E7;
+  --text: #C8C0A8;
+  --muted: #6B6355;
+  --africa: #FF6B2B;
+  --india: #9B59B6;
+  --china: #E74C3C;
+  --japan: #FF69B4;
+  --mideast: #F39C12;
+  --greece: #3498DB;
+  --americas: #E67E22;
+  --pacific: #1ABC9C;
+  --latin: #2ECC71;
+  --blues: #2980B9;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--night); color: var(--text); font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+
+/* ─── ENTRY SCREEN ─── */
+#entry {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--night);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+#entry.gone { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.entry-pulse {
+  width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 70%);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 48px;
+  animation: breathe 3s ease-in-out infinite;
+  position: relative;
+}
+.entry-pulse::before, .entry-pulse::after {
+  content: ''; position: absolute; inset: -20px;
+  border-radius: 50%; border: 1px solid rgba(255,215,0,0.15);
+  animation: ringExpand 3s ease-in-out infinite;
+}
+.entry-pulse::after { inset: -40px; animation-delay: 1s; }
+.entry-drum { font-size: 4rem; }
+
+.entry-title {
+  font-size: clamp(2rem, 6vw, 4rem); font-weight: 800;
+  text-align: center; line-height: 1.1; margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--gold), var(--warm), var(--ember));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.entry-sub {
+  font-family: 'Space Mono', monospace; font-size: 0.75rem;
+  letter-spacing: 0.25em; color: var(--muted); text-transform: uppercase;
+  margin-bottom: 60px; text-align: center;
+}
+.enter-btn {
+  padding: 18px 56px; background: transparent;
+  border: 1px solid rgba(255,215,0,0.4); color: var(--gold);
+  font-family: 'Space Mono', monospace; font-size: 0.8rem;
+  letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;
+  transition: all 0.3s ease;
+}
+.enter-btn:hover { background: rgba(255,215,0,0.08); border-color: var(--gold); transform: translateY(-2px); }
+
+/* ─── WORLD CANVAS ─── */
+#worldCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.35; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 80px 40px; z-index: 1;
+}
+.hero-tag {
+  font-family: 'Space Mono', monospace; font-size: 0.7rem;
+  letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase;
+  margin-bottom: 28px; opacity: 0; animation: fadeUp 1s 0.4s ease forwards;
+}
+.hero-h1 {
+  font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 800; line-height: 0.95;
+  margin-bottom: 40px; opacity: 0; animation: fadeUp 1s 0.6s ease forwards;
+}
+.hero-h1 .line1 { display: block; color: var(--cream); }
+.hero-h1 .line2 { display: block; color: var(--gold); }
+.hero-h1 .line3 { display: block; color: var(--ember); }
+
+.hero-body {
+  max-width: 660px; font-size: 1.25rem; line-height: 1.8; color: var(--text);
+  margin-bottom: 60px; opacity: 0; animation: fadeUp 1s 0.8s ease forwards;
+}
+.hero-stat-row {
+  display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 1s 1s ease forwards;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: 'Space Mono', monospace; font-size: 2.2rem; font-weight: 700; color: var(--gold); display: block;
+}
+.hero-stat-label { font-size: 0.75rem; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+
+/* ─── RIVER OF TRADITIONS ─── */
+.river-section {
+  position: relative; padding: 120px 0; overflow: hidden; z-index: 1;
+  background: linear-gradient(180deg, transparent, rgba(255,215,0,0.03), transparent);
+}
+.river-label {
+  text-align: center; font-family: 'Space Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.3em; color: var(--ember);
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.river-headline {
+  text-align: center; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700;
+  color: var(--cream); margin-bottom: 80px; padding: 0 40px;
+}
+.river-headline em { font-style: normal; color: var(--gold); }
+
+.traditions-river {
+  display: flex; gap: 0; overflow-x: auto; padding: 0 60px 40px;
+  scrollbar-width: thin; scrollbar-color: rgba(255,215,0,0.2) transparent;
+  scroll-snap-type: x mandatory;
+}
+.traditions-river::-webkit-scrollbar { height: 2px; }
+.traditions-river::-webkit-scrollbar-track { background: transparent; }
+.traditions-river::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.3); }
+
+.trad-card {
+  flex: 0 0 280px; scroll-snap-align: start;
+  padding: 40px 32px; border-right: 1px solid rgba(255,255,255,0.04);
+  transition: all 0.4s ease; cursor: default; position: relative;
+}
+.trad-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 3px; background: var(--card-color, var(--gold)); opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.trad-card:hover { background: rgba(255,255,255,0.02); }
+.trad-card:hover::after { opacity: 1; }
+
+.trad-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+.trad-era {
+  font-family: 'Space Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px;
+}
+.trad-name { font-size: 1.2rem; font-weight: 700; color: var(--cream); margin-bottom: 14px; }
+.trad-gift { font-size: 0.9rem; line-height: 1.7; color: var(--text); }
+.trad-key {
+  margin-top: 16px; font-size: 0.8rem; font-style: italic;
+  padding: 10px 14px; border-left: 2px solid var(--card-color, var(--gold));
+  color: var(--muted); background: rgba(255,255,255,0.02);
+}
+
+/* ─── 12 UNIVERSALS ─── */
+.universals { padding: 120px 40px; max-width: 1100px; margin: 0 auto; z-index: 1; position: relative; }
+.universals-headline {
+  text-align: center; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700;
+  color: var(--cream); margin-bottom: 16px;
+}
+.universals-sub {
+  text-align: center; color: var(--muted); font-size: 1rem; margin-bottom: 70px;
+  font-style: italic;
+}
+.universals-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 2px;
+}
+.universal-item {
+  padding: 32px 28px; background: rgba(255,215,0,0.02);
+  border: 1px solid rgba(255,215,0,0.06);
+  transition: all 0.3s ease; text-align: center;
+}
+.universal-item:hover { background: rgba(255,215,0,0.05); border-color: rgba(255,215,0,0.15); transform: translateY(-3px); }
+.u-number { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--ember); letter-spacing: 0.2em; margin-bottom: 10px; display: block; }
+.u-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+.u-name { font-size: 1rem; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+.u-desc { font-size: 0.85rem; line-height: 1.6; color: var(--text); }
+
+/* ─── FAMILY VOICES ─── */
+.voices-section { padding: 120px 40px; z-index: 1; position: relative; }
+.voices-label {
+  text-align: center; font-family: 'Space Mono', monospace; font-size: 0.7rem;
+  letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px;
+}
+.voices-headline {
+  text-align: center; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700;
+  color: var(--cream); margin-bottom: 16px;
+}
+.voices-sub { text-align: center; color: var(--text); font-size: 1.05rem; margin-bottom: 80px; max-width: 640px; margin-left: auto; margin-right: auto; }
+
+.voices-mosaic {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  max-width: 1200px; margin: 0 auto; gap: 1px;
+}
+.voice-portrait {
+  padding: 40px 36px; transition: all 0.4s ease; cursor: default;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  border-right: 1px solid rgba(255,255,255,0.03);
+  position: relative; overflow: hidden;
+}
+.voice-portrait::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: var(--portrait-color, var(--gold)); opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.voice-portrait:hover { background: rgba(255,255,255,0.02); }
+.voice-portrait:hover::before { opacity: 1; }
+
+.vp-from {
+  font-family: 'Space Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 14px;
+}
+.vp-desc { font-size: 1rem; line-height: 1.75; color: var(--text); }
+.vp-tradition {
+  margin-top: 16px; font-family: 'Space Mono', monospace; font-size: 0.7rem;
+  color: var(--muted); letter-spacing: 0.1em;
+}
+
+/* ─── GUILD COVENANT ─── */
+.covenant-section {
+  padding: 140px 40px; background: rgba(255,215,0,0.02);
+  border-top: 1px solid rgba(255,215,0,0.06); border-bottom: 1px solid rgba(255,215,0,0.06);
+  z-index: 1; position: relative;
+}
+.covenant-inner { max-width: 840px; margin: 0 auto; text-align: center; }
+.covenant-headline {
+  font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1;
+  background: linear-gradient(135deg, var(--gold), var(--warm));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 32px;
+}
+.covenant-body { font-size: 1.2rem; line-height: 1.9; color: var(--text); margin-bottom: 24px; }
+.covenant-body strong { color: var(--cream); }
+
+.covenant-pillars {
+  margin: 60px 0; display: flex; flex-direction: column; gap: 1px;
+  text-align: left;
+}
+.pillar {
+  padding: 36px 44px; border: 1px solid rgba(255,215,0,0.07);
+  display: grid; grid-template-columns: 60px 1fr; gap: 24px;
+  align-items: start; transition: background 0.3s ease;
+}
+.pillar:hover { background: rgba(255,215,0,0.04); }
+.pillar-icon { font-size: 1.8rem; }
+.pillar-title { font-size: 0.85rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+.pillar-desc { font-size: 0.95rem; line-height: 1.7; color: var(--text); }
+
+/* ─── INVITATION ─── */
+.invite-section {
+  padding: 160px 40px; text-align: center;
+  z-index: 1; position: relative;
+}
+.invite-headline {
+  font-size: clamp(3rem, 8vw, 7rem); font-weight: 800; line-height: 1.0;
+  color: var(--cream); margin-bottom: 48px;
+}
+.invite-headline span { color: var(--gold); }
+.invite-body { max-width: 640px; margin: 0 auto 60px; font-size: 1.15rem; line-height: 1.9; color: var(--text); }
+.invite-conditions { list-style: none; text-align: left; max-width: 580px; margin: 0 auto 60px; }
+.invite-conditions li {
+  padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 1rem; line-height: 1.6; display: flex; gap: 16px; align-items: flex-start;
+}
+.invite-conditions li::before { content: '—'; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.join-cta {
+  display: inline-block; padding: 24px 72px;
+  background: linear-gradient(135deg, var(--gold), var(--ember));
+  color: #0A0806; font-family: 'Space Mono', monospace;
+  font-size: 0.9rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; text-decoration: none; border: none; cursor: pointer;
+  transition: all 0.3s ease; position: relative; overflow: hidden;
+}
+.join-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255,255,255,0.2);
+  transform: translateX(-100%); transition: transform 0.3s ease;
+}
+.join-cta:hover::before { transform: translateX(0); }
+.join-cta:hover { transform: translateY(-4px); box-shadow: 0 24px 80px rgba(255,165,0,0.45); }
+
+/* ─── FINAL ─── */
+.final {
+  padding: 80px 40px 100px; text-align: center;
+  border-top: 1px solid rgba(255,215,0,0.06);
+}
+.final-big { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 700; color: var(--gold); margin-bottom: 28px; line-height: 1.4; }
+.final-meta { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: var(--muted); line-height: 2.2; text-transform: uppercase; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+@keyframes breathe { 0%,100% { transform:scale(1); } 50% { transform:scale(1.08); } }
+@keyframes ringExpand { 0%,100% { transform:scale(1); opacity:0.4; } 50% { transform:scale(1.15); opacity:0.1; } }
+
+.reveal { opacity:0; transform:translateY(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.reveal.on { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ENTRY -->
+<div id="entry">
+  <div class="entry-pulse"><span class="entry-drum">🥁</span></div>
+  <h1 class="entry-title">ONE FAMILY<br>300,000 YEARS<br>ONE GUILD</h1>
+  <p class="entry-sub">NOIZY.ai · The Global Music Family · Est. 2026</p>
+  <button class="enter-btn" onclick="document.getElementById('entry').classList.add('gone')">ENTER THE FAMILY</button>
+</div>
+
+<!-- WORLD CANVAS -->
+<canvas id="worldCanvas"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-tag">NOIZY.ai · The Global Music Family & Guild of Creators</p>
+  <h1 class="hero-h1">
+    <span class="line1">ONE</span>
+    <span class="line2">FAMILY.</span>
+    <span class="line3">ONE GUILD.</span>
+  </h1>
+  <p class="hero-body">From the first rock struck on a hollow log in Africa 300,000 years ago, to the bedroom producer in Seoul at 2am tonight — every human being who has ever made something with sound is part of the same family. The Guild is where that family finally lives together.</p>
+  <div class="hero-stat-row">
+    <div class="hero-stat">
+      <span class="hero-stat-num" id="hs1">0</span>
+      <p class="hero-stat-label">Years of Music</p>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num" id="hs2">0</span>
+      <p class="hero-stat-label">Living Traditions</p>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num" id="hs3">0</span>
+      <p class="hero-stat-label">Countries</p>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num" id="hs4">75</span>
+      <p class="hero-stat-label">% Always Yours</p>
+    </div>
+  </div>
+</section>
+
+<!-- RIVER OF TRADITIONS -->
+<section class="river-section">
+  <p class="river-label reveal">300,000 years of music</p>
+  <h2 class="river-headline reveal">Every tradition flows into <em>one river.</em><br>Every river flows into <em>the Guild.</em></h2>
+
+  <div class="traditions-river">
+    <div class="trad-card" style="--card-color:#FF8C00">
+      <span class="trad-icon">🪨</span>
+      <p class="trad-era" style="color:#FF8C00">300,000 BCE — PREHISTORIC</p>
+      <p class="trad-name">The First Beat</p>
+      <p class="trad-gift">A rock. A hollow log. A stretched hide. Pulse discovered. Rhythm as community technology — synchronizing heartbeats, building trust, making strangers into family around a fire.</p>
+      <p class="trad-key">"The beat was the first language. It said: I am here. You are here. We are together."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#FF6B2B">
+      <span class="trad-icon">🪘</span>
+      <p class="trad-era" style="color:#FF6B2B">ANCIENT — AFRICA</p>
+      <p class="trad-name">The Rhythmic Foundation</p>
+      <p class="trad-gift">Polyrhythm. Multiple rhythms coexisting without collision. The Griot — living library, voice of history, keeper of civilizations. Mbira speaking to ancestors. Call and response as conversation with the world. Africa gave every modern music its rhythmic skeleton.</p>
+      <p class="trad-key">"Without African rhythm there is no jazz, no blues, no rock, no hip-hop, no samba, no reggae. The tree is African. The branches go everywhere."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#9B59B6">
+      <span class="trad-icon">🎵</span>
+      <p class="trad-era" style="color:#9B59B6">2,500+ YEARS — INDIA</p>
+      <p class="trad-name">The Theory of Feeling</p>
+      <p class="trad-gift">Raga — a melodic universe with a time of day, a season, an emotion encoded into its structure. Tala — rhythmic cycles of 7, 10, 12, 16 beats. Shruti — 22 microtones between the notes the piano can play. Music as the science of the soul.</p>
+      <p class="trad-key">"Indian music theory is the most advanced emotional map ever created. Every raga is a state of being."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#E74C3C">
+      <span class="trad-icon">🎋</span>
+      <p class="trad-era" style="color:#E74C3C">5,000+ YEARS — CHINA</p>
+      <p class="trad-name">Music as Cosmic Order</p>
+      <p class="trad-gift">Five notes. Five elements. Five seasons of the soul. The Guqin — 3,000 years of unbroken tradition, 7 strings, no frets, infinite microtones. Music that heals organs, aligns seasons, honors ancestors. Every note a conversation with nature.</p>
+      <p class="trad-key">"Chinese music theory says: a note is not a frequency. It is a direction in the cosmos."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#FF69B4">
+      <span class="trad-icon">🎴</span>
+      <p class="trad-era" style="color:#FF69B4">1,500+ YEARS — JAPAN</p>
+      <p class="trad-name">The Art of Silence</p>
+      <p class="trad-gift">Ma — the meaningful silence between notes. The Shakuhachi breath as the note itself. Gagaku — the world's oldest surviving orchestral music, 1,300 years performed without interruption. The principle that what is NOT played is as important as what is.</p>
+      <p class="trad-key">"Japanese music theory teaches: the silence is not empty. The silence is listening."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#1ABC9C">
+      <span class="trad-icon">🪗</span>
+      <p class="trad-era" style="color:#1ABC9C">1,000+ YEARS — KOREA</p>
+      <p class="trad-name">The Whole Story</p>
+      <p class="trad-gift">Pansori — one singer, one drummer, the entire story of the world. Jeongganbo — one of the first precise rhythmic notation systems on Earth. Samulnori — four drums as clouds, rain, wind, and lightning in conversation.</p>
+      <p class="trad-key">"Pansori is the original one-person show. One voice carries a civilization."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#27AE60">
+      <span class="trad-icon">🔔</span>
+      <p class="trad-era" style="color:#27AE60">ANCIENT — SOUTHEAST ASIA</p>
+      <p class="trad-name">The Gamelan Universe</p>
+      <p class="trad-gift">Gamelan — not individual instruments but one organism. Bronze metallophones, gongs, drums in interlocking patterns. Slendro (5 tones) and Pelog (7 tones) — tuning systems that fit no Western scale. Every village's gamelan is tuned differently. No two are identical.</p>
+      <p class="trad-key">"Gamelan says: no one musician is the music. The music lives between all the players."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#F39C12">
+      <span class="trad-icon">🪕</span>
+      <p class="trad-era" style="color:#F39C12">5,000+ YEARS — MIDDLE EAST & PERSIA</p>
+      <p class="trad-name">The Microtonal Masters</p>
+      <p class="trad-gift">Maqam — 72+ melodic worlds, each with an emotional character. Quarter-tones — the notes that live between the piano keys, the feeling-tones. The Oud — ancestor of all European lutes, fretless, playing pitches no Western instrument can reach. Music as path to the divine.</p>
+      <p class="trad-key">"The Maqam captures an emotion that Western scales cannot name. The quarter-tone is the tear in the voice."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#3498DB">
+      <span class="trad-icon">🏺</span>
+      <p class="trad-era" style="color:#3498DB">700 BCE — ANCIENT GREECE</p>
+      <p class="trad-name">The Mathematics of Harmony</p>
+      <p class="trad-gift">Pythagoras hears a blacksmith's hammer and discovers that harmony is ratio — 2:1 (octave), 3:2 (fifth), 4:3 (fourth). Greek modes — Dorian, Phrygian, Lydian — the modal system that still runs every scale in Western music. The idea that music and mathematics are the same language.</p>
+      <p class="trad-key">"Every Western chord. Every film score. Every pop song. All descend from a Greek mathematician listening to hammers."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#8E44AD">
+      <span class="trad-icon">⛪</span>
+      <p class="trad-era" style="color:#8E44AD">500–1400 CE — MEDIEVAL EUROPE</p>
+      <p class="trad-name">The Sacred Architecture</p>
+      <p class="trad-gift">Gregorian chant — single voice, no rhythm, pure tone in stone cathedrals. Guido of Arezzo invents Do-Re-Mi in 1025. Hildegard of Bingen writes music as visions from God. Polyphony begins — two voices, then four, the harmonic universe expanding outward.</p>
+      <p class="trad-key">"The medieval composers weren't writing music. They were building acoustic cathedrals for the soul to live in."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#2C3E50">
+      <span class="trad-icon">🎻</span>
+      <p class="trad-era" style="color:#95A5A6">1600–1900 — EUROPEAN CLASSICAL</p>
+      <p class="trad-name">The Harmonic House</p>
+      <p class="trad-gift">Bach builds the complete architecture of Western harmony. Mozart perfects it. Beethoven breaks it to say something true. Wagner invents the leitmotif — every film score since is his inheritance. 300 years of building, then deliberately destroying, to rebuild something more honest.</p>
+      <p class="trad-key">"Every film score, every pop song's chord progression, every musical that made you cry — Bach's fingerprints are on it."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#E67E22">
+      <span class="trad-icon">🪶</span>
+      <p class="trad-era" style="color:#E67E22">ANCIENT — INDIGENOUS AMERICAS</p>
+      <p class="trad-name">Music as Map and Prayer</p>
+      <p class="trad-gift">500+ distinct nations, 500+ distinct musical worlds. The drum as the heartbeat of the Earth. Panpipes carved from condor bones in the Andes. Aztec drums tuned to speak to specific deities. Icaros — Amazonian healing songs, each plant with its own melody. Music as navigation, as law, as medicine.</p>
+      <p class="trad-key">"Indigenous American music says: the land has a song. To know the land is to know its song."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#D4A017">
+      <span class="trad-icon">🎵</span>
+      <p class="trad-era" style="color:#D4A017">65,000+ YEARS — ABORIGINAL AUSTRALIA</p>
+      <p class="trad-name">The Oldest Music on Earth</p>
+      <p class="trad-gift">Songlines — entire maps of a continent encoded in music. To navigate the land, you sing the songs. The Didgeridoo — circular breathing, drone and overtone as one. The most ancient continuous musical tradition on Earth. Land, music, and law are the same thing.</p>
+      <p class="trad-key">"The Songline is GPS, constitution, and prayer all at once. Forget the song and you lose the country."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#16A085">
+      <span class="trad-icon">🌊</span>
+      <p class="trad-era" style="color:#16A085">ANCIENT — THE PACIFIC</p>
+      <p class="trad-name">Ocean Music</p>
+      <p class="trad-gift">Hawaiian oli chant — history, prayer, navigation in song. Slack-key guitar invented in Hawaii, transforming European instrument into something entirely new. Maori Haka — music as power, as challenge, as the full presence of a people. Polynesian navigational chants with star maps inside them.</p>
+      <p class="trad-key">"Pacific music traveled the largest ocean on Earth, carried by people who read stars and sang their way home."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#2ECC71">
+      <span class="trad-icon">🎺</span>
+      <p class="trad-era" style="color:#2ECC71">ANCIENT–MODERN — LATIN AMERICA</p>
+      <p class="trad-name">Where Everything Meets</p>
+      <p class="trad-gift">The Clave — the rhythmic key that unlocks all Afro-Cuban music. Samba: African polyrhythm + Portuguese harmony + Indigenous spirit. Bossa Nova: the most elegant music of the 20th century. Tango: the dance of immigrants and longing. The continent where Africa, Europe, and Indigenous traditions fused into something entirely new.</p>
+      <p class="trad-key">"Latin America is where three musical civilizations collided and instead of destroying each other, made something new."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#F1C40F">
+      <span class="trad-icon">🥁</span>
+      <p class="trad-era" style="color:#F1C40F">19TH–20TH C — THE CARIBBEAN</p>
+      <p class="trad-name">The Crossroads of the World</p>
+      <p class="trad-gift">Jamaican Nyahbinghi → Ska → Rocksteady → Reggae → Dancehall — the most complete musical evolution in the shortest time. Trinidad's Steelpan — the only new acoustic instrument invented in the 20th century, born from oil drums. Haitian Vodou rhythms calling specific spirits by name. The Caribbean is the place where Africa survived and transformed.</p>
+      <p class="trad-key">"The steelpan was made from the colonizer's trash and became the most joyful instrument on Earth."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#2980B9">
+      <span class="trad-icon">🎷</span>
+      <p class="trad-era" style="color:#2980B9">1860s–PRESENT — BLUES & JAZZ</p>
+      <p class="trad-name">The Great Synthesis</p>
+      <p class="trad-gift">The blue note — a pitch that bends, the microtone the piano cannot play but the human voice always could. Improvisation as freedom made audible. Jazz as the conversation between African rhythm, European harmony, and the specific experience of surviving American history. Miles Davis + Ravi Shankar = modal jazz = the future.</p>
+      <p class="trad-key">"Jazz is not a genre. It is what happens when the human spirit improvises its way out of impossible circumstances."</p>
+    </div>
+    <div class="trad-card" style="--card-color:#8E44AD">
+      <span class="trad-icon">🎛</span>
+      <p class="trad-era" style="color:#8E44AD">20TH–21ST C — NEW WORLDS</p>
+      <p class="trad-name">The Expansion</p>
+      <p class="trad-gift">Minimalism — Steve Reich discovers African drumming and Western classical can be the same thing. Hip-hop — sampling as composition, the break as musical DNA. Electronic synthesis — the oscillator as instrument. AI-assisted music — the human voice as the irreplaceable original at the center of the machine. The newest theory: consent is the architecture.</p>
+      <p class="trad-key">"The newest chapter of music theory is being written right now. The rule is: the human made this, the human gets paid."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 12 UNIVERSALS -->
+<section class="universals">
+  <h2 class="universals-headline reveal">The 12 Universal Elements</h2>
+  <p class="universals-sub reveal">Every culture on Earth discovered these independently. They are the DNA of music.</p>
+  <div class="universals-grid">
+    <div class="universal-item reveal">
+      <span class="u-number">01</span>
+      <span class="u-icon">💓</span>
+      <p class="u-name">PULSE</p>
+      <p class="u-desc">Rhythm as heartbeat. The first thing every human heard — inside the womb. Every musical tradition begins here.</p>
+    </div>
+    <div class="universal-item reveal">
+      <span class="u-number">02</span>
+      <span class="u-icon">🔁</span>
+      <p class="u-name">REPETITION</p>
+      <p class="u-desc">Pattern creates meaning. The mind recognizes, relaxes, then waits for the moment when the pattern breaks — and something is said.</p>
+    </div>
+    <div class="universal-item reveal">
+      <span class="u-number">03</span>
+      <span class="u-icon">📣</span>
+      <p class="u-name">CALL & RESPONSE</p>
+      <p class="u-desc">Music as conversation. Found in every culture. The question and the answer. The leader and the community. The voice and the echo.</p>
+    </div>
+    <div class="universal-item reveal">
+      <span class="u-number">04</span>
+      <span class="u-icon">🔇</span>
+      <p class="u-name">SILENCE</p>
+      <p class="u-desc">The note that isn't played. Japanese Ma. The space between beats. What gives the sound its meaning. Music cannot exist without it.</p>
+    </div>
+    <div class="universal-item reveal">
+      <span class="u-number">05</span>
+      <span class="u-icon">〰️</span>
+      <p class="u-name">PITCH</p>
+      <p class="u-desc">High and low. Every culture organizes pitch — differently, brilliantly, with its own logic. The scale is the culture's fingerprint.</p>
+    </div>
+    <div class="universal-item reveal">
+      <span class="u-number">06</span>
+      <span class="u-icon">🎼</span>
+      <p class="u-name">SCALE</p>
+      <p class="u-desc">Selecting which pitches belong together. Pentatonic. Raga. Maqam. Modal. Each scale is a world with its own emotional atmosphere.</p>
+    </div>
+    <div class="universal-item reveal">
+      <span class="u-number">07</span>
+      <span class="u-icon">🌊</span>
+      <p class="u-name">DRONE</p>
+      <p class="u-desc">The held note beneath everything. Tambura in India. Didgeridoo in Australia. Bagpipe in Scotland. The ocean that the melody swims in.</p>
+    </div>
+    <div class="universal-item reveal">
+      <span class="u-number">08</span>
+      <span class="u-icon">📖</span>
+      <p class="u-name">MELODY</p>
+      <p class="u-desc">A sequence of pitches that tells a story. The thing you hum. The thing that gets inside you and won't leave. Music's most human element.</p>
+    </div>
+    <div class="universal-item reveal">
+      <span class="u-number">09</span>
+      <span class="u-icon">🎵</span>
+      <p class="u-name">HARMONY</p>
+      <p class="u-desc">Multiple pitches sounding together. Discovered independently in Europe, Africa, the Pacific. The mathematical miracle of consonance and dissonance.</p>
+    </div>
+    <div class="universal-item reveal">
+      <span class="u-number">10</span>
+      <span class="u-icon">🎨</span>
+      <p class="u-name">TIMBRE</p>
+      <p class="u-desc">The color of the sound. Why a violin and a flute playing the same note feel different. The sonic fingerprint that makes every voice irreplaceable.</p>
+    </div>
+    <div class="universal-item reveal">
+      <span class="u-number">11</span>
+      <span class="u-icon">🌬️</span>
+      <p class="u-name">DYNAMICS</p>
+      <p class="u-desc">Loud and soft. The breath of music. The moment everything drops to a whisper — and then roars. The most physical dimension of sound.</p>
+    </div>
+    <div class="universal-item reveal">
+      <span class="u-number">12</span>
+      <span class="u-icon">❤️</span>
+      <p class="u-name">EMOTION</p>
+      <p class="u-desc">Music is always for feeling. This is the universal truth. Every theory, every system, every tradition — all of it exists to move a human being from one state to another.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAMILY VOICES -->
+<section class="voices-section">
+  <p class="voices-label reveal">The family is already here</p>
+  <h2 class="voices-headline reveal">Every voice. Every tradition.<br>Every city on Earth.</h2>
+  <p class="voices-sub reveal">They have been making music in the dark, alone, without the infrastructure to find each other. The Guild is the infrastructure.</p>
+
+  <div class="voices-mosaic">
+    <div class="voice-portrait reveal" style="--portrait-color:#FF6B2B">
+      <p class="vp-from" style="color:#FF6B2B">DAKAR, SENEGAL</p>
+      <p class="vp-desc">The Griot who carries twelve generations of oral history in his voice. When he is gone, something irreplaceable goes with him — unless someone builds the infrastructure to hold it.</p>
+      <p class="vp-tradition">Griot Tradition · West African · Living Library</p>
+    </div>
+    <div class="voice-portrait reveal" style="--portrait-color:#FF69B4">
+      <p class="vp-from" style="color:#FF69B4">SEOUL, SOUTH KOREA</p>
+      <p class="vp-desc">The teenager producing in her bedroom at 2am, headphones on, the whole apartment asleep. In those hours, more herself than at any other time.</p>
+      <p class="vp-tradition">K-Indie · Bedroom Production · New Sound</p>
+    </div>
+    <div class="voice-portrait reveal" style="--portrait-color:#95A5A6">
+      <p class="vp-from" style="color:#95A5A6">NASHVILLE, TENNESSEE</p>
+      <p class="vp-desc">The session musician on a thousand recordings whose name appears on none of them. Forty years of earned knowledge in each note. The machine imitates it. Cannot replicate it.</p>
+      <p class="vp-tradition">Session Work · American Roots · Uncredited</p>
+    </div>
+    <div class="voice-portrait reveal" style="--portrait-color:#9B59B6">
+      <p class="vp-from" style="color:#9B59B6">MUMBAI, INDIA</p>
+      <p class="vp-desc">The classical vocalist who trained for twenty years in Raga Bhairav, the morning raga — whose performance at dawn creates a specific quality of stillness in every person who hears it.</p>
+      <p class="vp-tradition">Hindustani Classical · Raga · Time of Day Music</p>
+    </div>
+    <div class="voice-portrait reveal" style="--portrait-color:#27AE60">
+      <p class="vp-from" style="color:#27AE60">BALI, INDONESIA</p>
+      <p class="vp-desc">The Gamelan master whose village's instrument is tuned differently from every other village on the island. The music is not music without its home.</p>
+      <p class="vp-tradition">Gamelan · Pelog Tuning · Village Sound</p>
+    </div>
+    <div class="voice-portrait reveal" style="--portrait-color:#D4A017">
+      <p class="vp-from" style="color:#D4A017">ARNHEM LAND, AUSTRALIA</p>
+      <p class="vp-desc">The elder whose Songlines hold the map of 400km of country. When she sings, she is navigating. When she stops, a piece of the map goes dark.</p>
+      <p class="vp-tradition">Songlines · Aboriginal · 65,000 Years Old</p>
+    </div>
+    <div class="voice-portrait reveal" style="--portrait-color:#E74C3C">
+      <p class="vp-from" style="color:#E74C3C">TUVA, RUSSIA</p>
+      <p class="vp-desc">The throat singer who produces two tones simultaneously — one from the throat, one from the chest — singing the sound of a mountain river and a summer wind at the same time.</p>
+      <p class="vp-tradition">Khoomei · Throat Singing · One Voice, Many Tones</p>
+    </div>
+    <div class="voice-portrait reveal" style="--portrait-color:#2980B9">
+      <p class="vp-from" style="color:#2980B9">CHICAGO, USA</p>
+      <p class="vp-desc">The jazz pianist who improvises for four hours and never plays the same phrase twice. Whose left hand is Africa and whose right hand is Europe and whose soul is entirely itself.</p>
+      <p class="vp-tradition">Jazz · Improvisation · The Great Synthesis</p>
+    </div>
+    <div class="voice-portrait reveal" style="--portrait-color:#F39C12">
+      <p class="vp-from" style="color:#F39C12">CAIRO, EGYPT</p>
+      <p class="vp-desc">The Maqam singer who slides through quarter-tones that no Western instrument can play — hitting a pitch between the piano keys where the real feeling lives.</p>
+      <p class="vp-tradition">Maqam · Arabic Classical · Microtonal Emotion</p>
+    </div>
+    <div class="voice-portrait reveal" style="--portrait-color:#E67E22">
+      <p class="vp-from" style="color:#E67E22">CUSCO, PERU</p>
+      <p class="vp-desc">The Siku player whose panpipes are made from different materials than those of the player beside her — together, they make one complete instrument. Neither is whole alone.</p>
+      <p class="vp-tradition">Andean Panpipes · Inca Tradition · Community Instrument</p>
+    </div>
+    <div class="voice-portrait reveal" style="--portrait-color:#2ECC71">
+      <p class="vp-from" style="color:#2ECC71">RIO DE JANEIRO, BRAZIL</p>
+      <p class="vp-desc">The Samba composer who hears African polyrhythm, Portuguese melody, and Amerindian spirit simultaneously and writes them as a single thing. The synthesis is the identity.</p>
+      <p class="vp-tradition">Samba · Afro-Brazilian · Three Worlds, One Song</p>
+    </div>
+    <div class="voice-portrait reveal" style="--portrait-color:#FFD700">
+      <p class="vp-from" style="color:#FFD700">OTTAWA, CANADA</p>
+      <p class="vp-desc">The audio director who spent forty years building worlds from sound and then built the platform to make sure no one who does this would ever do it alone again.</p>
+      <p class="vp-tradition">Fish Music Inc. · Guild Member #001 · RSP_001</p>
+    </div>
+  </div>
+</section>
+
+<!-- COVENANT -->
+<section class="covenant-section">
+  <div class="covenant-inner">
+    <p class="river-label reveal">What holds us together</p>
+    <h2 class="covenant-headline reveal">The Covenant<br>of the Guild</h2>
+    <p class="covenant-body reveal">Not a contract. A covenant. A contract is enforced by lawyers. A covenant is maintained by people who choose it because they believe in what it protects.</p>
+    <p class="covenant-body reveal"><strong>Every member of this family — from the Griot in Dakar to the bedroom producer in Seoul to the throat singer in Tuva — is protected by the same five pillars.</strong></p>
+
+    <div class="covenant-pillars">
+      <div class="pillar reveal">
+        <div class="pillar-icon">🎙</div>
+        <div>
+          <p class="pillar-title">Recognition</p>
+          <p class="pillar-desc">Your name on everything you made — permanently, irrevocably, in every context where your sound appears. Not a footnote. Your name, your culture, your story, attached to your sound the way your fingerprint is attached to your hand.</p>
+        </div>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-icon">🛡</div>
+        <div>
+          <p class="pillar-title">Protection</p>
+          <p class="pillar-desc">The Seven Never Clauses. The HVS™ Certificate — SHA-256 hash, AudioSeal watermark, C2PA provenance, Arweave permanent anchor. Your voice is a legal asset. Consent is enforceable, not just sayable. The machine cannot use you without asking.</p>
+        </div>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-icon">⚖️</div>
+        <div>
+          <p class="pillar-title">Compensation — 75/25</p>
+          <p class="pillar-desc">75% to you. Activates at 30 days. Does not renegotiate. Does not expire. The royalty event fires every time your sound is used — whether you are awake or asleep, alive or gone. Your Voice Estate carries this forward for 70 years and beyond, to your family and community.</p>
+        </div>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-icon">🌍</div>
+        <div>
+          <p class="pillar-title">Belonging</p>
+          <p class="pillar-desc">The Voice Hall — your room in the world that belongs to all of you. The Cultural Archive — your tradition, governed by your community, preserved permanently. The knowledge that the protections covering you also cover every other member of this family, in every country, in every tradition.</p>
+        </div>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-icon">∞</div>
+        <div>
+          <p class="pillar-title">Memory — The Living Capsule</p>
+          <p class="pillar-desc">Your voice preserved permanently. Your story attached. Your cultural origin documented. Logged to the Provenance Ledger with a timestamp and a hash that cannot be altered or erased. The proof that you were here. That you made something. That it mattered. Preserved for the people who come after you who will need to know it was possible.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVITATION -->
+<section class="invite-section">
+  <h2 class="invite-headline reveal">Come <span>Home.</span></h2>
+  <p class="invite-body reveal">The Guild is not a platform. Not a streaming service. Not a content marketplace. It is the family that has always existed — scattered, unconnected, lacking the infrastructure to recognize itself.</p>
+  <ul class="invite-conditions reveal">
+    <li>If you make something with sound — in any tradition, in any country, in any language</li>
+    <li>If you have given years of your life to earning the right to do this well</li>
+    <li>If you believe your voice carries something that cannot be replicated by any machine</li>
+    <li>If you believe the traditions of your culture deserve to survive — governed by your community, not archived by someone else</li>
+    <li>If you believe the child who feels music for the first time deserves content built with love, not generated from theft</li>
+    <li>If you believe 75% of what your creativity earns should come to you — permanently, always, without exception</li>
+  </ul>
+  <p class="invite-body reveal" style="color: var(--gold); font-size: 1.3rem; font-weight: 600;">The door is open. The family is here. The covenant is waiting.<br>Your voice is irreplaceable.</p>
+  <a href="#" class="join-cta reveal">Join the Guild · Apply for HVS™ Membership</a>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <p class="final-big reveal">"The first rock was banged on a hollow log 300,000 years ago.<br>That child was the first musician.<br>You are their family."</p>
+  <p class="final-meta">
+    RSP_001 · Fish Music Inc., Est. 1996, Ottawa<br>
+    NOIZY.ai · The Platform That Lifted the Humans<br>
+    Honor · Respect · Gather · Nurture · Preserve<br>
+    GORUNFREE
+  </p>
+</section>
+
+<script>
+// ── WORLD CANVAS – flowing colored streams ──
+const wc = document.getElementById('worldCanvas');
+const wx = wc.getContext('2d');
+function resizeWC() { wc.width = window.innerWidth; wc.height = window.innerHeight; }
+resizeWC(); window.addEventListener('resize', resizeWC);
+
+const TRADITION_COLORS = [
+  '#FF6B2B','#FF8C00','#9B59B6','#E74C3C','#FF69B4',
+  '#27AE60','#1ABC9C','#F39C12','#3498DB','#8E44AD',
+  '#E67E22','#2ECC71','#F1C40F','#2980B9','#16A085',
+  '#D4A017','#FFD700'
+];
+
+class Stream {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * wc.width;
+    this.y = Math.random() * wc.height;
+    this.vx = (Math.random() - 0.5) * 0.6;
+    this.vy = (Math.random() - 0.5) * 0.6;
+    this.size = Math.random() * 2.5 + 0.5;
+    this.alpha = Math.random() * 0.25 + 0.05;
+    this.color = TRADITION_COLORS[Math.floor(Math.random() * TRADITION_COLORS.length)];
+    this.life = 0;
+    this.maxLife = Math.random() * 300 + 200;
+    this.angle = Math.random() * Math.PI * 2;
+  }
+  update() {
+    this.angle += 0.01;
+    this.x += this.vx + Math.sin(this.angle) * 0.4;
+    this.y += this.vy + Math.cos(this.angle * 0.7) * 0.3;
+    this.life++;
+    const t = this.life / this.maxLife;
+    this.alpha = t < 0.1 ? t * 2.5 : t > 0.8 ? (1 - t) * 1.25 : 0.2;
+    if (this.life >= this.maxLife) this.reset();
+    if (this.x < -10 || this.x > wc.width + 10 || this.y < -10 || this.y > wc.height + 10) this.reset();
+  }
+  draw() {
+    wx.save();
+    wx.globalAlpha = this.alpha;
+    wx.fillStyle = this.color;
+    wx.shadowColor = this.color;
+    wx.shadowBlur = this.size * 4;
+    wx.beginPath();
+    wx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    wx.fill();
+    wx.restore();
+  }
+}
+
+const streams = Array.from({ length: 220 }, (_, i) => { const s = new Stream(); s.life = Math.floor(Math.random() * s.maxLife); return s; });
+
+function animateWorld() {
+  wx.clearRect(0, 0, wc.width, wc.height);
+  streams.forEach(s => { s.update(); s.draw(); });
+  requestAnimationFrame(animateWorld);
+}
+animateWorld();
+
+// ── COUNTERS ──
+function animCount(el, target, suffix, dur) {
+  const t0 = performance.now();
+  const fmt = n => n >= 1000000 ? (n/1000000).toFixed(1)+'M' : n >= 1000 ? (n/1000).toFixed(0)+'K' : n;
+  function tick(now) {
+    const p = Math.min((now - t0) / dur, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    el.textContent = fmt(Math.floor(e * target)) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+    else el.textContent = fmt(target) + suffix;
+  }
+  requestAnimationFrame(tick);
+}
+
+let countersRun = false;
+const heroObs = new IntersectionObserver(e => {
+  if (e[0].isIntersecting && !countersRun) {
+    countersRun = true;
+    animCount(document.getElementById('hs1'), 300000, '+', 2200);
+    animCount(document.getElementById('hs2'), 7000, '+', 2000);
+    animCount(document.getElementById('hs3'), 195, '', 1800);
+  }
+}, { threshold: 0.3 });
+heroObs.observe(document.querySelector('.hero'));
+
+// ── SCROLL REVEAL ──
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 6) * 0.07}s`;
+  revealObs.observe(el);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>Relay Help Documentation - Relay Documentation</title>
+<meta name="generator" content="Hugo 0.54.0" />
+
+<meta name="description" content="Relay Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Relay Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/en/print/index.html">
+<meta property="og:title" content="Relay Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+
+  <link rel="stylesheet" href="../stylesheets/style_print.css" media="screen">
+<link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+<link rel="stylesheet" href="../stylesheets/palettes.css">
+<link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+<link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+<link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/ie7.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-25', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+
+  <body class="palette-primary-print palette-accent-print">
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html" >
+            <img src="../images/relay-white.svg" width="185px" height="45px" alt="Neutron header logo"> Relay Help Documentation</a>
+            </div>
+      </div>  
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+  <div class="drawer">
+<nav aria-label="Navigation">
+  <form action="http://www.izotopedocs.com/en/en/search/index.html">
+	<div class="group">
+			<input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+			<span class="highlight"></span>
+			<span class="underline"></span>
+			<label>Search</label>
+			<div style="clear: both;"></div>
+		</div>
+	</form>
+</nav>
+
+    <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+  <a title="Introduction" href="../index.html"><span class=""></span>  Introduction</a>
+</li>
+<li>
+  <a title="Controls and Meters" href="../controls-and-meters/index.html"><span class=""></span>  Controls and Meters</a>
+</li>
+<li>
+  <a title="Inter Plug-in Communication" href="../ipc/index.html"><span class=""></span>  Inter Plug-in Communication</a>
+</li>
+<li>
+  <a title="Options" href="../options/index.html"><span class=""></span>  Options</a>
+</li>
+<li>
+  <a title="Authorization" href="../authorization/index.html"><span class=""></span>  Authorization</a>
+</li>
+<li>
+  <a title="Customer Care" href="../customer-care/index.html"><span class=""></span>  Customer Care</a>
+</li>
+<li>
+  <a title="EULA" href="../eula/index.html"><span class=""></span>  EULA</a>
+</li>
+<li>
+  <a title="License Information" href="../license-information/index.html"><span class=""></span>  License Information</a>
+</li>
+</ul>
+      <hr />
+<span class="section">Connect with iZotope</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="index.html" target="_blank" title="Print entire document"> Print entire document</a>
+  </li>
+  </ul>
+<hr /><ul>
+  <li>
+    <a href="../../ja/print/index.html"><i class="icon icon-eye"></i> 日本語での表示ページ</a>
+  </li>
+</ul>
+</div>
+  </div>
+</div>
+</div>
+  <article class="article">
+    <div class="wrapper">
+  
+
+  
+<img src="../images/site-header-print.png" alt="iZotope Relay">
+<h1>Relay Documentation</h1>
+<hr />
+
+<h1><span class="icon icon-bookmark"></span>  Introduction</h1>
+<figure ><img src="../images/introduction.png" alt="Relay banner" /></figure>
+
+<p>Relay is a utility plug-in that allows you to send information to Inter Plug-in Communication compatible iZotope plug-ins.</p>
+
+<p>Relay can communicate with: Insight 2, Tonal Balance Control, Nectar 3, Neutron 3, and Neutron 2.</p>
+
+<br />
+<hr />
+<br />
+<div class="printpagebreak"></div>
+
+<h1><span class="icon icon-bookmark"></span>  Controls and Meters</h1>
+
+
+<h2 id="overview">Overview</h2>
+
+<p>Included in the main Relay interface are Peak+RMS level meters (with support for up to 7.1.2 Dolby Atmos surround configurations), an output gain control, stereo pan, and stereo width controls. Relay also features an advanced controls panel that includes channel operations processing options (Phase, Swap, Mono), channel delay controls, and an adjustable high-pass filter.</p>
+
+<figure ><img src="../images/relay-full.png" alt="Relay Plug-in" /></figure>
+
+<h2 id="header-controls">Header Controls</h2>
+
+<p>The following controls are available in the header area of the Relay plug-in.</p>
+
+<figure ><img src="../images/relay-header.png" alt="Relay plug-in header" /></figure>
+
+<h3 id="plug-in-name-display">Plug-in Name Display</h3>
+
+<p>Displays the name of the current Relay instance. In some DAWs and NLEs, this name will be automatically set to the name of the track Relay is inserted on. This name will appear in source selection lists of compatible iZotope plug-ins. Click on the pencil icon or directly on the text to modify the name.</p>
+
+<figure ><img src="../images/plugin-name.png" alt="Plug-in Name Display box" /></figure>
+
+<h3 id="bypass">Bypass</h3>
+
+<p>Disables/enables Relay processing.</p>
+
+<figure ><img src="../images/bypass.png" alt="Bypass button" /></figure>
+
+<h3 id="options">Options</h3>
+
+<p>Opens the options menu panel.</p>
+
+<figure ><img src="../images/options.png" alt="Options button" /></figure>
+
+<div class="admonition link">
+<p class="admonition-title">More information</p>
+<p>Learn more about the Relay options menu in the <a href="../options/index.html">Options chapter</a>.</p>
+</div>
+
+
+<h3 id="help">Help</h3>
+
+<p>Opens the Relay help documentation.</p>
+
+<figure ><img src="../images/help.png" alt="Help button" /></figure>
+
+<h2 id="main-controls">Main Controls</h2>
+
+<p>The following controls are available in the main panel of the Relay plug-in.</p>
+
+<figure ><img src="../images/main-panel.png" alt="Main panel" /></figure>
+
+<h3 id="output-gain">Output Gain</h3>
+
+<p>Adjusts the output gain of Relay. Output gain adjustments apply to all channels equally.</p>
+
+<figure ><img src="../images/gain.png" alt="Gain slider" /></figure>
+
+<h3 id="width">Width</h3>
+
+<p>Adjusts the amount of stereo widening applied to the output signal. Negative values result in a narrowing effect (-100% is equivalent to mono), positive values will increase the apparent stereo field. <em>Only functional in stereo instances of Relay.</em></p>
+
+<figure ><img src="../images/width.png" alt="width button" /></figure>
+
+<h3 id="pan">Pan</h3>
+
+<p>Pans the output signal to the left or right channel. <em>Only functional in stereo instances of Relay.</em></p>
+
+<figure ><img src="../images/pan.png" alt="Pan slider" /></figure>
+
+<h2 id="meters">Meters</h2>
+
+<p>Relay can be inserted on mono, stereo, or surround tracks. The meters display Peak+RMS level information for each channel. The text readouts above the clip indicators display current peak (top) and RMS (bottom) values. Clicking on the clip indicators will clear them.</p>
+
+<figure ><img src="../images/surround-meters.png" alt="Level meters" /></figure>
+
+<h3 id="advanced-controls">Advanced Controls</h3>
+
+<p>The advanced panel can be expanded by clicking on the &ldquo;Advanced&rdquo; button.</p>
+
+<figure ><img src="../images/advanced-button.png" alt="Advanced button" /></figure>
+
+<p>The following sections describe the advanced controls available for: auditioning channel operations processing, adjusting left or right channel delay amounts, and enabling the adjustable high-pass filter.</p>
+
+<figure ><img src="../images/advanced-panel.png" alt="Advanced Controls Panel" /></figure>
+
+<h3 id="mono">Mono</h3>
+
+<p>Sums the left and right channels to a mono output signal. Useful for testing mono compatibility.</p>
+
+<figure ><img src="../images/mono.png" alt="Mono button" /></figure>
+
+<p><em>Only available in stereo instances of Relay.</em></p>
+
+<h3 id="phase">Phase</h3>
+
+<p>Inverts the polarity of the input signal.</p>
+
+<figure ><img src="../images/phase.png" alt="Phase button" /></figure>
+
+<p><em>Only available in stereo instances of Relay.</em></p>
+
+<h3 id="swap">Swap</h3>
+
+<p>Swaps the left and right input channels.</p>
+
+<figure ><img src="../images/swap.png" alt="Swap button" /></figure>
+
+<p><em>Only available in stereo instances of Relay.</em></p>
+
+<h3 id="time-delay">Time Delay</h3>
+
+<p>Adjusts the delay for the left or right channel. When link is enabled, values will be modified relative to each other. Double-click on the text readouts to enter values manually.</p>
+
+<figure ><img src="../images/time-delay.png" alt="Time Delay Close Up" /></figure>
+
+<p><em>Only available in stereo instances of Relay.</em></p>
+
+<h3 id="high-pass-filter">High Pass Filter</h3>
+
+<p>The following section describes the high-pass filter controls in the advanced panel.</p>
+
+<figure ><img src="../images/hpf-close.png" alt="High Pass Filter Close Up" /></figure>
+
+<h4 id="enable">Enable</h4>
+
+<p>The HPF can be enabled by clicking on the power button above the small filter display.</p>
+
+<figure ><img src="../images/filter-enable.png" alt="High-pass filter power button" /></figure>
+
+<h4 id="slope">Slope</h4>
+
+<p>Change the slope of the high-pass filter by selecting a value from the dropdown menu below the filter power button.</p>
+
+<figure ><img src="../images/filter-slope.png" alt="High-pass filter Slope" /></figure>
+
+<p>The following Slope values are available in the High-pass filter:</p>
+
+<ul>
+<li>12 dB<br /></li>
+<li>24 dB<br /></li>
+<li>48 dB<br />
+<br /></li>
+</ul>
+
+<h3 id="cutoff-frequency">Cutoff Frequency</h3>
+
+<p>Click and drag the node or double-click on the text readout in the bottom right hand corner of the filter display to change the cutoff frequency.</p>
+
+<figure ><img src="../images/high-pass-cutoff-freq.png" alt="High-pass filter cutoff frequency" /></figure>
+
+<br />
+<hr />
+<br />
+<div class="printpagebreak"></div>
+
+<h1><span class="icon icon-bookmark"></span>  Inter Plug-in Communication</h1>
+
+
+<h2 id="overview">Overview</h2>
+
+<p>Relay can send metering data to, or receive information from, select Inter Plug-in Communication (&ldquo;IPC&rdquo;) compatible iZotope plug-ins, including: Insight 2, Tonal Balance Control, Nectar 3, Neutron 3, Neutron 3 EQ component plug-in, Neutron 3 Visual Mixer, Neutron 2, Neutron 2 EQ component plug-in, and Neutron 2 Visual Mixer.</p>
+
+<h2 id="relay-and-insight-2">Relay and Insight 2</h2>
+
+<p>Relay can send metering data to the Spectrogram and Intelligibility meters in Insight 2.</p>
+
+<h3 id="relay-in-the-spectrogram">Relay in the Spectrogram</h3>
+
+<p>Up to eight Relay instances can be displayed at once in the Spectrogram meter panel in Insight 2.</p>
+
+<figure class="pad-top"><img src="../images/ipc/spectrogram-setup.png" alt="Spectrogram and Relay" /></figure>
+
+<h3 id="relay-in-the-intelligibility-meter">Relay in the Intelligibility Meter</h3>
+
+<p>Relay instances can be selected as a Source in the Intelligibility meter panel in Insight 2.</p>
+
+<figure class="pad-top"><img src="../images/ipc/intelligibility-source.png" alt="Intelligibility Source" /></figure>
+
+<h2 id="relay-and-tonal-balance-control">Relay and Tonal Balance Control</h2>
+
+<p>Relay can be selected as a source in the Tonal Balance Control plug-in.</p>
+
+<figure class="pad-top"><img src="../images/ipc/tonal-balance-relay.png" alt="Relay in Tonal Balance Control" /></figure>
+
+<h2 id="relay-and-the-neutron-masking-meter">Relay and the Neutron Masking Meter</h2>
+
+<p>Relay can be selected as a source in the Masking Meter feature included in the following plug-ins: Neutron 3 (EQ module), Neutron 3 EQ component plug-in, Neutron 2 (EQ module) and the Neutron 2 EQ component plug-in.</p>
+
+<figure class="pad-top"><img src="../images/ipc/masking-meter-relay.png" alt="Relay in Masking meter" /></figure>
+
+<h2 id="relay-and-neutron-visual-mixer">Relay and Neutron Visual Mixer</h2>
+
+<p>Relay controls can be remotely modified in the Neutron Visual Mixer plug-in. Moving a Relay node up or down in the Visual Mixer will adjust the gain slider in the remote instance. Moving a Relay node left or right in the Visual Mixer will adjust the pan control in the remote instance (stereo Relay instances only). Dragging Relay node handles in the Visual mixer will adjust the width parameter in the remote instance (stereo Relay instances only).</p>
+
+<figure class="pad-top"><img src="../images/ipc/visual-mixer-relay.png" alt="Relay in Visual Mixer" /></figure>
+
+<h2 id="relay-and-nectar-3">Relay and Nectar 3</h2>
+
+<p>Relay can be used as an Unmask source in Nectar 3 Vocal Assistant. When masking is detected between the Nectar 3 instance and the Relay instance, an EQ curve will be applied to the Relay instance in order to reduce masking of the vocal track. When the EQ curve is active, Relay will display the track name it is unmasking. The EQ curve can be disabled by clicking on the &ldquo;Unmasking&rdquo; status button in the Relay interface.</p>
+
+<figure class="pad-top"><img src="../images/ipc/unmasking-relay.png" alt="Relay and Nectar" /></figure>
+
+<br />
+<hr />
+<br />
+<div class="printpagebreak"></div>
+
+<h1><span class="icon icon-bookmark"></span>  Options</h1>
+
+
+<h2 id="general">General</h2>
+
+<ul>
+<li><strong>Show Tooltips:</strong> Enables/disables the display of tooltip text.<br /></li>
+<li><strong>Send anonymous usage data:</strong> Enables sending of anonymous usage data to iZotope to help improve Relay.<br />
+<br /></li>
+</ul>
+
+<h2 id="updates">Updates</h2>
+
+<ul>
+<li><strong>Download Product Portal:</strong> To stay up to date with new versions of Relay, download the iZotope Product Portal application.<br /></li>
+<li><strong>Check for Updates:</strong> Manually check for available updates. Clicking this button will open the Product Portal application and check for updates.<br /></li>
+<li><strong>Download Update:</strong> If an update is available, a small blue dot will appear. Clicking the Download Update button in the options window will launch the Product Portal application and display the Updates page.<br />
+<br /></li>
+</ul>
+
+<h2 id="authorization">Authorization</h2>
+
+<p>This section displays information about the current authorization.</p>
+
+<ul>
+<li><strong>Current Authorization Status Text:</strong> Displays the current Relay authorization state.<br /></li>
+<li><strong>Authorize:</strong> Opens the iZotope Authorization wizard.<br /></li>
+<li><strong>Remove Authorization:</strong> Removes the current authorization.<br /></li>
+</ul>
+
+<br />
+<hr />
+<br />
+<div class="printpagebreak"></div>
+
+<h1><span class="icon icon-bookmark"></span>  Authorization</h1>
+
+
+<h2 id="overview">Overview</h2>
+
+<p>The iZotope Authorization window will appear the first time that you open Relay in your DAW or NLE.</p>
+
+<p>The Authorization window allows you to:</p>
+
+<ul>
+<li><strong>DEMO:</strong> Evaluate the product with Demo limitations.<br /></li>
+<li><strong>AUTHORIZE:</strong> Authorize the product with a serial number.<br />
+<br /></li>
+</ul>
+
+<h2 id="demo-mode">Demo Mode</h2>
+
+<p>If &lsquo;Demo&rsquo; is chosen in the Authorization window, Relay will operate in demo mode and periodically output silence.</p>
+
+<h2 id="authorizing-relay">Authorizing Relay</h2>
+
+<p>We offer three methods for authorizing Relay:</p>
+
+<ol>
+<li><strong>Online Authorization:</strong> Use this method to authorize Relay on a machine that is connected to the internet.<br /></li>
+<li><strong>Offline Authorization:</strong> Use this method to authorize Relay on a machine that is not connected to the internet.<br /></li>
+<li><strong>iLok Authorization:</strong> Use this method to authorize Relay using an iLok.<br />
+<br /></li>
+</ol>
+
+<h2 id="more-information">More Information</h2>
+
+<p>For information on authorization, please visit the iZotope website: <a href="https://www.izotope.com/authorization">https://www.izotope.com/authorization</a></p>
+
+<h3 id="for-additional-help-with-authorizing-relay">For additional help with authorizing Relay:</h3>
+
+<ul>
+<li>Check out the Customer Care pages on the iZotope website: <a href="http://www.izotope.com/support">http://www.izotope.com/support</a><br /></li>
+<li>Contact our Customer Care department at <a href="mailto:support@izotope.com">support@izotope.com</a><br />
+<br /></li>
+</ul>
+
+<p>More information on iZotope’s Customer Care department and policies can be found in the <a href="../customer-care/index.html">Customer Care</a> chapter.</p>
+
+<br />
+<hr />
+<br />
+<div class="printpagebreak"></div>
+
+<h1><span class="icon icon-bookmark"></span>  Customer Care</h1>
+
+
+<h2 id="izotope-customer-care-policy">iZotope Customer Care Policy</h2>
+
+<p>iZotope is happy to provide professional technical Customer Care to all registered users absolutely free of charge.<br />
+<a href="https://www.izotope.com/support/contact/index.php">Contact iZotope Customer Care</a></p>
+
+<p>We also offer valuable pre-sales technical Customer Care to customers who may be interested in purchasing an iZotope product. Before contacting iZotope Customer Care, you can search our <a href="https://www.izotope.com/support/kb/index.php/kb/browse/32-iZotope_Knowledgebase">Product Knowledgebase</a> to see if the solution to your problem has already been published.</p>
+
+<h3 id="how-long-does-izotope-provide-customer-support-for-purchased-products">How long does iZotope provide customer support for purchased products?</h3>
+
+<p>You can email us with any question for 12 months after you buy any iZotope product. Past 12 months, we’ll still help you with your account and authorization but will not provide technical support for in-depth product questions. If you need more detailed help on how to use the product, please check out our FAQs and Tutorials.</p>
+
+<h3 id="how-long-does-izotope-support-its-products">How long does iZotope support its products?</h3>
+
+<p>Although we can’t guarantee it, we do our best to keep our products up to date with the operating systems and plug-in hosts that we support. Sometimes, other companies make changes that we’re not able to support, but we actively work with other companies to avoid these sorts of compatibility problems. We also do our best to address bug fixes within the product itself to ensure our products operate in accordance with our specifications.</p>
+
+<p>We will provide software updates for 12 months from product release. After 12 months, no software updates will be provided.</p>
+
+<p>For details on what operating systems and plug-in host software are officially supported for a product, please check that product&rsquo;s specs page.</p>
+
+<h2 id="contacting-izotope-customer-care">Contacting iZotope Customer Care</h2>
+
+<p>For additional help with Relay:</p>
+
+<ul>
+<li>Check out the Customer Care pages on our web site at <a href="https://www.izotope.com/support">www.izotope.com/support</a><br /></li>
+<li>Contact our Customer Care department at <a href="mailto:support@izotope.com">support@izotope.com</a><br />
+<br /></li>
+</ul>
+
+<p>iZotope’s highly trained Customer Care team is committed to responding to all requests within one (1) business day and frequently respond faster. Please try to explain your problem with as much detail and clarity as possible. This will ensure our ability to solve your problem accurately, the first time around. Please include all system specs and the build/version of Relay that you are using.</p>
+
+<p>Once your Customer Care request is submitted, you will receive a confirmation email from iZotope Customer Care. If you do not receive this email within a few minutes, please check your spam folder and make sure our responses are not getting blocked. To prevent this from happening please add <a href="mailto:support@izotope.com">support@izotope.com</a> to your list of allowed email addresses.</p>
+
+<h2 id="international-distribution">International Distribution</h2>
+
+<p>Customer Care is also available from our international distributors worldwide for any customers who purchased their iZotope products through a certified iZotope distributor.</p>
+
+<p>Check with your local distributor for availability. If you would like help locating your local distributor please contact iZotope Customer Care.</p>
+
+<p>Thanks for using Relay!</p>
+
+<ul>
+<li>The iZotope Team<br /></li>
+</ul>
+
+<br />
+<hr />
+<br />
+<div class="printpagebreak"></div>
+
+<h1><span class="icon icon-bookmark"></span>  EULA</h1>
+<p><strong>END USER LICENSE AGREEMENT</strong></p>
+
+<p>READ CAREFULLY THE TERMS AND CONDITIONS OF THIS AGREEMENT (“AGREEMENT”) BEFORE YOU CLICK ON THE “ACCEPT” BUTTON OR OTHERWISE USE THE PRODUCT. CLICKING ON THE “ACCEPT” BUTTON OR OTHERWISE DOWNLOADING, INSTALLING AND/OR USING THE LICENSED SOFTWARE OR ANY TECHNOLOGY, IDEA, DATA AND DATABASES, ALGORITHM OR INFORMATION CONTAINED THEREIN OR PROVIDED THEREWITH (COLLECTIVELY, THE “SOFTWARE”), ESTABLISHES A BINDING AGREEMENT BETWEEN YOU AS THE PERSON LICENSING THE SOFTWARE, EITHER ON BEHALF OF YOURSELF OR ANY THIRD PARTY ENTITY (“YOU” OR &ldquo;LICENSEE&rdquo;) AND IZOTOPE, INC. (“IZOTOPE”), YOU (WHETHER AN INDIVIDUAL OR FORMAL LEGAL ENTITY) (HEREINAFTER REFERRED TO AS “YOU”), AGREE TO BE BOUND BY THE TERMS AND CONDITIONS OF THIS AGREEMENT WITH RESPECT TO YOUR USE OF THE SOFTWARE.<br />
+BY INSTALLING AND/OR BY USING THE SOFTWARE, YOU REPRESENT AND WARRANT THAT YOU HAVE THE LEGAL CAPACITY AND AUTHORITY TO ENTER INTO A BINDING AGREEMENT TO ADHERE TO THE TERMS AND CONDITIONS SET FORTH HEREIN, AND THAT THE SOFTWARE WILL BE USED ONLY IN ACCORDANCE WITH THESE TERMS AND CONDITIONS AND WITH ALL APPLICABLE LAWS. IF AN INDIVIDUAL IS REGISTERING OR USING THE SOFTWARE ON BEHALF OF AN ENTITY OR ORGANIZATION, THAT INDIVIDUAL WARRANTS, REPRESENTS, AND COVENANTS TO IZOTOPE THAT SUCH INDIVIDUAL IS DULY AUTHORIZED TO AGREE TO THESE TERMS AND CONDITIONS ON BEHALF OF THE ORGANIZATION AND TO BIND THE ORGANIZATION TO THEM.</p>
+
+<p><strong>LICENSE.</strong> Subject to all the terms and conditions of this Agreement, iZotope hereby grants to Licensee a license to use the Software accompanying this Agreement, as well as any presets and documentation provided, whether in printed, &ldquo;online&rdquo; or electronic form, either on a stand-alone computer or on a network, on any one computer at any one time. If more than one user will be using the Software at any one time, you must obtain from iZotope additional license(s) for each additional concurrent user of the Software. The Software is &ldquo;in use&rdquo; on a computer when loaded into memory (RAM). You may make one copy of the Software solely for backup or archival purposes if all copyright and other notices are reproduced on that copy, or you may copy the Software to a single hard disk provided you keep the original solely for backup or archival purposes. If the Software is an upgrade, you must have a license for the Software from which it is upgraded. If you receive the Software in more than one media, that does not affect the number of licenses you are receiving or any other term of this Agreement.</p>
+
+<p><strong>OWNERSHIP.</strong> The copyrights, patents, trade secrets, trademarks, and all other intellectual property rights in the Software and documentation (including any images, photographs, animations, video, audio, music and text incorporated in them) are owned by iZotope or its suppliers and are protected by the copyright, patent and other laws of the United States and other countries and by international treaty provisions. iZotope retains all rights not expressly granted in this Agreement. You shall not remove any product identification, trademark, copyright or other notices contained in or on the Software.</p>
+
+<p><strong>OTHER RESTRICTIONS.</strong> You may not modify, adapt, decompile, disassemble or otherwise reverse engineer the Software, except to the extent this restriction is expressly prohibited by applicable law, nor may you create derivative works based upon the Software, or to permit third parties to do so. You may not loan, rent, lease, or license the Software, or use the Software as a service bureau, as an application service provider, to perform consulting or training services for a third party or in any commercial time share arrangement, but you may permanently transfer your rights under this Agreement provided you transfer this Agreement, the Software, and all accompanying printed materials and retain no copies, and the recipient agrees to the terms of this Agreement. Any such transfer must include the most recent update and all prior versions.</p>
+
+<p><strong>LIMITED WARRANTY.</strong> iZotope warrants that, for a period of thirty (30) days from the date the Software is made available to you for download, the Software will substantially conform to the applicable user documentation provided with the Software.  Any implied warranties which may exist despite the disclaimer herein will be limited to thirty (30) days (“Warranty Period”). This limited warranty is void if you buy from an unauthorized reseller, you violate the terms of this Agreement, or if the failure of the Software is due to accident, abuse or misapplication. Some states/jurisdictions do not allow limitations on duration of an implied warranty, so this limitation may not apply to you.</p>
+
+<p><strong>YOUR REMEDIES.</strong> iZotope&rsquo;s sole obligation and your exclusive remedy for any breach of warranty will be, at iZotope&rsquo;s sole option, either the return of the purchase price you paid or the repair or replacement of the Software, media and documentation, provided you in all instances return the Software, together with all media and documentation and a copy of your receipt, to the location where you obtained it during the Warranty Period.  Outside the United States, neither these remedies nor any support services are available without proof of purchase from an authorized non-U.S. source.</p>
+
+<p><strong>SUPPORT.</strong> Subject to the limited warranty stated above, and further subject to you not being in violation of any term of this Agreement, iZotope will provide email support for the Software to the original purchaser, for a period of 12 months from the original purchase date.</p>
+
+<p><strong>REGISTRATION INFORMATION.</strong> When you activate the Software, iZotope may collect your name and email address and other contact information you choose to provide.  IZotope may use this information to contact you regarding upgrades and new products.  iZotope does not collect or retain any financial information (such as credit card information).</p>
+
+<p><strong>USAGE INFORMATION.</strong>  When you activate and/or use the Software, iZotope may collect certain information about your computer and your interaction with the Software via the internet (“Usage Information”).  Usage Information is information on how you interact with the Software, and is then utilized by iZotope for statistical analysis for improving the Software, and to provide you with a more relevant user experience.  No direct personal information or audio files/samples are collected as part of this Usage Information. Usage Information is generally collected in the aggregate form, without identifying any user individually, although IP addresses, computer and session ids in relation to purchases and downloads/installations of the Software may be tracked as part of iZotope&rsquo;s customer order review, statistical analysis, and fraud and piracy prevention efforts.  This Usage Information may be sent to an iZotope web or third-party cloud server for storage or further processing by iZotope and/or its partners, subsidiaries or affiliates, including, but not limited to, Google Analytics. The Software includes an opt-out provision if you do not wish to provide iZotope with such Usage Information.</p>
+
+<p><strong>DISCLAIMER.</strong> THE SOFTWARE IS PROVIDED “AS IS.”  TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, EXCEPT FOR THE EXPRESS WARRANTY SET FORTH HEREIN, IZOTOPE DISCLAIMS ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. IZOTOPE DOES NOT WARRANT THAT THE SOFTWARE WILL MEET YOUR REQUIREMENTS OR THAT THE SOFTWARE WILL OPERATE UNINTERRUPTED OR ERROR-FREE. THE WARRANTY AND REMEDIES SET FORTH HEREIN ARE EXCLUSIVE AND IN LIEU OF ALL OTHERS, ORAL OR WRITTEN, EXPRESS OR IMPLIED. No dealer, distributor, agent or employee of iZotope is authorized to change or add to the warranty and remedies set forth herein. Any other software furnished with or accompanying the Software is not warranted by iZotope.</p>
+
+<p><strong>LIMITATION OF LIABILITY.</strong> TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL IZOTOPE BE LIABLE FOR ANY AMOUNTS EXCEEDING THE AMOUNTS RECEIVED FROM YOU FOR YOUR LICENSE OF THE SOFTWARE, REGARDLESS OF THE FORM OF ACTION, AND WHETHER ARISING OUT OF THE USE OF OR INABILITY TO USE THE SOFTWARE (INCLUDING, WITHOUT LIMITATION, DAMAGES OR COSTS FOR LOSS OF PROFITS, BUSINESS, GOODWILL, DATA OR OTHER ASSETS, OR COMPUTER PROGRAMS) EVEN IF IZOTOPE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. Some jurisdictions do not allow exclusion or limitation of liability for consequential or incidental damages, so this limitation may not apply to you.</p>
+
+<p><strong>TERMINATION.</strong> The Agreement will terminate automatically if you fail to comply with any of its terms. On termination, you must immediately cease using and destroy all copies of the Software.</p>
+
+<p><strong>LICENSES TO U.S. GOVERNMENT.</strong> This paragraph applies to all acquisitions of the Software by or for the federal government, or by any prime contractor or subcontractor (at any tier) under any contract, grant, cooperative agreement or other activity with the United States government (collectively, the “Government”). By clicking “I ACCEPT”, you are agreeing on behalf of the Government that the Software and any documentation related thereto are respectively “commercial computer software” and “commercial computer software documentation” within the meaning of the acquisition regulation(s) applicable to this procurement. These terms and conditions alone will govern the Government’s use of the Software and will supersede any conflicting contractual terms or conditions. If the license granted by these terms and conditions fails to meet the Government’s needs or is inconsistent in any respect with Federal law, the Government must return the Software unused to iZotope. Contractor/Manufacturer is iZotope, Inc., 60 Hampshire Street, Cambridge, MA 02139.</p>
+
+<p><strong>GENERAL.</strong> The export of the Software from the United States and re-export from any other country is governed by the U.S. Department of Commerce under the export control laws and regulations of the United States and by any applicable law of such other country, and the Software may not be exported or re-exported in violation of any such laws or regulations. This Agreement is the complete and exclusive statement of the agreement between you and iZotope and supersedes any proposal or prior agreement, oral or written, and any other communications relating to the subject matter of this Agreement. This Agreement will be governed by and interpreted under the laws of the Commonwealth of Massachusetts, United States of America, without regard to conflicts of law provisions. The application of the United Nations Convention of Contracts for the International Sale of Goods is expressly excluded. This Agreement is in the English language only, which language will be controlling in all respects, and all versions of this Agreement in any other language will be for accommodation only.</p>
+
+<p>IN ADDITION, ANY SUCH LEGAL PROCEEDING SHALL NOT BE HEARD BEFORE A JURY. EACH PARTY GIVES UP ANY RIGHT TO A JURY TRIAL. To the extent permitted by law, you agree that you will not bring any class action lawsuit against iZotope or be a representative plaintiff or plaintiff class member in any such lawsuit.</p>
+
+<p>Should you have any questions about this Agreement or iZotope&rsquo;s software use policies, or if you desire to contact iZotope for any other reason, in the U.S., please email <a href="mailto:sales@izotope.com">sales@izotope.com</a>; outside the U.S., please contact the iZotope representative or affiliate serving your country or, if you are unsure whom to contact, iZotope at the above location.<br />
+Please indicate that you understand and accept these terms by clicking the “Accept” option. If you do not accept these terms, installation will terminate.</p>
+
+<hr />
+
+<p>January 2018</p>
+
+<br />
+<hr />
+<br />
+<div class="printpagebreak"></div>
+
+<h1><span class="icon icon-bookmark"></span>  License Information</h1>
+
+
+<h2 id="anti-grain-geometry">Anti-Grain Geometry</h2>
+
+<p>Version 2.4</p>
+
+<p>Copyright &copy; 2002-2005 Maxim Shemanarev (McSeem).</p>
+
+<p>Redistribution and use in source and binary forms, with or without<br />
+modification, are permitted provided that the following conditions are<br />
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright<br />
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright<br />
+notice, this list of conditions and the following disclaimer in the<br />
+documentation and/or other materials provided with the<br />
+distribution.</p></li>
+
+<li><p>The name of the author may not be used to endorse or promote<br />
+products derived from this software without specific prior written<br />
+permission.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE AUTHOR &ldquo;AS IS&rdquo; AND ANY EXPRESS OR<br />
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED<br />
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE<br />
+DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,<br />
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES<br />
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR<br />
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)<br />
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,<br />
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN<br />
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE<br />
+POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="better-enums">Better Enums</h2>
+
+<p>Version 0.11.1</p>
+
+<p>Copyright &copy; 2012-2016, Anton Bachin.  All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without<br />
+modification, are permitted provided that the following conditions are<br />
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright<br />
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright<br />
+notice, this list of conditions and the following disclaimer in the<br />
+documentation and/or other materials provided with the distribution.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS<br />
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED<br />
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A<br />
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT<br />
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,<br />
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED<br />
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR<br />
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF<br />
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING<br />
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS<br />
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="eigen">Eigen</h2>
+
+<p>Version 3.2.4</p>
+
+<p>Distributed under the <a href="https://www.mozilla.org/en-US/MPL/2.0/">Mozilla Public License v2.0 (MPLv2.0)</a>.</p>
+
+<p>Full text of the license is available here:<br />
+<a href="https://www.mozilla.org/en-US/MPL/2.0/">https://www.mozilla.org/en-US/MPL/2.0/</a></p>
+
+<p>To receive a copy of the source code for the Eigen library<br />
+distributed with this product under the under the terms of the MPLv2.0<br />
+please contact <a href="mailto:devsupport@izotope.com&gt;">devsupport@izotope.com</a>.</p>
+
+<h2 id="fmt">fmt</h2>
+
+<p>Version 4.0.0</p>
+
+<p>Copyright &copy; 2012 - 2016, Victor Zverovich</p>
+
+<p>All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without<br />
+modification, are permitted provided that the following conditions are<br />
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright<br />
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright<br />
+notice, this list of conditions and the following disclaimer in the<br />
+documentation and/or other materials provided with the distribution.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS<br />
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED<br />
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A<br />
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER<br />
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,<br />
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,<br />
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR<br />
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF<br />
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING<br />
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS<br />
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="freetype">FreeType</h2>
+
+<p>FreeType is licensed under the FreeType Project LICENSE.</p>
+
+<p>Portions of this software are copyright © 1996-2002, 2006 The FreeType<br />
+Project (www.freetype.org).  All rights reserved.</p>
+
+<h2 id="gsl">gsl</h2>
+
+<p>Copyright &copy; 2015 Microsoft Corporation. All rights reserved.</p>
+
+<p>This code is licensed under the MIT License (MIT).</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br />
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal<br />
+in the Software without restriction, including without limitation the rights<br />
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies<br />
+of the Software, and to permit persons to whom the Software is furnished to do<br />
+so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br />
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE<br />
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br />
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,<br />
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN<br />
+THE SOFTWARE.</p>
+
+<h2 id="icomoon">IcoMoon</h2>
+
+<p>IcoMoon-Free licensed under: <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+
+<h2 id="jsoncpp">JsonCpp</h2>
+
+<p>Version 1.2.1</p>
+
+<p>Copyright &copy; 2007-2010 Baptiste Lepilleur and The JsonCpp Authors</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a<br />
+copy of this software and associated documentation files (the<br />
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including<br />
+without limitation the rights to use, copy, modify, merge, publish,<br />
+distribute, sublicense, and/or sell copies of the Software, and to<br />
+permit persons to whom the Software is furnished to do so, subject to<br />
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included<br />
+in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS<br />
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF<br />
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND<br />
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE<br />
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION<br />
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION<br />
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h2 id="libxml2">LibXML2</h2>
+
+<p>Version 2.7.8</p>
+
+<p>Except where otherwise noted in the source code (e.g. the files hash.c,<br />
+list.c and the trio files, which are covered by a similar licence but<br />
+with different Copyright notices) all the files are:</p>
+
+<p>Copyright &copy; 1998-2003 Daniel Veillard.  All Rights Reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br />
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal<br />
+in the Software without restriction, including without limitation the rights<br />
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell<br />
+copies of the Software, and to permit persons to whom the Software is fur-<br />
+nished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in<br />
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FIT-<br />
+NESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE<br />
+DANIEL VEILLARD BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER<br />
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CON-<br />
+NECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<p>Except as contained in this notice, the name of Daniel Veillard shall not<br />
+be used in advertising or otherwise to promote the sale, use or other deal-<br />
+ings in this Software without prior written authorization from him.</p>
+
+<h2 id="material-docs-theme">Material Docs Theme</h2>
+
+<p>Copyright &copy; 2016 Digitalcraftsman <a href="mailto:digitalcraftsman@protonmail.com">digitalcraftsman@protonmail.com</a><br/><br />
+Copyright &copy; 2016 Martin Donath <a href="mailto:martin.donath@squidfunk.com">martin.donath@squidfunk.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br />
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to<br />
+deal in the Software without restriction, including without limitation the<br />
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or<br />
+sell copies of the Software, and to permit persons to whom the Software is<br />
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in<br />
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br />
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE<br />
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br />
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br />
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS<br />
+IN THE SOFTWARE.</p>
+
+<h2 id="nanomsg">nanomsg</h2>
+
+<p>Version 0.5-beta</p>
+
+<p>Copyright &copy; 2012-2013 Martin Sustrik  All rights reserved.<br/><br />
+Copyright &copy; 2013 GoPivotal, Inc.  All rights reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br />
+of this software and associated documentation files (the &ldquo;Software&rdquo;),<br />
+to deal in the Software without restriction, including without limitation<br />
+the rights to use, copy, modify, merge, publish, distribute, sublicense,<br />
+and/or sell copies of the Software, and to permit persons to whom<br />
+the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included<br />
+in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br />
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br />
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br />
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br />
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS<br />
+IN THE SOFTWARE.</p>
+
+<p>&ldquo;nanomsg&rdquo; is a trademark of Martin Sustrik</p>
+
+<h2 id="readerwriterqueue">readerwriterqueue</h2>
+
+<p>Copyright &copy; 2013-2015, Cameron Desrochers<br />
+All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without modification,<br />
+are permitted provided that the following conditions are met:</p>
+
+<ul>
+<li><p>Redistributions of source code must retain the above copyright notice, this list of<br />
+conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright notice, this list of<br />
+conditions and the following disclaimer in the documentation and/or other materials<br />
+provided with the distribution.</p></li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS IS&rdquo; AND ANY<br />
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF<br />
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL<br />
+THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,<br />
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT<br />
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)<br />
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR<br />
+TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,<br />
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="skia">Skia</h2>
+
+<p>Copyright &copy; 2011 Google Inc. All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without<br />
+modification, are permitted provided that the following conditions are<br />
+met:</p>
+
+<ul>
+<li><p>Redistributions of source code must retain the above copyright<br />
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright<br />
+notice, this list of conditions and the following disclaimer in the<br />
+documentation and/or other materials provided with the distribution.</p></li>
+</ul>
+
+<p>Neither the name of Google Inc. nor the names of its contributors<br />
+may be used to endorse or promote products derived from this software<br />
+without specific prior written permission.</p>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS<br />
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED<br />
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A<br />
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER<br />
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,<br />
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,<br />
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR<br />
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF<br />
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING<br />
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS<br />
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="tinyxml">TinyXML</h2>
+
+<p>Copyright &copy; 2000-2002 Lee Thomason (www.grinninglizard.com)</p>
+
+<p>This software is provided &lsquo;as-is&rsquo;, without any express or implied<br />
+warranty. In no event will the authors be held liable for any<br />
+damages arising from the use of this software.</p>
+
+<p>Permission is granted to anyone to use this software for any<br />
+purpose, including commercial applications, and to alter it and<br />
+redistribute it freely, subject to the following restrictions:</p>
+
+<ol>
+<li><p>The origin of this software must not be misrepresented; you must<br />
+not claim that you wrote the original software. If you use this<br />
+software in a product, an acknowledgment in the product documentation<br />
+would be appreciated but is not required.</p></li>
+
+<li><p>Altered source versions must be plainly marked as such, and<br />
+must not be misrepresented as being the original software.</p></li>
+
+<li><p>This notice may not be removed or altered from any source<br />
+distribution.</p></li>
+</ol>
+
+<h2 id="tipue-search">Tipue Search</h2>
+
+<p>Copyright &copy; 2017 Tipue</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining<br />
+a copy of this software and associated documentation files (the<br />
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including<br />
+without limitation the rights to use, copy, modify, merge, publish,<br />
+distribute, sublicense, and/or sell copies of the Software, and to<br />
+permit persons to whom the Software is furnished to do so, subject to<br />
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be<br />
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND,<br />
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF<br />
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND<br />
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE<br />
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION<br />
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION<br />
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h2 id="vectorize">vectorize</h2>
+
+<p>Copyright &copy; 2012 Aaron Wishnick.  All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without<br />
+modification, are permitted provided that the following conditions are met:</p>
+
+<ul>
+<li><p>Redistributions of source code must retain the above copyright<br />
+notice, this list of conditions and the following disclaimer.</p>
+
+<ul>
+<li><p>Redistributions in binary form must reproduce the above copyright<br />
+notice, this list of conditions and the following disclaimer in the<br />
+documentation and/or other materials provided with the distribution.</p></li>
+
+<li><p>Neither the name of the <organization> nor the<br />
+names of its contributors may be used to endorse or promote products<br />
+derived from this software without specific prior written permission.</p></li>
+</ul></li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS IS&rdquo; AND<br />
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED<br />
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE<br />
+DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY<br />
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES<br />
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;<br />
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND<br />
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT<br />
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS<br />
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="yoga">Yoga</h2>
+
+<p>Version 1.9.0</p>
+
+<p>MIT License</p>
+
+<p>Copyright &copy; 2014-present, Facebook, Inc.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a<br />
+copy of this software and associated documentation files (the<br />
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including<br />
+without limitation the rights to use, copy, modify, merge, publish,<br />
+distribute, sublicense, and/or sell copies of the Software, and to<br />
+permit persons to whom the Software is furnished to do so, subject to<br />
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included<br />
+in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS<br />
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF<br />
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND<br />
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE<br />
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION<br />
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION<br />
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h2 id="zeromq">ZeroMQ</h2>
+
+<p>Copyright &copy; 2007-2015 iMatix Corporation<br />
+Copyright &copy; 2009-2011 250bpm s.r.o.<br />
+Copyright &copy; 2010-2011 Miru Limited<br />
+Copyright &copy; 2011 VMware, Inc.<br />
+Copyright &copy; 2012 Spotify AB<br />
+Copyright &copy; 2013 Ericsson AB<br />
+Copyright &copy; 2014 AppDynamics Inc.</p>
+
+<p>Distributed under the<br />
+<a href="https://www.gnu.org/licenses/lgpl-3.0.txt&gt;">GNU Lesser General Public License v3 (LGPLv3)</a> with the following<br />
+&ldquo;Static linking exception&rdquo;:</p>
+
+<p>The copyright holders give you permission to link this library with independent<br />
+modules to produce an executable, regardless of the license terms of these<br />
+independent modules, and to copy and distribute the resulting executable under<br />
+terms of your choice, provided that you also meet, for each linked independent<br />
+module, the terms and conditions of the license of that module. An independent<br />
+module is a module which is not derived from or based on this library. If you<br />
+modify this library, you must extend this exception to your version of the<br />
+library.</p>
+
+<p>Full text of the license is available here:<br />
+<a href="https://www.gnu.org/licenses/lgpl-3.0.txt">https://www.gnu.org/licenses/lgpl-3.0.txt</a></p>
+
+<p>To receive a copy of the source code for the ZeroMQ library<br />
+distributed with this product under the under the terms of the LGPLv3<br />
+please contact <a href="mailto:devsupport@izotope.com&gt;">devsupport@izotope.com</a>.</p>
+
+<h2 id="zlib">zlib</h2>
+
+<p>Copyright &copy; 1995-2004 Jean-loup Gailly and Mark Adler.</p>
+
+<p>This software is provided &lsquo;as-is&rsquo;, without any express or implied<br />
+warranty.  In no event will the authors be held liable for any damages<br />
+arising from the use of this software.</p>
+
+<p>Permission is granted to anyone to use this software for any purpose,<br />
+including commercial applications, and to alter it and redistribute it<br />
+freely, subject to the following restrictions:</p>
+
+<ol>
+<li><p>The origin of this software must not be misrepresented; you must not<br />
+claim that you wrote the original software. If you use this software<br />
+in a product, an acknowledgment in the product documentation would be<br />
+appreciated but is not required.</p></li>
+
+<li><p>Altered source versions must be plainly marked as such, and must not be<br />
+misrepresented as being the original software.</p></li>
+
+<li><p>This notice may not be removed or altered from any source distribution.</p></li>
+</ol>
+
+<p>Jean-loup Gailly jloup@gzip.org</p>
+
+<p>Mark Adler madler@alumni.caltech.edu</p>
+
+<br />
+<hr />
+<br />
+<div class="printpagebreak"></div>
+
+</div>
+  </article>
+  <footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../license-information/index.html" title="License Information">
+        <span class="direction">Previous</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">License Information</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../search/index.html" title="Search Results">
+        <span class="direction">Next</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">Search Results</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+<a href="../../ja/print/index.html"><i class="icon icon-eye"></i> 日本語での表示ページ</a>
+<br />
+&copy; 2019 iZotope, Inc. &ndash;
+  Relay Help Documentation</div>
+
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+<script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</main>
+</body>
+</html>

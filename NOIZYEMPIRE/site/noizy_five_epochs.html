@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY — The Five Epochs · Protocol & Provenance</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --gold:#f5c842;--cyan:#00e5ff;--amber:#ffab40;
+    --e1:#8888aa;--e2:#aaa8cc;--e3:#c8b8ee;--e4:#ee9977;--e5:#f5c842;
+    --bg:#03030c;
+  }
+  body{background:var(--bg);color:#e8e8f0;font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+  canvas#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .wrap{position:relative;z-index:1}
+
+  /* ── Hero ── */
+  .hero{
+    text-align:center;padding:80px 20px 60px;
+    background:linear-gradient(180deg,rgba(3,3,12,1) 60%,transparent 100%)
+  }
+  .hero-kicker{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:5px;color:rgba(232,232,240,.3);text-transform:uppercase;margin-bottom:22px}
+  .hero-h1{font-size:clamp(38px,8vw,90px);font-weight:700;line-height:.95;margin-bottom:20px}
+  .hero-h1 .e{
+    background:linear-gradient(135deg,var(--gold),var(--amber));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    filter:drop-shadow(0 0 40px rgba(245,200,66,.4))
+  }
+  .hero-h1 .s{
+    display:block;font-size:.42em;font-weight:300;
+    color:rgba(232,232,240,.5);letter-spacing:1px;margin-top:8px
+  }
+  .hero-sub{font-size:clamp(15px,2.2vw,20px);color:rgba(232,232,240,.55);max-width:640px;margin:0 auto 40px;line-height:1.75}
+  .hero-sub strong{color:var(--gold);font-weight:600}
+
+  /* ── Epoch rail ── */
+  .epoch-rail{
+    position:relative;padding:20px 40px 80px;
+    overflow-x:auto;
+  }
+
+  /* The spine */
+  .spine{
+    position:relative;display:flex;
+    min-width:900px;max-width:1300px;margin:0 auto;
+    align-items:flex-start;gap:0;
+  }
+
+  /* Connector line */
+  .spine::before{
+    content:'';position:absolute;
+    top:54px;left:52px;right:52px;height:2px;
+    background:linear-gradient(90deg,var(--e1),var(--e2),var(--e3),var(--e4),var(--e5));
+    opacity:.35;z-index:0
+  }
+
+  .epoch-block{
+    flex:1;display:flex;flex-direction:column;align-items:center;
+    position:relative;opacity:0;transform:translateY(40px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .epoch-block.visible{opacity:1;transform:translateY(0)}
+
+  /* Node on spine */
+  .epoch-node{
+    width:28px;height:28px;border-radius:50%;
+    border:2px solid;position:relative;z-index:2;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:0;cursor:pointer;
+    transition:transform .2s
+  }
+  .epoch-node:hover{transform:scale(1.3)}
+  .epoch-node-inner{width:10px;height:10px;border-radius:50%;background:currentColor}
+
+  /* Epoch label */
+  .epoch-num{
+    font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;
+    text-transform:uppercase;margin-top:10px;opacity:.55
+  }
+  .epoch-era{font-size:11px;font-weight:600;margin-top:4px;text-align:center;line-height:1.3;max-width:120px}
+
+  /* Epoch card */
+  .epoch-card{
+    margin-top:20px;padding:20px 16px;border-radius:14px;
+    width:calc(100% - 16px);max-width:240px;
+    background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);
+    cursor:pointer;transition:all .3s
+  }
+  .epoch-card:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14);transform:translateY(-4px)}
+
+  .ec-dates{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;opacity:.45;margin-bottom:8px}
+  .ec-product-label{font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;opacity:.35;margin-bottom:3px}
+  .ec-product{font-size:14px;font-weight:600;margin-bottom:10px;line-height:1.25}
+  .ec-power-label{font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;opacity:.35;margin-bottom:3px}
+  .ec-power{font-size:12px;font-weight:500;margin-bottom:10px;opacity:.75}
+  .ec-share-label{font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;opacity:.35;margin-bottom:3px}
+  .ec-share{font-size:12px;margin-bottom:12px;opacity:.65;line-height:1.5}
+  .ec-end-label{font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;opacity:.35;margin-bottom:3px}
+  .ec-end{font-size:11px;font-style:italic;opacity:.55;line-height:1.5}
+
+  /* Epoch V — special */
+  .epoch-block.v5 .epoch-card{
+    background:linear-gradient(135deg,rgba(245,200,66,.08),rgba(0,229,255,.06));
+    border-color:rgba(245,200,66,.3);
+    padding:22px 18px
+  }
+  .epoch-block.v5 .epoch-card:hover{border-color:rgba(245,200,66,.6);transform:translateY(-6px)}
+  .epoch-block.v5 .ec-product{font-size:15px;color:var(--gold)}
+  .epoch-block.v5 .ec-power{color:var(--cyan);opacity:1}
+  .epoch-block.v5 .ec-share{opacity:1;color:var(--gold)}
+  .epoch-block.v5 .ec-end{color:rgba(232,232,240,.8);font-style:normal;font-weight:600;opacity:1}
+  .epoch-block.v5 .epoch-node{animation:node-glow 2s ease-in-out infinite}
+  @keyframes node-glow{0%,100%{box-shadow:0 0 0 0 rgba(245,200,66,.4)}50%{box-shadow:0 0 0 8px rgba(245,200,66,.0),0 0 20px rgba(245,200,66,.6)}}
+
+  /* Disruption arrows */
+  .disruption{
+    flex:0 0 32px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    padding-top:14px;opacity:.4;font-size:18px;color:rgba(232,232,240,.4)
+  }
+
+  /* ── Comparison table ── */
+  .compare-section{padding:60px 20px;max-width:900px;margin:0 auto}
+  .compare-h2{font-size:clamp(22px,4vw,36px);font-weight:700;text-align:center;margin-bottom:8px}
+  .compare-sub{text-align:center;font-size:14px;color:rgba(232,232,240,.5);margin-bottom:40px;line-height:1.6}
+  .compare-table{width:100%;border-collapse:collapse;font-size:13px}
+  .compare-table th{
+    font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;
+    padding:12px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,.1);
+    color:rgba(232,232,240,.45)
+  }
+  .compare-table td{
+    padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.05);
+    vertical-align:top;line-height:1.5
+  }
+  .compare-table tr:hover td{background:rgba(255,255,255,.02)}
+  .td-metric{color:rgba(232,232,240,.55);font-size:12px}
+  .td-old{color:rgba(238,153,119,.8)}
+  .td-new{color:var(--gold);font-weight:600}
+  .td-check{color:var(--gold);font-size:16px}
+  .td-x{color:rgba(255,100,100,.5);font-size:16px}
+
+  /* ── 12-dimension moat ── */
+  .moat-section{
+    background:linear-gradient(135deg,rgba(245,200,66,.04),rgba(0,229,255,.04));
+    border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);
+    padding:70px 20px
+  }
+  .moat-inner{max-width:900px;margin:0 auto}
+  .moat-h2{font-size:clamp(22px,4vw,36px);font-weight:700;text-align:center;margin-bottom:8px}
+  .moat-sub{text-align:center;font-size:14px;color:rgba(232,232,240,.5);margin-bottom:40px}
+  .moat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+  .moat-item{
+    display:flex;align-items:center;gap:14px;
+    padding:14px 16px;background:rgba(255,255,255,.025);
+    border:1px solid rgba(255,255,255,.07);border-radius:10px;
+    opacity:0;transform:translateY(20px);transition:all .5s ease
+  }
+  .moat-item.visible{opacity:1;transform:translateY(0)}
+  .moat-check{
+    width:28px;height:28px;border-radius:50%;
+    background:radial-gradient(circle,var(--gold) 0%,rgba(245,200,66,.2) 100%);
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;flex-shrink:0
+  }
+  .moat-text{font-size:13px;font-weight:500;line-height:1.3}
+
+  /* ── Investor argument ── */
+  .investor-section{padding:70px 20px;max-width:860px;margin:0 auto;text-align:center}
+  .inv-kicker{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(232,232,240,.3);margin-bottom:20px}
+  .inv-h2{font-size:clamp(24px,4.5vw,42px);font-weight:700;margin-bottom:24px;line-height:1.2}
+  .inv-h2 span{color:var(--gold)}
+  .inv-body{font-size:15px;line-height:1.85;color:rgba(232,232,240,.72);margin-bottom:30px;text-align:left}
+  .inv-pull{
+    font-size:clamp(18px,3vw,26px);font-weight:300;font-style:italic;
+    color:rgba(232,244,255,.85);line-height:1.6;margin:36px 0;
+    padding:24px 30px;border-left:3px solid var(--gold);
+    background:rgba(245,200,66,.04);border-radius:0 10px 10px 0;text-align:left
+  }
+  .inv-pull strong{color:var(--gold);font-weight:700;font-style:normal}
+
+  /* ── CTA ── */
+  .cta-block{text-align:center;padding:60px 20px 110px}
+  .cta-h2{font-size:clamp(26px,4.5vw,44px);font-weight:700;margin-bottom:18px;line-height:1.2}
+  .cta-h2 span{background:linear-gradient(90deg,var(--gold),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .cta-sub{font-size:15px;color:rgba(232,232,240,.55);margin-bottom:38px;line-height:1.7}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+  .btn{display:inline-block;padding:13px 28px;border-radius:40px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all .25s;border:none}
+  .btn-g{background:linear-gradient(135deg,var(--gold),var(--amber));color:#1a0a00;font-weight:700;box-shadow:0 0 25px rgba(245,200,66,.3)}
+  .btn-g:hover{box-shadow:0 0 50px rgba(245,200,66,.6);transform:translateY(-2px)}
+  .btn-o{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+  .btn-o:hover{background:rgba(0,229,255,.07);transform:translateY(-2px)}
+  .gorunfree{display:inline-block;margin-top:36px;font-family:'Space Mono',monospace;font-size:clamp(20px,4vw,40px);font-weight:700;letter-spacing:5px;background:linear-gradient(90deg,var(--gold),var(--cyan),var(--gold));background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:grsh 3s linear infinite;filter:drop-shadow(0 0 20px rgba(245,200,66,.35))}
+  @keyframes grsh{0%{background-position:0%}100%{background-position:200%}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-kicker">NOIZYFISH INC. · Board of Aligned Minds · March 2026</div>
+  <h1 class="hero-h1">
+    <span class="e">The Five Epochs</span>
+    <span class="s">600 years of the music business.<br>One pattern. One correction.</span>
+  </h1>
+  <p class="hero-sub">
+    Every era, a new technology. Every era, a new power class that extracted value from creators.<br>
+    <strong>Epoch V is the first era where the creator holds the power. Enforced by code. Not by contract.</strong>
+  </p>
+</section>
+
+<!-- Epoch Rail -->
+<div class="epoch-rail">
+  <div class="spine" id="epochSpine">
+
+    <!-- EPOCH I -->
+    <div class="epoch-block" style="transition-delay:0s" data-epoch="1">
+      <div class="epoch-node" style="color:var(--e1);border-color:var(--e1)"><div class="epoch-node-inner"></div></div>
+      <div class="epoch-num" style="color:var(--e1)">EPOCH I</div>
+      <div class="epoch-era" style="color:var(--e1)">The Notation Age</div>
+      <div class="epoch-card" style="border-color:rgba(136,136,170,.2)">
+        <div class="ec-dates">1400s — 1920s</div>
+        <div class="ec-product-label">Primary Product</div>
+        <div class="ec-product" style="color:var(--e1)">Sheet Music</div>
+        <div class="ec-power-label">Power Held By</div>
+        <div class="ec-power">The Printer</div>
+        <div class="ec-share-label">Creator's Share</div>
+        <div class="ec-share">Fraction of print sales.<br>Name on the page.</div>
+        <div class="ec-end-label">Ended By</div>
+        <div class="ec-end">The phonograph. Sound could now be captured, not just notated.</div>
+      </div>
+    </div>
+
+    <div class="disruption">→</div>
+
+    <!-- EPOCH II -->
+    <div class="epoch-block" style="transition-delay:.12s" data-epoch="2">
+      <div class="epoch-node" style="color:var(--e2);border-color:var(--e2)"><div class="epoch-node-inner"></div></div>
+      <div class="epoch-num" style="color:var(--e2)">EPOCH II</div>
+      <div class="epoch-era" style="color:var(--e2)">The Recording Era</div>
+      <div class="epoch-card" style="border-color:rgba(170,168,204,.2)">
+        <div class="ec-dates">1920s — 1990s</div>
+        <div class="ec-product-label">Primary Product</div>
+        <div class="ec-product" style="color:var(--e2)">The Physical Recording</div>
+        <div class="ec-power-label">Power Held By</div>
+        <div class="ec-power">The Record Label</div>
+        <div class="ec-share-label">Creator's Share</div>
+        <div class="ec-share">8–15% after recoupment.<br>Most never recouped.<br>Most earned near zero.</div>
+        <div class="ec-end-label">Ended By</div>
+        <div class="ec-end">The digital file. The physical object lost its value overnight.</div>
+      </div>
+    </div>
+
+    <div class="disruption">→</div>
+
+    <!-- EPOCH III -->
+    <div class="epoch-block" style="transition-delay:.24s" data-epoch="3">
+      <div class="epoch-node" style="color:var(--e3);border-color:var(--e3)"><div class="epoch-node-inner"></div></div>
+      <div class="epoch-num" style="color:var(--e3)">EPOCH III</div>
+      <div class="epoch-era" style="color:var(--e3)">The Digital Disruption</div>
+      <div class="epoch-card" style="border-color:rgba(200,184,238,.2)">
+        <div class="ec-dates">2000s</div>
+        <div class="ec-product-label">Primary Product</div>
+        <div class="ec-product" style="color:var(--e3)">The File (MP3)</div>
+        <div class="ec-power-label">Power Held By</div>
+        <div class="ec-power">Apple / Platform</div>
+        <div class="ec-share-label">Creator's Share</div>
+        <div class="ec-share">~$0.09 per download<br>if signed. Much less<br>if independent.</div>
+        <div class="ec-end-label">Ended By</div>
+        <div class="ec-end">Streaming. Why buy when you can access everything for $10/month?</div>
+      </div>
+    </div>
+
+    <div class="disruption">→</div>
+
+    <!-- EPOCH IV -->
+    <div class="epoch-block" style="transition-delay:.36s" data-epoch="4">
+      <div class="epoch-node" style="color:var(--e4);border-color:var(--e4)"><div class="epoch-node-inner"></div></div>
+      <div class="epoch-num" style="color:var(--e4)">EPOCH IV</div>
+      <div class="epoch-era" style="color:var(--e4)">The Streaming Age</div>
+      <div class="epoch-card" style="border-color:rgba(238,153,119,.2)">
+        <div class="ec-dates">2010s — Present</div>
+        <div class="ec-product-label">Primary Product</div>
+        <div class="ec-product" style="color:var(--e4)">Access (Subscription)</div>
+        <div class="ec-power-label">Power Held By</div>
+        <div class="ec-power">The Algorithm</div>
+        <div class="ec-share-label">Creator's Share</div>
+        <div class="ec-share">$0.003 per stream.<br>Need 10M streams<br>to earn below poverty line.</div>
+        <div class="ec-end-label">Ended By</div>
+        <div class="ec-end">Consent-as-Code. The infrastructure that makes extraction structurally impossible.</div>
+      </div>
+    </div>
+
+    <div class="disruption" style="color:var(--gold);opacity:.9;font-weight:700">→</div>
+
+    <!-- EPOCH V -->
+    <div class="epoch-block v5" style="transition-delay:.5s" data-epoch="5">
+      <div class="epoch-node" style="color:var(--gold);border-color:var(--gold);box-shadow:0 0 20px rgba(245,200,66,.5)"><div class="epoch-node-inner"></div></div>
+      <div class="epoch-num" style="color:var(--gold);opacity:1;font-weight:700">EPOCH V</div>
+      <div class="epoch-era" style="color:var(--gold);font-size:13px">The Protocol Age</div>
+      <div class="epoch-card">
+        <div class="ec-dates">2026 — 2526</div>
+        <div class="ec-product-label">Primary Product</div>
+        <div class="ec-product">The Inheritable Asset<br><span style="font-size:11px;opacity:.7;font-weight:400">Voice Estate · Cultural Archive · Living Score</span></div>
+        <div class="ec-power-label">Power Held By</div>
+        <div class="ec-power">The Creator — For The First Time</div>
+        <div class="ec-share-label">Creator's Share</div>
+        <div class="ec-share">75% · Perpetual · Enforced by Code<br>Automatic · Real-time · Post-death</div>
+        <div class="ec-end-label">Ended By</div>
+        <div class="ec-end">Nothing. It is the floor. It cannot be removed.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Comparison Table -->
+<section class="compare-section">
+  <h2 class="compare-h2">Epoch IV vs. Epoch V</h2>
+  <p class="compare-sub">The shift from IP to Protocol. From platform to infrastructure architect. From fraction to 75%.</p>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th style="color:var(--e4)">Streaming Age (Epoch IV)</th>
+        <th style="color:var(--gold)">NOIZY MC96ECO (Epoch V)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-metric">IP Mechanism</td>
+        <td class="td-old">Legal Contract (Terms of Service)</td>
+        <td class="td-new">Protocol (Consent-as-Code)</td>
+      </tr>
+      <tr>
+        <td class="td-metric">The "Product"</td>
+        <td class="td-old">Licensed Stream (Access)</td>
+        <td class="td-new">Inheritable Asset (Voice Estate)</td>
+      </tr>
+      <tr>
+        <td class="td-metric">Authenticity</td>
+        <td class="td-old">Watermarking (Optional)</td>
+        <td class="td-new">Cryptographic Provenance (NOIZY PROOF)</td>
+      </tr>
+      <tr>
+        <td class="td-metric">Royalty Mechanism</td>
+        <td class="td-old">Opaque pool, quarterly statement</td>
+        <td class="td-new">Agentic Royalty — real-time, automatic</td>
+      </tr>
+      <tr>
+        <td class="td-metric">Creator Role</td>
+        <td class="td-old">Content Producer</td>
+        <td class="td-new">Infrastructure Architect</td>
+      </tr>
+      <tr>
+        <td class="td-metric">Training Data</td>
+        <td class="td-old">Extracted without consent</td>
+        <td class="td-new">HVS™-certified, explicit consent per use</td>
+      </tr>
+      <tr>
+        <td class="td-metric">Rights After Death</td>
+        <td class="td-old">Reverts to estate (if documented, if contested)</td>
+        <td class="td-new">Voice Estate — automatic, 70-year protected</td>
+      </tr>
+      <tr>
+        <td class="td-metric">Power Structure</td>
+        <td class="td-old">Platform owns the relationship</td>
+        <td class="td-new">Creator owns the relationship</td>
+      </tr>
+      <tr>
+        <td class="td-metric">Long-Term Value</td>
+        <td class="td-old">Subscriber growth, catalog acquisition</td>
+        <td class="td-new">Protocol adoption by future Spotifys, Apples, Metas</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 12-Dimension Moat -->
+<section class="moat-section">
+  <div class="moat-inner">
+    <h2 class="moat-h2">Zero Direct Competitors</h2>
+    <p class="moat-sub">Full sweep across ElevenLabs, Replica, Suno, Udio, DistroKid. Conclusion: NOIZY operates in an uncontested category across 12 capability dimensions.</p>
+    <div class="moat-grid">
+      <div class="moat-item" style="transition-delay:0s"><div class="moat-check">✓</div><div class="moat-text">Consent-as-Code Architecture</div></div>
+      <div class="moat-item" style="transition-delay:.05s"><div class="moat-check">✓</div><div class="moat-text">75/25 Perpetual Royalty Split</div></div>
+      <div class="moat-item" style="transition-delay:.1s"><div class="moat-check">✓</div><div class="moat-text">Voice Estate IP Framework</div></div>
+      <div class="moat-item" style="transition-delay:.15s"><div class="moat-check">✓</div><div class="moat-text">Neuro-Acoustic Research Layer</div></div>
+      <div class="moat-item" style="transition-delay:.2s"><div class="moat-check">✓</div><div class="moat-text">Haptic / Accessibility Pipeline</div></div>
+      <div class="moat-item" style="transition-delay:.25s"><div class="moat-check">✓</div><div class="moat-text">NOIZY PROOF Watermarking</div></div>
+      <div class="moat-item" style="transition-delay:.3s"><div class="moat-check">✓</div><div class="moat-text">Living Score Adaptive Music</div></div>
+      <div class="moat-item" style="transition-delay:.35s"><div class="moat-check">✓</div><div class="moat-text">Own AI Stack ($16K+/yr savings)</div></div>
+      <div class="moat-item" style="transition-delay:.4s"><div class="moat-check">✓</div><div class="moat-text">40-Year Creator Archive (34TB)</div></div>
+      <div class="moat-item" style="transition-delay:.45s"><div class="moat-check">✓</div><div class="moat-text">Creator-Founder Proof of Concept</div></div>
+      <div class="moat-item" style="transition-delay:.5s"><div class="moat-check">✓</div><div class="moat-text">Canadian Ethics Alignment</div></div>
+      <div class="moat-item" style="transition-delay:.55s"><div class="moat-check">✓</div><div class="moat-text">500-Year Codex Vision</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Investor Argument -->
+<section class="investor-section">
+  <div class="inv-kicker">The Investor Argument</div>
+  <h2 class="inv-h2">NOIZY is not competing with <span>Epoch IV</span>.<br>NOIZY is building the infrastructure <span>Epoch V needs</span>.</h2>
+  <div class="inv-body">
+    <p>Every prior epoch transition created a new intermediary who extracted value from creators. The printer replaced no one — but became the bottleneck. The label became a bigger bottleneck. iTunes became a different one. Spotify became the deepest bottleneck of all.</p><br>
+    <p>NOIZY's Epoch V transition does not create a new intermediary. It removes the intermediary permanently by making consent and attribution function at the infrastructure level. There is no bottleneck because there is no intermediary who can insert themselves between the creator and the royalty.</p><br>
+    <p>The long-term value of NOIZY is not in subscriptions or licensing fees. It is in the widespread adoption of the Consent-as-Code, NOIZY PROOF, and Voice Estate protocols by every platform that needs access to the best, most legally defensible human creative work in the world — the future Spotifys, Apples, and Metas.</p>
+  </div>
+  <div class="inv-pull">
+    "The Copyright Act of 1909 established mechanical royalties as a legal requirement for reproduction. The NOIZY equivalent is the 75/25 Perpetual Royalty Split enforced by the Cloudflare D1/KV architecture — a new class of royalty: <strong>the Agentic Royalty</strong>, distributed instantly every time a GABRIEL agent uses the asset. This is not a platform. It is the consent layer of the creative internet."
+  </div>
+  <div class="inv-body">
+    <p>NOIZY is to the music industry what TCP/IP was to the internet — not a product, but the protocol every product depends on. The internet still runs on TCP/IP, a protocol designed in 1974. NOIZY's Consent-as-Code is built to last 500 years for the same reason: because it is not a technology, it is an architecture. And architectures are not disrupted. They are adopted.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-block">
+  <h2 class="cta-h2">We are not disrupting the industry.<br><span>We are building the next era.</span></h2>
+  <p class="cta-sub">The 5th Epoch begins March 14, 2026.<br>The floor has been built. The code is live. The civilization is open.</p>
+  <div class="btn-row">
+    <a href="#" class="btn btn-g">Join the Guild</a>
+    <a href="noizy_2526_legacy_galaxy.html" class="btn btn-o">View from 2526</a>
+  </div>
+  <div class="gorunfree">GORUNFREE</div>
+</section>
+
+</div>
+
+<script>
+// ── Background canvas ─────────────────────────────────────────────
+(function(){
+  const c=document.getElementById('bg');const ctx=c.getContext('2d');
+  let W,H,pts=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;build()}
+  function build(){
+    pts=[];
+    for(let i=0;i<50;i++){
+      const cl=['rgba(245,200,66,','rgba(0,229,255,','rgba(181,123,238,'][Math.floor(Math.random()*3)];
+      pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,r:Math.random()*1.3+.3,a:Math.random()*.18+.04,c:cl});
+    }
+  }
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+      ctx.globalAlpha=p.a;ctx.fillStyle=p.c+'1)';ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+    });ctx.globalAlpha=1;requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize',resize);resize();frame();
+})();
+
+// ── Scroll reveal ─────────────────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, {threshold:.12});
+
+document.querySelectorAll('.epoch-block, .moat-item').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

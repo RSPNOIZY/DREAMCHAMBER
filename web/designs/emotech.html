@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Emotional Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+  <style>
+    .topbar { display:flex; justify-content:space-between; align-items:center; padding:16px; border-bottom:1px solid #222; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px; padding:16px; }
+    .player { background:#151820; border:2px solid #222; border-radius:16px; padding:16px; }
+    .row { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
+    select, input[type="range"] { background:#0f1115; color:#e6e6e6; border:1px solid #333; border-radius:8px; padding:8px; }
+    audio { width:100%; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div>
+      <h2>Emotional Tech</h2>
+      <div class="mode {{ status.mode }}"><span>Mode:</span> <strong>{{ status.mode|capitalize }}</strong></div>
+    </div>
+    <a class="btn small" href="{{ url_for('dashboard') }}">Back</a>
+  </div>
+
+  <div class="grid">
+    <div class="player">
+      <h3>Family Voices</h3>
+      <div class="row">
+        <label for="playlist">Playlist</label>
+        <select id="playlist">
+          {% for pl in playlists %}
+            <option value="{{ pl }}" {{ "selected" if pl == default_playlist else "" }}>{{ pl }}</option>
+          {% endfor %}
+        </select>
+        <button class="btn small" id="loadPlaylist">Load</button>
+      </div>
+      <div id="trackList" class="row"></div>
+      <audio id="audio" controls preload="none"></audio>
+      <div class="row">
+        <button class="btn small" id="prev">Prev</button>
+        <button class="btn small" id="play">Play</button>
+        <button class="btn small" id="pause">Pause</button>
+        <button class="btn small" id="next">Next</button>
+        <label>Volume</label>
+        <input type="range" id="volume" min="0" max="1" step="0.05" value="0.8">
+      </div>
+    </div>
+
+    <div class="player">
+      <h3>Neuroacoustic Session</h3>
+      <div class="row">
+        <label>Base (Hz)</label><input type="number" id="base" value="220" step="1" min="100" max="600">
+        <label>Beat (Hz)</label><input type="number" id="beat" value="7" step="0.5" min="0.5" max="20">
+        <label>Duration (min)</label><input type="number" id="dur" value="10" step="1" min="1" max="120">
+        <button class="btn small" id="startTone">Start Tone</button>
+        <button class="btn small" id="stopTone">Stop</button>
+      </div>
+      <audio id="tone" controls preload="none"></audio>
+    </div>
+
+    <div class="player">
+      <h3>Ritual Feedback</h3>
+      <div class="row">
+        <input type="text" id="sayText" placeholder="What should the tablet say?" style="flex:1;">
+        <button class="btn small" id="sayBtn">Speak</button>
+      </div>
+      <p style="opacity:0.7">Uses system TTS where available.</p>
+    </div>
+  </div>
+
+  <script>
+    const audio = document.getElementById('audio');
+    const tone = document.getElementById('tone');
+    const playlistSel = document.getElementById('playlist');
+    const trackList = document.getElementById('trackList');
+    const volume = document.getElementById('volume');
+
+    let playlist = { name: null, tracks: [] };
+    let idx = 0;
+
+    function renderTracks() {
+      trackList.innerHTML = '';
+      playlist.tracks.forEach((t, i) => {
+        const b = document.createElement('button');
+        b.className = 'btn small';
+        b.textContent = `${i+1}. ${t.title || t.file}`;
+        b.onclick = () => { idx = i; loadCurrent(); audio.play(); };
+        trackList.appendChild(b);
+      });
+    }
+
+    function loadPlaylist(name) {
+      fetch(`/api/playlist/${encodeURIComponent(name)}`)
+        .then(r => r.json())
+        .then(data => { playlist = data; idx = 0; renderTracks(); loadCurrent(); })
+        .catch(err => console.error(err));
+    }
+
+    function loadCurrent() {
+      const t = playlist.tracks[idx];
+      if (!t) return;
+      audio.src = t.url ? t.url : `/audio/${encodeURIComponent(t.file)}`;
+      audio.load();
+    }
+
+    document.getElementById('loadPlaylist').onclick = () => loadPlaylist(playlistSel.value);
+    document.getElementById('prev').onclick = () => { idx = (idx - 1 + playlist.tracks.length) % playlist.tracks.length; loadCurrent(); audio.play(); };
+    document.getElementById('play').onclick = () => audio.play();
+    document.getElementById('pause').onclick = () => audio.pause();
+    document.getElementById('next').onclick = () => { idx = (idx + 1) % playlist.tracks.length; loadCurrent(); audio.play(); };
+    volume.oninput = () => audio.volume = parseFloat(volume.value);
+
+    // Neuro session
+    document.getElementById('startTone').onclick = () => {
+      const base = document.getElementById('base').value;
+      const beat = document.getElementById('beat').value;
+      const durMin = document.getElementById('dur').value;
+      tone.src = `/api/binaural?base=${base}&beat=${beat}&duration=${durMin*60}`;
+      tone.load(); tone.play();
+    };
+    document.getElementById('stopTone').onclick = () => { tone.pause(); tone.src = ''; };
+
+    // Ritual feedback (TTS)
+    document.getElementById('sayBtn').onclick = () => {
+      const text = document.getElementById('sayText').value || 'Alignment complete';
+      fetch(`/api/say?text=${encodeURIComponent(text)}`).then(()=>{});
+    };
+
+    // Auto-load default
+    const defaultPlaylist = "{{ default_playlist or '' }}";
+    if (defaultPlaylist) loadPlaylist(defaultPlaylist);
+  </script>
+</body>
+</html>

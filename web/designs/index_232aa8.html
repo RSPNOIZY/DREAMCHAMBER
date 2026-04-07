@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]> 
+<!--><html class="no-js" lang="en"><!--<![endif]-->
+<head lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+  <title>Options - Neutron 2 User Manual</title>
+  <meta name="generator" content="Hugo 0.40.3" />
+  <meta name="description" content="Neutron 2 User Manual">
+  <link rel="canonical" href="index.html">
+  <meta name="author" content="iZotope">
+  <meta property="og:url" content="http://www.neutron2helpdocs.com/en/options/index.html">
+  <meta property="og:title" content="Neutron 2 User Manual">
+  
+  <meta name="apple-mobile-web-app-title" content="Neutron 2 User Manual">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <style>@font-face {
+      font-family: 'icon';
+      src: url('../fonts/icon.eot');
+      src: url('../fonts/icon.eot')
+             format('embedded-opentype'),
+           url('../fonts/icon.woff')
+             format('woff'),
+           url('../fonts/icon.ttf')
+             format('truetype'),
+           url('../fonts/icon.svg')
+             format('svg');
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+  <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+  <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    }
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+  
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  
+  <script src="../javascripts/modernizr.js"></script>
+  
+<script>
+  (function(i,s,o,g,r,a,m){
+    i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+    []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+    m.parentNode.insertBefore(a,m)
+  })(window, document,
+    'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+   
+  ga('create', 'UA-63445037-15', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+
+<script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+
+</head>
+<body class="palette-primary-docs palette-accent-docs">
+	
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	
+
+  <div class="backdrop">
+    <div class="backdrop-paper"></div>
+  </div>
+  <input class="toggle" type="checkbox" id="toggle-drawer">
+  <input class="toggle" type="checkbox" id="toggle-search">
+  <label class="toggle-button overlay" for="toggle-drawer"></label>
+  <header class="header">    <nav aria-label="Header">
+      <div class="bar default">
+        <div class="button button-menu" role="button" aria-label="Menu">
+          <label class="toggle-button icon icon-menu" for="toggle-drawer">
+            <span></span>
+          </label>
+        </div>
+        <div class="stretch">
+          <div class="title">
+            <a href="../index.html" >
+            <img src="../images/header-intro-site/site-header.png">    Options</a>
+          </div>
+        </div>
+            
+      </div>
+      <div class="bar search">
+        <div class="button button-close" role="button" aria-label="Close">
+          <label class="toggle-button icon icon-back" for="toggle-search"></label>
+        </div>
+        <div class="stretch">
+          <div class="field">
+            <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+          </div>
+        </div>
+        <div class="button button-reset" role="button" aria-label="Search">
+          <button class="toggle-button icon icon-close" id="reset-search"></button>
+        </div>
+      </div>
+    </nav></header>
+  <main class="main">    <div class="drawer">
+      <nav aria-label="Navigation">
+        <form action="../search/index.html">
+           <div class="group">      
+              <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+              <span class="highlight"></span>
+              <span class="underline"></span>
+              <label>Search</label>
+              <div style="clear: both;"></div>
+           </div>
+        </form>
+      </nav>
+      
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="toc">
+          
+            <ul>
+
+
+<li>
+  
+    <a  title="Introduction" href="../index.html">Introduction</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Overview" href="../neutron-overview/index.html">Overview</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Compressor" href="../compressor/index.html">Compressor</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Equalizer" href="../equalizer/index.html">Equalizer</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Exciter" href="../exciter/index.html">Exciter</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Gate" href="../gate/index.html">Gate</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Transient Shaper" href="../transient-shaper/index.html">Transient Shaper</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Track Assistant" href="../track-assistant/index.html">Track Assistant</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Masking Meter" href="../masking-meter/index.html">Masking Meter</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="I/O Section" href="../io-section/index.html">I/O Section</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Mix Tap" href="../mix-tap/index.html">Mix Tap</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Visual Mixer" href="../visual-mixer/index.html">Visual Mixer</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Tonal Balance Control" href="../tonal-balance-control/index.html">Tonal Balance Control</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Preset System" href="../preset-system/index.html">Preset System</a>
+  
+</li>
+
+
+<li>
+  
+    <a class="current" title="Options" href="index.html">Options</a><ul id="scrollspy">
+</ul>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Undo History" href="../undo-history/index.html">Undo History</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Tips &amp; Examples" href="../tips-and-examples/index.html">Tips &amp; Examples</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Authorization" href="../authorization/index.html">Authorization</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Customer Care" href="../customer-care/index.html">Customer Care</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="License Information" href="../license-information/index.html">License Information</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="EULA" href="../eula/index.html">EULA</a>
+  
+</li>
+
+
+</ul>
+          
+          
+                  <hr />
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a></li>
+        </ul>
+        <hr />
+
+    
+          
+          
+            <ul>
+            
+              <li><a href="../../ja/options/index.html"><i class="icon icon-eye"></i> 日本語での表示ページ</a></li>
+            
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </div><article class="article">
+      <div class="wrapper">
+	<h1>Options </h1>
+    
+      
+              <div class="lang-buttons-box">
+      <span class="lang-header">Languages:</span>
+      <br />
+        
+      
+        
+             <a href="../../ja/options/index.html"><button class="lang-btn-active">English</button></a>
+             
+        <a href="../../ja/options/index.html"><button class="lang-btn-clickable">日本語</button></a>
+          
+      </div>
+      
+    
+    
+    
+
+
+
+
+
+
+<nav>
+  
+  <h4>Table of Contents</h4>
+  <ul>
+    
+      
+      
+
+      
+      
+      <li>
+        <a href="index.html#general">General</a>
+      
+  
+      
+      
+
+      
+      
+        
+        
+          
+      
+          
+          </li>
+          
+          <li>
+            <a href="index.html#metering">Metering</a>
+      
+      
+  
+      
+      
+
+      
+      
+        
+        
+          
+      
+          
+          </li>
+          
+          <li>
+            <a href="index.html#social">Social</a>
+      
+      
+  
+      
+      
+
+      
+      
+        
+        
+          
+      
+          
+          </li>
+          
+          <li>
+            <a href="index.html#equalizer">Equalizer</a>
+      
+      
+  
+      
+      
+
+      
+      
+        
+        
+          
+      
+          
+          </li>
+          
+          <li>
+            <a href="index.html#crossovers">Crossovers</a>
+      
+        
+          
+      
+  
+  
+  
+      
+    </ul>
+  </nav>
+  
+  
+    
+    
+    
+	
+
+<h2 id="general">General</h2>
+
+<h3 id="enable-tooltips">Enable Tooltips</h3>
+
+<p>This allows you to toggle off tooltips should you find them distracting, or enable them should you desire the guidance and information on any parameter you mouse over.</p>
+
+<h3 id="auto-gain">Auto Gain</h3>
+
+<p>When enabled, gain will be applied to the output of Neutron <strong>when it is bypassed.</strong> Gain is applied to the bypassed output signal to match the level of the processed output signal. This allows you to compare the processed output against the bypassed output without significant changes in level.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><ul>
+<li>The Auto Gain option only affects the bypassed output of Neutron.</li>
+<li>True Bypass and Auto Gain cannot be enabled at the same time.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="true-bypass">True Bypass</h3>
+
+<p>Click this box to allow Neutron to disengage a module’s latency when that module is bypassed. This results in a click as the audio transitions, but avoids unnecessary latency compensation and CPU usage.</p>
+
+<h3 id="enable-analytics">Enable Analytics</h3>
+
+<p>Click this box to allow Neutron to occasionally upload data on your usage patterns of the plug-in to iZotope’s servers. This info is completely anonymous, and allows us to better understand how users use Neutron in order to provide the best updates possible in the future.</p>
+
+<h3 id="channel-delay">Channel Delay</h3>
+
+<p>Left and right channel delay amounts (in milliseconds) can be linked or adjusted independently.</p>
+
+<h3 id="updates">Updates</h3>
+
+<p>Neutron allows you to check for updates from iZotope with recurring frequency. Check Now is an instant check, but you can also define periodic, automatic checks.</p>
+
+<p>These options are:</p>
+
+<ul>
+<li>Never</li>
+<li>Daily</li>
+<li>Weekly</li>
+<li>Monthly</li>
+</ul>
+
+<h3 id="authorization">Authorization</h3>
+
+<p>This section allows you to authorize and deauthorize Neutron. Clicking on “Authorize” will open the authorization window. Clicking on “Remove Authorization” will remove the authorization from your machine. Clicking on “More information…” will take you to the authorization help section of iZotope’s website.</p>
+
+<p>Visit the <a href="../authorization/index.html">Authorization</a> chapter for more information on authorizing Neutron.</p>
+
+<h2 id="metering">Metering</h2>
+
+<h3 id="i-o">I/O</h3>
+
+<h4 id="meter-type">Meter type</h4>
+
+<p>This allows you to switch Neutron’s metering between a Peak+RMS combo meter and a Peak+Short-term loudness combo meter.</p>
+
+<p>The combined Peak+RMS meter displays a lower bright bar representing the average level (RMS) and a higher dimmer bar representing peak level. There is also a moving line above the bar representing the most recent peak level or peak hold.</p>
+
+<p>Short-term loudness is a level measurement typically used in audio post production, but can be useful for music production as well. Short-term loudness offers a more perceptually accurate measurement than RMS. It is a calculation of loudness over the course of a moving window of three seconds. This measurement is useful in monitoring immediate trends of loudness in your audio.</p>
+
+<h4 id="detect-true-peaks">Detect True Peaks</h4>
+
+<p>By default the Input/Output meters will only indicate clipping which occurs within the digital domain. To accurately measure the signal that will result from digital to analog conversion, select “Detect True Peaks.”</p>
+
+<h3 id="spectrum">Spectrum</h3>
+
+<h4 id="spectrum-type">Spectrum Type</h4>
+
+<p>This feature lets you select between four types of spectrums:</p>
+
+<ul>
+<li><strong>Linear</strong>: A continuous line connecting the calculated points of the spectrum.</li>
+<li><strong>1/3 Octave</strong>: Splits the spectrum into bars with a width of 1/3 of an octave. Although the spectrum is split into discrete bands, this option can provide excellent resolution at lower frequencies.</li>
+<li><strong>Critical</strong>: Splits the spectrum into bands that correspond to how we hear, or more specifically how we differentiate between sounds of different frequencies. Each band represents sounds that are considered “similar” in frequency.</li>
+<li><strong>Full Octave</strong>: Splits the spectrum into bars with a width of one full octave.</li>
+</ul>
+
+<h4 id="average-time">Average Time</h4>
+
+<p>This feature averages the spectrum according to this setting. Higher average times can be useful for viewing the overall tonal balance of a mix, while shorter average times provide a more real-time display.</p>
+
+<h4 id="show-peak-hold">Show Peak Hold</h4>
+
+<p>This option toggles the peak hold display on or off in the spectrum meters.</p>
+
+<h4 id="peak-hold-time">Peak Hold Time</h4>
+
+<p>Peak hold time determines how long peaks are displayed after they are detected.</p>
+
+<p>Choices include:</p>
+
+<ul>
+<li>5 ms</li>
+<li>250 ms</li>
+<li>500 ms</li>
+<li>1,000 ms</li>
+<li>5,000 ms</li>
+<li>Infinite</li>
+</ul>
+
+<h2 id="social">Social</h2>
+
+<p>This tab links you to iZotope’s social media networks, as well as a few other online areas that contain useful educational content.</p>
+
+<h2 id="equalizer">Equalizer</h2>
+
+<h3 id="show-spectrum">Show Spectrum</h3>
+
+<p>Check this box to display a real-time spectrum analyzer signal underneath the Equalizer curve. This can be very useful in showing the frequency balance of your mix and how it is changed as you apply equalization.</p>
+
+<h3 id="show-musical-units">Show Musical Units</h3>
+
+<p>When this setting is checked, it allows you to display frequency labels as notes (for example, A4) in addition to the conventional EQ measurement of Hz.</p>
+
+<h3 id="spectrum-frequency-scale">Spectrum Frequency Scale</h3>
+
+<p>Allows you to adjust the scale of the EQ frequency spectrum.</p>
+
+<h3 id="alt-solo-q">Alt-Solo Q</h3>
+
+<p>Sets the bandwidth (Q) of the Alt-Solo Feature, which allows you to solo bands and sweep through the spectrum when holding Alt and left-clicking.</p>
+
+<h3 id="masking-meter-collison-historgram-peak-time">Masking Meter Collison Historgram Peak Time</h3>
+
+<p>This control adjusts the calculation window of peaks displayed in the Masking Meter Collison Histogram.</p>
+
+<h3 id="gain-offset">Gain Offset</h3>
+
+<p>This control allows you to offset the input level for the Masking Meter to match the fader level of your current track.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Masking Meter options</p>
+<p><ul>
+<li>For more information about the Masking Meter options, visit the <a href="../masking-meter/index.html">Masking Meter</a> chapter.</li>
+</ul>
+</p>
+</div>
+
+<h2 id="crossovers">Crossovers</h2>
+
+<p>The Compress, Transient, Exciter and Gate tabs contain crossover options for multiband processing. The crossover options include:</p>
+
+<ul>
+<li><strong>ZERO LATENCY (ANALOG)</strong>: This option provides a natural analog character at the expense of some phase distortion.</li>
+<li><strong>TRANSPARENT (HYBRID)</strong>: This option provides an IIR (Infinite Impulse Response) analog crossover designed to reduce the phase and frequency distortion commonly found in other analog crossovers without sacrificing efficiency and warmth.</li>
+</ul>
+
+</div>
+    </article>
+    <footer class="footer">
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../preset-system/index.html" title="Preset System">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Preset System
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  <div class="next">
+  
+      <a href="../undo-history/index.html" title="Undo History">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Undo History
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+<div class="copyright">
+
+  
+  
+  <a href="../../ja/options/index.html"><i class="icon icon-eye"></i> 日本語での表示ページ</a>
+  
+
+  <br />
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Neutron 2 Help Documentation 
+
+</div></footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>  <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </main>
+  </body>
+</html>

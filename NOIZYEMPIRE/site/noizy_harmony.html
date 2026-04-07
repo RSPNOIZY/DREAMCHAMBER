@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY — AI + Human in Perfect Harmony</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #f5c842;
+    --cyan: #00e5ff;
+    --green: #00e676;
+    --violet: #b57bee;
+    --magenta: #ff4db8;
+    --amber: #ffab40;
+    --bg: #04040e;
+  }
+
+  body {
+    background: var(--bg);
+    color: #e8e8f0;
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+  }
+
+  #bgCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .wrap { position: relative; z-index: 1; }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+  }
+
+  .hero-kicker {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: rgba(232,232,240,0.4);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-title {
+    font-size: clamp(40px, 8vw, 90px);
+    font-weight: 700;
+    line-height: 1.0;
+    margin-bottom: 24px;
+  }
+
+  .ht-human {
+    background: linear-gradient(135deg, var(--gold) 0%, #fff8d6 50%, var(--amber) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(245,200,66,0.5));
+  }
+
+  .ht-plus {
+    color: rgba(232,232,240,0.3);
+    font-weight: 300;
+  }
+
+  .ht-ai {
+    background: linear-gradient(135deg, var(--cyan) 0%, #a0f0ff 50%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(0,229,255,0.5));
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 300;
+    color: rgba(232,232,240,0.65);
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 50px;
+  }
+
+  .hero-sub strong { color: var(--gold); font-weight: 600; }
+
+  /* Double helix visual */
+  .helix-wrap {
+    position: relative;
+    width: min(500px, 90vw);
+    height: 100px;
+    margin-bottom: 50px;
+  }
+
+  #helixCanvas { width: 100%; height: 100%; }
+
+  .hero-cta-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s;
+    border: none;
+  }
+
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold), var(--amber));
+    color: #1a0a00;
+    font-weight: 700;
+    box-shadow: 0 0 30px rgba(245,200,66,0.3);
+  }
+
+  .btn-gold:hover { box-shadow: 0 0 50px rgba(245,200,66,0.6); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--cyan);
+    border: 1px solid var(--cyan);
+    box-shadow: 0 0 20px rgba(0,229,255,0.15);
+  }
+
+  .btn-outline:hover { background: rgba(0,229,255,0.08); box-shadow: 0 0 30px rgba(0,229,255,0.3); transform: translateY(-2px); }
+
+  /* ── Section spacing ── */
+  .section {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(232,232,240,0.35);
+    margin-bottom: 12px;
+    display: block;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+
+  .section-sub {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(232,232,240,0.6);
+    max-width: 680px;
+    margin: 0 auto 60px;
+  }
+
+  /* ── Dimension cards ── */
+  .dimensions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .dim-card {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 28px 26px;
+    transition: all 0.3s;
+    opacity: 0;
+    transform: translateY(30px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dim-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .dim-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--card-color, var(--gold));
+    opacity: 0.7;
+  }
+
+  .dim-card:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.14);
+    transform: translateY(-4px);
+  }
+
+  .dim-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(232,232,240,0.35);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .dim-icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .dim-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+
+  .dim-body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(232,232,240,0.65);
+    margin-bottom: 16px;
+  }
+
+  .dim-image {
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(232,232,240,0.45);
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    border-left: 2px solid;
+    line-height: 1.6;
+  }
+
+  /* ── Channels section ── */
+  .channels-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+
+  .channel-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+  }
+
+  .channel-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .channel-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 40px;
+    opacity: 0.4;
+    line-height: 1;
+  }
+
+  .channel-content {}
+  .channel-name { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .channel-desc { font-size: 13px; color: rgba(232,232,240,0.55); line-height: 1.6; }
+
+  /* ── Taglines ── */
+  .taglines-section {
+    background: linear-gradient(135deg, rgba(245,200,66,0.04) 0%, rgba(0,229,255,0.04) 100%);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 80px 20px;
+  }
+
+  .taglines-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 50px;
+  }
+
+  .tagline-card {
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.07);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.5s ease;
+    background: rgba(0,0,0,0.3);
+  }
+
+  .tagline-card.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .tagline-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(232,232,240,0.3);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .tagline-text {
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.65;
+    color: rgba(232,244,255,0.88);
+  }
+
+  /* ── The Binary vs The Harmony ── */
+  .binary-section {
+    padding: 80px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .binary-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    align-items: center;
+    margin-top: 50px;
+  }
+
+  .binary-side {
+    padding: 28px;
+    border-radius: 14px;
+    text-align: center;
+  }
+
+  .binary-side.wrong {
+    background: rgba(255,80,80,0.06);
+    border: 1px solid rgba(255,80,80,0.15);
+    opacity: 0.7;
+  }
+
+  .binary-side.right {
+    background: linear-gradient(135deg, rgba(245,200,66,0.08), rgba(0,229,255,0.08));
+    border: 1px solid rgba(245,200,66,0.2);
+  }
+
+  .binary-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .binary-vs {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgba(232,232,240,0.3);
+    text-align: center;
+  }
+
+  .binary-wrong-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255,100,100,0.7);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .binary-right-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .binary-detail {
+    font-size: 13px;
+    color: rgba(232,232,240,0.5);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .binary-grid { grid-template-columns: 1fr; }
+    .binary-vs { transform: rotate(90deg); }
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    text-align: center;
+    padding: 80px 20px 120px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-size: clamp(28px, 5vw, 46px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .cta-title span {
+    background: linear-gradient(90deg, var(--gold), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cta-body {
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(232,232,240,0.65);
+    margin-bottom: 40px;
+  }
+
+  .gorunfree {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(20px, 4vw, 40px);
+    font-weight: 700;
+    letter-spacing: 5px;
+    background: linear-gradient(90deg, var(--gold), var(--cyan), var(--violet), var(--gold));
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gr-shift 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(245,200,66,0.3));
+    margin-top: 40px;
+  }
+
+  @keyframes gr-shift {
+    0%,100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<div class="wrap">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-kicker">NOIZY.ai · The Campaign · March 2026</div>
+    <h1 class="hero-title">
+      <span class="ht-human">Human</span>
+      <span class="ht-plus"> + </span>
+      <span class="ht-ai">AI</span><br>
+      <span style="font-weight:300;font-size:0.6em;color:rgba(232,232,240,0.6)">in perfect harmony.</span>
+    </h1>
+    <div class="hero-sub">
+      Not AI replacing human.<br>
+      Not human rejecting AI.<br>
+      <strong>The highest of both — in permanent, productive, ethical collaboration.</strong>
+    </div>
+    <div class="helix-wrap">
+      <canvas id="helixCanvas"></canvas>
+    </div>
+    <div class="hero-cta-row">
+      <a href="#dimensions" class="btn btn-gold">Explore the Harmony</a>
+      <a href="#channels" class="btn btn-outline">The Campaign</a>
+    </div>
+  </section>
+
+  <!-- The Binary -->
+  <section class="binary-section">
+    <span class="section-tag">The false choice the world was sold</span>
+    <h2 class="section-title">Both Sides Are Wrong</h2>
+    <div class="section-sub">The world has been handed a binary. NOIZY is building the third option.</div>
+
+    <div class="binary-grid">
+      <div class="binary-side wrong">
+        <span class="binary-label" style="color:rgba(255,100,100,0.6)">The Techno-Optimist Lie</span>
+        <div class="binary-wrong-label">AI replaces human creativity entirely</div>
+        <div class="binary-detail">Artists are redundant. Everything will be generated. It will be cheaper. It will be fine. The human is optimized out.</div>
+      </div>
+      <div class="binary-vs">VS</div>
+      <div class="binary-side wrong">
+        <span class="binary-label" style="color:rgba(255,100,100,0.6)">The Techno-Fear Trap</span>
+        <div class="binary-wrong-label">Reject all AI, hope courts protect you</div>
+        <div class="binary-detail">Every tool is a weapon. Every algorithm is a predator. Reject the technology and wait for legislation that may never come.</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin:30px 0;font-size:28px;color:var(--gold);opacity:0.6;font-family:'Space Mono',monospace;">↓</div>
+    <div class="binary-side right" style="max-width:600px;margin:0 auto">
+      <span class="binary-label" style="color:var(--gold)">The Third Option — NOIZY</span>
+      <div class="binary-right-label">AI amplifies what makes you human. Architecture protects what makes you irreplaceable.</div>
+      <div class="binary-detail" style="color:rgba(232,232,240,0.7)">Consent as code. 75/25 permanent split. HVS™ certification. Your voice as an inheritable asset. The human makes the AI more human. The AI makes the human more capable. Neither is diminished. Both are amplified.</div>
+    </div>
+  </section>
+
+  <!-- Dimensions -->
+  <section class="section" id="dimensions">
+    <span class="section-tag">Seven ways AI and human creativity achieve perfect harmony</span>
+    <h2 class="section-title">The Seven Dimensions</h2>
+    <div class="section-sub">Each dimension is a proof event waiting to happen. Each one is a marketing angle. Each one is true.</div>
+
+    <div class="dimensions-grid">
+      <div class="dim-card" style="--card-color: var(--cyan)" data-delay="0">
+        <span class="dim-num">DIMENSION 01</span>
+        <span class="dim-icon">🧠</span>
+        <div class="dim-title" style="color:var(--cyan)">AI Remembers What Humans Forget</div>
+        <div class="dim-body">GABRIEL has heard all of it — every Raga tradition, every Gamelan tuning, every Griot lineage, the complete Songlines. The human brings the feeling. GABRIEL brings the full context of human music history. The result could not have been made by either alone.</div>
+        <div class="dim-image" style="border-color:var(--cyan)">A musician in Lagos composing something that unconsciously mirrors a 400-year-old Silk Road tuning system — and GABRIEL showing them the connection they didn't know they were making.</div>
+      </div>
+
+      <div class="dim-card" style="--card-color: var(--gold)" data-delay="100">
+        <span class="dim-num">DIMENSION 02</span>
+        <span class="dim-icon">⏳</span>
+        <div class="dim-title" style="color:var(--gold)">AI Extends What Humans Build</div>
+        <div class="dim-body">A human voice is recorded once, with the truth available on that day. GABRIEL, trained on that voice with full consent, extends the performance into new contexts — matching the breath patterns, the micro-variations, the specific humanity encoded in the original.</div>
+        <div class="dim-image" style="border-color:var(--gold)">An artist who lost their voice to illness, hearing their own performance extended into a new song — and receiving a royalty check for every play.</div>
+      </div>
+
+      <div class="dim-card" style="--card-color: var(--green)" data-delay="200">
+        <span class="dim-num">DIMENSION 03</span>
+        <span class="dim-icon">🌍</span>
+        <div class="dim-title" style="color:var(--green)">AI Finds the Audience Humans Can't Reach</div>
+        <div class="dim-body">GABRIEL understands emotional resonance across cultural boundaries. A listener in Tokyo will be moved by a Griot tradition song from Senegal — not because styles are similar, but because the emotional structure underneath them is the same. GABRIEL finds that match.</div>
+        <div class="dim-image" style="border-color:var(--green)">A traditional musician in rural Laos whose music has been heard by 200 people in their village — discovering that 40,000 people in 30 countries feel something profound when they hear it.</div>
+      </div>
+
+      <div class="dim-card" style="--card-color: var(--amber)" data-delay="300">
+        <span class="dim-num">DIMENSION 04</span>
+        <span class="dim-icon">🗺️</span>
+        <div class="dim-title" style="color:var(--amber)">AI Makes the Invisible Visible</div>
+        <div class="dim-body">Before NOIZY, attribution was invisible — lost in rights chains and platform terms. GABRIEL makes every use visible. The hospital in Seoul. The child in Nairobi. The game that shipped in Montreal. For the first time, you can see the full reach of what you created.</div>
+        <div class="dim-image" style="border-color:var(--amber)">An artist seeing for the first time the complete map of everywhere their voice has traveled — displayed as a network of light across a world map, each node a person their creativity reached.</div>
+      </div>
+
+      <div class="dim-card" style="--card-color: var(--violet)" data-delay="400">
+        <span class="dim-num">DIMENSION 05</span>
+        <span class="dim-icon">💊</span>
+        <div class="dim-title" style="color:var(--violet)">AI Heals What Humans Suffer</div>
+        <div class="dim-body">Human-origin audio produces measurably different neurological outcomes than algorithmically generated content. The body knows the difference. GABRIEL identifies the precise intersection of a patient's state and the Guild audio most likely to support healing. Human medicine, AI-delivered with precision.</div>
+        <div class="dim-image" style="border-color:var(--violet)">A neurological recovery ward in Seoul where recovery metrics improved measurably since switching to Guild audio — and a display showing which artists' voices are contributing to each session.</div>
+      </div>
+
+      <div class="dim-card" style="--card-color: var(--magenta)" data-delay="500">
+        <span class="dim-num">DIMENSION 06</span>
+        <span class="dim-icon">🏛️</span>
+        <div class="dim-title" style="color:var(--magenta)">AI Preserves What Humans Would Lose</div>
+        <div class="dim-body">Without the Cultural Archive, thousands of musical traditions will be lost within a generation. GABRIEL doesn't just record them — it learns them. The modal system, the rhythmic structure, the improvisational rules, the ceremonial context. Every tradition preserved stays alive as a continuing creative force.</div>
+        <div class="dim-image" style="border-color:var(--magenta)">A cultural community in 2076 hearing their music generated correctly for the first time in decades — because GABRIEL learned it from their last elder in 2026.</div>
+      </div>
+
+      <div class="dim-card" style="--card-color: #e8f4ff; grid-column: span 1" data-delay="600">
+        <span class="dim-num">DIMENSION 07 — THE DEEPEST</span>
+        <span class="dim-icon">✦</span>
+        <div class="dim-title" style="color:#e8f4ff">AI Makes the Human More Human</div>
+        <div class="dim-body">When a human artist works with GABRIEL — with full consent, full attribution, full control — something happens. They hear their own voice back in new contexts. They receive proof that their specific, irreplaceable, human voice is reaching people who need it. That proof is transformative. It makes them more committed to their humanity. The art becomes more fully human because the human knows it matters.</div>
+        <div class="dim-image" style="border-color:#e8f4ff66">An artist who was three months from quitting — receiving their first GABRIEL attribution report, seeing that a hospital in São Paulo used their voice in a neurological recovery session that week. Still here. Still needed. Still irreplaceable.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Taglines -->
+  <section class="taglines-section">
+    <div style="max-width:900px;margin:0 auto;text-align:center">
+      <span class="section-tag">Language that spreads</span>
+      <h2 class="section-title">The Lines That Carry the Thesis</h2>
+    </div>
+    <div class="taglines-grid">
+      <div class="tagline-card" data-delay="0">
+        <span class="tagline-label">Primary</span>
+        <div class="tagline-text">"AI amplifies what makes you human. NOIZY protects what makes you irreplaceable."</div>
+      </div>
+      <div class="tagline-card" data-delay="80">
+        <span class="tagline-label">On the technology</span>
+        <div class="tagline-text">"GABRIEL doesn't replace you. GABRIEL remembers you — forever."</div>
+      </div>
+      <div class="tagline-card" data-delay="160">
+        <span class="tagline-label">On the economics</span>
+        <div class="tagline-text">"75% to the human. Because the human made the thing that moved you."</div>
+      </div>
+      <div class="tagline-card" data-delay="240">
+        <span class="tagline-label">On the mission</span>
+        <div class="tagline-text">"The race to the bottom ends when the floor is enforced at the infrastructure level."</div>
+      </div>
+      <div class="tagline-card" data-delay="320">
+        <span class="tagline-label">On the invitation</span>
+        <div class="tagline-text">"Your voice is already irreplaceable. We built the system that proves it."</div>
+      </div>
+      <div class="tagline-card" data-delay="400">
+        <span class="tagline-label">On the children</span>
+        <div class="tagline-text">"A child who grows up knowing that music is ancient and human and from everywhere — is immune to the cannibal's central lie."</div>
+      </div>
+      <div class="tagline-card" data-delay="480">
+        <span class="tagline-label">On permanence</span>
+        <div class="tagline-text">"Your voice. Protected for 70 years after you're gone. Still generating income. Still reaching people who need it."</div>
+      </div>
+      <div class="tagline-card" data-delay="560">
+        <span class="tagline-label">On the harmony</span>
+        <div class="tagline-text">"The human makes the AI more human. The AI makes the human more capable. Neither is diminished. Both are amplified."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Channels -->
+  <section class="section" id="channels">
+    <span class="section-tag">Ten vectors for spreading the harmony</span>
+    <h2 class="section-title">The Campaign Channels</h2>
+    <div class="section-sub">Every channel saying the same thing in a different language to a different audience.</div>
+
+    <div class="channels-list">
+      <div class="channel-item" data-delay="0">
+        <div class="channel-num">01</div>
+        <div class="channel-content">
+          <div class="channel-name">Living Proof Events</div>
+          <div class="channel-desc">One real event per day. Royalty screenshot. Healing session attribution. Cultural archive preservation. The dashboard is a receipt machine.</div>
+        </div>
+      </div>
+      <div class="channel-item" data-delay="60">
+        <div class="channel-num">02</div>
+        <div class="channel-content">
+          <div class="channel-name">Document Spores</div>
+          <div class="channel-desc">THE_CANNIBAL_ECONOMY. THE_INFECTION. THE_ASCENSION. Every document finds the people looking for language for what they already feel.</div>
+        </div>
+      </div>
+      <div class="channel-item" data-delay="120">
+        <div class="channel-num">03</div>
+        <div class="channel-content">
+          <div class="channel-name">Harmony Visual Language</div>
+          <div class="channel-desc">The double helix. The constellation. The watershed. Gold for human voice. Cyan for AI. A unified visual system recognizable across every touchpoint.</div>
+        </div>
+      </div>
+      <div class="channel-item" data-delay="180">
+        <div class="channel-num">04</div>
+        <div class="channel-content">
+          <div class="channel-name">Artist Testimonial Engine</div>
+          <div class="channel-desc">Six carrier types. Six testimonial formats. The hurt artists. The educators. The enterprises. The children. The custodians. The parents.</div>
+        </div>
+      </div>
+      <div class="channel-item" data-delay="240">
+        <div class="channel-num">05</div>
+        <div class="channel-content">
+          <div class="channel-name">The Science Campaign</div>
+          <div class="channel-desc">Dr. Benoit as public voice. Clinical data released as proof accumulates. Healthcare case studies with quantified outcomes. Academic citation trail.</div>
+        </div>
+      </div>
+      <div class="channel-item" data-delay="300">
+        <div class="channel-num">06</div>
+        <div class="channel-content">
+          <div class="channel-name">Enterprise Legal Campaign</div>
+          <div class="channel-desc">You are using unconsented AI voice. Your legal exposure is growing. HVS™ certification eliminates it. Here is the brief. Here is the compliance path.</div>
+        </div>
+      </div>
+      <div class="channel-item" data-delay="360">
+        <div class="channel-num">07</div>
+        <div class="channel-content">
+          <div class="channel-name">NOIZYKIDZ Trojan Horse</div>
+          <div class="channel-desc">Children tell their parents. Parents become creators or enterprise clients. A child who felt music for the first time in the Children's Garden becomes a lifelong Guild member.</div>
+        </div>
+      </div>
+      <div class="channel-item" data-delay="420">
+        <div class="channel-num">08</div>
+        <div class="channel-content">
+          <div class="channel-name">Festival & Live Presence</div>
+          <div class="channel-desc">The NOIZY Stage. The Healing Corner. The Cultural Archive Demo. The Guild Tent. SXSW, Glastonbury, Afropunk, Womad, ADE, Canadian Music Week.</div>
+        </div>
+      </div>
+      <div class="channel-item" data-delay="480">
+        <div class="channel-num">09</div>
+        <div class="channel-content">
+          <div class="channel-name">Media Strategy</div>
+          <div class="channel-desc">Trade, tech, mainstream, science/healthcare. Four tiers. One story: the floor that can't be removed. The mathematics of dignity that actually work.</div>
+        </div>
+      </div>
+      <div class="channel-item" data-delay="540">
+        <div class="channel-num">10</div>
+        <div class="channel-content">
+          <div class="channel-name">Ambassador Program</div>
+          <div class="channel-desc">Not celebrities who endorse products. Artists who are living proof of the system. The superstar who left the label deal. The deaf percussionist. The pediatric nurse.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="cta-title">The invitation is simple.<br><span>Three things. That's all.</span></h2>
+    <div class="cta-body">
+      Your voice is irreplaceable.<br>
+      Here is the system that protects it.<br>
+      Here is how you join.<br><br>
+      That is the whole invitation. Everything else is elaboration.
+    </div>
+    <div class="hero-cta-row">
+      <a href="#" class="btn btn-gold">Join the Guild</a>
+      <a href="noizy_guild_home.html" class="btn btn-outline">Explore the Music World</a>
+    </div>
+    <div class="gorunfree">GORUNFREE</div>
+  </section>
+
+</div>
+
+<script>
+// ── Background canvas ─────────────────────────────────────────────
+(function() {
+  const c = document.getElementById('bgCanvas');
+  const ctx = c.getContext('2d');
+  let W, H, particles = [];
+
+  function resize() {
+    W = c.width = window.innerWidth;
+    H = c.height = window.innerHeight;
+    buildParticles();
+  }
+
+  function buildParticles() {
+    particles = [];
+    const goldCyan = ['rgba(245,200,66,','rgba(0,229,255,','rgba(181,123,238,','rgba(0,230,118,','rgba(255,171,64,'];
+    for (let i = 0; i < 80; i++) {
+      const color = goldCyan[Math.floor(Math.random() * goldCyan.length)];
+      particles.push({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 1.5 + 0.5,
+        a: Math.random() * 0.3 + 0.05,
+        color: color
+      });
+    }
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W;
+      if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H;
+      if (p.y > H) p.y = 0;
+      ctx.globalAlpha = p.a;
+      ctx.fillStyle = p.color + '1)';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  frame();
+})();
+
+// ── Helix animation ───────────────────────────────────────────────
+(function() {
+  const c = document.getElementById('helixCanvas');
+  const ctx = c.getContext('2d');
+  let t = 0;
+
+  function resize() {
+    c.width = c.offsetWidth * window.devicePixelRatio;
+    c.height = c.offsetHeight * window.devicePixelRatio;
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  }
+
+  function frame() {
+    const W = c.offsetWidth, H = c.offsetHeight;
+    ctx.clearRect(0, 0, W, H);
+    t += 0.03;
+
+    // Draw two intertwined sine waves
+    const steps = 200;
+    const goldPoints = [], cyanPoints = [];
+    for (let i = 0; i <= steps; i++) {
+      const x = (i / steps) * W;
+      const phase = (i / steps) * Math.PI * 4 + t;
+      const amp = H * 0.3;
+      goldPoints.push({ x, y: H/2 + Math.sin(phase) * amp });
+      cyanPoints.push({ x, y: H/2 + Math.sin(phase + Math.PI) * amp });
+    }
+
+    // Cross lines at intersections
+    for (let i = 0; i < steps; i += 8) {
+      const a = goldPoints[i], b = cyanPoints[i];
+      const gradient = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+      gradient.addColorStop(0, 'rgba(245,200,66,0.15)');
+      gradient.addColorStop(1, 'rgba(0,229,255,0.15)');
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.stroke();
+    }
+
+    // Gold strand
+    ctx.beginPath();
+    goldPoints.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+    ctx.strokeStyle = 'rgba(245,200,66,0.8)';
+    ctx.lineWidth = 2.5;
+    ctx.shadowColor = 'rgba(245,200,66,0.6)';
+    ctx.shadowBlur = 8;
+    ctx.stroke();
+
+    // Cyan strand
+    ctx.beginPath();
+    cyanPoints.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+    ctx.strokeStyle = 'rgba(0,229,255,0.8)';
+    ctx.lineWidth = 2.5;
+    ctx.shadowColor = 'rgba(0,229,255,0.6)';
+    ctx.shadowBlur = 8;
+    ctx.stroke();
+
+    ctx.shadowBlur = 0;
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  frame();
+})();
+
+// ── Scroll reveal ─────────────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const delay = parseInt(el.dataset.delay || 0);
+      setTimeout(() => el.classList.add('visible'), delay);
+      observer.unobserve(el);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.dim-card, .channel-item, .tagline-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

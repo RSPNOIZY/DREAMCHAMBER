@@ -1,0 +1,1264 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="ja">
+  <head lang="ja">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Ozone応用 - Ozone8ユーザーズマニュアル</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/ja/ozone-app-overview/">
+    <meta property="og:title" content="Ozone8ユーザーズマニュアル">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone8ユーザーズマニュアル">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | Ozone応用</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="はじめに" href="../index.html">
+	
+	はじめに
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8の概要" href="../ozone-overview/index.html">
+	
+	Ozone 8の概要
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Ozone応用" href="index.html">
+	
+	Ozone応用
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プリセットシステム" href="../preset-system/index.html">
+	
+	プリセットシステム
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="全般的な機能" href="../general-functions/index.html">
+	
+	全般的な機能
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="モジュールの標準的な操作項目" href="../common-module-controls/index.html">
+	
+	モジュールの標準的な操作項目
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミクス" href="../dynamics/index.html">
+	
+	ダイナミクス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミックEQ" href="../dynamic-eq/index.html">
+	
+	ダイナミックEQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イコライザー" href="../equalizer/index.html">
+	
+	イコライザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="エキサイター" href="../exciter/index.html">
+	
+	エキサイター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イメージャー" href="../imager/index.html">
+	
+	イメージャー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マキシマイザー" href="../maximizer/index.html">
+	
+	マキシマイザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="スペクトラル成形" href="../spectral-shaper/index.html">
+	
+	スペクトラル成形
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージコンプレッサー" href="../vintage-compressor/index.html">
+	
+	ビンテージコンプレッサー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージEQ " href="../vintage-eq/index.html">
+	
+	ビンテージEQ 
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージリミッター" href="../vintage-limiter/index.html">
+	
+	ビンテージリミッター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージテープ" href="../vintage-tape/index.html">
+	
+	ビンテージテープ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="コーデックプレビュー" href="../codec-preview/index.html">
+	
+	コーデックプレビュー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ディザー" href="../dither/index.html">
+	
+	ディザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マスターアシスタント" href="../master-assistant/index.html">
+	
+	マスターアシスタント
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トラックリファレンス" href="../track-referencing/index.html">
+	
+	トラックリファレンス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トーナルバランスコントロール" href="../tonal-balance-control/index.html">
+	
+	トーナルバランスコントロール
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オプション" href="../options/index.html">
+	
+	オプション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プラグインオートメーション" href="../plug-in-automation/index.html">
+	
+	プラグインオートメーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ヒントと用例" href="../tips-and-examples/index.html">
+	
+	ヒントと用例
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーソリゼーション" href="../authorization/index.html">
+	
+	オーソリゼーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotopeカスタマーケアー" href="../customer-care/index.html">
+	
+	iZotopeカスタマーケアー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information (ライセンス情報)" href="../license-information/index.html">
+	
+	License Information (ライセンス情報)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA (エンドユーザー向け使用許諾契約)" href="../eula/index.html">
+	
+	EULA (エンドユーザー向け使用許諾契約)
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../en/ozone-app-overview/index.html"><i class="icon icon-eye"></i> View in English</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>Ozone応用 </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">言語:</span>
+<br />
+    
+
+       
+       <a href="../../en/ozone-app-overview/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+        <a href="../../en/ozone-app-overview/index.html"><button class="lang-btn-active">日本語</button></a>
+       
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+    
+
+	
+
+<h2 id="概要">概要</h2>
+
+<p>Ozone 8のスタンドアローン版は、そのマスタリングツールを、外部DAWから独立したスタンドアローンアプリケーションとして使用することができます。</p>
+
+<p><img src="../images/app.png" alt="app-interface-guide" /></p>
+
+<h2 id="ozoneアプリケーションのインターフェース">Ozoneアプリケーションのインターフェース</h2>
+
+<ul>
+<li><strong>トランスポートバー</strong>: 再生操作とカウンター情報が搭載されます。</li>
+<li><strong>トラックタブ</strong>: 各タブにはオーディオファイルと、使用中のOzoneプロジェクトの関連設定が含まれます。</li>
+<li><strong>波形画面</strong>: 選択されたトラックのグラフィック描写です。</li>
+<li><strong>モジュールチェーン</strong>: 完全にカスタマイズ可能なOzoneモジュールの信号処理チェーンです。</li>
+<li><strong>モジュール操作パネル</strong>: 選択されたモジュールの操作とメーター情報が含まれます。</li>
+<li><strong>プリセット</strong>: プリセットマネージャを開きます。</li>
+<li><strong>マスターアシスタント</strong>: マスターアシスタント操作パネルを開きます。</li>
+<li><strong>入出力セクション</strong>: 入出力のゲイン操作とメーター情報が含まれます。</li>
+<li><strong>試聴セクション</strong>: グローバルバイパス、ゲインマッチ、モノ合算、チャンネル取り換え、リファレンス、コーデックプレビュー[ADV]及びディザーが含まれます。</li>
+</ul>
+
+<h2 id="ファイルメニュー">ファイルメニュー</h2>
+
+<p>Ozoneのファイルメニューからは以下のコマンドを実行することができます:</p>
+
+<ul>
+<li>プロセッシングへ向けOzoneプロジェクトへのオーディオファイルの読み込み。</li>
+<li>プロジェクトの保存。</li>
+<li>処理済みのオーディオファイルのエクスポート。</li>
+</ul>
+
+<h2 id="オーディオのインポート">オーディオのインポート</h2>
+
+<p>Ozoneプロジェクトには、以下の何れかの方法で最大16個のオーディオファイルをインポートすることができます:</p>
+
+<ul>
+<li>画面上部のファイルメニューをクリックし、“Import Audio Files”を選択。</li>
+<li>インターフェースの左上にある“plus”アイコンをクリック。</li>
+<li>キーボードショートカットのCmd+IまたはCtrl+Iを使用: 標準的なダイアログボックスが表示されますので、該当するファイルまでナビゲートし、“Open”をクリックしてプロジェクトへインポートします。</li>
+<li>Ozoneインターフェースにオーディオファイルをドラッグ&amp;ドロップ。</li>
+</ul>
+
+<h3 id="サポートされるインポートファイルの種類">サポートされるインポートファイルの種類</h3>
+
+<table>
+<thead>
+<tr>
+<th>ファイル形式</th>
+<th>ビットデプス</th>
+<th>サンプルレート</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>.wav</td>
+<td>16ビット</td>
+<td>11,250 Hz</td>
+</tr>
+
+<tr>
+<td>.aiff</td>
+<td>20ビット</td>
+<td>22,050 Hz</td>
+</tr>
+
+<tr>
+<td>.mp3</td>
+<td>24ビット</td>
+<td>44,100 Hz</td>
+</tr>
+
+<tr>
+<td>.aac</td>
+<td></td>
+<td>48,000 Hz</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>88,200 Hz</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>96,000 Hz</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>176,400 Hz</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>192,000 Hz</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">サンプルレート</p>
+<p><ul>
+<li>プロジェクトのサンプルレートのデフォルト値は、最初に読み込まれたファイルのサンプルレートが適用されます。</li>
+<li>それ以降に読み込まれたファイルのサンプルレートが異なる場合は、初めのファイルによって定義されたプロジェクトのオリジナルの値、あるいはその後手動で変更した値に変換されます。</li>
+<li>既に変換済み/処理済みのファイルは（読み込みに伴い作業用ファイルとしてコピーされているため）、変換処理は施されません。Ozoneは常にオリジナルのファイルから作業用として新たにコピーを作成し、その作業用ファイルのレートを変換します。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="オーディオのエクスポート">オーディオのエクスポート</h2>
+
+<p>Ozoneアプリケーションからは、以下の何れかの方法で処理されたオーディオファイルをエクスポートすることができます:</p>
+
+<ul>
+<li>ファイルメニューをクリックし、“Export Audio Files”を選択。</li>
+<li>キーボードショートカットのCommand+E (Mac)またはCtrl+E (Windows)を使用。</li>
+</ul>
+
+<p>エクスポートに際し、様々なオプションが提供されるダイアログボックスが表示されます。</p>
+
+<h3 id="現在のトラックと全てのトラック">現在のトラックと全てのトラック</h3>
+
+<ul>
+<li>“Current Track”をクリックすると、現在選択されハイライトされているタブのオーディオファイルのみがエクスポートされます。</li>
+<li>“All Tracks”をクリックすると、プロジェクト内に読み込まれた全てのオーディオファイルが個別にエクスポートされます。</li>
+</ul>
+
+<h4 id="current-track-現在のトラック">Current Track（現在のトラック）</h4>
+
+<p><img src="../images/export.png" alt="export" /></p>
+
+<h3 id="ファイル名-current-track使用時のみ選択可能">ファイル名 (Current Track使用時のみ選択可能)</h3>
+
+<p>このフィールドにファイル名を入力します。エクスポートされるファイルの名称はここに入力したファイル名が反映されます。</p>
+
+<h4 id="all-tracks-全てのトラック">All Tracks（全てのトラック）</h4>
+
+<p><img src="../images/export-all-tracks.png" alt="export" /></p>
+
+<h3 id="テキスト追記-all-tracks使用時のみ選択可能">テキスト追記 (All Tracks使用時のみ選択可能)</h3>
+
+<p>このフィールドにファイル名を入力します。すると、エクスポートされた各トラックに自動的にテキストが追記されます。追記する場所としては、ファイル名の冒頭か末尾のどちらかを選択することができます。これはファイルのタグ付けに便利な機能です。例えば、ファイルのグループに対し、“2014年1月18日セッション”といった追記を行うことができます。</p>
+
+<h3 id="トラック数の追加-all-tracks使用時のみ選択可能">トラック数の追加 (All Tracks使用時のみ選択可能)</h3>
+
+<p>エクスポートダイアログ内の“All Tracks”セクションではエクスポートするトラック数を追加することができます。“Add Track Numbers”のチェックボックスを選択すると、エクスポートされたファイルはOzoneプロジェクト内の順番と同じ順列で数字付けされます。</p>
+
+<h3 id="形式">形式</h3>
+
+<p>エクスポートするファイルの形式を選択します: WAV、AIFF、MP3またはAACの何れかを選択してください。</p>
+
+<div class="admonition note">
+<p class="admonition-title">Ozoneが使用するAAC及びMP3コーデック</p>
+<p><ul>
+<li>AACでエクスポートする場合、Ozoneはフラウンホーファーコーデックを使用します。</li>
+<li>MP3でエクスポートする場合は、LAMEコーデックを使用します(www.mp3dev.org)。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="ビットレート-mp3及びaac使用時のみ選択可能">ビットレート (MP3及びAAC使用時のみ選択可能)</h3>
+
+<p>圧縮ファイル形式のビットレートを設定します。ビットレートが高いほどオーディオ品質は向上します。</p>
+
+<h3 id="保存場所">保存場所</h3>
+
+<p>Pathボタンをクリックするとダイアログボックスが表示されますので、エクスポートするファイルの保存場所を決めてください。</p>
+
+<ul>
+<li>プロジェクトが未保存の場合、デフォルトの保存先は書類フォルダとなります。</li>
+<li>プロジェクトが既に保存されている場合、デフォルトの保存先はプロジェクトと同じ場所にあるExported Audio Filesフォルダとなります。</li>
+</ul>
+
+<h3 id="サンプルレート">サンプルレート</h3>
+
+<p>エクスポートするオーディオファイルのサンプルレートを選択することができます。インポート時と異なるサンプルレートを使用する場合、Ozoneはファイルに対し高品質のサンプルレート変換を適用します。</p>
+
+<div class="admonition note">
+<p class="admonition-title">AACまたはMP3形式でエクスポートする際のサンプルレート</p>
+<p>MP3またはAAC形式が選択されていると、ファイルはサンプルレートが44.1kHzでエクスポートされます。</p>
+</div>
+
+<h3 id="ビットデプス">ビットデプス</h3>
+
+<p>オーディオファイルのビットデプスを選択します。</p>
+
+<h3 id="ディザー有効化">ディザー有効化</h3>
+
+<p>Ozoneは32ビットでファイルを処理するため、32ビット以下でファイルをエクスポートする際は、ディザーの使用が望ましいといえます。32ビット以下のビットデプスでエクスポートを行う際は、この欄をチェックするとエクスポートするファイルに対し高品質のディザー処理が適用されます。</p>
+
+<p>これを行うことにより、ビットデプスを低くしてエクスポートする際に、より高いビットデプス域の音質とダイナミックレンジが保持されます。</p>
+
+<p>例えば、24ビット環境でオーディオ録音を行い、32ビットで処理を行うOzoneのようなアプリケーションにオーディオをインポートして処理を施すのはワークフローとして一般化しています。</p>
+
+<p>しかしながら、オーディオ素材を商用CDとしてリリースする場合、オーディオコンテンツは規格の関係上、どこかの段階で16ビットに変換される必要があります。</p>
+
+<h3 id="ヘルプ">ヘルプ</h3>
+
+<p>HelpボタンをクリックするとOzone 8のヘルプドキュメントが開きます。</p>
+
+<h3 id="キャンセル">キャンセル</h3>
+
+<p>エクスポート作業をキャンセルし、メイン画面へ戻る際はCancelボタンをクリックします。</p>
+
+<h3 id="エクスポート">エクスポート</h3>
+
+<p>Exportボタンをクリックするとエクスポートが始まります（MP3とAACの場合はトラック情報画面が表示されます）。エクスポート中は、その進捗状況を表すダイアログ画面が表示され、リアルタイム以上の速度でエクスポートが行われます。</p>
+
+<h3 id="トラック情報-mp3及びaac使用時のみ選択可能">トラック情報 (MP3及びAAC使用時のみ選択可能)</h3>
+
+<p>MP3またはAACが選択された場合、Exportボタンをクリックするとトラック情報画面が表示されます。ここではファイルのメタデータを入力することができます。MP3の場合はID3v2.3形式でタグ付けが行われ、AACはiTunesスタイルのタグを使用します。</p>
+
+<h2 id="トランスポート">トランスポート</h2>
+
+<p>Ozoneには画面上部に便利なトランスポートバーが搭載されており、インポートしたオーディオファイルの再生操作を簡単にナビゲートすることができます。
+トランスポートバーには以下の機能が含まれます:</p>
+
+<h3 id="再生">再生</h3>
+
+<p>再生ボタンをクリックするか、スペースバーを押すとオーディオファイルを再生することができます。</p>
+
+<h3 id="停止">停止</h3>
+
+<p>停止ボタンをクリックすると再生が停止します。</p>
+
+<h3 id="ゼロ復帰-後ろへスキップ">ゼロ復帰/後ろへスキップ</h3>
+
+<p>このボタンには、オーディオファイル内のプレイヘッド位置に応じて、2つの機能があります:</p>
+
+<ul>
+<li>再生ヘッドがオーディオファイル上の２秒地点以降にある場合、このボタンはゼロ復帰として作用しますので、クリックすると表示されているファイルの先頭に再生ヘッドが戻ります。</li>
+<li>再生ヘッドがファイルの先頭付近にある場合、このボタンはスキップバックとして作用しますので、クリックすると前回読み込んだファイルに戻ります（該当する場合のみ）。</li>
+</ul>
+
+<h3 id="前へスキップ">前へスキップ</h3>
+
+<p>このボタンをクリックすると、ソフトウェアに読み込まれた次のファイルにスキップします。</p>
+
+<h3 id="プレイヘッドが再生を追従">プレイヘッドが再生を追従</h3>
+
+<p>このボタンをクリックすることで、スペースバーと再生ボタンの停止動作をトグルできます。
+ここが選択されている場合、再生を停止すると、再生ヘッドはその場所に留まります。</p>
+
+<h3 id="ループ">ループ</h3>
+
+<p>オーディオの特定箇所をループ再生する際は、オーディオファイル上でマウスをドラッグして範囲選択します。選択範囲は青で表示され、トランスポートバーのループアイコンもハイライトされます。</p>
+
+<p>この状態で再生をクリックすると、選択範囲のみ繰り返しループ再生されます。</p>
+
+<p>ループ再生を停止する場合は今一度ループボタンをクリックします。ボタンは消灯し、波形は引き続き範囲選択されながらもループ状態は解除されます。再びオーディオをループする場合は、手動でループボタンをクリックします。</p>
+
+<h3 id="トランスポート読み出し"><strong>トランスポート読み出し</strong></h3>
+
+<h3 id="トラック番号">トラック番号</h3>
+
+<p>選択されているトラックのトラック番号が表示されます。</p>
+
+<h3 id="タイムカウンター">タイムカウンター</h3>
+
+<p>オーディオファイル内の時間位置が分/秒/ミリ秒で表示されます。</p>
+
+<h3 id="総合時間">総合時間</h3>
+
+<p>小さい方のディスプレイにはセッション内の全ての曲の総合時間が表示されます。</p>
+
+<h2 id="複数ファイルのワークフロー">複数ファイルのワークフロー</h2>
+
+<p>同一のプロジェクト内に最大16個のファイルを読み込むことができ、各ファイルへは該当するトラックタブをクリックしてナビゲートします。</p>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><ul>
+<li>Ozoneではプロジェクトで1回につき1ファイルのみインポートできます。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="トラックの順列変更">トラックの順列変更</h3>
+
+<p>プロジェクト内のオーディオファイルのタブ順列は、各タブをクリックしたまま左右にドラッグすることで変更できます。</p>
+
+<h3 id="トラックの削除">トラックの削除</h3>
+
+<p>オーディオファイルは以下の何れかの方法で削除できます:</p>
+
+<ul>
+<li>タブを右クリックし、“Remove Track”を選択。</li>
+<li>タブをクリックしてハイライトし、“X”をクリック。</li>
+</ul>
+
+<p>ファイルを消去する際は、ダイアログボックスが表示され、以下のオプションが提示されます:</p>
+
+<ul>
+<li><strong>Delete</strong>ボタンをクリックするとOzoneプロジェクトのディレクトリにあるにImported Audio Filesフォルダに読み込まれたオリジナルのファイルを消去します。</li>
+<li><strong>Keep</strong>ボタンをクリックすると、セッション内のトラックを削除しますが、Imported Audio Filesフォルダのファイルは消去せずに残します。</li>
+</ul>
+
+<h2 id="ozoneプロジェクトの保存">Ozoneプロジェクトの保存</h2>
+
+<p>Ozoneプロジェクトには以下のコンポーネントが含まれます:</p>
+
+<ul>
+<li>Ozoneのセッションファイル（.OZN）。</li>
+<li>Imported Audio Filesフォルダ。</li>
+<li>Exported Audio Filesフォルダ。</li>
+</ul>
+
+<h3 id="save-project-as-名前を付けてプロジェクトを保存">Save Project As…（名前を付けてプロジェクトを保存）</h3>
+
+<p>別名で使用中のプロジェクトのコピーを保存します。</p>
+
+<h3 id="ozoneセッションファイル-ozn">Ozoneセッションファイル（.OZN）</h3>
+
+<p>Ozoneのセッションファイルには以下のセッションデータが含まれます:</p>
+
+<ul>
+<li>インポートされたオーディオトラック</li>
+<li>Ozoneモジュールの設定</li>
+<li>トラックのトリム及びフェード設定</li>
+<li>グローバルI/O設定</li>
+</ul>
+
+<h3 id="save-ozn-as-別名で-oznを保存">Save (.OZN) As…（別名で.OZNを保存）</h3>
+
+<p>使用中のOzoneプロジェクトのディレクトリにセッションファイルのコピーを新規保存します。これは時間経過に伴う別バージョンのOzoneプロジェクトを保存するのに適しています。この方法を使用すると、インポートされたオーディオファイルのコピーは作成されず、使用中のプロジェクトのディレクトリにある Imported Audio Filesフォルダのファイルを参照します。</p>
+
+<h3 id="close-project-プロジェクトを閉じる">Close Project（プロジェクトを閉じる）</h3>
+
+<p>プロジェクトを終了する際は、以下のオプションを含む画面が表示されます:</p>
+
+<ul>
+<li><strong>Cancel（キャンセル）:</strong> 操作をキャンセルします。プロジェクトはロードされたままとなります。</li>
+<li><strong>Don’t Save（保存しない）:</strong> 最後に保存された後の設定変更などは保存されずにプロジェクトが閉じます。</li>
+<li><strong>Save（保存）:</strong> 設定変更などは全て更新された状態で保存され、プロジェクトが閉じます。</li>
+</ul>
+
+<h3 id="create-new-project-新規プロジェクトを作成">Create New Project（新規プロジェクトを作成）</h3>
+
+<p>新規Ozoneプロジェクトのディレクトリを作成します。</p>
+
+<h3 id="open-project-プロジェクトを開く">Open Project（プロジェクトを開く）</h3>
+
+<p>既存のOzoneプロジェクトを開きます。</p>
+
+<h2 id="editメニュー">Editメニュー</h2>
+
+<p>オーディオ機器設定の調整やOzoneオプション画面を開くことができます。</p>
+
+<h3 id="audio-devices-オーディオ機器"><strong>Audio Devices（オーディオ機器）</strong></h3>
+
+<h3 id="buffer-size-バッファサイズ">Buffer Size（バッファサイズ）</h3>
+
+<p>使用中のOzoneセッションのバッファサイズを調整します。</p>
+
+<h3 id="output-devices-出力デバイス">Output Devices（出力デバイス）</h3>
+
+<p>Ozoneセッションでオーディオ再生に使用するハードウェアデバイスを選択します。</p>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../ozone-overview/index.html" title="Ozone 8の概要">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Ozone 8の概要
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../preset-system/index.html" title="プリセットシステム">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              プリセットシステム
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../en/ozone-app-overview/index.html"><i class="icon icon-eye"></i> View in English</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8ヘルプドキュメント 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

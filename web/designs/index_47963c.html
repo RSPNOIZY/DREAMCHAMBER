@@ -1,0 +1,1061 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="ja">
+  <head lang="ja">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>ダイナミクス - Ozone8ユーザーズマニュアル</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/ja/dynamics/">
+    <meta property="og:title" content="Ozone8ユーザーズマニュアル">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone8ユーザーズマニュアル">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | ダイナミクス</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="はじめに" href="../index.html">
+	
+	はじめに
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8の概要" href="../ozone-overview/index.html">
+	
+	Ozone 8の概要
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone応用" href="../ozone-app-overview/index.html">
+	
+	Ozone応用
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プリセットシステム" href="../preset-system/index.html">
+	
+	プリセットシステム
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="全般的な機能" href="../general-functions/index.html">
+	
+	全般的な機能
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="モジュールの標準的な操作項目" href="../common-module-controls/index.html">
+	
+	モジュールの標準的な操作項目
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="ダイナミクス" href="index.html">
+	
+	ダイナミクス
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミックEQ" href="../dynamic-eq/index.html">
+	
+	ダイナミックEQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イコライザー" href="../equalizer/index.html">
+	
+	イコライザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="エキサイター" href="../exciter/index.html">
+	
+	エキサイター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イメージャー" href="../imager/index.html">
+	
+	イメージャー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マキシマイザー" href="../maximizer/index.html">
+	
+	マキシマイザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="スペクトラル成形" href="../spectral-shaper/index.html">
+	
+	スペクトラル成形
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージコンプレッサー" href="../vintage-compressor/index.html">
+	
+	ビンテージコンプレッサー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージEQ " href="../vintage-eq/index.html">
+	
+	ビンテージEQ 
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージリミッター" href="../vintage-limiter/index.html">
+	
+	ビンテージリミッター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージテープ" href="../vintage-tape/index.html">
+	
+	ビンテージテープ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="コーデックプレビュー" href="../codec-preview/index.html">
+	
+	コーデックプレビュー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ディザー" href="../dither/index.html">
+	
+	ディザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マスターアシスタント" href="../master-assistant/index.html">
+	
+	マスターアシスタント
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トラックリファレンス" href="../track-referencing/index.html">
+	
+	トラックリファレンス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トーナルバランスコントロール" href="../tonal-balance-control/index.html">
+	
+	トーナルバランスコントロール
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オプション" href="../options/index.html">
+	
+	オプション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プラグインオートメーション" href="../plug-in-automation/index.html">
+	
+	プラグインオートメーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ヒントと用例" href="../tips-and-examples/index.html">
+	
+	ヒントと用例
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーソリゼーション" href="../authorization/index.html">
+	
+	オーソリゼーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotopeカスタマーケアー" href="../customer-care/index.html">
+	
+	iZotopeカスタマーケアー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information (ライセンス情報)" href="../license-information/index.html">
+	
+	License Information (ライセンス情報)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA (エンドユーザー向け使用許諾契約)" href="../eula/index.html">
+	
+	EULA (エンドユーザー向け使用許諾契約)
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../en/dynamics/index.html"><i class="icon icon-eye"></i> View in English</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>ダイナミクス </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">言語:</span>
+<br />
+    
+
+       
+       <a href="../../en/dynamics/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+        <a href="../../en/dynamics/index.html"><button class="lang-btn-active">日本語</button></a>
+       
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+    
+
+	
+
+<h2 id="概要">概要</h2>
+
+<p>ダイナミクスはOzoneの中で最もパワフルなモジュールのひとつです。このモジュールを使用すると、最大4バンドに対するアナログ式のコンプレッション、リミッティング、そしてエクスパンションを行うことで、ミックスのダイナミクスを成形することができます。Ozone 8 Advancedではダイナミクスをコンポーネントプラグインとして使用することも可能です。</p>
+
+<p><img src="../images/dynamics/dyn-all-bands.png" alt="dynamics" /></p>
+
+<h2 id="グローバルな操作項目">グローバルな操作項目</h2>
+
+<p><img src="../images/dynamics/global-controls.png" alt="global controls" /></p>
+
+<h3 id="single-band-all-bands-display-単一バンド-全バンド表示">Single Band/All Bands Display（単一バンド/全バンド表示）</h3>
+
+<p>全バンド表示と単一バンド表示をトグルします。単一バンドで表示されている場合、バンドアイコンの右か左にある矢印を使うと、有効なバンドを循環して表示させることができます。</p>
+
+<h3 id="link-bands-バンドをリンク">Link Bands（バンドをリンク）</h3>
+
+<p>リンク印をクリックすると、全バンドのコントロールがリンクします。リンクした状態で特定のバンドの設定に変更を加えると、全バンドにその変更が適用されます。</p>
+
+<h3 id="adaptive-release-適応リリース">Adaptive Release（適応リリース）</h3>
+
+<p>ダイナミクスモジュールでAdaptive Releaseがオンになっていると、信号のピーク状態に応じてコンプレッサーのリリース時間が自動的に調節されます。瞬間的な信号が検知されるとリリース時間はポンピングを抑えるため短めに設定されます。ある程度持続する音が検知された場合は、ディストーションを抑えるべく、リリース時間は長めに設定されます。</p>
+
+<p>リリース時間はユーザによりセットされたリリース値に応じて弾き出されます。例えば、リリース時間を100ミリ秒でセットした状態でコンプレッサーを使用すると、このモード下で自動的に設定されるリリース時間は、信号の種類に応じ、20ミリ秒から200ミリ秒の間となります。</p>
+
+<h3 id="gain-ゲイン">Gain（ゲイン）</h3>
+
+<ul>
+<li><strong>全バンド表示:</strong> ゲインスライダーはダイナミクスモジュール処理後の信号全体に影響を与えます。これは、コンプレッション適用後のロスを埋め合わせる際のメイクアップ適用時に便利です。</li>
+<li><strong>単一バンド表示:</strong> ゲインスライダーは表示されているバンドの処理後の信号にのみ影響を与えます。</li>
+</ul>
+
+<h3 id="auto-自動補正ゲイン">Auto（自動補正ゲイン）</h3>
+
+<p>有効になっていると、メイクアップゲインが自動的に計算されて出力に適用され、ダイナミクス処理により生じたレベルの差異を補正します。</p>
+
+<p>自動ゲインコントロールは、ダイナミクスの各クロスオーバー帯域の入出力信号のRMSレベルを個別に計算します。入力と出力信号のRMSレベルの差異に応じて、出力にゲインが自動的に適用されます。</p>
+
+<p>これにより、メイクアップゲインの操作がスマートに行われ、処理後のレベルと処理前の入力レベルが合わせ込まれます。これは、ゲインの違いによる聴覚への影響のない状態で、マルチバンドダイナミクスモジュールの設定をA/B比較する際に便利です。</p>
+
+<div class="admonition note">
+<p class="admonition-title">自動及び手動のゲイン調整</p>
+<p><ul>
+<li>自動モードと手動のバンド/グローバルゲイン調整は同時に適用することができます。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="レベル検知モード">レベル検知モード</h3>
+
+<p>スレッシュホルドの入力メーターの下に配置された以下の3種類のボタンにより、ダイナミックモジュール全体の検知レベルを設定することができます。</p>
+
+<ul>
+<li><strong>PEAK:</strong> このオプションが選択されていると、Ozoneの検知回路は入力信号のピーク値を見るようになります。一般的には、この機能は音楽のピークを揃えたい時に有効です。</li>
+<li><strong>RMS:</strong> このオプションが選択されていると、Ozoneの検知回路は入力信号の平均レベルを見るようになります。RMS検知は音の性質を変えずに全体的なボリュームを押し上げる際に便利な機能です。</li>
+<li><strong>ENVELOPE:</strong> エンベロープモードはRMSモードと類似した機能ですが、幾つか鍵となる利点があります。RMSと違い、エンベロープモードでは全ての周波数でレベルを均一にします。また、エンベロープモードでは、RMS検知で発生し得るエイリアスや人工的な付加物が発生しません。</li>
+</ul>
+
+<h3 id="parallel-パラレル">Parallel（パラレル）</h3>
+
+<p>このスライダーで、モジュールにより処理されたウェットな信号と処理されていないドライの信号のミックスを調整します。これは“パラレル圧縮”という未処理の信号をミックスするテクニックを駆使する際に便利な機能です。</p>
+
+<h2 id="バンド毎の操作項目">バンド毎の操作項目</h2>
+
+<p><img src="../images/dynamics/dyn-single-band.png" alt="single band" /></p>
+
+<h3 id="threshold-スレッシュホルド">Threshold（スレッシュホルド）</h3>
+
+<p>リミッター及びコンプレッサーのスレッシュホルドを調節し、ダイナミクス処理がトリガーされるポイントを設定します。</p>
+
+<h3 id="ratio-比率">Ratio（比率）</h3>
+
+<p>リミッターとコンプレッサーにはそれぞれ個別の比率コントロールがついております。比率が高い程、極度の圧縮がかかります。コンプレッサーまたはリミッターの比率がマイナスになると、エキスパンダーとして機能するようになります。</p>
+
+<h3 id="attack-release-アタックとリリース">Attack &amp; Release（アタックとリリース）</h3>
+
+<p>アタックとリリースで、ダイナミクスプロセッサーがスレッシュホルドを超えたオーディオに対し、如何に迅速に反応するかを調整します。</p>
+
+<ul>
+<li><strong>アタック</strong>でダイナミクスプロセッサーがスレッシュホルド超過時に如何に迅速に反応するかを調節します。</li>
+<li><strong>リリース</strong>は、信号がスレッシュホルドを下回った際、ダイナミクスプロセッサーが如何に迅速に通常レベルに戻るかを定義します。</li>
+</ul>
+
+<h3 id="knee-膝値">Knee（膝値）</h3>
+
+<p>この設定項目では、圧縮の性質を設定します。</p>
+
+<ul>
+<li>ここの設定値が高いと、より柔軟な設定となり、微細で自然な音のする圧縮となります。</li>
+<li>ここの設定値が低いと、硬質な設定となり、アグレッシブな音のする圧縮となります。これはキックドラムやスネアドラムのような個々のトラックに屢々使用されます。</li>
+</ul>
+
+<h2 id="mid-sideプロセッシング">Mid/Sideプロセッシング</h2>
+
+<p>ダイナミクスモジュールはステレオまたはMid/Sideモードで操作することができます。詳細は<a href="../common-module-controls/index.html#module-channel-processing-modes">Mid/Sideプロセッシング</a>の項をご参照ください。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="スレッシュホルドメーター">スレッシュホルドメーター</h3>
+
+<p><img src="../images/dynamics/threshold.png" alt="threshold" /></p>
+
+<p>スレッシュホルドメーターには、検知回路への入力レベル（グレーで表示）と並列して、ダイナミクス処理の結果として発生しているゲインリダクション量（該当するバンドと同色）が表示されます。</p>
+
+<h3 id="ダイナミック曲線メーター">ダイナミック曲線メーター</h3>
+
+<p><img src="../images/dynamics/curve-meter.png" alt="curve meter" /></p>
+
+<p>このメーターはX軸で入力信号を、Y軸で処理済みの出力信号を表示します。水平に近い程、信号は圧縮されているということになります。
+右下の“+”と“-”ボタンでメーターのズームインとズームアウトが行えます。
+このメーターにはリミッター(L)とコンプレッサー&copy;用に個別の操作点が内蔵されます。これらの操作点はスレッシュホルドと比率にリンクされており、視覚的に設定を調節することが可能です。</p>
+
+<h3 id="ミニメーター表示">ミニメーター表示</h3>
+
+<p>ダイナミクスモジュールには操作画面上部に以下の3種類のミニメーター表示があります。</p>
+
+<h4 id="crossover-クロスオーバー">Crossover（クロスオーバー）</h4>
+
+<p><img src="../images/dynamics/crossover.png" alt="crossover" /></p>
+
+<p>この画面にはスペクトラムアナライザーとマルチバンドクロスオーバーの操作項目が表示されます。クロスオーバー表示に関する詳細は、<a href="../common-module-controls/index.html">モジュールの標準的な操作項目</a>の章をご参照ください。</p>
+
+<h4 id="detection-filter-検知フィルター">Detection Filter（検知フィルター）</h4>
+
+<p><img src="../images/dynamics/det-filter.png" alt="det filter" /></p>
+
+<p>この表示ではダイナミクス処理に使用される検知回路の周波数特性を変更できますので、周波数帯に応じて入力に対する感度を変えることができます。
+検知フィルター表示では以下の操作項目が使用できます:</p>
+
+<ul>
+<li><strong>NONE（なし）:</strong> ダイナミクスモジュールの検知回路にはフィルターが適用されません。</li>
+<li><strong>HIGHPASS（ハイパス）:</strong> ダイナミクスモジュールの検知回路にハイパスフィルターが適用されます。
+
+<ul>
+<li><strong>SLOPE（スロープ）</strong>: スロープ値の読み出しをクリックすると、スロープ値をトグルすることができます。ハイパス検知フィルターには次のスロープオプションがあります: 6 dB、12 dB、24 dB、48 dB</li>
+<li>周波数点をクリックしてドラッグすると、ハイパスフィルターの周波数が調整できます。</li>
+</ul></li>
+<li><strong>TILT（傾斜）:</strong> APIコンプレッサーのTHRUST回路に類似しています。傾斜モードは、高周波数加重フィルター曲線を使用し、低域を保持します。‘Amount’を調整すると、傾斜フィルターのスロープを変更することができます。</li>
+<li><strong>SOLO（ソロ）:</strong> ’S’ボタンをクリックすると検知フィルターの入力が試聴できます。これにより、ダイナミクスモジュールの処理をトリガーしている信号のみを聴くことができます。</li>
+</ul>
+
+<h4 id="gain-reduction-trace-ゲイン削減トレース表示">Gain Reduction Trace（ゲイン削減トレース表示）</h4>
+
+<p><img src="../images/dynamics/trace.png" alt="trace" /></p>
+
+<p>この画面では波形表示と、ダイナミクス処理により適用されたゲイン削減を時間経過と共に表した形跡を視認することができます。</p>
+
+<p>マルチバンドモードでダイナミクスモジュールを使用する場合、この画面では波形と選択されたバンドのゲイン削減形跡のみを表示します。形跡の色には、選択されたバンドの色が反映されます。</p>
+
+<p>ゲイン削減トレース表示はアタックとリリースを正しく設定し、ゲイン削減のエンベロープをモニターする上での一助となります。</p>
+
+<div class="admonition note">
+<p class="admonition-title">ゲイン削減トレースのスケール</p>
+<p><ul>
+<li>メーター左にあるゲイン削減形跡のスケールは、そこにカーソルを合わせマウスホイールでズーンイン/アウトを行うことで調整できます。</li>
+<li>スケールの可視範囲はクリックして上下にドラッグすることで調整できます。</li>
+<li>ダブルクリックすると、スケールのズームレベルをデフォルトに戻すことができます。</li>
+</ul>
+</p>
+</div>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../common-module-controls/index.html" title="モジュールの標準的な操作項目">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              モジュールの標準的な操作項目
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../dynamic-eq/index.html" title="ダイナミックEQ">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              ダイナミックEQ
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../en/dynamics/index.html"><i class="icon icon-eye"></i> View in English</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8ヘルプドキュメント 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZYKIDZ — The Global Music Atlas</title>
+<style>
+  :root {
+    --bg: #0A0A1A;
+    --card-radius: 16px;
+    --panel-bg: rgba(12,12,30,0.97);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: #fff;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* STARFIELD */
+  #starfield {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* PARTICLE CANVAS */
+  #particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* ENTRY SCREEN */
+  #entry {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: #0A0A1A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.8s ease;
+  }
+  #entry.hide { opacity: 0; pointer-events: none; }
+  .entry-globe {
+    font-size: 8rem;
+    animation: spin 8s linear infinite;
+    margin-bottom: 2rem;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .entry-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, #FFD700, #FF6B6B, #00E5FF, #7B2FBE);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .entry-sub {
+    color: #aaa;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+  .entry-btn {
+    padding: 1rem 3rem;
+    background: linear-gradient(135deg, #FFD700, #FF6B6B);
+    border: none;
+    border-radius: 50px;
+    color: #000;
+    font-size: 1.3rem;
+    font-weight: 800;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    animation: pulse-btn 2s infinite;
+  }
+  @keyframes pulse-btn {
+    0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,215,0,0.4); }
+    50% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(255,215,0,0); }
+  }
+
+  /* MAIN LAYOUT */
+  #main {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  #main.visible { opacity: 1; transform: translateY(0); }
+
+  /* HEADER */
+  .site-header {
+    text-align: center;
+    padding: 3rem 0 2rem;
+  }
+  .header-emoji { font-size: 4rem; display: block; margin-bottom: 1rem; }
+  .site-title {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    background: linear-gradient(135deg, #FFD700, #FF6B6B, #00E5FF, #7B2FBE, #00FF87);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+  .site-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: #ccc;
+    margin-top: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* COUNTER STRIP */
+  .counter-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 2rem;
+    margin: 2rem 0;
+    padding: 1.2rem 2rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .counter-item {
+    font-size: 0.95rem;
+    color: #FFD700;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+  .counter-sep { color: rgba(255,255,255,0.3); }
+
+  /* GRID */
+  .atlas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.2rem;
+    margin: 2rem 0;
+  }
+
+  /* REGION CARDS */
+  .region-card {
+    border-radius: var(--card-radius);
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  .region-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    transition: opacity 0.25s;
+    background: inherit;
+    filter: blur(20px);
+    z-index: -1;
+  }
+  .region-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  }
+  .region-card:hover::before { opacity: 0.3; }
+  .card-emoji { font-size: 2.5rem; margin-bottom: 0.5rem; display: block; }
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .card-era {
+    font-size: 0.78rem;
+    opacity: 0.75;
+    margin-top: 0.3rem;
+  }
+  .card-teaser {
+    font-size: 0.82rem;
+    opacity: 0.65;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+  }
+
+  /* UNIVERSAL ELEMENTS */
+  .universals-section {
+    margin: 3rem 0;
+    text-align: center;
+  }
+  .universals-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #FFD700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  .universals-sub {
+    color: #aaa;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+  .universals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+  .universal-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    animation: float-item 3s ease-in-out infinite;
+    cursor: default;
+    transition: background 0.2s;
+  }
+  .universal-item:hover { background: rgba(255,255,255,0.1); }
+  .universal-item:nth-child(1)  { animation-delay: 0s; }
+  .universal-item:nth-child(2)  { animation-delay: 0.25s; }
+  .universal-item:nth-child(3)  { animation-delay: 0.5s; }
+  .universal-item:nth-child(4)  { animation-delay: 0.75s; }
+  .universal-item:nth-child(5)  { animation-delay: 1s; }
+  .universal-item:nth-child(6)  { animation-delay: 1.25s; }
+  .universal-item:nth-child(7)  { animation-delay: 1.5s; }
+  .universal-item:nth-child(8)  { animation-delay: 1.75s; }
+  .universal-item:nth-child(9)  { animation-delay: 2s; }
+  .universal-item:nth-child(10) { animation-delay: 2.25s; }
+  .universal-item:nth-child(11) { animation-delay: 2.5s; }
+  .universal-item:nth-child(12) { animation-delay: 2.75s; }
+  @keyframes float-item {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+  .universal-num {
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #FFD700, #FF6B6B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .universal-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0.25rem 0;
+  }
+  .universal-desc {
+    font-size: 0.75rem;
+    color: #aaa;
+    line-height: 1.3;
+  }
+
+  /* DETAIL PANEL OVERLAY */
+  #overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  #overlay.open { display: flex; }
+
+  #panel {
+    background: var(--panel-bg);
+    border-radius: 20px;
+    max-width: 760px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.2) transparent;
+  }
+
+  .panel-header {
+    padding: 2rem 2rem 1.5rem;
+    border-radius: 20px 20px 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .panel-emoji { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
+  .panel-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .panel-origin {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+    font-style: italic;
+  }
+
+  .panel-body { padding: 1.5rem 2rem 2rem; }
+
+  .panel-section {
+    margin-bottom: 1.5rem;
+  }
+  .panel-section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+  }
+  .panel-key-insight {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #FFD700;
+    line-height: 1.5;
+  }
+  .panel-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #ccc;
+  }
+  .panel-list {
+    list-style: none;
+    padding: 0;
+  }
+  .panel-list li {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.5;
+    padding: 0.3rem 0 0.3rem 1.2rem;
+    position: relative;
+  }
+  .panel-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    font-size: 0.5rem;
+    top: 0.55rem;
+    opacity: 0.6;
+  }
+
+  .noizy-corner {
+    background: rgba(255,215,0,0.08);
+    border: 1px solid rgba(255,215,0,0.3);
+    border-radius: 12px;
+    padding: 1.2rem;
+  }
+  .noizy-corner-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #FFD700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .noizy-corner-text {
+    font-size: 0.95rem;
+    color: #eee;
+    line-height: 1.6;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 20;
+  }
+  .close-btn:hover { background: rgba(255,255,255,0.2); }
+
+  /* FOOTER QUOTE */
+  .footer-quote {
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 3rem;
+  }
+  .footer-quote p {
+    font-size: clamp(0.9rem, 2vw, 1.15rem);
+    color: #aaa;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto 1rem;
+    font-style: italic;
+  }
+  .footer-credit {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 600px) {
+    .atlas-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    .panel-header, .panel-body { padding: 1.2rem; }
+    .panel-title { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STARFIELD -->
+<canvas id="starfield"></canvas>
+<!-- PARTICLES -->
+<canvas id="particles"></canvas>
+
+<!-- ENTRY SCREEN -->
+<div id="entry" onclick="enterAtlas()">
+  <div class="entry-globe">🌍</div>
+  <div class="entry-title">THE GLOBAL MUSIC ATLAS</div>
+  <div class="entry-sub">Every Beat on Earth · For NOIZYKIDZ</div>
+  <button class="entry-btn">COME EXPLORE</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main">
+  <header class="site-header">
+    <span class="header-emoji">🎵</span>
+    <div class="site-title">THE GLOBAL MUSIC ATLAS</div>
+    <div class="site-subtitle">Every Beat on Earth — For NOIZYKIDZ</div>
+  </header>
+
+  <div class="counter-strip">
+    <span class="counter-item">300,000+ Years of Music</span>
+    <span class="counter-sep">·</span>
+    <span class="counter-item">195 Countries</span>
+    <span class="counter-sep">·</span>
+    <span class="counter-item">7,000+ Languages</span>
+    <span class="counter-sep">·</span>
+    <span class="counter-item">1 Human Family</span>
+  </div>
+
+  <div class="atlas-grid" id="atlasGrid"></div>
+
+  <!-- 12 UNIVERSALS -->
+  <div class="universals-section">
+    <div class="universals-title">THE 12 UNIVERSAL ELEMENTS</div>
+    <div class="universals-sub">What every culture's music shares — without exception</div>
+    <div class="universals-grid" id="universalsGrid"></div>
+  </div>
+
+  <footer class="footer-quote">
+    <p>"The first rock was banged on a hollow log 300,000 years ago. That child was the first musician. You are their family."</p>
+    <div class="footer-credit">RSP_001 · Fish Music Inc. · Ottawa · March 14, 2026 · GORUNFREE · NOIZYKIDZ</div>
+  </footer>
+</div>
+
+<!-- DETAIL OVERLAY -->
+<div id="overlay" onclick="closePanel(event)">
+  <div id="panel">
+    <button class="close-btn" onclick="closeOverlay()">✕</button>
+    <div class="panel-header" id="panelHeader"></div>
+    <div class="panel-body" id="panelBody"></div>
+  </div>
+</div>
+
+<script>
+// ─── STARFIELD ───────────────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  function init() {
+    resize();
+    stars = Array.from({length: 200}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 0.2,
+      alpha: Math.random(),
+      speed: Math.random() * 0.003 + 0.001,
+      twinkle: Math.random() * Math.PI * 2
+    }));
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(s => {
+      s.twinkle += s.speed;
+      const a = (Math.sin(s.twinkle) * 0.4 + 0.6) * s.alpha;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', init);
+  init();
+  draw();
+})();
+
+// ─── RAINBOW PARTICLES ───────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  const colors = ['#FFD700','#FF6B6B','#00E5FF','#7B2FBE','#00FF87','#FF8C00','#FF69B4','#00CED1','#ADFF2F','#DA70D6'];
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  function spawnParticle() {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: canvas.height + 10,
+      vx: (Math.random() - 0.5) * 0.8,
+      vy: -(Math.random() * 1.5 + 0.5),
+      r: Math.random() * 3 + 1,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 1,
+      life: Math.random() * 120 + 80
+    });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (Math.random() < 0.15) spawnParticle();
+    particles = particles.filter(p => p.alpha > 0.02);
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.life--;
+      p.alpha = Math.max(0, p.life / 150);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha * 0.5;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+// ─── ENTRY ───────────────────────────────────────────────────
+function enterAtlas() {
+  const entry = document.getElementById('entry');
+  const main = document.getElementById('main');
+  entry.classList.add('hide');
+  setTimeout(() => {
+    entry.style.display = 'none';
+    main.classList.add('visible');
+  }, 800);
+}
+
+// ─── REGION DATA ─────────────────────────────────────────────
+const regions = [
+  {
+    id: 'prehistoric',
+    title: 'Prehistoric',
+    emoji: '🥁',
+    era: '300,000+ BCE',
+    color: '#D4A017',
+    bg: 'linear-gradient(135deg, #3D2B00, #6B4A00)',
+    teaser: 'The first rock, the first beat, the first human.',
+    origin: '300,000+ BCE — Worldwide',
+    keyInsight: 'Music is not a human invention. It is a human property — something any sufficiently complex mind reaches for when it encounters the world.',
+    sound: 'Rocks, hollow logs, bone flutes, stretched animal skins',
+    theory: [
+      'Pulse — derived from the heartbeat (60–80 BPM) — appears universally as the foundation of all music',
+      'The octave (2:1 frequency ratio) is recognized by every human brain regardless of culture — it appears to be hard-wired into human perception',
+      'Call and response — one voice calls, another answers — mirrors the structure of the natural world and appears in every tradition',
+      'The Divje Babe flute (Slovenia, ~60,000 BCE) may be the world\'s oldest instrument, possibly made by Neanderthals — music may predate Homo sapiens'
+    ],
+    gift: 'The three universals — pulse, octave recognition, call and response — are the shared DNA of all music that followed. Everything in this atlas is built from these three.',
+    corner: 'Put one hand on your chest and feel your heartbeat. Tap your other hand on a table to match it. You are now playing the first music — the pulse that started everything.'
+  },
+  {
+    id: 'africa',
+    title: 'Africa',
+    emoji: '🪘',
+    era: '100,000+ BCE — Continuous',
+    color: '#FF6B35',
+    bg: 'linear-gradient(135deg, #3D0A00, #8B2000)',
+    teaser: 'Polyrhythm, the griot, the talking drum.',
+    origin: 'Sub-Saharan Africa — 100,000+ years of continuous tradition',
+    keyInsight: 'African music is not simple. It is so rhythmically complex that Western notation can barely capture it — multiple independent rhythmic patterns playing simultaneously, each complete in itself.',
+    sound: 'Djembe, talking drum, mbira/kalimba, kora, balafon',
+    theory: [
+      'Polyrhythm: multiple independent rhythmic patterns (3 against 2, 4 against 3) playing simultaneously — each part simple, the combination transcendent',
+      'The Talking Drum: pitch-changing drum that reproduces the tonal patterns of spoken language — literally a telecommunications network',
+      'Ethiopian Kiñit: five pentatonic modes (Tizita, Bati, Ambassel, Anchihoye, Yematebela Wofe) each with distinct emotional character',
+      'Mbira tuning: each instrument tuned to its own internal logic — not to any external standard — music organized around internal coherence'
+    ],
+    gift: 'African rhythmic traditions ARE the DNA of jazz, blues, rock, hip-hop, funk, reggae, samba, and all modern popular music. Every genre that moves you traces directly here.',
+    corner: 'Clap a steady beat: 1-2-3-4. Now try tapping 3 beats with your right hand (1-2-3-1-2-3) while your left keeps 4. That impossible feeling you are fighting — that is polyrhythm.'
+  },
+  {
+    id: 'india',
+    title: 'India',
+    emoji: '🪗',
+    era: '2,500+ BCE — Written; Far Older in Practice',
+    color: '#9B59B6',
+    bg: 'linear-gradient(135deg, #1A0030, #3D006B)',
+    teaser: 'The Raga system — music as emotional science.',
+    origin: 'Indian Subcontinent — oldest continuous written music theory on Earth',
+    keyInsight: 'A raga is not a scale. It is a complete musical personality with a time of day, a season, an emotional state, and rules for how it must move — music theory as emotional navigation.',
+    sound: 'Sitar, sarod, tabla, tambura, bansuri flute, veena',
+    theory: [
+      'Raga system: 72 parent scales (melakarta), hundreds of derived ragas — each with ascending/descending patterns, ornaments, time of day, season, and rasa (emotional essence)',
+      'Shruti: 22 microtonal divisions of the octave — the spaces between piano keys where feeling lives. Two ragas using the "same" note may use different shrutis',
+      'Tala system: rhythmic cycles — Teentaal (16), Rupak (7), Jhaptal (10) — the tabla and melody engage in real-time mathematical conversation',
+      'Rasa theory (Natyashastra, ~200 BCE): nine fundamental emotional states that music creates — Shringara (love), Karuna (sorrow), Vira (heroism), Shanta (peace), and five more'
+    ],
+    gift: 'Modal jazz (Miles Davis listened to Ravi Shankar before Kind of Blue), minimalism (Philip Glass studied with Ravi Shankar), the concept of music as emotional medicine — all influenced globally by Indian classical tradition.',
+    corner: 'Hum a single note. Hold it for 30 seconds without stopping. Now move up one step and hold that. This is a raga being born — you have found the drone (home) and the first movement away from it.'
+  },
+  {
+    id: 'china',
+    title: 'China',
+    emoji: '🎋',
+    era: '5,000+ BCE',
+    color: '#E74C3C',
+    bg: 'linear-gradient(135deg, #2D0000, #6B0000)',
+    teaser: 'Music as cosmic order — the five tones that heal the body.',
+    origin: 'China — 5,000+ years of documented theory',
+    keyInsight: 'In Chinese theory, the five pentatonic notes correspond to the five elements, five organs, and five seasons — playing the correct tone activates the corresponding organ. Music is medicine.',
+    sound: 'Guqin (7-string zither, 3,000 years), pipa, erhu, guzheng',
+    theory: [
+      'Wuyin — Five-Note Pentatonic Scale: Gong, Shang, Jue, Zhi, Yu mapped to Wood/Fire/Earth/Metal/Water, to organs, seasons, and directions',
+      'Twelve Lü: chromatic system generated by stacking perfect fifths — the same mathematical process independently discovered by Pythagoras in Greece',
+      'Guqin notation (jianzipu): tablature system using finger positions, not pitches — one of the oldest continuous notation traditions, going back to the Tang dynasty',
+      'Music as medicine: specific frequencies treat specific organ systems — a practice documented for 2,000+ years, now generating modern biomedical hypotheses'
+    ],
+    gift: 'Pentatonic scales in Western music (from folk songs to Debussy\'s Impressionism to rock guitar solos) descend from the universal appeal of five-note systems — which China theorized most completely.',
+    corner: 'On a piano or keyboard, play only the black keys. That is a pentatonic scale — five notes that sound beautiful in any order. Try starting on any black key and just wandering. You are playing Chinese theory right now.'
+  },
+  {
+    id: 'japan',
+    title: 'Japan',
+    emoji: '🎋',
+    era: '1,500+ BCE',
+    color: '#FF69B4',
+    bg: 'linear-gradient(135deg, #1A0015, #3D0035)',
+    teaser: 'Ma — the music in the silence between notes.',
+    origin: 'Japan — 1,300+ years of documented orchestral music (Gagaku)',
+    keyInsight: 'Ma (間) — the space between notes — is not empty. In Japanese music, silence is active, meaningful, as important as sound. The note not played is part of the music.',
+    sound: 'Shakuhachi (bamboo flute), koto (13-string zither), shamisen, sho (mouth organ)',
+    theory: [
+      'Ma (間): meaningful silence between notes — the pause is a presence, not an absence. The note just played continues in the silence that follows it',
+      'Gagaku: world\'s oldest surviving orchestral music, 1,300 years in continuous performance — moves at extraordinary slowness, exists in eternal present',
+      'Shakuhachi: circular breathing optional, breath turbulence is intentional — the imperfection of breath in the note is the person in the music',
+      'Pentatonic tunings with characteristic microtonal ornaments (koto) — pitch is a region, not a fixed point, bending and settling continuously'
+    ],
+    gift: 'Wabi-sabi aesthetic (beauty in imperfection and transience) deeply influenced ambient music, minimalism, and the idea that silence is not the absence of music but part of it.',
+    corner: 'Play one note on anything — voice, table tap, anything. Then wait. Really wait — 4 full seconds. Listen to it decay. Listen to the silence after. Now play another note. That space between them — that is Ma.'
+  },
+  {
+    id: 'korea',
+    title: 'Korea',
+    emoji: '🥁',
+    era: '2,000+ BCE — Written Notation 15th Century',
+    color: '#1ABC9C',
+    bg: 'linear-gradient(135deg, #001A15, #003D30)',
+    teaser: 'Pansori — one voice carrying the world.',
+    origin: 'Korean Peninsula — Three Kingdoms period and earlier',
+    keyInsight: 'Pansori performers train by singing beneath waterfalls until the voice breaks and rebuilds — because a polished voice cannot carry grief. The voice must have lived in it.',
+    sound: 'Gayageum (12-string zither), haegeum, pansori voice + buk drum, janggu, samulnori ensemble',
+    theory: [
+      'Jeongganbo notation (15th century, King Sejong): one of the world\'s first precise rhythmic notation systems — time represented spatially as grid squares',
+      'Pansori: one vocalist performs all characters in narratives lasting up to 6 hours — complete musical dramas in one voice + one drummer',
+      'Samulnori: four percussion instruments representing clouds (buk), rain (janggu), wind (jing), lightning (kkwaenggwari) — the cosmos in four drums',
+      'Korean folk modes: characteristic use of vibrato (nonghyeon on gayageum) as melodic ornament — pitch is shaped, not fixed'
+    ],
+    gift: 'The world\'s most precise early rhythmic notation, the concept of dramatic music requiring authentic vocal damage, and the samulnori tradition that influenced contemporary percussion worldwide.',
+    corner: 'Tap these four things in order: pat your head (clouds), tap your shoulder (rain), wave your hand (wind), clap once (lightning). Do it in a loop, faster and faster. You are playing samulnori.'
+  },
+  {
+    id: 'sea',
+    title: 'Southeast Asia',
+    emoji: '🎵',
+    era: '3,000+ BCE',
+    color: '#27AE60',
+    bg: 'linear-gradient(135deg, #001A08, #003D15)',
+    teaser: 'The gamelan — not instruments but one organism.',
+    origin: 'Indonesia, Bali, Java, Thailand, Vietnam, Philippines, Cambodia, Myanmar',
+    keyInsight: 'Every Balinese village gamelan is tuned differently — there is no universal pitch standard. The gamelan is music organized around internal coherence rather than external authority.',
+    sound: 'Gamelan (bronze metallophones, gongs, drums), Thai piphat, Vietnamese dan bau, kulintang gongs',
+    theory: [
+      'Slendro: 5-tone scale dividing the octave into roughly equal intervals — neither fits Western tuning. Notes are in the cracks between piano keys',
+      'Pelog: 7-tone scale with unequal intervals from which 5-tone modes are drawn — each set of intervals produces a different emotional character',
+      'Ombak (beating): two gamelan instruments tuned slightly apart produce a shimmering, pulsing quality considered essential to gamelan beauty — the imprecision IS the sound',
+      'Thai equal-interval system: seven equal tones per octave (not twelve) — Thai pentatonic sounds subtly but distinctly different from Chinese or Western pentatonic'
+    ],
+    gift: 'The gamelan\'s interlocking pattern technique directly influenced Steve Reich, Philip Glass, and minimalist composition. The concept of no universal pitch standard challenged Western assumptions about "correct" tuning.',
+    corner: 'Get two glasses with slightly different amounts of water. Tap each with a spoon. They are close but not exactly the same pitch — hear that flickering, beating sound? That is ombak. The gamelan considers that beautiful.'
+  },
+  {
+    id: 'mideast',
+    title: 'Middle East & Persia',
+    emoji: '🪕',
+    era: '5,000+ BCE',
+    color: '#F39C12',
+    bg: 'linear-gradient(135deg, #1A1000, #3D2800)',
+    teaser: 'Quarter tones — the notes between the piano keys.',
+    origin: 'Arabia, Persia, Turkey, Central Asia — 5,000+ years of documented theory',
+    keyInsight: 'The Arabic system recognizes 24 pitches per octave — the 12 Western notes PLUS 12 quarter-tones between them. Each quarter-tone is a precise, named pitch with its own emotional function.',
+    sound: 'Oud (fretless lute, ancestor of guitar), ney (reed flute), kanun, darbuka, rabab',
+    theory: [
+      'Maqam system: 70+ distinct melodic modes each with characteristic ascending/descending patterns, associated emotions, and conventional ornaments — similar to Indian raga',
+      'Quarter tone: the pitch exactly halfway between two Western semitones — not an imprecise approximation but a precise pitch with its own name and emotional character',
+      'Persian Dastgah: 12 principal modal systems organized around the Radif (a map of thousands of short pieces) — the student memorizes the map before improvising the journey',
+      'Oud: fretless — can play any pitch, including all 24 per octave. The fretless neck is a philosophical statement: pitch is a continuum, not a ladder'
+    ],
+    gift: 'Flamenco (through Moorish Andalusia), the blue notes of jazz (Arabic maqam inflections through African American tradition), and the concept of music-as-spiritual-path (Sufi Sema) all trace to this tradition.',
+    corner: 'Hum a note. Now hum a note just slightly higher — not a full step up, just a tiny bit. Hold it there. That micro-step you just found — that is the quarter-tone zone. Entire musical worlds live there.'
+  },
+  {
+    id: 'greece',
+    title: 'Ancient Greece',
+    emoji: '🏛',
+    era: '700 BCE — 400 CE',
+    color: '#3498DB',
+    bg: 'linear-gradient(135deg, #00103D, #00256B)',
+    teaser: 'Pythagoras hears a blacksmith and discovers harmony is mathematics.',
+    origin: 'Ancient Greece — 700 BCE to 400 CE',
+    keyInsight: 'The harmonic ratios Pythagoras discovered (2:1, 3:2, 4:3) are not human conventions — they are physical properties of sound waves. The octave, fifth, and fourth are literally built into the physics of the universe.',
+    sound: 'Aulos (double flute), kithara (lyre), hydraulis (water organ)',
+    theory: [
+      'Harmonic ratios: octave = 2:1, perfect fifth = 3:2, perfect fourth = 4:3 — consonant intervals are those with simple integer frequency ratios, discovered by Pythagoras ~530 BCE',
+      'Six Greek modes: Dorian, Phrygian, Lydian, Mixolydian, Aeolian, Ionian — each mode is the same seven notes in a different order, producing different emotional characters',
+      'Ethos doctrine: each mode produces a specific moral and emotional effect — Dorian for courage, Phrygian for ecstasy, Lydian considered dangerously soft',
+      'Seikilos Epitaph (~100 BCE): oldest surviving complete song in the world, complete with melody notation and lyrics: "While you live, shine. Have no grief at all."'
+    ],
+    gift: 'ALL of Western music theory descends from Greek modes and Pythagorean ratios. Every chord, every scale, every harmonic rule in Western classical music is Greek theory filtered through 2,000 years.',
+    corner: 'Sing any note. Now sing the note that feels like the same note but higher — the octave. Your brain recognized that interval automatically. That is Pythagoras\'s ratio (2:1) built into your neurology.'
+  },
+  {
+    id: 'medieval',
+    title: 'Medieval Europe',
+    emoji: '⛪',
+    era: '500–1400 CE',
+    color: '#8E44AD',
+    bg: 'linear-gradient(135deg, #0D0020, #1E0040)',
+    teaser: 'Guido of Arezzo invents Do-Re-Mi. Everything changes.',
+    origin: 'Christian Europe — monasteries, cathedrals, courts of the medieval period',
+    keyInsight: 'Before Guido of Arezzo (995–1050 CE), every singer had to learn music by ear. After him, a singer could read a piece of music never heard before and sing it. That is the invention of music literacy.',
+    sound: 'Human voice (chant), early organ, lute, vielle (early violin), shawm',
+    theory: [
+      'Gregorian chant: monophonic (single line), modal, rhythm follows natural speech rhythm — in stone cathedrals, the long reverb creates natural harmony between voice and echo',
+      'Solfège (Guido of Arezzo, ~1025): Do-Re-Mi system — each syllable names a pitch degree. Made music transmission independent of oral memory',
+      'Polyphony begins at Notre Dame (~1170): Léonin and Pérotin layer two, then three, then four voices — counterpoint is born',
+      'Medieval modes: Dorian, Phrygian, Lydian, Mixolydian, plus authentic/plagal variants — the modal system that predates and underlies Western harmony'
+    ],
+    gift: 'Guido\'s Do-Re-Mi is still taught to every music student on Earth. The development of polyphony in Notre Dame is the origin of all Western counterpoint, harmony, and ultimately all Western classical and pop music.',
+    corner: 'Sing Do-Re-Mi-Fa-Sol-La-Ti-Do slowly. Now hum the Do while someone else sings Re over it. You have just created the first polyphony — two voices, different notes, one music.'
+  },
+  {
+    id: 'baroque',
+    title: 'Baroque & Classical Europe',
+    emoji: '🎻',
+    era: '1400–1820 CE',
+    color: '#1A5276',
+    bg: 'linear-gradient(135deg, #001020, #002A3D)',
+    teaser: 'Bach assembles all the tools into a complete architecture.',
+    origin: 'Europe — Renaissance through Classical period',
+    keyInsight: 'Equal temperament was the great compromise: make every interval slightly impure so that every key is equally playable. Bach\'s Well-Tempered Clavier proved it worked — and unlocked all 24 major and minor keys.',
+    sound: 'Violin family (newly invented), harpsichord, organ, early piano, flute, oboe',
+    theory: [
+      'Equal temperament: divide the octave into 12 exactly equal semitones (each = 12th root of 2). No interval is pure — all are equally impure. Enables all 24 keys',
+      'Counterpoint: multiple independent melodic voices that combine harmonically without either dominating — Bach\'s fugues are the pinnacle of this art',
+      'Tonal harmony: the complete system of chord progressions, voice leading, and key relationships that underlies all Western music from 1700 to today',
+      'Wagner\'s leitmotif (19th c.): specific melodies for specific characters and ideas — the direct ancestor of every film score composed since'
+    ],
+    gift: 'The entire Western classical tradition, all film music, all rock harmony, all jazz harmony — every Western musician from Bach to Beyoncé is working within the harmonic language systematized in this period.',
+    corner: 'Play these three notes on any keyboard (or hum them): C-E-G. That is a major chord — the most fundamental unit of Western harmony. Every song you have ever heard in Western pop music uses this and its relatives.'
+  },
+  {
+    id: 'americas',
+    title: 'Indigenous Americas',
+    emoji: '🪶',
+    era: '30,000+ BCE — Continuous',
+    color: '#C0392B',
+    bg: 'linear-gradient(135deg, #1A0500, #3D1000)',
+    teaser: '500+ nations. 500+ musical worlds. The drum as Earth\'s heartbeat.',
+    origin: 'North, Central, and South America — 30,000+ years of continuous tradition',
+    keyInsight: 'In Indigenous American traditions, music is not entertainment or art — it is law, medicine, history, and communication with the living world. Each song belongs to specific people and has specific power.',
+    sound: 'Frame drum, Native American flute (duct flute), huehuetl, teponaztli, siku (panpipes), quena',
+    theory: [
+      'The drum as Earth\'s heartbeat: the frame drum played with a beater is understood across most North American traditions as the literal heartbeat of the living planet, not merely a percussion instrument',
+      'Aztec/Mexica: huehuetl and teponaztli produce specific tones for specific deities — musical precision as spiritual technology, not merely as aesthetic preference',
+      'Andean siku (panpipes): played in hocket between two musicians — each player holds alternating notes of the scale, melody created by two together. Music as radical interdependence',
+      'Amazon icaros: healing songs received from specific plants — each plant has its own song, each song treats specific conditions. The song IS the medicine'
+    ],
+    gift: 'The concept of music as ecological relationship (each plant has a song), the frame drum\'s influence on global percussion, and Andean pentatonic scales that carry the feeling of altitude and open sky.',
+    corner: 'Put both hands flat on your chest. Feel your heartbeat. Now tap both hands on a table — match the beat. Slow it down to one beat per second. You are now playing the drum that Indigenous traditions call the heartbeat of the Earth.'
+  },
+  {
+    id: 'australia',
+    title: 'Aboriginal Australia',
+    emoji: '🎵',
+    era: '65,000+ BCE — The Oldest Continuous Tradition on Earth',
+    color: '#E67E22',
+    bg: 'linear-gradient(135deg, #1A0800, #3D2000)',
+    teaser: 'The continent mapped in song — to forget the song is to lose the country.',
+    origin: 'Australia — 65,000+ years of continuous musical tradition',
+    keyInsight: 'Songlines are not songs about places. They ARE the places — the land was sung into existence in the Dreaming, and the songs are the ongoing maintenance of that reality.',
+    sound: 'Didgeridoo (yidaki), clapsticks, voice',
+    theory: [
+      'Songlines: ancestral beings sang the world into existence. Each landscape feature has a song. To navigate the desert, you learn the songs — music as geographic information system',
+      'Circular breathing: inhale through nose while exhaling through cheeks to sustain continuous sound — the player breathes without the sound ever stopping. One breath, infinite duration',
+      'Didgeridoo harmonics: the player\'s mouth-shape controls which overtones are amplified, creating rhythmic and melodic patterns over a continuous drone',
+      'Land-law-music unity: who has the right to sing a specific song is a legal fact. Song is jurisdiction. Destroying a sacred site destroys law, not just culture'
+    ],
+    gift: 'The concept that music IS the land (not about the land), the didgeridoo\'s circular breathing technique, and the idea that forgetting music is not an aesthetic loss but a legal and spiritual catastrophe.',
+    corner: 'Breathe in through your nose while puffing your cheeks — store air there. Now slowly breathe out from your chest while the cheek air flows out. That is the beginning of circular breathing. Try to make it continuous.'
+  },
+  {
+    id: 'pacific',
+    title: 'The Pacific',
+    emoji: '🌊',
+    era: '3,000+ BCE',
+    color: '#16A085',
+    bg: 'linear-gradient(135deg, #001510, #003D30)',
+    teaser: 'Hawaiian steel guitar, Maori haka, navigational songs that cross the ocean.',
+    origin: 'Hawaii, Polynesia, Micronesia, New Zealand, the Pacific Island world',
+    keyInsight: 'Polynesian navigational chants encode the position of stars, direction of ocean swells, and behavior of birds at specific distances from specific islands — music as precision navigation across thousands of miles of open ocean.',
+    sound: 'Slack-key guitar, steel guitar, ipu (gourd drum), Maori taonga puoro, Pacific log drums',
+    theory: [
+      'Slack-key guitar (Ki Hoʻalu): strings tuned to open chord, fingerpicking plays bass + rhythm + melody simultaneously from one instrument — Hawaiian innovation on European guitar',
+      'Steel guitar: invented in Hawaii ~1880s, played with a metal slide for continuous pitch gliding — spread to country music, blues, and global slide guitar tradition',
+      'Hula: each hand gesture is a word — hula is music made visible. Oli (chant) uses kaona (hidden meanings in apparently simple text) — music as layered poetry',
+      'Micronesian navigational chants: star positions, ocean swell directions, bird behavior at island distances — precision scientific knowledge encoded in song for reliable intergenerational transmission'
+    ],
+    gift: 'The steel guitar (and through it, the blues slide guitar and country pedal steel), slack-key guitar technique, and the concept of music as scientific knowledge-storage capable of navigating an ocean.',
+    corner: 'Take any song you know. Now tell the same story using only hand and arm movements — no words. See if someone can guess the meaning from the gestures alone. That is hula — the body as language.'
+  },
+  {
+    id: 'russia',
+    title: 'Russia & Central Asia',
+    emoji: '🪕',
+    era: '5,000+ BCE',
+    color: '#2ECC71',
+    bg: 'linear-gradient(135deg, #001A08, #003D15)',
+    teaser: 'Throat singing — one voice, multiple simultaneous tones.',
+    origin: 'Russia, Georgia, Mongolia, Kazakhstan, Uzbekistan, Tuva — the Silk Road world',
+    keyInsight: 'Tuvan throat singers produce different styles for different landscapes: Sygyt for open steppe, Kargyraa for mountains, Khoomei for rivers. The singer is sonically reflecting the environment they are in.',
+    sound: 'Balalaika, domra, Georgian three-voice choir, Mongolian morin khuur (horse-head fiddle), Kazakh dombra, Uzbek dutar',
+    theory: [
+      'Throat singing (khoomei/xöömii): amplifying specific harmonics in the vocal tract to produce two simultaneous distinct pitches — the same acoustic phenomenon as gamelan ombak, used by one human voice',
+      'Georgian polyphony: three-voice system ending on unresolved dissonances (seconds, tritones) as final chords — intentional, correct, and beautiful within Georgian harmonic logic',
+      'Shashmaqam (Uzbek): six maqam suites of Silk Road classical music — the meeting point of Persian, Arabic, Indian, and Chinese musical theory',
+      'Silk Road cross-pollination: Persian maqam + Indian raga + Chinese pentatonic + Greek ratios all traveled these routes. Every great cultural contact zone produced new music'
+    ],
+    gift: 'Georgian polyphony (showing that harmony can be organized around different principles than Western tonality), Mongolian throat singing (now globally influential), and the Silk Road concept of music as living exchange.',
+    corner: 'Hum a low drone note. Now, while continuing to hum, slowly change the shape of your mouth from "ooo" to "eee." Listen for a higher, whistle-like tone appearing above your hum. That is your first overtone — the beginning of throat singing.'
+  },
+  {
+    id: 'balkans',
+    title: 'Eastern Europe & Balkans',
+    emoji: '🎻',
+    era: '5,000+ BCE',
+    color: '#E74C3C',
+    bg: 'linear-gradient(135deg, #1A0000, #3D0000)',
+    teaser: 'Rhythms that breathe differently. Flamenco\'s duende.',
+    origin: 'Bulgaria, Romania, Hungary, Spain, Jewish diaspora (Eastern Europe)',
+    keyInsight: 'Bulgarian farmers learned time signatures of 7/8 and 11/16 from childhood — not as "complex rhythms" but simply as how music feels. Complexity is relative to what your body has learned.',
+    sound: 'Gaida (bagpipe), gadulka (bowed string), tamburica, flamenco guitar, klezmer violin, clarinet',
+    theory: [
+      'Bulgarian asymmetrical meters: 7/8 (3+2+2 or 2+2+3), 11/16 (2+2+3+2+2), 15/16 — irregular time signatures as natural folk expression, not academic experiment',
+      'Romanian doina: an ancient form of musical lament without fixed meter — rhythm follows the breath of the text, free and unmeasured like grief itself',
+      'Klezmer modal scales: augmented seconds (wider than Western major second) create the characteristic sound — related to Arabic maqam, Romani scales, and Phrygian mode',
+      'Flamenco compás: 12-beat cycle accented on beats 3,6,8,10,12 — circular time that perpetually returns rather than linear time that resolves'
+    ],
+    gift: 'Flamenco\'s concept of duende (authentic spirit transforming performance), Bulgarian asymmetrical meters (influencing Bartók, Brubeck, and fusion jazz), klezmer\'s vocal violin technique (influencing jazz clarinet and violin).',
+    corner: 'Count 1-2-3, 1-2-3, 1-2, 1-2, 1-2 while clapping on 3, 6, 8, 10, 12. Do it until it feels like one looping thing rather than twelve separate counts. When it clicks — that is flamenco compás.'
+  },
+  {
+    id: 'latam',
+    title: 'Latin America',
+    emoji: '🎺',
+    era: '500+ Years of Fusion; Ancient Indigenous Roots',
+    color: '#F1C40F',
+    bg: 'linear-gradient(135deg, #1A1500, #3D3000)',
+    teaser: 'The clave. Samba. Bossa nova. Tango. The most complex popular music on Earth.',
+    origin: 'Brazil, Cuba, Argentina, Colombia, Peru, Venezuela — where Africa, Europe, and Indigenous America met',
+    keyInsight: 'The clave — a 5-stroke rhythmic pattern across two bars — is the organizing principle of all Afro-Cuban music. Everything in the ensemble relates to the clave. Losing the clave means losing the music entirely.',
+    sound: 'Clave sticks, congas, timbales, bongos, guitar, tres, accordion, bandoneon, berimbau',
+    theory: [
+      'Clave: 3-2 son clave (three strokes bar 1, two strokes bar 2) — direct descendant of West African timeline patterns. All Latin ensemble parts either state, imply, or play against the clave',
+      'Samba: African polyrhythm (Candomblé tradition) + Portuguese modinha melody + Indigenous Brazilian rhythms. Multiple percussion parts interlock into one rhythmic fabric',
+      'Bossa nova harmony: complex chromatic chords (9ths, 11ths, 13ths) stated in the simplest possible way — maximum harmonic sophistication, minimum elaboration',
+      'Tango compás: habanera rhythm (Cuban/African) + Argentinian milonga + Italian melody + Jewish/Romani ornamentation — the sound of displacement made into beauty'
+    ],
+    gift: 'Bossa nova revolutionized jazz harmony globally. Samba\'s rhythmic complexity influenced funk, hip-hop, and drum programming. The clave structure is foundational to all Latin-influenced popular music worldwide.',
+    corner: 'Tap this pattern: 1-pause-3-pause-pause / 6-pause-pause — five taps across two bars of four. Do it slowly, then faster. That is the son clave — the heartbeat of salsa, mambo, and Afro-Cuban music.'
+  },
+  {
+    id: 'caribbean',
+    title: 'The Caribbean',
+    emoji: '🥁',
+    era: '300+ BCE Indigenous; 500 Years of Fusion',
+    color: '#FF7675',
+    bg: 'linear-gradient(135deg, #1A0508, #3D0015)',
+    teaser: 'Reggae. Steelpan (the only new acoustic instrument of the 20th century). Vodou rhythms.',
+    origin: 'Jamaica, Trinidad, Haiti, Cuba, Dominican Republic — crossroads of three worlds',
+    keyInsight: 'The steelpan was invented in Trinidad in the 1940s by poor Afro-Trinidadian communities banned from playing drums by colonial authorities. They turned discarded oil drums into the only new acoustic instrument invented in the 20th century.',
+    sound: 'Steel pan, nyahbinghi drums, reggae bass guitar, batá drums (Santería), steelpan orchestra',
+    theory: [
+      'Nyahbinghi drumming: three drums (akete, funde, bass) in specific interlocking patterns — direct descendant of Central African traditions, the root of ska/reggae/dancehall',
+      'Reggae one-drop rhythm: bass drum on beat 3 only (not 1 and 3) + off-beat guitar skank + deeply melodic bass line — the most innovative bass guitar tradition in popular music',
+      'Steelpan acoustics: hammered oil drum surface creates different pitches at different points — each pan is individually hand-crafted, each note tuned by hammer and ear',
+      'Haitian Vodou: specific drumming rhythms correspond to specific Lwa (spirits) — Rada rhythms for peaceful spirits, Petwo rhythms for fiercer ones. Rhythmic liturgy'
+    ],
+    gift: 'Reggae bass playing (revolutionizing bass guitar\'s melodic role), the steelpan (the only new acoustic instrument of the modern era), and Rastafarian drumming (influencing global roots music).',
+    corner: 'On four beats, only clap on beat 3. Count: 1 — 2 — CLAP — 4. Keep going. Notice how that single off-center clap creates a pull, a forward lean? That is the one-drop — the engine of reggae.'
+  },
+  {
+    id: 'jazz',
+    title: 'Blues & Jazz',
+    emoji: '🎷',
+    era: '1860s — Present',
+    color: '#2980B9',
+    bg: 'linear-gradient(135deg, #000D1A, #001E3D)',
+    teaser: 'The blue note. The 12-bar. Improvisation as freedom.',
+    origin: 'African American tradition — USA, 1860s to present',
+    keyInsight: 'The blue note is a microtone — a pitch between the piano keys — that carries a specific emotional quality that the piano cannot produce. The piano can approximate it. The voice and the bending guitar string can nail it.',
+    sound: 'Voice, blues guitar, slide guitar, piano, trumpet, saxophone, double bass, drums',
+    theory: [
+      'Blue note: flattened third, fifth, or seventh of the major scale, inflected slightly lower — not a mistake, a specific microtone with specific emotional meaning: the sound of truth the official scale has no room for',
+      '12-bar blues: I-I-I-I / IV-IV-I-I / V-IV-I-V — 12 bars, three chords, infinitely expressive. Simple enough to learn in an hour, deep enough to spend a lifetime in',
+      'Modal jazz (Miles Davis, Kind of Blue, 1959): improvise over scales rather than chord changes — the same approach as Indian raga, reached independently after Davis heard Ravi Shankar',
+      'Jazz improvisation: compose, perform, listen, and respond simultaneously in real time — the most complete expression of music as conversation'
+    ],
+    gift: 'Jazz is the mother tradition of all 20th century Western popular music. Hip-hop, R&B, funk, soul, rock — all grew from seeds planted by jazz and blues. The African American musical tradition is the most globally influential tradition of the past 150 years.',
+    corner: 'Sing a major scale. Now sing the third note but drop it slightly — not quite where it belongs. That bent, uncertain, searching note — that is your first blue note. Every blues, every jazz, every soul song is full of that feeling.'
+  },
+  {
+    id: '20thcentury',
+    title: '20th Century Theory',
+    emoji: '🎛',
+    era: '1900 — Present',
+    color: '#9B59B6',
+    bg: 'linear-gradient(135deg, #0D001A, #20003D)',
+    teaser: 'Atonality. Minimalism. Hip-hop sampling. The synthesizer.',
+    origin: 'Global — 20th century and beyond',
+    keyInsight: 'Hip-hop sampling is composition. The producer who recognizes the perfect break in a 1972 James Brown record and builds a new composition around it is exercising musical judgment, historical knowledge, and compositional skill.',
+    sound: 'Synthesizer, sampler, drum machine, DAW, turntables, electronic oscillators, prepared piano',
+    theory: [
+      'Atonality (Schoenberg, 1908+): treat all 12 pitches as equals — no home key, no tonal gravity. The Western harmonic tradition logically deconstructing itself',
+      'Minimalism (Reich, Glass, Riley, 1960s–70s): repetition, gradual change, sustained duration — directly modeled on West African drumming (Reich studied Ewe drumming in Ghana) and Indian raga (Glass studied with Ravi Shankar)',
+      'Hip-hop theory: the break (isolated drum solo) as the unit of meaning. Sampling as archaeological composition. The turntable as instrument',
+      'Electronic synthesis: the oscillator produces pure sine waves — sounds that no acoustic instrument can make. Every sound describable mathematically can be synthesized'
+    ],
+    gift: 'Minimalism proved that Western art music could learn from African and Indian music as equals. Hip-hop invented a new compositional technique (sampling) that rewrote music history. Electronic synthesis expanded the palette of possible sounds beyond all previous limits.',
+    corner: 'Take any recording you know. Find the 8-beat section that feels best to you — the most compelling groove. Imagine playing it on a loop. Now imagine rapping over it. You have just thought like a hip-hop producer.'
+  }
+];
+
+// ─── UNIVERSALS DATA ─────────────────────────────────────────
+const universals = [
+  { num: '1', name: 'Pulse', desc: 'The heartbeat of all music — regular beat in every tradition' },
+  { num: '2', name: 'Repetition', desc: 'Pattern creates meaning — heard once is noise, heard again is music' },
+  { num: '3', name: 'Call & Response', desc: 'Music as conversation — one voice calls, another answers' },
+  { num: '4', name: 'Silence', desc: 'The note not played — every culture uses silence as structure' },
+  { num: '5', name: 'Pitch', desc: 'High and low — every culture organizes frequency into meaning' },
+  { num: '6', name: 'Scale', desc: 'Choosing which pitches belong together — 5, 7, 12, 22, or 24' },
+  { num: '7', name: 'Drone', desc: 'The held note beneath everything — home, the unchanging ground' },
+  { num: '8', name: 'Melody', desc: 'A sequence of pitches that tells a story — closest to the voice' },
+  { num: '9', name: 'Harmony', desc: 'Multiple pitches sounding together — relationship, not just notes' },
+  { num: '10', name: 'Timbre', desc: 'The color of sound — why a violin and flute sound different on the same note' },
+  { num: '11', name: 'Dynamics', desc: 'Loud and soft — the breath of music, the shape of feeling' },
+  { num: '12', name: 'Emotion', desc: 'Music is ALWAYS for feeling — the deepest universal truth' }
+];
+
+// ─── RENDER CARDS ─────────────────────────────────────────────
+const grid = document.getElementById('atlasGrid');
+regions.forEach(r => {
+  const card = document.createElement('div');
+  card.className = 'region-card';
+  card.style.background = r.bg;
+  card.style.borderColor = r.color + '44';
+  card.innerHTML = `
+    <span class="card-emoji">${r.emoji}</span>
+    <div class="card-title" style="color:${r.color}">${r.title}</div>
+    <div class="card-era">${r.era}</div>
+    <div class="card-teaser">${r.teaser}</div>
+  `;
+  card.onclick = () => openPanel(r);
+  grid.appendChild(card);
+});
+
+// ─── RENDER UNIVERSALS ───────────────────────────────────────
+const uGrid = document.getElementById('universalsGrid');
+universals.forEach(u => {
+  const item = document.createElement('div');
+  item.className = 'universal-item';
+  item.innerHTML = `
+    <div class="universal-num">${u.num}</div>
+    <div class="universal-name">${u.name}</div>
+    <div class="universal-desc">${u.desc}</div>
+  `;
+  uGrid.appendChild(item);
+});
+
+// ─── PANEL LOGIC ─────────────────────────────────────────────
+function openPanel(r) {
+  const header = document.getElementById('panelHeader');
+  const body = document.getElementById('panelBody');
+
+  header.style.background = r.bg;
+  header.innerHTML = `
+    <span class="panel-emoji">${r.emoji}</span>
+    <div class="panel-title" style="color:${r.color}">${r.title}</div>
+    <div class="panel-origin">${r.origin}</div>
+  `;
+
+  const theoryItems = r.theory.map(t => `<li>${t}</li>`).join('');
+
+  body.innerHTML = `
+    <div class="panel-section">
+      <div class="panel-section-label">Key Insight</div>
+      <div class="panel-key-insight">${r.keyInsight}</div>
+    </div>
+
+    <div class="panel-section">
+      <div class="panel-section-label">Signature Sound</div>
+      <div class="panel-text">${r.sound}</div>
+    </div>
+
+    <div class="panel-section">
+      <div class="panel-section-label">Theory Core</div>
+      <ul class="panel-list">${theoryItems}</ul>
+    </div>
+
+    <div class="panel-section">
+      <div class="panel-section-label">The Gift to the World</div>
+      <div class="panel-text">${r.gift}</div>
+    </div>
+
+    <div class="noizy-corner">
+      <div class="noizy-corner-title">🎵 NOIZYKIDZ Corner — Try This Right Now</div>
+      <div class="noizy-corner-text">${r.corner}</div>
+    </div>
+  `;
+
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOverlay() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closePanel(e) {
+  if (e.target === document.getElementById('overlay')) closeOverlay();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeOverlay();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+ffmpeg_bin: ffmpeg
+ffprobe_bin: ffprobe
+
+paths:
+  raw_audio: data/raw_audio
+  processed_audio: data/processed_audio
+  output: data/output
+  manifests: data/manifests
+  packs: data/packs
+  plugins: data/plugins

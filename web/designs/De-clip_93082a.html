@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>De-clip</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="De-clip" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer014" class="Basic-Text-Frame">
+			<p id="_idParaDest-16" class="heading-1"><a id="_idTextAnchor015"></a>De-clip Plug-in</p>
+			<p class="Inline-Art"><img src="image/image_BLVE43QRWTK3XUFCSHTQD3CRXV6NNIND" alt="" /></p>
+			<p class="Normal">De-clip repairs digital and analog clipping artifacts that result when A/D converters are pushed too hard or magnetic tape is over-saturated.</p>
+			<p class="Normal">De-clip can be extremely useful for rescuing recordings that were made in a single pass, such as live concerts or interviews, momentary overs in “perfect takes”, and any other audio that cannot be re-recorded.</p>
+			<p class="Normal">De-clip will process any audio above a given threshold, interpolating the waveform to be more round.  Generally, the process is as easy as finding the clipping you want to repair, then setting the threshold just under the level where the signal clips.</p>
+			<p class="Normal">You can usually find clipping by listening for the distortion that clipping causes.</p>
+			<p class="Normal">A waveform before and after clip repair. The after example (bottom) shows the original repaired waveform (faded) and the post-limiting waveform (bright). </p>
+			<p class="Inline-Art"><img src="image/image_UVDMAQXIFHGG6DFJNEFYG7OB26KT2JXK" alt="" /></p>
+			<p id="_idParaDest-17" class="heading-2"><a id="_idTextAnchor016"></a>Histogram Meter</p>
+			<p class="Normal">Displays waveform levels for the current selection as a histogram. </p>
+			<p class="Normal">The histogram meter helps you set the Threshold control by displaying the audio level where the waveform&apos;s peaks are concentrated. This usually indicates at what level clipping is present in the file.</p>
+			<p class="Normal">A histogram is an analytical tool that displays how many samples are present at a given signal level over a window in time. The longer the line for the histogram is, the more energy is present at that amplitude. If a lot of energy tends to collect near the top and bottom edges of a waveform, that waveform is probably clipped and distorted.</p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_2RQEJMGW2EWW42VM4SPTY3JN4LQLY7YZ" alt="" /></p>
+			<p class="Normal"><span class="Body-Text-Italic">Clipped peaks in waveform, with histogram from selection</span></p>
+			<p class="Normal">In the RX Plug-in, the histogram runs as a realtime meter.</p>
+			<p class="Normal">The histogram’s range can be scaled if you need a better view of your signal. Use the (+) and (-) buttons to scale your display and value resolution for the De-clip plug-in. These buttons reduce (+) and/or expand (-) the range of the threshold slider and histogram. You may want to extend the histogram range when your clipping point is lower than what you can see on a histogram or if you don’t see anything on the histogram.</p>
+			<p class="Normal">If you are using the De-clip control overlay on the waveform display, you can use the mouse’s scroll wheel on the waveform amplitude scale to adjust the threshold control resolution.</p>
+			<p id="_idParaDest-18" class="heading-2"><a id="_idTextAnchor017"></a>Threshold [dB]</p>
+			<p class="Normal">Selects the clipping level used for detection of clipped intervals. Generally, this should be set just below the actual level of clipping.</p>
+			<p class="Normal">Note: adjusting the Clipping Threshold will display a blue line within the histogram and a gray line on the waveform itself. This gray line shows the level on the waveform above which the De-clip algorithm will process the audio file. All sections of the waveform above this level will be regarded as clipping. Within the histogram itself the elements of the file that will be processed (above the blue line) will appear gray.</p>
+			<p class="Normal">To set the threshold, move the Threshold slider until it lines up with the place in the histogram just below where clipping is concentrated.</p>
+			<p class="Normal">You can also set the clipping threshold from the RX waveform display. By default, De-clip Threshold is enabled in the Effect Overlays section of the View menu. When this option is enabled, you can see the relationship of the De-clip Clipping Threshold settings to your file’s waveform, and make adjustments to the setting by clicking and dragging on the red threshold line.</p>
+			<p class="Normal">If you would like greater control resolution or need to apply De-clipping to a different amplitude range, you can adjust the amplitude range of the waveform display by using the zoom control, clicking and dragging the amplitude ruler, or using your mouse’s scroll wheel over the amplitude ruler.</p>
+			<p id="_idParaDest-19" class="heading-2"><a id="_idTextAnchor018"></a>Quality</p>
+			<p class="Normal">Controls the interpolation processing quality.</p>
+			<p class="Normal">There are three quality modes in RX&apos;s De-clip: Low, Medium, and High. Low quality mode processes very quickly; High quality mode processes slowly but is capable of achieving better results. In many cases you will find that Low quality mode gives you great results. To save time, always start by previewing the Low quality modes first. You can also use the Compare feature to try multiple modes and preview the results.</p>
+			<p id="_idParaDest-20" class="heading-2"><a id="_idTextAnchor019"></a>Makeup gain (dB)</p>
+			<p class="Normal">Selects the gain to be applied to the selection after De-clip.</p>
+			<p class="Normal">The De-clip process causes an increase in peak levels. The Makeup gain control can be used to prevent the signal from clipping after processing. It is also useful for matching the level after processing to unprocessed audio outside of the selection.</p>
+			<p id="_idParaDest-21" class="heading-2"><a id="_idTextAnchor020"></a>Post-limiter</p>
+			<p class="Normal">Applies a true peak limiter after processing to prevent the processed signal from exceeding 0 dBFS.</p>
+			<p class="Normal">De-clip usually increases signal levels by interpolating signal segments “above” the clipping point, which can make the signal clip again if the waveform format offers no headroom above 0 dBFS.</p>
+			<p class="Normal">If the post-limiter is disabled, the restored intervals above 0 dBFS can be safely stored even without makeup gain as long as the file is saved as 32-bit float. Intervals above 0 dBFS will clip when played back through a digital-analog converter.</p>
+		</div>
+	</body>
+</html>

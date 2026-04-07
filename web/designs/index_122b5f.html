@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>Dynamics - Ozone 9 Help Documentation</title>
+<meta name="generator" content="Hugo 0.63.2" />
+
+<meta name="description" content="Ozone 9 Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ozone 9 Help Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/en/dynamics/index.html">
+<meta property="og:title" content="Ozone 9 Help Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+      <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  <link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/style-overrides.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-33', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+<body class="palette-primary-ozone9 palette-accent-ozone9">
+  <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html">
+          <img src="../images/o9-header.svg" alt="Ozone 9 docs header image"
+                 width="190px" height="50px"> Dynamics</a>
+          </div>
+      </div>
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+<div class="drawer">
+  <nav aria-label="Navigation">
+<form action="../search/index.html"><div class="group">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+  </form>
+</nav>
+  <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+    <a title="Introduction" href="../index.html"><span class=""></span>  Introduction</a>
+</li>
+<li>
+    <a title="Getting Started" href="../getting-started/index.html"><span class=""></span>  Getting Started</a>
+</li>
+<li>
+    <a title="General Controls" href="../general-controls/index.html"><span class=""></span>  General Controls</a>
+</li>
+<li>
+    <a title="Views" href="../views/index.html"><span class=""></span>  Views</a>
+</li>
+<li>
+    <a title="Ozone Application" href="../ozone-app/index.html"><span class=""></span>  Ozone Application</a>
+</li>
+<li>
+    <a title="Master Assistant" href="../master-assistant/index.html"><span class=""></span>  Master Assistant</a>
+</li>
+<li>
+    <a class="current"title="Dynamics" href="index.html"><span class=""></span>  Dynamics</a>
+<ul id="scrollspy">
+</ul>
+</li>
+<li>
+    <a title="Dynamic EQ" href="../dynamic-eq/index.html"><span class=""></span>  Dynamic EQ</a>
+</li>
+<li>
+    <a title="Equalizer" href="../equalizer/index.html"><span class=""></span>  Equalizer</a>
+</li>
+<li>
+    <a title="Exciter" href="../exciter/index.html"><span class=""></span>  Exciter</a>
+</li>
+<li>
+    <a title="Imager" href="../imager/index.html"><span class=""></span>  Imager</a>
+</li>
+<li>
+    <a title="Low End Focus" href="../low-end-focus/index.html"><span class=""></span>  Low End Focus</a>
+</li>
+<li>
+    <a title="Master Rebalance" href="../master-rebalance/index.html"><span class=""></span>  Master Rebalance</a>
+</li>
+<li>
+    <a title="Match EQ" href="../match-eq/index.html"><span class=""></span>  Match EQ</a>
+</li>
+<li>
+    <a title="Maximizer" href="../maximizer/index.html"><span class=""></span>  Maximizer</a>
+</li>
+<li>
+    <a title="Spectral Shaper" href="../spectral-shaper/index.html"><span class=""></span>  Spectral Shaper</a>
+</li>
+<li>
+    <a title="Vintage Compressor" href="../vintage-compressor/index.html"><span class=""></span>  Vintage Compressor</a>
+</li>
+<li>
+    <a title="Vintage EQ" href="../vintage-eq/index.html"><span class=""></span>  Vintage EQ</a>
+</li>
+<li>
+    <a title="Vintage Limiter" href="../vintage-limiter/index.html"><span class=""></span>  Vintage Limiter</a>
+</li>
+<li>
+    <a title="Vintage Tape" href="../vintage-tape/index.html"><span class=""></span>  Vintage Tape</a>
+</li>
+<li>
+    <a title="Codec Preview" href="../codec-preview/index.html"><span class=""></span>  Codec Preview</a>
+</li>
+<li>
+    <a title="Dither" href="../dither/index.html"><span class=""></span>  Dither</a>
+</li>
+<li>
+    <a title="Referencing" href="../referencing/index.html"><span class=""></span>  Referencing</a>
+</li>
+<li>
+    <a title="Presets" href="../presets/index.html"><span class=""></span>  Presets</a>
+</li>
+<li>
+    <a title="Options" href="../options/index.html"><span class=""></span>  Options</a>
+</li>
+<li>
+    <a title="Glossary" href="../glossary/index.html"><span class=""></span>  Glossary</a>
+</li>
+<li>
+    <a title="Customer Care" href="../customer-care/index.html"><span class=""></span>  Customer Care</a>
+</li>
+<li>
+    <a title="License Information" href="../license-information/index.html"><span class=""></span>  License Information</a>
+</li>
+<li>
+    <a title="EULA" href="../eula/index.html"><span class=""></span>  EULA</a>
+</li>
+</ul>
+      <hr />
+<span class="section">Connect with iZotope</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+<li>
+    <a href="https://www.izotope.com/en/products/ozone.html" target="_blank" title="iZotope Product Page"><span class="icon icon-sphere"></span>  iZotope.com</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a>
+  </li>
+</ul>
+<hr /></div>
+  </div>
+</div>
+</div>
+<article class="article">
+    <div class="wrapper">
+
+      
+
+<h1>Dynamics </h1>
+
+<h2 id="overview">Overview</h2>
+<p>The Dynamics module can be used to shape the dynamics of your master, with up to four
+bands of analog-modeled compression, limiting, and expansion.</p>
+<hr>
+<h2 id="module-interface">Module Interface</h2>
+<p>Ozone 9&rsquo;s Dynamics module main interface components are outlined in the image and table below.</p>
+<figure ><img src="../images/dynamics/module-interface.png" alt="Dynamics Interface" /></figure>
+<table>
+<thead>
+<tr>
+<th><strong>LABEL</strong></th>
+<th><strong>SECTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="label-1 Views" /></figure></td>
+<td><a href="index.html#module-header">Module Header</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="label-2 Module Header" /></figure></td>
+<td><a href="index.html#module-header">Meters &amp; Displays</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="label-3" /></figure></td>
+<td><a href="index.html#controls">Controls</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="module-header">Module Header</h2>
+<p>The Dynamics module header includes the following global module controls and
+features outlined in the image and table below.</p>
+<figure ><img src="../images/dynamics/module-header.png" alt="Dynamics Module Header" /></figure>
+<table>
+<thead>
+<tr>
+<th><strong>LABEL</strong></th>
+<th><strong>SECTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1 Views" /></figure></td>
+<td><a href="index.html#views-selector">Views Selector</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2 Mid/Side Processing" /></figure></td>
+<td><a href="index.html#channel-processing-modes">Channel Processing Modes</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="Label-3 Learn" /></figure></td>
+<td><a href="index.html#learn">Learn</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-4.png" alt="Label-4 Learn Reset" /></figure></td>
+<td><a href="index.html#reset">Reset</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="views">Views</h3>
+<p>The Dynamics module includes the following view options to show in the Views display:</p>
+<ul>
+<li><a href="../views/index.html#crossover">Crossover</a></li>
+<li><a href="../views/index.html#gain-reduction">Gain Reduction</a></li>
+<li><a href="../views/index.html#detection-filter">Detection Filter</a></li>
+</ul>
+<h3 id="channel-processing-modes">Channel Processing Modes</h3>
+<p>The Dynamics module can operate in either Stereo or Mid/Side operation. See the
+<a href="http://www.izotopedocs.com/en/common-module-controls/index.html#module-channel-processing-modes">Mid/Side Processing
+section</a> for
+more details.</p>
+<div class="admonition note">
+<p class="admonition-title">MULTIBAND COMPRESSION AND MID/SIDE PROCESSING</p>
+<p class="admonition-body"><p>When dealing with multiband compression on a stereo mix, it is sometimes
+difficult to apply processing to a specific instrument or vocal if they are too
+close in frequency.</p>
+<p>In these cases, Mid/Side processing reveals more refined control by allowing you
+to <em>separate</em> a specific frequency range into its <strong>Mid</strong> and <strong>Side</strong> components and
+apply compression <em>separately</em> to the Mid (center) channel, or the Sides of your
+mix.</p>
+<p>There are many uses for Mid/Side processing while using compression. For example, this
+can help prevent other instruments from being affected by compression made to the
+lead vocal. This is especially true since the vocal typically sits in the center of your mix while the other
+instruments are usually found at the sides.</p>
+</p>
+</div>
+<h3 id="learn">Learn</h3>
+<p>Enables the Dynamics module <a href="http://www.izotopedocs.com/en/view/index.html#crossover-spectrum">Crossover Spectrum View</a> to search for natural crossover cutoff points for multiband processing.</p>
+<div class="admonition note">
+<p class="admonition-title">LEARN ONLY APPLIES TO CROSSOVER VIEW</p>
+<p class="admonition-body">The Learn button does not change other View settings within the Dynamics
+module except for the Crossover Spectrum View.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">PLAY AUDIO FOR LEARN TO ENGAGE</p>
+<p class="admonition-body">In order for Learn to function as expeced, the module must be receiving audio input while Learn is engaged.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">LEARN WILL DISABLE WHEN DONE</p>
+<p class="admonition-body">After Learn determines and sets the ideal values for the crossover cutoffs, it
+will turn itself off automatically. When the Learn button is toggled OFF the button
+is grey instead of orange. You can also manually disable Learn when it is active
+by clicking the Learn button again.</p>
+</div>
+<h3 id="reset">Reset</h3>
+<p>Returns all controls in the Dynamics module back to their factory default
+values. You can use the <a href="../general-controls/index.html#undo-history">Undo History</a> window to revert any settings used before clicking <strong>Reset</strong>.</p>
+<hr>
+<h2 id="controls">Controls</h2>
+<p>There are three categories of controls you can adjust in the Dynamics control
+panel:</p>
+<ol>
+<li><a href="index.html#limiter-and-compressor-controls">Limiter &amp; Compressor Controls</a></li>
+<li><a href="index.html#dynamic-curve-controls">Dynamic Curve Contols</a></li>
+<li><a href="index.html#output-controls">Output Controls</a></li>
+</ol>
+<figure ><img src="../images/dynamics/controls.png" alt="Dynamics Controls" /></figure>
+<h3 id="limiter-and-compressor-controls">Limiter and Compressor Controls</h3>
+<p>The Limiter and Compressor utilize the following controls:</p>
+<ul>
+<li><a href="index.html#threshold">Threshold</a></li>
+<li><a href="index.html#ratio">Ratio</a></li>
+<li><a href="index.html#attack">Attack</a></li>
+<li><a href="index.html#release">Release</a></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Compressing and Limiting in Dynamics Signal Flow</p>
+<p class="admonition-body">In the Dynamics module, the Compressor processing preceeds the Limiter processing in the signal flow. By applying the Compressor and Limiter in this way, you are free to create complex transfer curves.</p>
+</div>
+<h4 id="threshold">Threshold</h4>
+<p>The Threshold has the following associated controls:</p>
+<ul>
+<li><a href="index.html#threshold-meter">Threshold Meter</a></li>
+<li><a href="index.html#level-detection-modes">Level Detection Modes</a></li>
+</ul>
+<p>There are two types of thresholds you can adjust:</p>
+<ul>
+<li><strong>Compressor Threshold</strong></li>
+<li><strong>Limiter Threshold</strong></li>
+</ul>
+<p>Adjusting either threshold will determine the signal level at which the
+compressor or limiter begins dynamics processing.</p>
+<p><strong>ADJUSTING THRESHOLD</strong></p>
+<ul>
+<li>Click and drag the Threshold slider handle up to increase the Threshold or
+down to decrease the Threshold.</li>
+<li>Click on the Threshold value readout text and manually enter a value in the
+inline edit field.</li>
+</ul>
+<h5 id="threshold-meter">Threshold Meter</h5>
+<p>The Threshold meter displays the input level into the detection circuit (displayed in grey) alongside the gain reduction occurring as a result of the dynamics processing (displayed in the corresponding band color).</p>
+<ul>
+<li>The two meters on the far left and right of the threshold meter display the
+input audio level.</li>
+<li>The two meters in between the input meters display the gain reduction applied.</li>
+</ul>
+<h4 id="level-detection-modes">Level Detection Modes</h4>
+<p>Select one of the three modes outlined in the table below to determine the type
+of calculation you want applied to your signal processing within the Dynamics
+module.</p>
+<table>
+<thead>
+<tr>
+<th><strong>MODE</strong></th>
+<th><strong>EFFECT</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Peak</strong></td>
+<td>When this option is enabled Ozone’s detection circuit looks at the peak levels of the incoming signal. In general, this setting is useful when you are trying to even out sudden peaks in your music.</td>
+</tr>
+<tr>
+<td><strong>Env</strong></td>
+<td>Envelope mode behaves much like RMS mode, but with some key advantages. Unlike RMS, Envelope mode produces even levels across all frequencies. Additionally, Envelope mode will not produce the aliasing or artifacts that RMS detection can cause.</td>
+</tr>
+<tr>
+<td><strong>RMS</strong></td>
+<td>When this option is enabled, Ozone looks at the average level of the incoming signal. RMS detection is useful when you are trying to increase the overall volume level without changing the character of the sound.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ratio">Ratio</h4>
+<p>Determines how much gain reduction will be applied to the entire signal or
+band when the threshold is crossed, according to the rules set by the
+<strong>Level Detection Mode</strong>. Both the Limiter and Compressor have their own ratio
+control.</p>
+<ul>
+<li><strong>Higher positive ratios</strong>: result in more extreme compression.</li>
+<li><strong>Lower negative ratios</strong>: result in an expander effect.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Limiter Maximum Ratio</p>
+<p class="admonition-body">The limiter in the Dynamics module is similar to the function of a limiter in the
+analog domain. This characteristic allows some overshoot when setting the Ratio
+to the maximum 30:1 meaning that this is not a Brickwall limiter.</p>
+</div>
+<h4 id="attack">Attack</h4>
+<p>Determines the amount of time, or how quickly it takes (in milliseconds), for the
+dynamics to react and for the signal to become fully compressed after exceeding the threshold level.</p>
+<h4 id="release">Release</h4>
+<p>Adjusts the amount of time (milliseconds) it takes for the dynamics processor
+to return to unity gain (recovers gain) when the input signal falls below the threshold,
+according to the rules set by the <strong>Level Detection Mode</strong>.</p>
+<h3 id="dynamic-curve-controls">Dynamic Curve Controls</h3>
+<p>The Dynamic Curve controls appear in the Dynamic Curve Meter view. These
+controls are individual nodes for the Limiter (<strong>L</strong>) and Compressor ( <strong>C</strong> ).
+These nodes are linked to the Threshold and Ratio controls, and can be used to
+adjust the curve visually, rather than using the standard controls. These controls are outlined in the image and table below.</p>
+<figure ><img src="../images/dynamics/dyn-curve.png" alt="Transfer Controls" /></figure>
+<table>
+<thead>
+<tr>
+<th><strong>LABEL</strong></th>
+<th><strong>CONTROL</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1 Compressor and Limiter Knee " /></figure></td>
+<td><a href="index.html#knee">Knee</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2 Slope Nodes" /></figure></td>
+<td><a href="index.html#slope">Slope</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="Label-3 Dynamic Curve Meter Zoom" /></figure></td>
+<td><a href="index.html#dynamic-curve-meter">Dynamic Curve Meter Zoom</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="dynamic-curve-meter">Dynamic Curve Meter</h4>
+<p>Displays the input signal (x axis) plotted against the output
+(processed) signal (y axis). Lowering the horizontal compression control adds
+more compression to the signal.</p>
+<p><strong>Dynamic Curve Meter Zoom</strong></p>
+<p>Click the <strong>+</strong> and <strong>-</strong> buttons in the
+bottom right when hovering the mouse over the Dynamics Curve Meter view to zoom
+in and out on the meter.</p>
+<h4 id="slope">Slope</h4>
+<p>Adjust to set the slope of the Dynamic curve between the origin value and the
+knee value.</p>
+<div class="admonition note">
+<p class="admonition-title">DYNAMIC CURVE SLOPE IS THE RATIO</p>
+<p class="admonition-body">Watch the Ratio slider while you make
+changes to the Dynamic Curve. The <strong>slope</strong> of the Dynamic Curve represents the
+ratio of the applied compressor and limiter processing. When you adjust the Knee
+and Slope nodes, you are effectively adjusting the Ratio value.</p>
+</div>
+<h4 id="knee">Knee</h4>
+<p>Adjust to set the desired character of the compression. There are two types of
+Knee nodes you can adjust in the Dynamic Curve view:</p>
+<ul>
+<li>Limiter Knee</li>
+<li>Compressor Knee</li>
+</ul>
+<p>The range of knee values provide different results:</p>
+<ul>
+<li><strong>Higher knee values</strong> result in a &ldquo;soft knee&rdquo; setting with a subtle, natural
+sounding compression.</li>
+<li><strong>Lower knee values</strong> result in a &ldquo;hard knee&rdquo; setting with an aggressive
+compression often used as an intended effect on individual tracks such as kick
+and snare drum.</li>
+</ul>
+<h3 id="output-controls">Output Controls</h3>
+<p>The following output controls affect the overall signal output of the Dynamics
+module:</p>
+<ul>
+<li><a href="index.html#parallel">Parallel</a></li>
+<li><a href="index.html#bands-display">Bands Display</a></li>
+<li><a href="index.html#link-bands">Link Bands</a></li>
+<li><a href="index.html#gain">Gain</a></li>
+<li><a href="index.html#auto-release">Auto Release</a></li>
+<li><a href="index.html#auto-gain">Auto Gain</a></li>
+</ul>
+<h3 id="parallel">Parallel</h3>
+<p>Adjust to set the amount of the dry, unprocessed (lightly compressed) signal to mix with the wet, processed (heavily compressed) signal. This technique is also known as &ldquo;parallel compression&rdquo;.</p>
+<ul>
+<li>At <strong>100%</strong>, you will hear only the processed audio signal.</li>
+<li>At <strong>50%</strong>,  you will hear a blend between unprocessed and processed audio.</li>
+<li>At <strong>0%</strong>,  you will hear a only the unprocessed audio signal.</li>
+</ul>
+<h3 id="bands-display">Bands Display</h3>
+<p>Enable to toggle from  <strong>Single Band</strong> view to an <strong>All Bands</strong> view. In the <strong>Single Band</strong> view, you can use the arrows left or right of the band icon to cycle through the enabled bands.</p>
+<figure ><img src="../images/dynamics/bands-view.png" alt="All Band and Link Band Comparison" /></figure>
+<h3 id="link-bands">Link Bands</h3>
+<p>Enable to link all <a href="index.html#limiter-and-compressor">Limiter and Compressor Controls</a>
+controls for each band. Adjusting any of these controls for one band while in linked mode will adjust all other <a href="index.html#limiter-and-compressor">Limiter and Compressor Controls</a> for the other three bands by the same amount and vice versa.</p>
+<h4 id="gain">Gain</h4>
+<p>The resulting effect of the gain slider is dependent on the type of View you choose to
+work in.</p>
+<table>
+<thead>
+<tr>
+<th><strong>VIEW TYPE</strong></th>
+<th><strong>GAIN SLIDER EFFECT</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ALL BANDS</strong></td>
+<td>The Gain slider affects the gain of the entire Dynamics module after processing. This is useful for compensating any loss in level after compression has been applied.</td>
+</tr>
+<tr>
+<td><strong>SINGLE BAND</strong></td>
+<td>The Gain slider will affect the output gain of the currently selected band after processing.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="auto-gain">Auto Gain</h3>
+<p>Enabling allows the Dynamics module to automatically calculate and apply the
+make-up gain to the output signal. The make-up gain applied compensates for
+level differences introduced by dynamics processing.</p>
+<div class="admonition note">
+<p class="admonition-title">Auto &amp; Manual Gain Adjustments</p>
+<p class="admonition-body">Auto Gain calculates the <strong>RMS</strong> levels of the input and output signals
+independently for each Dynamics crossover band. Gain is automatically applied to
+the output signal based on the RMS level difference between the input
+and output signals. Auto Gain adapts the post-processing level to match the
+pre-processing input level over time. You can use this tool for A/B’ing
+various settings in the multiband Dynamics module without having gain changes affect your perception.
+Auto mode and manual band/global gain adjustments can be applied simultaneously.</p>
+</div>
+<h3 id="adaptive-release">Adaptive Release</h3>
+<p>Enable to allow the Dynamics module to automatically adjust the Release time of the
+Compressor based on the Peak factor of a signal.</p>
+<ul>
+<li>If a <strong>transient signal</strong> is detected, the Release time is scaled to be <em>shorter</em> for less
+pumping.</li>
+<li>If a <strong>sustained note</strong> is detected, the Release time is scaled to be <em>longer</em> for lower distortion.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Auto Release Adjustments</p>
+<p class="admonition-body">The Release time is scaled in relation to the Release value set by the user.
+<strong>For example:</strong> if you are using the Compressor with the Release time set to 100
+ms, the Release time will be automatically adjusted to a value within a range of
+20 ms to 200 ms, depending on the type of signal that is being processed.</p>
+</div>
+
+
+    </div>
+  </article>
+<footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../master-assistant/index.html" title="Master Assistant">
+        <span class="direction">Previous</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">Master Assistant</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../dynamic-eq/index.html" title="Dynamic EQ">
+        <span class="direction">Next</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">Dynamic EQ</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+&copy; 2020 iZotope, Inc. - Ozone 9.1.0
+  </div>
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </main>
+</body>
+</html>

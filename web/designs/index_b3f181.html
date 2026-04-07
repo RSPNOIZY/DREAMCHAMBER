@@ -1,0 +1,5050 @@
+
+  <!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]> 
+<!--><html class="no-js" lang="en"><!--<![endif]-->
+	<head lang="en">
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>VocalSynth 2 Help Documentation - VocalSynth 2 Help Documentation</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+    <meta name="description" content="VocalSynth 2 Documentation">
+    <link rel="canonical" href="index.html">
+    <meta name="author" content="iZotope">
+    <meta property="og:url" content="http://www.vocalsynth2helpdocs.com/print/index.html">
+    <meta property="og:title" content="VocalSynth 2 Help Documentation">
+    <meta property="og:image" content="http://www.vocalsynth2helpdocs.com/images/header-intro-site/vs2.png">
+    <meta name="apple-mobile-web-app-title" content="VocalSynth 2 Help Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+    
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/palettes.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+    
+    
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css"><link rel="stylesheet" href="../stylesheets/ie7.css"><link rel="stylesheet" href="../stylesheets/image_style.css">
+    <script src="../javascripts/modernizr.js"></script>
+    
+  
+<script>
+  (function(i,s,o,g,r,a,m){
+    i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+    []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+    m.parentNode.insertBefore(a,m)
+  })(window, document,
+    'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+   
+  ga('create', 'UA-63445037-19', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+  
+
+<script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+
+
+</head>
+<body class="palette-primary-print-page palette-accent-print-page">
+  
+	
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	
+
+
+  <div class="backdrop">
+    <div class="backdrop-paper"></div>
+  </div>
+  <input class="toggle" type="checkbox" id="toggle-drawer">
+  <input class="toggle" type="checkbox" id="toggle-search">
+  <label class="toggle-button overlay" for="toggle-drawer"></label>
+  <header class="header">    <nav aria-label="Header">
+      <div class="bar default">
+        <div class="button button-menu" role="button" aria-label="Menu">
+          <label class="toggle-button icon icon-menu" for="toggle-drawer">
+            <span></span>
+          </label>
+        </div>
+        <div class="stretch">
+          <div class="title">
+            <a href="../index.html" >
+            <img src="../images/header-intro-site/header.png">  VocalSynth 2 Help Documentation</a>
+          </div>
+        </div>
+            
+      </div>
+      <div class="bar search">
+        <div class="button button-close" role="button" aria-label="Close">
+          <label class="toggle-button icon icon-back" for="toggle-search"></label>
+        </div>
+        <div class="stretch">
+          <div class="field">
+            <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+          </div>
+        </div>
+        <div class="button button-reset" role="button" aria-label="Search">
+          <button class="toggle-button icon icon-close" id="reset-search"></button>
+        </div>
+      </div>
+    </nav></header>
+  <main class="main">
+  
+<article class="article">
+      <div class="wrapper">
+	<img src="../images/header-intro-site/header-print.png" alt="iZotope VocalSynth">
+	<h1>VocalSynth 2 Help Documentation</h1>
+  
+  
+	<hr />
+  
+  <h1><span class="icon icon-bookmark"></span>  User Interface Guide</h1>
+  <p>VocalSynth 2 includes a number of new features and workflow enhancements. The following guide highlights the key areas of the interface:</p>
+
+
+
+<figure >
+    
+        <img src="../images/vs2-interface/guide-main.png" alt="VocalSynth 2 Interface Guide" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>KEY</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/1-plugin-name.png" alt="1 Plugin Instance Name" />
+    
+    
+</figure>
+</td>
+<td><strong>PLUG-IN INSTANCE NAME:</strong> Displays the name of the current instance of VocalSynth 2. This name can be edited by clicking on the pencil icon. VocalSynth 2 instance names appear in selection menus of compatible iZotope plug-ins. VocalSynth 2 can be selected in Tonal Balance Control and Neutron 2 Masking Meters and controlled by the Neutron 2 Visual Mixer.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/2-global-mode.png" alt="2 global mode" />
+    
+    
+</figure>
+</td>
+<td><a href="../global-modes/index.html"><strong>GLOBAL INPUT MODE</strong></a>: This button displays the icon and name of the currently selected global input mode. To change the global input mode, click on this button to enter the global mode selection screen.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/3-presets.png" alt="3 Presets" />
+    
+    
+</figure>
+</td>
+<td><a href="../presets/index.html"><strong>PRESETS</strong></a>: Opens the Preset Manager window and displays the currently selected preset name.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/4-presets-next-previous.png" alt="4 Preset next prev" />
+    
+    
+</figure>
+</td>
+<td><strong>PREVIOUS/NEXT PRESET BUTTONS</strong>: Selects the previous or next preset in the preset list. These buttons are useful for auditioning different presets quickly without having to open the preset manager window.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/5-options-help.png" alt="5 Options and Help" />
+    
+    
+</figure>
+</td>
+<td><a href="../options/index.html"><strong>OPTIONS</strong></a> <strong>&amp; HELP</strong>: Clicking on the gear button will open the VocalSynth options window. Clicking on the &lsquo;?&rsquo; button will launch this help documentation.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/6-biovox.png" alt="6 Biovox module" />
+    
+    
+</figure>
+</td>
+<td><a href="../biovox/index.html"><strong>BIOVOX</strong></a>: This panel includes the main Biovox module controls, Biovox synth preset selector and access to the <a href="../biovox/index.html#advanced-view">Biovox Advanced View</a> by clicking on the mixer icon to the right of the synth preset previous/next buttons.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/7-vocoder.png" alt="7 Vocoder module" />
+    
+    
+</figure>
+</td>
+<td><a href="../vocoder/index.html"><strong>VOCODER</strong></a>: This panel includes the main Vocoder module controls, Vocoder synth preset selector and access to the <a href="../vocoder/index.html#advanced-view">Vocoder Advanced View</a> by clicking on the mixer icon to the right of the synth preset previous/next buttons.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/8-compuvox.png" alt="8 Compuvox module" />
+    
+    
+</figure>
+</td>
+<td><a href="../compuvox/index.html"><strong>COMPUVOX</strong></a>: This panel includes the main Compuvox module controls, Compuvox synth preset selector and access to the <a href="../compuvox/index.html#advanced-view">Compuvox Advanced View</a> by clicking on the mixer icon to the right of the synth preset previous/next buttons.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/9-talkbox.png" alt="9 Talkbox module" />
+    
+    
+</figure>
+</td>
+<td><a href="../talkbox/index.html"><strong>TALKBOX</strong></a>: This panel includes the main Talkbox module controls, Talkbox synth preset selector and access to the <a href="../talkbox/index.html#advanced-view">Talkbox Advanced View</a> by clicking on the mixer icon to the right of the synth preset previous/next buttons.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/10-polyvox.png" alt="10 Polyvox module" />
+    
+    
+</figure>
+</td>
+<td><a href="../polyvox/index.html"><strong>POLYVOX</strong></a>: This panel includes the main Polyvox module controls and allows you to access the <a href="../polyvox/index.html#advanced-view">Polyvox Advanced View</a> by clicking on the mixer icon at the bottom of the panel.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/11-pitch.png" alt="11 Pitch Controls" />
+    
+    
+</figure>
+</td>
+<td><a href="../pitch-and-voicing/index.html#pitch"><strong>PITCH</strong></a>: Includes <a href="../pitch-and-voicing/index.html#register">Register</a> settings for pitch detection and correction, Pitch Correction controls and a dry/pitch corrected signal level control.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/12-voicing.png" alt="12 Voicing button" />
+    
+    
+</figure>
+</td>
+<td><a href="../pitch-and-voicing/index.html#voicing"><strong>VOICING</strong></a>: Reveals the Voicing controls tab. The Voicing tab includes controls for the internal synthesizers when using VocalSynth 2 in <a href="http://www.vocalsynth2helpdocs.com/print/global-modes/index.html#auto-mode" target="_blank">Auto</a> or <a href="http://www.vocalsynth2helpdocs.com/print/global-modes/index.html#midi-mode" target="_blank">MIDI</a> Mode.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/13-visual-xy-switch.png" alt="13 Meter XY Toggle" />
+    
+    
+</figure>
+</td>
+<td><a href="../general-functions/index.html"><strong>METER &amp; X/Y PAD VIEW SELECTOR</strong></a>: Toggles between the <a href="../general-functions/index.html#meter-view">meter</a> and <a href="../general-functions/index.html#x-y-view">X/Y</a> pad controller views. The default meter selection can be changed in the <a href="../options/index.html">Options</a> window.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/14-output.png" alt="14 Output controls" />
+    
+    
+</figure>
+</td>
+<td><a href="../general-functions/index.html#output"><strong>OUTPUT</strong></a>: Includes global output Mix, a Gate Threshold control, Pan, Width and output Gain controls.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/15-fx-chain.png" alt="15 Effects Chain" />
+    
+    
+</figure>
+</td>
+<td><strong>ADJUSTABLE EFFECTS CHAIN:</strong> Click and drag on the dots above the mix slider in any effect panel to change the position of the effect in the processing chain. <strong>The following effects are available in the effects Chain:</strong></td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/a-fx-distort.png" alt="A: Distort" />
+    
+    
+</figure>
+</td>
+<td><a href="../distort/index.html"><strong>DISTORT</strong></a> effect.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/b-fx-filter.png" alt="B: Filter" />
+    
+    
+</figure>
+</td>
+<td><a href="../filter/index.html"><strong>FILTER</strong></a> effect.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/c-fx-transform.png" alt="C: Transform" />
+    
+    
+</figure>
+</td>
+<td><a href="../transform/index.html"><strong>TRANSFORM</strong></a> effect.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/d-fx-shred.png" alt="D: Shred" />
+    
+    
+</figure>
+</td>
+<td><a href="../shred/index.html"><strong>SHRED</strong></a> effect.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/e-fx-chorus.png" alt="E: Chorus" />
+    
+    
+</figure>
+</td>
+<td><a href="../chorus/index.html"><strong>CHORUS</strong></a> effect.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/f-fx-delay.png" alt="F: Delay" />
+    
+    
+</figure>
+</td>
+<td><a href="../delay/index.html"><strong>DELAY</strong></a> effect.</td>
+</tr>
+
+<tr>
+<td>
+
+<figure >
+    
+        <img src="../images/vs2-interface/g-fx-ring-mod.png" alt="G: Ring Mod" />
+    
+    
+</figure>
+</td>
+<td><a href="../ring-mod/index.html"><strong>RING MOD</strong></a> effect.</td>
+</tr>
+</tbody>
+</table>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Global Modes</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>VocalSynth is designed to be inserted on a vocal track and offers different input modes to determine how it applies processing to your vocal.</p>
+
+<p>VocalSynth relies on two input signals to process a vocal, a <strong>modulator</strong> and a <strong>carrier</strong> input.</p>
+
+<ol>
+<li><strong>Modulator</strong>: The modulator (voice/speech) is the audio from the track VocalSynth is inserted on. The modulator imparts spectral characteristics on the carrier signal.</li>
+<li><strong>Carrier</strong>: The carrier signal takes on spectral characteristics of the modulator and is further modified by the processing parameters in the different modules. The carrier directly influences the processed (wet) output signal of VocalSynth. The source of the carrier signal is different depending on the global mode you have selected, see the mode descriptions below for more information.</li>
+</ol>
+
+<h2 id="changing-modes">Changing Modes</h2>
+
+<p>You can change the currently selected mode by clicking on the mode button in the top bar of the interface:</p>
+
+
+
+<figure >
+    
+        <img src="../images/global-modes/mode-btn-selected.png" alt="Global Mode button selected" />
+    
+    
+</figure>
+
+
+<p>In the mode selection screen, select a mode and click &ldquo;Accept&rdquo; to change to the selected mode. You can exit the mode selection screen without changing modes by clicking the &ldquo;Cancel&rdquo; button.</p>
+
+<p>The following sections outline how the different Global Modes in VocalSynth 2 work:</p>
+
+<h2 id="auto-mode">Auto Mode</h2>
+
+
+
+<figure class="modeimg">
+    
+        <img src="../images/global-modes/auto-btn.png" alt="Auto mode" />
+    
+    
+</figure>
+
+
+<p>When Auto mode is selected, the incoming audio serves as the source for the modulator <strong>and</strong> the carrier.</p>
+
+<p>VocalSynth listens to the incoming audio and detects pitch information based on the range selected in the <a href="../pitch-and-voicing/index.html#range">Pitch</a> controls area. The pitch information it detects informs the notes played by the internal synth engine. The notes played by the synth can be further customized by adjusting the auto voice parameters in the <a href="../pitch-and-voicing/index.html">Voicing</a> panel.</p>
+
+<p>No special configuration is needed to process your vocal in Auto Mode. As long as the vocal track VocalSynth is inserted on contains audio, you will hear the effect.</p>
+
+<p>Auto Mode is ideal for adding textural effects to your vocal. Not a keyboard player? Not using MIDI in your session? Auto mode may be the best option for manipulating your vocal.</p>
+
+<h2 id="midi-mode">MIDI Mode</h2>
+
+
+
+<figure class="modeimg">
+    
+        <img src="../images/global-modes/midi-btn.png" alt="MIDI mode" />
+    
+    
+</figure>
+
+
+<p>MIDI Mode allows you to play harmonies into VocalSynth to create interesting vocal effects tailored to the musical structure of your song.</p>
+
+<p>When MIDI mode is selected, the modulator signal is the incoming audio from the track VocalSynth is inserted on.</p>
+
+<p>The carrier input is based on MIDI information from a connected MIDI keyboard or MIDI clip in your session. The MIDI notes received by VocalSynth tell the internal synth engine what notes to play.</p>
+
+<p>You can choose between Mono or Poly mode and adjust Glide time amount (Mono mode only) in the <a href="http://www.vocalsynth2helpdocs.com/print/pitch-and-voicing/index.html#voicing" target="_blank">Voicing</a> panel.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Need help configuring MIDI mode?</p>
+<p>Configuring MIDI mode can vary depending on your DAW. For detailed setup instructions, check out the <a href="../daw-setup/index.html">DAW Setup</a> chapter.</p>
+</div>
+
+<h2 id="sidechain-mode">Sidechain Mode</h2>
+
+
+
+<figure class="modeimg">
+    
+        <img src="../images/global-modes/sc-btn.png" alt="Sidechain Mode" />
+    
+    
+</figure>
+
+
+<p>Routing non-traditional sources (a guitar or synthesizer, for example) to the sidechain input of VocalSynth when operating in Sidechain mode can create some interesting experimental sounds.</p>
+
+<p>Sidechain mode bypasses the internal synthesizers and routes the audio signal from the selected sidechain input into VocalSynth. The audio routed into VocalSynth&rsquo;s sidechain input will be modulated by your vocal track, allowing you to make any audio source &ldquo;talk&rdquo;.</p>
+
+<p>When Sidechain mode is selected, the modulator signal is the incoming audio from the track VocalSynth is inserted on. The audio input from a configured sidechain source is treated as the carrier.</p>
+
+<div class="admonition warning">
+<p class="admonition-title">Sidechain Mode Limitations</p>
+<p>Not all VocalSynth features are available in Sidechain mode. The following controls are disabled in Sidechain Mode:</p>
+
+<ul>
+<li>All controls in the Module Advanced View &ldquo;Synth&rdquo; sections are disabled because the internal synth engine is disabled in this mode.</li>
+<li>All controls in the <a href="http://www.vocalsynth2helpdocs.com/print/pitch-and-voicing/index.html#voicing" target="_blank">Voicing</a> section are disabled because the internal synth engine is disabled in this mode.</li>
+<li>The <a href="../polyvox/index.html">Polyvox</a> module is disabled in Sidechain mode.</li>
+</ul>
+</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">Need help setting up Sidechain mode?</p>
+<p>Configuring Sidechain mode can vary depending on the DAW you are using. For detailed setup instructions, check out the <a href="../daw-setup/index.html">DAW Setup</a> chapter.</p>
+</div>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  General Functions</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>VocalSynth offers an X/Y pad controller and output effects/mixer section for enhanced control of the processing applied to your vocal. In addition to these controls, an output meter and two visualization options allow you to monitor processing activity in different ways.</p>
+
+<h2 id="xy-view">XY View</h2>
+
+
+
+<figure >
+    
+        <img src="../images/xy-pad.png" alt="XY pad controller view" />
+    
+    
+</figure>
+
+
+<p>The X/Y pad controller can be accessed by selecting the X/Y button in the center of the interface.</p>
+
+
+
+<figure >
+    
+        <img src="../images/xy-btn.png" alt="XY pad button selected" />
+    
+    
+</figure>
+
+
+<p>You can assign parameters to the x-axis by selecting them from the &ldquo;X&rdquo; dropdown menu. Moving the X/Y pad node horizontally will increase or decrease the selected parameter&rsquo;s value. The left edge of the X/Y pad represents the minimum value of the control, the right edge represents the maximum value.</p>
+
+<p>You can assign parameters to the y-axis by selecting them from the &ldquo;Y&rdquo; dropdown menu. Moving the X/Y pad node vertically will increase or decrease the selected parameter&rsquo;s value. The bottom edge of the X/Y pad represents the minimum value of the parameter, the top edge represents the maximum value.</p>
+
+<p>The following parameters can be assigned to either axis of the X/Y pad controller:</p>
+
+<table>
+<thead>
+<tr>
+<th>X/Y Params</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Biovox Breath</td>
+<td>Compuvox Bats</td>
+<td>Distort Drive</td>
+<td>Polyvox Character</td>
+<td>Talkbox Drive</td>
+</tr>
+
+<tr>
+<td>Biovox Clarity</td>
+<td>Compuvox Bits</td>
+<td>Distort Mix</td>
+<td>Polyvox Formant</td>
+<td>Talkbox Formant</td>
+</tr>
+
+<tr>
+<td>Biovox Lvl</td>
+<td>Compuvox Bytes</td>
+<td>Distort Tone</td>
+<td>Polyvox Humanize</td>
+<td>Talkbox Lvl</td>
+</tr>
+
+<tr>
+<td>Biovox Nasal</td>
+<td>Compuvox Lvl</td>
+<td>Filter Freq</td>
+<td>Polyvox Lvl</td>
+<td>Talkbox Speaker</td>
+</tr>
+
+<tr>
+<td>Biovox Shift</td>
+<td>Delay Feedback</td>
+<td>Filter Mix</td>
+<td>Ring Mod Depth</td>
+<td>Transform Mix</td>
+</tr>
+
+<tr>
+<td>Chorus Depth</td>
+<td>Delay Mix</td>
+<td>Filter Res</td>
+<td>Ring Mod Freq/Time</td>
+<td>Transform Width</td>
+</tr>
+
+<tr>
+<td>Chorus Mix</td>
+<td>Delay Time</td>
+<td>Lvl (Dry/Corrected)</td>
+<td>Ring Mod LFO</td>
+<td>Vocoder Lvl</td>
+</tr>
+
+<tr>
+<td>Chorus Rate</td>
+<td>Delay Width</td>
+<td>Output Mix</td>
+<td>Ring Mod Mix</td>
+<td>Vocoder Scale</td>
+</tr>
+
+<tr>
+<td>Chorus Width</td>
+<td>-</td>
+<td>Shred Mix</td>
+<td>-</td>
+<td>Vocoder Shift</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="meter-view">Meter View</h2>
+
+<p>A vocal that sounds good deserves to look good too. VocalSynth 2 comes with a brand new way to visualize your vocal. If you prefer the Wave Meter from VocalSynth 1, you can select it from the Meter dropdown menu in the <a href="../options/index.html">Options</a> window.</p>
+
+<h3 id="anemone">ANEMONE</h3>
+
+
+
+<figure >
+    
+        <img src="../images/anemone.png" alt="Anemone Visualization" />
+    
+    
+</figure>
+
+
+<p>The anemone meter displays visual information for each module and allows you to control module level amounts by clicking and dragging on the associated node (B = Biovox, V = Vocoder, C = Compuvox, T = Talkbox, P = Polyvox). If a module is disabled, the associated node and visualization will be hidden. The shape of the visualization for each module changes based on MFCC (Mel Frequency Cepstral Coefficients) calculations.</p>
+
+<h3 id="wave-meter">WAVE METER</h3>
+
+
+
+<figure >
+    
+        <img src="../images/wavemeter.png" alt="Wave meter visualization" />
+    
+    
+</figure>
+
+
+<p>The wave meter displays frequency spectrum information based on the output of VocalSynth.</p>
+
+<div class="admonition note">
+<p class="admonition-title">How do I get the Wave meter to show up?</p>
+<p><ul>
+<li>Open the Options window and select &ldquo;Wave&rdquo; in the &ldquo;Meter&rdquo; dropdown menu.</li>
+</ul>
+</p>
+</div>
+
+<h2 id="output">Output</h2>
+
+
+
+<figure >
+    
+        <img src="../images/output.png" alt="Output section" />
+    
+    
+</figure>
+
+
+<h3 id="mix">MIX</h3>
+
+<p>Adjusts the balance between the processed (wet) and unprocessed (dry, pre-FX) signals.</p>
+
+<h3 id="gate">GATE</h3>
+
+<p>Adjusts the Gate threshold level. The Gate detection occurs on the input signal level, gating is applied to the wet output signal before effects chain processing. In other words, if the input signal level falls below the Gate threshold level, gating will be applied to the wet (processed) signal before it is processed by the effects chain.</p>
+
+<h3 id="pan">PAN</h3>
+
+<p>Adjusts the stereo pan position of the output signal.</p>
+
+<h3 id="width">WIDTH</h3>
+
+<p>Adjusts the amount of stereo widening or narrowing effect applied to the output of VocalSynth. At -100 this will narrow the apparent stereo width of the output so that it is effectively mono. At +100 this effect will exaggerate the stereo image width of the output signal.</p>
+
+<h3 id="lvl">LVL</h3>
+
+<p>Applies a clean gain offset amount to the output signal. Clip indicators appear when the output of the plug-in is clipping. You can clear the clip indicator lights by clicking on them after stopping playback.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Pitch &amp; Voicing</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>The Pitch and Voicing control tabs allow you to adjust pitch detection and correction parameters, dry voice gain, and synth voice parameters.</p>
+
+<h2 id="pitch">Pitch</h2>
+
+
+
+<figure >
+    
+        <img src="../images/pitch-tab.png" alt="Pitch controls" />
+    
+    
+</figure>
+
+
+<h3 id="register"><strong>REGISTER</strong></h3>
+
+<p>Controls how VocalSynth 2 detects and analyzes incoming vocal data. There are three Register settings to choose from: <strong>LOW</strong>, <strong>MID</strong>, <strong>HIGH</strong>.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Tip</p>
+<p><ul>
+<li>Start with the Mid setting for most audio applications.</li>
+<li>If you notice any undesirable behavior or artifacts in the detected pitches, experiment with the Low and High options to achieve the best results.</li>
+</ul>
+</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">Auto Mode &amp; Register</p>
+<p>When VocalSynth 2 is in Auto mode, the Register control will effect how the pitch tracking interacts with the oscillators. If the Register is set to High and you&rsquo;re singing Low, the oscillators in the Compuvox, Vocoder, or Talkbox modules won&rsquo;t be able to follow your vocal effectively.</p>
+</div>
+
+<h3 id="lvl"><strong>LVL</strong></h3>
+
+<p>Adjusts the dry input/pitch corrected signal level.</p>
+
+<h3 id="enable-correction">ENABLE CORRECTION</h3>
+
+<p>Enables/disables pitch correction processing.</p>
+
+<h3 id="scale-type"><strong>SCALE TYPE</strong></h3>
+
+<p>There are two methods for selecting the scale type used for pitch correction: KEY and CUSTOM.</p>
+
+<ul>
+<li><strong>KEY:</strong> Allows you to choose between several predefined scale types.
+
+<ul>
+<li><strong>Scale:</strong> Defines the scale used to snap your incoming vocal pitches to. Choose from Major, Minor or Chromatic.
+<div class="admonition note">
+<p class="admonition-title">Tip: Chromatic Scale</p>
+<p><ul>
+<li>If you don&rsquo;t know what scale to use, set your scale type to Chromatic.</li>
+</ul>
+</p>
+</div></li>
+<li><strong>Root:</strong> Defines the root note or key for pitch correction. It is important to set an accurate root note as this helps the pitch correction algorithm determine the best possible pitches for your vocals to correct to.</li>
+</ul></li>
+<li><strong>CUSTOM:</strong> Custom mode allows you to create a unique scale type. This can be useful for creative effects, such as locking a vocal to only a few pitches, or practical, such as creating a particular scale (e.g. pentatonic). When defining a Custom scale, click on any notes of the keyboard that you wish to enable/disable as options for pitch correction. When the individual notes are enabled, they’ll display a bright white.</li>
+</ul>
+
+<h3 id="speed"><strong>SPEED</strong></h3>
+
+<p>Determines how quickly your incoming vocals will be snapped to any particular note. Speed ranges from 0 to 100 ms. Values closer to 0 ms achieve robotic, immediate pitch snapping, where values higher than 50 ms obtain more natural and transparent results.</p>
+
+<h3 id="strength"><strong>STRENGTH</strong></h3>
+
+<p>Controls how closely the pitch correction will pull your voice to the correct frequency. Lower strength values may not perfectly correct a pitch, but will lessen any tuning issues. This tends to sound more natural, but if you’re after the more robotic sound, you’ll want Strength turned up.</p>
+
+<h2 id="voicing">Voicing</h2>
+
+<p>There are two global modes that allow you to control aspects of the internal synthesizer voices in VocalSynth 2: Auto mode and MIDI mode. When Sidechain mode is selected, the internal synthesizers are bypassed and all Voicing controls are disabled. Read more about the global different input modes in the <a href="../global-modes/index.html">Global Modes</a> chapter.</p>
+
+<h3 id="auto-mode-voicing"><strong>AUTO MODE VOICING</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/voicing-auto.png" alt="Auto Mode Voicing Controls" />
+    
+    
+</figure>
+
+
+<h3 id="interval">INTERVAL</h3>
+
+<p>Defines an interval for each of the 3 auto voices. This interval is how far away, diatonically, the new harmony will be from the root note of the musical key. The musical key is defined in the Pitch control panel (which doesn&rsquo;t have to be enabled).</p>
+
+<h3 id="lvl-1">LVL</h3>
+
+<p>Adjusts the level of the auto generated voices sent to the modules for processing.</p>
+
+<h3 id="midi-mode-voicing"><strong>MIDI MODE VOICING</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/voicing-midi.png" alt="MIDI Mode Voicing controls" />
+    
+    
+</figure>
+
+
+<h3 id="mono">MONO</h3>
+
+<p>Short for <strong>mono</strong>phonic. Allows only one pitch to be played at a time, but playing notes consecutively will not retrigger the internal envelopes.</p>
+
+<h3 id="poly">POLY</h3>
+
+<p>Short for <strong>poly</strong>phonic. Allows multiple pitches to be played at once (known as polyphony) like chords with lines or melodies that might have overlapping voices.</p>
+
+<h3 id="glide">GLIDE</h3>
+
+<p>Adjusts the portamento speed when transistioning from one note to another (<em>Mono Mode only</em>).</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Biovox</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Inspired by articulatory synthesis, Biovox offers tools for altering physiological qualities of a vocal. The module estimates a vocal tract shape from the incoming audio and allows you to effectively manipulate the vocal tract length and shape using just a few intuitive controls. In addition to adjusting properties of the vocal tract, you can control and blend vowel sounds using the <a href="index.html#advanced-view-vowel">vowel pad</a> and even impose vocal imperfections such as nasality and breathiness on your vocal. Biovox is an innovative suite of tools for sculpting formants, tone, and the overall vocal aesthetic.</p>
+
+<h2 id="controls">Controls</h2>
+
+
+
+<figure >
+    
+        <img src="../images/modules/main-bvx.png" alt="Biovox module main view" />
+    
+    
+</figure>
+
+
+<h3 id="enable">ENABLE</h3>
+
+<p>Enables/disables Biovox module processing.</p>
+
+<h3 id="clarity">CLARITY</h3>
+
+<p>Controls the amount of filter modulation applied to the signal. At lower values, more of the synth signal is present which allows Biovox to exhibit a playable synth character. Lower values also result in less intelligibility.</p>
+
+<h3 id="shift">SHIFT</h3>
+
+<p>Alters vocal tract length to effectively shift the formants of the processed vocal higher or deeper. Positive values result in higher, chipmunk-like sounds. Negative values produce a deep, monster-like sound.</p>
+
+<h3 id="nasal">NASAL</h3>
+
+<p>Simulates changes to the soft palate to introduce a more nasal quality in the processed vocal.</p>
+
+<h3 id="breath">BREATH</h3>
+
+<p>Mixes in a breathy, whisper-like character to the processed audio. At the minimum value, no breathiness is added to the signal. At the maximum value, Biovox will output only the breathy signal.</p>
+
+<h3 id="lvl">LVL</h3>
+
+<p>Controls the output level of the Biovox module.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><ul>
+<li>You can also control the Biovox output level by dragging the node labeled &lsquo;B&rsquo; that appears in the <a href="../general-functions/index.html#anemone">anemone</a> visualization when the Biovox module is enabled.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="synth-preset-selector">SYNTH PRESET SELECTOR</h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/synth-preset-display.png" alt="Main view Synth preset selector" />
+    
+    
+</figure>
+
+
+<p>Displays the currently selected synth preset name and allows you to change the synth preset without opening the advanced view. Clicking on the preset name display will open the synth preset list. Clicking on the left and right arrow buttons allows you to quickly load different synth presets. You can modify synth parameters and save new synth presets in the advanced view.</p>
+
+<h3 id="advanced-view-button">ADVANCED VIEW BUTTON</h3>
+
+<p>You can open the Advanced View window by clicking on the mixer button at the bottom of the module&rsquo;s main panel:</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/adv-btn.png" alt="Advanced View Button" />
+    
+    
+</figure>
+
+
+<hr />
+
+<h2 id="advanced-view">Advanced View</h2>
+
+<p>The Biovox Advanced View includes:</p>
+
+<ul>
+<li><a href="index.html#advanced-view-vowel"><strong>VOWEL</strong></a>: Control and blend vowel sounds.</li>
+<li><a href="index.html#advanced-view-synth"><strong>SYNTH</strong></a>: Customize synth parameters &amp; save synth presets.</li>
+<li><a href="index.html#advanced-view-mix"><strong>MIX</strong></a>: Control filtering and panning of the module&rsquo;s output signal.</li>
+</ul>
+
+<p><br /></p>
+
+
+<figure>
+    
+        <img src="../images/modules/bvx-adv.png" alt="Biovox Advanced View" />
+    
+    
+</figure>
+
+
+<hr />
+
+<h2 id="advanced-view-vowel">Advanced View: Vowel</h2>
+
+<p>The Vowel chart is modeled after the official <a href="https://en.wikipedia.org/wiki/IPA_vowel_chart_with_audio" target="_blank">International Phonetic Alphabet Vowel Chart</a> that maps vowels according to a physical location on the tongue. The Vowel chart controller can be used to impart the sound of a particular vowel on the processed signal by moving a node to different locations on the chart.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/bvx-adv-vowel.png" alt="Biovox Vowel Chart" />
+    
+    
+</figure>
+
+
+<p>By default, the node is positioned in the center of the chart, resulting in no vowel blend.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Double-click to reset</p>
+<p>Double-clicking on the node will return it to the default position in the center of the chart.</p>
+</div>
+
+<p>Dragging the node toward the outer boundaries of the chart will impart more of the nearest indicated vowel(s) to the processed audio.</p>
+
+<p>When the node is positioned at an edge of the chart, the vowel blend is at the maximum amount and only the nearest vowel(s) will be audible in the processed output.</p>
+
+<hr />
+
+<h2 id="advanced-view-synth">Advanced View: Synth</h2>
+
+<p>When <a href="../global-modes/index.html#auto-mode">Auto Mode</a> or <a href="../global-modes/index.html#midi-mode">MIDI Mode</a> is selected, you can control the oscillators and modulation settings for the notes being played into the Biovox module synth engine.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/bvx-adv-syn.png" alt="Biovox Synth params" />
+    
+    
+</figure>
+
+
+<div class="admonition warning">
+<p class="admonition-title">Sidechain mode disables synth controls</p>
+<p>When <a href="../global-modes/index.html#sidechain-mode">Sidechain mode</a> is selected, the sidechain input signal replaces the module synth engine as the carrier signal. Synth parameters are disabled in all modules when Sidechain is selected as the global mode.</p>
+</div>
+
+<h3 id="synth-presets"><strong>SYNTH PRESETS</strong></h3>
+
+<p>Modules that include synth parameters in the advanced view allow for synth presets to be saved and recalled.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/adv-syn-preset.png" alt="Synth preset menu and save button" />
+    
+    
+</figure>
+
+
+<ul>
+<li>Default synth presets are loaded when VocalSynth is opened. Each module loads a different synth preset by default. Choosing the &ldquo;Init&rdquo; preset from the synth preset dropdown menu will return the module&rsquo;s synth settings to the default preset values.</li>
+<li>Double-clicking on any knob in the &ldquo;Synth&rdquo; section of the advanced view will set the control to a factory default state, rather than resetting the value to the &ldquo;Init&rdquo; state.</li>
+</ul>
+
+<h3 id="load-presets">LOAD PRESETS</h3>
+
+<p>Select a preset from the dropdown menu to load the saved synth parameter values in the current module.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also quickly change synth presets without opening the advanced view by clicking on the left/right arrow buttons in the module main panel.</p>
+</div>
+
+<h3 id="save-presets">SAVE PRESETS</h3>
+
+<p>Click on the floppy disk button next to the preset dropdown menu to save a new Synth preset. Type a name in the text field and hit the enter/return key to save the preset.</p>
+
+<hr />
+
+<h3 id="osc-1"><strong>OSC 1</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/bvx-adv-syn-osc1.png" alt="Biovox Osc 1" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ENABLE</strong></td>
+<td>Enables/disables Osc 1.</td>
+</tr>
+
+<tr>
+<td><strong>WAVEFORM</strong></td>
+<td>Selects the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>GAIN</strong></td>
+<td>Adjusts the level of Osc 1.</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Coarse Tune</strong></td>
+<td>Tunes Osc 1 in coarse increments. (Semitones)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Fine Tune</strong></td>
+<td>Tunes Osc 1 in fine increments. (Cents)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to Osc 1&rsquo;s pitch.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>Morphs the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to the waveform shape.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>The following table outlines how each shape is affected by modulation:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Modulation Behavior</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>SAW</strong></td>
+<td>Modifies the pulse width of the saw wave.</td>
+</tr>
+
+<tr>
+<td><strong>SQUARE</strong></td>
+<td>Modifies the pulse width of the square wave.</td>
+</tr>
+
+<tr>
+<td><strong>SYNC SAW</strong></td>
+<td>This shape simulates two synchronized saw oscillators. Modulating shape will modify the pitch ratio between the two saw oscillators.</td>
+</tr>
+
+<tr>
+<td><strong>TRIANGLE</strong></td>
+<td>Morphs the triangle wave into a saw wave shape.</td>
+</tr>
+
+<tr>
+<td><strong>SAWS</strong></td>
+<td>Simulates a swarm of seven saw waves. Modulating shape will modify the detune amount between the saw waves.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h3 id="osc-2"><strong>OSC 2</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/bvx-adv-syn-osc2.png" alt="Biovox Osc 2" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ENABLE</strong></td>
+<td>Enables/disables Osc 2.</td>
+</tr>
+
+<tr>
+<td><strong>WAVEFORM</strong></td>
+<td>Selects the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>GAIN</strong></td>
+<td>Adjusts the level of Osc 2.</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Coarse Tune</strong></td>
+<td>Tunes Osc 2 in coarse increments. (Semitones)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Fine Tune</strong></td>
+<td>Tunes Osc 2 in fine increments. (Cents)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to Osc 2&rsquo;s pitch.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>Morphs the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to the waveform shape.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>The following table outlines how each shape is affected by modulation:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Modulation Behavior</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>SAW</strong></td>
+<td>Modifies the pulse width of the saw wave.</td>
+</tr>
+
+<tr>
+<td><strong>SQUARE</strong></td>
+<td>Modifies the pulse width of the square wave.</td>
+</tr>
+
+<tr>
+<td><strong>SYNC SAW</strong></td>
+<td>This shape simulates two synchronized saw oscillators. Modulating shape will modify the pitch ratio between the two saw oscillators.</td>
+</tr>
+
+<tr>
+<td><strong>TRIANGLE</strong></td>
+<td>Morphs the triangle wave into a saw wave shape.</td>
+</tr>
+
+<tr>
+<td><strong>SAWS</strong></td>
+<td>Simulates a swarm of seven saw waves. Modulating shape will modify the detune amount between the saw waves.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h3 id="noise"><strong>NOISE</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/bvx-adv-syn-noise.png" alt="Biovox Noise Osc" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ENABLE</strong></td>
+<td>Enables/disables the Noise oscillator.</td>
+</tr>
+
+<tr>
+<td><strong>GAIN</strong></td>
+<td>Adjusts the level of Noise oscillator.</td>
+</tr>
+
+<tr>
+<td><strong>LFO/PITCH</strong></td>
+<td>Selects the modulation source used by the Crush Mod control.</td>
+</tr>
+
+<tr>
+<td><strong>CRUSH</strong></td>
+<td>Adjusts the amount of aliasing distortion applied to the noise oscillator. At the maximum value, the Noise oscillator will output white noise.</td>
+</tr>
+
+<tr>
+<td><strong>MOD</strong></td>
+<td>Adjusts the amount of modulation applied to the Crush parameter. The modulation source is determined by the LFO or Pitch selection to the left of the Crush knob. This Mod parameter allows for bidirectional modulation.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h3 id="lfo-mod-source"><strong>LFO MOD SOURCE</strong></h3>
+
+<p>These parameters define the waveshape and speed of the LFO modulation source. All Mod knobs in the current synth view (except for the Crush Mod control, which can toggle between LFO or Pitch modulation sources) use this LFO as their modulation source.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/bvx-adv-syn-lfo.png" alt="Biovox Noise Osc" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>Selects the low frequency oscillator waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>RATE</strong></td>
+<td>Adjusts the speed of the low frequency oscillator.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="advanced-view-mix">Advanced View: Mix</h2>
+
+<p>Adjusts stereo pan position and pass filter controls of the module&rsquo;s output signal.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/bvx-adv-mix.png" alt="Advanced View Mix section" />
+    
+    
+</figure>
+
+
+<h3 id="pan">PAN</h3>
+
+<p>Controls the stereo pan position of the module&rsquo;s output signal.</p>
+
+<h3 id="filter">FILTER</h3>
+
+<p>Adjusts the center frequencies of high-pass and low-pass filters applied to the module&rsquo;s output signal. Clicking and dragging on a node will adjust the center frequency of that filter. Clicking and dragging in the space below the two nodes will move both nodes at the same time.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Vocoder</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>As with a lot of today’s musical technologies, the vocoder (short for <strong>Vo</strong>ice En<strong>coder</strong>) began life as a completely non-musical, utilitarian piece of electronic equipment. A vocoder relies on two signals, a carrier (synthesizer) and a modulator (usually a voice). Both of the incoming signals are split into a number of frequency bands. The amplitude of the modulator signal in each individual band is then used to control the amplitude of the corresponding bands of the carrier signal. This has the auditory effect of mapping the frequency characteristics of the modulator onto the carrier signal as amplitude changes in each of the frequency bands, resulting in what we hear as talking synthesizers.</p>
+
+<p>VocalSynth 2 allows for detailed manipulation of the Vocoder frequency bands and carrier synth parameters in the <a href="index.html#advanced-view">Advanced View</a>.</p>
+
+<h2 id="controls">Controls</h2>
+
+
+
+<figure >
+    
+        <img src="../images/modules/main-vcdr.png" alt="Vocoder Module Main View" />
+    
+    
+</figure>
+
+
+<h3 id="enable">ENABLE</h3>
+
+<p>Turns Vocoder module processing on and off.</p>
+
+<h3 id="mode">MODE</h3>
+
+<p>The Vocoder has three different modes which alter number of frequency bands used in both the modulator (voice) and carrier (instrument) input. You can adjust the gain and pan of the frequency bands by modifying the <a href="index.html#advanced-view-bands">Bands controller</a> in the Vocoder advanced view.</p>
+
+<ul>
+<li><strong>SMOOTH:</strong> Reminiscent of the sound produced by early analog vocoders, but with the added benefit of wider resolution. This mode produces a pleasant, smooth sounding effect that retains intelligibility.</li>
+<li><strong>VINTAGE:</strong> A classic analog vocoder sound with musically spaced frequency bands for a moderate level of resolution and a timeless sound.</li>
+<li><strong>HARD:</strong> A modern analog hybrid rooted in classic vocoder designs. This mode offers greater resolution for a more articulate overall sound.</li>
+</ul>
+
+<h3 id="shift">SHIFT</h3>
+
+<p>Alters the amount of frequency shift applied to each vocoder frequency band. Adjusting the Shift amount results in changes to the pitched timbre of the processed signal. Positive values result in brighter timbre but may reduce lower frequency presence in the processed signal. Negative values result in a darker sounding timbre, but may reduce higher frequency presence in the processed signal.</p>
+
+<h3 id="scale">SCALE</h3>
+
+<p>Adjusts how quickly the vocoder responds to changing vowel sounds. Higher values may increase the articulation of the synthesized output, where lower values may sacrifice intelligibility for softer-sounding, pad-style result.</p>
+
+<h3 id="lvl">LVL</h3>
+
+<p>Controls the output level of the Vocoder module.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><ul>
+<li>You can also control the Vocoder output level by dragging the node labeled &lsquo;V&rsquo; that appears in the <a href="../general-functions/index.html#anemone">anemone</a> visualization when the Vocoder module is enabled.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="synth-preset-selector">SYNTH PRESET SELECTOR</h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/synth-preset-display.png" alt="Main view Synth preset selector" />
+    
+    
+</figure>
+
+
+<p>Displays the currently selected synth preset name and allows you to change the synth preset without opening the advanced view. Clicking on the preset name display will open the synth preset list. Clicking on the left and right arrow buttons allows you to quickly load different synth presets. You can modify synth parameters and save new synth presets in the advanced view.</p>
+
+<h3 id="advanced-view-button">ADVANCED VIEW BUTTON</h3>
+
+<p>You can open the Advanced View window by clicking on the mixer button at the bottom of the module&rsquo;s main panel:</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/adv-btn.png" alt="Advanced View Button" />
+    
+    
+</figure>
+
+
+<hr />
+
+<h2 id="advanced-view">Advanced View</h2>
+
+<p>The Vocoder Advanced View includes:</p>
+
+<ul>
+<li><a href="index.html#advanced-view-bands"><strong>BANDS</strong></a>: Adjust the Volume and Pan of the Vocoder frequency bands.</li>
+<li><a href="index.html#advanced-view-synth"><strong>SYNTH</strong></a>: Customize synth parameters &amp; save synth presets.</li>
+<li><a href="index.html#advanced-view-mix"><strong>MIX</strong></a>: Control filtering and panning of the module&rsquo;s output signal.</li>
+</ul>
+
+<p><br /></p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/vcdr-adv.png" alt="Vocoder module Advanced View" />
+    
+    
+</figure>
+
+
+<hr />
+
+<h2 id="advanced-view-bands">Advanced View: Bands</h2>
+
+<p>Displays a bar for each Vocoder frequency band control. The currently selected view (Vol or Pan) determines what the bars control. The number of frequency bars displayed in the bands view is determined by the currently selected vocoder <a href="index.html#mode">Mode</a>.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/vcdr-adv-bands.png" alt="Vocoder Band Adjustment View" />
+    
+    
+</figure>
+
+
+<h3 id="vol">VOL</h3>
+
+<p>When selected, adjusting a band control will modify the volume of the associated frequency band.</p>
+
+<h3 id="pan">PAN</h3>
+
+<p>When selected, adjusting a band control will modify the stereo pan of the associated frequency band.</p>
+
+<h3 id="reset">RESET</h3>
+
+<p>Sets controls in the currently selected band processing view to their factory default values.</p>
+
+<hr />
+
+<h2 id="advanced-view-synth">Advanced View: Synth</h2>
+
+<p>When <a href="../global-modes/index.html#auto-mode">Auto Mode</a> or <a href="../global-modes/index.html#midi-mode">MIDI Mode</a> is selected, you can control the oscillators and modulation settings for the notes being played into the Vocoder module synth engine.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/vcdr-adv-syn.png" alt="Vocoder Synth params" />
+    
+    
+</figure>
+
+
+<div class="admonition warning">
+<p class="admonition-title">Sidechain mode disables synth controls</p>
+<p>When <a href="../global-modes/index.html#sidechain-mode">Sidechain mode</a> is selected, the sidechain input signal replaces the module synth engine as the carrier signal. Synth parameters are disabled in all modules when Sidechain is selected as the global mode.</p>
+</div>
+
+<h3 id="synth-presets"><strong>SYNTH PRESETS</strong></h3>
+
+<p>Modules that include synth parameters in the advanced view allow for synth presets to be saved and recalled.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/adv-syn-preset.png" alt="Synth preset menu and save button" />
+    
+    
+</figure>
+
+
+<ul>
+<li>Default synth presets are loaded when VocalSynth is opened. Each module loads a different synth preset by default. Choosing the &ldquo;Init&rdquo; preset from the synth preset dropdown menu will return the module&rsquo;s synth settings to the default preset values.</li>
+<li>Double-clicking on any knob in the &ldquo;Synth&rdquo; section of the advanced view will set the control to a factory default state, rather than resetting the value to the &ldquo;Init&rdquo; state.</li>
+</ul>
+
+<h3 id="load-presets">LOAD PRESETS</h3>
+
+<p>Select a preset from the dropdown menu to load the saved synth parameter values in the current module.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also quickly change synth presets without opening the advanced view by clicking on the left/right arrow buttons in the module main panel.</p>
+</div>
+
+<h3 id="save-presets">SAVE PRESETS</h3>
+
+<p>Click on the floppy disk button next to the preset dropdown menu to save a new Synth preset. Type a name in the text field and hit the enter/return key to save the preset.</p>
+
+<hr />
+
+<h3 id="osc-1"><strong>OSC 1</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/vcdr-adv-syn-osc1.png" alt="Vocoder Osc 1" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ENABLE</strong></td>
+<td>Enables/disables Osc 1.</td>
+</tr>
+
+<tr>
+<td><strong>WAVEFORM</strong></td>
+<td>Selects the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>GAIN</strong></td>
+<td>Adjusts the level of Osc 1.</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Coarse Tune</strong></td>
+<td>Tunes Osc 1 in coarse increments. (Semitones)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Fine Tune</strong></td>
+<td>Tunes Osc 1 in fine increments. (Cents)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to Osc 1&rsquo;s pitch.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>Morphs the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to the waveform shape.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>The following table outlines how each shape is affected by modulation:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Modulation Behavior</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>SAW</strong></td>
+<td>Modifies the pulse width of the saw wave.</td>
+</tr>
+
+<tr>
+<td><strong>SQUARE</strong></td>
+<td>Modifies the pulse width of the square wave.</td>
+</tr>
+
+<tr>
+<td><strong>SYNC SAW</strong></td>
+<td>This shape simulates two synchronized saw oscillators. Modulating shape will modify the pitch ratio between the two saw oscillators.</td>
+</tr>
+
+<tr>
+<td><strong>TRIANGLE</strong></td>
+<td>Morphs the triangle wave into a saw wave shape.</td>
+</tr>
+
+<tr>
+<td><strong>SAWS</strong></td>
+<td>Simulates a swarm of seven saw waves. Modulating shape will modify the detune amount between the saw waves.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h3 id="osc-2"><strong>OSC 2</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/vcdr-adv-syn-osc2.png" alt="Vocoder Osc 2" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ENABLE</strong></td>
+<td>Enables/disables Osc 2.</td>
+</tr>
+
+<tr>
+<td><strong>WAVEFORM</strong></td>
+<td>Selects the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>GAIN</strong></td>
+<td>Adjusts the level of Osc 2.</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Coarse Tune</strong></td>
+<td>Tunes Osc 2 in coarse increments. (Semitones)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Fine Tune</strong></td>
+<td>Tunes Osc 2 in fine increments. (Cents)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to Osc 2&rsquo;s pitch.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>Morphs the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to the waveform shape.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>The following table outlines how each shape is affected by modulation:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Modulation Behavior</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>SAW</strong></td>
+<td>Modifies the pulse width of the saw wave.</td>
+</tr>
+
+<tr>
+<td><strong>SQUARE</strong></td>
+<td>Modifies the pulse width of the square wave.</td>
+</tr>
+
+<tr>
+<td><strong>SYNC SAW</strong></td>
+<td>This shape simulates two synchronized saw oscillators. Modulating shape will modify the pitch ratio between the two saw oscillators.</td>
+</tr>
+
+<tr>
+<td><strong>TRIANGLE</strong></td>
+<td>Morphs the triangle wave into a saw wave shape.</td>
+</tr>
+
+<tr>
+<td><strong>SAWS</strong></td>
+<td>Simulates a swarm of seven saw waves. Modulating shape will modify the detune amount between the saw waves.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h3 id="noise"><strong>NOISE</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/vcdr-adv-syn-noise.png" alt="Vocoder Noise Osc" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ENABLE</strong></td>
+<td>Enables/disables the Noise oscillator.</td>
+</tr>
+
+<tr>
+<td><strong>GAIN</strong></td>
+<td>Adjusts the level of Noise oscillator.</td>
+</tr>
+
+<tr>
+<td><strong>LFO/PITCH</strong></td>
+<td>Selects the modulation source used by the Crush Mod control.</td>
+</tr>
+
+<tr>
+<td><strong>CRUSH</strong></td>
+<td>Adjusts the amount of aliasing distortion applied to the noise oscillator. At the maximum value, the Noise oscillator will output white noise.</td>
+</tr>
+
+<tr>
+<td><strong>MOD</strong></td>
+<td>Adjusts the amount of modulation applied to the Crush parameter. The modulation source is determined by the LFO or Pitch selection to the left of the Crush knob. This Mod parameter allows for bidirectional modulation.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h3 id="lfo-mod-source"><strong>LFO MOD SOURCE</strong></h3>
+
+<p>These parameters define the waveshape and speed of the LFO modulation source. All Mod knobs in the current synth view (except for the Crush Mod control, which can toggle between LFO or Pitch modulation sources) use this LFO as their modulation source.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/vcdr-adv-syn-lfo.png" alt="Vocoder Noise Osc" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>Selects the low frequency oscillator waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>RATE</strong></td>
+<td>Adjusts the speed of the low frequency oscillator.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="advanced-view-mix">Advanced View: Mix</h2>
+
+<p>Adjusts stereo pan position and pass filter controls of the module&rsquo;s output signal.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/vcdr-adv-mix.png" alt="Advanced View Mix section" />
+    
+    
+</figure>
+
+
+<h3 id="pan-1">PAN</h3>
+
+<p>Controls the stereo pan position of the module&rsquo;s output signal.</p>
+
+<h3 id="filter">FILTER</h3>
+
+<p>Adjusts the center frequencies of high-pass and low-pass filters applied to the module&rsquo;s output signal. Clicking and dragging on a node will adjust the center frequency of that filter. Clicking and dragging in the space below the two nodes will move both nodes at the same time.</p>
+
+<hr />
+
+<h2 id="more-information">More Information</h2>
+
+<p>One of the earliest vocoders was developed by Homer Dudley in the late 1920s/early 1930s at Bell Laboratories. Large-scale telephone networks were being implemented at the time, and the vocoder was developed as a potential solution to bandwidth issues. These early tools were designed to encode speech to reduce bandwidth, allowing multiple voice signals to be transmitted over the same cables. Vocoders even underpinned pivotal World War II technologies, such as the SIGSALY system used for secure voice transmission.</p>
+
+<p>
+
+<figure >
+    
+        <img src="../images/attr-imgs/carrier-nature-of-speech.jpg"  />
+    
+    
+</figure>
+
+<strong>&ldquo;The Carrier Nature of Speech. 1940. Bell System Technical Journal.&rdquo;</strong> <sup class="footnote-ref" id="fnref:1"><a href="index.html#fn:1">1</a></sup></p>
+
+<p>Fast forward a few decades and the vocoder was starting to be used in some iconic musical applications. Early pioneers such as Werner Meyer-Eppler paved the way for Robert Moog and Wendy Carlos as well as Kraftwerk. In the early 1970s Moog and Carlos built a vocoder in which the carrier signal was a Moog modular synth and the modulator a mic input, which was heard several times on the soundtrack to Stanley Kubrick’s film adaptation of Anthony Burgess’ A Clockwork Orange. <sup class="footnote-ref" id="fnref:2"><a href="index.html#fn:2">2</a></sup></p>
+
+<p>Over the years vocoders have become so well known, audible on anything from ELO’s Mr. Blue Sky <sup class="footnote-ref" id="fnref:3"><a href="index.html#fn:3">3</a></sup> and Michael Jackson’s P.Y.T. (Pretty Young Thing)<sup class="footnote-ref" id="fnref:4"><a href="index.html#fn:4">4</a></sup> to Coldplay’s Midnight <sup class="footnote-ref" id="fnref:5"><a href="index.html#fn:5">5</a></sup> and now&hellip; whatever you’ll be using VocalSynth on next!</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">Dudley, H. The Carrier Nature of Speech. 1940. Bell System Technical Journal. Internet Archive Book Images derivative work: User: Clusternote. <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank">CC BY-SA 3.0,</a> via Wikimedia Commons.
+ <a class="footnote-return" href="index.html#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2">Carlos, W. A Clockwork Orange. Warner Bros. Records. 1972. LP.
+ <a class="footnote-return" href="index.html#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3">Lynne, J. Out of the Blue. Jet. 1977.
+ <a class="footnote-return" href="index.html#fnref:3"><sup>[return]</sup></a></li>
+<li id="fn:4">Ingram, J., Jones, Q. Thriller. Epic. 1982.
+ <a class="footnote-return" href="index.html#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:5">Berryman, G., Buckland, J., Champion, W., Martin, C., Hopkins, J. Ghost Stories. 2014.
+ <a class="footnote-return" href="index.html#fnref:5"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Compuvox</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Compuvox is based on a technology known as Linear Predictive Coding (LPC) which has existed since the late 1960s. As with a number of the audio processors in VocalSynth, LPC was originally a communications technology for encoding intelligible speech at low bit rates to save bandwidth. Nowadays this computerized vocal sound is often used as a special effect common in electronic music production. The outcome sounds similar to infamous toys like the Furby, Speak n Spell (which uses LPC), and even older text-to-speech technologies.</p>
+
+<h3 id="how-does-compuvox-work">HOW DOES COMPUVOX WORK?</h3>
+
+<p>Compuvox breaks down the vocal signal into two components. It simultaneously estimates the formants alongside the “excitation,” which is the buzz or noise created by the vocal folds. This information can then be used to recreate the sound of the vocal signal by synthesizing the excitation and filtering it through a formant filter. The simplifications that this model makes lead to some wonderfully cool artifacts.</p>
+
+<h2 id="controls">Controls</h2>
+
+
+
+<figure >
+    
+        <img src="../images/modules/main-cvx.png" alt="Compuvox main view" />
+    
+    
+</figure>
+
+
+<h3 id="enable">ENABLE</h3>
+
+<p>Enables/disables Compuvox module processing.</p>
+
+<h3 id="bits">BITS</h3>
+
+<p>Adds digital aliasing noise to the signal by resampling it using a low-quality technique known as zero-order hold interpolation. Used gently, this can add an interesting inharmonic quality to the sound. Pushed farther, this control can reduce your audio to almost unrecognizable levels of digital chaos.</p>
+
+<h3 id="bytes">BYTES</h3>
+
+<p>Allows you to artificially prolong vowel sounds. Stretching vowels out in this way can create some interesting non-human yet musically useful vocal effects.</p>
+
+<h3 id="bats">BATS</h3>
+
+<p>Increases noise and vocal gravel for a winged-animal-man effect.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Tip</p>
+<p>There are some genuinely fun, diverse, and practical ways to use this control. With a lead vocal, especially in some rap, EDM, or metal tracks, pushing Bats close to 100%, but then using the Mixer to only blend in a small amount of Compuvox helps fill out the bottom of the vocal with some really solid noise full of emotion and inflection.</p>
+</div>
+
+<h3 id="mode">MODE</h3>
+
+<p>Compuvox has three different modes that represent multiple different flavors of LPC processing. They react differently to varying types of incoming vocals so experiment with each mode to find the setting that works best for your audio.</p>
+
+<ul>
+<li><strong>SPELL:</strong> The most balanced LPC setting, using medium strength and size filtering for an articulate and classic sound.</li>
+<li><strong>READ:</strong> The strongest high-order filter mode; it also contains a smaller window size and a faster analysis to give you a narrower sound.</li>
+<li><strong>MATH:</strong> The broadest setting; it contains a wider windowing size, a more gentle filter, and a reasonably fast analysis speed to give an alternate timbre and sound.</li>
+</ul>
+
+<h3 id="lvl">LVL</h3>
+
+<p>Controls the output level of the Compuvox module.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><ul>
+<li>You can also control the Compuvox output level by dragging the node labeled &lsquo;C&rsquo; that appears in the <a href="../general-functions/index.html#anemone">anemone</a> visualization when the Compuvox module is enabled.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="synth-preset-selector">SYNTH PRESET SELECTOR</h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/synth-preset-display.png" alt="Main view Synth preset selector" />
+    
+    
+</figure>
+
+
+<p>Displays the currently selected synth preset name and allows you to change the synth preset without opening the advanced view. Clicking on the preset name display will open the synth preset list. Clicking on the left and right arrow buttons allows you to quickly load different synth presets. You can modify synth parameters and save new synth presets in the advanced view.</p>
+
+<h3 id="advanced-view-button">ADVANCED VIEW BUTTON</h3>
+
+<p>You can open the Advanced View window by clicking on the mixer button at the bottom of the module&rsquo;s main panel:</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/adv-btn.png" alt="Advanced View Button" />
+    
+    
+</figure>
+
+
+<hr />
+
+<h2 id="advanced-view">Advanced View</h2>
+
+<p><strong>The Compuvox Advanced View includes:</strong></p>
+
+<ul>
+<li><a href="index.html#advanced-view-synth"><strong>SYNTH</strong></a>: Customize synth parameters &amp; save synth presets.</li>
+<li><a href="index.html#advanced-view-mix"><strong>MIX</strong></a>: Control filtering and panning of the module&rsquo;s output signal.</li>
+</ul>
+
+<p><br /></p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/cvx-adv.png" alt="Compuvox module Advanced View" />
+    
+    
+</figure>
+
+
+<hr />
+
+<h2 id="advanced-view-synth">Advanced View: Synth</h2>
+
+<p>When <a href="../global-modes/index.html#auto-mode">Auto Mode</a> or <a href="../global-modes/index.html#midi-mode">MIDI Mode</a> is selected, you can control the oscillators and modulation settings for the notes being played into the Compuvox module synth engine.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/cvx-adv-syn.png" alt="Compuvox Synth params" />
+    
+    
+</figure>
+
+
+<div class="admonition warning">
+<p class="admonition-title">Sidechain mode disables synth controls</p>
+<p>When <a href="../global-modes/index.html#sidechain-mode">Sidechain mode</a> is selected, the sidechain input signal replaces the module synth engine as the carrier signal. Synth parameters are disabled in all modules when Sidechain is selected as the global mode.</p>
+</div>
+
+<h3 id="synth-presets"><strong>SYNTH PRESETS</strong></h3>
+
+<p>Modules that include synth parameters in the advanced view allow for synth presets to be saved and recalled.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/adv-syn-preset.png" alt="Synth preset menu and save button" />
+    
+    
+</figure>
+
+
+<ul>
+<li>Default synth presets are loaded when VocalSynth is opened. Each module loads a different synth preset by default. Choosing the &ldquo;Init&rdquo; preset from the synth preset dropdown menu will return the module&rsquo;s synth settings to the default preset values.</li>
+<li>Double-clicking on any knob in the &ldquo;Synth&rdquo; section of the advanced view will set the control to a factory default state, rather than resetting the value to the &ldquo;Init&rdquo; state.</li>
+</ul>
+
+<h3 id="load-presets">LOAD PRESETS</h3>
+
+<p>Select a preset from the dropdown menu to load the saved synth parameter values in the current module.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also quickly change synth presets without opening the advanced view by clicking on the left/right arrow buttons in the module main panel.</p>
+</div>
+
+<h3 id="save-presets">SAVE PRESETS</h3>
+
+<p>Click on the floppy disk button next to the preset dropdown menu to save a new Synth preset. Type a name in the text field and hit the enter/return key to save the preset.</p>
+
+<hr />
+
+<h3 id="osc-1"><strong>OSC 1</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/cvx-adv-syn-osc1.png" alt="Compuvox Osc 1" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ENABLE</strong></td>
+<td>Enables/disables Osc 1.</td>
+</tr>
+
+<tr>
+<td><strong>WAVEFORM</strong></td>
+<td>Selects the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>GAIN</strong></td>
+<td>Adjusts the level of Osc 1.</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Coarse Tune</strong></td>
+<td>Tunes Osc 1 in coarse increments. (Semitones)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Fine Tune</strong></td>
+<td>Tunes Osc 1 in fine increments. (Cents)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to Osc 1&rsquo;s pitch.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>Morphs the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to the waveform shape.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>The following table outlines how each shape is affected by modulation:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Modulation Behavior</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>SAW</strong></td>
+<td>Modifies the pulse width of the saw wave.</td>
+</tr>
+
+<tr>
+<td><strong>SQUARE</strong></td>
+<td>Modifies the pulse width of the square wave.</td>
+</tr>
+
+<tr>
+<td><strong>SYNC SAW</strong></td>
+<td>This shape simulates two synchronized saw oscillators. Modulating shape will modify the pitch ratio between the two saw oscillators.</td>
+</tr>
+
+<tr>
+<td><strong>TRIANGLE</strong></td>
+<td>Morphs the triangle wave into a saw wave shape.</td>
+</tr>
+
+<tr>
+<td><strong>SAWS</strong></td>
+<td>Simulates a swarm of seven saw waves. Modulating shape will modify the detune amount between the saw waves.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h3 id="osc-2"><strong>OSC 2</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/cvx-adv-syn-osc2.png" alt="Compuvox Osc 2" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ENABLE</strong></td>
+<td>Enables/disables Osc 2.</td>
+</tr>
+
+<tr>
+<td><strong>WAVEFORM</strong></td>
+<td>Selects the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>GAIN</strong></td>
+<td>Adjusts the level of Osc 2.</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Coarse Tune</strong></td>
+<td>Tunes Osc 2 in coarse increments. (Semitones)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Fine Tune</strong></td>
+<td>Tunes Osc 2 in fine increments. (Cents)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to Osc 2&rsquo;s pitch.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>Morphs the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to the waveform shape.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>The following table outlines how each shape is affected by modulation:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Modulation Behavior</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>SAW</strong></td>
+<td>Modifies the pulse width of the saw wave.</td>
+</tr>
+
+<tr>
+<td><strong>SQUARE</strong></td>
+<td>Modifies the pulse width of the square wave.</td>
+</tr>
+
+<tr>
+<td><strong>SYNC SAW</strong></td>
+<td>This shape simulates two synchronized saw oscillators. Modulating shape will modify the pitch ratio between the two saw oscillators.</td>
+</tr>
+
+<tr>
+<td><strong>TRIANGLE</strong></td>
+<td>Morphs the triangle wave into a saw wave shape.</td>
+</tr>
+
+<tr>
+<td><strong>SAWS</strong></td>
+<td>Simulates a swarm of seven saw waves. Modulating shape will modify the detune amount between the saw waves.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h3 id="noise"><strong>NOISE</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/cvx-adv-syn-noise.png" alt="Compuvox Noise Osc" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ENABLE</strong></td>
+<td>Enables/disables the Noise oscillator.</td>
+</tr>
+
+<tr>
+<td><strong>GAIN</strong></td>
+<td>Adjusts the level of Noise oscillator.</td>
+</tr>
+
+<tr>
+<td><strong>LFO/PITCH</strong></td>
+<td>Selects the modulation source used by the Crush Mod control.</td>
+</tr>
+
+<tr>
+<td><strong>CRUSH</strong></td>
+<td>Adjusts the amount of aliasing distortion applied to the noise oscillator. At the maximum value, the Noise oscillator will output white noise.</td>
+</tr>
+
+<tr>
+<td><strong>MOD</strong></td>
+<td>Adjusts the amount of modulation applied to the Crush parameter. The modulation source is determined by the LFO or Pitch selection to the left of the Crush knob. This Mod parameter allows for bidirectional modulation.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h3 id="lfo-mod-source"><strong>LFO MOD SOURCE</strong></h3>
+
+<p>These parameters define the waveshape and speed of the LFO modulation source. All Mod knobs in the current synth view (except for the Crush Mod control, which can toggle between LFO or Pitch modulation sources) use this LFO as their modulation source.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/cvx-adv-syn-lfo.png" alt="Compuvox Noise Osc" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>Selects the low frequency oscillator waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>RATE</strong></td>
+<td>Adjusts the speed of the low frequency oscillator.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="advanced-view-mix">Advanced View: Mix</h2>
+
+<p>Adjusts stereo pan position and pass filter controls of the module&rsquo;s output signal.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/cvx-adv-mix.png" alt="Advanced View Mix section" />
+    
+    
+</figure>
+
+
+<h3 id="pan">PAN</h3>
+
+<p>Controls the stereo pan position of the module&rsquo;s output signal.</p>
+
+<h3 id="filter">FILTER</h3>
+
+<p>Adjusts the center frequencies of high-pass and low-pass filters applied to the module&rsquo;s output signal. Clicking and dragging on a node will adjust the center frequency of that filter. Clicking and dragging in the space below the two nodes will move both nodes at the same time.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Talkbox</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>The Talkbox module emulates the effect of a hardware talkbox effect popularized by rock artists such as Peter Frampton, The Who, and Stevie Wonder, to name just a few. A talkbox imparts vocal characteristics on an input source (a guitar, for example) by driving the output of an instrument through a tube that terminates in or around a performer&rsquo;s mouth. The signal is then filtered and modulated by the mouth, tongue and lip movements of the performer. The resulting effect sounds as though the guitar is &ldquo;speaking&rdquo; or &ldquo;talking&rdquo;. With it&rsquo;s tube-free design and unique formant shifting feature, the Talkbox module is an excellent alternative to the traditional Talkbox pedal.</p>
+
+<h2 id="controls">Controls</h2>
+
+
+
+<figure >
+    
+        <img src="../images/modules/main-tbx.png" alt="Talkbox module main view" />
+    
+    
+</figure>
+
+
+<h3 id="enable">ENABLE</h3>
+
+<p>Enables/disables Talkbox module processing.</p>
+
+<h3 id="drive">DRIVE</h3>
+
+<p>Increases the input gain into the Talkbox. Higher values will add a crunchy distortion to your signal. The additional harmonics generated when increasing the Drive amount can help to enhance intelligibility by effectively adding frequency content for your voice to modulate.</p>
+
+<h3 id="speaker">SPEAKER</h3>
+
+<p>Adjusts the amount of talkbox convolution applied to the signal. This simulates the internal acoustics of the speaker compression driver that is typically sealed inside of a hardware Talkbox pedal.</p>
+
+<h3 id="formant">FORMANT</h3>
+
+<p>Adjusts the amount of formant shift applied to the incoming signal. VocalSynth&rsquo;s talkbox algorithm has the ability to extract formant information from the incoming vocal, making this unique feature possible.</p>
+
+<p>The deep, raspy, throatiness of a talkbox can sound very different from person to person, so if your vocal formants aren’t doing it for you, experiment by shifting them with this parameter.</p>
+
+<h3 id="mode">MODE</h3>
+
+<p>Alters the response to high frequencies in both the modulator (voice) and carrier (instrument) input. You can choose from the following Talkbox modes:</p>
+
+<ul>
+<li><strong>DARK:</strong> Offers a more brooding, bassy sound.</li>
+<li><strong>CLASSIC:</strong> Most reminiscent of a classic talkbox, this is the default mode selection.</li>
+<li><strong>BRIGHT:</strong> Offers an accentuated high-end that helps maximize bite and articulation.</li>
+</ul>
+
+<h3 id="lvl">LVL</h3>
+
+<p>Controls the output level of the Talkbox module.</p>
+
+<h3 id="synth-preset-selector">SYNTH PRESET SELECTOR</h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/synth-preset-display.png" alt="Main view Synth preset selector" />
+    
+    
+</figure>
+
+
+<p>Displays the currently selected synth preset name and allows you to change the synth preset without opening the advanced view. Clicking on the preset name display will open the synth preset list. Clicking on the left and right arrow buttons allows you to quickly load different synth presets. You can modify synth parameters and save new synth presets in the advanced view.</p>
+
+<h3 id="advanced-view-button">ADVANCED VIEW BUTTON</h3>
+
+<p>You can open the Advanced View window by clicking on the mixer button at the bottom of the module&rsquo;s main panel:</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/adv-btn.png" alt="Advanced View Button" />
+    
+    
+</figure>
+
+
+<hr />
+
+<h2 id="advanced-view">Advanced View</h2>
+
+<p><strong>The Talkbox Advanced View includes:</strong></p>
+
+<ul>
+<li><a href="index.html#advanced-view-synth"><strong>SYNTH</strong></a>: Customize synth parameters &amp; save synth presets.</li>
+<li><a href="index.html#advanced-view-mix"><strong>MIX</strong></a>: Control filtering and panning of the module&rsquo;s output signal.</li>
+</ul>
+
+<p><br /></p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/tbx-adv.png" alt="Talkbox module Advanced View" />
+    
+    
+</figure>
+
+
+<hr />
+
+<h2 id="advanced-view-synth">Advanced View: Synth</h2>
+
+<p>When <a href="../global-modes/index.html#auto-mode">Auto Mode</a> or <a href="../global-modes/index.html#midi-mode">MIDI Mode</a> is selected, you can control the oscillators and modulation settings for the notes being played into the Talkbox module synth engine.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/tbx-adv-syn.png" alt="Talkbox Synth params" />
+    
+    
+</figure>
+
+
+<div class="admonition warning">
+<p class="admonition-title">Sidechain mode disables synth controls</p>
+<p>When <a href="../global-modes/index.html#sidechain-mode">Sidechain mode</a> is selected, the sidechain input signal replaces the module synth engine as the carrier signal. Synth parameters are disabled in all modules when Sidechain is selected as the global mode.</p>
+</div>
+
+<h3 id="synth-presets"><strong>SYNTH PRESETS</strong></h3>
+
+<p>Modules that include synth parameters in the advanced view allow for synth presets to be saved and recalled.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/adv-syn-preset.png" alt="Synth preset menu and save button" />
+    
+    
+</figure>
+
+
+<ul>
+<li>Default synth presets are loaded when VocalSynth is opened. Each module loads a different synth preset by default. Choosing the &ldquo;Init&rdquo; preset from the synth preset dropdown menu will return the module&rsquo;s synth settings to the default preset values.</li>
+<li>Double-clicking on any knob in the &ldquo;Synth&rdquo; section of the advanced view will set the control to a factory default state, rather than resetting the value to the &ldquo;Init&rdquo; state.</li>
+</ul>
+
+<h3 id="load-presets">LOAD PRESETS</h3>
+
+<p>Select a preset from the dropdown menu to load the saved synth parameter values in the current module.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also quickly change synth presets without opening the advanced view by clicking on the left/right arrow buttons in the module main panel.</p>
+</div>
+
+<h3 id="save-presets">SAVE PRESETS</h3>
+
+<p>Click on the floppy disk button next to the preset dropdown menu to save a new Synth preset. Type a name in the text field and hit the enter/return key to save the preset.</p>
+
+<hr />
+
+<h3 id="osc-1"><strong>OSC 1</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/tbx-adv-syn-osc1.png" alt="Talkbox Osc 1" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ENABLE</strong></td>
+<td>Enables/disables Osc 1.</td>
+</tr>
+
+<tr>
+<td><strong>WAVEFORM</strong></td>
+<td>Selects the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>GAIN</strong></td>
+<td>Adjusts the level of Osc 1.</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Coarse Tune</strong></td>
+<td>Tunes Osc 1 in coarse increments. (Semitones)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Fine Tune</strong></td>
+<td>Tunes Osc 1 in fine increments. (Cents)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to Osc 1&rsquo;s pitch.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>Morphs the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to the waveform shape.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>The following table outlines how each shape is affected by modulation:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Modulation Behavior</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>SAW</strong></td>
+<td>Modifies the pulse width of the saw wave.</td>
+</tr>
+
+<tr>
+<td><strong>SQUARE</strong></td>
+<td>Modifies the pulse width of the square wave.</td>
+</tr>
+
+<tr>
+<td><strong>SYNC SAW</strong></td>
+<td>This shape simulates two synchronized saw oscillators. Modulating shape will modify the pitch ratio between the two saw oscillators.</td>
+</tr>
+
+<tr>
+<td><strong>TRIANGLE</strong></td>
+<td>Morphs the triangle wave into a saw wave shape.</td>
+</tr>
+
+<tr>
+<td><strong>SAWS</strong></td>
+<td>Simulates a swarm of seven saw waves. Modulating shape will modify the detune amount between the saw waves.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h3 id="osc-2"><strong>OSC 2</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/tbx-adv-syn-osc2.png" alt="Talkbox Osc 2" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ENABLE</strong></td>
+<td>Enables/disables Osc 2.</td>
+</tr>
+
+<tr>
+<td><strong>WAVEFORM</strong></td>
+<td>Selects the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>GAIN</strong></td>
+<td>Adjusts the level of Osc 2.</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Coarse Tune</strong></td>
+<td>Tunes Osc 2 in coarse increments. (Semitones)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: Fine Tune</strong></td>
+<td>Tunes Osc 2 in fine increments. (Cents)</td>
+</tr>
+
+<tr>
+<td><strong>PITCH: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to Osc 2&rsquo;s pitch.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>Morphs the waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>SHAPE: MOD</strong></td>
+<td>Adjusts the amount of LFO modulation applied to the waveform shape.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>The following table outlines how each shape is affected by modulation:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Modulation Behavior</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>SAW</strong></td>
+<td>Modifies the pulse width of the saw wave.</td>
+</tr>
+
+<tr>
+<td><strong>SQUARE</strong></td>
+<td>Modifies the pulse width of the square wave.</td>
+</tr>
+
+<tr>
+<td><strong>SYNC SAW</strong></td>
+<td>This shape simulates two synchronized saw oscillators. Modulating shape will modify the pitch ratio between the two saw oscillators.</td>
+</tr>
+
+<tr>
+<td><strong>TRIANGLE</strong></td>
+<td>Morphs the triangle wave into a saw wave shape.</td>
+</tr>
+
+<tr>
+<td><strong>SAWS</strong></td>
+<td>Simulates a swarm of seven saw waves. Modulating shape will modify the detune amount between the saw waves.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h3 id="noise"><strong>NOISE</strong></h3>
+
+
+
+<figure >
+    
+        <img src="../images/modules/tbx-adv-syn-noise.png" alt="Talkbox Noise Osc" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ENABLE</strong></td>
+<td>Enables/disables the Noise oscillator.</td>
+</tr>
+
+<tr>
+<td><strong>GAIN</strong></td>
+<td>Adjusts the level of Noise oscillator.</td>
+</tr>
+
+<tr>
+<td><strong>LFO/PITCH</strong></td>
+<td>Selects the modulation source used by the Crush Mod control.</td>
+</tr>
+
+<tr>
+<td><strong>CRUSH</strong></td>
+<td>Adjusts the amount of aliasing distortion applied to the noise oscillator. At the maximum value, the Noise oscillator will output white noise.</td>
+</tr>
+
+<tr>
+<td><strong>MOD</strong></td>
+<td>Adjusts the amount of modulation applied to the Crush parameter. The modulation source is determined by the LFO or Pitch selection to the left of the Crush knob. This Mod parameter allows for bidirectional modulation.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h3 id="lfo-mod-source"><strong>LFO MOD SOURCE</strong></h3>
+
+<p>These parameters define the waveshape and speed of the LFO modulation source. All Mod knobs in the current synth view (except for the Crush Mod control, which can toggle between LFO or Pitch modulation sources) use this LFO as their modulation source.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/tbx-adv-syn-lfo.png" alt="Talkbox Noise Osc" />
+    
+    
+</figure>
+
+
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>Selects the low frequency oscillator waveform shape.</td>
+</tr>
+
+<tr>
+<td><strong>RATE</strong></td>
+<td>Adjusts the speed of the low frequency oscillator.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="advanced-view-mix">Advanced View: Mix</h2>
+
+<p>Adjusts stereo pan position and pass filter controls of the module&rsquo;s output signal.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/tbx-adv-mix.png" alt="Advanced View Mix section" />
+    
+    
+</figure>
+
+
+<h3 id="pan">PAN</h3>
+
+<p>Controls the stereo pan position of the module&rsquo;s output signal.</p>
+
+<h3 id="filter">FILTER</h3>
+
+<p>Adjusts the center frequencies of high-pass and low-pass filters applied to the module&rsquo;s output signal. Clicking and dragging on a node will adjust the center frequency of that filter. Clicking and dragging in the space below the two nodes will move both nodes at the same time.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Polyvox</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Polyvox is a voice generator that allows you to create vocal harmonies based on your vocal. Voice generators come in all shapes and sizes but are based on a similar fundamental concept: sampling an incoming audio signal and then creating multiple additional versions of this audio signal using time/pitch stretching to achieve different intervals, such as an octave down, a third up, and so on. Voice generators are most commonly used on voice but there are many examples of this type of technology being used in guitar effects as well, usually some combination of pitch/whammy adjustment.</p>
+
+<h2 id="controls">Controls</h2>
+
+
+
+<figure >
+    
+        <img src="../images/modules/main-plyvx.png" alt="Polyvox main panel" />
+    
+    
+</figure>
+
+
+<h3 id="enable">ENABLE</h3>
+
+<p>Enables/disables Polyvox module processing.</p>
+
+<h3 id="formant">FORMANT</h3>
+
+<p>Transposes the vocal formants of the signals it reproduces. This type of control is often talked about as the difference between deeper voiced and higher, chipmunk-style sounds.</p>
+
+<h3 id="character">CHARACTER</h3>
+
+<p>Controls the relationship between the incoming vocal’s formant envelopes and how they are applied to the outgoing sound.</p>
+
+<p>A higher value will cause the formants themselves to shift more in the direction of the pitch of the audio (e.g. sing a higher pitch, formants scale upwards). Interestingly, this parameter can be used to increase naturality, if, say, the generated voices were consistently a lot higher or lower than the original source, or it can be used to push a voice into a sonic realm the human voice-box isn’t capable of. <strong>Pro tip</strong>: This is a lot safer than Helium.</p>
+
+<p>By default, the voices generated by Polyvox will sound like your voice singing at potentially different pitches. The algorithm preserves the formants of an incoming vocal exactly as is&hellip;crucial for a natural sound.</p>
+
+<h3 id="humanize">HUMANIZE</h3>
+
+<p>Varies time and pitch offset amount applied to the generated voices. This reduces phase cancellation and can increase realism slightly.</p>
+
+<p>A higher Humanize value will start to introduce more extreme variations to the point of detuning, a very powerful auditory sensation, especially when done in unison.</p>
+
+<h3 id="lvl">LVL</h3>
+
+<p>Controls the output level of the Polyvox module.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also control the Polyvox output level by dragging the node labeled &lsquo;P&rsquo; that appears in the <a href="../general-functions/index.html#anemone">anemone</a> visualization when the Polyvox module is enabled.</p>
+</div>
+
+<h3 id="advanced-view-button">ADVANCED VIEW BUTTON</h3>
+
+<p>You can open the Advanced View window by clicking on the mixer button at the bottom of the module&rsquo;s main panel:</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/adv-btn.png" alt="Advanced View Button" />
+    
+    
+</figure>
+
+
+<hr />
+
+<h2 id="advanced-view-mix">Advanced View: Mix</h2>
+
+<p>Adjusts stereo pan position and pass filter controls of the module&rsquo;s output signal.</p>
+
+
+
+<figure >
+    
+        <img src="../images/modules/plyvx-adv.png" alt="Advanced View Mix section" />
+    
+    
+</figure>
+
+
+<h3 id="pan">PAN</h3>
+
+<p>Controls the stereo pan position of the module&rsquo;s output signal.</p>
+
+<h3 id="filter">FILTER</h3>
+
+<p>Adjusts the center frequencies of high-pass and low-pass filters applied to the module&rsquo;s output signal. Clicking and dragging on a node will adjust the center frequency of that filter. Clicking and dragging in the space below the two nodes will move both nodes at the same time.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Chorus</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Chorus is a modulation effect that can simulate the slight variations in timing and pitch that occur when multiple performers play or sing the same part. This effect applies a short delay to the input signal and modulates the delay time using an LFO. The modulation of delay time introduces slight pitch variations in the chorused signal. Chorus can be used to add subtle depth and movement to your voice. When using aggressive modulation settings, Chorus can be used to add a more synthetic sounding vibrato effect.</p>
+
+<h2 id="controls">Controls</h2>
+
+
+
+<figure >
+    
+        <img src="../images/fx/chorus.png" alt="Chorus effect panel" />
+    
+    
+</figure>
+
+
+<h3 id="depth">DEPTH</h3>
+
+<p>Adjusts the intensity of LFO modulation.</p>
+
+<h3 id="rate">RATE</h3>
+
+<p>Adjusts the speed of LFO modulation.</p>
+
+<h3 id="width">WIDTH</h3>
+
+<p>Adjusts the perceived stereo image of the processed output.</p>
+
+<h3 id="mix">MIX</h3>
+
+<p>Adjusts the balance of dry (unprocessed) and wet (processed) audio at the output of the effect. 0 = dry (unprocessed); 100 = wet (processed).</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Delay</h1>
+  
+
+<h2 id="controls">Controls</h2>
+
+
+
+<figure >
+    
+        <img src="../images/fx/delay.png" alt="Delay effect panel" />
+    
+    
+</figure>
+
+
+<h3 id="enable">ENABLE</h3>
+
+<p>Enables/disables the Delay effect processing.</p>
+
+<h3 id="host-sync">HOST SYNC</h3>
+
+<p>Enables/disables host tempo sync behavior for the Time control.</p>
+
+<h3 id="time">TIME</h3>
+
+<p>Determines the amount of time that will pass before each successive repeat of a dry audio input signal.</p>
+
+<h3 id="width">WIDTH</h3>
+
+<p>Adjusts the perceived stereo image of the processed signal.</p>
+
+<h3 id="feedback">FEEDBACK</h3>
+
+<p>Adjusts the amount of delayed signal that is fed back into the input of the delay.</p>
+
+<h3 id="mix">MIX</h3>
+
+<p>Adjusts the balance of dry (unprocessed) and wet (processed) audio at the output of the effect. 0 = dry (unprocessed); 100 = wet (processed).</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Distort</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>The Distort effect adds grit, attitude, and perceptual power to your vocal track. The Distort effect utilizes waveshaper distortion and several different algorithms to affect your vocal. A waveshaper creates complex harmonics in an audio signal by mapping the input signal (dry) to a new output signal (wet) based on the current “shape” of the waveshaper’s curve. There’s something unique and fun about the way a waveshaper sonically transforms a vocal, the most important areas of which are the tonal elements from 300 Hz to 900 Hz and the sibilant presence from 8 kHz to 15 kHz.</p>
+
+<h2 id="controls">Controls</h2>
+
+
+
+<figure >
+    
+        <img src="../images/fx/distort.png" alt="Distort effect panel" />
+    
+    
+</figure>
+
+
+<h3 id="enable">ENABLE</h3>
+
+<p>Enables/disables the Distort effect.</p>
+
+<h3 id="drive">DRIVE</h3>
+
+<p>Increases the amount of overdrive applied to the selected distortion type.</p>
+
+<h3 id="tone">TONE</h3>
+
+<p>Applies filtering to the distorted signal, effectively modifying the tone of the processed output.</p>
+
+<h3 id="type">TYPE</h3>
+
+<p>The Distort effect offers the following waveshapes:</p>
+
+<ul>
+<li><strong>WARM</strong></li>
+<li><strong>ANALOG</strong></li>
+<li><strong>EDGY</strong></li>
+<li><strong>FUZZ</strong></li>
+</ul>
+
+<h3 id="mix">MIX</h3>
+
+<p>Adjusts the balance of dry (unprocessed) and wet (processed) audio at the output of the effect. 0 = dry (unprocessed); 100 = wet (processed).</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Filter</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>The Filter effect offers four filters with adjustable resonance specially selected with vocal processing in mind.</p>
+
+<h2 id="controls">Controls</h2>
+
+
+
+<figure >
+    
+        <img src="../images/fx/filter.png" alt="Filter effect panel" />
+    
+    
+</figure>
+
+
+<h3 id="enable">ENABLE</h3>
+
+<p>Enables/disables the Filter effect.</p>
+
+<h3 id="freq">FREQ</h3>
+
+<p>Adjusts the center frequency of the filter.</p>
+
+<h3 id="res">RES</h3>
+
+<p>Adjusts the amount of emphasis applied to a narrow band of frequencies surrounding the center frequency of the filter.</p>
+
+<h3 id="type">TYPE</h3>
+
+<p>You can choose between the following 4 filter types:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>NY LP</td>
+<td>A low pass filter that lends a warm, &ldquo;buttery&rdquo; quality to the low-end of a vocal fundamental. Based on an analog filter design originally developed in the 1960s in upstate New York.</td>
+</tr>
+
+<tr>
+<td>NY HP</td>
+<td>A high pass filter that enhances the high frequency presence of a vocal. Based on an analog filter design originally developed in the 1960s in upstate New York.</td>
+</tr>
+
+<tr>
+<td>SCREAM</td>
+<td>A very sharp resonant filter with a lot of amplification around the center frequency for aggressive peaks and overdrive.</td>
+</tr>
+
+<tr>
+<td>COMBO</td>
+<td>Combines both flat HP and LP filters in a single sweepable control. Moving it downward engages a low-pass filter, moving it up engages a high-pass filter. In the center neither filter is applied.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="mix">MIX</h3>
+
+<p>Adjusts the balance of dry (unprocessed) and wet (processed) audio at the output of the effect. 0 = dry (unprocessed); 100 = wet (processed).</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Ring Mod</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Ring modulation is an effect that multiplies the frequency content of two input waveforms and outputs a new waveform that includes frequency content from both input sources and it&rsquo;s own unique frequency content. The output waveform contains partials (inharmonic frequency content) that are responsible for the metallic sound characteristic of ring modulation. VocalSynth&rsquo;s Ring Mod effect can be used as a Tremolo effect by setting the Freq control to lower values.</p>
+
+<h2 id="controls">Controls</h2>
+
+
+
+<figure >
+    
+        <img src="../images/fx/ring-mod.png" alt="Ring Mod effect panel" />
+    
+    
+</figure>
+
+
+<h3 id="enable">ENABLE</h3>
+
+<p>Enables/disables Ring Mod effect processing.</p>
+
+<h3 id="host-sync">HOST SYNC</h3>
+
+<p>Enables/disables host tempo sync behavior for the Freq control.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Host Sync Mode Parameter Availability</p>
+<p>When host sync is enabled, the LFO and Depth controls will be disabled.</p>
+</div>
+
+<h3 id="freq">FREQ</h3>
+
+<p>Adjusts the timing of frequency modulation. When Host Sync is enabled, musical note values are used to determine the timing of the effect. When Host Sync is disabled, the unit used to determine the timing of the effect is Hertz. At lower values the timing is slower, functioning as a Tremolo. At higher values the timing is fast, functioning as a Ring Mod.</p>
+
+<h3 id="lfo">LFO</h3>
+
+<p>Adjusts the rate of triangle-wave LFO modulation.</p>
+
+<h3 id="depth">DEPTH</h3>
+
+<p>Adjusts the intensity of the triangle-wave LFO modulation.</p>
+
+<h3 id="mix">MIX</h3>
+
+<p>Adjusts the balance of dry (unprocessed) and wet (processed) audio at the output of the effect. 0 = dry (unprocessed); 100 = wet (processed).</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Shred</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Shred comes with all new processing under the hood and the addition of a bite-sized 3 step sequencer in VocalSynth 2. The Shred effect takes chunks of audio and repeats them. The captured audio can be repeated at 3 different rates (each step has it&rsquo;s own repeat rate), the rate and capture length values are always synced to the tempo of your session. Shred also allows you to choose from a number of sequence rhythms (based on Euclidean Rhythms) to vary the musical timing of switching between the different steps.</p>
+
+<h2 id="controls">Controls</h2>
+
+
+
+<figure >
+    
+        <img src="../images/fx/shred.png" alt="Shred Effect Panel" />
+    
+    
+</figure>
+
+
+<h3 id="enable">ENABLE</h3>
+
+<p>Enables/disables Shred effect processing.</p>
+
+<h3 id="length">LENGTH</h3>
+
+<p>Sets how often Shred captures new buffers of audio to repeat. This value is synced to the timing of your session and presented in musical note units (from 2 bars to 1/64T in length).</p>
+
+<h3 id="seq">SEQ</h3>
+
+<p>Determines the Euclidean rhythm sequence used to switch between the different steps. There are 16 different rhythm sequences to choose from.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Tip</p>
+<p>If you want Shred to repeat at one constant rate, set the Seq knob to 1. When Seq is set to 1, Shred will only repeat step A.</p>
+</div>
+
+<h3 id="step-repeat-rate">STEP REPEAT RATE</h3>
+
+<p>Sets how often the captured audio is repeated for the currently selected step when it is triggered by the sequencer. Each step has an independent Repeat Rate setting</p>
+
+<div class="admonition note">
+<p class="admonition-title">Setting the repeat rate of the different sequence steps</p>
+<p>The Repeat Rate knob only sets the rate value for the currently selected step. The currently selected sequence step will display a thin circle around the step&rsquo;s activity light.</p>
+</div>
+
+<h3 id="step-activity-lights">STEP ACTIVITY LIGHTS</h3>
+
+<p>The circles directly above each step label (A/B/C) turn white when the associated step is triggered to repeat. The rhythm used for triggering the steps is determined by the SEQ parameter setting.</p>
+
+<h3 id="mix">MIX</h3>
+
+<p>Adjusts the balance of dry (unprocessed) and wet (processed) audio at the output of the effect. 0 = dry (unprocessed); 100 = wet (processed).</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Transform</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Transform is a convolution effect modeling a variety of guitar cabinets, speakers, and other devices that are key to significantly shaping a vocal sound. Re-amping a vocal through guitar amps is a commonly used production effect. The Transform effect&rsquo;s impulse responses provide a natural post-filtering counterpart to distortion and filtering.</p>
+
+<h2 id="controls">Controls</h2>
+
+
+
+<figure >
+    
+        <img src="../images/fx/transform.png" alt="Transform effect controls" />
+    
+    
+</figure>
+
+
+<h3 id="enable">ENABLE</h3>
+
+<p>Enables/disables Transform effect processing.</p>
+
+<h3 id="type">TYPE</h3>
+
+<p>The following Impulse Responses (IR) are available in the Transform effect:</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Impulse Response</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><strong>HOLLOW</strong></td>
+<td align="left">An IR based on a recording of someone knocking on an empty briefcase and, weirdly, this imparts a really cool sound.</td>
+</tr>
+
+<tr>
+<td align="center"><strong>BRIGHT</strong></td>
+<td align="left">Samples an air pump that made a high, airy sound we thought sounded cool.</td>
+</tr>
+
+<tr>
+<td align="center"><strong>CREEP</strong></td>
+<td align="left">An IR that various folks at iZotope have used and enjoyed for years but the original source has been lost to the ages. After asking around to see if anyone remembered, many explanations of Creep were volunteered, none of which can be printed.</td>
+</tr>
+
+<tr>
+<td align="center"><strong>BASS</strong></td>
+<td align="left">A heavy mid scoop which is often used to give vocals a more polished, broadcast sound.</td>
+</tr>
+
+<tr>
+<td align="center"><strong>RADIO</strong></td>
+<td align="left">Places your voice inside a 1960s transistor radio speaker/cabinet.</td>
+</tr>
+
+<tr>
+<td align="center"><strong>STERLING</strong></td>
+<td align="left">A smaller amplifier with a low end drop-off and a heavy emphasis around 3 to 5 kHz for are more biting sound.</td>
+</tr>
+
+<tr>
+<td align="center"><strong>OXFORD</strong></td>
+<td align="left">A popular 2x10 cabinet with a heavy mid range bump 700 Hz to 3 kHz and a steeper cutoff above 4 kHz.</td>
+</tr>
+
+<tr>
+<td align="center"><strong>CAMBRIDGE</strong></td>
+<td align="left">A popular 2x10 cabinet with a “smile curve” mid range dip and a more gradual cutoff above 5 kHz.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">What is an Impulse Response?</p>
+<p>An Impulse Response is a snapshot of a system&rsquo;s output when it is presented with a brief input signal.</p>
+</div>
+
+<h3 id="width">WIDTH</h3>
+
+<p>Adjusts the amount of stereo widening or narrowing effect that is blended into the transformed audio.</p>
+
+<h3 id="mix">MIX</h3>
+
+<p>Adjusts the balance of dry (unprocessed) and wet (processed) audio at the output of the effect. 0 = dry (unprocessed); 100 = wet (processed).</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Presets</h1>
+  
+
+<p>VocalSynth ships with many presets covering a wide variety of iconic sounds, genres, and interesting textures.</p>
+
+<p>You can open the Preset Manager window by clicking the Preset button in the top bar of the interface. You can also cycle through the presets without opening the preset manager window by clicking on the left/right arrow buttons to the right of the Presets button.</p>
+
+<h3 id="add-remove-presets">Add/Remove Presets</h3>
+
+<ul>
+<li>Create a preset of your current settings by clicking the + button in the Preset Manager window.</li>
+<li>Remove the currently selected preset or preset folder by clicking the x button in the Preset Manager window.</li>
+<li>Add a new preset folder by clicking on the folder button in the Preset Manager window.</li>
+</ul>
+
+<h3 id="working-settings">Working Settings</h3>
+
+<p>If you decide not to use a preset and would like to apply the last settings used that were not associated with a preset, you can select <Working Settings> to return parameters to the previous state.</p>
+
+<h3 id="default">Default</h3>
+
+<p>Select <Default> to return all parameters to their factory default state.</p>
+
+<h3 id="comments">Comments</h3>
+
+<p>Below the list of presets, some text details the parameter settings associated with the selected preset. Double-click on this field to edit a comment or add a new one. Hit the enter/return key to update the comment field.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Factory Preset Locations</p>
+<p>VocalSynth 2 factory presets are stored in the following locations:</p>
+
+<ul>
+<li><strong>Windows</strong>: C:\Users\username\Documents\iZotope\VocalSynth 2\Global Presets<br /></li>
+<li><strong>Mac</strong>: ~/Documents/iZotope/VocalSynth 2/Global Presets</li>
+</ul>
+</p>
+</div>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Options</h1>
+  
+
+<h2 id="general">General</h2>
+
+
+
+<figure >
+    
+        <img src="../images/options.png" alt="Options window" />
+    
+    
+</figure>
+
+
+<h3 id="enable-true-bypass">ENABLE TRUE BYPASS</h3>
+
+<p>To ensure seamless transitions (no audible clicks or ramp up times) when enabling/disabling modules, the DSP is always running in the background. Enabling True Bypass means that when disabling a module or effect that particular DSP is fully disabled rather than running in the background. This saves on CPU resources and latency. Optimizing performance by enabling True Bypass means that you may hear audible transitions when enabling/disabling modules or effects. This may make it harder to do A/B comparisons.</p>
+
+<h3 id="low-latency-talkbox">LOW LATENCY TALKBOX</h3>
+
+<p>VocalSynth’s Talkbox is able to intelligently analyze an incoming audio signal, extracting an accurate map/envelope of the formants without need for the hardware. With more latency comes more intelligibility but this compromises the ability for live performance. This parameter allows you to toggle between two types of algorithms, one optimized for live performance, and one for studio use, or the final bounce, which increases intelligibility. The algorithm for studio use has approximately 50 ms of latency at 44.1 kHz. This, coincidentally, is roughly the amount of time it takes all frequencies to pass (a 20 Hz cycle is 50 ms long).</p>
+
+<h3 id="send-anonymous-usage-data">SEND ANONYMOUS USAGE DATA</h3>
+
+<p>When enabled, anonymous usage data is sent to help iZotope improve VocalSynth.</p>
+
+<h3 id="enable-tooltips">ENABLE TOOLTIPS</h3>
+
+<p>When enabled, control descriptions will be displayed in a tooltip when you hover your cursor over a parameter.</p>
+
+<h3 id="meter">METER</h3>
+
+<p>Selects the meter to display in the center of the VocalSynth 2 interface. You can choose between:</p>
+
+<ul>
+<li><strong>Anemone:</strong> New to VocalSynth 2, displays visualizations based on enabled module activity.</li>
+<li><strong>Wave:</strong> Displays the wave meter visualization from VocalSynth 1.</li>
+</ul>
+
+<h2 id="updates">Updates</h2>
+
+<h3 id="check-now">CHECK NOW</h3>
+
+<p>Checks for available updates to VocalSynth 2.</p>
+
+<h2 id="authorization">Authorization</h2>
+
+<p>Displays your current authorization status and allows you to authorize or remove authorization. Read more about authorizing VocalSynth in the <a href="../authorization/index.html">Authorization</a> chapter.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  DAW Setup</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>The sections below outline how to setup VocalSynth 2 in popular DAWs. To learn more about how the different modes work, see the <a href="../global-modes/index.html">Global Modes</a> chapter.</p>
+
+<hr />
+
+<h2 id="ableton-live">Ableton Live</h2>
+
+<p>The following instructions apply to Ableton Live 9 and Ableton Live 10.</p>
+
+<h3 id="auto-mode-ableton-live"><strong>AUTO MODE | Ableton Live</strong></h3>
+
+<p>Make sure there is audio on the track VocalSynth 2 is inserted on and press play.</p>
+
+
+
+<figure >
+    
+        <img src="../images/daw-setup/live/step1.png" alt="Ableton Live Auto Setup" />
+    
+    
+</figure>
+
+
+<h3 id="midi-mode-ableton-live"><strong>MIDI MODE | Ableton Live</strong></h3>
+
+<p>This mode uses a MIDI keyboard or the piano roll as a MIDI input.</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: MIDI Mode</p>
+<p>See the <a href="../global-modes/index.html#midi-mode">MIDI Mode section</a> of the Global Modes chapter to learn more about MIDI Mode.</p>
+</div>
+
+<ol>
+<li><strong>Create an Audio Track and insert VocalSynth 2.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/live/step1.png" alt="Ableton Live MIDI setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>Create a MIDI Track and choose “In” from the Monitor drop down.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/live/midi-step2.png" alt="Ableton Live MIDI setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>On the MIDI Track’s “MIDI To” dropdown, choose the name of the Audio Track that has VocalSynth 2 on it. In the next dropdown menu, select “VocalSynth 2.”</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/live/midi-step3.png" alt="Ableton Live MIDI setup Step 3" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<h3 id="sidechain-mode-ableton-live"><strong>SIDECHAIN MODE | Ableton Live</strong></h3>
+
+<p>The audio routed into VocalSynth&rsquo;s sidechain input will be modulated by your vocal track, allowing you to make any audio source &ldquo;talk.&rdquo;</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: Sidechain Mode</p>
+<p>See the <a href="../global-modes/index.html#sidechain-mode">Sidechain Mode section</a> of the Global Modes chapter to learn more about Sidechain Mode.</p>
+</div>
+
+<ol>
+<li><strong>Create an Audio Track (1) and insert VocalSynth 2.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/live/step1.png" alt="Ableton Live Sidechain setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>Create a second Audio Track (2) and make sure there is some audio on Audio Track (2).</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/live/sc-step2.png" alt="Ableton Live Sidechain setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>On Audio Track (2), find the “Audio To” dropdown and choose Audio Track (1). In the next dropdown menu, select “VocalSynth 2.”</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/live/sc-step3.png" alt="Ableton Live Sidechain setup Step 3" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<hr />
+
+<h2 id="cubase">Cubase</h2>
+
+<h3 id="auto-mode-cubase"><strong>AUTO MODE | Cubase</strong></h3>
+
+<p>Make sure there is audio on the track VocalSynth 2 is inserted on and press play.</p>
+
+
+
+<figure >
+    
+        <img src="../images/daw-setup/cubase/auto-step1.png" alt="Cubase Auto Setup Step 1" />
+    
+    
+</figure>
+
+
+<h3 id="midi-mode-cubase"><strong>MIDI MODE | Cubase</strong></h3>
+
+<p>This mode uses a MIDI keyboard or the piano roll as a MIDI input.</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: MIDI Mode</p>
+<p>See the <a href="../global-modes/index.html#midi-mode">MIDI Mode section</a> of the Global Modes chapter to learn more about MIDI Mode.</p>
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">Note: Plug-in Formats</p>
+<p><ul>
+<li>Use <strong>VST3</strong> instances of VocalSynth 2 when using MIDI Mode in Cubase.</li>
+<li>MIDI mode will not work as expected when using VST2 instances of VocalSynth 2 in Cubase.</li>
+</ul>
+</p>
+</div>
+
+<ol>
+<li><strong>Create an Audio Track and a MIDI Track.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/cubase/midi-step1.png" alt="Cubase Midi Setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>Insert VocalSynth 2 on the Audio Track (VST3 only, not VST2).</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/cubase/midi-step2.png" alt="Cubase Midi Setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>Select VocalSynth 2 in the Output section of your MIDI Track.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/cubase/midi-step3.png" alt="Cubase Midi Setup Step 3" />
+    
+    
+</figure>
+</li>
+<li><strong>If you are using a live MIDI device, make sure it is configured by going to Devices/Device Setup, and navigating to the MIDI Port Setup option.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/cubase/midi-step4.png" alt="Cubase Midi Setup Step 4" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<h3 id="sidechain-mode-cubase"><strong>SIDECHAIN MODE | Cubase</strong></h3>
+
+<p>The audio routed into VocalSynth&rsquo;s sidechain input will be modulated by your vocal track, allowing you to make any audio source &ldquo;talk.&rdquo;</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: Sidechain Mode</p>
+<p>See the <a href="../global-modes/index.html#sidechain-mode">Sidechain Mode section</a> of the Global Modes chapter to learn more about Sidechain Mode.</p>
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">Note: Plug-in Formats</p>
+<p><ul>
+<li>Use <strong>VST3</strong> instances of VocalSynth 2 when using Sidechain Mode in Cubase.</li>
+<li>Sidechain mode will not work as expected when using VST2 instances of VocalSynth 2 in Cubase.</li>
+</ul>
+</p>
+</div>
+
+<ol>
+<li><strong>Create two Audio Tracks.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/cubase/sc-step1.png" alt="Cubase Sidechain Setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>Insert VocalSynth 2 on one of the two Audio Tracks (VST3 only) and activate sidechain.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/cubase/sc-step2.png" alt="Cubase Sidechain Setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>On Audio Track 2, navigate to the Output section and set the Output to the sidechain input for VocalSynth 2.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/cubase/sc-step3.png" alt="Cubase Sidechain Setup Step 3" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<hr />
+
+<h2 id="fl-studio">FL Studio</h2>
+
+<h3 id="auto-mode-fl-studio"><strong>AUTO MODE | FL Studio</strong></h3>
+
+<p>Make sure there is audio on the track VocalSynth 2 is inserted on and press play.</p>
+
+
+
+<figure >
+    
+        <img src="../images/daw-setup/fl/auto-step1.png" alt="FL Studio Auto Setup Step 1" />
+    
+    
+</figure>
+
+
+<h3 id="midi-mode-fl-studio"><strong>MIDI MODE | FL Studio</strong></h3>
+
+<p>This mode uses a MIDI keyboard or the piano roll as a MIDI input.</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: MIDI Mode</p>
+<p>See the <a href="../global-modes/index.html#midi-mode">MIDI Mode section</a> of the Global Modes chapter to learn more about MIDI Mode.</p>
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">Note: Plug-in Formats</p>
+<p><ul>
+<li>Use <strong>VST3</strong> instances of VocalSynth 2 when using MIDI Mode in FL Studio.</li>
+<li>MIDI mode will not work as expected when using VST2 instances of VocalSynth 2 in FL Studio.</li>
+</ul>
+</p>
+</div>
+
+<ol>
+<li><strong>Create an Audio Track and insert VocalSynth 2 as a VST3 (not VST2) onto this track.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/fl/midi-step1.png" alt="FL Studio MIDI Setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>Go to Options/MIDI Settings. Under “Input,” select your MIDI keyboard and the desired Port, then click “Enable.” If you don’t have a keyboard, insert a MIDI Out instrument into your project and select the port in the MIDI Out window.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/fl/midi-step2.png" alt="FL Studio MIDI Setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>Open VocalSynth 2 and click the gear icon to open the plug-in settings. Make sure the MIDI Input Port matches the Port you selected for your device.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/fl/midi-step3.png" alt="FL Studio MIDI Setup Step 3" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<h3 id="sidechain-mode-fl-studio"><strong>SIDECHAIN MODE | FL Studio</strong></h3>
+
+<p>The audio routed into VocalSynth&rsquo;s sidechain input will be modulated by your vocal track, allowing you to make any audio source &ldquo;talk.&rdquo;</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: Sidechain Mode</p>
+<p>See the <a href="../global-modes/index.html#sidechain-mode">Sidechain Mode section</a> of the Global Modes chapter to learn more about Sidechain Mode.</p>
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">Note: Plug-in Formats</p>
+<p><ul>
+<li>Use <strong>VST3</strong> instances of VocalSynth 2 when using Sidechain Mode in FL Studio.</li>
+<li>Sidechain mode will not work as expected when using VST2 instances of VocalSynth 2 in FL Studio.</li>
+</ul>
+</p>
+</div>
+
+<ol>
+<li><strong>Create two Audio Tracks: one with VocalSynth 2 inserted as a VST3 (not VST2), and one with the audio you want to send to VocalSynth 2.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/fl/sc-step1.png" alt="FL Studio Sidechain Setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>In the FL Studio Mixer window, select Track 2 then, right-click on the upward arrow at the bottom of your VocalSynth 2 track and select “Sidechain to this track.”</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/fl/sc-step2.png" alt="FL Studio Sidechain Setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>Open the VocalSynth 2 window, and click on the gear icon in the upper left corner of the plug-in window to open the plug-in settings.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/fl/sc-step3.png" alt="FL Studio Sidechain Setup Step 3" />
+    
+    
+</figure>
+</li>
+<li><strong>In Processing, enable the “Stereo Aux In” option, then left-click in the grey box to select the Sidechain input.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/fl/sc-step4.png" alt="FL Studio Sidechain Setup Step 4" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<hr />
+
+<h2 id="logic-pro-x">Logic Pro X</h2>
+
+<h3 id="auto-mode-logic-pro-x"><strong>AUTO MODE | Logic Pro X</strong></h3>
+
+<p>Make sure there is audio on the track VocalSynth 2 is inserted on and press play.</p>
+
+
+
+<figure >
+    
+        <img src="../images/daw-setup/logic/auto-step1.png" alt="Logic Pro Auto Mode setup image" />
+    
+    
+</figure>
+
+
+<h3 id="midi-mode-logic-pro-x"><strong>MIDI MODE | Logic Pro X</strong></h3>
+
+<p>This mode uses a MIDI keyboard or the piano roll as a MIDI input.</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: MIDI Mode</p>
+<p>See the <a href="../global-modes/index.html#midi-mode">MIDI Mode section</a> of the Global Modes chapter to learn more about MIDI Mode.</p>
+</div>
+
+<ol>
+<li><strong>&ldquo;Advanced Tools&rdquo; need to be enabled in Logic&rsquo;s Preferences menu to use MIDI mode in VocalSynth 2.</strong> To enable &ldquo;Advanced Tools&rdquo; in Logic:
+
+<ul>
+<li>Navigate to: &ldquo;Logic Pro X&rdquo; menu &gt; &ldquo;Preferences&rdquo; &gt; &ldquo;Advanced Tools&hellip;&rdquo;</li>
+<li>Check the “Show Advanced Tools” box.</li>
+<li>Select &ldquo;Enable All&rdquo; at the bottom of the window.
+
+
+<figure >
+    
+        <img src="../images/daw-setup/logic/midi-step1.png" alt="Logic Pro MIDI Mode Step 1" />
+    
+    
+</figure>
+</li>
+</ul></li>
+<li><strong>Create an Audio Track and mute it.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/logic/midi-step2.png" alt="Logic Pro MIDI Mode Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>Create a Software Instrument Track and insert VocalSynth 2 into the Instrument slot.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/logic/midi-step3.png" alt="Logic Pro MIDI Mode Step 3" />
+    
+    
+</figure>
+</li>
+<li><strong>In the VocalSynth 2 plug-in window, navigate to the Sidechain dropdown menu and select the Audio track you want to apply VocalSynth to.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/logic/midi-step4.png" alt="Logic Pro MIDI Mode Step 4" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<h3 id="sidechain-mode-logic-pro-x"><strong>SIDECHAIN MODE | Logic Pro X</strong></h3>
+
+<p>The audio routed into VocalSynth&rsquo;s sidechain input will be modulated by your vocal track, allowing you to make any audio source &ldquo;talk.&rdquo;</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: Sidechain Mode</p>
+<p>See the <a href="../global-modes/index.html#sidechain-mode">Sidechain Mode section</a> of the Global Modes chapter to learn more about Sidechain Mode.</p>
+</div>
+
+<ol>
+<li><strong>&ldquo;Advanced Tools&rdquo; need to be enabled in Logic&rsquo;s Preferences menu to use Sidechain mode in VocalSynth 2.</strong> To enable &ldquo;Advanced Tools&rdquo; in Logic:
+
+<ul>
+<li>Navigate to: &ldquo;Logic Pro X&rdquo; menu &gt; &ldquo;Preferences&rdquo; &gt; &ldquo;Advanced Tools&hellip;&rdquo;</li>
+<li>Check the “Show Advanced Tools” box.</li>
+<li>Select &ldquo;Enable All&rdquo; at the bottom of the window.
+
+
+<figure >
+    
+        <img src="../images/daw-setup/logic/sc-step1.png" alt="Logic Pro Sidechain Mode Step 1" />
+    
+    
+</figure>
+</li>
+</ul></li>
+<li><strong>Create two Audio Tracks with audio on both. Try vocals on Track 1 and the instrument on Track 2.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/logic/sc-step2.png" alt="Logic Pro Sidechain Mode Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>Insert VocalSynth as a plug-in on Track 1.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/logic/sc-step3.png" alt="Logic Pro Sidechain Mode Step 3" />
+    
+    
+</figure>
+</li>
+<li><strong>From the VocalSynth 2 plug-in window, find the Sidechain menu and choose Track 2.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/logic/sc-step4.png" alt="Logic Pro Sidechain Mode Step 4" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<hr />
+
+<h2 id="pro-tools">Pro Tools</h2>
+
+<h3 id="auto-mode-pro-tools"><strong>AUTO MODE | Pro Tools</strong></h3>
+
+<p>Make sure there is audio on the track VocalSynth 2 is inserted on and press play.</p>
+
+
+
+<figure >
+    
+        <img src="../images/daw-setup/pro-tools/auto-step1.png" alt="Pro Tools Auto Setup" />
+    
+    
+</figure>
+
+
+<h3 id="midi-mode-pro-tools"><strong>MIDI MODE | Pro Tools</strong></h3>
+
+<p>This mode uses a MIDI keyboard or the piano roll as a MIDI input.</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: MIDI Mode</p>
+<p>See the <a href="../global-modes/index.html#midi-mode">MIDI Mode section</a> of the Global Modes chapter to learn more about MIDI Mode.</p>
+</div>
+
+<ol>
+<li><strong>Create an Audio Track and a MIDI Track.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/pro-tools/midi-step1.png" alt="Pro Tools MIDI Setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>Insert VocalSynth 2 onto the Audio Track.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/pro-tools/midi-step2.png" alt="Pro Tools MIDI Setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>In the Output dropdown menu of the MIDI Track, select any MIDI channel you want for VocalSynth 2.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/pro-tools/midi-step3.png" alt="Pro Tools MIDI Setup Step 3" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<h3 id="sidechain-mode-pro-tools"><strong>SIDECHAIN MODE | Pro Tools</strong></h3>
+
+<p>The audio routed into VocalSynth&rsquo;s sidechain input will be modulated by your vocal track, allowing you to make any audio source &ldquo;talk.&rdquo;</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: Sidechain Mode</p>
+<p>See the <a href="../global-modes/index.html#sidechain-mode">Sidechain Mode section</a> of the Global Modes chapter to learn more about Sidechain Mode.</p>
+</div>
+
+<ol>
+<li><strong>Create an Audio Track (1) and insert VocalSynth 2.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/pro-tools/sc-step1.png" alt="Pro Tools Sidechain Setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>Create a second Audio track (2) and make sure there is some audio on it.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/pro-tools/sc-step2.png" alt="Pro Tools Sidechain Setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>On Audio Track (2), set the Output to any open Bus.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/pro-tools/sc-step3.png" alt="Pro Tools Sidechain Setup Step 3" />
+    
+    
+</figure>
+</li>
+<li><strong>From the VocalSynth 2 plug-in window (Track 1), select the Bus you set in Step 3 from the key input dropdown.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/pro-tools/sc-step4.png" alt="Pro Tools Sidechain Setup Step 4" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<hr />
+
+<h2 id="reaper">REAPER</h2>
+
+<h3 id="auto-mode-reaper"><strong>AUTO MODE | REAPER</strong></h3>
+
+<p>Make sure there is audio on the track VocalSynth 2 is inserted on and press play.</p>
+
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reaper/auto-step1.png" alt="REAPER Auto Setup Step 1" />
+    
+    
+</figure>
+
+
+<h3 id="midi-mode-reaper"><strong>MIDI MODE | REAPER</strong></h3>
+
+<p>This mode uses a MIDI keyboard or the piano roll as a MIDI input.</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: MIDI Mode</p>
+<p>See the <a href="../global-modes/index.html#midi-mode">MIDI Mode section</a> of the Global Modes chapter to learn more about MIDI Mode.</p>
+</div>
+
+<ol>
+<li><strong>Create an Audio Track and insert VocalSynth 2.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reaper/midi-step1.png" alt="REAPER MIDI Setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>Click “Input 1” to open the dropdown and choose your MIDI device.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reaper/midi-step2.png" alt="REAPER MIDI Setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>Click the speaker to turn on “Record Monitoring” and record-enable your Track.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reaper/midi-step3.png" alt="REAPER MIDI Setup Step 3" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<h3 id="sidechain-mode-reaper"><strong>SIDECHAIN MODE | REAPER</strong></h3>
+
+<p>The audio routed into VocalSynth&rsquo;s sidechain input will be modulated by your vocal track, allowing you to make any audio source &ldquo;talk.&rdquo;</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: Sidechain Mode</p>
+<p>See the <a href="../global-modes/index.html#sidechain-mode">Sidechain Mode section</a> of the Global Modes chapter to learn more about Sidechain Mode.</p>
+</div>
+
+<ol>
+<li><strong>Create an Audio Track (1) and insert VocalSynth 2.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reaper/sc-step1.png" alt="REAPER Sidechain Setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>Create a second Audio track (2) and make sure there is some audio on Audio Track (2).</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reaper/sc-step2.png" alt="REAPER Sidechain Setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>On Track (1), click the Route button, select “Add new receive,” choose Track (2),  choose “pre-fader” and choose &frac34; instead of &frac12;.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reaper/sc-step3.png" alt="REAPER Sidechain Setup Step 3" />
+    
+    
+</figure>
+</li>
+<li><strong>Bring the fader of Audio Track (2) to off.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reaper/sc-step4.png" alt="REAPER Sidechain Setup Step 4" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<hr />
+
+<h2 id="reason">Reason</h2>
+
+<h3 id="auto-mode-reason"><strong>AUTO MODE | Reason</strong></h3>
+
+<p>Make sure there is audio on the track VocalSynth 2 is inserted on and press play.</p>
+
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reason/auto-step1.png" alt="Reason Auto Setup Step 1" />
+    
+    
+</figure>
+
+
+<h3 id="midi-mode-reason"><strong>MIDI MODE | Reason</strong></h3>
+
+<p>This mode uses a MIDI keyboard or the piano roll as a MIDI input.</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: MIDI Mode</p>
+<p>See the <a href="../global-modes/index.html#midi-mode">MIDI Mode section</a> of the Global Modes chapter to learn more about MIDI Mode.</p>
+</div>
+
+<ol>
+<li><strong>Create an Audio Track and and insert VocalSynth 2.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reason/midi-step1.png" alt="Reason MIDI Setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>Open Preferences/Sync. Under “External Control: Bus A,” choose your MIDI Device.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reason/midi-step2.png" alt="Reason MIDI Setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>Open Adv. MIDI Panel from the “Hardware Interface” at the top of the rack.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reason/midi-step3.png" alt="Reason MIDI Setup Step 3" />
+    
+    
+</figure>
+</li>
+<li><strong>In any channel from the Adv. MIDI Panel, from the triangle button dropdown, choose your Audio Track and then the VocalSynth 2 plug-in.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reason/midi-step4.png" alt="Reason MIDI Setup Step 4" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<h3 id="sidechain-mode-reason"><strong>SIDECHAIN MODE | Reason</strong></h3>
+
+<p>The audio routed into VocalSynth&rsquo;s sidechain input will be modulated by your vocal track, allowing you to make any audio source &ldquo;talk.&rdquo;</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: Sidechain Mode</p>
+<p>See the <a href="../global-modes/index.html#sidechain-mode">Sidechain Mode section</a> of the Global Modes chapter to learn more about Sidechain Mode.</p>
+</div>
+
+<ol>
+<li><strong>Create two Audio Tracks, and make sure there is audio on one of the tracks.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reason/sc-step1.png" alt="Reason Sidechain Setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>Insert VocalSynth 2 onto Track 1.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reason/sc-step2.png" alt="Reason Sidechain Setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>Press Tab to flip to the back of the rack, and press the CV Programmer button on Track 1.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reason/sc-step3.png" alt="Reason Sidechain Setup Step 3" />
+    
+    
+</figure>
+</li>
+<li><strong>Expand track 2 and connect the Output cables from Track 2 to “Optional Audio In” 3-4 of Track 1.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/reason/sc-step4.png" alt="Reason Sidechain Setup Step 4" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<hr />
+
+<h2 id="studio-one">Studio One</h2>
+
+<h3 id="auto-mode-studio-one"><strong>AUTO MODE | Studio One</strong></h3>
+
+<p>Make sure there is audio on the track VocalSynth 2 is inserted on and press play.</p>
+
+
+
+<figure >
+    
+        <img src="../images/daw-setup/studio-one/auto-step1.png" alt="Studio One Auto Setup Step 1" />
+    
+    
+</figure>
+
+
+<h3 id="midi-mode-studio-one"><strong>MIDI MODE | Studio One</strong></h3>
+
+<p>This mode uses a MIDI keyboard or the piano roll as a MIDI input.</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: MIDI Mode</p>
+<p>See the <a href="../global-modes/index.html#midi-mode">MIDI Mode section</a> of the Global Modes chapter to learn more about MIDI Mode.</p>
+</div>
+
+<ol>
+<li><strong>Create an Audio Track and insert VocalSynth 2 (VST3) on the track.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/studio-one/midi-step1.png" alt="Studio One MIDI Setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>Create an Instrument Track and select “VocalSynth 2” in the output section.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/studio-one/midi-step2.png" alt="Studio One MIDI Setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>If you are using a live MIDI device, make sure to set the input of this track to your MIDI device.</strong> If you do not see your device available, open the Studio One Preferences and select the External Devices option to configure it.
+
+
+<figure >
+    
+        <img src="../images/daw-setup/studio-one/midi-step3.png" alt="Studio One MIDI Setup Step 3" />
+    
+    
+</figure>
+</li>
+</ol>
+
+<h3 id="sidechain-mode-studio-one"><strong>SIDECHAIN MODE | Studio One</strong></h3>
+
+<p>The audio routed into VocalSynth&rsquo;s sidechain input will be modulated by your vocal track, allowing you to make any audio source &ldquo;talk.&rdquo;</p>
+
+<div class="admonition note">
+<p class="admonition-title">More Information: Sidechain Mode</p>
+<p>See the <a href="../global-modes/index.html#sidechain-mode">Sidechain Mode section</a> of the Global Modes chapter to learn more about Sidechain Mode.</p>
+</div>
+
+<ol>
+<li><strong>Create an Audio Track (1) and insert VocalSynth 2.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/studio-one/sc-step1.png" alt="Studio One Sidechain Setup Step 1" />
+    
+    
+</figure>
+</li>
+<li><strong>Create a second Audio Track (2) and make sure there is some audio on Audio Track (2).</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/studio-one/sc-step2.png" alt="Studio One Sidechain Setup Step 2" />
+    
+    
+</figure>
+</li>
+<li><strong>Open the Console View, click “+” in the Sends section of Track (2), and select VocalSynth 2 under Sidechains.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/studio-one/sc-step3.png" alt="Studio One Sidechain Setup Step 3" />
+    
+    
+</figure>
+</li>
+<li><strong>Turn the Pre/Post-fader toggle to Pre-Fader (the toggle will turn yellow) and turn down the volume fader for the sidechain’s Audio Track.</strong>
+
+
+<figure >
+    
+        <img src="../images/daw-setup/studio-one/sc-step4.png" alt="Studio One Sidechain Setup Step 4" />
+    
+    
+</figure>
+</li>
+</ol>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Authorization</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>The first time you open VocalSynth 2, the Authorization window will appear.</p>
+
+<p>The Authorization window allows you to:</p>
+
+<ul>
+<li><strong>TRIAL:</strong> Start or continue a Trial period evaluation prior to purchasing</li>
+<li><strong>DEMO:</strong> Continue evaluating the product with Demo limitations (<em>after the 10 day Trial period has been exceeded</em>)</li>
+<li><strong>AUTHORIZE:</strong> Authorize the product with a serial number</li>
+</ul>
+
+<h2 id="trial-and-demo-modes">Trial and Demo Modes</h2>
+
+<p>A 10 day trial period will start when you first open the VocalSynth 2 plug-in. After the 10 day trial period has expired, VocalSynth 2 will enter demo mode. To disable Trial or Demo mode, you must authorize the product with a valid serial number.</p>
+
+<h3 id="trial-mode">Trial Mode</h3>
+
+<p>Trial mode begins when VocalSynth 2 is first instantiated in a DAW/NLE. The authorization wizard window will display the number of days remaining in your trial period.</p>
+
+<p>Clicking on the &ldquo;Continue&rdquo; button will dismiss the Authorization window and allow you to continue evaluating VocalSynth 2 in trial mode.</p>
+
+<h3 id="demo-mode">Demo Mode</h3>
+
+<p>After 10 days, VocalSynth 2 will operate in Demo mode. VocalSynth 2 will periodically output silence when operating in demo mode. If you would like to continue evaluating VocalSynth 2 in demo mode, click the &ldquo;Demo&rdquo; button.</p>
+
+<h2 id="authorizing-vocalsynth-2">Authorizing VocalSynth 2</h2>
+
+<p>There are three methods for authorizing VocalSynth 2:</p>
+
+<ul>
+<li><strong>Online Authorization:</strong> Use this method to authorize VocalSynth 2 on a machine that is connected to the internet.</li>
+<li><strong>Offline Authorization:</strong> Use this method to authorize VocalSynth 2 on a machine that is not connected to the internet.</li>
+<li><strong>iLok Authorization:</strong> Use this method to authorize VocalSynth 2 using an iLok.</li>
+</ul>
+
+<h2 id="more-information">More Information</h2>
+
+<p>For information on authorization, please visit the iZotope website: <a href="https://www.izotope.com/authorization" target="_blank">https://www.izotope.com/authorization</a></p>
+
+<h3 id="for-additional-help-with-authorizing-vocalsynth-2"><strong>For additional help with authorizing VocalSynth 2:</strong></h3>
+
+<ul>
+<li>Check out the Customer Care pages on the iZotope website: <a href="http://www.izotope.com/support" target="_blank">http://www.izotope.com/support</a></li>
+<li>Contact our Customer Care department at <a href="mailto:support@izotope.com" target="_blank">support@izotope.com</a>
+<br /></li>
+</ul>
+
+<p>More information on iZotope’s Customer Care department and policies can be found in the <a href="../customer-care/index.html">iZotope Customer Care</a> chapter.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Customer Care</h1>
+  
+
+<h2 id="purchasing-vocalsynth-2">Purchasing VocalSynth 2</h2>
+
+<p>If you are using the demo version of VocalSynth 2 and would like the full version, you can purchase VocalSynth 2 direct from the iZotope online store: <a href="https://www.izotope.com/store" target="_blank">www.izotope.com/store</a></p>
+
+<p>Once your purchase is complete, you will be sent an email confirmation and a full version serial number that can be used to fully authorize your current installation of VocalSynth 2.</p>
+
+<h2 id="izotope-customer-care-policy">iZotope Customer Care policy</h2>
+
+<p>iZotope is happy to provide professional technical Customer Care to all registered users absolutely free of charge.
+<a href="https://www.izotope.com/support/contact/index.php" target="_blank">www.izotope.com/support/contact/index.php</a></p>
+
+<p>We also offer valuable pre-sales technical Customer Care to customers who may be interested in purchasing an iZotope product. Before contacting iZotope Customer Care, you can search our <a href="https://www.izotope.com/support/kb/index.php/kb/browse/32-iZotope_Knowledgebase" target="_blank">Product Knowledgebase</a> to see if the solution to your problem has already been published.</p>
+
+<p><strong>How long does iZotope provide customer support for purchased products?</strong></p>
+
+<p>You can email us with any question for 12 months after you buy any iZotope product. Past 12 months, we’ll still help you with your account and authorization but will not provide technical support for in-depth product questions. If you need more detailed help on how to use the product, please check out our FAQs and Tutorials.</p>
+
+<p><strong>How long does iZotope support its products?</strong></p>
+
+<p>Although we can’t guarantee it, we do our best to keep our products up to date with the operating systems and plug-in hosts that we support. Sometimes, other companies make changes that we’re not able to support, but we actively work with other companies to avoid these sorts of compatibility problems. We also do our best to address bug fixes within the product itself to ensure our products operate in accordance with our specifications.</p>
+
+<p>We will provide software updates for 12 months from product release. After 12 months, no software updates will be provided.</p>
+
+<p>For details on what operating systems and plug-in host software are officially supported for a product, please check that product&rsquo;s Specs page.</p>
+
+<h2 id="contacting-izotope-customer-care">Contacting iZotope Customer Care</h2>
+
+<p>For additional help with VocalSynth 2:</p>
+
+<ul>
+<li>Check out the Customer Care pages on our web site at <a href="https://www.izotope.com/support" target="_blank">www.izotope.com/support</a></li>
+<li>Contact our Customer Care department at <a href="mailto:support@izotope.com" target="_blank">support@izotope.com</a></li>
+</ul>
+
+<p>iZotope’s highly trained Customer Care team is committed to responding to all requests within one (1) business day and frequently respond faster. Please try to explain your problem with as much detail and clarity as possible. This will ensure our ability to solve your problem accurately, the first time around. Please include all system specs and the build/version of VocalSynth 2 that you are using.</p>
+
+<p>Once your Customer Care request is submitted, you will receive a confirmation email from iZotope Customer Care. If you do not receive this email within a few minutes, please check your spam folder and make sure our responses are not getting blocked. To prevent this from happening please add <a href="mailto:support@izotope.com" target="_blank">support@izotope.com</a> to your list of allowed email addresses.</p>
+
+<h2 id="international-distribution">International distribution</h2>
+
+<p>Customer Care is also available from our international distributors worldwide for any customers who purchased their iZotope products through a certified iZotope distributor.</p>
+
+<p>Check with your local distributor for availability. If you would like help locating your local distributor please contact iZotope Customer Care.</p>
+
+<p>Thanks for using VocalSynth 2!</p>
+
+<p>-The iZotope Team</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  License Information</h1>
+  
+
+<h2 id="anti-grain-geometry">Anti-Grain Geometry</h2>
+
+<p>Version 2.4</p>
+
+<p>Copyright &copy; 2002-2005 Maxim Shemanarev (McSeem).</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the
+ distribution.</p></li>
+
+<li><p>The name of the author may not be used to endorse or promote
+ products derived from this software without specific prior written
+ permission.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS&rdquo; AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="better-enums">Better Enums</h2>
+
+<p>Version 0.11.1</p>
+
+<p>Copyright &copy; 2012-2016, Anton Bachin.  All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="fmt">fmt</h2>
+
+<p>Version 4.0.0</p>
+
+<p>Copyright &copy; 2012 - 2016, Victor Zverovich</p>
+
+<p>All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="freetype">FreeType</h2>
+
+<p>FreeType is licensed under the FreeType Project LICENSE.</p>
+
+<p>Portions of this software are copyright &copy; 1996-2002, 2006 The FreeType
+Project (www.freetype.org).  All rights reserved.</p>
+
+<h2 id="gsl">gsl</h2>
+
+<p>Copyright &copy; 2015 Microsoft Corporation. All rights reserved.</p>
+
+<p>This code is licensed under the MIT License (MIT).</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</p>
+
+<h2 id="jsoncpp">JsonCpp</h2>
+
+<p>Version 1.2.1</p>
+
+<p>Copyright &copy; 2007-2010 Baptiste Lepilleur and The JsonCpp Authors</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h2 id="libxml2">LibXML2</h2>
+
+<p>Version 2.7.8</p>
+
+<p>Except where otherwise noted in the source code (e.g. the files hash.c,
+list.c and the trio files, which are covered by a similar licence but
+with different Copyright notices) all the files are:</p>
+
+<p>Copyright &copy; 1998-2003 Daniel Veillard.  All Rights Reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is fur-
+nished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FIT-
+NESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+DANIEL VEILLARD BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CON-
+NECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<p>Except as contained in this notice, the name of Daniel Veillard shall not
+be used in advertising or otherwise to promote the sale, use or other deal-
+ings in this Software without prior written authorization from him.</p>
+
+<h2 id="material-docs-theme">Material Docs Theme</h2>
+
+<p>Copyright &copy; 2016 Digitalcraftsman <a href="mailto:digitalcraftsman@protonmail.com" target="_blank">digitalcraftsman@protonmail.com</a><br/>
+Copyright &copy; 2016 Martin Donath <a href="mailto:martin.donath@squidfunk.com" target="_blank">martin.donath@squidfunk.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to
+deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.</p>
+
+<h2 id="nanomsg">nanomsg</h2>
+
+<p>Version 0.5-beta</p>
+
+<p>Copyright &copy; 2012-2013 Martin Sustrik  All rights reserved.<br/>
+Copyright &copy; 2013 GoPivotal, Inc.  All rights reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &ldquo;Software&rdquo;),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom
+the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.</p>
+
+<p>&ldquo;nanomsg&rdquo; is a trademark of Martin Sustrik</p>
+
+<h2 id="readerwriterqueue">readerwriterqueue</h2>
+
+<p>Copyright &copy; 2013-2015, Cameron Desrochers
+All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:</p>
+
+<ul>
+<li>Redistributions of source code must retain the above copyright notice, this list of
+conditions and the following disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright notice, this list of
+conditions and the following disclaimer in the documentation and/or other materials
+provided with the distribution.</li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS IS&rdquo; AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="tinyxml">TinyXML</h2>
+
+<p>Copyright &copy; 2000-2002 Lee Thomason (www.grinninglizard.com)</p>
+
+<p>This software is provided &lsquo;as-is&rsquo;, without any express or implied
+warranty. In no event will the authors be held liable for any
+damages arising from the use of this software.</p>
+
+<p>Permission is granted to anyone to use this software for any
+purpose, including commercial applications, and to alter it and
+redistribute it freely, subject to the following restrictions:</p>
+
+<ol>
+<li><p>The origin of this software must not be misrepresented; you must
+not claim that you wrote the original software. If you use this
+software in a product, an acknowledgment in the product documentation
+would be appreciated but is not required.</p></li>
+
+<li><p>Altered source versions must be plainly marked as such, and
+must not be misrepresented as being the original software.</p></li>
+
+<li><p>This notice may not be removed or altered from any source
+distribution.</p></li>
+</ol>
+
+<h2 id="tipue-search">Tipue Search</h2>
+
+<p>Copyright &copy; 2017 Tipue</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h2 id="vectorize">vectorize</h2>
+
+<p>Copyright &copy; 2012 Aaron Wishnick.  All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:</p>
+
+<ul>
+<li><p>Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.</p></li>
+
+<li><p>Neither the name of the <organization> nor the
+names of its contributors may be used to endorse or promote products
+derived from this software without specific prior written permission.</p></li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS IS&rdquo; AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="zlib">zlib</h2>
+
+<p>Copyright &copy; 1995-2004 Jean-loup Gailly and Mark Adler.</p>
+
+<p>This software is provided &lsquo;as-is&rsquo;, without any express or implied
+warranty.  In no event will the authors be held liable for any damages
+arising from the use of this software.</p>
+
+<p>Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:</p>
+
+<ol>
+<li><p>The origin of this software must not be misrepresented; you must not
+ claim that you wrote the original software. If you use this software
+ in a product, an acknowledgment in the product documentation would be
+ appreciated but is not required.</p></li>
+
+<li><p>Altered source versions must be plainly marked as such, and must not be
+ misrepresented as being the original software.</p></li>
+
+<li><p>This notice may not be removed or altered from any source distribution.</p></li>
+</ol>
+
+<p>Jean-loup Gailly jloup@gzip.org</p>
+
+<p>Mark Adler madler@alumni.caltech.edu</p>
+
+<hr />
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  EULA</h1>
+  <p><br /></p>
+
+<hr />
+
+<p><strong>END USER LICENSE AGREEMENT</strong></p>
+
+<p>READ CAREFULLY THE TERMS AND CONDITIONS OF THIS AGREEMENT (“AGREEMENT”) BEFORE YOU CLICK ON THE “ACCEPT” BUTTON OR OTHERWISE USE THE PRODUCT. CLICKING ON THE “ACCEPT” BUTTON OR OTHERWISE DOWNLOADING, INSTALLING AND/OR USING THE LICENSED SOFTWARE OR ANY TECHNOLOGY, IDEA, DATA AND DATABASES, ALGORITHM OR INFORMATION CONTAINED THEREIN OR PROVIDED THEREWITH (COLLECTIVELY, THE “SOFTWARE”), ESTABLISHES A BINDING AGREEMENT BETWEEN YOU AS THE PERSON LICENSING THE SOFTWARE, EITHER ON BEHALF OF YOURSELF OR ANY THIRD PARTY ENTITY (“YOU” OR &ldquo;LICENSEE&rdquo;) AND IZOTOPE, INC. (“IZOTOPE”), YOU (WHETHER AN INDIVIDUAL OR FORMAL LEGAL ENTITY) (HEREINAFTER REFERRED TO AS “YOU”), AGREE TO BE BOUND BY THE TERMS AND CONDITIONS OF THIS AGREEMENT WITH RESPECT TO YOUR USE OF THE SOFTWARE.</p>
+
+<p>BY INSTALLING AND/OR BY USING THE SOFTWARE, YOU REPRESENT AND WARRANT THAT YOU HAVE THE LEGAL CAPACITY AND AUTHORITY TO ENTER INTO A BINDING AGREEMENT TO ADHERE TO THE TERMS AND CONDITIONS SET FORTH HEREIN, AND THAT THE SOFTWARE WILL BE USED ONLY IN ACCORDANCE WITH THESE TERMS AND CONDITIONS AND WITH ALL APPLICABLE LAWS. IF AN INDIVIDUAL IS REGISTERING OR USING THE SOFTWARE ON BEHALF OF AN ENTITY OR ORGANIZATION, THAT INDIVIDUAL WARRANTS, REPRESENTS, AND COVENANTS TO IZOTOPE THAT SUCH INDIVIDUAL IS DULY AUTHORIZED TO AGREE TO THESE TERMS AND CONDITIONS ON BEHALF OF THE ORGANIZATION AND TO BIND THE ORGANIZATION TO THEM.</p>
+
+<p><strong>LICENSE.</strong> Subject to all the terms and conditions of this Agreement, iZotope hereby grants to Licensee a license to use the Software accompanying this Agreement, as well as any presets and documentation provided, whether in printed, &ldquo;online&rdquo; or electronic form, either on a stand-alone computer or on a network, on any one computer at any one time. If more than one user will be using the Software at any one time, you must obtain from iZotope additional license(s) for each additional concurrent user of the Software. The Software is &ldquo;in use&rdquo; on a computer when loaded into memory (RAM). You may make one copy of the Software solely for backup or archival purposes if all copyright and other notices are reproduced on that copy, or you may copy the Software to a single hard disk provided you keep the original solely for backup or archival purposes. If the Software is an upgrade, you must have a license for the Software from which it is upgraded. If you receive the Software in more than one media, that does not affect the number of licenses you are receiving or any other term of this Agreement.</p>
+
+<p><strong>OWNERSHIP.</strong> The copyrights, patents, trade secrets, trademarks, and all other intellectual property rights in the Software and documentation (including any images, photographs, animations, video, audio, music and text incorporated in them) are owned by iZotope or its suppliers and are protected by the copyright, patent and other laws of the United States and other countries and by international treaty provisions. iZotope retains all rights not expressly granted in this Agreement. You shall not remove any product identification, trademark, copyright or other notices contained in or on the Software.</p>
+
+<p><strong>OTHER RESTRICTIONS.</strong> You may not modify, adapt, decompile, disassemble or otherwise reverse engineer the Software, except to the extent this restriction is expressly prohibited by applicable law, nor may you create derivative works based upon the Software, or to permit third parties to do so. You may not loan, rent, lease, or license the Software, or use the Software as a service bureau, as an application service provider, to perform consulting or training services for a third party or in any commercial time share arrangement, but you may permanently transfer your rights under this Agreement provided you transfer this Agreement, the Software, and all accompanying printed materials and retain no copies, and the recipient agrees to the terms of this Agreement. Any such transfer must include the most recent update and all prior versions.</p>
+
+<p><strong>LIMITED WARRANTY.</strong> iZotope warrants that, for a period of thirty (30) days from the date the Software is made available to you for download, the Software will substantially conform to the applicable user documentation provided with the Software.  Any implied warranties which may exist despite the disclaimer herein will be limited to thirty (30) days (“Warranty Period”). This limited warranty is void if you buy from an unauthorized reseller, you violate the terms of this Agreement, or if the failure of the Software is due to accident, abuse or misapplication. Some states/jurisdictions do not allow limitations on duration of an implied warranty, so this limitation may not apply to you.</p>
+
+<p><strong>YOUR REMEDIES.</strong> iZotope&rsquo;s sole obligation and your exclusive remedy for any breach of warranty will be, at iZotope&rsquo;s sole option, either the return of the purchase price you paid or the repair or replacement of the Software, media and documentation, provided you in all instances return the Software, together with all media and documentation and a copy of your receipt, to the location where you obtained it during the Warranty Period.  Outside the United States, neither these remedies nor any support services are available without proof of purchase from an authorized non-U.S. source.</p>
+
+<p><strong>SUPPORT.</strong> Subject to the limited warranty stated above, and further subject to you not being in violation of any term of this Agreement, iZotope will provide email support for the Software to the original purchaser, for a period of 12 months from the original purchase date.</p>
+
+<p><strong>REGISTRATION INFORMATION.</strong> When you activate the Software, iZotope may collect your name and email address and other contact information you choose to provide.  iZotope may use this information to contact you regarding upgrades and new products.  iZotope does not collect or retain any financial information (such as credit card information).</p>
+
+<p><strong>USAGE INFORMATION.</strong>  When you activate and/or use the Software, iZotope may collect certain information about your computer and your interaction with the Software via the internet (“Usage Information”).  Usage Information is information on how you interact with the Software, and is then utilized by iZotope for statistical analysis for improving the Software, and to provide you with a more relevant user experience.  No direct personal information or audio files/samples are collected as part of this Usage Information. Usage Information is generally collected in the aggregate form, without identifying any user individually, although IP addresses, computer and session ids in relation to purchases and downloads/installations of the Software may be tracked as part of iZotope&rsquo;s customer order review, statistical analysis, and fraud and piracy prevention efforts.  This Usage Information may be sent to an iZotope web or third-party cloud server for storage or further processing by iZotope and/or its partners, subsidiaries or affiliates, including, but not limited to, Google Analytics. The Software includes an opt-out provision if you do not wish to provide iZotope with such Usage Information.</p>
+
+<p><strong>DISCLAIMER.</strong> THE SOFTWARE IS PROVIDED “AS IS.”  TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, EXCEPT FOR THE EXPRESS WARRANTY SET FORTH HEREIN, IZOTOPE DISCLAIMS ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. IZOTOPE DOES NOT WARRANT THAT THE SOFTWARE WILL MEET YOUR REQUIREMENTS OR THAT THE SOFTWARE WILL OPERATE UNINTERRUPTED OR ERROR-FREE. THE WARRANTY AND REMEDIES SET FORTH HEREIN ARE EXCLUSIVE AND IN LIEU OF ALL OTHERS, ORAL OR WRITTEN, EXPRESS OR IMPLIED. No dealer, distributor, agent or employee of iZotope is authorized to change or add to the warranty and remedies set forth herein. Any other software furnished with or accompanying the Software is not warranted by iZotope.</p>
+
+<p><strong>LIMITATION OF LIABILITY.</strong> TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL IZOTOPE BE LIABLE FOR ANY AMOUNTS EXCEEDING THE AMOUNTS RECEIVED FROM YOU FOR YOUR LICENSE OF THE SOFTWARE, REGARDLESS OF THE FORM OF ACTION, AND WHETHER ARISING OUT OF THE USE OF OR INABILITY TO USE THE SOFTWARE (INCLUDING, WITHOUT LIMITATION, DAMAGES OR COSTS FOR LOSS OF PROFITS, BUSINESS, GOODWILL, DATA OR OTHER ASSETS, OR COMPUTER PROGRAMS) EVEN IF IZOTOPE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. Some jurisdictions do not allow exclusion or limitation of liability for consequential or incidental damages, so this limitation may not apply to you.</p>
+
+<p><strong>TERMINATION.</strong> The Agreement will terminate automatically if you fail to comply with any of its terms. On termination, you must immediately cease using and destroy all copies of the Software.</p>
+
+<p><strong>LICENSES TO U.S. GOVERNMENT.</strong> This paragraph applies to all acquisitions of the Software by or for the federal government, or by any prime contractor or subcontractor (at any tier) under any contract, grant, cooperative agreement or other activity with the United States government (collectively, the “Government”). By clicking “I ACCEPT”, you are agreeing on behalf of the Government that the Software and any documentation related thereto are respectively “commercial computer software” and “commercial computer software documentation” within the meaning of the acquisition regulation(s) applicable to this procurement. These terms and conditions alone will govern the Government’s use of the Software and will supersede any conflicting contractual terms or conditions. If the license granted by these terms and conditions fails to meet the Government’s needs or is inconsistent in any respect with Federal law, the Government must return the Software unused to iZotope. Contractor/Manufacturer is iZotope, Inc., 60 Hampshire Street, Cambridge, MA 02139.</p>
+
+<p><strong>GENERAL.</strong> The export of the Software from the United States and re-export from any other country is governed by the U.S. Department of Commerce under the export control laws and regulations of the United States and by any applicable law of such other country, and the Software may not be exported or re-exported in violation of any such laws or regulations. This Agreement is the complete and exclusive statement of the agreement between you and iZotope and supersedes any proposal or prior agreement, oral or written, and any other communications relating to the subject matter of this Agreement. This Agreement will be governed by and interpreted under the laws of the Commonwealth of Massachusetts, United States of America, without regard to conflicts of law provisions. The application of the United Nations Convention of Contracts for the International Sale of Goods is expressly excluded. This Agreement is in the English language only, which language will be controlling in all respects, and all versions of this Agreement in any other language will be for accommodation only.</p>
+
+<p>IN ADDITION, ANY SUCH LEGAL PROCEEDING SHALL NOT BE HEARD BEFORE A JURY. EACH PARTY GIVES UP ANY RIGHT TO A JURY TRIAL. To the extent permitted by law, you agree that you will not bring any class action lawsuit against iZotope or be a representative plaintiff or plaintiff class member in any such lawsuit.</p>
+
+<p>Should you have any questions about this Agreement or iZotope&rsquo;s software use policies, or if you desire to contact iZotope for any other reason, in the U.S., please email sales@izotope.com; outside the U.S., please contact the iZotope representative or affiliate serving your country or, if you are unsure whom to contact, iZotope at the above location.
+Please indicate that you understand and accept these terms by clicking the “Accept” option. If you do not accept these terms, installation will terminate.</p>
+
+<hr />
+
+<p>January 2018</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+</div>
+    </article>
+    <footer class="footer">
+
+</footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>  <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </main>
+  </body>
+</html>

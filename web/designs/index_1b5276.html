@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>EQ - Ozone 9 Help Documentation</title>
+<meta name="generator" content="Hugo 0.63.2" />
+
+<meta name="description" content="Ozone 9 Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ozone 9 Help Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/en/equalizer/index.html">
+<meta property="og:title" content="Ozone 9 Help Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+      <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  <link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/style-overrides.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-33', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+<body class="palette-primary-ozone9 palette-accent-ozone9">
+  <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html">
+          <img src="../images/o9-header.svg" alt="Ozone 9 docs header image"
+                 width="190px" height="50px"> EQ</a>
+          </div>
+      </div>
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+<div class="drawer">
+  <nav aria-label="Navigation">
+<form action="../search/index.html"><div class="group">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+  </form>
+</nav>
+  <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+    <a title="Introduction" href="../index.html"><span class=""></span>  Introduction</a>
+</li>
+<li>
+    <a title="Getting Started" href="../getting-started/index.html"><span class=""></span>  Getting Started</a>
+</li>
+<li>
+    <a title="General Controls" href="../general-controls/index.html"><span class=""></span>  General Controls</a>
+</li>
+<li>
+    <a title="Views" href="../views/index.html"><span class=""></span>  Views</a>
+</li>
+<li>
+    <a title="Ozone Application" href="../ozone-app/index.html"><span class=""></span>  Ozone Application</a>
+</li>
+<li>
+    <a title="Master Assistant" href="../master-assistant/index.html"><span class=""></span>  Master Assistant</a>
+</li>
+<li>
+    <a title="Dynamics" href="../dynamics/index.html"><span class=""></span>  Dynamics</a>
+</li>
+<li>
+    <a title="Dynamic EQ" href="../dynamic-eq/index.html"><span class=""></span>  Dynamic EQ</a>
+</li>
+<li>
+    <a class="current"title="Equalizer" href="index.html"><span class=""></span>  Equalizer</a>
+<ul id="scrollspy">
+</ul>
+</li>
+<li>
+    <a title="Exciter" href="../exciter/index.html"><span class=""></span>  Exciter</a>
+</li>
+<li>
+    <a title="Imager" href="../imager/index.html"><span class=""></span>  Imager</a>
+</li>
+<li>
+    <a title="Low End Focus" href="../low-end-focus/index.html"><span class=""></span>  Low End Focus</a>
+</li>
+<li>
+    <a title="Master Rebalance" href="../master-rebalance/index.html"><span class=""></span>  Master Rebalance</a>
+</li>
+<li>
+    <a title="Match EQ" href="../match-eq/index.html"><span class=""></span>  Match EQ</a>
+</li>
+<li>
+    <a title="Maximizer" href="../maximizer/index.html"><span class=""></span>  Maximizer</a>
+</li>
+<li>
+    <a title="Spectral Shaper" href="../spectral-shaper/index.html"><span class=""></span>  Spectral Shaper</a>
+</li>
+<li>
+    <a title="Vintage Compressor" href="../vintage-compressor/index.html"><span class=""></span>  Vintage Compressor</a>
+</li>
+<li>
+    <a title="Vintage EQ" href="../vintage-eq/index.html"><span class=""></span>  Vintage EQ</a>
+</li>
+<li>
+    <a title="Vintage Limiter" href="../vintage-limiter/index.html"><span class=""></span>  Vintage Limiter</a>
+</li>
+<li>
+    <a title="Vintage Tape" href="../vintage-tape/index.html"><span class=""></span>  Vintage Tape</a>
+</li>
+<li>
+    <a title="Codec Preview" href="../codec-preview/index.html"><span class=""></span>  Codec Preview</a>
+</li>
+<li>
+    <a title="Dither" href="../dither/index.html"><span class=""></span>  Dither</a>
+</li>
+<li>
+    <a title="Referencing" href="../referencing/index.html"><span class=""></span>  Referencing</a>
+</li>
+<li>
+    <a title="Presets" href="../presets/index.html"><span class=""></span>  Presets</a>
+</li>
+<li>
+    <a title="Options" href="../options/index.html"><span class=""></span>  Options</a>
+</li>
+<li>
+    <a title="Glossary" href="../glossary/index.html"><span class=""></span>  Glossary</a>
+</li>
+<li>
+    <a title="Customer Care" href="../customer-care/index.html"><span class=""></span>  Customer Care</a>
+</li>
+<li>
+    <a title="License Information" href="../license-information/index.html"><span class=""></span>  License Information</a>
+</li>
+<li>
+    <a title="EULA" href="../eula/index.html"><span class=""></span>  EULA</a>
+</li>
+</ul>
+      <hr />
+<span class="section">Connect with iZotope</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+<li>
+    <a href="https://www.izotope.com/en/products/ozone.html" target="_blank" title="iZotope Product Page"><span class="icon icon-sphere"></span>  iZotope.com</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a>
+  </li>
+</ul>
+<hr /></div>
+  </div>
+</div>
+</div>
+<article class="article">
+    <div class="wrapper">
+
+      
+
+<h1>EQ </h1>
+
+<h2 id="overview">Overview</h2>
+<p>Ozone&rsquo;s versatile Equalizer allows you to add warmth and character with analog-matched filters, or precisely
+boost and cut frequencies with digital linear-phase filters.</p>
+<h2 id="module-interface">Module Interface</h2>
+<figure ><img src="../images/eq/module-interface.png" alt="EQ Module Interface" /></figure>
+<table>
+<thead>
+<tr>
+<th align="center">LABEL</th>
+<th align="left">SECTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><figure ><img src="../images/num/label-1.png" alt="1 Header" /></figure></td>
+<td align="left"><a href="index.html#module-header">Module Header</a></td>
+</tr>
+<tr>
+<td align="center"><figure ><img src="../images/num/label-2.png" alt="2 EQ Curve and Spectrum" /></figure></td>
+<td align="left"><a href="index.html#eq-curve-and-spectrum">EQ Curve and Spectrum</a></td>
+</tr>
+<tr>
+<td align="center"><figure ><img src="../images/num/label-3.png" alt="3 HUD Controls" /></figure></td>
+<td align="left"><a href="index.html#hud-controls">HUD Controls</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="module-header">Module Header</h2>
+<p>The Equalizer module header includes the following controls:</p>
+<figure ><img src="../images/eq/module-header.png" alt="EQ Module Header" /></figure>
+<table>
+<thead>
+<tr>
+<th align="center">LABEL</th>
+<th align="left">SECTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><figure ><img src="../images/num/label-1.png" alt="1" /></figure></td>
+<td align="left"><a href="index.html#view-selector">View Selector</a></td>
+</tr>
+<tr>
+<td align="center"><figure ><img src="../images/num/label-2.png" alt="2" /></figure></td>
+<td align="left"><a href="index.html#global-filter-mode">Global Filter Mode</a></td>
+</tr>
+<tr>
+<td align="center"><figure ><img src="../images/num/label-3.png" alt="3" /></figure></td>
+<td align="left"><a href="index.html#channel-processing-modes">Channel Processing Modes</a></td>
+</tr>
+<tr>
+<td align="center"><figure ><img src="../images/num/label-4.png" alt="4" /></figure></td>
+<td align="left"><a href="index.html#reset">Reset</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="view-selector">View Selector</h3>
+<p>The View Selector includes a <strong>HUD-Based View</strong> and an <strong>All Bands View</strong>.</p>
+<h4 id="hud-based-view">HUD-Based View</h4>
+<p>The HUD-based View is the default view in the Equalizer module. In this view, a HUD panel will appear when you
+click on a node.</p>
+<h4 id="all-bands-view">All Bands View</h4>
+<p>When the All Bands view is selected, a table with control information for each band is shown below the
+spectrum area. The HUD panel will not appear when nodes are selected in the All Bands View.</p>
+<figure ><img src="../images/eq/all-bands.png" alt="4" /></figure>
+<div class="admonition warning">
+<p class="admonition-title">Note</p>
+<p class="admonition-body">The <a href="index.html#phase">Phase</a> control is not accessible in the All Bands View of the Equalizer module.</p>
+</div>
+<div class="admonition link">
+<p class="admonition-title">Learn more about the different Ozone module views</p>
+<p class="admonition-body">You can learn more about the different Ozone module views in the <a href="../views/index.html">Views</a> chapter.</p>
+</div>
+
+<h3 id="global-filter-mode">Global Filter Mode</h3>
+<p>Selects the global filter algorithm used for processing in the EQ. The following global filter modes are
+available:</p>
+<h4 id="analog">Analog</h4>
+<p>Selects minimum-phase IIR (Infinite Impulse Response) filter types for processing in the Equalizer module.</p>
+<h4 id="digital">Digital</h4>
+<p>Selects linear-phase FIR (Finite Impulse Response) filter types for processing in the Equalizer module. FIR
+filters retain the phase of the original signal, but are more expensive in regard to CPU usage.</p>
+<div class="admonition note">
+<p class="admonition-title">Features exclusive to Digital mode</p>
+<p class="admonition-body">When Digital mode is enabled, the following features become available: <a href="index.html#phase">Phase</a> and a <strong>Surgical</strong>
+filter shape in each of the <a href="index.html#filter-shape">filter shape</a> sub-menus.</p>
+</div>
+<h3 id="channel-processing-modes">Channel Processing Modes</h3>
+<p>The Equalizer module includes the following channel processing modes: <strong>Stereo</strong>, <strong>Mid/Side</strong>, and
+<strong>Left/Right.</strong></p>
+<div class="admonition link">
+<p class="admonition-title">Learn more about Channel Processing Modes</p>
+<p class="admonition-body">See the <a href="../general-controls/index.html#channel-processing-modes">General Controls</a> chapter for more information
+about working with Channel Processing Modes in applicable Ozone modules.</p>
+</div>
+
+<h3 id="reset">Reset</h3>
+<p>Returns all controls in the Equalizer module to their factory default values.</p>
+<div class="admonition tip">
+<p class="admonition-title">Reset Band Gain to Default</p>
+<p class="admonition-body">Double-click on an EQ node to reset the Gain value to 0 dB.</p>
+</div>
+
+<hr>
+<h2 id="eq-curve-and-spectrum">EQ Curve and Spectrum</h2>
+<p>The main area of the Equalizer module includes a spectrum analyzer and an EQ curve.</p>
+<figure ><img src="../images/eq/curve-and-spectrum-guide.png" alt="EQ Curve and Spectrum" /></figure>
+<table>
+<thead>
+<tr>
+<th align="center">LABEL</th>
+<th align="left">SECTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><figure ><img src="../images/num/label-1.png" alt="1 Spectrum" /></figure></td>
+<td align="left"><a href="index.html#spectrum-analyzer">Spectrum Analyzer</a></td>
+</tr>
+<tr>
+<td align="center"><figure ><img src="../images/num/label-2.png" alt="2 Composite Curve" /></figure></td>
+<td align="left"><a href="index.html#composite-curve">Composite Curve</a></td>
+</tr>
+<tr>
+<td align="center"><figure ><img src="../images/num/label-3.png" alt="3 Filter Response Curve" /></figure></td>
+<td align="left"><a href="index.html#filter-response-curve">Filter Response Curve</a></td>
+</tr>
+<tr>
+<td align="center"><figure ><img src="../images/num/label-4.png" alt="4 Spectrum Scales" /></figure></td>
+<td align="left"><a href="index.html#spectrum-scales">Spectrum Scales</a></td>
+</tr>
+<tr>
+<td align="center"><figure ><img src="../images/num/label-5.png" alt="5 EQ Curve Gain Scale" /></figure></td>
+<td align="left"><a href="index.html#eq-curve-gain-scale">EQ Curve Gain Scale</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="spectrum-analyzer">Spectrum Analyzer</h3>
+<p>Displays the magnitude (amplitude, in decibels) of the input signal across the frequency spectrum in
+real-time. The spectrum analyzer in the Equalizer module displays the output signal of Ozone.</p>
+<h3 id="spectrum-scales">Spectrum Scales</h3>
+<ul>
+<li><strong>Spectrum Magnitude Scale</strong>: Spectrum magnitude (dB) scale is displayed on the left side of the spectrum
+window.</li>
+<li><strong>Spectrum Frequency Scale</strong>: The frequency scale is displayed along the bottom of the spectrum window.</li>
+</ul>
+<h3 id="composite-curve">Composite Curve</h3>
+<p>Displays the combined filter response of all enabled filters. The curve is represented by a thick white line
+drawn across the display. You can adjust the overall shape of the composite curve by moving the EQ nodes.</p>
+<h3 id="filter-response-curve">Filter Response Curve</h3>
+<p>Displays the filter response of the currently selected node, represented by a highlighted line and filled area
+under the band which appears when you select a node. If there are no nodes selected, the filter response curve
+is hidden and you will only see the composite curve.</p>
+<div class="admonition note">
+<p class="admonition-title">Bypassed filter response curve</p>
+<p class="admonition-body">When a band is disabled, the associated filter response curve will still be displayed. Disabled bands are
+displayed in grey to clearly differentiate them from enabled bands.</p>
+</div>
+<h3 id="eq-curve-gain-scale">EQ Curve Gain Scale</h3>
+<p>The gain scale for the EQ curve is displayed on the right side of the spectrum window. You can zoom on the EQ
+Gain scale using a trackpad or mousewheel. Click and drag on the gain scale to adjust the position of the
+scale. Double-click on the EQ Gain scale to reset it to default.</p>
+<hr>
+<h3 id="extra-curves">Extra Curves</h3>
+<p>When the <a href="../options/index.html#show-extra-curves">Show Extra Curves</a> option is enabled in the EQ options tab,
+three additional rulers appear on the right-hand side of the spectrum analyzer: <strong>Phase Response</strong> (degrees),
+<strong>Phase Delay</strong> (ms), <strong>Group Delay</strong> (ms).</p>
+<figure class="align-image-center"><img src="../images/eq/extra-curves.png" alt="Extra Curves" /></figure>
+<p>You can hide and show each curve individually by clicking on the buttons that appear in the legend along the
+top of the spectrum view.</p>
+<figure class="align-image-center"><img src="../images/eq/extra-curves-close.png" alt="Extra Curves Close" /></figure>
+<hr>
+<h2 id="working-with-eq-nodes">Working with EQ Nodes</h2>
+<p>The following sections outline methods you can use to add remove bands in the EQ module(s).</p>
+<h3 id="add-bands">Add Bands</h3>
+<p>You can add bands to the Equalizer module using the following methods:</p>
+<ul>
+<li><strong>Add nodes along the composite curve</strong>: Hover your cursor over the white <a href="index.html#composite-curve"><strong>composite
+curve</strong></a> and single-click to add a new node when the <strong>+</strong> icon appears below your
+cursor.</li>
+<li><strong>Add nodes using a keyboard shortcut</strong>: Select an existing node in the EQ module and press 
+<kbd>command</kbd>+
+<kbd>return</kbd> (Mac) or 
+<kbd>ctrl</kbd>+
+<kbd>return</kbd> (Windows) to add node to the
+center of the EQ spectrum.</li>
+<li><strong>Add nodes using double-click</strong>: Double-click anywhere in the EQ spectrum view to add a new node at that
+location.</li>
+</ul>
+<h4 id="default-filter-shape-assignments">Default Filter Shape Assignments</h4>
+<p>Filter shapes are automatically assigned to a newly added node based on the frequency range it is added
+within.</p>
+<ul>
+<li><strong>Between 20Hz to 100Hz</strong>: Flat Highpass <strong>or</strong> Analog Low Shelf (if Flat Highpass is already used by an
+existing band).</li>
+<li><strong>Between 100Hz and 8kHz</strong>: Proportional Q.</li>
+<li><strong>Between 8kHz to 20kHz</strong>: Flat Lowpass <strong>or</strong> Analog High Shelf (if Flat Lowpass is already used by an
+existing band).</li>
+</ul>
+<h3 id="remove-bands">Remove Bands</h3>
+<p>You can remove bands from the EQ using the following methods:</p>
+<ul>
+<li><strong>Remove a single band:</strong>
+<ul>
+<li><strong>In the HUD-based EQ view:</strong> Select a node and click the <strong>X</strong> button in the HUD panel to remove the band
+from the EQ curve.</li>
+<li><strong>In the All Bands View</strong>: Click on the Power button in the header of the band controls table to remove
+the associated band from the EQ curve.</li>
+</ul>
+</li>
+<li><strong>Remove multiple bands</strong>:
+<ul>
+<li><strong>Lasso-select</strong>: Click and drag your cursor over multiple nodes to select them, then press the 
+<kbd>delete</kbd> or 
+<kbd>backspace</kbd> key to remove all selected bands from the EQ curve.</li>
+<li><strong>Shift-click select</strong>: Hold 
+<kbd>Shift</kbd> and single-click on multiple nodes to select them. Press
+the 
+<kbd>delete</kbd> or 
+<kbd>backspace</kbd> key to remove the selected bands from the EQ curve.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="hud-controls">HUD Controls</h2>
+<p>Single-click on a node to view the HUD (Heads Up Display) panel for a given band. The following parameters are
+available in the HUD panel:</p>
+<ul>
+<li><a href="index.html#general-band-controls">General Band Controls</a></li>
+<li><a href="index.html#filter-shape">Filter Shape</a></li>
+<li><a href="index.html#frequency">Frequency</a></li>
+<li><a href="index.html#gain">Gain</a></li>
+<li><a href="index.html#q-slope">Q/Slope</a></li>
+<li><a href="index.html#advanced-panel">Advanced Panel</a></li>
+</ul>
+<figure ><img src="../images/eq/hud.png" alt="EQ HUD" /></figure>
+<h3 id="general-band-controls">General Band Controls</h3>
+<p>The left side of the HUD includes parameters for enabling/disabling, soloing, and removing the currently
+selected band.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Icon</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><figure ><img src="../images/general-controls/ui/power-button.png" alt="Power Button" /></figure></td>
+<td><strong>Power Button</strong>: Enables or disables processing of the currently selected band.</td>
+</tr>
+<tr>
+<td align="center"><figure ><img src="../images/general-controls/ui/solo.png" alt="Solo Button" /></figure></td>
+<td><strong>Solo:</strong> Enables the selected filter to be listened to in isolation.</td>
+</tr>
+<tr>
+<td align="center"><figure ><img src="../images/general-controls/ui/remove.png" alt="Remove Button" /></figure></td>
+<td><strong>Remove:</strong> Removes the band.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Using Alt-Solo and Band Solo</p>
+<p class="admonition-body">You can use the following methods to solo a filter or specific area of the frequency spectrum:</p>
+<ol>
+<li><strong>Band Solo</strong>: Filters per-band. To access Band Solo,
+<kbd>alt</kbd> (
+<kbd>option</kbd>) key and click on
+a node to solo the band. You can also use the Solo button in the HUD display to solo the selected band.</li>
+<li><strong>Alt-Solo</strong>: Creates a moveable filter window allowing you to easily focus on the frequencies surrounding
+the location of the click. To access Alt-Solo hold the
+<kbd>alt</kbd> (
+<kbd>option</kbd>) key and click
+anywhere on the frequency spectrum.</li>
+</ol></p>
+</div>
+<hr>
+<h3 id="filter-shape">Filter Shape</h3>
+<p>The Equalizer module features several different filter shapes, each one belonging to one of the following
+filter type categories:</p>
+<ul>
+<li><strong>Peak Filter</strong>: Used to boost or cut a specific center frequency level. You can access the following Peak
+filters in the <strong>Bell</strong> sub-menu: <strong>Bell, Proportional Q,</strong> and <strong>Band Shelf.</strong></li>
+<li><strong>Shelf Filter</strong>: Used to boost or cut the frequency content above or below a specified frequency. In the
+Low Shelf menu and High Shelf menu: <strong>Analog, Vintage, Baxandall,</strong> and <strong>Resonant</strong>.</li>
+<li><strong>Pass Filter</strong>: Used to attenuate frequency content that is below (for highpass) or above (for lowpass) a
+specified cutoff frequency. You can find the following pass filters in the <strong>Lowpass</strong> and <strong>Highpass</strong>
+sub-menus: <strong>Flat, Resonant, Brickwall</strong>.</li>
+</ul>
+<p>You can change the filter shape selection for a given band using the following methods:</p>
+<ul>
+<li>Click on a node and select a filter shape from the dropdown menu in the HUD.</li>
+<li>Right-click on a node and select a filter shape from the context menu that appears.</li>
+<li>In All Bands view, select a filter shape from the dropdown menu in the band controls table.</li>
+</ul>
+<p>The following filter shapes are available in the Equalizer:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Shape</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>Proportional Q</strong><br /><figure class="pad-even"><img src="../images/eq/filters/bell-prop-q.png" alt="Proportional Q Icons" /></figure></td>
+<td>Unique filter that varies shape in proportion to the amount of boost or cut applied. As a cut or boost is increased further away from center of the EQ curve, the shape tightens for more precision. This <strong>Peak</strong> type filter is available in the <strong>Bell</strong> sub-menu.</td>
+</tr>
+<tr>
+<td align="center"><strong>Bell</strong><br /><figure class="pad-even"><img src="../images/eq/filters/bell.png" alt="Bell Icons" /></figure></td>
+<td>Smoothly boosts or cuts an adjustable region around a specific frequency. This <strong>Peak</strong> type filter is available in the <strong>Bell</strong> sub-menu.</td>
+</tr>
+<tr>
+<td align="center"><strong>Band shelf</strong><br /><figure class="pad-even"><img src="../images/eq/filters/bell-band-shelf.png" alt="Band Shelf Icons" /></figure></td>
+<td>Bell filter with wide, flat top. Useful for boosting or attenuating a block of frequencies. This <strong>Peak</strong> type filter is available in the <strong>Bell</strong> sub-menu.</td>
+</tr>
+<tr>
+<td align="center"><strong>Analog</strong><br /><figure class="pad-even"><img src="../images/eq/filters/shelf-analog.png" alt="Analog Shelf Icons" /></figure></td>
+<td>Efficient shelf filter for simple boosts and cuts. This <strong>Shelf</strong> type filter is available in the <strong>Low Shelf</strong> and <strong>High Shelf</strong> sub-menus.</td>
+</tr>
+<tr>
+<td align="center"><strong>Baxandall</strong><br /><figure class="pad-even"><img src="../images/eq/filters/shelf-bax.png" alt="Baxandall Icons" /></figure></td>
+<td>Gentle shelf filters. Modeled after the Baxandall EQ, with the addition of adjustable frequency. This <strong>Shelf</strong> type filter is available in the <strong>Low Shelf</strong> and <strong>High Shelf</strong> sub-menus.</td>
+</tr>
+<tr>
+<td align="center"><strong>Vintage</strong><br /><figure class="pad-even"><img src="../images/eq/filters/shelf-vintage.png" alt="Vintage Shelf Icons" /></figure></td>
+<td>Inspired by the renowned Pultec analog equalizer. Exhibits a complementary frequency dip, creating a complex slope with one node. This <strong>Shelf</strong> type filter is available in the <strong>Low Shelf</strong> and <strong>High Shelf</strong> sub-menus.</td>
+</tr>
+<tr>
+<td align="center"><strong>Resonant</strong><br /><figure class="pad-even"><img src="../images/eq/filters/resonant.png" alt="Resonant Shelf Icons" /></figure></td>
+<td>Exhibits a complimentary resonance at both ends of the filter slope creating a complex shape with one node. This <strong>Shelf</strong> type filter is available in the <strong>Low Shelf</strong> and <strong>High Shelf</strong> sub-menus.</td>
+</tr>
+<tr>
+<td align="center"><strong>Flat</strong><br /><figure class="pad-even"><img src="../images/eq/filters/pass-flat.png" alt="Flat HP LP Icons" /></figure></td>
+<td>Butterworth filter; optimized for maximum flatness without ripple or resonance in the passband or stopband (stability). This <strong>Pass</strong> type filter is available in the <strong>Highpass</strong> and <strong>Lowpass</strong> sub-menus.</td>
+</tr>
+<tr>
+<td align="center"><strong>Resonant</strong><br /><figure class="pad-even"><img src="../images/eq/filters/pass-resonant.png" alt="Resonant HP LP Icons" /></figure></td>
+<td>Filter equipped with a resonance control to emphasize the cutoff frequency with positive gain. Boosts content at the cutoff frequency to add character and emphasize the lowest or highest part of the signal. This <strong>Pass</strong> type filter is available in the <strong>Highpass</strong> and <strong>Lowpass</strong> sub-menus.</td>
+</tr>
+<tr>
+<td align="center"><strong>Brickwall</strong><br /><figure class="pad-even"><img src="../images/eq/filters/brickwall.png" alt="Brickwall HP LP Icons" /></figure></td>
+<td>Elliptic filters. Optimized for steepness with minimal ripple in the passband and stopband. This <strong>Pass</strong> type filter is available in the <strong>Highpass</strong> and <strong>Lowpass</strong> sub-menus.</td>
+</tr>
+<tr>
+<td align="center"><strong>Surgical</strong><br /><em>Digital mode only</em></td>
+<td>Precise Digital filter shape available in all filter shape sub-menus. <div class="admonition note">
+<p class="admonition-title">Digital mode only</p>
+<p class="admonition-body">Surgical filters will appear in all filter shape sub-menus when the Digital filter mode is selected in the module header area. Surgical filters are not available when the Analog filter mode is selected.</p>
+</div></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="frequency">Frequency</h3>
+<p>Determines the center or cutoff frequency value for the selected filter. The EQ supports frequency values
+ranging from 20 Hz to 20 kHz.</p>
+<h4 id="adjusting-frequency">Adjusting Frequency</h4>
+<p>You can adjust the Frequency using the following methods:</p>
+<ul>
+<li>Drag a node to the left or right to decrease or increase the Frequency value.<br>
+<div class="admonition tip">
+<p class="admonition-title">Lock Adjustments to the horizontal axis</p>
+<p class="admonition-body"><ul>
+<li>Hold the
+<kbd>Shift</kbd> key when dragging a node left or right to lock movements to the horizontal
+(frequency) axis. This allows you to make Frequency adjustments without accidentally adjusting Gain.</li>
+</ul></p>
+</div>
+</li>
+<li>Double-click on the Frequency value text readout in the HUD and manually enter a new value in the inline
+edit field.</li>
+<li>Single-click, hold, and drag the Frequency value text readout in the HUD to &lsquo;scrub&rsquo; to a new value. The HUD
+will reposition itself after you have released the mouse.</li>
+<li>Single-click on a node and use the left or right arrow keys to decrease or increase the Frequency value.
+<div class="admonition tip">
+<p class="admonition-title">Make coarse/fine adjustments with keyboard modifiers</p>
+<p class="admonition-body"><ul>
+<li>Coarse: Hold the
+<kbd>Shift</kbd> key when using the arrow keys to make Frequency value adjustments in
+<em>larger</em> increments.</li>
+<li>Fine: Hold the
+<kbd>command</kbd> key (Mac) or
+<kbd>ctrl</kbd> key (Windows) when using the arrow keys
+to make Frequency value adjustments in <em>smaller</em> increments.</li>
+</ul></p>
+</div>
+</li>
+</ul>
+<hr>
+<h3 id="gain">Gain</h3>
+<p>Determines the amount of gain applied to the selected filter. The EQ supports gain adjustments ranging from
+-30 dB to +15 dB.</p>
+<h4 id="adjusting-gain">Adjusting Gain</h4>
+<p>You can adjust Gain using the following methods:</p>
+<ul>
+<li>Drag an EQ node down or up to decrease or increase the Gain value.<br>
+<div class="admonition tip">
+<p class="admonition-title">Lock Adjustments to the vertical axis</p>
+<p class="admonition-body">Hold the
+<kbd>Shift</kbd> key when dragging a node up or down to lock movements to the vertical axis. This
+will allow you to make Gain adjustments without also adjusting Frequency.</p>
+</div>
+</li>
+<li>Double-click on the Gain value readout in the HUD and manually enter a new value in the inline edit field.</li>
+<li>Single-click, hold, and drag on the Gain value readout text in the HUD to &lsquo;scrub&rsquo; to a new value. The HUD
+will reposition itself after you have released the mouse.</li>
+<li>Single-click on a node and use the down or up arrow keys to decrease or increase the Gain value.<br>
+<div class="admonition tip">
+<p class="admonition-title">Make coarse/fine adjustments with keyboard modifiers</p>
+<p class="admonition-body"><ul>
+<li>Coarse: Hold the
+<kbd>Shift</kbd> key when using the arrow keys to make Gain value adjustments in
+<em>larger</em> increments.</li>
+<li>Fine: Hold the
+<kbd>command</kbd> key (Mac) or
+<kbd>ctrl</kbd> key (Windows) when using the arrow keys
+to make Gain adjustments in <em>smaller</em> increments.</li>
+</ul></p>
+</div>
+</li>
+</ul>
+<h3 id="q-slope">Q/Slope</h3>
+<p>Determines the bandwidth or slope of the selected filter. The selected filter shape will determine if Q or
+Slope is available for adjustment. The Baxandall (Low Shelf/High Shelf) and Brickwall (Highpass/Lowpass)
+filter shapes do not include an adjustable <a href="index.html#q">Q</a> or <a href="index.html#slope">Slope</a> control.</p>
+<h4 id="q">Q</h4>
+<p>Determines the bandwidth (cF) of the selected filter. The following filter shapes include a <strong>Q</strong> control:</p>
+<ul>
+<li>In the <strong>Bell</strong> filter sub-menu: Proportional Q, Bell, and Band Shelf.</li>
+<li>In the <strong>Low Shelf</strong> and <strong>High Shelf</strong> filter sub-menus: Analog, Vintage, and Resonant.</li>
+<li>In the <strong>Lowpass</strong> and <strong>Highpass</strong> filter sub-menus: Resonant.</li>
+</ul>
+<h4 id="slope">Slope</h4>
+<p>Determines the <strong>Slope</strong> of the filter below or above the cutoff frequency. Slope is measured in increments of
+dB/octave. Lower values result in a more gradual slope before or after the cutoff frequency, higher values
+result in a steep slope before or after the cutoff frequency. The Flat Lowpass and Flat Highpass filter shapes
+include and adjustable Slope control.</p>
+<h4 id="adjusting-q-slope">Adjusting Q/Slope</h4>
+<p>You can adjust Q and Slope using the following methods:</p>
+<ul>
+<li>Single-click on a node and drag the horizontal handles toward the node to increase the Q/Slope value, or
+away from the node to decrease the Q/Slope value.</li>
+<li>Double-click on the Q/Slope value text readout in the HUD and enter a value in the inline edit field.</li>
+<li>Single-click, hold, and drag on the Q/Slope value readout text in the HUD to &lsquo;scrub&rsquo; to a new value.</li>
+</ul>
+<h3 id="advanced-hud">Advanced HUD</h3>
+<p>You can access the Advanced panel by clicking the arrow button on the right hand side of the HUD. If the
+<a href="index.html#global-filter-mode">Global Filter Mode</a> is set to Analog, the Advanced panel button will be disabled. You
+can only access the Advanced panel of the HUD when the Digital <a href="index.html#global-filter-mode">Global Filter Mode</a> is
+selected.</p>
+<figure class="align-image-center"><img src="../images/eq/adv-hud.png" alt="EQ Advanced Panel" /></figure>
+<h4 id="phase">Phase</h4>
+<p>Adjusts the phase response of the currently selected filter.</p>
+<figure class="align-image-center"><img src="../images/eq/phase.png" alt="Phase" /></figure>
+<ul>
+<li><strong>0% Phase</strong>: the selected band will have a Linear phase response.</li>
+<li><strong>100% Phase</strong>: the selected band will have a Minimum phase response.</li>
+</ul>
+
+
+    </div>
+  </article>
+<footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../dynamic-eq/index.html" title="Dynamic EQ">
+        <span class="direction">Previous</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">Dynamic EQ</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../exciter/index.html" title="Exciter">
+        <span class="direction">Next</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">Exciter</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+&copy; 2020 iZotope, Inc. - Ozone 9.1.0
+  </div>
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </main>
+</body>
+</html>

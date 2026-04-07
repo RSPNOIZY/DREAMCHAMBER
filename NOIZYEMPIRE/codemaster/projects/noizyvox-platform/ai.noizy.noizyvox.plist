@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>ai.noizy.noizyvox</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/m2ultra/NOIZYANTHROPIC/NOIZYEMPIRE/codemaster/projects/noizyvox-platform/.venv/bin/python</string>
+        <string>-m</string>
+        <string>uvicorn</string>
+        <string>app.main:app</string>
+        <string>--port</string>
+        <string>8421</string>
+        <string>--host</string>
+        <string>0.0.0.0</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/m2ultra/NOIZYANTHROPIC/NOIZYEMPIRE/codemaster/projects/noizyvox-platform</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>HOME</key>
+        <string>/Users/m2ultra</string>
+        <key>NOIZYVOX_ENV</key>
+        <string>production</string>
+        <key>NOIZYVOX_AUTH_ENABLED</key>
+        <string>true</string>
+        <key>NOIZYVOX_FORCE_HTTPS</key>
+        <string>false</string>
+        <key>NOIZYVOX_CORS_ORIGINS</key>
+        <string>http://localhost:3000,https://noizy.ai,https://heaven.noizylab.workers.dev</string>
+        <key>NOIZYVOX_ALLOWED_HOSTS</key>
+        <string>localhost,127.0.0.1,GOD.local,noizy.ai</string>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/Users/m2ultra/NOIZYANTHROPIC/GABRIEL/logs/noizyvox.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/m2ultra/NOIZYANTHROPIC/GABRIEL/logs/noizyvox.err</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+</dict>
+</plist>

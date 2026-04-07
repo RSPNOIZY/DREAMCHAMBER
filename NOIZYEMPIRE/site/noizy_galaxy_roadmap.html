@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Noizy Universe — Operational Galaxy Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #020204;
+  --void-2: #06060e;
+  --void-3: #0a0a16;
+  --amber: #c49a38;
+  --amber-dim: #7a5e1a;
+  --amber-glow: rgba(196,154,56,0.15);
+  --cyan: #2aa4be;
+  --cyan-glow: rgba(42,164,190,0.15);
+  --green: #3dba72;
+  --purple: #b07ade;
+  --rose: #d06080;
+  --orange: #e08040;
+  --text: #d4cfc4;
+  --text-dim: #6a6458;
+  --ghost: rgba(255,255,255,0.05);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --mono: 'IBM Plex Mono', 'Courier New', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--void); color: var(--text); font-family: var(--serif); font-size: 17px; line-height: 1.7; }
+
+/* ── GALAXY SECTION ───────────────────────── */
+#galaxy-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#galaxy-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+}
+
+/* ── HEADER ───────────────────────────────── */
+.galaxy-header {
+  position: relative; z-index: 10;
+  padding: 40px 60px 0;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  flex-wrap: wrap; gap: 20px;
+}
+.gh-left .mark { font-family: var(--mono); font-size: 10px; letter-spacing: 0.25em; color: var(--amber); text-transform: uppercase; }
+.gh-left .title { font-family: var(--serif); font-size: clamp(28px, 4vw, 48px); font-weight: 300; color: #fff; line-height: 1.1; margin-top: 6px; }
+.gh-left .title em { font-style: italic; color: var(--amber); }
+.gh-right { text-align: right; }
+.north-star {
+  font-family: var(--serif); font-size: 15px; font-style: italic;
+  color: var(--text); max-width: 340px; line-height: 1.5;
+  padding: 14px 18px;
+  border: 1px solid rgba(196,154,56,0.2);
+  border-radius: 4px;
+  background: rgba(196,154,56,0.04);
+}
+.north-star strong { color: var(--amber); font-style: normal; font-weight: 600; }
+.north-star .ns-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; color: var(--amber); text-transform: uppercase; display: block; margin-bottom: 6px; }
+
+/* ── GALAXY CANVAS AREA ───────────────────── */
+.galaxy-stage {
+  position: relative; z-index: 5;
+  flex: 1;
+  min-height: 720px;
+}
+
+/* ── ORBIT LEGEND ─────────────────────────── */
+.orbit-legend {
+  position: relative; z-index: 10;
+  padding: 32px 60px;
+  display: flex; gap: 16px; flex-wrap: wrap;
+  border-top: 1px solid var(--ghost);
+  background: linear-gradient(to top, var(--void-2), transparent);
+}
+.orbit-item {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 10px; color: var(--text-dim);
+  letter-spacing: 0.08em; cursor: pointer;
+  padding: 6px 12px;
+  border: 1px solid var(--ghost);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.orbit-item:hover { border-color: rgba(196,154,56,0.3); color: var(--amber); }
+.orbit-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── TOOLTIP / PANEL ──────────────────────── */
+#node-panel {
+  position: fixed;
+  top: 50%; right: 48px;
+  transform: translateY(-50%);
+  width: 320px;
+  background: rgba(6,6,14,0.96);
+  border: 1px solid rgba(196,154,56,0.25);
+  border-radius: 4px;
+  padding: 28px;
+  z-index: 200;
+  display: none;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 40px rgba(196,154,56,0.08);
+}
+#node-panel.visible { display: block; }
+.panel-orbit { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px; }
+.panel-name { font-family: var(--serif); font-size: 26px; font-weight: 300; color: #fff; margin-bottom: 4px; }
+.panel-type { font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; margin-bottom: 16px; }
+.panel-desc { font-family: var(--serif); font-size: 15px; font-style: italic; color: var(--text); margin-bottom: 16px; line-height: 1.55; }
+.panel-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.panel-tag {
+  font-family: var(--mono); font-size: 9px; padding: 3px 8px; border-radius: 2px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.panel-status { font-family: var(--mono); font-size: 10px; display: flex; align-items: center; gap: 6px; }
+.ps-dot { width: 6px; height: 6px; border-radius: 50%; }
+.panel-close {
+  position: absolute; top: 12px; right: 14px;
+  font-family: var(--mono); font-size: 16px; color: var(--text-dim);
+  cursor: pointer; transition: color 0.2s; background: none; border: none; line-height: 1;
+}
+.panel-close:hover { color: var(--amber); }
+
+/* ── ROADMAP SECTION ──────────────────────── */
+#roadmap {
+  background: var(--void-2);
+  padding: 100px 60px;
+  border-top: 1px solid rgba(196,154,56,0.1);
+}
+.rm-header { margin-bottom: 64px; }
+.rm-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.25em; color: var(--amber); text-transform: uppercase; margin-bottom: 12px; }
+.rm-title { font-family: var(--serif); font-size: clamp(36px, 5vw, 64px); font-weight: 300; color: #fff; line-height: 1.05; }
+.rm-title em { font-style: italic; color: var(--cyan); }
+.rm-rule { width: 56px; height: 1px; background: linear-gradient(90deg, var(--amber), transparent); margin: 18px 0 28px; }
+.rm-desc { font-family: var(--serif); font-size: 20px; font-style: italic; color: var(--text); max-width: 600px; line-height: 1.6; }
+
+/* Timeline */
+.rm-timeline {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 64px;
+}
+.rm-phase {
+  background: var(--void-3);
+  border: 1px solid var(--ghost);
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.rm-phase:hover { border-color: rgba(196,154,56,0.25); }
+.rm-phase::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.rm-phase.now::before { background: linear-gradient(90deg, var(--amber), var(--cyan)); }
+.rm-phase.near::before { background: linear-gradient(90deg, var(--cyan), var(--purple)); }
+.rm-phase.far::before { background: linear-gradient(90deg, var(--purple), var(--rose)); }
+.rm-phase-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px; }
+.rm-phase.now .rm-phase-label { color: var(--amber); }
+.rm-phase.near .rm-phase-label { color: var(--cyan); }
+.rm-phase.far .rm-phase-label { color: var(--purple); }
+.rm-phase-title { font-family: var(--serif); font-size: 22px; color: #fff; font-weight: 300; margin-bottom: 20px; }
+.rm-items { list-style: none; }
+.rm-items li {
+  font-family: var(--mono); font-size: 10px; color: var(--text-dim);
+  padding: 6px 0 6px 16px; position: relative;
+  border-bottom: 1px solid var(--ghost);
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.rm-items li:last-child { border-bottom: none; }
+.rm-items li::before { content: '→'; position: absolute; left: 0; }
+.rm-items .done { color: var(--green); flex-shrink: 0; font-size: 9px; margin-top: 1px; }
+.rm-items .wip  { color: var(--amber); flex-shrink: 0; font-size: 9px; margin-top: 1px; }
+.rm-items .plan { color: var(--text-dim); flex-shrink: 0; font-size: 9px; margin-top: 1px; }
+
+/* HVS Principles */
+.hvs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 64px;
+}
+.hvs-card {
+  background: var(--void-3);
+  border: 1px solid var(--ghost);
+  border-radius: 4px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.hvs-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+}
+.hvs-num { font-family: var(--mono); font-size: 48px; font-weight: 300; color: rgba(255,255,255,0.04); position: absolute; top: 8px; right: 14px; line-height: 1; }
+.hvs-icon { font-size: 24px; margin-bottom: 12px; display: block; }
+.hvs-cat { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px; }
+.hvs-title { font-family: var(--serif); font-size: 20px; color: #fff; margin-bottom: 8px; }
+.hvs-desc { font-family: var(--serif); font-size: 14px; font-style: italic; color: var(--text); line-height: 1.55; }
+
+/* ── NORTH STAR CLOSER ────────────────────── */
+#north-star-close {
+  text-align: center;
+  padding: 100px 60px;
+  background: var(--void);
+  border-top: 1px solid rgba(196,154,56,0.08);
+  position: relative;
+  overflow: hidden;
+}
+#north-star-close::before {
+  content: '';
+  position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber), var(--cyan), transparent);
+}
+.ns-big {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 300; font-style: italic;
+  color: #fff; max-width: 780px; margin: 0 auto 24px;
+  line-height: 1.25;
+}
+.ns-big em { color: var(--amber); font-style: normal; }
+.ns-big strong { color: var(--cyan); font-style: normal; }
+.ns-sub {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+  color: var(--text-dim); text-transform: uppercase; margin-bottom: 40px;
+}
+.ns-filter {
+  font-family: var(--mono); font-size: 13px;
+  color: var(--amber); letter-spacing: 0.05em;
+  padding: 14px 28px;
+  border: 1px solid rgba(196,154,56,0.3);
+  border-radius: 3px;
+  background: var(--amber-glow);
+  display: inline-block;
+  margin-bottom: 48px;
+}
+.ns-three {
+  display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 11px; color: var(--text-dim);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.ns-three .item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.ns-three .item .glyph { font-size: 24px; }
+.ns-three .item.pf { color: var(--amber); }
+.ns-three .item.df { color: var(--cyan); }
+.ns-three .item.paf { color: var(--purple); }
+</style>
+</head>
+<body>
+
+<!-- ══ GALAXY ══════════════════════════════════════════════ -->
+<section id="galaxy-section">
+  <canvas id="galaxy-canvas"></canvas>
+
+  <div class="galaxy-header">
+    <div class="gh-left">
+      <div class="mark">NOIZYVOX · Operational Roadmap · 2026</div>
+      <h1 class="title">The <em>Noizy</em><br>Universe</h1>
+    </div>
+    <div class="gh-right">
+      <div class="north-star">
+        <span class="ns-label">★ North Star</span>
+        "If it diminishes, replaces, or ignores humans — <strong>it does not exist in Noizy.</strong>"
+      </div>
+    </div>
+  </div>
+
+  <div class="galaxy-stage" id="galaxy-stage">
+    <!-- canvas fills this space -->
+  </div>
+
+  <div class="orbit-legend">
+    <div class="orbit-item" data-orbit="0"><div class="orbit-dot" style="background:#f5d060;box-shadow:0 0 8px #f5d060"></div>HVS™ Core</div>
+    <div class="orbit-item" data-orbit="1"><div class="orbit-dot" style="background:var(--amber)"></div>Orbit 1 — Governance</div>
+    <div class="orbit-item" data-orbit="2"><div class="orbit-dot" style="background:var(--cyan)"></div>Orbit 2 — AI Engine</div>
+    <div class="orbit-item" data-orbit="3"><div class="orbit-dot" style="background:var(--green)"></div>Orbit 3 — Creation</div>
+    <div class="orbit-item" data-orbit="4"><div class="orbit-dot" style="background:var(--purple)"></div>Orbit 4 — Community</div>
+    <div class="orbit-item" data-orbit="5"><div class="orbit-dot" style="background:var(--rose)"></div>Orbit 5 — Archive</div>
+    <div class="orbit-item" data-orbit="6"><div class="orbit-dot" style="background:var(--orange)"></div>Orbit 6 — Expansion</div>
+    <div class="orbit-item" data-orbit="7"><div class="orbit-dot" style="background:#8090ff"></div>Orbit 7 — Future</div>
+    <div style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--text-dim);align-self:center">
+      CLICK ANY NODE TO EXPLORE
+    </div>
+  </div>
+</section>
+
+<!-- NODE PANEL -->
+<div id="node-panel">
+  <button class="panel-close" id="panel-close">×</button>
+  <div class="panel-orbit" id="p-orbit"></div>
+  <div class="panel-name" id="p-name"></div>
+  <div class="panel-type" id="p-type"></div>
+  <div class="panel-desc" id="p-desc"></div>
+  <div class="panel-tags" id="p-tags"></div>
+  <div class="panel-status" id="p-status"></div>
+</div>
+
+<!-- ══ ROADMAP ══════════════════════════════════════════════ -->
+<section id="roadmap">
+  <div class="rm-header">
+    <div class="rm-eyebrow">Operational Build Plan</div>
+    <h2 class="rm-title">Prioritized<br><em>Build Orbits</em></h2>
+    <div class="rm-rule"></div>
+    <p class="rm-desc">Three temporal horizons — Now, Near, Far. Every item anchored to the North Star filter. No feature ships without passing the human-first test.</p>
+  </div>
+
+  <div class="rm-timeline">
+
+    <!-- NOW -->
+    <div class="rm-phase now">
+      <div class="rm-phase-label">Now — 2024–2026</div>
+      <div class="rm-phase-title">Core Infrastructure<br>&amp; Soul Foundation</div>
+      <ul class="rm-items">
+        <li><span class="done">✓</span>Voice Node Service — TypeScript / ffmpeg / VAD</li>
+        <li><span class="done">✓</span>7-Stage Pipeline — Consent → Ledger</li>
+        <li><span class="done">✓</span>Provenance Ledger — Immutable JSONL</li>
+        <li><span class="done">✓</span>Never Clauses NC_01–NC_10</li>
+        <li><span class="done">✓</span>Consent Key Cryptographic Format</li>
+        <li><span class="done">✓</span>Voice Estate Trust Architecture</li>
+        <li><span class="done">✓</span>RSP_001 RSP Registry — Founder Live</li>
+        <li><span class="done">✓</span>Creative Genome 6D Fingerprint v2</li>
+        <li><span class="done">✓</span>Dream Agent Team (GABRIEL + 4)</li>
+        <li><span class="done">✓</span>DreamChamber Node Universe Archive</li>
+        <li><span class="wip">◎</span>Neumann U87 + UAD Signal Chain Live</li>
+        <li><span class="wip">◎</span>NOIZYVOX Ingest API — WAV endpoint</li>
+        <li><span class="wip">◎</span>RSP_002–004 Onboarding (Beta Actors)</li>
+        <li><span class="wip">◎</span>HVS™ Spectral DNA — Formant mapping</li>
+      </ul>
+    </div>
+
+    <!-- NEAR -->
+    <div class="rm-phase near">
+      <div class="rm-phase-label">Near — Q3–Q4 2026</div>
+      <div class="rm-phase-title">Co-Creation Engine<br>&amp; Community Layer</div>
+      <ul class="rm-items">
+        <li><span class="plan">○</span>DreamScene Builder — Visual node canvas</li>
+        <li><span class="plan">○</span>Multi-actor scene casting + direction AI</li>
+        <li><span class="plan">○</span>AI Creative Partner — harmonic suggestions</li>
+        <li><span class="plan">○</span>Cross-sensory integration (audio + visual)</li>
+        <li><span class="plan">○</span>Guild Community Platform (web)</li>
+        <li><span class="plan">○</span>Royalty Distribution Engine — 75/25 live</li>
+        <li><span class="plan">○</span>Multilingual AVA expansion (FR / ES / PT)</li>
+        <li><span class="plan">○</span>Global Music Atlas v1 — 200 entries</li>
+        <li><span class="plan">○</span>Museum of Voice — installation prototype</li>
+        <li><span class="plan">○</span>Canadian Artist Gallery — open submissions</li>
+        <li><span class="plan">○</span>Emotional Range ML classifier (Session 006)</li>
+        <li><span class="plan">○</span>Adaptive HVS™ threshold learning</li>
+        <li><span class="plan">○</span>NOIZYVOX one-pager → Anthropic / Dario</li>
+        <li><span class="plan">○</span>Merkle tree provenance chain v2</li>
+      </ul>
+    </div>
+
+    <!-- FAR -->
+    <div class="rm-phase far">
+      <div class="rm-phase-label">Far — 2027+</div>
+      <div class="rm-phase-title">Galaxy Expansion<br>&amp; Universe Scale</div>
+      <ul class="rm-items">
+        <li><span class="plan">○</span>HVS™ Blockchain of Creativity</li>
+        <li><span class="plan">○</span>AI-Enhanced Cultural Rescue program</li>
+        <li><span class="plan">○</span>Universal Decision Engine (ethics API)</li>
+        <li><span class="plan">○</span>Creator Credit Visibility — remix chains</li>
+        <li><span class="plan">○</span>Experiential AI Mentorship platform</li>
+        <li><span class="plan">○</span>Cross-medium portals (XR / spatial audio)</li>
+        <li><span class="plan">○</span>Procedural Co-Creation Worlds</li>
+        <li><span class="plan">○</span>Global Experience Bridges — live collab</li>
+        <li><span class="plan">○</span>Embodiment + Ritual Integration (haptics)</li>
+        <li><span class="plan">○</span>HVS™-Powered Soul Network — 10,000 nodes</li>
+        <li><span class="plan">○</span>Indigenous tradition preservation layer</li>
+        <li><span class="plan">○</span>Endangered language reconstruction</li>
+        <li><span class="plan">○</span>AI Orbit Nodes — adaptive learning layer</li>
+        <li><span class="plan">○</span>NOIZYVOX Global Guild — 1,000 RSPs</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- HVS™ Upgrade Principles -->
+  <div class="rm-eyebrow" style="margin-bottom:16px">HVS™ Upgrade Principles</div>
+  <div class="hvs-grid">
+    <div class="hvs-card">
+      <div class="hvs-num">1</div>
+      <span class="hvs-icon">🧬</span>
+      <div class="hvs-cat" style="color:var(--amber)">Dynamic Emotional Layering</div>
+      <div class="hvs-title">HVS™ Beyond ID</div>
+      <div class="hvs-desc">Not just a voice signature — a living map of emotional arcs, creative intent, and cultural fingerprint. Every utterance adds depth to the map.</div>
+    </div>
+    <div class="hvs-card">
+      <div class="hvs-num">2</div>
+      <span class="hvs-icon">⏳</span>
+      <div class="hvs-cat" style="color:var(--cyan)">Creator Legacy System</div>
+      <div class="hvs-title">Timeless Creative Asset</div>
+      <div class="hvs-desc">Each HVS™ is a permanent creative object. Rights, provenance, and lineage travel with it across platforms, generations, and mediums.</div>
+    </div>
+    <div class="hvs-card">
+      <div class="hvs-num">3</div>
+      <span class="hvs-icon">🛡</span>
+      <div class="hvs-cat" style="color:var(--green)">Adaptive Protection</div>
+      <div class="hvs-title">Global Defense Layer</div>
+      <div class="hvs-desc">Automatic detection and prevention of misuse. Human expression defended globally — not just in the platform, but everywhere the voice travels.</div>
+    </div>
+    <div class="hvs-card">
+      <div class="hvs-num">4</div>
+      <span class="hvs-icon">🤝</span>
+      <div class="hvs-cat" style="color:var(--purple)">AI as Creative Partner</div>
+      <div class="hvs-title">Collaborative, Not Assistive</div>
+      <div class="hvs-desc">AI proposes variations, harmonies, storylines. Never in place of the human — always in response to their intent and genome profile.</div>
+    </div>
+    <div class="hvs-card">
+      <div class="hvs-num">5</div>
+      <span class="hvs-icon">🌐</span>
+      <div class="hvs-cat" style="color:var(--rose)">Cultural Preservation</div>
+      <div class="hvs-title">Endangered Voice Rescue</div>
+      <div class="hvs-desc">Map indigenous and emergent musical practices into the Global Music Atlas. Protect ownership and cultural context. Make them permanent.</div>
+    </div>
+    <div class="hvs-card">
+      <div class="hvs-num">6</div>
+      <span class="hvs-icon">⚖</span>
+      <div class="hvs-cat" style="color:var(--orange)">Ethics as Protocol</div>
+      <div class="hvs-title">Universal Decision Engine</div>
+      <div class="hvs-desc">Every tool, every algorithm passes the human-first test before activation. Not a review process — an enforced architecture constraint.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NORTH STAR CLOSER ══════════════════════════════════ -->
+<section id="north-star-close">
+  <p class="ns-big">
+    "If it <em>diminishes</em>, <em>replaces</em>,<br>
+    or <em>ignores</em> humans —<br>
+    <strong>it does not exist in Noizy.</strong>"
+  </p>
+  <p class="ns-sub">The Product Filter · The Design Filter · The Partnership Filter</p>
+  <div class="ns-filter">NORTH STAR · NOIZYVOX CONSTITUTION · IMMUTABLE</div>
+  <div class="ns-three">
+    <div class="item pf"><span class="glyph">◈</span>PRODUCT FILTER</div>
+    <div class="item df"><span class="glyph">◈</span>DESIGN FILTER</div>
+    <div class="item paf"><span class="glyph">◈</span>PARTNERSHIP FILTER</div>
+  </div>
+</section>
+
+<script>
+// ═══════════════════════════════════════════
+//  GALAXY DATA
+// ═══════════════════════════════════════════
+const ORBITS = [
+  { label: 'HVS™ Core', color: '#f5d060', glow: 'rgba(245,208,96,0.6)', r: 0 },
+  { label: 'Governance', color: '#c49a38', glow: 'rgba(196,154,56,0.4)', r: 1 },
+  { label: 'AI Engine',  color: '#2aa4be', glow: 'rgba(42,164,190,0.4)', r: 2 },
+  { label: 'Creation',   color: '#3dba72', glow: 'rgba(61,186,114,0.4)', r: 3 },
+  { label: 'Community',  color: '#b07ade', glow: 'rgba(176,122,222,0.4)', r: 4 },
+  { label: 'Archive',    color: '#d06080', glow: 'rgba(208,96,128,0.4)', r: 5 },
+  { label: 'Expansion',  color: '#e08040', glow: 'rgba(224,128,64,0.4)', r: 6 },
+  { label: 'Future',     color: '#8090ff', glow: 'rgba(128,144,255,0.4)', r: 7 },
+];
+
+const NODES = [
+  // ── ORBIT 0 — HVS™ CORE (the sun) ──────
+  {
+    id: 'hvs', orbit: 0, angle: 0, speed: 0,
+    name: 'HVS™', type: 'Human Voice Signature',
+    desc: 'The soul of the system. Every human voice is unique — biologically, emotionally, culturally. HVS™ is the technology that captures, protects, and returns that uniqueness to its owner.',
+    tags: ['Soul', 'Identity', 'Foundation'],
+    status: 'live', statusLabel: 'LIVE — The Center',
+    size: 28,
+  },
+
+  // ── ORBIT 1 — GOVERNANCE ───────────────
+  {
+    id: 'consent', orbit: 1, angle: 0, speed: 0.0008,
+    name: 'Consent Keys', type: 'Cryptographic Governance',
+    desc: 'Every use of a voice requires a valid, scoped, cryptographic consent key. The key IS the contract. Format: NOIZY-{ACTOR}-CONSENT-{16hex}-{AVA}-{DOMAIN}-{JURIS}-{DATE}',
+    tags: ['Crypto', 'Consent', 'Legal'],
+    status: 'live', statusLabel: 'LIVE',
+    size: 11,
+  },
+  {
+    id: 'nc', orbit: 1, angle: 2.1, speed: 0.0008,
+    name: 'Never Clauses', type: 'Constitutional Law',
+    desc: 'Ten immutable rules enforced at architecture level. NC_01–NC_10. Not config — constitution. Cannot be overridden by business logic, acquisition pressure, or executive decision.',
+    tags: ['NC_01', 'NC_10', 'Immutable'],
+    status: 'live', statusLabel: 'LIVE — LOCKED',
+    size: 13,
+  },
+  {
+    id: 'estate', orbit: 1, angle: 4.2, speed: 0.0008,
+    name: 'Voice Estate', type: 'Inheritance Architecture',
+    desc: 'Separate legal entity holding estate obligations. Cannot be acquired, dissolved, or modified without unanimous beneficiary consent. The voice survives the actor.',
+    tags: ['Trust', 'Inheritance', 'Legal'],
+    status: 'live', statusLabel: 'LIVE',
+    size: 12,
+  },
+
+  // ── ORBIT 2 — AI ENGINE ────────────────
+  {
+    id: 'gabriel', orbit: 2, angle: 0, speed: 0.0005,
+    name: 'GABRIEL', type: 'Dream Agent — Overseer',
+    desc: 'Grand Orchestrator. Holds the total map. Coordinates all agents, maintains architectural integrity, guards the Never Clauses. Runs on M2 Ultra, 192GB RAM.',
+    tags: ['M2 Ultra', 'Orchestration', 'Agent'],
+    status: 'live', statusLabel: 'LIVE',
+    size: 13,
+  },
+  {
+    id: 'pops', orbit: 2, angle: 1.26, speed: 0.0005,
+    name: 'POPS', type: 'Dream Agent — Engineer',
+    desc: 'Master Engineer. UAD configuration, mic placement, routing topology, signal chain authority. The studio brain. Nothing gets recorded wrong.',
+    tags: ['UAD', 'Signal Chain', 'Studio'],
+    status: 'live', statusLabel: 'LIVE',
+    size: 11,
+  },
+  {
+    id: 'dream', orbit: 2, angle: 2.51, speed: 0.0005,
+    name: 'DREAM', type: 'Dream Agent — Creative',
+    desc: 'Creative Intelligence. Scene conception, narrative architecture, emotional direction. Generates DreamScene scripts and persona evolution pathways.',
+    tags: ['Creative', 'Scene', 'Narrative'],
+    status: 'live', statusLabel: 'LIVE',
+    size: 12,
+  },
+  {
+    id: 'lucy', orbit: 2, angle: 3.77, speed: 0.0005,
+    name: 'LUCY', type: 'Dream Agent — Operations',
+    desc: 'Logistics and operations. Session scheduling, file management, ledger auditing, consent key issuance. The operational backbone.',
+    tags: ['Ops', 'Ledger', 'Sessions'],
+    status: 'live', statusLabel: 'LIVE',
+    size: 10,
+  },
+  {
+    id: 'shirl', orbit: 2, angle: 5.03, speed: 0.0005,
+    name: 'SHIRL', type: 'Dream Agent — Archivist',
+    desc: 'Memory Keeper. Maintains the Human Archive, Gallery taxonomy, and Museum installation state. Long-term memory of every node ever created.',
+    tags: ['Archive', 'Memory', 'Gallery'],
+    status: 'live', statusLabel: 'LIVE',
+    size: 10,
+  },
+
+  // ── ORBIT 3 — CREATION ─────────────────
+  {
+    id: 'pipeline', orbit: 3, angle: 0, speed: 0.00035,
+    name: '7-Stage Pipeline', type: 'Voice Processing Engine',
+    desc: 'Consent → Never Clauses → WAV Write → Watermark → ProvenanceRecord → API Dispatch → Ledger. Every utterance passes all seven stages.',
+    tags: ['TypeScript', 'Node.js', 'Core'],
+    status: 'live', statusLabel: 'LIVE',
+    size: 13,
+  },
+  {
+    id: 'genome', orbit: 3, angle: 1.57, speed: 0.00035,
+    name: 'Creative Genome', type: '6D Voice Fingerprint',
+    desc: '6-dimensional mapping: Tone · Energy · Emotion · Archetype · Historical Lineage · Usage Context. Version 2 adds spectral acoustic DNA — formants F1–F4.',
+    tags: ['6D', 'FFT', 'Fingerprint'],
+    status: 'live', statusLabel: 'LIVE — v2',
+    size: 14,
+  },
+  {
+    id: 'vad', orbit: 3, angle: 3.14, speed: 0.00035,
+    name: 'VAD Engine', type: 'Voice Activity Detection',
+    desc: 'RMS energy-based three-state machine: silence → speech → speech_ending. −40 dBFS threshold, 800ms padding, 300ms pre-buffer for attack transients.',
+    tags: ['RMS', 'ffmpeg', 'macOS'],
+    status: 'live', statusLabel: 'LIVE',
+    size: 11,
+  },
+  {
+    id: 'watermark', orbit: 3, angle: 4.71, speed: 0.00035,
+    name: 'Watermark', type: 'Audio Steganography',
+    desc: 'Deterministic WM_{8hex} computed from actorId + utteranceId + sessionId + consentKey prefix + timestamp. Future: WavMark deep audio embedding.',
+    tags: ['WavMark', 'Hash', 'Identity'],
+    status: 'live', statusLabel: 'LIVE',
+    size: 10,
+  },
+
+  // ── ORBIT 4 — COMMUNITY ────────────────
+  {
+    id: 'guild', orbit: 4, angle: 0, speed: 0.00025,
+    name: 'Voice Guild', type: 'Actor Community',
+    desc: 'The human layer. RSP Registry, royalty governance, ceremonies, micro-communities. The Guild is the community that makes the reconnection real.',
+    tags: ['Guild', 'Community', 'RSP'],
+    status: 'live', statusLabel: 'LIVE — RSP_001 Founder',
+    size: 14,
+  },
+  {
+    id: 'rsp001', orbit: 4, angle: 2.09, speed: 0.00025,
+    name: 'RSP_001', type: 'Rob S. Plowman — Founder',
+    desc: 'The proof of concept. First registered guild member. 14 sessions, 847 utterances, 6 AVAs, Voice Estate active, Creative Genome GF-RSP001-A7C3-2024.',
+    tags: ['Founder', '14 Sessions', '847 UTT'],
+    status: 'live', statusLabel: 'LIVE — 2024-03-01',
+    size: 13,
+  },
+  {
+    id: 'ava', orbit: 4, angle: 4.19, speed: 0.00025,
+    name: 'AVA Farm', type: 'Actor-Owned Virtual Avatars',
+    desc: 'Licensed, governed, AI-amplified digital performers owned entirely by the actor. 6 AVAs active under RSP_001: ROB.AVA, ROB.AVA·FR, and more.',
+    tags: ['AVA', 'Licensed', 'Owned'],
+    status: 'live', statusLabel: 'LIVE — 6 AVAs Active',
+    size: 12,
+  },
+
+  // ── ORBIT 5 — ARCHIVE ──────────────────
+  {
+    id: 'ledger', orbit: 5, angle: 0, speed: 0.00018,
+    name: 'Provenance Ledger', type: 'Immutable Record',
+    desc: 'Append-only JSONL. 847 utterances. Nothing deleted. Everything witnessed. Every ProvenanceRecord carries utteranceId, watermarkHash, NC checks, dispatch status.',
+    tags: ['JSONL', 'Immutable', '847 Records'],
+    status: 'live', statusLabel: 'LIVE — IMMUTABLE',
+    size: 13,
+  },
+  {
+    id: 'museum', orbit: 5, angle: 2.09, speed: 0.00018,
+    name: 'Museum of Voice', type: 'Human Archive Installation',
+    desc: 'Spatial audio walk through the evolution of a voice. Visitors navigate the genome like a landscape. The first installation was SESSION-011, 2025-09-04.',
+    tags: ['Spatial', 'Audio', 'Gallery'],
+    status: 'building', statusLabel: 'BUILDING',
+    size: 12,
+  },
+  {
+    id: 'atlas', orbit: 5, angle: 4.19, speed: 0.00018,
+    name: 'Global Music Atlas', type: 'Cultural Soundscape Map',
+    desc: 'Living map of instruments, scales, timbres, and cultural soundscapes. 42 instruments, 18 cultures catalogued in SESSION-010. Open for expansion.',
+    tags: ['42 Instruments', '18 Cultures', 'Atlas'],
+    status: 'building', statusLabel: 'BUILDING',
+    size: 12,
+  },
+
+  // ── ORBIT 6 — EXPANSION ────────────────
+  {
+    id: 'dreamscene', orbit: 6, angle: 0, speed: 0.00013,
+    name: 'DreamScene Builder', type: 'Multi-Character Scene Studio',
+    desc: 'Drag-and-drop multi-character scene prototyping. Visual node canvas (React/D3), AVA cast management, AI script direction, scene export to WAV + provenance.',
+    tags: ['React', 'D3', 'Multi-Actor'],
+    status: 'planned', statusLabel: 'PLANNED — Q2 2026',
+    size: 13,
+  },
+  {
+    id: 'colab', orbit: 6, angle: 1.57, speed: 0.00013,
+    name: 'Co-Creation Engine', type: 'AI Creative Partner',
+    desc: 'Collaborative AI that proposes variations, harmonies, storylines, and movement suggestions based on intent and HVS™ profile. Not assistive — collaborative.',
+    tags: ['AI', 'Harmony', 'Intent'],
+    status: 'planned', statusLabel: 'PLANNED — Q3 2026',
+    size: 12,
+  },
+  {
+    id: 'royalty', orbit: 6, angle: 3.14, speed: 0.00013,
+    name: 'Royalty Engine', type: 'Perpetual Revenue Layer',
+    desc: '75/25 — always. Activates at 30 days, permanent, non-renegotiable. Automated distribution. Every deployment tracked back to the originating consent key. The number is the statement.',
+    tags: ['75/25', 'Perpetual', 'Auto'],
+    status: 'planned', statusLabel: 'PLANNED — Q3 2026',
+    size: 12,
+  },
+  {
+    id: 'cultural', orbit: 6, angle: 4.71, speed: 0.00013,
+    name: 'Cultural Rescue', type: 'Endangered Voice Recovery',
+    desc: 'AI-enhanced reconstruction of endangered music, languages, and stories. Cultural ownership protected. Interactive experiences built from recovered materials.',
+    tags: ['Indigenous', 'Language', 'Recovery'],
+    status: 'concept', statusLabel: 'CONCEPT — 2027',
+    size: 11,
+  },
+
+  // ── ORBIT 7 — FUTURE ──────────────────
+  {
+    id: 'blockchain', orbit: 7, angle: 0, speed: 0.00009,
+    name: 'HVS™ Blockchain', type: 'Creativity Ledger',
+    desc: 'HVS™ + rights + emotional data recorded immutably on-chain. Every creative act traceable. Every remix credited. The permanent record of human creativity.',
+    tags: ['Chain', 'Rights', 'Immutable'],
+    status: 'concept', statusLabel: 'CONCEPT — 2027+',
+    size: 12,
+  },
+  {
+    id: 'ude', orbit: 7, angle: 2.09, speed: 0.00009,
+    name: 'Decision Engine', type: 'Universal Ethics API',
+    desc: 'Every tool, every algorithm passes the human-first test before activation. Not a review process — an enforced architecture constraint. Ethics as infrastructure.',
+    tags: ['Ethics', 'API', 'Universal'],
+    status: 'concept', statusLabel: 'CONCEPT — 2027+',
+    size: 12,
+  },
+  {
+    id: 'xr', orbit: 7, angle: 4.19, speed: 0.00009,
+    name: 'Cross-Medium Portal', type: 'XR + Spatial Audio',
+    desc: 'Seamless movement between music, XR, AI art, and live performance. Every creation replicable, remixable, and traceable across all mediums.',
+    tags: ['XR', 'Spatial', 'Portal'],
+    status: 'concept', statusLabel: 'CONCEPT — 2027+',
+    size: 11,
+  },
+];
+
+// ═══════════════════════════════════════════
+//  GALAXY RENDERER
+// ═══════════════════════════════════════════
+const canvas = document.getElementById('galaxy-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, CX, CY, SCALE;
+let time = 0;
+let stars = [];
+let hoveredNode = null;
+let selectedNode = null;
+
+const ORBIT_RADII = [0, 90, 160, 230, 305, 385, 468, 556];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = document.getElementById('galaxy-stage').offsetHeight || 760;
+  const stageH = document.getElementById('galaxy-stage').offsetHeight || 760;
+  canvas.height = H = stageH + document.querySelector('.galaxy-header').offsetHeight;
+  CX = W * 0.42;
+  CY = H * 0.54;
+  SCALE = Math.min(W, H) / 1160;
+
+  // Regenerate stars
+  stars = Array.from({ length: 280 }, () => ({
+    x: Math.random() * W, y: Math.random() * H,
+    r: Math.random() * 1.2 + 0.2,
+    a: Math.random() * 0.4 + 0.05,
+    tw: Math.random() * Math.PI * 2,
+    ts: Math.random() * 0.02 + 0.005
+  }));
+}
+
+function orbitR(orbit) {
+  return ORBIT_RADII[orbit] * SCALE * 1.4;
+}
+
+function nodePos(node, t) {
+  if (node.orbit === 0) return { x: CX, y: CY };
+  const r = orbitR(node.orbit);
+  const a = node.angle + node.speed * t;
+  return { x: CX + Math.cos(a) * r, y: CY + Math.sin(a) * r };
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+
+  // Starfield
+  stars.forEach(s => {
+    s.tw += s.ts;
+    const aa = s.a * (0.6 + 0.4 * Math.sin(s.tw));
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${aa})`;
+    ctx.fill();
+  });
+
+  // Orbit rings
+  for (let o = 1; o < ORBIT_RADII.length; o++) {
+    const r = orbitR(o);
+    ctx.beginPath();
+    ctx.arc(CX, CY, r, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(196,154,56,0.06)`;
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 12]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // Sun corona glow
+  const sunGrad = ctx.createRadialGradient(CX, CY, 0, CX, CY, orbitR(1) * 0.8);
+  sunGrad.addColorStop(0, 'rgba(245,208,96,0.08)');
+  sunGrad.addColorStop(1, 'transparent');
+  ctx.fillStyle = sunGrad;
+  ctx.beginPath();
+  ctx.arc(CX, CY, orbitR(1) * 0.8, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Nodes
+  NODES.forEach(node => {
+    const pos = nodePos(node, time);
+    const odata = ORBITS[node.orbit];
+    const isHov = hoveredNode === node.id;
+    const isSel = selectedNode === node.id;
+    const sz = node.size * SCALE * 1.2;
+
+    // Glow
+    if (node.orbit === 0 || isHov || isSel) {
+      const g = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, sz * 3.5);
+      g.addColorStop(0, odata.glow);
+      g.addColorStop(1, 'transparent');
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, sz * 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = g;
+      ctx.fill();
+    }
+
+    // Node body
+    ctx.beginPath();
+    ctx.arc(pos.x, pos.y, sz, 0, Math.PI * 2);
+    if (node.orbit === 0) {
+      const sg = ctx.createRadialGradient(pos.x - sz*0.3, pos.y - sz*0.3, 0, pos.x, pos.y, sz);
+      sg.addColorStop(0, '#fff8d0');
+      sg.addColorStop(0.5, '#f5d060');
+      sg.addColorStop(1, '#c49a38');
+      ctx.fillStyle = sg;
+    } else {
+      ctx.fillStyle = isHov || isSel
+        ? odata.color
+        : odata.color.replace(')', `,0.75)`).replace('rgb(', 'rgba(');
+    }
+    ctx.fill();
+
+    // Outer ring for selected
+    if (isSel) {
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, sz + 5 * SCALE, 0, Math.PI * 2);
+      ctx.strokeStyle = odata.color;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // Label (only for larger nodes or hovered)
+    if (sz > 12 || isHov || isSel || node.orbit === 0) {
+      ctx.font = `${Math.max(9, 10 * SCALE)}px IBM Plex Mono, monospace`;
+      ctx.fillStyle = isHov || isSel ? '#fff' : 'rgba(255,255,255,0.55)';
+      ctx.textAlign = 'center';
+      ctx.fillText(node.name, pos.x, pos.y + sz + 14 * SCALE);
+    }
+
+    // Store screen position for hit testing
+    node._px = pos.x;
+    node._py = pos.y;
+    node._r = sz;
+  });
+
+  time++;
+  requestAnimationFrame(draw);
+}
+
+// ── Mouse interaction ───────────────────────
+canvas.addEventListener('mousemove', e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  hoveredNode = null;
+  NODES.forEach(n => {
+    if (!n._px) return;
+    const dx = mx - n._px, dy = my - n._py;
+    if (Math.sqrt(dx*dx + dy*dy) < n._r + 8) {
+      hoveredNode = n.id;
+      canvas.style.cursor = 'pointer';
+    }
+  });
+  if (!hoveredNode) canvas.style.cursor = 'default';
+});
+
+canvas.addEventListener('click', e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  let clicked = null;
+  NODES.forEach(n => {
+    if (!n._px) return;
+    const dx = mx - n._px, dy = my - n._py;
+    if (Math.sqrt(dx*dx + dy*dy) < n._r + 10) clicked = n;
+  });
+  if (clicked) {
+    selectedNode = clicked.id;
+    showPanel(clicked);
+  }
+});
+
+// ── Panel ───────────────────────────────────
+function showPanel(node) {
+  const panel = document.getElementById('node-panel');
+  const odata = ORBITS[node.orbit];
+  document.getElementById('p-orbit').textContent = `ORBIT ${node.orbit} · ${odata.label}`;
+  document.getElementById('p-orbit').style.color = odata.color;
+  document.getElementById('p-name').textContent = node.name;
+  document.getElementById('p-type').textContent = node.type;
+  document.getElementById('p-desc').textContent = node.desc;
+
+  const tagsEl = document.getElementById('p-tags');
+  tagsEl.innerHTML = node.tags.map(t =>
+    `<span class="panel-tag" style="background:${odata.color}18;color:${odata.color};border:1px solid ${odata.color}40">${t}</span>`
+  ).join('');
+
+  const statusColors = { live: '#3dba72', building: '#c49a38', planned: '#7a7468', concept: '#b07ade' };
+  const sc = statusColors[node.status] || '#7a7468';
+  document.getElementById('p-status').innerHTML =
+    `<span class="ps-dot" style="background:${sc};box-shadow:0 0 6px ${sc}"></span>
+     <span style="color:${sc}">${node.statusLabel}</span>`;
+
+  panel.classList.add('visible');
+}
+
+document.getElementById('panel-close').addEventListener('click', () => {
+  document.getElementById('node-panel').classList.remove('visible');
+  selectedNode = null;
+});
+
+// ── Legend orbit filter ────────────────────
+document.querySelectorAll('.orbit-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const orbitNum = parseInt(item.dataset.orbit);
+    const target = NODES.find(n => n.orbit === orbitNum);
+    if (target) { selectedNode = target.id; showPanel(target); }
+  });
+});
+
+// ── Scroll spy (sidebar-less version) ──────
+// Simple active orbit highlight on scroll
+
+// ── Init ────────────────────────────────────
+resize();
+draw();
+window.addEventListener('resize', () => { resize(); });
+</script>
+</body>
+</html>

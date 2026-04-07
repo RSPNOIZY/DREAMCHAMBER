@@ -1,0 +1,17 @@
+{
+  "name": "heaven",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:migrate": "wrangler d1 execute agent-memory --file=./schema/001_myfamily_init.sql --remote",
+    "db:migrate:local": "wrangler d1 execute agent-memory --file=./schema/001_myfamily_init.sql",
+    "check:deploy": "wrangler deployments list"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240222.0",
+    "typescript": "^5.4.0",
+    "wrangler": "^3.50.0"
+  }
+}

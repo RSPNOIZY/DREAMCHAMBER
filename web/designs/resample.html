@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>resample</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="resample" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer218" class="Basic-Text-Frame">
+			<p id="_idParaDest-206" class="heading-1"><a id="_idTextAnchor209"></a>Resample</p>
+			<p class="Normal">Resample allows you to convert an audio file from one sampling rate to another.</p>
+			<p class="Normal">Sample Rate Conversion (SRC) is a necessary process when converting material from one sampling rate (such as studio-quality 96 kHz or 192 kHz) to another rate (such as 44.1 kHz for CD or 48 kHz for video).</p>
+			<p class="Normal">It is common to record and edit in high sampling rates since higher rates allow higher frequencies to be represented. For example, a 192 kHz audio sample can represent frequencies up to 96 kHz whereas a 44.1 kHz audio sample can only represent frequencies up to 22.05 kHz. The highest frequency that can be represented accurately by a sampling rate is half of the sampling rate, and is known as the Nyquist frequency.</p>
+			<p class="Normal">When reducing the sampling rate, or downsampling, it is crucial to remove the frequencies that cannot be represented at the lower sampling rate. Leaving frequencies above this point causes aliasing. Aliasing can be heard as the frequencies in an inaudible range are shifted into an audible range, causing distortion and noise. With iZotope SRC&apos;s steep low-pass filter, users can completely avoid the common aliasing artifacts while maintaining the maximum frequency content.  A comparison of iZotope’s SRC process versus other sample rate convertors can be viewed at: <a target="mainFrame" href="http://src.infinitewave.ca/">http://src.infinitewave.ca/</a></p>
+			<p class="Normal">You can also engage the Post-limiter option in order to limit the output levels of your signal to prevent any clipping from occurring.</p>
+			<p class="Inline-Art"><img src="image/image_4IVWYX7QRVS3MSGBHHBKETFTQAHIOAA3" alt="" /></p>
+			<p class="Normal">Note: The Aliasing portion of the curve displayed in red shows the reflected frequencies during downsampling or imaged frequencies during upsampling — both due to aliasing.</p>
+			<p id="_idParaDest-207" class="heading-2"><a id="_idTextAnchor210"></a>New sampling rate</p>
+			<p class="Normal">This setting chooses the sampling rate you want to convert to. Choose a sampling rate from the drop-down list, or click on the field to type in a custom sampling rate.</p>
+			<p id="_idParaDest-208" class="heading-2"><a id="_idTextAnchor211"></a>Change tag only</p>
+			<p class="Normal">Changes the declared sampling rate of the file in the file’s properties without resampling the file, effectively changing the playback rate and pitch of the file.</p>
+			<p class="Normal">This feature is useful if the sampling rate tag was damaged by a previous audio editing process and the file is playing back incorrectly.</p>
+			<p id="_idParaDest-209" class="heading-2"><a id="_idTextAnchor212"></a>Filter steepness</p>
+			<p class="Normal">This allows you to control the steepness of the SRC filter cutoff. The white line is representative of an ideal low-pass filter.</p>
+			<p class="Normal">Higher filter steepness means better frequency performance of the filter: wider passband retains more useful signal, while stronger stopband attenuation provides better rejection of aliasing. At the same time, higher steepness of the frequency response requires a longer filter, which produces more ringing in time domain and energy smearing near the cutoff frequency.</p>
+			<p id="_idParaDest-210" class="heading-2"><a id="_idTextAnchor213"></a>Cutoff shift</p>
+			<p class="Normal">SRC filter cutoff frequency shift (scaling multiplier).</p>
+			<p class="Normal">Allows shifting the filter cutoff frequency up or down, to balance the width of a passband vs. amount of aliasing.</p>
+			<p id="_idParaDest-211" class="heading-2"><a id="_idTextAnchor214"></a>Pre-ringing</p>
+			<p class="Normal">SRC filter pre-ringing amount in time domain (0 for minimum phase, 1 for linear phase, or anywhere in between).</p>
+			<p class="Normal">Adjusts the phase response of the filter, which affects its time-domain ringing characteristic. The value of 0 produces a minimum-phase filter, which has no pre-ringing, but maximal post-ringing. The value of 1 produces a linear-phase filter with a symmetric impulse response: the amount of pre-ringing is equal to the amount of post-ringing. Intermediate values between 0 and 1 produce so-called intermediate-phase filters that balance pre- and post-ringing while maintaining linear-phase response across a possibly wider range of frequencies.</p>
+			<p id="_idParaDest-212" class="heading-2"><a id="_idTextAnchor215"></a>Post-limiter</p>
+			<p class="Normal">Keeps true peak levels of the output signal below 0 dBTP to prevent any clipping from occurring.</p>
+			<p class="Normal">This option is important when resampling signals that are very close to 0 dB, because filtering during resampling can change peak levels of a signal.</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+  <!-- Outer diamond / crystal form -->
+  <polygon points="12,2 22,12 12,22 2,12" stroke="#00ffcc" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
+  <!-- Inner diamond -->
+  <polygon points="12,6 18,12 12,18 6,12" stroke="#00ffcc" stroke-width="0.8" fill="#00ffcc" fill-opacity="0.12" stroke-linejoin="round"/>
+  <!-- Center dot -->
+  <circle cx="12" cy="12" r="1.5" fill="#00ffcc"/>
+  <!-- Top mic line -->
+  <line x1="12" y1="8.5" x2="12" y2="6.5" stroke="#00ffcc" stroke-width="0.8" stroke-linecap="round"/>
+</svg>

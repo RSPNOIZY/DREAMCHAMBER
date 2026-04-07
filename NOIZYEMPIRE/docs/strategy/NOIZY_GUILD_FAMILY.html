@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Global Guild of Artists — NOIZY Family Charter · 2026</title>
+<style>
+:root {
+  --bg:       #030507;
+  --bg2:      #070c14;
+  --surface:  #0d1520;
+  --border:   #1a2a40;
+  --gold:     #c8960a;
+  --gold2:    #f0b429;
+  --ember:    #e85d04;
+  --rose:     #c94070;
+  --teal:     #0a9ebd;
+  --violet:   #7c4dff;
+  --green:    #22c55e;
+  --cream:    #f5e6c8;
+  --text:     #e8edf5;
+  --muted:    #8899aa;
+  --dim:      #4a5a6a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Georgia', serif;
+  font-size: 17px;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* ── STARFIELD ── */
+#stars {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: twinkle var(--d) ease-in-out infinite;
+  opacity: 0;
+}
+@keyframes twinkle {
+  0%,100% { opacity: 0; transform: scale(1); }
+  50% { opacity: var(--o); transform: scale(1.4); }
+}
+
+/* ── FIRE HEADER ── */
+.fire-header {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 40px;
+  z-index: 1;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(232,93,4,0.18) 0%, transparent 70%),
+              radial-gradient(ellipse 60% 40% at 50% 80%, rgba(200,150,10,0.12) 0%, transparent 60%);
+}
+
+.fire-emblem {
+  font-size: 80px;
+  margin-bottom: 32px;
+  filter: drop-shadow(0 0 30px rgba(232,93,4,0.6));
+  animation: ember-pulse 3s ease-in-out infinite;
+}
+@keyframes ember-pulse {
+  0%,100% { filter: drop-shadow(0 0 30px rgba(232,93,4,0.6)); }
+  50% { filter: drop-shadow(0 0 60px rgba(240,180,41,0.8)); }
+}
+
+.fire-kicker {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+
+.fire-title {
+  font-size: clamp(36px, 7vw, 80px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--cream);
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+}
+
+.fire-sub {
+  font-size: clamp(16px, 2.5vw, 22px);
+  color: var(--gold2);
+  margin-bottom: 40px;
+  font-style: italic;
+}
+
+.fire-tagline {
+  font-size: clamp(13px, 1.8vw, 16px);
+  color: var(--muted);
+  max-width: 640px;
+  line-height: 1.9;
+  margin-bottom: 60px;
+}
+
+.fire-scroll-hint {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--dim);
+  text-transform: uppercase;
+  animation: fade-bounce 2s ease-in-out infinite;
+}
+@keyframes fade-bounce {
+  0%,100% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 0.8; transform: translateY(6px); }
+}
+
+/* ── LAYOUT ── */
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px 120px;
+}
+
+/* ── CHAPTERS ── */
+.chapter {
+  margin-bottom: 120px;
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.chapter.visible { opacity: 1; transform: translateY(0); }
+
+.chapter-label {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.chapter-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border), transparent);
+}
+
+.chapter-title {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 32px;
+}
+
+.chapter-body {
+  font-size: 17px;
+  color: var(--text);
+  line-height: 1.85;
+  max-width: 760px;
+}
+.chapter-body p { margin-bottom: 20px; }
+.chapter-body strong { color: var(--gold2); }
+
+/* ── DIVIDER ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 80px 0;
+  color: var(--dim);
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.divider-glyph { font-size: 20px; }
+
+/* ── TRADITIONS WHEEL ── */
+.traditions-intro {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.traditions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2px;
+  margin-bottom: 60px;
+}
+
+.tradition-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 28px 24px;
+  transition: all 0.3s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.tradition-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent, var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.tradition-card:hover::before { transform: scaleX(1); }
+.tradition-card:hover {
+  background: #0f1c2d;
+  transform: translateY(-3px);
+}
+
+.tradition-region {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent, var(--gold));
+  margin-bottom: 10px;
+}
+.tradition-name {
+  font-size: 19px;
+  color: var(--cream);
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+.tradition-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.tradition-glyph {
+  position: absolute;
+  bottom: 16px; right: 20px;
+  font-size: 28px;
+  opacity: 0.25;
+}
+
+/* ── THE FLAME CONTINUUM ── */
+.flame-continuum {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 60px 48px;
+  margin: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+.flame-continuum::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 120px;
+  background: radial-gradient(ellipse 70% 100% at 50% 100%, rgba(232,93,4,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.continuum-title {
+  font-size: 28px;
+  color: var(--gold2);
+  margin-bottom: 12px;
+  text-align: center;
+}
+.continuum-sub {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 48px;
+  font-style: italic;
+}
+
+.continuum-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.continuum-node {
+  flex: 1;
+  min-width: 140px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 24px 16px;
+  text-align: center;
+  position: relative;
+}
+.continuum-node:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold);
+  font-size: 18px;
+  z-index: 2;
+}
+.continuum-era {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.continuum-what {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ── FOUR SEATS ── */
+.seats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2px;
+  margin: 48px 0;
+}
+
+.seat {
+  padding: 40px 28px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.seat:hover { transform: translateY(-4px); border-color: var(--seat-color); }
+
+.seat-number {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--seat-color);
+  margin-bottom: 16px;
+}
+.seat-title {
+  font-size: 26px;
+  color: var(--cream);
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+.seat-subtitle {
+  font-size: 13px;
+  color: var(--seat-color);
+  font-style: italic;
+  margin-bottom: 20px;
+}
+.seat-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.seat-glow {
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: var(--seat-color);
+  opacity: 0.04;
+  transition: opacity 0.3s;
+}
+.seat:hover .seat-glow { opacity: 0.1; }
+
+/* ── MENTORSHIP CHAIN ── */
+.chain {
+  margin: 48px 0;
+}
+
+.chain-link {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 24px;
+  margin-bottom: 0;
+  position: relative;
+}
+.chain-link:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 31px;
+  top: 64px;
+  bottom: -1px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--link-color), var(--link-next, var(--border)));
+}
+
+.chain-dot {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--link-color);
+  background: var(--bg2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+  box-shadow: 0 0 20px -4px var(--link-color);
+  position: relative;
+  z-index: 1;
+}
+.chain-content {
+  padding: 12px 0 48px;
+}
+.chain-role {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--link-color);
+  margin-bottom: 4px;
+}
+.chain-name {
+  font-size: 20px;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.chain-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+/* ── THE OATH ── */
+.oath-container {
+  background: linear-gradient(135deg, #0d1a0f 0%, #070c14 50%, #1a0d1a 100%);
+  border: 1px solid var(--border);
+  padding: 72px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin: 60px 0;
+}
+.oath-container::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border: 1px solid rgba(200,150,10,0.15);
+  pointer-events: none;
+}
+.oath-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; top: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(34,197,94,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.oath-label {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 32px;
+}
+
+.oath-words {
+  font-size: clamp(18px, 3vw, 26px);
+  line-height: 2.1;
+  color: var(--cream);
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+.oath-words em {
+  color: var(--gold2);
+  font-style: normal;
+}
+
+.oath-signature {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--dim);
+}
+
+/* ── FAMILY PLEDGE ── */
+.pledge-list {
+  list-style: none;
+  margin: 40px 0;
+}
+.pledge-item {
+  display: flex;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.pledge-item:first-child { border-top: 1px solid var(--border); }
+.pledge-number {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--gold);
+  flex-shrink: 0;
+  width: 32px;
+  padding-top: 2px;
+}
+.pledge-text {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.8;
+}
+.pledge-text strong { color: var(--gold2); }
+
+/* ── THE GATHERING ── */
+.gathering-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin: 48px 0;
+}
+@media (max-width: 680px) { .gathering-grid { grid-template-columns: 1fr; } }
+
+.gathering-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 32px 28px;
+}
+.gathering-icon { font-size: 32px; margin-bottom: 16px; }
+.gathering-title {
+  font-size: 18px;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.gathering-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+/* ── INHERITANCE ── */
+.inheritance-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2px;
+  margin: 48px 0;
+}
+.inh-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 28px 20px;
+  border-top: 2px solid var(--inh-color, var(--border));
+}
+.inh-icon { font-size: 28px; margin-bottom: 12px; }
+.inh-title { font-size: 15px; color: var(--cream); margin-bottom: 6px; }
+.inh-body { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* ── WORLD MAP BANNER ── */
+.world-banner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 60px 48px;
+  text-align: center;
+  margin: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+.world-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 100% 100% at 50% 50%, rgba(10,158,189,0.06) 0%, transparent 70%);
+}
+.world-banner-title {
+  font-size: clamp(24px, 4vw, 42px);
+  color: var(--cream);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.world-banner-sub {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 640px;
+  margin: 0 auto 40px;
+  position: relative;
+  z-index: 1;
+}
+.world-stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.world-stat-num {
+  font-size: 36px;
+  color: var(--teal);
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+.world-stat-label {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── QUOTE BLOCKS ── */
+.big-quote {
+  border-left: 3px solid var(--gold);
+  padding: 24px 32px;
+  margin: 40px 0;
+  background: rgba(200,150,10,0.04);
+}
+.big-quote p {
+  font-size: clamp(16px, 2.5vw, 22px);
+  color: var(--cream);
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+.big-quote cite {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: normal;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+
+/* ── CLOSING CALL ── */
+.closing {
+  text-align: center;
+  padding: 120px 40px;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200,150,10,0.08) 0%, transparent 70%);
+  border: 1px solid var(--border);
+  margin-top: 80px;
+}
+.closing-flame { font-size: 64px; margin-bottom: 32px; filter: drop-shadow(0 0 24px rgba(232,93,4,0.5)); }
+.closing-title {
+  font-size: clamp(24px, 4vw, 44px);
+  color: var(--cream);
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+.closing-words {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto 48px;
+  line-height: 1.9;
+}
+.closing-cta {
+  display: inline-block;
+  padding: 16px 40px;
+  border: 1px solid var(--gold);
+  color: var(--gold2);
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+  background: rgba(200,150,10,0.06);
+}
+.closing-cta:hover {
+  background: rgba(200,150,10,0.15);
+  box-shadow: 0 0 30px -5px rgba(200,150,10,0.4);
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 60px 40px;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--dim);
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+footer span { color: var(--gold); }
+
+/* ── ENTRY ANIMATIONS ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .page { padding: 0 20px 80px; }
+  .fire-header { padding: 60px 20px; }
+  .oath-container { padding: 48px 28px; }
+  .flame-continuum { padding: 40px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── STARFIELD ── -->
+<div id="stars"></div>
+
+<!-- ── FIRE HEADER ── -->
+<header class="fire-header">
+  <div class="fire-emblem">🔥</div>
+  <div class="fire-kicker">NOIZY · Global Guild of Artists · Founded 2026</div>
+  <h1 class="fire-title">We Are One<br>Music Family</h1>
+  <p class="fire-sub">The Global Guild of Artists — Charter & Family Covenant</p>
+  <p class="fire-tagline">
+    Before the first record was pressed. Before the first algorithm sorted your listening.
+    Before anyone put a number on a song — there was a fire. And people gathered around it.
+    And someone played. And everyone felt it. <strong style="color:var(--gold2)">We still are that.</strong>
+  </p>
+  <div class="fire-scroll-hint">↓ Read the Charter ↓</div>
+</header>
+
+<div class="page">
+
+  <!-- ── I. THE ANCIENT TRUTH ── -->
+  <section class="chapter" id="truth">
+    <div class="chapter-label">Chapter I</div>
+    <h2 class="chapter-title">The Ancient Truth<br>No One Can Take</h2>
+    <div class="chapter-body">
+      <p>
+        Every human civilization that has ever existed — every single one — made music.
+        Not as entertainment. Not as product. As <strong>identity, survival, and love</strong>.
+        The shaman's drum and the stadium anthem share the same root. The lullaby and the funeral dirge
+        are cousins. Your heartbeat is already a rhythm. Your voice is already an instrument.
+        You were born a musician. The world just forgot to tell you.
+      </p>
+      <p>
+        The music industry — the one built on contracts, algorithms, and extraction —
+        is only about 120 years old. Music itself is at least 60,000 years old.
+        The industry is the exception. <strong>The family is the rule.</strong>
+      </p>
+      <p>
+        The Global Guild of Artists is not a business structure. It is a return to that ancient truth.
+        It is a public declaration that <strong>music belongs to the people who make it</strong>,
+        that every tradition is sovereign on its own terms, that the student and the master
+        sit at the same fire — and that fire never goes out.
+      </p>
+    </div>
+
+    <div class="big-quote">
+      <p>"Music is the shorthand of emotion. It is the one language that breaks every border,
+      crosses every time, and needs no passport. We are not building a platform.
+      We are building a home for that language."</p>
+      <cite>— Robert Stephen Plowman · Founder, NOIZY · March 2026</cite>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-glyph">◈</span></div>
+
+  <!-- ── II. THE TRADITIONS ── -->
+  <section class="chapter" id="traditions">
+    <div class="chapter-label">Chapter II</div>
+    <h2 class="chapter-title">Every Tradition<br>Has a Seat</h2>
+    <div class="traditions-intro">
+      <p style="color:var(--muted); font-size:15px; font-style:italic; line-height:1.9">
+        The Global Music Genome maps 27 kilobytes of human musical memory —
+        64 rhythm archetypes, 128 scale structures, world instruments, timbres, and the invisible
+        threads that connect a Malian kora to an Appalachian fiddle to a Javanese gamelan.
+        Every tradition in this Guild is a living lineage, not a museum exhibit.
+      </p>
+    </div>
+
+    <div class="traditions-grid">
+
+      <div class="tradition-card" style="--accent: #e85d04">
+        <div class="tradition-region">West Africa</div>
+        <div class="tradition-name">Djembe & Griot</div>
+        <div class="tradition-desc">The griot carries the family's memory. The djembe calls the village to gather. Rhythm as history. Song as newspaper. Every NOIZY beat grid carries this DNA.</div>
+        <div class="tradition-glyph">🥁</div>
+      </div>
+
+      <div class="tradition-card" style="--accent: #c94070">
+        <div class="tradition-region">South Asia</div>
+        <div class="tradition-name">Raga & Tala</div>
+        <div class="tradition-desc">A raga is not just a scale — it is a time of day, a season, an emotional colour. The tala is not just a beat — it is a conversation between silence and sound. Mathematics made holy.</div>
+        <div class="tradition-glyph">🪕</div>
+      </div>
+
+      <div class="tradition-card" style="--accent: #0a9ebd">
+        <div class="tradition-region">East Asia</div>
+        <div class="tradition-name">Pentatonic & Shakuhachi</div>
+        <div class="tradition-desc">Five notes that can say everything. The shakuhachi breath that holds a whole world in its decay. Minimalism not as aesthetic choice but as philosophical precision.</div>
+        <div class="tradition-glyph">🎋</div>
+      </div>
+
+      <div class="tradition-card" style="--accent: #7c4dff">
+        <div class="tradition-region">Middle East & North Africa</div>
+        <div class="tradition-name">Maqam & Oud</div>
+        <div class="tradition-desc">Quarter tones that live between the Western piano's keys. The oud — grandfather of the lute, grandfather of the guitar. Ornament as meaning, not decoration. The notes you can't find on a grid.</div>
+        <div class="tradition-glyph">🪗</div>
+      </div>
+
+      <div class="tradition-card" style="--accent: #22c55e">
+        <div class="tradition-region">Latin America & Caribbean</div>
+        <div class="tradition-name">Clave & Cumbia</div>
+        <div class="tradition-desc">The clave is the spine of everything. Two bars, five hits, an entire civilisation's heartbeat. From salsa to reggaeton to Afro-Cuban jazz — the clave is always there, holding the world together.</div>
+        <div class="tradition-glyph">🎺</div>
+      </div>
+
+      <div class="tradition-card" style="--accent: #f0b429">
+        <div class="tradition-region">Celtic & Nordic</div>
+        <div class="tradition-name">Reels & Drone</div>
+        <div class="tradition-desc">The Irish reel's breathless momentum. The Nordic drone that makes you feel the cold of the sea. Modal scales older than Christianity. Oral traditions that lasted 1000 years without paper.</div>
+        <div class="tradition-glyph">🪈</div>
+      </div>
+
+      <div class="tradition-card" style="--accent: #e85d04">
+        <div class="tradition-region">African-American</div>
+        <div class="tradition-name">Blues & Gospel</div>
+        <div class="tradition-desc">The root from which nearly all modern popular music grows. Call and response — the preacher and congregation as composer and performer. The blue note — intentionally between the keys, like pain expressed through sound.</div>
+        <div class="tradition-glyph">🎸</div>
+      </div>
+
+      <div class="tradition-card" style="--accent: #c94070">
+        <div class="tradition-region">Southeast Asia</div>
+        <div class="tradition-name">Gamelan & Pelog</div>
+        <div class="tradition-desc">Tuned to no Western standard — each gamelan set is its own universe, slightly different from every other. Collective music making where no individual dominates. The whole is the point. The ensemble is the instrument.</div>
+        <div class="tradition-glyph">🔔</div>
+      </div>
+
+      <div class="tradition-card" style="--accent: #0a9ebd">
+        <div class="tradition-region">Eastern Europe</div>
+        <div class="tradition-name">Polyphony & Folk</div>
+        <div class="tradition-desc">Bulgarian choirs that sing in impossible intervals. Georgian three-part polyphony that UNESCO listed as intangible heritage. The folk melody that survived every occupation, every empire, every border change.</div>
+        <div class="tradition-glyph">🎼</div>
+      </div>
+
+      <div class="tradition-card" style="--accent: #7c4dff">
+        <div class="tradition-region">Indigenous Americas</div>
+        <div class="tradition-name">Ceremonial & Powwow</div>
+        <div class="tradition-desc">Music as medicine. Music as prayer. The drum as heartbeat of the Earth. 500 nations, 500 musical languages — each one a complete worldview held in sound. Not primitive. Sophisticated beyond measure.</div>
+        <div class="tradition-glyph">🪘</div>
+      </div>
+
+      <div class="tradition-card" style="--accent: #22c55e">
+        <div class="tradition-region">Pacific & Oceania</div>
+        <div class="tradition-name">Vocal Harmonics & Taonga Pūoro</div>
+        <div class="tradition-desc">Throat singing that contains two notes at once. Māori instruments that speak to ancestors. Music as navigation — literally, the Polynesian wayfinders sang songs that encoded star maps and ocean currents.</div>
+        <div class="tradition-glyph">🌊</div>
+      </div>
+
+      <div class="tradition-card" style="--accent: #f0b429">
+        <div class="tradition-region">Electronic & Club</div>
+        <div class="tradition-name">Detroit Techno & Global Bass</div>
+        <div class="tradition-desc">The newest tradition — born in Black American cities, carried worldwide by diasporas, now a global language. Every genre of club music carries the signature of the community that invented it. Technology as instrument of liberation.</div>
+        <div class="tradition-glyph">🎛️</div>
+      </div>
+
+    </div>
+
+    <div class="big-quote">
+      <p>"There is no hierarchy of traditions in this Guild. A blues guitarist from Mississippi and a gamelan master
+      from Bali hold equal standing. Their knowledge is equally ancient, equally earned,
+      equally necessary to the whole."</p>
+      <cite>— Global Guild of Artists · Founding Principles · 2026</cite>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-glyph">◈</span></div>
+
+  <!-- ── III. THE FLAME CONTINUUM ── -->
+  <section class="chapter" id="continuum">
+    <div class="chapter-label">Chapter III</div>
+    <h2 class="chapter-title">The Flame<br>Never Went Out</h2>
+    <div class="chapter-body">
+      <p>
+        Music didn't start when we invented notation. It didn't restart when we invented recording.
+        It is one unbroken flame, passed hand to hand, generation to generation,
+        across 60,000 years without missing a single night.
+        The industry tried to own it. The algorithm tried to quantify it.
+        The Guild simply carries it forward.
+      </p>
+    </div>
+
+    <div class="flame-continuum">
+      <div class="continuum-title">60,000 Years of Carrying the Flame</div>
+      <div class="continuum-sub">Each era changed the vessel. The fire was the same.</div>
+      <div class="continuum-flow">
+        <div class="continuum-node">
+          <div class="continuum-era">~58000 BCE</div>
+          <div class="continuum-what">Bone flutes. Cave resonance. Rhythm on skin. The first instruments.</div>
+        </div>
+        <div class="continuum-node">
+          <div class="continuum-era">~5000 BCE</div>
+          <div class="continuum-what">Lyre, harp, drum. Music enters ritual. Griots hold cultural memory.</div>
+        </div>
+        <div class="continuum-node">
+          <div class="continuum-era">~1000 CE</div>
+          <div class="continuum-what">Notation invented. Music can travel without the body. Dangerous and beautiful.</div>
+        </div>
+        <div class="continuum-node">
+          <div class="continuum-era">1900s</div>
+          <div class="continuum-what">Recording. The voice survives its owner. Industry captures the vessel. Not the fire.</div>
+        </div>
+        <div class="continuum-node">
+          <div class="continuum-era">2000s</div>
+          <div class="continuum-what">Internet. Every tradition reachable. Algorithm extracts value. Creators lose the flame again.</div>
+        </div>
+        <div class="continuum-node" style="background:rgba(200,150,10,0.06); border-color:var(--gold);">
+          <div class="continuum-era" style="color:var(--gold2)">2026 →</div>
+          <div class="continuum-what" style="color:var(--cream)">NOIZY. Guild. 75/25. Consent-as-code. The fire returns to the hands that carry it.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-glyph">◈</span></div>
+
+  <!-- ── IV. THE FOUR SEATS ── -->
+  <section class="chapter" id="seats">
+    <div class="chapter-label">Chapter IV</div>
+    <h2 class="chapter-title">The Four Seats<br>at the Fire</h2>
+    <div class="chapter-body">
+      <p>
+        The Guild has four seats. Not a ladder to climb — a fire to sit around.
+        You enter at the seat that matches where you are.
+        You stay as long as you need. You move when you're ready.
+        <strong>Every seat carries dignity. Every seat has work. Every seat has belonging.</strong>
+      </p>
+    </div>
+
+    <div class="seats-grid">
+
+      <div class="seat" style="--seat-color: #22c55e; background: linear-gradient(135deg, #0d1a0f 0%, var(--surface) 100%)">
+        <div class="seat-glow"></div>
+        <div class="seat-number">SEAT I · APPRENTICE</div>
+        <div class="seat-title">The Seeker</div>
+        <div class="seat-subtitle">"I am learning the language"</div>
+        <div class="seat-desc">
+          You are here because something in you said <em>yes</em>. You may have one song recorded
+          or ten years of practice. You are welcome exactly as you are.
+          Your job is to absorb, to create without fear, to ask every question.
+          The Guild protects your first works as fiercely as it protects a Legend's catalogue.
+        </div>
+      </div>
+
+      <div class="seat" style="--seat-color: #0a9ebd; background: linear-gradient(135deg, #060f1a 0%, var(--surface) 100%)">
+        <div class="seat-glow"></div>
+        <div class="seat-number">SEAT II · JOURNEYMAN</div>
+        <div class="seat-title">The Maker</div>
+        <div class="seat-subtitle">"I am finding my voice"</div>
+        <div class="seat-desc">
+          You have crossed the threshold from learning to doing.
+          Your work has found an audience — even a small one. You know your tradition
+          deeply enough to begin bending it. The Guild now asks one thing in return:
+          <strong>teach one Apprentice</strong>. Pass what you've learned. The chain continues.
+        </div>
+      </div>
+
+      <div class="seat" style="--seat-color: #f0b429; background: linear-gradient(135deg, #1a1200 0%, var(--surface) 100%)">
+        <div class="seat-glow"></div>
+        <div class="seat-number">SEAT III · MASTER</div>
+        <div class="seat-title">The Keeper</div>
+        <div class="seat-subtitle">"I carry the tradition forward"</div>
+        <div class="seat-desc">
+          You have a body of work. You have a sound that is yours alone.
+          Other creators reference you. The Guild recognises this not with a certificate
+          but with a responsibility: <strong>you help set the terms</strong> for how NOIZY operates.
+          Masters vote on Guild policy. Masters guard the standards of the Oath.
+        </div>
+      </div>
+
+      <div class="seat" style="--seat-color: #e85d04; background: linear-gradient(135deg, #1a0500 0%, var(--surface) 100%)">
+        <div class="seat-glow"></div>
+        <div class="seat-number">SEAT IV · LEGEND</div>
+        <div class="seat-title">The Elder</div>
+        <div class="seat-subtitle">"My work outlives me"</div>
+        <div class="seat-desc">
+          The elder's role is not to rule but to <strong>witness</strong>.
+          Legends are the living memory of the Guild. Their voice carries weight in every decision.
+          Their work is archived permanently, earning perpetually.
+          When a Legend passes, their Voice Estate transfers to their heirs —
+          and the 75% never stops flowing.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-glyph">◈</span></div>
+
+  <!-- ── V. THE MENTORSHIP CHAIN ── -->
+  <section class="chapter" id="mentorship">
+    <div class="chapter-label">Chapter V</div>
+    <h2 class="chapter-title">How the Knowledge<br>Flows</h2>
+    <div class="chapter-body">
+      <p>
+        In every real musical tradition, knowledge moves through people — not platforms.
+        A master teaches a student who teaches a student who teaches a student.
+        This is how the blues stayed alive. How raga survived colonisation.
+        How the griot tradition endures. <strong>The chain is the archive.</strong>
+      </p>
+      <p>
+        The Guild formalises the mentorship chain not to monetise it,
+        but to honour it. Every creator on NOIZY knows their lineage —
+        who taught them, who they taught, what tradition they carry.
+      </p>
+    </div>
+
+    <div class="chain">
+
+      <div class="chain-link" style="--link-color: #e85d04; --link-next: #f0b429">
+        <div class="chain-dot">🌋</div>
+        <div class="chain-content">
+          <div class="chain-role">Legend · The Source</div>
+          <div class="chain-name">The Elder Keeper</div>
+          <div class="chain-desc">
+            Holds the deep knowledge of the tradition. Has played the long game — decades of craft,
+            decades of teaching. May never have been famous. Doesn't matter.
+            What matters is what they know and who they passed it to.
+            Their NOIZY vault earns forever. Their name is written in the Codex.
+          </div>
+        </div>
+      </div>
+
+      <div class="chain-link" style="--link-color: #f0b429; --link-next: #0a9ebd">
+        <div class="chain-dot">🔥</div>
+        <div class="chain-content">
+          <div class="chain-role">Master · The Bridge</div>
+          <div class="chain-name">The Tradition Carrier</div>
+          <div class="chain-desc">
+            Received the flame from the Elder. Has already begun adding their own voice to it.
+            Now acts as bridge — fluent in the ancestral language and the current moment.
+            Sits on Guild Council. Mentors actively. Their synthesis of old and new
+            is the living proof that traditions grow, not calcify.
+          </div>
+        </div>
+      </div>
+
+      <div class="chain-link" style="--link-color: #0a9ebd; --link-next: #22c55e">
+        <div class="chain-dot">💧</div>
+        <div class="chain-content">
+          <div class="chain-role">Journeyman · The Current</div>
+          <div class="chain-name">The Active Maker</div>
+          <div class="chain-desc">
+            Deep in the work. Releasing regularly. Finding their particular way through the tradition.
+            Assigned one Apprentice to teach — not to give lectures, but to share the actual
+            daily practice. What are you doing today? How do you decide what to keep and what to cut?
+            The Journeyman teaches by doing, not by explaining.
+          </div>
+        </div>
+      </div>
+
+      <div class="chain-link" style="--link-color: #22c55e">
+        <div class="chain-dot">🌱</div>
+        <div class="chain-content">
+          <div class="chain-role">Apprentice · The New Growth</div>
+          <div class="chain-name">The Seeker Who Found the Door</div>
+          <div class="chain-desc">
+            Just arrived. Everything is new. The chain doesn't ask them to produce — only to listen,
+            to create fearlessly, and to share honestly. The moment they help someone even newer
+            find the door, the chain has already grown longer.
+            Their first upload is protected by the same rights as a Legend's 40-year catalogue.
+            <strong>Dignity is not earned here. It is given at the door.</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-glyph">◈</span></div>
+
+  <!-- ── VI. THE GUILD OATH ── -->
+  <section class="chapter" id="oath">
+    <div class="chapter-label">Chapter VI</div>
+    <h2 class="chapter-title">The Guild Oath</h2>
+    <div class="chapter-body">
+      <p>
+        Every member of the Global Guild of Artists speaks these words at the moment of joining.
+        Not as legal agreement — as human declaration.
+        The Oath is witnessed by the Guild. It is kept in the Codex.
+        It is the promise we make to each other, across traditions, across borders, across time.
+      </p>
+    </div>
+
+    <div class="oath-container">
+      <div class="oath-label">THE GUILD OATH · SPOKEN AT EVERY INDUCTION · EVERY LANGUAGE</div>
+      <div class="oath-words">
+
+        I bring my voice, my instrument, my tradition, and my story.<br>
+        I bring them freely. They are <em>mine</em>. They will stay mine.<br><br>
+
+        I commit to honest creation — no theft of sound, no silencing of lineage,
+        no erasing of the shoulders I stand on.<br><br>
+
+        I commit to the chain — I will receive what was given to me with gratitude,
+        and I will pass it forward with generosity.<br><br>
+
+        I will name my teachers. I will teach my students.
+        I will speak up when the tradition is being distorted.<br><br>
+
+        I acknowledge that <em>every</em> tradition in this Guild holds equal standing.
+        No sound is inferior. No language is lesser. No style is beneath us.<br><br>
+
+        I agree that <em>75% of everything my voice earns is mine — now and forever.</em>
+        This is not a policy. It is a covenant.<br><br>
+
+        <em>Poop Sinks. Love Rises. Forever.</em>
+
+      </div>
+      <div class="oath-signature">Global Guild of Artists · NOIZY · Ratified March 14, 2026 · RSP_001</div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-glyph">◈</span></div>
+
+  <!-- ── VII. THE FAMILY PLEDGE ── -->
+  <section class="chapter" id="pledge">
+    <div class="chapter-label">Chapter VII</div>
+    <h2 class="chapter-title">What We Promise<br>Each Other</h2>
+    <div class="chapter-body">
+      <p>
+        The Guild Oath is what you promise the institution. The Family Pledge is what we promise
+        each other — creator to creator, human to human.
+        These are not rules. They are descriptions of who we are trying to be.
+      </p>
+    </div>
+
+    <ul class="pledge-list">
+      <li class="pledge-item">
+        <span class="pledge-number">01</span>
+        <div class="pledge-text"><strong>We amplify, not extract.</strong> When another creator in the Guild rises, we celebrate it. We share their work. We credit their influence. We do not take from their sound without asking. The rising tide lifts all boats — we build the tide.</div>
+      </li>
+      <li class="pledge-item">
+        <span class="pledge-number">02</span>
+        <div class="pledge-text"><strong>We name our lineage.</strong> Every song carries the names of the traditions it comes from. Every creator names their teachers. The chain of influence is visible, honoured, and embedded in every NOIZY release as metadata that cannot be stripped.</div>
+      </li>
+      <li class="pledge-item">
+        <span class="pledge-number">03</span>
+        <div class="pledge-text"><strong>We hold the door open.</strong> If you got in, you help the next person get in. There is no gatekeeping in this family. The Apprentice from rural Mississippi and the Journeyman from Seoul both get the same door, the same rights, the same 75%.</div>
+      </li>
+      <li class="pledge-item">
+        <span class="pledge-number">04</span>
+        <div class="pledge-text"><strong>We protect the vulnerable first.</strong> When NOIZY makes policy decisions, we ask: <em>how does this affect the creator with the smallest audience?</em> Not the biggest. If the protocol is not safe for the smallest voice, it is not safe for any of us.</div>
+      </li>
+      <li class="pledge-item">
+        <span class="pledge-number">05</span>
+        <div class="pledge-text"><strong>We speak across borders.</strong> A member of the Guild in Lagos has the same voice in Guild governance as a member in Los Angeles. We build structures that prevent the well-resourced from drowning out the essential. Quadratic voting. Rotating seats. Mandatory cross-cultural Council representation.</div>
+      </li>
+      <li class="pledge-item">
+        <span class="pledge-number">06</span>
+        <div class="pledge-text"><strong>We take care of our elders.</strong> Legends in this Guild do not go broke at 70 because the streaming rates changed. The Voice Estate passes to their family. The archive earns forever. The Guild holds their legacy as a sacred trust — not a catalogued asset.</div>
+      </li>
+      <li class="pledge-item">
+        <span class="pledge-number">07</span>
+        <div class="pledge-text"><strong>We are honest about money.</strong> Every split, every payment, every calculation is visible, auditable, and real-time. No black boxes. No "trust the platform." If we say 75%, you see 75% — credited the same day, displayed in plain numbers, immutable in the database.</div>
+      </li>
+      <li class="pledge-item">
+        <span class="pledge-number">08</span>
+        <div class="pledge-text"><strong>We forgive and we grow.</strong> This is a family. Families have conflict. The Guild has a repair process — not cancellation, not exile, but conversation, mediation, and the opportunity to make it right. We are building culture, not content. Culture requires the capacity to repair.</div>
+      </li>
+    </ul>
+  </section>
+
+  <div class="divider"><span class="divider-glyph">◈</span></div>
+
+  <!-- ── VIII. THE GATHERING ── -->
+  <section class="chapter" id="gathering">
+    <div class="chapter-label">Chapter VIII</div>
+    <h2 class="chapter-title">How the Family<br>Gathers</h2>
+    <div class="chapter-body">
+      <p>
+        A family that never gathers is just a mailing list.
+        The Guild gathers in four ways — digital, physical, ceremonial, and eternal.
+      </p>
+    </div>
+
+    <div class="gathering-grid">
+      <div class="gathering-card">
+        <div class="gathering-icon">🌐</div>
+        <div class="gathering-title">The Daily Studio</div>
+        <div class="gathering-body">
+          DreamChamber — always open. Creators anywhere in the world are working at the same moment.
+          The Guild Stream shows real-time synthesis activity, new voice registrations,
+          live session tags. You are never creating alone.
+        </div>
+      </div>
+      <div class="gathering-card">
+        <div class="gathering-icon">🎙️</div>
+        <div class="gathering-title">The Monthly Council</div>
+        <div class="gathering-body">
+          Masters and Legends vote on Guild policy. All members can propose.
+          All votes are public. Every Council session is recorded, transcribed,
+          and added to the Codex — so future Guilds can see every decision we made and why.
+        </div>
+      </div>
+      <div class="gathering-card">
+        <div class="gathering-icon">🔥</div>
+        <div class="gathering-title">The Annual NOIZY Summit</div>
+        <div class="gathering-body">
+          Once a year, wherever in the world makes sense — the family gathers physically.
+          New Legends are named. New Apprentices are welcomed.
+          Creators from every tradition perform for each other, not for an audience.
+          The fire that started 60,000 years ago burns in the room.
+        </div>
+      </div>
+      <div class="gathering-card">
+        <div class="gathering-icon">📜</div>
+        <div class="gathering-title">The 500-Year Archive</div>
+        <div class="gathering-body">
+          Every work registered in the Guild is held in the Codex — permanently.
+          Sealed. Earning. Waiting for whoever comes next.
+          The 2526 vault opens to a world that inherits our choices.
+          The gathering that never ends.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-glyph">◈</span></div>
+
+  <!-- ── IX. THE INHERITANCE ── -->
+  <section class="chapter" id="inheritance">
+    <div class="chapter-label">Chapter IX</div>
+    <h2 class="chapter-title">What Gets<br>Passed Down</h2>
+    <div class="chapter-body">
+      <p>
+        Every culture has a word for what is passed between generations.
+        Legacy. Inheritance. Iróntì (Yoruba). Tìkanga (Māori). Tarbiyat (Persian).
+        The word changes. The act is the same.
+        <strong>The Guild is built to pass things down intact.</strong>
+        Here is what every member of the Global Music Family inherits — and passes on.
+      </p>
+    </div>
+
+    <div class="inheritance-items">
+      <div class="inh-card" style="--inh-color: var(--gold)">
+        <div class="inh-icon">🎙️</div>
+        <div class="inh-title">Your Voice</div>
+        <div class="inh-body">Your Voice Estate. Your HVS fingerprint. Registered, protected, earning — permanently. Passes to your named heirs, who inherit the full 75%.</div>
+      </div>
+      <div class="inh-card" style="--inh-color: var(--teal)">
+        <div class="inh-icon">🎵</div>
+        <div class="inh-title">Your Catalogue</div>
+        <div class="inh-body">Every work you ever uploaded to the Guild. Preserved in full quality. Playable. Licensable. Earning. Your children's children will receive splits on the song you recorded today.</div>
+      </div>
+      <div class="inh-card" style="--inh-color: var(--ember)">
+        <div class="inh-icon">📖</div>
+        <div class="inh-title">Your Lineage</div>
+        <div class="inh-body">Your teachers, their teachers, your students, their students. Written in the Codex. A musical family tree that traces traditions back centuries and forward indefinitely.</div>
+      </div>
+      <div class="inh-card" style="--inh-color: var(--violet)">
+        <div class="inh-icon">🌐</div>
+        <div class="inh-title">Your Language</div>
+        <div class="inh-body">The tradition you carry. Tagged in the Global Music Genome. Never subsumed into "world music" or lost to a genre category. Named correctly, in your language, with your people's terminology.</div>
+      </div>
+      <div class="inh-card" style="--inh-color: var(--green)">
+        <div class="inh-icon">🗳️</div>
+        <div class="inh-title">Your Seat</div>
+        <div class="inh-body">Your status in the Guild is earned, not purchased. It cannot be stripped by platform policy changes. It is registered in the Codex. Your voice in Guild governance stays yours until you choose to pass it on.</div>
+      </div>
+      <div class="inh-card" style="--inh-color: var(--rose)">
+        <div class="inh-icon">💛</div>
+        <div class="inh-title">Your Story</div>
+        <div class="inh-body">Every NOIZY vault includes a creator biography, written by you, preserved in the Archive. Not an algorithm-generated bio. Your words. Why you make music. Who taught you. What it means. The 2526 vault holds all of it.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-glyph">◈</span></div>
+
+  <!-- ── X. THE WORLD SCOPE ── -->
+  <section class="chapter" id="scope">
+    <div class="chapter-label">Chapter X</div>
+    <h2 class="chapter-title">The Scale<br>We Are Building Toward</h2>
+
+    <div class="world-banner">
+      <h3 class="world-banner-title">The Global Music Family — By 2036</h3>
+      <p class="world-banner-sub">
+        Not a streaming platform with a billion passive listeners.
+        A Guild with a million active creators, each one owning their sound.
+      </p>
+      <div class="world-stats">
+        <div>
+          <div class="world-stat-num">1M+</div>
+          <div class="world-stat-label">Guild Members</div>
+        </div>
+        <div>
+          <div class="world-stat-num">180+</div>
+          <div class="world-stat-label">Countries Represented</div>
+        </div>
+        <div>
+          <div class="world-stat-num">500+</div>
+          <div class="world-stat-label">Traditions In The Genome</div>
+        </div>
+        <div>
+          <div class="world-stat-num">75%</div>
+          <div class="world-stat-label">Always. No Exceptions.</div>
+        </div>
+        <div>
+          <div class="world-stat-num">∞</div>
+          <div class="world-stat-label">Years The Archive Holds</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-body">
+      <p>
+        We will not get there by being the biggest. We will get there by being the <strong>most trusted</strong>.
+        Trust is the only moat that cannot be copied.
+        You can copy the features. You can copy the split number.
+        You cannot copy 500 years of actually doing what you said.
+      </p>
+      <p>
+        Every creator who joins in 2026 is a founding member of a structure
+        that their great-great-grandchildren will still be receiving income from.
+        That is not a feature. That is a covenant.
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-glyph">◈</span></div>
+
+  <!-- ── CLOSING ── -->
+  <section class="closing" id="join">
+    <div class="closing-flame">🔥</div>
+    <h2 class="closing-title">Come Sit at the Fire</h2>
+    <p class="closing-words">
+      You don't audition for a family.<br>
+      You don't earn your way into belonging.<br>
+      You show up. You are seen. You take your seat.<br>
+      The fire has been burning for 60,000 years.<br>
+      There is always room for one more voice.
+    </p>
+    <a href="#truth" class="closing-cta">Read the Charter Again</a>
+  </section>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div>Global Guild of Artists · <span>NOIZY</span> · Founded March 14, 2026 · RSP_001 · The First Voice</div>
+  <div style="margin-top: 8px; color: var(--dim)">Poop Sinks. Love Rises. Forever.</div>
+</footer>
+
+<script>
+// ── Starfield ──
+(function() {
+  const container = document.getElementById('stars');
+  for (let i = 0; i < 200; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      --d:${3+Math.random()*8}s;
+      --o:${0.3+Math.random()*0.7};
+      animation-delay:${Math.random()*10}s;
+    `;
+    container.appendChild(s);
+  }
+})();
+
+// ── IntersectionObserver ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.chapter').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

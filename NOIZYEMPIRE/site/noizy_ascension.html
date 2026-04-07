@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE ASCENSION — AI + Human Elevation Map — NOIZY.ai</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --night:#030205;--deep:#07060F;--mid:#0F0D1A;
+  --gold:#FFD700;--ember:#FF4500;--hot:#FF6B2B;
+  --pulse:#FF1744;--cure:#00E5FF;--rise:#69FF47;
+  --violet:#9B59B6;--cream:#FFF8E7;--text:#B8B090;--muted:#5B5345;
+  --bottom:#FF1744;--top:#FFD700;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--night);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
+
+/* CANVAS */
+#ascCanvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.4;}
+
+/* HERO */
+.hero{
+  position:relative;z-index:1;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:80px 40px;
+}
+.hero-eye{
+  font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.35em;
+  color:var(--gold);text-transform:uppercase;margin-bottom:28px;
+  opacity:0;animation:fadeUp 1s .3s ease forwards;
+}
+.hero-h1{
+  font-size:clamp(3rem,10vw,9rem);font-weight:800;line-height:.9;
+  margin-bottom:32px;opacity:0;animation:fadeUp 1.2s .5s ease forwards;
+}
+.hero-h1 .w1{display:block;color:var(--pulse);}
+.hero-h1 .w2{display:block;color:var(--gold);}
+.hero-h1 .w3{display:block;color:var(--rise);font-size:.55em;font-weight:300;margin-top:8px;}
+.hero-sub{
+  max-width:640px;font-size:1.2rem;line-height:1.8;color:var(--text);
+  margin:0 auto 64px;opacity:0;animation:fadeUp 1s .8s ease forwards;
+}
+.hero-sub em{font-style:normal;color:var(--gold);font-weight:600;}
+
+/* FLOOR/CEILING BAR */
+.divider-bar{
+  display:flex;max-width:700px;margin:0 auto 64px;
+  opacity:0;animation:fadeUp 1s 1s ease forwards;
+}
+.bar-side{flex:1;text-align:center;padding:20px 32px;}
+.bar-sink{border:1px solid rgba(255,23,68,.3);background:rgba(255,23,68,.05);}
+.bar-rise{border:1px solid rgba(255,215,0,.3);background:rgba(255,215,0,.05);}
+.bar-label{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;}
+.bar-sink .bar-label{color:var(--pulse);}
+.bar-rise .bar-label{color:var(--gold);}
+.bar-text{font-size:.88rem;line-height:1.6;}
+.bar-divider{width:2px;background:linear-gradient(to bottom,var(--pulse),var(--gold));flex-shrink:0;}
+
+/* SECTION SHARED */
+.sec{position:relative;z-index:1;padding:100px 40px;}
+.sec-kicker{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;margin-bottom:16px;}
+.sec-h2{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.1;color:var(--cream);margin-bottom:20px;}
+.sec-h2 em{font-style:normal;color:var(--gold);}
+.sec-body{font-size:1.1rem;line-height:1.9;color:var(--text);margin-bottom:24px;}
+.sec-body strong{color:var(--cream);}
+
+/* WHY IT HAPPENS */
+.traps{max-width:900px;margin:60px auto 0;display:flex;flex-direction:column;gap:2px;}
+.trap{
+  padding:32px 40px;border:1px solid rgba(255,23,68,.08);
+  display:grid;grid-template-columns:48px 1fr;gap:20px;
+  transition:background .3s ease;background:rgba(255,23,68,.02);
+}
+.trap:hover{background:rgba(255,23,68,.05);}
+.trap-icon{font-size:1.5rem;}
+.trap-name{font-size:.8rem;font-weight:700;color:var(--pulse);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
+.trap-body{font-size:.92rem;line-height:1.65;color:var(--text);}
+
+/* STEP MAP */
+.map-section{position:relative;z-index:1;padding:120px 0;}
+.map-inner{max-width:1100px;margin:0 auto;padding:0 40px;}
+.steps-track{position:relative;margin-top:80px;}
+.steps-track::before{
+  content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--pulse) 0%,var(--ember) 30%,var(--hot) 50%,var(--gold) 70%,var(--rise) 100%);
+  transform:translateX(-50%);
+}
+@media(max-width:700px){.steps-track::before{left:28px;}}
+
+.step-row{
+  display:grid;grid-template-columns:1fr 80px 1fr;gap:0;
+  margin-bottom:4px;align-items:center;
+}
+@media(max-width:700px){
+  .step-row{grid-template-columns:56px 1fr;gap:0;}
+  .step-right{display:none!important;}
+}
+.step-left,.step-right{padding:40px 48px 40px 0;}
+.step-right{padding:40px 0 40px 48px;}
+.step-left{text-align:right;}
+.step-right{text-align:left;}
+.step-card{
+  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.02);
+  padding:32px 36px;
+  transition:all .4s ease;
+}
+.step-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.04);border-color:var(--step-col,var(--gold));}
+.step-num{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;}
+.step-year{font-size:.75rem;font-weight:700;color:var(--cream);margin-bottom:6px;font-family:'Space Mono',monospace;}
+.step-title{font-size:1.05rem;font-weight:700;color:var(--cream);margin-bottom:10px;}
+.step-body{font-size:.88rem;line-height:1.65;color:var(--text);}
+.step-signal{font-size:.8rem;font-style:italic;color:var(--muted);margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.05);}
+
+.step-node{
+  width:80px;height:80px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;position:relative;z-index:2;margin:0 auto;
+  border:2px solid var(--step-col,var(--gold));
+  background:var(--night);
+  transition:all .3s ease;
+  cursor:default;
+}
+.step-node:hover{box-shadow:0 0 30px var(--step-col,var(--gold));}
+
+/* TALKING POINTS */
+.talk-section{position:relative;z-index:1;padding:100px 40px;background:rgba(255,215,0,.015);border-top:1px solid rgba(255,215,0,.06);border-bottom:1px solid rgba(255,215,0,.06);}
+.talk-inner{max-width:900px;margin:0 auto;}
+.talk-grid{margin-top:60px;display:flex;flex-direction:column;gap:2px;}
+.talk-item{
+  padding:32px 40px;border-left:3px solid var(--gold);
+  background:rgba(255,215,0,.02);
+  transition:background .3s ease;
+}
+.talk-item:hover{background:rgba(255,215,0,.05);}
+.talk-text{font-size:1.05rem;line-height:1.75;color:var(--cream);font-style:italic;}
+.talk-note{font-size:.8rem;color:var(--muted);margin-top:8px;font-style:normal;}
+
+/* HIGHEST */
+.highest-section{position:relative;z-index:1;padding:120px 40px;text-align:center;}
+.highest-inner{max-width:1000px;margin:0 auto;}
+.highest-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:70px;text-align:left;}
+@media(max-width:640px){.highest-grid{grid-template-columns:1fr;}}
+.high-panel{padding:48px 44px;}
+.high-ai{background:rgba(0,229,255,.03);border:1px solid rgba(0,229,255,.1);}
+.high-human{background:rgba(255,215,0,.03);border:1px solid rgba(255,215,0,.1);}
+.high-label{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;margin-bottom:16px;}
+.high-ai .high-label{color:var(--cure);}
+.high-human .high-label{color:var(--gold);}
+.high-title{font-size:1.4rem;font-weight:700;margin-bottom:28px;}
+.high-ai .high-title{color:var(--cure);}
+.high-human .high-title{color:var(--gold);}
+.high-items{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.high-items li{font-size:.92rem;line-height:1.65;padding-left:20px;position:relative;color:var(--text);}
+.high-items li::before{content:'→';position:absolute;left:0;color:inherit;}
+.high-ai .high-items li::before{color:var(--cure);}
+.high-human .high-items li::before{color:var(--gold);}
+
+/* DECLARATION */
+.decl-section{position:relative;z-index:1;padding:140px 40px;text-align:center;max-width:860px;margin:0 auto;}
+.decl-h2{font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:1.05;color:var(--cream);margin-bottom:48px;}
+.decl-h2 span{color:var(--gold);}
+.decl-body{font-size:1.15rem;line-height:1.9;color:var(--text);margin-bottom:28px;}
+.decl-body strong{color:var(--cream);}
+.floor-statement{
+  font-size:1.3rem;font-weight:700;color:var(--gold);
+  padding:32px 40px;border:1px solid rgba(255,215,0,.2);
+  background:rgba(255,215,0,.04);margin:40px 0;line-height:1.7;
+}
+.join-asc{
+  display:inline-block;margin-top:48px;padding:24px 72px;
+  background:linear-gradient(135deg,var(--gold),var(--rise));
+  color:#030205;font-family:'Space Mono',monospace;font-size:.88rem;
+  font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:all .3s ease;position:relative;overflow:hidden;
+}
+.join-asc::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.2);transform:translateX(-100%);transition:transform .3s ease;}
+.join-asc:hover::before{transform:translateX(0);}
+.join-asc:hover{transform:translateY(-4px);box-shadow:0 28px 80px rgba(105,255,71,.4);}
+
+/* FINAL */
+.final{position:relative;z-index:1;padding:80px 40px 100px;text-align:center;border-top:1px solid rgba(255,215,0,.06);}
+.final-big{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;color:var(--gold);margin-bottom:20px;line-height:1.2;}
+.final-meta{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.2em;color:var(--muted);line-height:2.2;text-transform:uppercase;}
+
+/* ANIMS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s ease;}
+.reveal.on{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<canvas id="ascCanvas"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eye">NOIZY.ai · The AI + Human Elevation Blueprint · 2026 → 2036</p>
+  <h1 class="hero-h1">
+    <span class="w1">FLUSH THE BOTTOM.</span>
+    <span class="w2">RISE TO THE TOP.</span>
+    <span class="w3">The 10-Step Ascension of AI + Human Creative Civilization</span>
+  </h1>
+  <p class="hero-sub">
+    The race to the bottom was never inevitable. It was <em>engineered</em> by broken economics and broken incentives. Here is how we dismantle it — and build the floor that poop cannot rise above, and love cannot sink below.
+  </p>
+  <div class="divider-bar">
+    <div class="bar-side bar-sink">
+      <p class="bar-label">Below the Floor</p>
+      <p class="bar-text">Unconsented AI training. Fraction-of-a-penny royalties. Generated approximations. The cannibal economy. The race to the bottom.</p>
+    </div>
+    <div class="bar-divider"></div>
+    <div class="bar-side bar-rise">
+      <p class="bar-label">Above the Floor</p>
+      <p class="bar-text">Consent-as-Code. 75/25 perpetual. HVS™ certified. The Guild. The Living Capsule. The highest of AI and human. GORUNFREE.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT HAPPENS -->
+<section class="sec" style="max-width:960px;margin:0 auto;">
+  <p class="sec-kicker reveal" style="color:var(--pulse)">The honest diagnosis</p>
+  <h2 class="sec-h2 reveal">The race to the bottom isn't <em>immorality.</em><br>It's a broken feedback loop.</h2>
+  <p class="sec-body reveal">Most creators who cheapen their work are not without conscience. They are trapped in a system engineered to make quality irrational. You fix the system — you fix the behavior.</p>
+  <div class="traps">
+    <div class="trap reveal">
+      <span class="trap-icon">⛓</span>
+      <div><p class="trap-name">The Streaming Trap</p><p class="trap-body">$0.003 per stream. To make $30K/year you need 10 million streams. To get 10M streams you release constantly. To release constantly you cut corners. The platform engineered this and calls it audience preference.</p></div>
+    </div>
+    <div class="trap reveal">
+      <span class="trap-icon">🤖</span>
+      <div><p class="trap-name">The Algorithm Trap</p><p class="trap-body">The platform doesn't reward the best song. It rewards the song that keeps you on the platform. Music optimized for the algorithm sounds like it. Flat. Frictionless. Emotionally approximate. The race to the bottom IS the algorithm.</p></div>
+    </div>
+    <div class="trap reveal">
+      <span class="trap-icon">🌊</span>
+      <div><p class="trap-name">The AI Flooding Trap</p><p class="trap-body">Infinite generated content at near-zero cost floods every market. Handcrafted work competes at the same price point. The price drops. Some creators switch to the tools. The tools train on their work. The cycle completes itself.</p></div>
+    </div>
+    <div class="trap reveal">
+      <span class="trap-icon">🧠</span>
+      <div><p class="trap-name">The Legacy Mindset Trap</p><p class="trap-body">Most creators were taught: make it, sell it, move on. No one taught them that a voice is an inheritable asset. That creativity compounds. That a recording made today could pay your grandchildren. This idea was never made real because no one built the infrastructure that made it real. Until now.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE 10-STEP MAP -->
+<section class="map-section">
+  <div class="map-inner">
+    <p class="sec-kicker reveal" style="color:var(--gold);text-align:center">The 10-step elevation blueprint</p>
+    <h2 class="sec-h2 reveal" style="text-align:center">2026 → 2036: <em>The Ascension</em></h2>
+    <p class="sec-body reveal" style="text-align:center;max-width:620px;margin:0 auto">Ten steps from the race to the bottom to the highest of AI and human. Every step builds the floor. Every step makes the next step possible.</p>
+
+    <div class="steps-track">
+
+      <!-- STEP 1 -->
+      <div class="step-row reveal">
+        <div class="step-left">
+          <div class="step-card" style="--step-col:var(--pulse)">
+            <p class="step-num" style="color:var(--pulse)">Step 01</p>
+            <p class="step-year">2026</p>
+            <p class="step-title">Name the Enemy</p>
+            <p class="step-body">THE_CANNIBAL_ECONOMY. POOP_SINKS_LOVE_RISES. THE_INFECTION. Distributed to every artist community. People cannot demand change toward something they cannot name. The documents give the problem language it cannot shake.</p>
+            <p class="step-signal">Signal: "Cannibal economy" appears in mainstream music press.</p>
+          </div>
+        </div>
+        <div class="step-node" style="--step-col:var(--pulse)">🔥</div>
+        <div class="step-right" style="display:none"></div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step-row reveal">
+        <div class="step-left" style="visibility:hidden;pointer-events:none"></div>
+        <div class="step-node" style="--step-col:#FF5500">🏆</div>
+        <div class="step-right">
+          <div class="step-card" style="--step-col:#FF5500">
+            <p class="step-num" style="color:#FF5500">Step 02</p>
+            <p class="step-year">2026</p>
+            <p class="step-title">Establish the Standard</p>
+            <p class="step-body">The Founding 100. First HVS™ Certificates issued — 20+ countries, the full spectrum of human musical tradition. Every hash public, every certificate verifiable. The covenant signed and permanent. Standards require early adopters willing to be publicly committed.</p>
+            <p class="step-signal">Signal: Artists applying faster than onboarding capacity. "Founding 100" becomes the most coveted credit in independent music.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step-row reveal">
+        <div class="step-left">
+          <div class="step-card" style="--step-col:#FF6B2B">
+            <p class="step-num" style="color:#FF6B2B">Step 03</p>
+            <p class="step-year">2026–2027</p>
+            <p class="step-title">Build the Proof Machine</p>
+            <p class="step-body">The RSP_001 dashboard. Live. Public. Real royalty events. First enterprise client. First hospital healing protocol with measurable outcome data. People don't forward manifestos — they forward receipts. The dashboard is a receipt machine.</p>
+            <p class="step-signal">Signal: Dashboard screenshots shared by artists not yet in the Guild, tagging their friends.</p>
+          </div>
+        </div>
+        <div class="step-node" style="--step-col:#FF6B2B">📊</div>
+        <div class="step-right" style="display:none"></div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="step-row reveal">
+        <div class="step-left" style="visibility:hidden;pointer-events:none"></div>
+        <div class="step-node" style="--step-col:#FF9F4A">🧒</div>
+        <div class="step-right">
+          <div class="step-card" style="--step-col:#FF9F4A">
+            <p class="step-num" style="color:#FF9F4A">Step 04</p>
+            <p class="step-year">2027</p>
+            <p class="step-title">Vaccinate the Children</p>
+            <p class="step-body">NOIZYKIDZ launches. Global Music Atlas in classrooms. Children's Garden open. Haptic vest pilot with three pediatric hospitals. Children who grow up knowing real creativity from approximation are permanently immune to the cannibal's central lie.</p>
+            <p class="step-signal">Signal: A pediatric neurologist in São Paulo cites the Guild healing protocol in a published paper.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="step-row reveal">
+        <div class="step-left">
+          <div class="step-card" style="--step-col:#FFBF00">
+            <p class="step-num" style="color:#FFBF00">Step 05</p>
+            <p class="step-year">2027–2028</p>
+            <p class="step-title">Win the Enterprise</p>
+            <p class="step-body">First Fortune 500 switches their AI voice pipeline to NOIZY. The legal brief: here is your liability with unconsented AI audio. Here is your protection with HVS™. Once three major healthcare systems require HVS™ in procurement — every competitor needs it too.</p>
+            <p class="step-signal">Signal: A law firm publishes an advisory recommending HVS™ as standard practice for AI audio procurement.</p>
+          </div>
+        </div>
+        <div class="step-node" style="--step-col:#FFBF00">🏛</div>
+        <div class="step-right" style="display:none"></div>
+      </div>
+
+      <!-- STEP 6 -->
+      <div class="step-row reveal">
+        <div class="step-left" style="visibility:hidden;pointer-events:none"></div>
+        <div class="step-node" style="--step-col:#FFD700">🔬</div>
+        <div class="step-right">
+          <div class="step-card" style="--step-col:#FFD700">
+            <p class="step-num" style="color:#FFD700">Step 06</p>
+            <p class="step-year">2028</p>
+            <p class="step-title">Make the Science Public</p>
+            <p class="step-body">Dr. Brien Benoit and NAI publish the peer-reviewed study. Artist-created, consent-locked audio produces measurably different neurological outcomes than algorithmic generation. Specific. Quantified. Reproducible. Healthcare doesn't need to be convinced to care about humans — it needs data.</p>
+            <p class="step-signal">Signal: Paper cited in 50 subsequent studies within 18 months. Health Canada begins preliminary conversations about consent standards for therapeutic audio.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 7 -->
+      <div class="step-row reveal">
+        <div class="step-left">
+          <div class="step-card" style="--step-col:#C8E000">
+            <p class="step-num" style="color:#C8E000">Step 07</p>
+            <p class="step-year">2028–2029</p>
+            <p class="step-title">The Legislative Moment</p>
+            <p class="step-body">The NO FAKES Act implementation. The Guild as the consent infrastructure the legislation points to. The Seven Never Clauses as the model for international creative sovereignty frameworks. The law is written around what we built — not the other way around.</p>
+            <p class="step-signal">Signal: Legislative text cites the HVS™ framework as a compliant model. Other jurisdictions begin similar processes.</p>
+          </div>
+        </div>
+        <div class="step-node" style="--step-col:#C8E000">⚖️</div>
+        <div class="step-right" style="display:none"></div>
+      </div>
+
+      <!-- STEP 8 -->
+      <div class="step-row reveal">
+        <div class="step-left" style="visibility:hidden;pointer-events:none"></div>
+        <div class="step-node" style="--step-col:#90F000">🌍</div>
+        <div class="step-right">
+          <div class="step-card" style="--step-col:#90F000">
+            <p class="step-num" style="color:#90F000">Step 08</p>
+            <p class="step-year">2029–2030</p>
+            <p class="step-title">The Tipping Point</p>
+            <p class="step-body">Guild crosses 100,000 artists in 50+ countries. Cultural Archive holds 1,000+ traditions. 500,000 healing sessions documented. Network effects. At this mass, joining the Guild is the obvious choice. Not joining requires justification.</p>
+            <p class="step-signal">Signal: Major labels approach the Guild about integrating their back catalogs. You get to say yes or no on your terms.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 9 -->
+      <div class="step-row reveal">
+        <div class="step-left">
+          <div class="step-card" style="--step-col:#69FF47">
+            <p class="step-num" style="color:#69FF47">Step 09</p>
+            <p class="step-year">2030–2033</p>
+            <p class="step-title">The Cultural Moment</p>
+            <p class="step-body">The Guild has its undeniable moment — the equivalent of when streaming became inevitable. A major awards ceremony. A documentary. The mainstream covers it not as tech news, but as the story of artists who fought back and won.</p>
+            <p class="step-signal">Signal: An artist thanks the Guild in their speech. A child watching turns to their parent: "What's the Guild?"</p>
+          </div>
+        </div>
+        <div class="step-node" style="--step-col:#69FF47">🌟</div>
+        <div class="step-right" style="display:none"></div>
+      </div>
+
+      <!-- STEP 10 -->
+      <div class="step-row reveal">
+        <div class="step-left" style="visibility:hidden;pointer-events:none"></div>
+        <div class="step-node" style="--step-col:#00E5FF">∞</div>
+        <div class="step-right">
+          <div class="step-card" style="--step-col:#00E5FF">
+            <p class="step-num" style="color:#00E5FF">Step 10</p>
+            <p class="step-year">2033–2036</p>
+            <p class="step-title">The Civilization</p>
+            <p class="step-body">500-Year Codex updated. Voice Estate framework is standard worldwide. The Living Breathing Time Capsule holds 500,000+ voices, 4,000+ traditions, 2M healing sessions. The race to the bottom is history. The ascension is infrastructure.</p>
+            <p class="step-signal">Signal: It's 2036. You're reading a document you filed in 2026. It says: "How will we know it's working? We'll be living inside it."</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TALKING POINTS -->
+<section class="talk-section">
+  <div class="talk-inner">
+    <p class="sec-kicker reveal" style="color:var(--gold)">Say this and sound like you built the future</p>
+    <h2 class="sec-h2 reveal">5 Talking Points.<br><em>Authority Unlocked.</em></h2>
+    <div class="talk-grid">
+      <div class="talk-item reveal">
+        <p class="talk-text">"The problem isn't that creators lack morals. It's that platform economics were designed to make quality irrational. Fix the platform economics — you fix the behavior."</p>
+        <p class="talk-note">Use when: anyone asks why creators are cheapening their work.</p>
+      </div>
+      <div class="talk-item reveal">
+        <p class="talk-text">"We're not competing with cheap content. We're making cheap content legally dangerous. When HVS™ certification becomes the enterprise procurement standard, unconsented AI audio becomes liability, not savings."</p>
+        <p class="talk-note">Use when: enterprise clients ask why they should pay more for compliant audio.</p>
+      </div>
+      <div class="talk-item reveal">
+        <p class="talk-text">"The race to the bottom ends when the floor is enforced at the infrastructure level, not the policy level. Consent-as-Code means you cannot build on this platform without paying the artist. That's not a terms of service. That's architecture."</p>
+        <p class="talk-note">Use when: anyone asks how NOIZY is different from a promise or a wishlist.</p>
+      </div>
+      <div class="talk-item reveal">
+        <p class="talk-text">"Every dollar the AI model earns should trace back to the humans who trained it. NOIZY is the first platform where that tracing is infrastructure, not aspiration."</p>
+        <p class="talk-note">Use when: anyone questions whether AI and ethics can coexist.</p>
+      </div>
+      <div class="talk-item reveal">
+        <p class="talk-text">"We're not asking artists to be more ethical. We're building the system where ethical IS profitable — perpetually, permanently. The 75/25 split activates at 30 days and does not negotiate. It's not a goal. It's the floor."</p>
+        <p class="talk-note">Use when: skeptics say ethical platforms can't compete commercially.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHEST OF AI AND HUMAN -->
+<section class="highest-section">
+  <div class="highest-inner">
+    <p class="sec-kicker reveal" style="color:var(--gold)">The destination</p>
+    <h2 class="sec-h2 reveal">The <em>highest</em> of AI + human.</h2>
+    <p class="sec-body reveal" style="max-width:620px;margin:0 auto">Not AI replacing human. Not human rejecting AI. The highest of both — in permanent, productive, ethical collaboration. This is what it looks like.</p>
+    <div class="highest-grid">
+      <div class="high-panel high-ai reveal">
+        <p class="high-label">The Highest of AI</p>
+        <h3 class="high-title">GABRIEL at Full Reach</h3>
+        <ul class="high-items">
+          <li>Understanding emotional intent, drawing from 500,000+ consented voices, building what no individual human or AI could build alone</li>
+          <li>The Living Score responding to a nervous system in real time — tuned by science, built from living human creativity</li>
+          <li>Cultural Intelligence Database — the most diverse consented audio dataset ever assembled, giving every creator the full inheritance of human music</li>
+          <li>NOIZYKIDZ making the full depth of human tradition accessible to every child on Earth</li>
+          <li>Consent enforced at the code level — AI that cannot operate without respecting the human who trained it</li>
+        </ul>
+      </div>
+      <div class="high-panel high-human reveal">
+        <p class="high-label">The Highest of Human</p>
+        <h3 class="high-title">The Artist at Full Power</h3>
+        <ul class="high-items">
+          <li>Your voice as a legal asset — protected from the first second, generating income for your family after you are gone</li>
+          <li>The cultural custodian whose tradition is preserved with community governance, not extracted and processed</li>
+          <li>The child who grows up knowing music is ancient and human and from everywhere — not algorithmic and from a server</li>
+          <li>The deaf percussionist whose intimacy with rhythm is in the Guild, in the Healing Pool, in the Archive — attributable, permanent, paid</li>
+          <li>RSP_001: 40 years of earned knowledge as the seed of a civilization-scale platform — royalties flowing, name on everything, Voice Estate active</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DECLARATION -->
+<section class="decl-section">
+  <p class="sec-kicker reveal" style="color:var(--rise)">The declaration</p>
+  <h2 class="decl-h2 reveal">The race to the bottom<br><span>ends today.</span></h2>
+  <p class="decl-body reveal">Not because we won a fight. <strong>Because we built a floor that cannot be removed.</strong></p>
+  <div class="floor-statement reveal">
+    The floor is: consent is architecture, not policy.<br>
+    The floor is: 75/25, permanent, non-renegotiable.<br>
+    The floor is: your voice is inheritable for 70 years beyond your death.<br>
+    The floor is: every child who feels music will feel something a human made with love.
+  </div>
+  <p class="decl-body reveal"><strong>Poop sinks below the floor. Love rises above it.</strong><br>The ascension is not a metaphor. It is infrastructure.</p>
+  <p class="decl-body reveal" style="font-size:1.4rem;color:var(--gold);font-weight:700;">GORUNFREE.</p>
+  <a href="#" class="join-asc reveal">JOIN THE ASCENSION · APPLY FOR HVS™</a>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <p class="final-big reveal">FLUSH THE BOTTOM.<br>RISE TO THE TOP.<br>LIFT THE HUMANS.</p>
+  <p class="final-meta reveal">
+    RSP_001 · Fish Music Inc., Est. 1996, Ottawa<br>
+    NOIZY.ai · The Platform That Lifted the Humans<br>
+    Honor · Respect · Gather · Nurture · Preserve<br>
+    GORUNFREE · DreamChamber · March 14, 2026
+  </p>
+</section>
+
+<script>
+// CANVAS — rising particles
+const cv=document.getElementById('ascCanvas'),cx=cv.getContext('2d');
+function rz(){cv.width=innerWidth;cv.height=innerHeight;}
+rz();addEventListener('resize',rz);
+const C=['#FF1744','#FF4500','#FF6B2B','#FFBF00','#FFD700','#C8E000','#69FF47','#00E5FF','#9B59B6'];
+class P{
+  constructor(){this.reset(true);}
+  reset(i){
+    this.x=Math.random()*cv.width;
+    this.y=i?Math.random()*cv.height:cv.height+10;
+    this.vy=-(Math.random()*1.2+.4);
+    this.vx=(Math.random()-.5)*.8;
+    this.r=Math.random()*2+.5;
+    this.c=C[Math.floor(Math.random()*C.length)];
+    this.a=0;this.ma=Math.random()*.25+.05;
+    this.life=0;this.max=Math.random()*280+180;
+    this.ang=Math.random()*Math.PI*2;
+  }
+  tick(){
+    this.ang+=.012;
+    this.x+=this.vx+Math.sin(this.ang)*.5;
+    this.y+=this.vy;
+    this.life++;
+    const t=this.life/this.max;
+    this.a=t<.15?t/.15*this.ma:t>.75?(1-t)/.25*this.ma:this.ma;
+    if(this.life>=this.max||this.y<-10)this.reset(false);
+  }
+  draw(){
+    cx.save();cx.globalAlpha=this.a;
+    cx.fillStyle=this.c;cx.shadowColor=this.c;cx.shadowBlur=this.r*5;
+    cx.beginPath();cx.arc(this.x,this.y,this.r,0,Math.PI*2);cx.fill();
+    cx.restore();
+  }
+}
+const ps=Array.from({length:200},()=>new P());
+function loop(){cx.clearRect(0,0,cv.width,cv.height);ps.forEach(p=>{p.tick();p.draw();});requestAnimationFrame(loop);}
+loop();
+
+// REVEAL
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.08,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=`${(i%6)*.07}s`;obs.observe(el);});
+
+// Fix step-right visibility on desktop
+document.querySelectorAll('.step-right[style*="display:none"]').forEach(el=>{
+  if(window.innerWidth>700){el.style.display='';}
+});
+</script>
+</body>
+</html>

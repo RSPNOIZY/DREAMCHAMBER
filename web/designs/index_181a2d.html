@@ -1,0 +1,1152 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="ja">
+  <head lang="ja">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>マスターアシスタント - Ozone8ユーザーズマニュアル</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/ja/master-assistant/">
+    <meta property="og:title" content="Ozone8ユーザーズマニュアル">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone8ユーザーズマニュアル">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | マスターアシスタント</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="はじめに" href="../index.html">
+	
+	はじめに
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8の概要" href="../ozone-overview/index.html">
+	
+	Ozone 8の概要
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone応用" href="../ozone-app-overview/index.html">
+	
+	Ozone応用
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プリセットシステム" href="../preset-system/index.html">
+	
+	プリセットシステム
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="全般的な機能" href="../general-functions/index.html">
+	
+	全般的な機能
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="モジュールの標準的な操作項目" href="../common-module-controls/index.html">
+	
+	モジュールの標準的な操作項目
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミクス" href="../dynamics/index.html">
+	
+	ダイナミクス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミックEQ" href="../dynamic-eq/index.html">
+	
+	ダイナミックEQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イコライザー" href="../equalizer/index.html">
+	
+	イコライザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="エキサイター" href="../exciter/index.html">
+	
+	エキサイター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イメージャー" href="../imager/index.html">
+	
+	イメージャー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マキシマイザー" href="../maximizer/index.html">
+	
+	マキシマイザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="スペクトラル成形" href="../spectral-shaper/index.html">
+	
+	スペクトラル成形
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージコンプレッサー" href="../vintage-compressor/index.html">
+	
+	ビンテージコンプレッサー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージEQ " href="../vintage-eq/index.html">
+	
+	ビンテージEQ 
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージリミッター" href="../vintage-limiter/index.html">
+	
+	ビンテージリミッター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージテープ" href="../vintage-tape/index.html">
+	
+	ビンテージテープ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="コーデックプレビュー" href="../codec-preview/index.html">
+	
+	コーデックプレビュー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ディザー" href="../dither/index.html">
+	
+	ディザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="マスターアシスタント" href="index.html">
+	
+	マスターアシスタント
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トラックリファレンス" href="../track-referencing/index.html">
+	
+	トラックリファレンス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トーナルバランスコントロール" href="../tonal-balance-control/index.html">
+	
+	トーナルバランスコントロール
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オプション" href="../options/index.html">
+	
+	オプション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プラグインオートメーション" href="../plug-in-automation/index.html">
+	
+	プラグインオートメーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ヒントと用例" href="../tips-and-examples/index.html">
+	
+	ヒントと用例
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーソリゼーション" href="../authorization/index.html">
+	
+	オーソリゼーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotopeカスタマーケアー" href="../customer-care/index.html">
+	
+	iZotopeカスタマーケアー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information (ライセンス情報)" href="../license-information/index.html">
+	
+	License Information (ライセンス情報)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA (エンドユーザー向け使用許諾契約)" href="../eula/index.html">
+	
+	EULA (エンドユーザー向け使用許諾契約)
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../en/master-assistant/index.html"><i class="icon icon-eye"></i> View in English</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>マスターアシスタント </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">言語:</span>
+<br />
+    
+
+       
+       <a href="../../en/master-assistant/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+        <a href="../../en/master-assistant/index.html"><button class="lang-btn-active">日本語</button></a>
+       
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+    
+
+	
+
+<h2 id="概要">概要</h2>
+
+<p>マスターアシスタントはOzone 8 Elements、StandardそしてAdvancedに導入された、アシスト技術、マシーンラーニング、そしてインテリジェンスにおける最新の進展です。これにより、音楽に合わせてインテリジェントにあつらえた作業開始点が提供されますので、経験値に関係なく、プロフェッショナルな音像のマスターを制作する大きな助けとなります。</p>
+
+<p>マスターアシスタントはメインのOzone 8プラグインとOzone 8スタンドアローンアプリケーションに含まれます。マスターアシスタントの操作パネルはプリセット表示左の“Master Assistant”ボタンをクリックすると表示されることができます。</p>
+
+<h2 id="ジャンル分けとリサーチ結果">ジャンル分けとリサーチ結果</h2>
+
+<p>マスターアシスタントは、内部的なディスカッションと研究の組み合わせにより生成されたターゲットジャンル曲線を利用します。我々の作業は数多くのオーディオファイルを10種類の音楽ジャンルに分類することから始まりました。その上で、それらジャンルのスペクトラル特徴を分析しました。その研究に基づき、我々は各ジャンルの典型的なスペクトラル特徴を表した10種類のジャンルターゲット曲線を作り出しました。</p>
+
+<p>典型的なスペクトラル特徴を分析するのに加え、神経網分類機能を鍛錬し、入力オーディオを10種類のジャンルの混合となる特有のターゲット曲線にマップするようにしました。</p>
+
+<p>注: 我々は10種類のジャンルにカテゴリー分けしましたが、分析の結果、大半の曲線は大きく3種類のカテゴリーに分かれることが証明されました。この大きな3種類のカテゴリーを示すそれぞれの結合ターゲット曲線は<a href="../tonal-balance-control/index.html">トーナルバランスコントロール</a>プラグインにも内包されます。</p>
+
+<p>以下がその3つのカテゴリーです:</p>
+
+<ul>
+<li>Bass Heavy（EDM、ヒップホップなど）</li>
+<li>Orchestral（一般的な器楽、その他）</li>
+<li>Modern（ポップ、ロックなど）</li>
+</ul>
+
+<p>これらの曲線がマスターアシスタント処理の中でどのように使用されるかについての詳細は、後述の<a href="index.html#processing-steps">処理ステップ</a>の項をご参照ください。</p>
+
+<h2 id="ワークフロー">ワークフロー</h2>
+
+<p>マスターアシスタントはOzone 8プラグインとOzone 8アプリケーションの両方で使用できます。マスターアシスタントのパネルは、プリセット表示左の“Master Assistant”ボタンをクリックすると開きます。</p>
+
+<p><img src="../images/master-assistant/ma-button.png" alt="MA button" /></p>
+
+<h3 id="ターゲット選択">ターゲット選択</h3>
+
+<p>マスターアシスタントを実行する前に、初めに表示される画面にてターゲット出力を選択してください。</p>
+
+<h4 id="streaming-ストリーミング">Streaming（ストリーミング）</h4>
+
+<p><img src="../images/master-assistant/streaming.png" alt="MA streaming" /></p>
+
+<ul>
+<li>ラウドネスのターゲット値（LUFSを使用）に合致するためのマキシマイザーのスレッシュホルド設定が知らされます。</li>
+<li>ストリーミングオプションのターゲットラウドネスのデフォルトは-14 LUFSに設定されています。このターゲット値は、一般的なストリーミングサービスにより使用される典型的なラウドネス値に基づいています。</li>
+<li>この値はOzoneのOptionsメニューのGeneralタブにてカスタマイズすることができます。</li>
+</ul>
+
+<h4 id="cd">CD</h4>
+
+<p><img src="../images/master-assistant/cd.png" alt="MA cd" /></p>
+
+<p>選択された強度オプションに対し、できる限り出力の音量を上げるためのマキシマイザーのスレッシュホルド設定が知らされます。</p>
+
+<h4 id="cd-intensity-cd-強度">CD: Intensity（CD: 強度）</h4>
+
+<p><img src="../images/master-assistant/intensity.png" alt="MA intensity" /></p>
+
+<p>入力オーディオに対しリミッターがどれくらい頻繁にトリガーされるかを特定することによりマキシマイザーのスレッシュホルド設定が知らされます。</p>
+
+<h4 id="reference-リファレンス">Reference（リファレンス）</h4>
+
+<p><img src="../images/master-assistant/reference.png" alt="MA target screen" /></p>
+
+<ul>
+<li>ターゲットとして、リファレンスパネルに読み込まれたリファレンストラックを選択することができます。</li>
+<li>このオプションが選択されていると、ターゲットラウドネスとターゲットEQ曲線が、選択されたリファレンストラックのラウドネスとEQ曲線を基に計算されます。</li>
+</ul>
+
+<p>これらのターゲットに関する選択は、色々な形でマスターアシスタントの分析やその結果に影響を与えます。以下のステップは、ターゲット選択がいかに与えられた処理ステップに影響を及ぼすかを説明したものです。</p>
+
+<h3 id="オーディオを再生">オーディオを再生</h3>
+
+<p>ターゲットを選択した後、Nextをクリックしてマスターアシスタントを実行します。</p>
+
+<p><img src="../images/master-assistant/next.png" alt="next button" /></p>
+
+<div class="admonition note">
+<p class="admonition-title">便利なヒント</p>
+<p><ul>
+<li><strong>マスターアシスタントにはオーディオ入力が必須:</strong> ホストアプリケーションでオーディオを再生する必要があります。</li>
+<li><strong>より良い結果を得るため、トラックで最も音量の高い箇所でマスターアシスタントを実行することが推奨されます。</strong></li>
+<li>マスターアシスタントは分析に際し、約30秒間のオーディオを必要とします。もし、マスターアシスタントに30秒未満のオーディオを分析させる場合は、ループ再生をしながらマスターアシスタントを実行することが推奨されます。</li>
+</ul>
+</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">リファレンスターゲット選択に関する注</p>
+<p><ul>
+<li>リファレンスがターゲットとして選択された状態でマスターアシスタントを実行するには、リファレンスパネルにリファレンストラックが読み込まれている必要があります。先へ進むには、マスターアシスタントを終了し、リファレンスファイルを読み込まなければなりません。</li>
+<li>リファレンスファイルをマスターアシスタントのリファレンストラックのドラップダウンで選択するには、ファイルの読み込みが完了している必要があります。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="処理ステップ">処理ステップ</h2>
+
+<p>以下は、ターゲットを選択し、‘Next’ボタンをクリックした後のマスターアシスタントの作業手順のあらましです。</p>
+
+<h3 id="オーディオ分析">オーディオ分析</h3>
+
+<p>“Next”ボタンをクリックすると、マスターアシスタントは約5秒間、入力オーディオを聴きます。</p>
+
+<p><img src="../images/master-assistant/working.png" alt="analyze" /></p>
+
+<div class="admonition note">
+<p class="admonition-title">Waiting For Audio（オーディオ待機）画面</p>
+<p>マスターアシスタントがオーディオを受信していないと、“Waiting for audio”画面が表示されます。オーディオを再生すると、この待機画面は消えます。</p>
+</div>
+
+<h3 id="固有のジャンルターゲット曲線">固有のジャンルターゲット曲線</h3>
+
+<p>数秒間オーディオを聴いた後、マスターアシスタントはEQ処理ステップ（後述）で使用する固有のターゲット曲線を生成します。</p>
+
+<div class="admonition note">
+<p class="admonition-title">マスターアシスタントはどのように固有のターゲット曲線を作り出すのか?</p>
+<p><ul>
+<li>初回試聴時にマスターアシスタントは、オーディオを分析し、既定の10種類のジャンルの曲線との類似性を判断します（これら曲線については前出の<a href="../index.html#genre-classes">ジャンル分け</a>の項をご参照ください）。</li>
+<li>各ジャンル曲線に対し類似性の比率がアサインされます。</li>
+<li>その上で、マスターアシスタントはジャンル分け比率に基づいた固有のターゲット曲線を作り出します。</li>
+<li><strong>例:</strong> マスターアシスタントが与えられたトラックを60%ポップ、30%ロック、10%カントリーと比率付けした場合、固有のターゲット曲線はポップのターゲット6割、ロックのターゲット3割、そしてカントリーのターゲット1割がミックスされたものとなります。</li>
+</ul>
+</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">リファレンスオーディオを基にしたターゲット曲線</p>
+<p><ul>
+<li>マスターアシスタントのターゲットに“Reference”が選択されている場合、固有のターゲット曲線は、入力オーディオのジャンルの計算ではなく、選択されたリファレンストラックから導き出されます。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="プリセットの適用">プリセットの適用</h3>
+
+<p>固有のターゲット曲線が生成されると、マスターアシスタントは最も類似性の比率の高かったジャンルに基づいたプリセットを読み込みます。これらプリセットはマスターアシスタント処理を利用するモジュールの作業開始点として提供され、IRCモードやマキシマイザーや、ダイナミクスのアタック及びリリース時間など、入力オーディオを分析したものではないパラメーターを設定します。マスターアシスタントのプリセットは、Neutronのトラックアシスタント処理で使用されるプリセットと比較すると微細な設定となります。</p>
+
+<div class="admonition note">
+<p class="admonition-title">マスターアシスタント実行後のモジュールチェーンについて</p>
+<p><ul>
+<li>マスターアシスタント実行後は、使用モジュールと信号処理チェーンにおける順列は常に不動となります。</li>
+<li>状況に応じ（入力オーディオによっては）、マスターアシスタントはダイナミクスモジュールをバイパスにすることがあります。この判断については、後述の情報をご参照ください。</li>
+<li>繰り返し作業を行う: マスターアシスタント実行後のモジュールは、推奨設定、あるいはマスターに対する作業開始点としての使用のために準備されます。Ozoneには、多種多様な処理モジュールがありますので、トラックの状況に合わせ、モジュールを追加したり削除したりすることをお勧めします。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="eq">EQ</h2>
+
+<p>プリセット適用後、マスターアシスタントはEQモジュールの設定を変更します。
+マスターアシスタントは、入力オーディオと処理ステップの第一段階で生成された固有のターゲット曲線を比較し、EQ設定をインテリジェントに変更します。入力オーディオをターゲット曲線に近づけるEQ曲線を作り出すべく、EQ操作点が調整されます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">EQ帯域の設定</p>
+<p><ul>
+<li>マスターアシスタントは常にバンド1と8に対し、それぞれローシェルフとハイシェルフを有効にします。</li>
+<li>マスターアシスタントはターゲット曲線に合わせ込むため、バンド2から7に対し、最大6つのピークベルフィルターを追加します。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="ダイナミクス">ダイナミクス</h2>
+
+<p>EQモジュールの設定が完了すると、マスターアシスタントはダイナミクスモジュールの設定を変更します。ダイナミック過ぎるオーディオに対しては、低域に圧縮を適用することで、マキシマイザーがより平明に動作するようにします。マキシマイザーの出力にダイナミクス処理を施すことが良い影響を与えるかどうか判断するため、マスターアシスタントは入力オーディオの波高因子を計測します。</p>
+
+<p>検知されたジャンルが広域の“オーケストラ”カテゴリーとなった場合、波高因子は信号の全帯域をベースに計算されます。これ以外では、波高因子は入力オーディオの低域を基に計算されます。</p>
+
+<p>計測された波高因子が既定のカットオフ値（このカットオフ値は内的分析の結果決定したもの）よりも高かった場合、ダイナミクスモジュールが有効化されます。計測された波高因子が既定のカットオフ値よりも低かった場合、ダイナミクスモジュールは無効化されます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">波高因子とは?</p>
+<p>波高因子は、ピークの振幅値を波形のRMS値で割ったものです。この計測値は、波形内にどれだけ極度のピークがあるかを明示するものであり、信号のダイナミックレンジと同一と見なすことができます。マスターアシスタントにより使用される波高因子の幅は-1から14で、理想的な波高因子のレンジは3から10となります。波高因子が3未満の場合、“圧縮過多”と判断することができます。波高因子が10を越える場合、“ダイナミック過ぎ”と判断できます。</p>
+</div>
+
+<p>コンプレッサーのスレッシュホルド値は、コンプレッサーがオーディオに確実に作用するよう、入力オーディオの平均レベルを基に分析されます。</p>
+
+<h2 id="マキシマイザー">マキシマイザー</h2>
+
+<p>EQモジュールの設定が終わると、マスターアシスタントはマキシマイザーの設定の調整に取り掛かります。</p>
+
+<h3 id="シーリング">シーリング</h3>
+
+<p>シーリングの値は、マスターアシスタントの最初の画面で選択されたターゲットに基づいて決められます。</p>
+
+<ul>
+<li><strong>ストリーミング:</strong> -1dB</li>
+<li><strong>CD（全ての強度値に共通）:</strong> -0.3dB</li>
+<li><strong>リファレンス:</strong> -0.3dB</li>
+</ul>
+
+<h3 id="スレッシュホルド">スレッシュホルド</h3>
+
+<p>スレッシュホルド値は、入力オーディオと選択されたマスターアシスタントのターゲットの分析傾向によって決定します。</p>
+
+<h3 id="ストリーミング">ストリーミング</h3>
+
+<ul>
+<li>マキシマイザーのスレッシュホルドのターゲットラウドネス値は-14 LUFS（良く利用されるストリーミングサービスで一般的なラウドネス）に設定されます。</li>
+<li>ラウドネスのターゲットは<a href="../options/index.html#general">Options &gt; General</a>タブにて手動で設定できます。</li>
+</ul>
+
+<h3 id="cd-1">CD</h3>
+
+<ul>
+<li>入力オーディオと強度の選択に基づき、マキシマイザーのスレッシュホルドはマスターの音量をできる限り大きくする値に設定されます。</li>
+</ul>
+
+<h3 id="cd-intensity-強度">CD: Intensity（強度）</h3>
+
+<p>マキシマイザーのスレッシュホルド分析時に、どれくらい頻繁にリミッターが作動するかを決定します。</p>
+
+<ul>
+<li>Low:（低） リミッターの作動率は時間尺に対し0%となります</li>
+<li>Medium（中）: リミッターの作動率は時間尺に対し1%となります</li>
+<li>High（高）: リミッターの作動率は時間尺に対し2%となります</li>
+</ul>
+
+<h3 id="reference-リファレンス-1">Reference（リファレンス）</h3>
+
+<ul>
+<li>マキシマイザーのスレッシュホルドのためのターゲットラウドネス値（単位LUFS）は選択されたリファレンストラックのラウドネスから計算されます。</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><ul>
+<li>トラックの音量がターゲットラウドネス値よりも高い場合、マスターアシスタントはシーリング値により発生した差異よりも音量を下げません。</li>
+</ul>
+</p>
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">重要</p>
+<p>マスターアシスタントを実行する場合は、トラックの中の最も音量の高い部分を再生することが肝要です。静かな箇所でマキシマイザーのスレッシュホルドを分析してしまうと、その部分に対して最適なラウドネスの最大化が行われます。レベルの低い箇所を基にしたスレッシュホルドを使用すると、より音量の高い箇所でディストーションを引き起こす可能性がありますのでご注意ください。</p>
+</div>
+
+<h2 id="ダイナミックeq">ダイナミックEQ</h2>
+
+<p>マスターアシスタントはマキシマイザーの入力信号と出力信号を比較し、どの周波数が最も強くリミッターに当たっているかを判断します。</p>
+
+<p>ダイナミックEQ操作点は、マキシマイザーの使用によるディストーションの発生を軽減するため、ピークの周波数に置かれます。スレッシュホルド値は、ダイナミックEQバンドの入力オーディオを基に分析されます。</p>
+
+<h2 id="承認とキャンセル">承認とキャンセル</h2>
+
+<p>マスターアシスタントが完了すると、変更のAccept（承認）かCancel（キャンセル）が選択できます。</p>
+
+<p><img src="../images/master-assistant/ma-accept.png" alt="accept" /></p>
+
+<ul>
+<li><strong>Accept（承認）</strong>を選択するとマスターアシスタントのパネルが消え、マスターアシスタントにより変更された設定が維持されます。</li>
+<li>承認後、マスターアシスタントの変更を取り消して元の設定に戻したい場合は、取り消し履歴画面でその作業を行ってください。</li>
+<li><strong>Cancel（キャンセル）</strong>を選択するとマスターアシスタントのパネルが消え、マスターアシスタントを実行する前の状態に戻ります。</li>
+</ul>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../dither/index.html" title="ディザー">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              ディザー
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../track-referencing/index.html" title="トラックリファレンス">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              トラックリファレンス
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../en/master-assistant/index.html"><i class="icon icon-eye"></i> View in English</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8ヘルプドキュメント 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

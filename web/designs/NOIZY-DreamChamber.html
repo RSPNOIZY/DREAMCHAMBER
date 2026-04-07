@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY.ai — The DreamChamber</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --deep: #0d0d0d;
+    --panel: #111111;
+    --border: #1e1e1e;
+    --gold: #c9a84c;
+    --gold-dim: #7a6230;
+    --signal: #00ff88;
+    --signal-dim: #00391e;
+    --red: #ff2d2d;
+    --white: #f0ede6;
+    --muted: #5a5a5a;
+    --text: #c8c4bb;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* WAVEFORM CANVAS */
+  #waveCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0.07;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* SCAN LINE */
+  .scanline {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--signal), transparent);
+    animation: scan 8s linear infinite;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 999;
+  }
+  @keyframes scan {
+    0% { top: -2px; }
+    100% { top: 100vh; }
+  }
+
+  .content { position: relative; z-index: 1; }
+
+  /* HEADER */
+  header {
+    padding: 4rem 3rem 2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    position: relative;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    letter-spacing: 0.05em;
+    line-height: 0.85;
+    color: var(--white);
+  }
+  .logo span {
+    color: var(--gold);
+    font-style: italic;
+    font-family: 'DM Serif Display', serif;
+  }
+
+  .header-meta {
+    text-align: right;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    line-height: 2;
+    text-transform: uppercase;
+  }
+  .header-meta .signal-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--signal);
+    margin-right: 6px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.7); }
+  }
+
+  /* GOSPEL BANNER */
+  .gospel {
+    padding: 1.5rem 3rem;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    overflow: hidden;
+    position: relative;
+  }
+  .gospel-text {
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* MAIN GRID */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* CELLS */
+  .cell {
+    background: var(--deep);
+    padding: 2.5rem;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .cell:hover { background: var(--panel); }
+  .cell::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+  .cell:hover::after { width: 100%; }
+
+  .cell-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .cell-label::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--gold-dim);
+  }
+
+  .cell-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    letter-spacing: 0.05em;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .cell-title .accent { color: var(--gold); }
+  .cell-title .signal { color: var(--signal); }
+
+  .cell-body {
+    font-size: 0.75rem;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  /* SPAN CELLS */
+  .span-2 { grid-column: span 2; }
+  .span-3 { grid-column: span 3; }
+
+  /* GOSPEL BLOCK */
+  .gospel-block {
+    background: var(--deep);
+    padding: 3rem;
+    border-left: 3px solid var(--gold);
+  }
+  .gospel-quote {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.4;
+  }
+  .gospel-quote .highlight { color: var(--gold); }
+
+  /* NUMBER DISPLAY */
+  .big-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 8vw, 8rem);
+    color: var(--gold);
+    line-height: 0.9;
+    opacity: 0.9;
+  }
+  .big-number-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
+  /* FIVE BRANCHES */
+  .branches {
+    grid-column: span 3;
+    background: var(--deep);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+  .branch {
+    background: var(--deep);
+    padding: 2rem 1.5rem;
+    transition: background 0.3s;
+    cursor: default;
+    position: relative;
+  }
+  .branch:hover { background: #141414; }
+  .branch-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+  }
+  .branch:hover .branch-num { color: var(--gold-dim); }
+  .branch-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .branch-url {
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .branch-desc {
+    font-size: 0.68rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* REVENUE ENGINES */
+  .engines-grid {
+    grid-column: span 3;
+    background: var(--deep);
+    padding: 3rem;
+  }
+  .engines-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .engines-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .engines-list {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+  .engine {
+    background: var(--panel);
+    padding: 1.5rem 1rem;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .engine:hover { background: #161616; }
+  .engine-num {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .engine-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .engine-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  .engine-price {
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  /* VSI SECTION */
+  .vsi-section {
+    grid-column: span 3;
+    background: var(--deep);
+    padding: 3rem;
+    border-top: 1px solid var(--border);
+  }
+  .vsi-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .vsi-targets {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+  }
+  .vsi-person {
+    background: var(--panel);
+    padding: 1.2rem 1.5rem;
+    transition: background 0.3s;
+    cursor: default;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .vsi-person:hover { background: #161616; }
+  .vsi-priority {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--border);
+    line-height: 1;
+    min-width: 2rem;
+    transition: color 0.3s;
+  }
+  .vsi-person:hover .vsi-priority { color: var(--gold-dim); }
+  .vsi-person-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+  .vsi-person-role {
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .vsi-person-why {
+    font-size: 0.6rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .vsi-pitch {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .vsi-pitch::before {
+    content: 'THE PITCH';
+    position: absolute;
+    top: -0.5rem;
+    left: 1rem;
+    background: var(--deep);
+    padding: 0 0.5rem;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+  }
+  .vsi-pitch-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .vsi-pitch-email {
+    font-size: 0.7rem;
+    color: var(--signal);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.3rem;
+  }
+  .vsi-pitch-note {
+    font-size: 0.6rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* TECHNICAL STACK */
+  .stack-section {
+    grid-column: span 3;
+    background: var(--panel);
+    padding: 3rem;
+    font-family: 'Space Mono', monospace;
+  }
+  .stack-code {
+    font-size: 0.65rem;
+    line-height: 2;
+    color: var(--text);
+  }
+  .stack-code .layer { color: var(--gold); font-weight: 700; }
+  .stack-code .item { color: var(--signal); }
+  .stack-code .comment { color: var(--muted); }
+  .stack-code .arrow { color: var(--red); }
+
+  /* MARKET NUMBERS */
+  .market-row {
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+  .market-stat {
+    background: var(--deep);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .market-stat:hover { background: var(--panel); }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+
+  /* CULTURAL MAP */
+  .cultural-section {
+    grid-column: span 2;
+    background: var(--deep);
+    padding: 3rem;
+  }
+  .cultural-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    font-size: 0.65rem;
+  }
+  .cultural-table th {
+    text-align: left;
+    padding: 0.5rem 1rem 0.8rem 0;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+  .cultural-table td {
+    padding: 0.8rem 1rem 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+  .cultural-table td:first-child {
+    color: var(--gold);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .cultural-table tr:hover td { color: var(--white); }
+
+  /* TIMELINE */
+  .timeline-section {
+    background: var(--deep);
+    padding: 3rem;
+  }
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 1.5rem;
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1.5rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+    padding-left: 1rem;
+  }
+  .timeline-item:hover { background: var(--panel); }
+  .timeline-phase {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    padding-top: 0.1rem;
+  }
+  .timeline-content { }
+  .timeline-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+  .timeline-detail {
+    font-size: 0.62rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* MOAT SECTION */
+  .moat-section {
+    grid-column: span 3;
+    background: var(--black);
+    padding: 4rem 3rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .moat-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    animation: ripple 4s ease-in-out infinite;
+  }
+  .moat-section::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-dim);
+    animation: ripple 4s ease-in-out infinite 2s;
+  }
+  @keyframes ripple {
+    0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.8); }
+    50% { opacity: 0.15; }
+    100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  }
+  .moat-text {
+    position: relative;
+    z-index: 1;
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-style: italic;
+    color: var(--white);
+    max-width: 800px;
+    margin: 0 auto 1rem;
+    line-height: 1.5;
+  }
+  .moat-sub {
+    position: relative;
+    z-index: 1;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  footer .signal-live {
+    color: var(--signal);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-label .line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .main-grid { grid-template-columns: 1fr; }
+    .span-2, .span-3 { grid-column: span 1; }
+    .branches { grid-template-columns: 1fr 1fr; }
+    .engines-list { grid-template-columns: repeat(3, 1fr); }
+    .market-row { grid-template-columns: 1fr 1fr; }
+    .vsi-grid { grid-template-columns: 1fr; }
+    .cultural-section { grid-column: span 1; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="waveCanvas"></canvas>
+<div class="scanline"></div>
+
+<div class="content">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">NOIZY<span>.ai</span></div>
+    <div class="header-meta">
+      <div><span class="signal-dot"></span>Signal Live</div>
+      <div>RSP_001 — Rob Scott</div>
+      <div>Fish Music Inc.</div>
+      <div>February 2026</div>
+      <div>The DreamChamber</div>
+    </div>
+  </header>
+
+  <!-- GOSPEL BANNER -->
+  <div class="gospel">
+    <div class="gospel-text">
+      75% TO THE CREATOR — ALWAYS &nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+      75% TO THE CREATOR — ALWAYS &nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+      75% TO THE CREATOR — ALWAYS &nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+      75% TO THE CREATOR — ALWAYS &nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+      75% TO THE CREATOR — ALWAYS &nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+      75% TO THE CREATOR — ALWAYS &nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+    </div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="main-grid">
+
+    <!-- POSITIONING -->
+    <div class="cell gospel-block span-2">
+      <div class="cell-label">The Mission</div>
+      <div class="gospel-quote">
+        "ElevenLabs gives you a voice.<br>
+        Midjourney gives you an image.<br>
+        <span class="highlight">NOIZY gives you a creative identity</span> —<br>
+        and teaches you everything the masters knew,<br>
+        so you can become one."
+      </div>
+    </div>
+
+    <!-- MARKET -->
+    <div class="cell" style="display:flex;flex-direction:column;justify-content:space-between;gap:2rem;">
+      <div>
+        <div class="cell-label">The Market</div>
+        <div class="big-number">$161B</div>
+        <div class="big-number-label">AI in Art & Creativity by 2034<br>25.8% CAGR · Nobody owns this layer</div>
+      </div>
+      <div>
+        <div class="big-number" style="font-size:3rem;">$2.8B</div>
+        <div class="big-number-label">Generative AI in Music alone by 2030<br>30.4% CAGR</div>
+      </div>
+    </div>
+
+    <!-- THE DIFFERENCE -->
+    <div class="cell">
+      <div class="cell-label">The Technical Moat</div>
+      <div class="cell-title">ElevenLabs<br><span style="color:var(--muted);font-size:1.2rem;">TEXT IN</span><br><span class="accent">VOICE OUT</span></div>
+      <div class="cell-body" style="margin-top:1rem;color:var(--muted);">Model/token level. No signal domain. No BPM, no key, no spectral analysis. Going wider for IPO. Creators = 15% of revenue. Abandoned this lane.</div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-label">The NOIZY Way</div>
+      <div class="cell-title">NOIZY<br><span style="color:var(--muted);font-size:1.2rem;">AUDIO IN</span><br><span class="signal">INTELLIGENCE OUT</span></div>
+      <div class="cell-body" style="margin-top:1rem;">Librosa signal domain. BPM, key, mode, spectral centroid, MFCC fingerprinting. Voice that hears the music and responds to it. The thing ElevenLabs cannot build without starting over.</div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-label">Who We're For</div>
+      <div class="cell-title">The <span class="accent">Dreamer</span></div>
+      <div class="cell-body">
+        The person who knows something is in them and doesn't know how to get it out.<br><br>
+        They don't exist anywhere else yet.<br><br>
+        This is NOIZY's core customer.<br><br>
+        72% of art students want AI tools. Zero platforms were built for them.
+      </div>
+    </div>
+
+  </div><!-- end main-grid -->
+
+  <!-- MARKET STATS ROW -->
+  <div class="market-row">
+    <div class="market-stat">
+      <div class="stat-num">$47.5B</div>
+      <div class="stat-label">Voice AI market<br>by 2034<br>34.8% CAGR</div>
+    </div>
+    <div class="market-stat">
+      <div class="stat-num">$1.77B</div>
+      <div class="stat-label">Game music market<br>2025 · doubling<br>to $3.73B by 2035</div>
+    </div>
+    <div class="market-stat">
+      <div class="stat-num">85%</div>
+      <div class="stat-label">ElevenLabs revenue<br>is enterprise now<br>Creators = afterthought</div>
+    </div>
+    <div class="market-stat">
+      <div class="stat-num">$0</div>
+      <div class="stat-label">Current value of<br>unified creative persona<br>+ community layer</div>
+    </div>
+  </div>
+
+  <!-- FIVE BRANCHES -->
+  <div class="branches">
+    <div class="branch">
+      <div class="branch-num">01</div>
+      <div class="branch-name">NOIZY.AI</div>
+      <div class="branch-url">noizy.ai</div>
+      <div class="branch-desc">The mothership. Dreamer persona engine. AI that learns creator identity across music, art, video, film. The longer you use it, the smarter it gets. Can't take it anywhere else.</div>
+    </div>
+    <div class="branch">
+      <div class="branch-num">02</div>
+      <div class="branch-name">NOIZYFISH</div>
+      <div class="branch-url">noizyfish.ca</div>
+      <div class="branch-desc">The Pond. Community + marketplace. Gaming audio. Social AI creation. Where Dreamer personas interact with each other. Home base everything points back to.</div>
+    </div>
+    <div class="branch">
+      <div class="branch-num">03</div>
+      <div class="branch-name">NOIZYVOX</div>
+      <div class="branch-url">noizyvox</div>
+      <div class="branch-desc">Premium voice library. Creator-controlled voice models. Studio licensing. RSP_001 = Rob. Fastest path to first revenue. 75% back to the voice actor. Always.</div>
+    </div>
+    <div class="branch">
+      <div class="branch-num">04</div>
+      <div class="branch-name">NOIZYLAB</div>
+      <div class="branch-url">noizylab.ca</div>
+      <div class="branch-desc">Rob's audio genius laboratory. Premium bespoke production. Proof that one multi-disciplinary master can be an entire audio production engine. The demo lives here.</div>
+    </div>
+    <div class="branch">
+      <div class="branch-num">05</div>
+      <div class="branch-name">NOIZYKIDS</div>
+      <div class="branch-url">noizykids.ca</div>
+      <div class="branch-desc">The school. Masters become mentors. World-class musicians teach and monetize their libraries. The transmission system. Where The Wisdom Project feeds directly in.</div>
+    </div>
+  </div>
+
+  <!-- DREAMER TIERS -->
+  <div class="main-grid" style="border-top:1px solid var(--border);">
+    <div class="cell" style="padding-top:2rem;">
+      <div class="cell-label">Tier 1</div>
+      <div class="cell-title" style="font-size:1.5rem;">🆓 Dreamer<br><span class="accent">Seed</span></div>
+      <div class="cell-body">
+        Free. Basic persona creation. Limited history queries. Community access.<br><br>
+        Give them a taste of THEIR persona existing.<br>
+        The moment it learns them — they upgrade.
+      </div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Tier 2</div>
+      <div class="cell-title" style="font-size:1.5rem;">💛 Dreamer<br><span class="accent">$12–15/mo</span></div>
+      <div class="cell-body">
+        Full persona development. Deep music/art/film history. Librosa audio analysis. Create and learn simultaneously.<br><br>
+        The Knowledge Engine at full power.
+      </div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Tier 3</div>
+      <div class="cell-title" style="font-size:1.5rem;">🔴 Dreamer<br><span class="accent">Pro $35–50/mo</span></div>
+      <div class="cell-body">
+        Full signal-reactive audio tools. Persona-to-persona collaboration. Advanced SFX and voice generation. Priority model access.<br><br>
+        The working creator tier.
+      </div>
+    </div>
+    <div class="cell span-3" style="background:var(--panel);">
+      <div class="cell-label">Tier 4 — The Summit</div>
+      <div class="cell-title">🖤 Dreamer Studio — <span class="accent">$99+/mo</span></div>
+      <div class="cell-body">
+        Full DAW-adjacent workflow. Commercial rights — everything you make, you own. White-label persona for YouTube/Twitch creators. This is RSP_001's tier. This is NOIZYLAB.CA at full power.
+      </div>
+    </div>
+  </div>
+
+  <!-- REVENUE ENGINES -->
+  <div class="engines-grid">
+    <div class="section-label">7 Revenue Engines <div class="line"></div></div>
+    <div class="engines-list">
+      <div class="engine">
+        <div class="engine-num">Engine 01</div>
+        <div class="engine-icon">🎵</div>
+        <div class="engine-name">Audio Marketplace</div>
+        <div class="engine-price">$15–499/asset<br>70% to Dreamer</div>
+      </div>
+      <div class="engine">
+        <div class="engine-num">Engine 02</div>
+        <div class="engine-icon">🎮</div>
+        <div class="engine-name">Adaptive Audio as a Service</div>
+        <div class="engine-price">$29–$1,500+/mo<br>Studio subscriptions</div>
+      </div>
+      <div class="engine">
+        <div class="engine-num">Engine 03</div>
+        <div class="engine-icon">🔉</div>
+        <div class="engine-name">SFX Generator</div>
+        <div class="engine-price">$10 / 100 SFX<br>$0.08/call API</div>
+      </div>
+      <div class="engine">
+        <div class="engine-num">Engine 04</div>
+        <div class="engine-icon">🎬</div>
+        <div class="engine-name">Sync Licensing & Esports</div>
+        <div class="engine-price">$500–5,000<br>per tournament event</div>
+      </div>
+      <div class="engine">
+        <div class="engine-num">Engine 05</div>
+        <div class="engine-icon">🎓</div>
+        <div class="engine-name">Game Audio Academy</div>
+        <div class="engine-price">$199/year<br>$499 certificate</div>
+      </div>
+      <div class="engine">
+        <div class="engine-num">Engine 06</div>
+        <div class="engine-icon">🤝</div>
+        <div class="engine-name">White-Label & API</div>
+        <div class="engine-price">$50K–$250K/year<br>publisher pipelines</div>
+      </div>
+      <div class="engine">
+        <div class="engine-num">Engine 07</div>
+        <div class="engine-icon">🌍</div>
+        <div class="engine-name">Community Flywheel</div>
+        <div class="engine-price">Dreamers create<br>Devs buy<br>Both join<br>Repeat</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHNICAL STACK -->
+  <div class="stack-section">
+    <div class="section-label" style="margin-bottom:2rem;">The Stack <div class="line"></div></div>
+    <pre class="stack-code">
+<span class="layer">LAYER 1 — THE EAR (Librosa)</span>
+  <span class="item">├── Onset Detection</span>         <span class="comment">→ Knows exactly when beats hit. Generated audio locks to the grid.</span>
+  <span class="item">├── BPM / Tempo Tracking</span>    <span class="comment">→ Live tempo map. Sync generated audio to any live track.</span>
+  <span class="item">├── Chroma / Key / Mode</span>     <span class="comment">→ D minor = dread. G major = triumph. Voice shifts register to match.</span>
+  <span class="item">├── Spectral Centroid</span>       <span class="comment">→ Detects brightness and energy. Knows when music is building vs releasing.</span>
+  <span class="item">└── MFCC Fingerprinting</span>     <span class="comment">→ Timbre signature. Voice that sounds like it belongs in this world.</span>
+
+<span class="layer">LAYER 2 — THE BRAIN (Claude API)</span>
+  <span class="item">├── Receives signal analysis from Layer 1</span>
+  <span class="item">├── Translates acoustic data <span class="arrow">→</span> semantic meaning</span>
+  <span class="item">└── "BPM 140, minor key, rising centroid = high tension, approaching climax, dread register"</span>
+
+<span class="layer">LAYER 3 — THE VOICE (NOIZYVOX)</span>
+  <span class="item">├── Creator voice models</span>    <span class="comment">RSP_001 = Rob. 14 years of gaming audio ready.</span>
+  <span class="item">├── Receives semantic prompt FROM Layer 2</span>
+  <span class="item">└── Generates voice matching emotional register + tempo + tonal world of the music</span>
+                               <span class="comment">75% back to the voice actor. Always.</span>
+
+<span class="layer">LAYER 4 — THE WORLD (NOIZYFISH + NOIZYLAB)</span>
+  <span class="item">├── SFX onset-synchronized to detected beats</span>
+  <span class="item">├── Spectrally complementary to existing mix</span>
+  <span class="item">└── Rob's 14-year catalog as the first training set</span>
+
+<span class="layer">LAYER 5 — THE SOUL (Dreamer Persona Engine)</span>
+  <span class="item">├── Accumulating creative identity across music, art, film, voice</span>
+  <span class="item">├── Persona-to-persona collaboration in Discord</span>
+  <span class="item">└── The longer you use NOIZY, the more irreplaceable it becomes</span>
+    </pre>
+  </div>
+
+  <!-- VSI SECTION -->
+  <div class="vsi-section">
+    <div class="section-label">VSI London — Dream Partner <div class="line"></div></div>
+    <div class="vsi-grid">
+      <div>
+        <div style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.5rem;">Hit List — In Order</div>
+        <div class="vsi-targets">
+          <div class="vsi-person">
+            <div class="vsi-priority">1</div>
+            <div>
+              <div class="vsi-person-name">Dimitri Konovalov</div>
+              <div class="vsi-person-role">Director of Technology & Innovation</div>
+              <div class="vsi-person-why">Joined Aug 2025. Came from AI dubbing (Dubformer). Hungry to prove himself. Your warmest door.</div>
+            </div>
+          </div>
+          <div class="vsi-person">
+            <div class="vsi-priority">2</div>
+            <div>
+              <div class="vsi-person-name">Scott Rose</div>
+              <div class="vsi-person-role">Group CTO</div>
+              <div class="vsi-person-why">Has literally described NOIZY's value in his own LinkedIn posts. Quote it back to him.</div>
+            </div>
+          </div>
+          <div class="vsi-person">
+            <div class="vsi-priority">3</div>
+            <div>
+              <div class="vsi-person-name">Sarah Goff</div>
+              <div class="vsi-person-role">Head of Marketing</div>
+              <div class="vsi-person-why">Warmest entry. Handles partnership press. sarah.goff@vsi.tv</div>
+            </div>
+          </div>
+          <div class="vsi-person">
+            <div class="vsi-priority">4</div>
+            <div>
+              <div class="vsi-person-name">Mark Howorth</div>
+              <div class="vsi-person-role">Group CEO</div>
+              <div class="vsi-person-why">Harvard MBA. Scaling operator. Only after Scott/Dimitri are excited.</div>
+            </div>
+          </div>
+          <div class="vsi-person">
+            <div class="vsi-priority">5</div>
+            <div>
+              <div class="vsi-person-name">Norman Dawood</div>
+              <div class="vsi-person-role">Chairman & Founder</div>
+              <div class="vsi-person-why">The cultural soul. Son of N.J. Dawood. Save him for when it matters.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="vsi-pitch">
+        <div class="vsi-pitch-text">
+          "VSI has 36 years of cultural excellence and 720 humans who understand language. NOIZY has the AI layer that tells those humans — and the AI voice actors working alongside them — exactly how a character should feel, breathe, and perform in every culture on Earth, in real time. Together, VSI delivers 20 languages in the time it used to take to deliver 5."
+        </div>
+        <div class="vsi-pitch-email">📧 dimitri.konovalov@vsi.tv</div>
+        <div class="vsi-pitch-email">📧 scott.rose@vsi.tv</div>
+        <div class="vsi-pitch-email">📧 meet@vsi.tv (official partnership channel)</div>
+        <div style="margin-top:1.5rem;" class="vsi-pitch-note">
+          Scott Rose at NAB: AI in localization requires technology that "analyzes on the fly, and fit scores not only what the content is, but what technology and workflow is most suitable, including what artistic constraints exist."<br><br>
+          That is NOIZY's Librosa stack in his own words. Open with his quote. He will respond.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CULTURAL TABLE + TIMELINE -->
+  <div class="main-grid" style="border-top:1px solid var(--border);">
+    <div class="cultural-section">
+      <div class="section-label" style="font-size:1.3rem;">Cultural Signal Database <div class="line"></div></div>
+      <div style="font-size:0.6rem;color:var(--muted);margin-top:0.5rem;margin-bottom:1rem;letter-spacing:0.08em;">The dataset nobody has built. The moat that compounds.</div>
+      <table class="cultural-table">
+        <thead>
+          <tr>
+            <th>Emotion</th>
+            <th>How It Varies By Culture</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Grief</td>
+            <td>Public wailing in West Africa / Silent in Japan / Vocal but contained in Brazil</td>
+          </tr>
+          <tr>
+            <td>Authority</td>
+            <td>Slow deliberate pace = German / Rapid confident cadence = American / Formal warmth = Japanese</td>
+          </tr>
+          <tr>
+            <td>Warmth</td>
+            <td>Physically expressive = Italian / Underplayed = British / Expansive = Nigerian</td>
+          </tr>
+          <tr>
+            <td>Humor</td>
+            <td>Dry understatement = British / Performative energy = Nigerian / Subtle wordplay = Japanese</td>
+          </tr>
+          <tr>
+            <td>Urgency</td>
+            <td>Controlled = Nordic / Openly urgent = Mediterranean / Rapid and clipped = American</td>
+          </tr>
+          <tr>
+            <td>Reverence</td>
+            <td>Religious vs professional vs elder — all acoustically distinct per culture</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="timeline-section">
+      <div class="section-label" style="font-size:1.3rem;">Global Expansion <div class="line"></div></div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-phase">Ph.1<br>Mo.1–6</div>
+          <div class="timeline-content">
+            <div class="timeline-title">English Core</div>
+            <div class="timeline-detail">UK, USA, Canada, Australia. Build the model. Prove the concept. Land VSI. First gaming audio clients.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-phase">Ph.2<br>Mo.6–12</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Latin America — Brazil First</div>
+            <div class="timeline-detail">215M people. Thriving music and film culture. Rapidly expanding localization demand. Massively underserved.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-phase">Ph.3<br>Mo.12–18</div>
+          <div class="timeline-content">
+            <div class="timeline-title">West Africa & Nollywood</div>
+            <div class="timeline-detail">Second-largest film industry by volume. Yoruba, Igbo, Hausa, Pidgin. Nobody building this. NOIZY builds it first.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-phase">Ph.4<br>Mo.18–24</div>
+          <div class="timeline-content">
+            <div class="timeline-title">South & East Asia</div>
+            <div class="timeline-detail">Fastest growing region in voice AI. Bollywood, K-drama, J-pop. Three of the biggest global entertainment industries.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-phase">Ph.5<br>Yr.2+</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Middle East & Endangered Languages</div>
+            <div class="timeline-detail">Guardian of endangered cultural voice. Preserving how communities sounded. Living acoustic archive of human expression.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOAT -->
+  <div class="moat-section">
+    <div class="moat-text">
+      "Every competitor can match a music generator.<br>
+      Nobody can match a music engine that <em>hears the game,<br>
+      analyzes the moment, and scores it in real time.</em>"
+    </div>
+    <div class="moat-sub">That's not a feature — that's a new category</div>
+  </div>
+
+  <!-- REVENUE TRAJECTORY -->
+  <div class="main-grid">
+    <div class="cell span-3">
+      <div class="section-label">Revenue Trajectory <div class="line"></div></div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);margin-top:2rem;">
+        <div style="background:var(--panel);padding:1.5rem;text-align:center;">
+          <div style="font-size:0.55rem;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">Month 3</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);">$15K</div>
+          <div style="font-size:0.55rem;color:var(--muted);margin-top:0.3rem;">200 Dreamers + 50 studios</div>
+        </div>
+        <div style="background:var(--panel);padding:1.5rem;text-align:center;">
+          <div style="font-size:0.55rem;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">Month 6</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);">$55K</div>
+          <div style="font-size:0.55rem;color:var(--muted);margin-top:0.3rem;">800 Dreamers + 200 studios</div>
+        </div>
+        <div style="background:var(--panel);padding:1.5rem;text-align:center;">
+          <div style="font-size:0.55rem;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">Month 12</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);">$185K</div>
+          <div style="font-size:0.55rem;color:var(--muted);margin-top:0.3rem;">3K Dreamers + 800 studios</div>
+        </div>
+        <div style="background:var(--panel);padding:1.5rem;text-align:center;">
+          <div style="font-size:0.55rem;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">Year 2</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);">$750K</div>
+          <div style="font-size:0.55rem;color:var(--muted);margin-top:0.3rem;">12K Dreamers + 3.5K studios</div>
+        </div>
+        <div style="background:#141414;padding:1.5rem;text-align:center;border:1px solid var(--gold-dim);">
+          <div style="font-size:0.55rem;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">Year 3</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--signal);">$2M+</div>
+          <div style="font-size:0.55rem;color:var(--muted);margin-top:0.3rem;">API + White-label enterprise</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>NOIZY.AI · NOIZYFISH.CA · NOIZYVOX · NOIZYLAB.CA · NOIZYKIDS.CA</div>
+    <div class="signal-live"><span class="signal-dot"></span> DreamChamber — February 2026</div>
+    <div>75% TO THE CREATOR. ALWAYS.</div>
+  </footer>
+
+</div><!-- end content -->
+
+<!-- WAVEFORM ANIMATION -->
+<script>
+const canvas = document.getElementById('waveCanvas');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+let t = 0;
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  const waves = [
+    { freq: 0.02, amp: 80, speed: 0.015, color: '#c9a84c' },
+    { freq: 0.015, amp: 50, speed: 0.022, color: '#00ff88' },
+    { freq: 0.03, amp: 30, speed: 0.01, color: '#ffffff' },
+  ];
+
+  waves.forEach(wave => {
+    ctx.beginPath();
+    ctx.strokeStyle = wave.color;
+    ctx.lineWidth = 1;
+    
+    for (let x = 0; x < canvas.width; x++) {
+      const y = canvas.height / 2 +
+        Math.sin(x * wave.freq + t * wave.speed * 60) * wave.amp +
+        Math.sin(x * wave.freq * 2.3 + t * wave.speed * 40) * (wave.amp * 0.4);
+      
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  });
+
+  t++;
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+</body>
+</html>

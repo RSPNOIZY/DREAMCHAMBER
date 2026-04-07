@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>de-noise_spectral</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="de-noise_spectral" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer157" class="Basic-Text-Frame">
+			<p id="_idParaDest-97" class="heading-1"><a id="_idTextAnchor099"></a>De-noise: Spectral</p>
+			<p class="Normal">De-noise gives you control over the level of stationary noise in a recording.</p>
+			<p class="Normal">The De-noise module has two modes: Spectral and Dialogue. This chapter relates to the Spectral mode. </p>
+			<p class="Inline-Art"><img src="image/image_BDZZQVVB2XLCRWONZUEW3I4OBUPKHYPM" alt="" /></p>
+			<p class="Normal">Spectral De-noise builds a spectral footprint of noise, then subtracts that noise when a signal’s frequency drops below the threshold defined by the spectral footprint. Stationary noise does not significantly change in level or spectral shape throughout the recording. Stationary noise includes tape hiss, microphone hum, power mains buzz, camera motor noise, fans, highway traffic, and HVAC systems.</p>
+			<p class="Normal">Spectral De-noise is a flexible tool that can be used to quickly achieve accurate, high-quality noise reduction. It also gives you the control necessary to tackle problematic noise with separate controls for tonal and broadband noise, management of denoising artifacts, and an editing interface for controlling reduction across the frequency spectrum. </p>
+			<p class="Normal">It allows you to learn a noise profile, then increase the amount of reduction to reduce this noise. Once you have a good amount of reduction, you may want to adjust the Threshold slider. While adjusting the threshold, listen for artifacts like pumping (dramatic changes in audio level) or gating (bursts of noise remaining after useful signal). </p>
+			<p class="Normal">Lower thresholds will treat more signal like useful signal, and are useful if you need to preserve audio material that descends gradually into quiet noise (like orchestral tails). </p>
+			<p class="Normal">Higher thresholds are useful for achieving more reduction on transient material (like drums or voice).</p>
+			<p class="Normal">If your resulting audio sounds like it is missing some life or body, you can try increasing the Quality setting. Quality settings C and D can take advantage of multicore processors to provide fast, high quality offline processing.</p>
+			<p class="Normal">If you still hear undesirable artifacts in your results, you can try adjusting the Artifact Control slider. If you hear a musical noise artifact (the watery digital "space monkey" artifact common to FFT-based denoisers), move the slider more to the right (away from Musical noise). If you hear a gating artifact (like pumping or surges of background noise), move the slider more to the left (away from Gating).</p>
+			<p id="_idParaDest-98" class="heading-2"><a id="_idTextAnchor100"></a>Manual/Adaptive <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Normal"><span class="Bold">Manual mode</span> requires the user to train the De-noise module using Learn button. In this mode, the noise profile does stays fixed for the duration of processing.</p>
+			<p class="Normal"><span class="Bold">Adaptive mode</span> will allow the De-noise module to adjust its noise profile based on changes over time in the incoming audio. In this mode, RX will analyze incoming audio for the specified learning time, decide what is noise and what is desired audio material, and adjust its noise profile accordingly. Adapting noise profiles can work well with noise sources that are constantly evolving, particularly in post-production film settings or recordings from outdoor environments. This takes some more memory and computational power, but is helpful for tackling noise that shifts slightly over time (like the sound of street traffic or ocean waves).</p>
+			<p class="Normal">For most stationary noise, however, finding a good noise profile manually will yield excellent results. Using Manual mode gives you more control over what makes up your noise profile.</p>
+			<p id="_idParaDest-99" class="heading-2"><a id="_idTextAnchor101"></a>Learn</p>
+			<p class="Normal">De-noise needs to learn the type of noise you want to remove from the recording to give you the best results. To train the De-noise module, identify a section of the recording that contains only noise, without any useful audio signal. Often these places are at the beginning or end of a file, but may also be during pauses or breaks in speech.</p>
+			<p class="Normal">Select the longest section of noise you can find (ideally a few seconds), then hit the Learn button. This will teach the De-noise module the noise profile of your file.</p>
+			<p class="Normal">Note: You can use keyboard shortcuts Control-Shift-4 on a PC or Command-Shift-Option-4 on a Mac in order to train RX&apos;s de-noise based on your current selection.</p>
+			<p class="heading-3">Learning a Noise Profile From More Than One Selection</p>
+			<p class="Normal">In the RX standalone application, it is possible to create a spectral profile from multiple isolated selections. This is useful if you have a file where it’s impossible to select enough audio where only noise is present to build the profile.</p>
+			<p class="Normal">For example, if you are trying to restore a file where someone is speaking over noise, you can select noise in frequencies where none of the voice is present at any given time. If you select enough of this noise with the Lasso or Brush selection tools, you can create an accurate noise profile that will let you get good results with De-noise. You can create more than one selection at a time by holding Shift and making a selection.</p>
+			<p class="Inline-Art-with-Caption"><img src="image/image_6TCSO56I42SMFA6HSHGYHWD6DKZ5JZVL" alt="" /></p>
+			<p class="Caption"><span class="Body-Text-Italic">Select noise anywhere you can to build a better noise profile.</span></p>
+			<p class="Normal">This feature is only available in the RX standalone application because it requires using RX’s spectral selection tools as well as accurate calculation of the time and frequency of the selected areas.</p>
+			<p class="Normal">If you are unable to create a full noise profile with multiple selections, RX can try to build a reasonable noise profile out of your existing profile. If you have an incomplete noise profile, RX will ask you to if you want it to complete the profile.</p>
+			<p class="Normal">For example, if you can only capture a low frequency rumble below 100 Hz, some broadband noise between 200 Hz and 5000 Hz, and all the noise above 8000 Hz, RX can fill in the gaps for you.</p>
+			<p class="Inline-Art-with-Caption"><img src="image/image_XX6ZFEHI4HT3SIVIZ2BOCUK4VVCNBGX3" alt="" /><img src="image/image_D3PMO4IKAY56KVV6TQAHN3IQWG33QMVM" alt="" /></p>
+			<p class="Caption"><span class="Body-Text-Italic">Building a profile from multiple selections gives you some flexibility,<br />and RX will guess any noise you missed.</span></p>
+			<p id="_idParaDest-100" class="heading-2"><a id="_idTextAnchor102"></a>Threshold (Noisy/Tonal)</p>
+			<p class="Normal">Controls the amplitude separation of noise and useful signal levels.</p>
+			<p class="Normal">Higher threshold settings reduce more noise, but also suppress low-level signal components. Lower threshold preserves low-level signal details, but can result in noise being modulated by the signal. Threshold elevation can be done separately for tonal and random noise parts. A good default is 0 dB.</p>
+			<p class="Normal">If background noise changes in amplitude over time (like traffic noise or record surface noise), raise the Threshold to accommodate for the changes.</p>
+			<p id="_idParaDest-101" class="heading-2"><a id="_idTextAnchor103"></a>Reduction (Noisy/Tonal)</p>
+			<p class="Normal">Controls the desired amount of noise suppression in decibels.</p>
+			<p class="Normal">Spectral De-noise can automatically separate noise into tonal parts (such as hum, buzz or interference) and random parts (such as hiss). The user can specify the amount of suppression for these parts separately (e.g. in some situations it can be desirable to reduce only unpleasant buzz while leaving unobjectionable constant hiss). Strong suppression of noise can also degrade low-levels signals, so it&apos;s recommended to apply only as much suppression as needed for reducing the noise to levels where it becomes less objectionable.</p>
+			<p id="_idParaDest-102" class="heading-2"><a id="_idTextAnchor104"></a>Quality</p>
+			<p class="Normal">Affects the quality and computational complexity of the noise reduction. This selection directly affects CPU usage. RX&apos;s Spectral De-noise module offers four algorithms that vary in processing time.</p>
+			<ul>
+				<li class="Unordered-List"><span class="Bold">A</span> is the least CPU intensive process and is suitable for realtime operation. It reduces musical noise artifacts by time smoothing of the signal spectrum.</li>
+				<li class="Unordered-List"><span class="Bold">B </span>achieves more advanced musical noise suppression by using adaptive 2D smoothing (both time and frequency). It is more CPU intensive and has more latency, but can still run in realtime on most machines.</li>
+				<li class="Unordered-List"><span class="Bold">C</span> adds multiresolution operation for better handling of signal transients and even fewer musical noise artifacts. It is a very CPU intensive algorithm and can only run in realtime on faster multicore machines.</li>
+				<li class="Unordered-List"><span class="Bold">D </span>adds high-frequency synthesis for reconstruction of signal details buried in noise. The speed of algorithm D is similar to algorithm C.</li>
+			</ul>
+			<p id="_idParaDest-103" class="heading-2"><a id="_idTextAnchor105"></a>Artifact Control</p>
+			<p class="Normal">Determines how much noise reduction will depend upon either spectral subtraction or wide band gating.</p>
+			<p class="Normal">With lower values, noise reduction will rely upon spectral subtraction, which can more accurately separate noise from the desired audio signal, but can yield musical noise artifacts, resulting in a "chirpy" or "watery" sound during heavy processing.</p>
+			<p class="Normal">With higher values, the noise reduction will rely more heavily upon wider band gating which will have fewer musical noise artifacts, but sound more like broadband gating, resulting in bursts of noise right after the signal falls below the threshold.</p>
+			<p id="_idParaDest-104" class="heading-2"><a id="_idTextAnchor106"></a>Noise Spectrum display</p>
+			<p class="Normal">The Noise Spectrum display shows useful information during both playback and when the noise reduction process is being applied.</p>
+			<p id="_idParaDest-105" class="heading-2"><a id="_idTextAnchor107"></a>Color legend</p>
+			<ul>
+				<li class="Unordered-List"><span class="Bold">Gray (Input):</span> spectrum of input audio signal</li>
+				<li class="Unordered-List"><span class="Bold">White (Output):</span> spectrum of the denoised output audio signal</li>
+				<li class="Unordered-List"><span class="Bold">Orange (Noise Profile):</span> the learned noise profile plus offset from the Threshold control</li>
+				<li class="Unordered-List"><span class="Bold">Yellow (Residual Noise):</span> desired noise floor after denoising, can be controlled by Reduction</li>
+				<li class="Unordered-List"><span class="Bold">Blue (Reduction Curve):</span> manual weighting of the noise reduction across the spectrum</li>
+			</ul>
+			<p id="_idParaDest-106" class="heading-2"><a id="_idTextAnchor108"></a>Reduction Curve</p>
+			<p class="Normal">If you need to improve your results, you can make adjustments to the amount of noise reduction across the frequency spectrum. This helps improve clarity in higher frequencies, aggressively address low frequency rumble, or otherwise tailor the processing to your audio.</p>
+			<p class="Normal">You can create a useful Reduction Curve by creating a couple of points on the spectrum, and then adjusting their positions. Lower points push the noise floor down. Higher points bring the noise floor up. The smoothness of the curve can be adjusted with the Smoothing control.</p>
+			<ul>
+				<li class="Unordered-List"><span class="Bold">Reduction Curve:</span> this feature allows for fine tuning of the reduction spectrum with up to 26 edit points. This enables the user to customize the amount of noise reduction being applied across different frequency regions. Higher curve values mean less reduction, lower curve values mean more reduction.</li>
+				<li class="Unordered-List"><span class="Bold">Add an edit point: l</span>eft-click, displayed as gray box along envelope curve</li>
+				<li class="Unordered-List"><span class="Bold">Remove an edit point:</span> right-click or drag it outside the screen</li>
+				<li class="Unordered-List"><span class="Bold">Reset: </span>this will remove all edit points</li>
+				<li class="Unordered-List"><span class="Bold">Smoothing:</span> this controls the amount of interpolation between your reduction curve points, allowing for sharper or more gradual edits</li>
+			</ul>
+			<p class="Normal">For example, if you wanted to reduce some low HVAC rumble but preserve some energy in higher frequencies, you could drag the curve’s leftmost point down a little bit, then create a point around 5 kHz and drag it up a bit.</p>
+			<p class="Normal">Note: you can axis-lock reduction curve points by holding Shift while dragging them, and get very fine control over positioning by holding Control/Command.</p>
+			<p class="Inline-Art"><img src="image/image_QB2OTKD4L7GVX2LQYSX533JXFZKMNXL3" alt="" /></p>
+			<p class="Inline-Art"><img src="image/image_RWRAKL2CKFAG6M52ZUPJPZVQFQ7PUKVE" alt="" /></p>
+			<p id="_idParaDest-107" class="heading-2"><a id="_idTextAnchor109"></a>FFT size (ms) <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Normal">Selects the time and frequency resolution of the processing.</p>
+			<p class="Normal">Higher FFT sizes give you more frequency bands allowing you to cut noise between closely spaced signal harmonics, or cut steady-state noise harmonics without affecting adjacent signals. Lower FFT sizes allow for faster response to changes in the signal and produce fewer noisy echoes around transient events in the signal.</p>
+			<p class="Normal">Note: Whenever the FFT size is changed, it is recommended that the De-noise module’s Learn feature is run again because the old noise profile was taken at a different FFT size and therefore becomes inaccurate.</p>
+			<p id="_idParaDest-108" class="heading-2"><a id="_idTextAnchor110"></a>Multi-res <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Normal">Enables multi-resolution processing for the selected algorithm type.</p>
+			<p class="Normal">When you select the Multi-res checkbox, the signal is analyzed in realtime and the most appropriate FFT size is chosen for each segment of the signal. This is done to minimize the smearing of transients and at the same time achieve high frequency resolution where it is needed.</p>
+			<p class="Normal">Note: the FFT size control does not have any effect in multiresolution mode as the FFT resolution is selected automatically. The noise profile does not need to be re-learned when switching to multi-resolution mode.</p>
+			<p id="_idParaDest-109" class="heading-2"><a id="_idTextAnchor111"></a>Algorithm <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Normal">Selects the smoothing algorithm for the removal of random ripples ("musical noise" artifacts) that can occur in the spectrogram when processing your audio. The strength of smoothing is controlled by the Smoothing slider.</p>
+			<ul>
+				<li class="Unordered-List">The<span class="Bold"> Simple</span> algorithm performs independent noise gating in every frequency channel of FFT. Release time of sub-band gates is controlled by the Release slider. This is a fast algorithm with small latency that is suitable for real-time operation.</li>
+				<li class="Unordered-List"><span class="Bold">Advanced and Extreme </span>algorithms perform joint time-frequency analysis of the audio signal which results in better quality and fewer "musical noise" artifacts. These algorithms have higher latency and computational complexity.</li>
+			</ul>
+			<p id="_idParaDest-110" class="heading-2"><a id="_idTextAnchor112"></a>Smoothing <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Normal">Controls the reduction of musical noise artifacts which can be a result of heavy denoising. Musical noise is caused by random statistical variations of noise spectrum that cause random triggering of sub-band gates. These artifacts are sometimes described as "chirpy", "watery", or "space monkey" sounds left behind during the noise reduction process.</p>
+			<p id="_idParaDest-111" class="heading-2"><a id="_idTextAnchor113"></a>Synthesis <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Normal">Synthesizes high frequency material after denoising.</p>
+			<p class="Normal">When Synthesis is set to a value greater than zero, signal harmonics are synthesized after denoising. The synthesized harmonics remain at the level of the noise floor, and serve to fill in gaps in high frequencies caused by processing.</p>
+			<p class="Normal">Increasing Synthesis can increase the sense of life and air in processed audio. Too much Synthesis may cause apparent distortion in the signal.</p>
+			<p id="_idParaDest-112" class="heading-2"><a id="_idTextAnchor114"></a>Enhancement <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Normal">Enhances signal harmonics that fall below the noise floor. </p>
+			<p class="Normal">Enhancement predicts a signal’s harmonic structure and places less noise reduction in areas where possible signal harmonics could be buried in noise. This aids in preserving high-frequency signal harmonics that may be buried and not detected otherwise. It can make the resulting signal brighter and more natural sounding, but high values of harmonic enhancement can also result in high-frequency noise being modulated by the signal.</p>
+			<p id="_idParaDest-113" class="heading-2"><a id="_idTextAnchor115"></a>Masking <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Normal">Reduces the depth of noise reduction where you wouldn’t perceive any effect from it.</p>
+			<p class="Normal">If you need to cut very high, inaudible frequencies, set this to 0. Otherwise, leave this at 10.</p>
+			<p class="Normal">Masking enables a psychoacoustic model that dynamically controls suppression amount to facilitate the use of softer suppression where noise is subjectively inaudible. When noise in certain regions is calculated to be inaudible, this feature prevents any signal processing in these regions. This potentially reduces amount of processing done to the signal and may positively affect overall signal integrity. The position of the slider controls the influence of psychoacoustic model on suppression levels.</p>
+			<p class="Normal">Note: when this slider is set to 0, the feature is turned off, and the amount of noise suppression is uniformly governed to the yellow curve in spectrum analyzer (more precisely — by the difference between the yellow curve and orange curve).</p>
+			<p id="_idParaDest-114" class="heading-2"><a id="_idTextAnchor116"></a>Whitening <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Normal">Shapes the noise floor after processing to be more like white noise.</p>
+			<p class="Normal">Whitening modifies the amount of noise reduction (shown by the yellow curve) applied at different frequencies to shape the spectrum of the residual noise.</p>
+			<p class="Normal">When Whitening is zero, the suppression is uniform at all frequencies, as controlled by Reduction (tonal/broadband) sliders, and the suppressed noise has a similar spectral shape to the original noise. When Whitening is maximal, the desired shape of suppressed noise floor is made close to white, so that residual noise has more neutral sound.</p>
+			<p class="Normal">Changing the noise floor balance with Whitening can help prevent gaps from over-processing, but an unnaturally white noise floor can introduce problems like noise modulation when editing or mixing with other noises from a unique space (like a set location).</p>
+			<p id="_idParaDest-115" class="heading-2"><a id="_idTextAnchor117"></a>Knee <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Normal">Controls how surgical the algorithm&apos;s differentiation is between the signal and noise.</p>
+			<p class="Normal">This slider controls the sharpness of the gating knee in the denoising process. With higher values, transitions in the De-noise are more abrupt and can become prone to errors in the detection of the signal with respect to the noise. When the sharpness is reduced, the denoising becomes more forgiving around the knee, and applies less attenuation to signals that are only slightly below the threshold. This may result in a lower depth of noise reduction, but can also have fewer artifacts.</p>
+			<p id="_idParaDest-116" class="heading-2"><a id="_idTextAnchor118"></a>Release (ms) <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Normal">Selects the release time of sub-band noise gates in milliseconds.</p>
+			<p class="Normal">Longer release times can result in less musical noise, but may also reduce or soften the signals initial transients or reverb tails after the signals decay.</p>
+			<p class="Normal">Note: the Release control is only available when the Simple algorithm is selected.</p>
+		</div>
+	</body>
+</html>

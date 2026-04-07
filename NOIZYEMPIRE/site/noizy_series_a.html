@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZYFISH INC. — Series A Narrative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #f5c842;
+    --cyan: #00e5ff;
+    --red: #ff3b3b;
+    --bg: #050509;
+    --bg2: #0a0a14;
+    --bg3: #0e0e1a;
+    --text: #e8e8f0;
+    --muted: #6b6b8a;
+    --border: rgba(245,200,66,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 2rem;
+  }
+
+  #hero-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.0;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .hero-title .line-gold { color: var(--gold); }
+  .hero-title .line-cyan { color: var(--cyan); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  .layer-nav {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s forwards;
+  }
+
+  .layer-btn {
+    padding: 0.65rem 1.6rem;
+    border: 1px solid;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .layer-btn.l1 { border-color: var(--cyan); color: var(--cyan); }
+  .layer-btn.l1:hover { background: var(--cyan); color: var(--bg); }
+  .layer-btn.l2 { border-color: var(--gold); color: var(--gold); }
+  .layer-btn.l2:hover { background: var(--gold); color: var(--bg); }
+  .layer-btn.l3 { border-color: #b78eff; color: #b78eff; }
+  .layer-btn.l3:hover { background: #b78eff; color: var(--bg); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .scroll-hint span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: pulse-down 1.5s infinite;
+  }
+
+  /* ── PROBLEM BAND ─────────────────────────────────────── */
+  .problem-band {
+    background: linear-gradient(135deg, rgba(255,59,59,0.08), rgba(255,59,59,0.03));
+    border-top: 1px solid rgba(255,59,59,0.3);
+    border-bottom: 1px solid rgba(255,59,59,0.3);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .three-numbers {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+  }
+
+  .number-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .number-big {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .number-big.red { color: var(--red); }
+  .number-big.gold { color: var(--gold); }
+
+  .number-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    max-width: 200px;
+    text-align: center;
+  }
+
+  /* ── SECTION SHELL ────────────────────────────────────── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+
+  .section-anchor { display: block; height: 1px; margin-top: -80px; padding-top: 80px; }
+
+  .layer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid;
+    margin-bottom: 1.5rem;
+  }
+
+  .layer-badge.l1 { border-color: var(--cyan); color: var(--cyan); }
+  .layer-badge.l2 { border-color: var(--gold); color: var(--gold); }
+  .layer-badge.l3 { border-color: #b78eff; color: #b78eff; }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 680px;
+    margin-bottom: 3rem;
+  }
+
+  /* ── COMPARISON TABLE ─────────────────────────────────── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 3rem;
+  }
+
+  .compare-table th {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1rem 1.25rem;
+    text-align: left;
+    border-bottom: 2px solid;
+  }
+
+  .compare-table th:first-child { color: var(--muted); border-color: var(--muted); }
+  .compare-table th:last-child { color: var(--gold); border-color: var(--gold); }
+
+  .compare-table td {
+    padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.9rem;
+  }
+
+  .compare-table tr:hover td { background: rgba(245,200,66,0.03); }
+
+  .compare-table td:last-child {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .compare-table td:first-child {
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(255,59,59,0.5);
+  }
+
+  /* ── RSP_001 PROOF BLOCK ──────────────────────────────── */
+  .proof-block {
+    background: linear-gradient(135deg, rgba(245,200,66,0.07), rgba(0,229,255,0.04));
+    border: 1px solid rgba(245,200,66,0.25);
+    padding: 2.5rem;
+    margin: 3rem 0;
+    position: relative;
+  }
+
+  .proof-block::before {
+    content: 'RSP_001';
+    position: absolute;
+    top: -0.7rem;
+    left: 1.5rem;
+    background: var(--bg);
+    padding: 0 0.75rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+  }
+
+  .proof-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--gold);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .proof-attr {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── UNIVERSE TABLE ───────────────────────────────────── */
+  .universe-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 3rem;
+  }
+
+  .universe-table th {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .universe-table td {
+    padding: 1rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.9rem;
+    vertical-align: top;
+  }
+
+  .universe-table tr:hover td { background: rgba(245,200,66,0.03); }
+
+  .platform-name {
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  .status-pill {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+  }
+
+  .status-live { background: rgba(0,229,255,0.12); color: var(--cyan); border: 1px solid rgba(0,229,255,0.3); }
+  .status-q2 { background: rgba(245,200,66,0.1); color: var(--gold); border: 1px solid rgba(245,200,66,0.3); }
+  .status-aug { background: rgba(183,142,255,0.1); color: #b78eff; border: 1px solid rgba(183,142,255,0.3); }
+  .status-active { background: rgba(80,220,100,0.1); color: #50dc64; border: 1px solid rgba(80,220,100,0.3); }
+
+  /* ── BOARD CARDS ──────────────────────────────────────── */
+  .board-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .board-card {
+    background: var(--bg3);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 1.75rem;
+    transition: border-color 0.25s;
+  }
+
+  .board-card:hover { border-color: rgba(245,200,66,0.3); }
+
+  .board-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.35rem;
+  }
+
+  .board-role {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--cyan);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .board-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── MOAT GRID ────────────────────────────────────────── */
+  .moat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .moat-item {
+    background: var(--bg3);
+    border: 1px solid rgba(245,200,66,0.1);
+    padding: 1.25rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s;
+  }
+
+  .moat-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .moat-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(245,200,66,0.3);
+    min-width: 2rem;
+    line-height: 1;
+  }
+
+  .moat-text {
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* ── EPOCH VISUALIZATION ──────────────────────────────── */
+  #epoch-vis {
+    background: var(--bg2);
+    border-top: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    padding: 5rem 0;
+    overflow-x: auto;
+  }
+
+  .epoch-rail {
+    display: flex;
+    align-items: stretch;
+    min-width: 900px;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .epoch-spine {
+    position: absolute;
+    left: 2rem;
+    right: 2rem;
+    top: 50%;
+    height: 2px;
+    background: linear-gradient(to right, #3b3b5c, #5c3b5c, #3b5c5c, #5c5c3b, var(--gold));
+    z-index: 0;
+  }
+
+  .epoch-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    padding: 0 0.5rem;
+  }
+
+  .epoch-top { flex: 1; display: flex; align-items: flex-end; padding-bottom: 1.5rem; }
+  .epoch-bottom { flex: 1; padding-top: 1.5rem; }
+
+  .epoch-node {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--muted);
+    background: var(--bg);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .epoch-col.epoch-v .epoch-node {
+    width: 22px;
+    height: 22px;
+    border-color: var(--gold);
+    background: var(--gold);
+    box-shadow: 0 0 20px var(--gold);
+    animation: pulse-gold 2s infinite;
+  }
+
+  .epoch-card {
+    background: var(--bg3);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 1.25rem;
+    width: 100%;
+    max-width: 175px;
+    font-size: 0.78rem;
+  }
+
+  .epoch-col.epoch-v .epoch-card {
+    border-color: rgba(245,200,66,0.35);
+    background: rgba(245,200,66,0.05);
+  }
+
+  .epoch-era {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+
+  .epoch-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .epoch-col.epoch-v .epoch-name { color: var(--gold); }
+
+  .epoch-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+
+  .epoch-row-key { color: var(--muted); font-size: 0.72rem; }
+  .epoch-row-val { color: var(--text); font-size: 0.72rem; text-align: right; flex: 1; }
+  .epoch-col.epoch-v .epoch-row-val { color: var(--gold); font-weight: 600; }
+
+  .arrow-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.25rem;
+    color: var(--muted);
+    font-size: 1.2rem;
+    align-self: center;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  .arrow-divider.final { color: var(--gold); font-size: 1.6rem; }
+
+  /* ── TCP/IP BLOCK ─────────────────────────────────────── */
+  .tcpip-block {
+    background: linear-gradient(135deg, rgba(0,229,255,0.05), rgba(183,142,255,0.03));
+    border: 1px solid rgba(0,229,255,0.2);
+    border-left: 4px solid var(--cyan);
+    padding: 2.5rem;
+    margin: 3rem 0;
+  }
+
+  .tcpip-block p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  .tcpip-block p + p { margin-top: 1rem; }
+  .tcpip-block strong { color: var(--cyan); }
+
+  /* ── ROYALTY BLOCK ────────────────────────────────────── */
+  .royalty-statement {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-top: 1px solid rgba(245,200,66,0.15);
+    border-bottom: 1px solid rgba(245,200,66,0.15);
+    margin: 3rem 0;
+  }
+
+  .royalty-big {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
+    color: var(--gold);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .royalty-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ── ROADMAP TABLE ────────────────────────────────────── */
+  .roadmap-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0 3rem;
+  }
+
+  .roadmap-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.9rem;
+    vertical-align: top;
+  }
+
+  .roadmap-table td:first-child {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--gold);
+    white-space: nowrap;
+    width: 120px;
+  }
+
+  .roadmap-table tr:hover td { background: rgba(245,200,66,0.03); }
+
+  /* ── FUND ALLOCATION ──────────────────────────────────── */
+  .fund-grid {
+    display: grid;
+    gap: 1rem;
+    margin: 2rem 0 3rem;
+  }
+
+  .fund-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.1rem 1.25rem;
+    background: var(--bg3);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .fund-pct {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 4rem;
+  }
+
+  .fund-bar-wrap {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .fund-bar {
+    height: 100%;
+    background: linear-gradient(to right, var(--gold), var(--cyan));
+    border-radius: 3px;
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.2,0,0,1);
+  }
+
+  .fund-row.visible .fund-bar { width: var(--target-width); }
+
+  .fund-label {
+    font-size: 0.9rem;
+    color: var(--text);
+    min-width: 280px;
+  }
+
+  /* ── CLOSING ──────────────────────────────────────────── */
+  .closing-section {
+    text-align: center;
+    padding: 8rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #closing-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .closing-content { position: relative; z-index: 2; }
+
+  .closing-statement {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    line-height: 1.8;
+    max-width: 680px;
+    margin: 0 auto 3rem;
+    color: var(--text);
+  }
+
+  .closing-statement em {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .closing-statement .cyan { color: var(--cyan); }
+
+  .gorunfree {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gold), var(--cyan), #b78eff, var(--gold));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: grad-shift 4s ease infinite;
+    margin-bottom: 2rem;
+  }
+
+  .closing-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    line-height: 2.2;
+  }
+
+  /* ── NAV BAR ──────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(5,5,9,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(245,200,66,0.1);
+    padding: 0.75rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .nav-brand {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+  }
+
+  /* ── DIVIDERS ─────────────────────────────────────────── */
+  .divider-line {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(245,200,66,0.3), transparent);
+    margin: 0;
+  }
+
+  /* ── WHY NOW PILLS ────────────────────────────────────── */
+  .why-now-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0 3rem;
+  }
+
+  .why-pill {
+    background: var(--bg3);
+    border: 1px solid rgba(0,229,255,0.15);
+    border-left: 3px solid var(--cyan);
+    padding: 1.25rem;
+    font-size: 0.88rem;
+    color: var(--text);
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: all 0.4s;
+  }
+
+  .why-pill.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* ── STAT INLINE ──────────────────────────────────────── */
+  .inline-stats {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+  }
+
+  .inline-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .inline-stat-val {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .inline-stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    max-width: 160px;
+  }
+
+  /* ── ANIMATIONS ───────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes pulse-down {
+    0%, 100% { transform: scaleY(1); opacity: 0.5; }
+    50% { transform: scaleY(1.3); opacity: 1; }
+  }
+
+  @keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 0 20px var(--gold); }
+    50% { box-shadow: 0 0 40px var(--gold), 0 0 60px rgba(245,200,66,0.3); }
+  }
+
+  @keyframes grad-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav>
+  <a href="#hero" class="nav-brand">NOIZYFISH INC.</a>
+  <ul class="nav-links">
+    <li><a href="#layer1">Product</a></li>
+    <li><a href="#layer2">Company</a></li>
+    <li><a href="#layer3">Civilization</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#ask">The Ask</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────── -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-eyebrow">NOIZYFISH INC. · MC96ECO UNIVERSE · BOARD OF ALIGNED MINDS · SERIES A</p>
+    <h1 class="hero-title">
+      <span class="line-gold">We are not building</span><br>
+      <span>a company.</span><br>
+      <span class="line-cyan">We are planting</span><br>
+      <span class="line-gold">a civilization.</span>
+    </h1>
+    <p class="hero-sub">But civilizations need seed funding.<br>— RSP_001, Ottawa, March 14, 2026</p>
+    <div class="layer-nav">
+      <a href="#layer1" class="layer-btn l1">Layer 1 — Product</a>
+      <a href="#layer2" class="layer-btn l2">Layer 2 — Company</a>
+      <a href="#layer3" class="layer-btn l3">Layer 3 — Civilization</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>How to read this</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── HOW TO READ ───────────────────────────────────────── -->
+<div style="background: var(--bg2); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 3rem 2rem; text-align: center;">
+  <div style="max-width: 760px; margin: 0 auto;">
+    <p style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;">How to use this deck</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: left;">
+      <div style="padding: 1.25rem; border: 1px solid rgba(0,229,255,0.2); border-top: 3px solid var(--cyan);">
+        <p style="font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--cyan); margin-bottom: 0.5rem;">LAYER 1</p>
+        <p style="font-size: 0.88rem; color: var(--text); line-height: 1.6;">Lead with this. What NOIZYVOX does, why it wins, why now. Watch their eyes. When they lean forward — go to Layer 2.</p>
+      </div>
+      <div style="padding: 1.25rem; border: 1px solid rgba(245,200,66,0.2); border-top: 3px solid var(--gold);">
+        <p style="font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--gold); margin-bottom: 0.5rem;">LAYER 2</p>
+        <p style="font-size: 0.88rem; color: var(--text); line-height: 1.6;">The full MC96ECO company. Five platforms. One architecture. The competitive moat across twelve dimensions.</p>
+      </div>
+      <div style="padding: 1.25rem; border: 1px solid rgba(183,142,255,0.2); border-top: 3px solid #b78eff;">
+        <p style="font-family: 'Space Mono', monospace; font-size: 0.75rem; color: #b78eff; margin-bottom: 0.5rem;">LAYER 3</p>
+        <p style="font-size: 0.88rem; color: var(--text); line-height: 1.6;">When they ask "what's the long-term vision?" — that's when Layer 3 lands. The 5th Epoch thesis. 500 years.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROBLEM BAND ──────────────────────────────────────── -->
+<div class="problem-band">
+  <p style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--red); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem;">The Problem — Three Numbers</p>
+  <p style="font-size: 1.1rem; color: var(--text); max-width: 620px; margin: 0 auto 2rem;">Every AI company in the world is training on human voices without consent. The humans are paid nothing.</p>
+  <div class="three-numbers">
+    <div class="number-block">
+      <div class="number-big gold">$0.003</div>
+      <div class="number-label">What a streaming platform pays per human performance</div>
+    </div>
+    <div class="number-block">
+      <div class="number-big red">$0</div>
+      <div class="number-label">What an AI company pays to train on that same performance</div>
+    </div>
+    <div class="number-block">
+      <div class="number-big red">$160B</div>
+      <div class="number-label">Estimated value of AI companies built on unconsented creative work, 2026</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider-line"></div>
+
+<!-- ── LAYER 1: THE PRODUCT ──────────────────────────────── -->
+<span class="section-anchor" id="layer1"></span>
+<div class="section">
+  <div class="layer-badge l1">● Layer 1 — The Product</div>
+  <h2 class="section-title">NOIZYVOX · A.I.V.A.</h2>
+  <p class="section-subtitle">Artificially Intelligent Voice Acting. The first platform that treats a creator's voice as an inheritable, licensable, permanently protected asset.</p>
+
+  <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 3rem;">
+    <div style="display: flex; gap: 1.25rem; align-items: flex-start; padding: 1.25rem; background: var(--bg3); border: 1px solid rgba(255,255,255,0.05);">
+      <div style="font-family: 'Space Mono', monospace; font-size: 1.5rem; color: var(--gold); min-width: 2.5rem; font-weight: 700; line-height: 1;">01</div>
+      <div><strong style="color: var(--text);">Record</strong> — A voice actor, musician, or narrator records their voice through the NOIZYVOX platform.</div>
+    </div>
+    <div style="display: flex; gap: 1.25rem; align-items: flex-start; padding: 1.25rem; background: var(--bg3); border: 1px solid rgba(255,255,255,0.05);">
+      <div style="font-family: 'Space Mono', monospace; font-size: 1.5rem; color: var(--gold); min-width: 2.5rem; font-weight: 700; line-height: 1;">02</div>
+      <div><strong style="color: var(--text);">Certify</strong> — The recording receives a Human Voice Signature™ Certificate: SHA-256 hash · C2PA manifest · AudioSeal watermark · Arweave-anchored permanently.</div>
+    </div>
+    <div style="display: flex; gap: 1.25rem; align-items: flex-start; padding: 1.25rem; background: var(--bg3); border: 1px solid rgba(255,255,255,0.05);">
+      <div style="font-family: 'Space Mono', monospace; font-size: 1.5rem; color: var(--gold); min-width: 2.5rem; font-weight: 700; line-height: 1;">03</div>
+      <div><strong style="color: var(--text);">Asset</strong> — The voice becomes a legal asset: licensable, inheritable, protected for 70 years past the creator's death.</div>
+    </div>
+    <div style="display: flex; gap: 1.25rem; align-items: flex-start; padding: 1.25rem; background: var(--bg3); border: 1px solid rgba(255,255,255,0.05);">
+      <div style="font-family: 'Space Mono', monospace; font-size: 1.5rem; color: var(--gold); min-width: 2.5rem; font-weight: 700; line-height: 1;">04</div>
+      <div><strong style="color: var(--text);">Earn</strong> — Every commercial use — healthcare, gaming, training data, advertising — generates an automatic <span style="color: var(--gold); font-weight: 700;">75/25 royalty split</span> in real time.</div>
+    </div>
+    <div style="display: flex; gap: 1.25rem; align-items: flex-start; padding: 1.25rem; background: var(--bg3); border: 1px solid rgba(255,255,255,0.05);">
+      <div style="font-family: 'Space Mono', monospace; font-size: 1.5rem; color: var(--gold); min-width: 2.5rem; font-weight: 700; line-height: 1;">05</div>
+      <div><strong style="color: var(--text);">See</strong> — The creator can see every use, every dollar, and every attribution on a live dashboard.</div>
+    </div>
+  </div>
+
+  <h3 style="font-size: 1.1rem; color: var(--muted); margin-bottom: 1.25rem; font-weight: 400;">Why it wins</h3>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>What every competitor offers</th>
+        <th>What NOIZYVOX offers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Voice generation tool</td><td>Voice as a legal asset</td></tr>
+      <tr><td>Terms of service consent</td><td>Consent-as-Code (Cloudflare D1/KV)</td></tr>
+      <tr><td>Quarterly opaque statement</td><td>Real-time Agentic Royalty</td></tr>
+      <tr><td>Platform owns the relationship</td><td>Creator owns the relationship</td></tr>
+      <tr><td>Platform owns the training data</td><td>Creator owns every training use</td></tr>
+      <tr><td>No post-death protection</td><td>Voice Estate — 70-year protection</td></tr>
+      <tr><td>Optional watermarking</td><td>NOIZY PROOF cryptographic provenance</td></tr>
+    </tbody>
+  </table>
+
+  <div style="background: rgba(255,59,59,0.05); border: 1px solid rgba(255,59,59,0.2); border-left: 4px solid var(--red); padding: 2rem; margin-bottom: 3rem;">
+    <p style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--red); letter-spacing: 0.15em; margin-bottom: 0.75rem;">THE ENTERPRISE LEGAL CLOSE</p>
+    <p style="font-size: 0.95rem; color: var(--text); line-height: 1.75;">Companies currently using unconsented AI voice face a specific, growing legal exposure. The NO FAKES Act and its international equivalents are creating liability for companies that use AI voice without verified consent chains. HVS™ certification eliminates that exposure entirely — not through a terms of service, but through a <strong style="color: var(--text);">cryptographic provenance record that is legally bulletproof by design.</strong></p>
+    <p style="font-size: 0.95rem; color: var(--text); line-height: 1.75; margin-top: 1rem;">When a healthcare system, game studio, or Fortune 500 company needs AI voice and their legal team asks "can you prove consent?" — NOIZYVOX is the only provider where the answer is architecturally <strong style="color: var(--gold);">yes.</strong></p>
+  </div>
+
+  <div class="proof-block">
+    <p class="proof-quote">"I am the first client. If it doesn't work for me, it ships to nobody."</p>
+    <p style="font-size: 0.9rem; color: var(--text); line-height: 1.7; margin-bottom: 1rem;">Rob Plowman — 40-year professional composer, audio director, and sound designer — is the first NOIZYVOX client. His voice model (RSP_001) is the live proof that the entire system works. His royalty dashboard is public and updating in real time. He is not pitching a product he believes in. He is pitching a product he depends on.</p>
+    <p class="proof-attr">— RSP_001 · Fish Music Inc., Est. 1996 · Ottawa</p>
+  </div>
+</div>
+
+<div class="divider-line"></div>
+
+<!-- ── LAYER 2: THE COMPANY ──────────────────────────────── -->
+<span class="section-anchor" id="layer2"></span>
+<div class="section">
+  <div class="layer-badge l2">● Layer 2 — The Company</div>
+  <h2 class="section-title">NOIZYFISH INC.<br><span style="color: var(--muted); font-weight: 400;">The MC96ECO Universe</span></h2>
+  <p class="section-subtitle">Five integrated platforms. One consent architecture. One royalty engine. One 500-year operating philosophy.</p>
+
+  <table class="universe-table">
+    <thead>
+      <tr>
+        <th>Platform</th>
+        <th>Role</th>
+        <th>Revenue Model</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="platform-name">NOIZY.ai</span></td>
+        <td>The Mothership — flagship intelligence platform</td>
+        <td style="color: var(--muted); font-size: 0.85rem;">Subscription + enterprise</td>
+        <td><span class="status-pill status-live">Live</span></td>
+      </tr>
+      <tr>
+        <td><span class="platform-name">NOIZYVOX</span></td>
+        <td>Voice as inheritable asset (A.I.V.A.)</td>
+        <td style="color: var(--muted); font-size: 0.85rem;">75/25 perpetual royalty</td>
+        <td><span class="status-pill status-q2">Q2 2026</span></td>
+      </tr>
+      <tr>
+        <td><span class="platform-name">NOIZYLAB</span></td>
+        <td>Ottawa tech services — practical revenue engine</td>
+        <td style="color: var(--muted); font-size: 0.85rem;">$89 flat rate × 12/day</td>
+        <td><span class="status-pill status-q2">Q2 2026</span></td>
+      </tr>
+      <tr>
+        <td><span class="platform-name">NOIZYKIDZ</span></td>
+        <td>Haptic music for deaf/spectrum children</td>
+        <td style="color: var(--muted); font-size: 0.85rem;">Research/grants + mission</td>
+        <td><span class="status-pill status-aug">Aug 2026</span></td>
+      </tr>
+      <tr>
+        <td><span class="platform-name">Fish Music Inc.</span></td>
+        <td>34TB legacy vault — THE_AQUARIUM</td>
+        <td style="color: var(--muted); font-size: 0.85rem;">Sync licensing, catalog</td>
+        <td><span class="status-pill status-active">Active</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background: var(--bg3); border: 1px solid rgba(255,255,255,0.06); padding: 2rem; margin-bottom: 3rem;">
+    <p style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 1.25rem; text-transform: uppercase;">Revenue Reality Today</p>
+    <div class="inline-stats">
+      <div class="inline-stat">
+        <span class="inline-stat-val">$89</span>
+        <span class="inline-stat-label">flat-rate device repair (NOIZYLAB)</span>
+      </div>
+      <div class="inline-stat">
+        <span class="inline-stat-val">12</span>
+        <span class="inline-stat-label">repairs/day target, Ottawa market</span>
+      </div>
+      <div class="inline-stat">
+        <span class="inline-stat-val">$389K</span>
+        <span class="inline-stat-label">annual run rate target from ops</span>
+      </div>
+      <div class="inline-stat">
+        <span class="inline-stat-val">34TB</span>
+        <span class="inline-stat-label">THE_AQUARIUM — largest consented audio dataset</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+    <div style="background: var(--bg3); border: 1px solid rgba(0,229,255,0.15); padding: 1.75rem;">
+      <p style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--cyan); letter-spacing: 0.15em; margin-bottom: 0.75rem;">SUPERSONIC AI STACK V2.0</p>
+      <p style="font-size: 0.9rem; line-height: 1.7;">9 layers · 19 HuggingFace models · $16,000+/year in cost savings vs. commercial alternatives. This is not "we use AI." This is "we own our AI, top to bottom."</p>
+    </div>
+    <div style="background: var(--bg3); border: 1px solid rgba(245,200,66,0.15); padding: 1.75rem;">
+      <p style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.15em; margin-bottom: 0.75rem;">GABRIEL_V3</p>
+      <p style="font-size: 0.9rem; line-height: 1.7;">The orchestration intelligence. Lives at 10.90.90.20. 315+ memcells. Turns Rob's voice commands into fully executed creative, business, and technical outcomes. The GORUNFREE engine.</p>
+    </div>
+  </div>
+
+  <p style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 1.25rem; text-transform: uppercase;">Board of Aligned Minds</p>
+  <div class="board-grid">
+    <div class="board-card">
+      <p class="board-name">Alex</p>
+      <p class="board-role">Enterprise Strategy · Capital Architecture</p>
+      <p class="board-desc">Capital architecture and enterprise strategy. License flag authority. The one who knows how the money moves and how the money changes things.</p>
+    </div>
+    <div class="board-card">
+      <p class="board-name">Dr. Brien Benoit</p>
+      <p class="board-role">Neurosurgeon · Ottawa Civic Hospital · NAI</p>
+      <p class="board-desc">Health Canada PMPRB Chair. NAI research partner. Peer-reviewed proof that artist-created, consent-locked audio produces measurably different neurological responses. The science that makes NOIZYKIDZ irrefutable.</p>
+    </div>
+    <div class="board-card">
+      <p class="board-name">Adam Robb</p>
+      <p class="board-role">Senior Security Consultant · iPSS Inc.</p>
+      <p class="board-desc">Owns NOIZY PROOF watermarking and cryptographic provenance development. The security layer that makes consent not just promisable — but enforceable.</p>
+    </div>
+  </div>
+
+  <h3 style="font-size: 1rem; color: var(--muted); margin-bottom: 1.25rem; font-weight: 400;">The competitive moat — 12 dimensions, zero direct competitors</h3>
+  <div class="moat-grid" id="moat-grid">
+    <div class="moat-item"><span class="moat-num">01</span><span class="moat-text">Consent-as-Code Architecture</span></div>
+    <div class="moat-item"><span class="moat-num">02</span><span class="moat-text">75/25 Perpetual Royalty Split</span></div>
+    <div class="moat-item"><span class="moat-num">03</span><span class="moat-text">Voice Estate IP Framework</span></div>
+    <div class="moat-item"><span class="moat-num">04</span><span class="moat-text">Neuro-Acoustic Research Layer</span></div>
+    <div class="moat-item"><span class="moat-num">05</span><span class="moat-text">Haptic / Accessibility Pipeline</span></div>
+    <div class="moat-item"><span class="moat-num">06</span><span class="moat-text">NOIZY PROOF Watermarking</span></div>
+    <div class="moat-item"><span class="moat-num">07</span><span class="moat-text">Living Score Adaptive Music</span></div>
+    <div class="moat-item"><span class="moat-num">08</span><span class="moat-text">Own AI Stack (9L · 19 Models)</span></div>
+    <div class="moat-item"><span class="moat-num">09</span><span class="moat-text">40-Year Creator Archive (34TB)</span></div>
+    <div class="moat-item"><span class="moat-num">10</span><span class="moat-text">Creator-Founder Proof of Concept</span></div>
+    <div class="moat-item"><span class="moat-num">11</span><span class="moat-text">Canadian Ethics Alignment</span></div>
+    <div class="moat-item"><span class="moat-num">12</span><span class="moat-text">500-Year Codex Vision</span></div>
+  </div>
+  <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 3rem; font-style: italic;">ElevenLabs has partial watermarking. Suno has partial Living Score. No competitor has any of the first three dimensions. No competitor is trying to.</p>
+
+  <h3 style="font-size: 1rem; color: var(--muted); margin-bottom: 1.25rem; font-weight: 400;">Why now</h3>
+  <div class="why-now-grid" id="why-now">
+    <div class="why-pill">NO FAKES Act (USA) creating direct legal liability for companies using unconsented AI voice</div>
+    <div class="why-pill">EU AI Act requiring provenance documentation for all commercial AI audio</div>
+    <div class="why-pill">SAG-AFTRA's 2023 agreement establishing AI consent provisions — NOIZY's architecture exceeds all of them</div>
+    <div class="why-pill">Enterprise legal teams are actively searching for a compliant AI voice provider. There is no clear leader.</div>
+    <div class="why-pill" style="grid-column: span 2;">The window to establish the consent standard — before platforms lock in their own proprietary versions — is open right now and will close within 18 months.</div>
+  </div>
+</div>
+
+<div class="divider-line"></div>
+
+<!-- ── LAYER 3: THE CIVILIZATION ─────────────────────────── -->
+<span class="section-anchor" id="layer3"></span>
+<div class="section">
+  <div class="layer-badge l3">● Layer 3 — The Civilization</div>
+  <h2 class="section-title">The 5th Epoch Thesis</h2>
+  <p class="section-subtitle">The history of the music business is a 600-year pattern: new technology, new power class, same extraction. NOIZY breaks the pattern.</p>
+</div>
+
+<!-- Epoch Rail -->
+<section id="epoch-vis">
+  <div style="text-align: center; margin-bottom: 3rem; padding: 0 2rem;">
+    <p style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase;">600 Years · Five Transitions · One Correction</p>
+  </div>
+
+  <div class="epoch-rail">
+    <div class="epoch-spine"></div>
+
+    <!-- I -->
+    <div class="epoch-col">
+      <div class="epoch-top">
+        <div class="epoch-card">
+          <div class="epoch-era">1400s–1920s</div>
+          <div class="epoch-name">I — Notation</div>
+          <div class="epoch-row"><span class="epoch-row-key">Product</span><span class="epoch-row-val">Sheet Music</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Power</span><span class="epoch-row-val">The Printer</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Creator</span><span class="epoch-row-val">Fraction of print</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Ended by</span><span class="epoch-row-val">Phonograph</span></div>
+        </div>
+      </div>
+      <div class="epoch-node"></div>
+      <div class="epoch-bottom"></div>
+    </div>
+
+    <div class="arrow-divider">→</div>
+
+    <!-- II -->
+    <div class="epoch-col">
+      <div class="epoch-top"></div>
+      <div class="epoch-node"></div>
+      <div class="epoch-bottom">
+        <div class="epoch-card">
+          <div class="epoch-era">1920s–1990s</div>
+          <div class="epoch-name">II — Recording</div>
+          <div class="epoch-row"><span class="epoch-row-key">Product</span><span class="epoch-row-val">The Recording</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Power</span><span class="epoch-row-val">The Label</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Creator</span><span class="epoch-row-val">8–15% post-recoup</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Ended by</span><span class="epoch-row-val">Digital file</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-divider">→</div>
+
+    <!-- III -->
+    <div class="epoch-col">
+      <div class="epoch-top">
+        <div class="epoch-card">
+          <div class="epoch-era">2000s</div>
+          <div class="epoch-name">III — Digital</div>
+          <div class="epoch-row"><span class="epoch-row-key">Product</span><span class="epoch-row-val">The File</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Power</span><span class="epoch-row-val">Apple/Platform</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Creator</span><span class="epoch-row-val">~$0.09/download</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Ended by</span><span class="epoch-row-val">Streaming</span></div>
+        </div>
+      </div>
+      <div class="epoch-node"></div>
+      <div class="epoch-bottom"></div>
+    </div>
+
+    <div class="arrow-divider">→</div>
+
+    <!-- IV -->
+    <div class="epoch-col">
+      <div class="epoch-top"></div>
+      <div class="epoch-node"></div>
+      <div class="epoch-bottom">
+        <div class="epoch-card">
+          <div class="epoch-era">2010s–Present</div>
+          <div class="epoch-name">IV — Streaming</div>
+          <div class="epoch-row"><span class="epoch-row-key">Product</span><span class="epoch-row-val">Access</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Power</span><span class="epoch-row-val">The Algorithm</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Creator</span><span class="epoch-row-val">$0.003/stream</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Ended by</span><span class="epoch-row-val">Consent-as-Code</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-divider final">→</div>
+
+    <!-- V -->
+    <div class="epoch-col epoch-v">
+      <div class="epoch-top">
+        <div class="epoch-card">
+          <div class="epoch-era">2026–2526</div>
+          <div class="epoch-name">V — Protocol</div>
+          <div class="epoch-row"><span class="epoch-row-key">Product</span><span class="epoch-row-val">Inheritable Asset</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Power</span><span class="epoch-row-val">The Creator</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Creator</span><span class="epoch-row-val">75% · Code-enforced</span></div>
+          <div class="epoch-row"><span class="epoch-row-key">Ended by</span><span class="epoch-row-val">Nothing. It is the floor.</span></div>
+        </div>
+      </div>
+      <div class="epoch-node"></div>
+      <div class="epoch-bottom"></div>
+    </div>
+  </div>
+</section>
+
+<div class="section">
+  <div class="tcpip-block">
+    <p><strong>The TCP/IP Analogy</strong></p>
+    <p style="margin-top: 0.75rem;">The internet still runs on TCP/IP, a protocol designed in 1974. It was not disrupted by browsers, by smartphones, by social media, or by AI. It was <em>adopted</em> by all of them. Every new technology that moves data relies on TCP/IP.</p>
+    <p><strong>NOIZY's Consent-as-Code is designed with the same architecture logic.</strong> It is not a platform that can be disrupted by the next technology. It is the consent layer that the next technology will need to run on. The future Spotifys, Apples, and Metas will not compete with NOIZY. They will need to license NOIZY's protocol to access the only legally bulletproof, ethically certified creative AI training dataset in existence.</p>
+  </div>
+
+  <div class="royalty-statement">
+    <p class="royalty-big">The Agentic Royalty</p>
+    <p style="font-size: 1rem; color: var(--text); max-width: 680px; margin: 0 auto 1.5rem; line-height: 1.7;">In 1909, the Copyright Act created the mechanical royalty — a legal requirement for payment every time a song is mechanically reproduced. That royalty still flows today, 117 years later.</p>
+    <p class="royalty-big" style="font-size: clamp(1rem, 2.5vw, 1.6rem);">NOIZY creates the Agentic Royalty.</p>
+    <p class="royalty-sub">A technical requirement — enforced by code — for payment every time a GABRIEL agent or any licensed AI uses a Guild creator's work. Not quarterly. Not after recoupment. In real time, to the creator's account, forever — including 70 years after the creator's death.</p>
+  </div>
+
+  <div style="background: linear-gradient(135deg, rgba(183,142,255,0.07), rgba(245,200,66,0.03)); border: 1px solid rgba(183,142,255,0.2); padding: 2.5rem; margin-bottom: 3rem;">
+    <p style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: #b78eff; letter-spacing: 0.15em; margin-bottom: 1.25rem; text-transform: uppercase;">The 500-Year Scope</p>
+    <p style="font-size: 1rem; line-height: 1.8; color: var(--text);">The DreamChamber Codex maps seven epochs, 2026 to 2526. Rob's 40-year body of work in THE_AQUARIUM is the seed. The 500-Year Codex is the map. The Guild is the civilization-scale infrastructure being built to house, protect, and pay every human creative contribution for the next half-millennium.</p>
+    <p style="font-size: 1rem; line-height: 1.8; color: var(--text); margin-top: 1rem;"><strong style="color: #b78eff;">This is not a rhetorical flourish.</strong> It is the literal design parameter. Every architecture decision is tested against one question: <em style="color: var(--gold);">does this last 500 years?</em></p>
+  </div>
+
+  <div style="background: var(--bg3); border: 1px solid rgba(255,255,255,0.06); padding: 2rem; margin-bottom: 3rem;">
+    <p style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 1.25rem; text-transform: uppercase;">NOIZYKIDZ — The Soul Mission</p>
+    <p style="font-size: 0.95rem; line-height: 1.75; color: var(--text);">The most important long-term value driver in the MC96ECO universe — not because it generates revenue initially, but because it builds the audience that will demand NOIZY's standards for the rest of their lives. A child who grows up understanding that music is ancient and human and from everywhere — who felt music through a haptic vest in a hospital because they are deaf — that child is permanently immune to the cannibal economy's central lie.</p>
+    <p style="font-size: 0.88rem; color: var(--muted); margin-top: 0.75rem;">Eligible for research grants · university partnerships · UNESCO alignment · philanthropic funding. Inspired by Nims — Mike Nemesvary, quadriplegic world champion, Rob's close friend — who showed the world what a human being can do with no limits.</p>
+  </div>
+</div>
+
+<div class="divider-line"></div>
+
+<!-- ── ROADMAP ───────────────────────────────────────────── -->
+<span class="section-anchor" id="roadmap"></span>
+<div class="section">
+  <div class="layer-badge l2">● Six-Month Roadmap</div>
+  <h2 class="section-title">Series A Readiness<br><span style="color: var(--muted); font-weight: 400;">March → September 2026</span></h2>
+
+  <table class="roadmap-table">
+    <tbody>
+      <tr>
+        <td>Mar 2026</td>
+        <td>NOIZY.ai temp homepage live. Founder Blueprint published. Brand system complete.</td>
+      </tr>
+      <tr>
+        <td>Apr 2026</td>
+        <td>NOIZYVOX portal build. RSP_001 GPU environment. A.I.V.A. branding locked.</td>
+      </tr>
+      <tr>
+        <td>May 2026</td>
+        <td>Operation Voice Army — first voice actors onboarded. NOIZY PROOF alpha. License flags cleared (Alex). <em style="color: var(--muted); font-size: 0.82rem;">Note: MusicGen, MaskGCT, Tango 2, Fish Speech require Alex's review before commercial sync.</em></td>
+      </tr>
+      <tr>
+        <td>Jun 2026</td>
+        <td>Living Score prototype. Fish Music sync portal live. NOIZYLAB portal launch.</td>
+      </tr>
+      <tr>
+        <td>Jul 2026</td>
+        <td>Cultural Resonance Engine research. NAI partnership (Dr. Benoit) deepens. NRC IRAP application.</td>
+      </tr>
+      <tr>
+        <td>Aug 2026</td>
+        <td>NOIZYKIDZ haptics prototype. LIFELUV AI alpha. DreamChamber client beta.</td>
+      </tr>
+      <tr>
+        <td>Sep 2026</td>
+        <td style="color: var(--gold); font-weight: 500;">Full MC96ECO Universe live. 6-month competitive lead locked in. <strong>Series A readiness.</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background: rgba(245,200,66,0.05); border: 1px solid rgba(245,200,66,0.2); padding: 1.5rem; font-family: 'Space Mono', monospace; font-size: 0.82rem; color: var(--gold); line-height: 1.8;">
+    Series A Readiness Metric: Full MC96ECO Universe live · 100 Guild members (Founding Artists) · 3 enterprise clients · RSP_001 dashboard public and accumulating proof events · September 2026.
+  </div>
+</div>
+
+<div class="divider-line"></div>
+
+<!-- ── THE ASK ───────────────────────────────────────────── -->
+<span class="section-anchor" id="ask"></span>
+<div class="section">
+  <div class="layer-badge l1">● The Ask</div>
+  <h2 class="section-title">Use of Funds</h2>
+  <p class="section-subtitle">Amounts to be determined with Alex. The allocation logic below is the strategic architecture.</p>
+
+  <div class="fund-grid" id="fund-grid">
+    <div class="fund-row" data-pct="40" style="--target-width: 40%;">
+      <span class="fund-pct">40%</span>
+      <div class="fund-bar-wrap"><div class="fund-bar"></div></div>
+      <span class="fund-label">NOIZYVOX platform build — GABRIEL integration, voice pipeline, HVS™ certificate system, enterprise dashboard</span>
+    </div>
+    <div class="fund-row" data-pct="25" style="--target-width: 25%;">
+      <span class="fund-pct">25%</span>
+      <div class="fund-bar-wrap"><div class="fund-bar"></div></div>
+      <span class="fund-label">NOIZY PROOF watermarking system — Adam Robb / iPSS Inc. partnership</span>
+    </div>
+    <div class="fund-row" data-pct="20" style="--target-width: 20%;">
+      <span class="fund-pct">20%</span>
+      <div class="fund-bar-wrap"><div class="fund-bar"></div></div>
+      <span class="fund-label">Operations and team — bridging NOIZYLAB revenue gap, first hires</span>
+    </div>
+    <div class="fund-row" data-pct="10" style="--target-width: 10%;">
+      <span class="fund-pct">10%</span>
+      <div class="fund-bar-wrap"><div class="fund-bar"></div></div>
+      <span class="fund-label">NAI research partnership — Dr. Benoit, neuroacoustic study</span>
+    </div>
+    <div class="fund-row" data-pct="5" style="--target-width: 5%;">
+      <span class="fund-pct">5%</span>
+      <div class="fund-bar-wrap"><div class="fund-bar"></div></div>
+      <span class="fund-label">NOIZYKIDZ haptics prototype</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider-line"></div>
+
+<!-- ── CLOSING ───────────────────────────────────────────── -->
+<section class="closing-section">
+  <canvas id="closing-canvas"></canvas>
+  <div class="closing-content">
+    <p style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 2rem;">The Single Truest Statement</p>
+
+    <p class="closing-statement">
+      <em>NOIZY is not an AI company that respects creators.</em><br>
+      <span class="cyan">NOIZY is a creator company that happens to be the best AI in the world.</span>
+    </p>
+
+    <p class="closing-statement" style="font-size: clamp(0.9rem, 2vw, 1.15rem); margin-bottom: 3.5rem;">
+      The difference is the infrastructure.<br>
+      The infrastructure is the policy.<br>
+      The policy is the product.<br><br>
+      <em>And the product has a 500-year warranty.</em>
+    </p>
+
+    <div class="gorunfree">GORUNFREE.</div>
+
+    <div class="closing-meta">
+      RSP_001 — Fish Music Inc., Est. 1996, Ottawa<br>
+      NOIZYFISH INC. · MC96ECO Universe · Board of Aligned Minds<br>
+      rsp@noizyfish.com · noizy.ai<br>
+      Confidential — March 14, 2026
+    </div>
+  </div>
+</section>
+
+<script>
+// ── HERO CANVAS ──────────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [], lines = [];
+
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = (Math.random() - 0.5) * 0.3;
+      this.size = Math.random() * 1.5 + 0.3;
+      this.alpha = Math.random() * 0.4 + 0.1;
+      this.color = Math.random() > 0.5 ? [245, 200, 66] : [0, 229, 255];
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${this.color[0]},${this.color[1]},${this.color[2]},${this.alpha})`;
+      ctx.fill();
+    }
+  }
+
+  function init() {
+    particles = [];
+    for (let i = 0; i < 120; i++) particles.push(new Particle());
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    // subtle radial gradient center
+    const g = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, Math.min(w,h)*0.6);
+    g.addColorStop(0, 'rgba(245,200,66,0.04)');
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+
+    // connect nearby particles
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if (d < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(245,200,66,${0.06 * (1 - d/120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); init(); });
+  resize(); init(); draw();
+})();
+
+// ── CLOSING CANVAS ───────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('closing-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, sparks = [];
+
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
+
+  class Spark {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = w/2 + (Math.random()-0.5)*300;
+      this.y = h/2 + (Math.random()-0.5)*200;
+      this.vx = (Math.random()-0.5)*0.8;
+      this.vy = -Math.random()*0.8 - 0.2;
+      this.life = 1;
+      this.decay = Math.random()*0.004 + 0.002;
+      this.size = Math.random()*2 + 0.5;
+      const t = Math.random();
+      this.color = t > 0.66 ? [245,200,66] : t > 0.33 ? [0,229,255] : [183,142,255];
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.life -= this.decay;
+      if (this.life <= 0) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${this.color[0]},${this.color[1]},${this.color[2]},${this.life*0.6})`;
+      ctx.fill();
+    }
+  }
+
+  function init() {
+    sparks = [];
+    for (let i = 0; i < 150; i++) sparks.push(new Spark());
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    sparks.forEach(s => { s.update(); s.draw(); });
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); init(); });
+  resize(); init(); draw();
+})();
+
+// ── SCROLL REVEALS ───────────────────────────────────────
+const moatItems = document.querySelectorAll('.moat-item');
+const whyPills = document.querySelectorAll('.why-pill');
+const fundRows = document.querySelectorAll('.fund-row');
+
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const delay = el.dataset.delay || 0;
+      setTimeout(() => el.classList.add('visible'), delay * 80);
+      revealObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.15 });
+
+moatItems.forEach((el, i) => {
+  el.dataset.delay = i;
+  revealObs.observe(el);
+});
+
+whyPills.forEach((el, i) => {
+  el.dataset.delay = i;
+  revealObs.observe(el);
+});
+
+const fundObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), 200);
+      fundObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+fundRows.forEach(el => fundObs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="ja"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="ja"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="ja"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]> 
+<!--><html class="no-js" lang="ja"><!--<![endif]-->
+  <head lang="ja">    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Tonalバランスコントロールユーザーズマニュアル - Tonalバランスコントロールユーザーズマニュアル</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+    <meta name="description" content="Tonal Balance Control Documentation">
+    <link rel="canonical" href="index.html">
+    <meta name="author" content="iZotope">
+    <meta property="og:url" content="http://www.izotope-tonal_balance_control-docs.com/ja/print/index.html">
+    <meta property="og:title" content="Tonalバランスコントロールユーザーズマニュアル">
+    
+    <meta name="apple-mobile-web-app-title" content="Tonalバランスコントロールユーザーズマニュアル">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+    
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/palettes.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+    
+    
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css"><link rel="stylesheet" href="../stylesheets/ie7.css">
+    <script src="../javascripts/modernizr.js"></script>
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-17', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    </head>
+<body class="palette-primary-print-page palette-accent-print-page">
+
+  <div class="backdrop">
+    <div class="backdrop-paper"></div>
+  </div>
+  <input class="toggle" type="checkbox" id="toggle-drawer">
+  <input class="toggle" type="checkbox" id="toggle-search">
+  <label class="toggle-button overlay" for="toggle-drawer"></label>
+  <header class="header">    <nav aria-label="Header">
+      <div class="bar default">
+        <div class="button button-menu" role="button" aria-label="Menu">
+          <label class="toggle-button icon icon-menu" for="toggle-drawer">
+            <span></span>
+          </label>
+        </div>
+        <div class="stretch">
+          <div class="title">
+            <a href="../index.html" >
+            <img src="../images/header-intro-site/site-header.png">   Tonalバランスコントロールユーザーズマニュアル</a>
+          </div>
+        </div>
+            
+      </div>
+      <div class="bar search">
+        <div class="button button-close" role="button" aria-label="Close">
+          <label class="toggle-button icon icon-back" for="toggle-search"></label>
+        </div>
+        <div class="stretch">
+          <div class="field">
+            <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+          </div>
+        </div>
+        <div class="button button-reset" role="button" aria-label="Search">
+          <button class="toggle-button icon icon-close" id="reset-search"></button>
+        </div>
+      </div>
+    </nav></header>
+  <main class="main">
+    <div class="drawer">
+  
+</div>
+    <article class="article">
+      <div class="wrapper">
+	<img src="../images/header-intro-site/site-header-print.png" alt="iZotope Tonal Balance Control">
+	<h1>Tonalバランスコントロールユーザーズマニュアル</h1>
+  
+  
+	<hr /><h1><span class="icon icon-bookmark"></span>  メーターとターゲット曲線</h1>
+  
+
+<h2 id="概要">概要</h2>
+
+<p>トーナルバランスコントロールは、インサートされたトラックのターゲット曲線との相対的なスペクトラムメーター情報を表示します。これは、ミックスやマスタリング時に出来するトーンバランス的な問題に取り組む際に特に便利な機能です。トーナルバランスコントロールは、低域のパワー不足、あるいは高域の鮮やかさ不足など、ミックスやマスタリング時に起こり得る問題を解決する上での道標、あるは改善の文脈を提供することで、プロフェッショナルな完成度のマテリアル作りの手助けをします。</p>
+
+<div class="admonition note">
+<p class="admonition-title">トーナルバランスコントロールは信号チェーンの末尾で使用する必要があります</p>
+<p><ul>
+<li>トーナルバランスコントロール・プラグインを最大限に活用する上で、同プラグインをマスターバストラックの信号処理チェーンの末尾にインサートすることを推奨します。<br /></li>
+<li>これにより、選択されているターゲット曲線と比較するスペクトラム曲線が、確実にセッション内の全ての処理を終えたものとなります。<br /></li>
+<li>トーナルバランスコントロールが信号処理チェーンの末尾にあると、Neutron 2、あるいはOzone 8のEQで行われた調整が、確実にトーナルバランスコントロールに表示されるスペクトラム曲線に反映されるようになります。<br /></li>
+</ul>
+</p>
+</div>
+
+<p>トーナルバランスコントロールのファクトリー仕様のターゲット曲線は、異なるスタイルの音楽で見られる典型的なスペクトラル形状を表しております。これらターゲット曲線は、様々なジャンルやスタイルの音楽の多種多様なトラックのスペクトラル特性を分析した上で作成されました。ターゲット曲線は類似したスタイルの音楽に対し、一定の幅のスペクトラル・バリエーションを表示します。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h2 id="broad-view-広域表示">Broad View（広域表示）</h2>
+
+<p><img src="../images/tbc-target-curves-meters/broad-view.png" alt="Broad View" /></p>
+
+<p>Broad Viewではターゲット曲線が4つの周波数帯域に分割されて表示されます。</p>
+
+<ul>
+<li>低域: 20 Hz - 250 Hz<br /></li>
+<li>低中域: 250 Hz - 2 kHz<br /></li>
+<li>中域: 2kHz - 8 kHz<br /></li>
+<li>高域: 8 kHz - 20 kHz<br />
+<br /></li>
+</ul>
+
+<p>各周波数帯に表示される青いバーは、選択されたターゲット曲線の典型的なスペクトラル・バリエーションを表しています。</p>
+
+<p>白線により、トラックとターゲット曲線の比較状態が更新されます。OzoneやNeutronのEQで調整し、青いターゲット幅に収まるようにミックスを修正することができます。</p>
+
+<h2 id="fine-view-詳細表示">Fine View（詳細表示）</h2>
+
+<p><img src="../images/tbc-target-curves-meters/fine-view.png" alt="Fine View" /></p>
+
+<p>Fine Viewでは周波数スペクトラム全域を通し、選択されたターゲット曲線の幅が青色で表示されます。この表示では白いスペクトラム曲線はその時のトラックを表します。</p>
+
+<h2 id="帯域インジケーター">帯域インジケーター</h2>
+
+<p><img src="../images/tbc-target-curves-meters/target-selection.png" alt="Band Indicators" /></p>
+
+<p>周波数帯の表示は、その時のトラックが選択されているターゲット曲線に対し、典型的な幅に収まっていると白に変わります。</p>
+
+<h2 id="crest-factor-波高因子">Crest Factor（波高因子）</h2>
+
+<p><img src="../images/tbc-target-curves-meters/crest-factor-close.png" alt="Crest Factor" /></p>
+
+<p>Crest Factorメーターは、トラック内の低域のダイナミックレンジに関する情報を表示します。メーターの比重が左側にある場合、そのミックスは低域が「過度にダイナミック」であることを意味します。右側に比重がある場合、そのミックスは低域が「過度に圧縮」されていることを意味します。</p>
+
+<h2 id="ターゲット曲線">ターゲット曲線</h2>
+
+<p><img src="../images/tbc-target-curves-meters/target-selection.png" alt="Target Menu" /></p>
+
+<p>トーナルバランスコントロールには、主要な音楽スタイルに合わせた典型的なスペクトラル曲線を表示する以下の3種類のファクトリー仕様ターゲット曲線があります。</p>
+
+<ul>
+<li><strong>ORCHESTRAL（オーケストラ用）</strong><br /></li>
+<li><strong>BASS HEAVY（重量感ベース）</strong><br /></li>
+<li><strong>MODERN（モダン）</strong><br />
+<br /></li>
+</ul>
+
+<h2 id="カスタムターゲット曲線">カスタムターゲット曲線</h2>
+
+<p>ターゲット曲線のドロップダウンメニュー右側のメニューボタンをクリックすると、自分自身でターゲット曲線を作成するオプションが表示されます。</p>
+
+<table>
+<thead>
+<tr>
+<th>サポートされるファイル形式</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>AIFF</td>
+</tr>
+
+<tr>
+<td>WAV</td>
+</tr>
+
+<tr>
+<td>MP3</td>
+</tr>
+
+<tr>
+<td>M4A</td>
+</tr>
+
+<tr>
+<td>FLAC</td>
+</tr>
+
+<tr>
+<td>OGG</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="create-custom-target-curve-from-file-ファイルからカスタムターゲット曲線を作成">Create custom target curve from file&hellip;（ファイルからカスタムターゲット曲線を作成）</h3>
+
+<p>カスタムターゲット曲線を作成するため、オーディオファイルを選択するシステム画面が開きます。</p>
+
+<h3 id="create-custom-target-from-folder-of-files-ファイルのフォルダからカスタムターゲット曲線を作成">Create custom target from folder of files&hellip;（ファイルのフォルダからカスタムターゲット曲線を作成）</h3>
+
+<p>オーディオファイルのフォルダが選択できます。トーナルバランスコントロールは、選択されたフォルダに存在する全てのオーディオファイルをもとに、単一のターゲット曲線を作成します。</p>
+
+<h3 id="save-custom-target-curve-カスタムターゲット曲線を保存">Save custom target curve&hellip;（カスタムターゲット曲線を保存）</h3>
+
+<p>将来的な使用に備え、作成したカスタムターゲット曲線を保存します。</p>
+
+<h3 id="change-target-curve-folder-ターゲット曲線のフォルダを変更">Change target curve folder&hellip;（ターゲット曲線のフォルダを変更）</h3>
+
+<p>ターゲット曲線の保存とリコールを行うための場所を変更することができます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">ターゲット曲線フォルダのデフォルト位置</p>
+<p><ul>
+<li><strong>Mac</strong>: ユーザ/実際のユーザ名/書類/iZotope/Tonal Balance Control/Target Curves<br /></li>
+<li><strong>Windows</strong>: C:\ユーザ\実際のユーザ名\書類\iZotope\Tonal Balance Control\Target Curves<br /></li>
+</ul>
+</p>
+</div>
+
+<h3 id="show-target-curve-folder-in-finder-explorer-ファインダー-エクスプローラーでターゲット曲線フォルダを表示">Show target curve folder in finder/explorer&hellip;（ファインダー/エクスプローラーでターゲット曲線フォルダを表示）</h3>
+
+<p>ファインダー（Mac）、またはエクスプローラー（Windows）上で現在のターゲット曲線のディレクトリを表示します。</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  トーナルバランスコントロールでのOzone 8</h1>
+  
+
+<h2 id="概要">概要</h2>
+
+<p>トーナルバランスコントロールのプラグイン選択メニューより、使用するOzone 8を選択すると、リモートでEQのパラメーターが操作できるほか、全てのOzone 8プラグインのスペクトラムメーターを見ることができます。</p>
+
+<p><img src="../images/tbc-o8/o8-eq-display.png" alt="Ozone 8 instance selected" /></p>
+
+<p>以下の表は、トーナルバランスコントロールにて操作や表示の可否を表したOzone 8プラグインの種類の一覧です。</p>
+
+<table>
+<thead>
+<tr>
+<th>プラグイン/モジュール名</th>
+<th>EQ操作</th>
+<th>スペクトラム表示</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Ozone 8 / EQモジュール</td>
+<td>あり</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 / ポストEQモジュール</td>
+<td>あり</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 EQ</td>
+<td>あり</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 ダイナミック EQ</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 ダイナミクス</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 エキサイター</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 イメージャー</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 マキシマイザー</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 スペクトラル成形</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 ビンテージリミッター</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 ビンテージ EQ</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 ビンテージテープ</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 ビンテージコンプレッサー</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+</tbody>
+</table>
+
+<p>EQ操作のないOzone 8プラグインがトーナルバランスコントロールで選択されると、以下のような画面になります:<br />
+<img src="../images/tbc-o8/o8-plugin-no-eq-controls.png" alt="No EQ Controls" /></p>
+
+<p>EQ互換のあるOzone 8プラグインがトーナルバランスコントロールで選択されると、以下のような画面になります:<br />
+<img src="../images/tbc-o8/o8-eq-params-close.png" alt="EQ Controls" /></p>
+
+<h2 id="グローバルeq操作">グローバルEQ操作</h2>
+
+<p><img src="../images/tbc-o8/o8-global-bar.png" alt="global control bar" /></p>
+
+<h3 id="source-plug-in-selection-menu-ソースプラグイン選択メニュー">Source Plug-in Selection Menu（ソースプラグイン選択メニュー）</h3>
+
+<p>トーナルバランスコントロールのインターフェースで表示/操作する使用プラグインが選択できます。</p>
+
+<h3 id="analog-digital-surgical-アナログ-デジタル-整形モード">Analog/Digital/Surgical（アナログ/デジタル/整形モード）</h3>
+
+<p>グローバルEQの処理モードを設定します。</p>
+
+<ul>
+<li><strong>ANALOG（アナログ）:</strong> ここが選択されると、最小位相特性のアナログ型フィルターが全EQ帯域に使用されます。<br /></li>
+<li><strong>DIGITAL（デジタル）:</strong> ここが選択されると、位相特性の調整が可能なフィルターが全EQ帯域に使用されます。<br /></li>
+<li><strong>SURGICAL（整形）:</strong> ここが選択されると、精密なデジタルフィルターが全EQ帯域に使用されます。整形モードでは選択されたフィルター形状のみ使用可能です。<br />
+<br /></li>
+</ul>
+
+<h3 id="bypass-バイパス">Bypass（バイパス）</h3>
+
+<p>一時的に選択されたOzone 8プラグインのEQ処理をバイパスします。このバイパス操作は、A/B比較の際に便利です。</p>
+
+<div class="admonition note">
+<p class="admonition-title">EQバイパス状態に関する注</p>
+<p><ul>
+<li>選択されたEQがプラグインでバイパスされていると、トーナルバランスコントロール上の操作項目は淡色表示となります。選択されたプラグインでEQを有効にするには、プラグイン画面を表示させ、EQのバイパスを解く必要があります。トーナルバランスコントロールのインターフェースから、選択されたプラグインのEQのバイパス状態を変えることはできません。<br /></li>
+</ul>
+</p>
+</div>
+
+<h3 id="show-hide-selected-plug-in-display-選択されたプラグイン画面の表示切り替え">Show/Hide Selected Plug-in Display（選択されたプラグイン画面の表示切り替え）</h3>
+
+<p>選択されたプラグイン画面の表示/非表示を切り替えます。</p>
+
+<h2 id="メーター機能と操作">メーター機能と操作</h2>
+
+<p><img src="../images/tbc-o8/o8-spectrum-close-up.png" alt="Spectrum and EQ curve" /></p>
+
+<h3 id="spectrum-metering-スペクトラムメーター">Spectrum Metering（スペクトラムメーター）</h3>
+
+<p>選択されたプラグインのスペクトラムメーターを表示します。Ozone 8プラグインのスペクトラムメーターは青で表示されます。</p>
+
+<h3 id="eq-curve-eq曲線">EQ Curve（EQ曲線）</h3>
+
+<p>選択されたOzone 8プラグインがEQ操作をサポートする場合、EQ曲線操作はスペクトラムメーターのある部分に表示されます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">EQ操作点の使用に関するヒント</p>
+<p><ul>
+<li><strong>フィルター形状の変更:</strong> 操作点を右クリックすると、表示されるメニュー内でフィルター形状を変更することができます。<br /></li>
+<li><strong>操作点をデフォルトにリセット:</strong> 操作点をダブルクリックするとデフォルト値にリセットされます。<br /></li>
+<li><strong>ダブルクリックで帯域を有効化:</strong> スペクトラム画面の空白部分をダブルクリックすると、その周波数の帯域が有効になります。<br /></li>
+</ul>
+</p>
+</div>
+
+<h3 id="帯域選択と操作項目の有効化-無効化">帯域選択と操作項目の有効化/無効化</h3>
+
+<p><img src="../images/tbc-o8/o8-band-selection-enable-disable-bar.png" alt="Band select and enable bar" /></p>
+
+<ul>
+<li>EQ帯域は、帯域番号の左にある電源ボタンで有効/無効を切り替えることができます。<br /></li>
+<li>帯域番号のアイコンを直接クリックすると、その帯域に関係した操作項目が表示されます。<br />
+<br /></li>
+</ul>
+
+<h2 id="eqの操作項目">EQの操作項目</h2>
+
+<p>選択されたOzone EQの操作項目は、トーナルバランスコントロールのインターフェース底部のバーに位置しています。</p>
+
+<p><img src="../images/tbc-o8/o8-static-band-controls.png" alt="EQ Controls" /></p>
+
+<ul>
+<li><strong>BAND SHAPE（帯域形状）:</strong> 選択された帯域に使用するフィルター形状を選択します。<br /></li>
+<li><strong>FREQUENCY（周波数）:</strong> 選択されたフィルターの中央周波数を設定します。<br /></li>
+<li><strong>GAIN（ゲイン）:</strong> 選択されたフィルターに適用されるゲインをプラス値かマイナス値で設定します。<br /></li>
+<li><strong>Q:</strong> 現在のフィルターの帯域幅を設定します。<br /></li>
+<li><strong>PHASE（位相: デジタル及び整形モードのみ）:</strong>  選択された帯域の位相特性を操作します。0% = リニア位相特性、100% = 最小位相特性となります。<br />
+<br /></li>
+</ul>
+
+<h2 id="全般的な注意点">全般的な注意点</h2>
+
+<h3 id="操作の有効性">操作の有効性</h3>
+
+<p>以下の操作項目は、Ozone 8 EQ/ポストEQモジュールとEQコンポーネントプラグインからアクセスできますが、トーナルバランスコントロールのインターフェースからアクセスすることはできません:</p>
+
+<ul>
+<li>EQモジュール/プラグインのバイパス<br /></li>
+<li>マッチングEQの操作項目<br /></li>
+<li>Mid/SideまたはLeft/Right処理モードの操作項目<br /></li>
+<li>EQモジュールのリセット<br /></li>
+<li>I/Oまたはチャンネル操作項目<br />
+<br /></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">トーナルバランスコントロールにおけるM/S &amp; L/R操作の制限</p>
+<p>トーナルバランスコントロールで選択されたOzone EQプラグインがMid/SideまたはLeft/Right処理モードを使用している場合、トーナルバランスコントロールにはEQの操作項目は表示されません。現在、トーナルバランスコントロールは、ステレオ処理モード下にあるOzone EQの操作のみをサポートします。</p>
+</div>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  トーナルバランスコントロールでのNeutron 2</h1>
+  
+
+<h2 id="概要">概要</h2>
+
+<p>トーナルバランスコントロールのプラグイン選択メニューより、使用するNeutron 2を選択すると、リモートでEQのパラメーターが操作できるほか、全てのNeutron 2プラグインのスペクトラムメーターを見ることができます。</p>
+
+<p><img src="../images/tbc-n2/n2-eq-display.png" alt="Neutron 2 instance selected" /></p>
+
+<p>以下の表は、トーナルバランスコントロールにて操作や表示の可否を表したNeutron 2プラグインの種類の一覧です。</p>
+
+<table>
+<thead>
+<tr>
+<th>プラグイン名</th>
+<th>EQコントロール</th>
+<th>スペクトラム表示</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Neutron 2</td>
+<td>あり</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Neutron 2 EQ</td>
+<td>あり</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Neutron 2 コンプレッサー</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Neutron 2 ゲート</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Neutron 2 エキサイター</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Neutron 2 トランジエント成形</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Neutron 2 ミックスタップ</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Neutron 2 ビジュアルミキサー</td>
+<td>なし</td>
+<td>なし</td>
+</tr>
+</tbody>
+</table>
+
+<p>EQ操作のないNeutron 2プラグインがトーナルバランスコントロールで選択されると、以下のような画面になります:<br />
+<img src="../images/tbc-n2/n2-plugin-no-eq-controls.png" alt="No EQ Controls" /></p>
+
+<p>EQ互換のあるNeutron 2プラグインがトーナルバランスコントロールで選択されると、以下のような画面になります:<br />
+<img src="../images/tbc-n2/n2-eq-params-close.png" alt="EQ Controls" /></p>
+
+<h2 id="グローバルeq操作">グローバルEQ操作</h2>
+
+<p><img src="../images/tbc-n2/n2-global-bar.png" alt="global control bar" /></p>
+
+<ul>
+<li><strong>PLUG-IN SELECTION MENU（プラグイン選択メニュー）:</strong> トーナルバランスコントロールで表示/操作する使用プラグインが選択できます。<br /></li>
+<li><strong>SOFT SATURATION（軽度サチュレーション）:</strong> 選択されたNeutron 2 EQの軽度サチュレーションを有効/無効にします。ここが有効の場合、ボタンはオレンジで表示されます。<br /></li>
+<li><strong>BYPASS（バイパス）:</strong> 一時的に選択されたNeutron 2プラグインのEQ処理をバイパスします。このバイパス操作は、A/B比較の際に便利です。<br />
+<div class="admonition note">
+<p class="admonition-title">EQバイパス状態に関する注</p>
+<p><ul>
+<li>I選択されたEQがプラグインでバイパスされていると、トーナルバランスコントロール上の操作項目は淡色表示となります。選択されたプラグインでEQを有効にするには、プラグイン画面を表示させ、EQのバイパスを解く必要があります。トーナルバランスコントロールのインターフェースから、選択されたプラグインのEQのバイパス状態を変えることはできません。<br /></li>
+</ul>
+</p>
+</div><br /></li>
+<li><strong>SHOW/HIDE SELECTED PLUG-IN DISPLAY（選択されたプラグイン画面の表示切り替え）:</strong> 選択されたプラグイン画面の表示/非表示を切り替えます。<br />
+<br /></li>
+</ul>
+
+<h2 id="メーター機能と操作">メーター機能と操作</h2>
+
+<p><img src="../images/tbc-n2/n2-spectrum-close-up.png" alt="Spectrum and EQ curve" /></p>
+
+<ul>
+<li><strong>SPECTRUM METERING（スペクトラムメーター）:</strong> 選択されたプラグインのスペクトラムメーターを表示します。Neutron 2プラグインのスペクトラムメーターはオレンジで表示されます。<br /></li>
+<li><strong>EQ CURVE（EQ曲線）:</strong> 選択されたNeutron 2プラグインがEQ操作をサポートする場合、EQ曲線操作はスペクトラムメーターのある部分に表示されます。<br />
+<div class="admonition note">
+<p class="admonition-title">EQ操作点の使用に関するヒント</p>
+<p><ul>
+<li><strong>フィルター形状の変更:</strong> 操作点を右クリックすると、表示されるメニュー内でフィルター形状を変更することができます。<br /></li>
+<li><strong>操作点をデフォルトにリセット:</strong> 操作点をダブルクリックするとデフォルト値にリセットされます。<br /></li>
+<li><strong>ダブルクリックで帯域を有効化:</strong> スペクトラム画面の空白部分をダブルクリックすると、その周波数の帯域が有効になります。<br /></li>
+</ul>
+</p>
+</div><br /></li>
+<li><strong>帯域選択と操作項目の有効化/無効化:</strong><br />
+<img src="../images/tbc-n2/n2-band-selection-enable-disable-bar.png" alt="Band select and enable bar" /><br />
+
+<ul>
+<li>EQ帯域は、帯域番号と形状の左にある電源ボタンで有効/無効を切り替えることができます。<br /></li>
+<li>帯域番号と形状のアイコンを直接クリックすると、その帯域に関係した操作項目が表示されます。<br />
+<br />
+<br /></li>
+</ul></li>
+</ul>
+
+<h2 id="固定eqの操作項目">固定EQの操作項目</h2>
+
+<p>選択されたNeutron 2 EQの固定EQの操作項目は、トーナルバランスコントロールのインターフェース底部バーの左側に位置しています。</p>
+
+<p><img src="../images/tbc-n2/n2-static-band-controls.png" alt="Static EQ Controls" /></p>
+
+<ul>
+<li><strong>BAND SHAPE（帯域形状）:</strong> 選択された帯域に使用するフィルター形状を選択します。<br /></li>
+<li><strong>FREQUENCY（周波数）:</strong> 選択されたフィルターの中央周波数を設定します。<br /></li>
+<li><strong>GAIN（ゲイン）:</strong> 選択されたフィルターに適用されるゲインをプラス値かマイナス値で設定します。<br /></li>
+<li><strong>Q:</strong> 現在のフィルターの帯域幅を設定します。<br />
+<br /></li>
+</ul>
+
+<h2 id="ダイナミックモードの操作項目">ダイナミックモードの操作項目</h2>
+
+<p>ダイナミックモードの操作項目は固定EQの操作項目の右にあり、各帯域を個別に有効にすることができます。</p>
+
+<p><img src="../images/tbc-n2/n2-dynamic-filter-controls.png" alt="Dyn EQ Controls" /></p>
+
+<ul>
+<li><strong>DYNAMIC MODE ENABLE/DISABLE（ダイナミックモードの有効化/無効化）:</strong> 選択された帯域に対し、ダイナミックモードでの操作を有効にします。<br /></li>
+<li><strong>DYNAMIC TRIGGER DIRECTIONダイナミックトリガー方向）:</strong> 選択された帯域に対するダイナミックフィルターの方向を決定します。<br /></li>
+<li><strong>THRESHOLD（スレッシュホルド）:</strong> D選択された帯域に対するダイナミックトリガーのスレッシュホルド値を決定します。信号がスレッシュホルド値を超過すると、フィルターがトリガーされます。<br /></li>
+<li><strong>SIDECHAIN（サイドチェーン）:</strong> 選択された帯域に対するダイナミックトリガーのサイドチェーン入力ソースの使用を有効/無効にします。<br /></li>
+<li><strong>SIDECHAIN SOURCE SELECTION（サイドチェーンソース選択）:</strong> サイドチェーンが有効の場合は、ここで選択された帯域に対するサイドチェーンの入力ソースを設定します。<br />
+<br /></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">ダイナミックモードのインジケーター</p>
+<p><ul>
+<li>EQ帯域に対しダイナミックモードが有効の場合、EQ曲線画面内の適合するEQ操作点の上下どちらかに方向を示す矢印が表示されます。矢印の方向は選択されたダイナミックトリガーの方向が反映されます。<br /></li>
+</ul>
+</p>
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">HP/LP帯域に関する注意点</p>
+<p><ul>
+<li>Neutron 2 におけるHP及びLP帯域（最初と最後の帯域）ではダイナミックモードの操作はサポートされません。<br /></li>
+</ul>
+</p>
+</div>
+
+<h2 id="全般的な注意点">全般的な注意点</h2>
+
+<h3 id="操作の有効性">操作の有効性</h3>
+
+<p>以下の操作項目は、Neutron 2 EQモジュールとコンポーネントプラグインからアクセスできますが、トーナルバランスコントロールのインターフェースからアクセスすることはできません:</p>
+
+<ul>
+<li>EQモジュール/プラグインのバイパス<br /></li>
+<li>EQ操作点分析<br /></li>
+<li>マスキングメーターの操作項目<br /></li>
+<li>EQモジュールのリセット<br /></li>
+<li>I/Oまたはチャンネル操作項目<br /></li>
+</ul>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  オプション</h1>
+  
+
+<h2 id="概要">概要</h2>
+
+<p>オプションメニューへは、トーナルバランスコントロールのインターフェース右上角にあるギアボタンをクリックすることでアクセスできます。</p>
+
+<p><img src="../images/tbc-options/tonal-balance-control-options.png" alt="Options Window" /></p>
+
+<h3 id="バージョン情報">バージョン情報</h3>
+
+<p>オプション画面右上には現在使用中のトーナルバランスコントロールのバージョン及びビルト番号が表示されます。</p>
+
+<h3 id="reset-リセット">Reset（リセット）</h3>
+
+<p>トーナルバランスコントロールの全オプションをファクトリーデフォルト値にリセットします。</p>
+
+<h3 id="cancel-キャンセル">Cancel（キャンセル）</h3>
+
+<p>オプション画面で行った設定変更を保存せずにオプション画面を終了します。</p>
+
+<h3 id="ok">Ok</h3>
+
+<p>オプション画面で行った設定変更を保存してオプション画面を終了します。</p>
+
+<h2 id="general-全般">General（全般）</h2>
+
+<h3 id="enable-analytics-統計分析を有効化">Enable Analytics（統計分析を有効化）</h3>
+
+<p>チェックされていると、将来的な改善のため、匿名のユーザーデーターがiZotopeへ送信されます。</p>
+
+<h3 id="enable-tooltips-ツールのヒントの有効化">Enable Tooltips（ツールのヒントの有効化）</h3>
+
+<p>チェックされていると、トーナルバランスコントロールのインターフェース上にカーソルがある場合、その操作項目などに関するヒントや情報が表示されます。</p>
+
+<h2 id="spectrum-スペクトラム">Spectrum（スペクトラム）</h2>
+
+<h3 id="average-time-平均時間">Average Time（平均時間）</h3>
+
+<p>設定に応じてスペクトラムを平均化します。長い平均時間は、ミックスの全体的な音的バランスを視認するのに適しており、短い平均時間はよりリアルタイムの表示となります。</p>
+
+<h3 id="frequency-scale-周波数尺度">Frequency Scale（周波数尺度）</h3>
+
+<p>トーナルバランスコントロールのメーターで使用される周波数尺度を設定します。選択肢は以下の通りです:</p>
+
+<ul>
+<li><strong>FLAT LOG（フラットログ）</strong><br /></li>
+<li><strong>EXTENDED LOG（拡張ログ）</strong><br /></li>
+<li><strong>PIANO ROLL（ピアノロール）</strong><br />
+<br /></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p>トーナルバランスコントロールのインターフェースにある周波数ルーラーを右クリックすると、オプション画面を開かなくても周波数尺度を変更することができます。</p>
+</div>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  オーソリゼーション</h1>
+  
+
+<h2 id="概要">概要</h2>
+
+<p>オーソリゼーション画面では以下の作業が行えます:</p>
+
+<ul>
+<li><strong>TRIAL（トライアル）:</strong> 購入前の試験運用としてトライアル版の使用を開始します。<br /></li>
+<li><strong>DEMO（デモ）:</strong> 機能が限定されたデモ版として (<em>10日間のトライアル期間が過ぎた後</em>) 試験使用を継続します。<br /></li>
+<li><strong>AUTHORIZE（オーソライズ）:</strong> シリアル番号で製品をオーソライズします。<br />
+<br /></li>
+</ul>
+
+<h2 id="トライアル及びデモモード">トライアル及びデモモード</h2>
+
+<p>トーナルバランスコントロール・プラグインの初回使用時に10日間のトライアル期間が始まります。この10日が過ぎると、トーナルバランスコントロールはデモモードで起動します。トライアル、またはデモモードを解除するには、正規のシリアル番号で製品をオーソライズする必要があります。</p>
+
+<h3 id="トライアルモード">トライアルモード</h3>
+
+<p>DAW/NLEで最初にトーナルバランスコントロールをインサートした時点でトライアルモードでの使用が始まります。その間、オーソライズ画面にはトライアル期間の残り日数が表示されます。</p>
+
+<p>&ldquo;Continue&rdquo;ボタンをクリックすると、オーソライズ画面を閉じることができますので、トライアル版としてトーナルバランスコントロールの試験使用を継続することができます。</p>
+
+<h3 id="デモモード">デモモード</h3>
+
+<p>トライアルの10日間を過ぎると、トーナルバランスコントロールはデモモードで起動します。デモモードでは、トーナルバランスコントロール内の全てのメーター機能が使用停止状態になります。デモモードでの試験使用を継続したい場合は、&rdquo;Demo&rdquo;ボタンをクリックします。</p>
+
+<h2 id="オーソライズの方法">オーソライズの方法</h2>
+
+<p>トーナルバランスコントロールには3種類のオーソライズ方法があります:</p>
+
+<ul>
+<li><strong>オンライン・オーソリゼーション:</strong> インターネット接続のあるコンピューターでトーナルバランスコントロールを使用する場合は、この方法を選択してください。<br /></li>
+<li><strong>オフライン・オーソリゼーション:</strong> トーナルバランスコントロールを使用するコンピューターがインターネットに接続されていない場合は、この方法を選択してください。<br /></li>
+<li><strong>iLokオーソリゼーション:</strong> iLokでトーナルバランスコントロールをオーソライズする場合は、この方法を選択してください。<br />
+<br /></li>
+</ul>
+
+<h2 id="更なる情報">更なる情報</h2>
+
+<p>オーソリゼーションに関する詳細はiZotopeウェブサイトにてご覧頂けます: <a href="https://www.izotope.com/authorization">https://www.izotope.com/authorization</a></p>
+
+<h3 id="トーナルバランスコントロールのオーソライズに関する追加情報"><strong>トーナルバランスコントロールのオーソライズに関する追加情報:</strong></h3>
+
+<ul>
+<li>iZotopeウェブサイトのカスタマーケアーに関するページをご覧ください: <a href="http://www.izotope.com/support">http://www.izotope.com/support</a><br /></li>
+<li>カスタマーケアー<a href="mailto:support@izotope.com">support@izotope.com</a>までお問い合わせください。<br />
+<br /></li>
+</ul>
+
+<p>iZotopeのカスタマーケアーに関する詳細は<a href="../customer-care/index.html">iZotopeカスタマーケアー</a>の章に記述があります。</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  カスタマーケアー</h1>
+  
+
+<h2 id="購入について">購入について</h2>
+
+<p>デモバージョンで使用するトーナルバランスコントロールをフルバージョンにしたい場合は、iZotopeオンラインストアーにてトーナルバランスコントロールをご購入頂けます: <a href="https://www.izotope.com/store">www.izotope.com/store</a></p>
+
+<p>購入が完了すると、インストールされたトーナルバランスコントロールをオーサライズするのに必要なフルバージョンのシリアル番号がメールで送付されます。</p>
+
+<h2 id="izotopeカスタマーケアーの方針">iZotopeカスタマーケアーの方針</h2>
+
+<p>iZotopeは全ての登録ユーザー様に、完全に無償でプロフェッショナルなテクニカル/カスタマーケアーを提供しております。<br />
+<a href="https://www.izotope.com/support/contact/index.php">www.izotope.com/support/contact/index.php</a></p>
+
+<p>また、弊社ではiZotope製品の購入に興味がおありのお客様にも、価値あるプリセールスのテクニカル/カスタマーケアーを提供しております。iZotopeカスタマーケアーへご連絡頂きます際は、事前に製品ナレッジベース<a href="https://www.izotope.com/support/kb/index.php/kb/browse/32-iZotope_Knowledgebase">製品ナレッジベース</a>をご確認の上、ご質問や問題に対する解答がないかどうかお調べください。</p>
+
+<p><strong>iZotopeは購入された製品に対し、どれくらいの期間、カスタマーケアーを提供するのですか?</strong></p>
+
+<p>iZotope製品の購入から12ヶ月間は質問内容に関わらず、弊社カスタマーケアーまでメールでお問い合わせ頂くことができます。それ以降は、アカウントやオーソライズに関するご質問はお受け致しますが、技術的なご質問や製品に対する詳細なご質問はお受け致しかねます。製品の詳細な使い方に関するご質問に関しては、弊社サイトのFAQやチュートリアルを活用してください。</p>
+
+<p><strong>iZotopeはいつまで製品をサポートするのですか?</strong></p>
+
+<p>お約束はできませんが、弊社は我々の製品を最新のオペレーティングシステムやプラグインホストに対応できるよう、最善の努力を尽くします。時として、他社により我々がサポートできない変更が加えられることはありますが、我々はそうした互換性の問題を回避すべく、他社とアクティブに作業を行っております。また、我々は規定した仕様に沿って製品をお使い頂けるよう、製品内のバグフィックスにも最善を尽くしております。</p>
+
+<p>製品のリリースから12ヶ月間にわたり、アップデートを提供致します。リリースから12ヶ月を過ぎると、アップデートの提供はありません。</p>
+
+<p>それぞれの製品に対応したオペレーティングシステムやプラグインホストソフトウェアに関する公式な互換性情報につきましては、製品の仕様ページをご覧ください。</p>
+
+<h2 id="izotopeカスタマーケアーへの連絡方法">iZotopeカスタマーケアーへの連絡方法</h2>
+
+<p>トーナルバランスコントロールに関するご質問は下記にて承っております:</p>
+
+<ul>
+<li>弊社ウェブサイトのカスタマーケアーページをご覧ください: <a href="https://www.izotope.com/support">www.izotope.com/support</a><br /></li>
+<li>カスタマーケアー<a href="mailto:support@izotope.com">support@izotope.com</a>までお問い合わせください。<br />
+<br /></li>
+</ul>
+
+<p>頂きましたご質問には、熟練のiZotopeカスタマーケアーチームが、1営業日、あるいはそれ以内に返答をお送りします。問題やご質問の内容は、できる限り詳細かつ明確に記述してください。これは、初回返信時での正確な返答や問題解決にとって欠かせません。ご使用のトーナルバランスコントロールのビルト/バージョンや、全システムの仕様を必ずご記入ください。</p>
+
+<p>カスタマーケアーへのリクエストが送信されると、iZotopeカスタマーケアーより自動返信の確認メールが送信されます。数分以内にこのメールが届かない場合は、スパムフォルダを確認し、我々からのメールがブロックされていないことをお確かめください。こうした問題は、<a href="mailto:support@izotope.com">support@izotope.com</a>を認証メールアドレスに追加して頂くことにより防止できます。</p>
+
+<h2 id="国際的な販売網">国際的な販売網</h2>
+
+<p>世界各地のiZotope認定代理店にてiZotope製品をご購入頂いたお客様には、それら代理店よりカスタマーケアーが提供されます。</p>
+
+<p>カスタマーケアーの有無につきましては、該当する代理店までお問い合わせください。各地域の販売代理店に関するご質問につきましては、iZotopeカスタマーケアーまでお問い合わせください。</p>
+
+<p>トーナルバランスコントロールをご利用頂きまして誠に有り難うございます。</p>
+
+<p>-iZotopeチーム一同</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  EULA (エンドユーザー向け使用許諾契約)</h1>
+  <p><br /></p>
+
+<hr />
+
+<p><strong>END USER LICENSE AGREEMENT</strong></p>
+
+<p>READ CAREFULLY THE TERMS AND CONDITIONS OF THIS AGREEMENT (“AGREEMENT”) BEFORE YOU CLICK ON THE “ACCEPT” BUTTON OR OTHERWISE USE THE PRODUCT. CLICKING ON THE “ACCEPT” BUTTON OR OTHERWISE DOWNLOADING, INSTALLING AND/OR USING THE LICENSED SOFTWARE OR ANY TECHNOLOGY, IDEA, DATA AND DATABASES, ALGORITHM OR INFORMATION CONTAINED THEREIN OR PROVIDED THEREWITH (COLLECTIVELY, THE “SOFTWARE”), ESTABLISHES A BINDING AGREEMENT BETWEEN YOU AS THE PERSON LICENSING THE SOFTWARE, EITHER ON BEHALF OF YOURSELF OR ANY THIRD PARTY ENTITY (“YOU” OR &ldquo;LICENSEE&rdquo;) AND IZOTOPE, INC. (“IZOTOPE”), YOU (WHETHER AN INDIVIDUAL OR FORMAL LEGAL ENTITY) (HEREINAFTER REFERRED TO AS “YOU”), AGREE TO BE BOUND BY THE TERMS AND CONDITIONS OF THIS AGREEMENT WITH RESPECT TO YOUR USE OF THE SOFTWARE.</p>
+
+<p>BY INSTALLING AND/OR BY USING THE SOFTWARE, YOU REPRESENT AND WARRANT THAT YOU HAVE THE LEGAL CAPACITY AND AUTHORITY TO ENTER INTO A BINDING AGREEMENT TO ADHERE TO THE TERMS AND CONDITIONS SET FORTH HEREIN, AND THAT THE SOFTWARE WILL BE USED ONLY IN ACCORDANCE WITH THESE TERMS AND CONDITIONS AND WITH ALL APPLICABLE LAWS. IF AN INDIVIDUAL IS REGISTERING OR USING THE SOFTWARE ON BEHALF OF AN ENTITY OR ORGANIZATION, THAT INDIVIDUAL WARRANTS, REPRESENTS, AND COVENANTS TO IZOTOPE THAT SUCH INDIVIDUAL IS DULY AUTHORIZED TO AGREE TO THESE TERMS AND CONDITIONS ON BEHALF OF THE ORGANIZATION AND TO BIND THE ORGANIZATION TO THEM.</p>
+
+<p><strong>LICENSE.</strong> Subject to all the terms and conditions of this Agreement, iZotope hereby grants to Licensee a license to use the Software accompanying this Agreement, as well as any presets and documentation provided, whether in printed, &ldquo;online&rdquo; or electronic form, either on a stand-alone computer or on a network, on any one computer at any one time. If more than one user will be using the Software at any one time, you must obtain from iZotope additional license(s) for each additional concurrent user of the Software. The Software is &ldquo;in use&rdquo; on a computer when loaded into memory (RAM). You may make one copy of the Software solely for backup or archival purposes if all copyright and other notices are reproduced on that copy, or you may copy the Software to a single hard disk provided you keep the original solely for backup or archival purposes. If the Software is an upgrade, you must have a license for the Software from which it is upgraded. If you receive the Software in more than one media, that does not affect the number of licenses you are receiving or any other term of this Agreement.</p>
+
+<p><strong>OWNERSHIP.</strong> The copyrights, patents, trade secrets, trademarks, and all other intellectual property rights in the Software and documentation (including any images, photographs, animations, video, audio, music and text incorporated in them) are owned by iZotope or its suppliers and are protected by the copyright, patent and other laws of the United States and other countries and by international treaty provisions. iZotope retains all rights not expressly granted in this Agreement. You shall not remove any product identification, trademark, copyright or other notices contained in or on the Software.</p>
+
+<p><strong>OTHER RESTRICTIONS.</strong> You may not modify, adapt, decompile, disassemble or otherwise reverse engineer the Software, except to the extent this restriction is expressly prohibited by applicable law, nor may you create derivative works based upon the Software, or to permit third parties to do so. You may not loan, rent, lease, or license the Software, or use the Software as a service bureau, as an application service provider, to perform consulting or training services for a third party or in any commercial time share arrangement, but you may permanently transfer your rights under this Agreement provided you transfer this Agreement, the Software, and all accompanying printed materials and retain no copies, and the recipient agrees to the terms of this Agreement. Any such transfer must include the most recent update and all prior versions.</p>
+
+<p><strong>LIMITED WARRANTY.</strong> iZotope warrants that, for a period of thirty (30) days from the date the Software is made available to you for download, the Software will substantially conform to the applicable user documentation provided with the Software.  Any implied warranties which may exist despite the disclaimer herein will be limited to thirty (30) days (“Warranty Period”). This limited warranty is void if you buy from an unauthorized reseller, you violate the terms of this Agreement, or if the failure of the Software is due to accident, abuse or misapplication. Some states/jurisdictions do not allow limitations on duration of an implied warranty, so this limitation may not apply to you.</p>
+
+<p><strong>YOUR REMEDIES.</strong> iZotope&rsquo;s sole obligation and your exclusive remedy for any breach of warranty will be, at iZotope&rsquo;s sole option, either the return of the purchase price you paid or the repair or replacement of the Software, media and documentation, provided you in all instances return the Software, together with all media and documentation and a copy of your receipt, to the location where you obtained it during the Warranty Period.  Outside the United States, neither these remedies nor any support services are available without proof of purchase from an authorized non-U.S. source.</p>
+
+<p><strong>SUPPORT.</strong> Subject to the limited warranty stated above, and further subject to you not being in violation of any term of this Agreement, iZotope will provide email support for the Software to the original purchaser, for a period of 12 months from the original purchase date.</p>
+
+<p><strong>REGISTRATION INFORMATION.</strong> When you activate the Software, iZotope may collect your name and email address and other contact information you choose to provide.  IZotope may use this information to contact you regarding upgrades and new products.  iZotope does not collect or retain any financial information (such as credit card information).</p>
+
+<p><strong>USAGE INFORMATION.</strong>  When you activate and/or use the Software, iZotope may collect certain information about your computer and your interaction with the Software via the internet (“Usage Information”).  Usage Information is information on how you interact with the Software, and is then utilized by iZotope for statistical analysis for improving the Software, and to provide you with a more relevant user experience.  No direct personal information or audio files/samples are collected as part of this Usage Information. Usage Information is generally collected in the aggregate form, without identifying any user individually, although IP addresses, computer and session ids in relation to purchases and downloads/installations of the Software may be tracked as part of iZotope&rsquo;s customer order review, statistical analysis, and fraud and piracy prevention efforts.  This Usage Information may be sent to an iZotope web or third-party cloud server for storage or further processing by iZotope and/or its partners, subsidiaries or affiliates, including, but not limited to, Google Analytics. The Software includes an opt-out provision if you do not wish to provide iZotope with such Usage Information.</p>
+
+<p><strong>DISCLAIMER.</strong> THE SOFTWARE IS PROVIDED “AS IS.”  TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, EXCEPT FOR THE EXPRESS WARRANTY SET FORTH HEREIN, IZOTOPE DISCLAIMS ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. IZOTOPE DOES NOT WARRANT THAT THE SOFTWARE WILL MEET YOUR REQUIREMENTS OR THAT THE SOFTWARE WILL OPERATE UNINTERRUPTED OR ERROR-FREE. THE WARRANTY AND REMEDIES SET FORTH HEREIN ARE EXCLUSIVE AND IN LIEU OF ALL OTHERS, ORAL OR WRITTEN, EXPRESS OR IMPLIED. No dealer, distributor, agent or employee of iZotope is authorized to change or add to the warranty and remedies set forth herein. Any other software furnished with or accompanying the Software is not warranted by iZotope.</p>
+
+<p><strong>LIMITATION OF LIABILITY.</strong> TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL IZOTOPE BE LIABLE FOR ANY AMOUNTS EXCEEDING THE AMOUNTS RECEIVED FROM YOU FOR YOUR LICENSE OF THE SOFTWARE, REGARDLESS OF THE FORM OF ACTION, AND WHETHER ARISING OUT OF THE USE OF OR INABILITY TO USE THE SOFTWARE (INCLUDING, WITHOUT LIMITATION, DAMAGES OR COSTS FOR LOSS OF PROFITS, BUSINESS, GOODWILL, DATA OR OTHER ASSETS, OR COMPUTER PROGRAMS) EVEN IF IZOTOPE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. Some jurisdictions do not allow exclusion or limitation of liability for consequential or incidental damages, so this limitation may not apply to you.</p>
+
+<p><strong>TERMINATION.</strong> The Agreement will terminate automatically if you fail to comply with any of its terms. On termination, you must immediately cease using and destroy all copies of the Software.</p>
+
+<p><strong>LICENSES TO U.S. GOVERNMENT.</strong> This paragraph applies to all acquisitions of the Software by or for the federal government, or by any prime contractor or subcontractor (at any tier) under any contract, grant, cooperative agreement or other activity with the United States government (collectively, the “Government”). By clicking “I ACCEPT”, you are agreeing on behalf of the Government that the Software and any documentation related thereto are respectively “commercial computer software” and “commercial computer software documentation” within the meaning of the acquisition regulation(s) applicable to this procurement. These terms and conditions alone will govern the Government’s use of the Software and will supersede any conflicting contractual terms or conditions. If the license granted by these terms and conditions fails to meet the Government’s needs or is inconsistent in any respect with Federal law, the Government must return the Software unused to iZotope. Contractor/Manufacturer is iZotope, Inc., 60 Hampshire Street, Cambridge, MA 02139.</p>
+
+<p><strong>GENERAL.</strong> The export of the Software from the United States and re-export from any other country is governed by the U.S. Department of Commerce under the export control laws and regulations of the United States and by any applicable law of such other country, and the Software may not be exported or re-exported in violation of any such laws or regulations. This Agreement is the complete and exclusive statement of the agreement between you and iZotope and supersedes any proposal or prior agreement, oral or written, and any other communications relating to the subject matter of this Agreement. This Agreement will be governed by and interpreted under the laws of the Commonwealth of Massachusetts, United States of America, without regard to conflicts of law provisions. The application of the United Nations Convention of Contracts for the International Sale of Goods is expressly excluded. This Agreement is in the English language only, which language will be controlling in all respects, and all versions of this Agreement in any other language will be for accommodation only.</p>
+
+<p>IN ADDITION, ANY SUCH LEGAL PROCEEDING SHALL NOT BE HEARD BEFORE A JURY. EACH PARTY GIVES UP ANY RIGHT TO A JURY TRIAL. To the extent permitted by law, you agree that you will not bring any class action lawsuit against iZotope or be a representative plaintiff or plaintiff class member in any such lawsuit.</p>
+
+<p>Should you have any questions about this Agreement or iZotope&rsquo;s software use policies, or if you desire to contact iZotope for any other reason, in the U.S., please email sales@izotope.com; outside the U.S., please contact the iZotope representative or affiliate serving your country or, if you are unsure whom to contact, iZotope at the above location.<br />
+Please indicate that you understand and accept these terms by clicking the “Accept” option. If you do not accept these terms, installation will terminate.</p>
+
+<hr />
+
+<p>January 2018</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div><h1><span class="icon icon-bookmark"></span>  ライセンス情報</h1>
+  
+
+<h2 id="anti-grain-geometry">Anti-Grain Geometry</h2>
+
+<p>Version 2.4</p>
+
+<p>Copyright &copy; 2002-2005 Maxim Shemanarev (McSeem).</p>
+
+<p>Redistribution and use in source and binary forms, with or without<br />
+modification, are permitted provided that the following conditions are<br />
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright<br />
+ notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright<br />
+ notice, this list of conditions and the following disclaimer in the<br />
+ documentation and/or other materials provided with the<br />
+ distribution.</p></li>
+
+<li><p>The name of the author may not be used to endorse or promote<br />
+ products derived from this software without specific prior written<br />
+ permission.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS&rdquo; AND ANY EXPRESS OR<br />
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED<br />
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE<br />
+DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,<br />
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES<br />
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR<br />
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)<br />
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,<br />
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN<br />
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE<br />
+POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="better-enums">Better Enums</h2>
+
+<p>Version 0.11.1</p>
+
+<p>Copyright &copy; 2012-2016, Anton Bachin.  All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without<br />
+modification, are permitted provided that the following conditions are<br />
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright<br />
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright<br />
+notice, this list of conditions and the following disclaimer in the<br />
+documentation and/or other materials provided with the distribution.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS<br />
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED<br />
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A<br />
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT<br />
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,<br />
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED<br />
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR<br />
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF<br />
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING<br />
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS<br />
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="fmt">fmt</h2>
+
+<p>Version 4.0.0</p>
+
+<p>Copyright &copy; 2012 - 2016, Victor Zverovich</p>
+
+<p>All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without<br />
+modification, are permitted provided that the following conditions are<br />
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright<br />
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright<br />
+notice, this list of conditions and the following disclaimer in the<br />
+documentation and/or other materials provided with the distribution.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS<br />
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED<br />
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A<br />
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER<br />
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,<br />
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,<br />
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR<br />
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF<br />
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING<br />
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS<br />
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="freetype">FreeType</h2>
+
+<p>FreeType is licensed under the FreeType Project LICENSE.</p>
+
+<p>Portions of this software are copyright © 1996-2002, 2006 The FreeType<br />
+Project (www.freetype.org).  All rights reserved.</p>
+
+<h2 id="gsl">gsl</h2>
+
+<p>Copyright &copy; 2015 Microsoft Corporation. All rights reserved.</p>
+
+<p>This code is licensed under the MIT License (MIT).</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br />
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal<br />
+in the Software without restriction, including without limitation the rights<br />
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies<br />
+of the Software, and to permit persons to whom the Software is furnished to do<br />
+so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all<br />
+copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br />
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE<br />
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br />
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,<br />
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN<br />
+THE SOFTWARE.</p>
+
+<h2 id="jsoncpp">JsonCpp</h2>
+
+<p>Version 1.2.1</p>
+
+<p>Copyright &copy; 2007-2010 Baptiste Lepilleur and The JsonCpp Authors</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a<br />
+copy of this software and associated documentation files (the<br />
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including<br />
+without limitation the rights to use, copy, modify, merge, publish,<br />
+distribute, sublicense, and/or sell copies of the Software, and to<br />
+permit persons to whom the Software is furnished to do so, subject to<br />
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included<br />
+in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS<br />
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF<br />
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND<br />
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE<br />
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION<br />
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION<br />
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h2 id="libxml2">LibXML2</h2>
+
+<p>Version 2.7.8</p>
+
+<p>Except where otherwise noted in the source code (e.g. the files hash.c,<br />
+list.c and the trio files, which are covered by a similar licence but<br />
+with different Copyright notices) all the files are:</p>
+
+<p>Copyright &copy; 1998-2003 Daniel Veillard.  All Rights Reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br />
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal<br />
+in the Software without restriction, including without limitation the rights<br />
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell<br />
+copies of the Software, and to permit persons to whom the Software is fur-<br />
+nished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in<br />
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FIT-<br />
+NESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE<br />
+DANIEL VEILLARD BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER<br />
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CON-<br />
+NECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<p>Except as contained in this notice, the name of Daniel Veillard shall not<br />
+be used in advertising or otherwise to promote the sale, use or other deal-<br />
+ings in this Software without prior written authorization from him.</p>
+
+<h2 id="material-docs-theme">Material Docs Theme</h2>
+
+<p>Copyright &copy; 2016 Digitalcraftsman <a href="mailto:digitalcraftsman@protonmail.com">digitalcraftsman@protonmail.com</a><br/><br />
+Copyright &copy; 2016 Martin Donath <a href="mailto:martin.donath@squidfunk.com">martin.donath@squidfunk.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br />
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to<br />
+deal in the Software without restriction, including without limitation the<br />
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or<br />
+sell copies of the Software, and to permit persons to whom the Software is<br />
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in<br />
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br />
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE<br />
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br />
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br />
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS<br />
+IN THE SOFTWARE.</p>
+
+<h2 id="nanomsg">nanomsg</h2>
+
+<p>Version 0.5-beta</p>
+
+<p>Copyright &copy; 2012-2013 Martin Sustrik  All rights reserved.<br/><br />
+Copyright &copy; 2013 GoPivotal, Inc.  All rights reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br />
+of this software and associated documentation files (the &ldquo;Software&rdquo;),<br />
+to deal in the Software without restriction, including without limitation<br />
+the rights to use, copy, modify, merge, publish, distribute, sublicense,<br />
+and/or sell copies of the Software, and to permit persons to whom<br />
+the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included<br />
+in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br />
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br />
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br />
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br />
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS<br />
+IN THE SOFTWARE.</p>
+
+<p>&ldquo;nanomsg&rdquo; is a trademark of Martin Sustrik</p>
+
+<h2 id="readerwriterqueue">readerwriterqueue</h2>
+
+<p>Copyright &copy; 2013-2015, Cameron Desrochers<br />
+All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without modification,<br />
+are permitted provided that the following conditions are met:</p>
+
+<ul>
+<li>Redistributions of source code must retain the above copyright notice, this list of<br />
+conditions and the following disclaimer.<br /></li>
+<li>Redistributions in binary form must reproduce the above copyright notice, this list of<br />
+conditions and the following disclaimer in the documentation and/or other materials<br />
+provided with the distribution.<br />
+<br /></li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS IS&rdquo; AND ANY<br />
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF<br />
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL<br />
+THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,<br />
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT<br />
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)<br />
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR<br />
+TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,<br />
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="tinyxml">TinyXML</h2>
+
+<p>Copyright &copy; 2000-2002 Lee Thomason (www.grinninglizard.com)</p>
+
+<p>This software is provided &lsquo;as-is&rsquo;, without any express or implied<br />
+warranty. In no event will the authors be held liable for any<br />
+damages arising from the use of this software.</p>
+
+<p>Permission is granted to anyone to use this software for any<br />
+purpose, including commercial applications, and to alter it and<br />
+redistribute it freely, subject to the following restrictions:</p>
+
+<ol>
+<li><p>The origin of this software must not be misrepresented; you must<br />
+not claim that you wrote the original software. If you use this<br />
+software in a product, an acknowledgment in the product documentation<br />
+would be appreciated but is not required.</p></li>
+
+<li><p>Altered source versions must be plainly marked as such, and<br />
+must not be misrepresented as being the original software.</p></li>
+
+<li><p>This notice may not be removed or altered from any source<br />
+distribution.</p></li>
+</ol>
+
+<h2 id="tipue-search">Tipue Search</h2>
+
+<p>Copyright &copy; 2017 Tipue</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining<br />
+a copy of this software and associated documentation files (the<br />
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including<br />
+without limitation the rights to use, copy, modify, merge, publish,<br />
+distribute, sublicense, and/or sell copies of the Software, and to<br />
+permit persons to whom the Software is furnished to do so, subject to<br />
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be<br />
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND,<br />
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF<br />
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND<br />
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE<br />
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION<br />
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION<br />
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h2 id="vectorize">vectorize</h2>
+
+<p>Copyright &copy; 2012 Aaron Wishnick.  All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without<br />
+modification, are permitted provided that the following conditions are met:</p>
+
+<ul>
+<li><p>Redistributions of source code must retain the above copyright<br />
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright<br />
+notice, this list of conditions and the following disclaimer in the<br />
+documentation and/or other materials provided with the distribution.</p></li>
+
+<li><p>Neither the name of the <organization> nor the<br />
+names of its contributors may be used to endorse or promote products<br />
+derived from this software without specific prior written permission.</p></li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS IS&rdquo; AND<br />
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED<br />
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE<br />
+DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY<br />
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES<br />
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;<br />
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND<br />
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT<br />
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS<br />
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="zeromq">ZeroMQ</h2>
+
+<p>Copyright &copy; 2007-2015 iMatix Corporation<br />
+Copyright &copy; 2009-2011 250bpm s.r.o.<br />
+Copyright &copy; 2010-2011 Miru Limited<br />
+Copyright &copy; 2011 VMware, Inc.<br />
+Copyright &copy; 2012 Spotify AB<br />
+Copyright &copy; 2013 Ericsson AB<br />
+Copyright &copy; 2014 AppDynamics Inc.</p>
+
+<p>Distributed under the<br />
+<a href="https://www.gnu.org/licenses/lgpl-3.0.txt">GNU Lesser General Public License v3 (LGPLv3)</a> with the following<br />
+&ldquo;Static linking exception&rdquo;:</p>
+
+<p>The copyright holders give you permission to link this library with independent<br />
+modules to produce an executable, regardless of the license terms of these<br />
+independent modules, and to copy and distribute the resulting executable under<br />
+terms of your choice, provided that you also meet, for each linked independent<br />
+module, the terms and conditions of the license of that module. An independent<br />
+module is a module which is not derived from or based on this library. If you<br />
+modify this library, you must extend this exception to your version of the<br />
+library.</p>
+
+<p>Full text of the license is available here:<br />
+<a href="https://www.gnu.org/licenses/lgpl-3.0.txt">https://www.gnu.org/licenses/lgpl-3.0.txt</a></p>
+
+<p>To receive a copy of the source code for the ZeroMQ library<br />
+distributed with this product under the under the terms of the LGPLv3<br />
+please contact <a href="mailto:devsupport@izotope.com">devsupport@izotope.com</a>.</p>
+
+<h2 id="zlib">zlib</h2>
+
+<p>Copyright &copy; 1995-2004 Jean-loup Gailly and Mark Adler.</p>
+
+<p>This software is provided &lsquo;as-is&rsquo;, without any express or implied<br />
+warranty.  In no event will the authors be held liable for any damages<br />
+arising from the use of this software.</p>
+
+<p>Permission is granted to anyone to use this software for any purpose,<br />
+including commercial applications, and to alter it and redistribute it<br />
+freely, subject to the following restrictions:</p>
+
+<ol>
+<li><p>The origin of this software must not be misrepresented; you must not<br />
+ claim that you wrote the original software. If you use this software<br />
+ in a product, an acknowledgment in the product documentation would be<br />
+ appreciated but is not required.</p></li>
+
+<li><p>Altered source versions must be plainly marked as such, and must not be<br />
+ misrepresented as being the original software.</p></li>
+
+<li><p>This notice may not be removed or altered from any source distribution.</p></li>
+</ol>
+
+<p>Jean-loup Gailly jloup@gzip.org</p>
+
+<p>Mark Adler madler@alumni.caltech.edu</p>
+
+<hr />
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div></div>
+    </article>
+    <footer class="footer">
+
+</footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>  <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </main>
+  </body>
+</html>

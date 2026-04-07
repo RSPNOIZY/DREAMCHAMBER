@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="ja"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="ja"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="ja"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head lang="ja">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+  <title>マスキングメーター - Neutron 2 Help Documentation</title>
+  <meta name="generator" content="Hugo 0.40.3" />
+  <meta name="description" content="Neutron 2 User Manual">
+  <link rel="canonical" href="index.html">
+  <meta name="author" content="iZotope">
+  <meta property="og:url" content="http://www.neutron2helpdocs.com/ja/masking-meter/index.html">
+  <meta property="og:title" content="Neutron 2 Help Documentation">
+  
+  <meta name="apple-mobile-web-app-title" content="Neutron 2 Help Documentation">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <style>
+    @font-face {
+      font-family: 'icon';
+      src: url('../fonts/icon.eot');
+      src: url('../fonts/icon.eot')
+             format('embedded-opentype'),
+           url('../fonts/icon.woff')
+             format('woff'),
+           url('../fonts/icon.ttf')
+             format('truetype'),
+           url('../fonts/icon.svg')
+             format('svg');
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+  <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+  <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    }
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+  
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  
+  <script src="../javascripts/modernizr.js"></script>
+  
+<script>
+  (function(i,s,o,g,r,a,m){
+    i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+    []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+    m.parentNode.insertBefore(a,m)
+  })(window, document,
+    'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+   
+  ga('create', 'UA-63445037-15', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+
+<script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+
+</head>
+<body class="palette-primary-docs palette-accent-docs">
+	
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	
+
+  <div class="backdrop">
+    <div class="backdrop-paper"></div>
+  </div>
+  <input class="toggle" type="checkbox" id="toggle-drawer">
+  <input class="toggle" type="checkbox" id="toggle-search">
+  <label class="toggle-button overlay" for="toggle-drawer"></label>
+  <header class="header">    <nav aria-label="Header">
+      <div class="bar default">
+        <div class="button button-menu" role="button" aria-label="Menu">
+          <label class="toggle-button icon icon-menu" for="toggle-drawer">
+            <span></span>
+          </label>
+        </div>
+        <div class="stretch">
+          <div class="title">
+            <a href="../index.html" >
+            <img src="../images/header-intro-site/site-header.png">    マスキングメーター</a>
+          </div>
+        </div>
+            
+      </div>
+      <div class="bar search">
+        <div class="button button-close" role="button" aria-label="Close">
+          <label class="toggle-button icon icon-back" for="toggle-search"></label>
+        </div>
+        <div class="stretch">
+          <div class="field">
+            <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+          </div>
+        </div>
+        <div class="button button-reset" role="button" aria-label="Search">
+          <button class="toggle-button icon icon-close" id="reset-search"></button>
+        </div>
+      </div>
+    </nav></header>
+  <main class="main">    <div class="drawer">
+      <nav aria-label="Navigation">
+        <form action="../search/index.html">
+           <div class="group">      
+              <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+              <span class="highlight"></span>
+              <span class="underline"></span>
+              <label>サーチ</label>
+              <div style="clear: both;"></div>
+           </div>
+        </form>
+      </nav>
+      
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="toc">
+          
+            <ul>
+
+
+<li>
+  
+    <a  title="はじめに" href="../index.html">はじめに</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Neutron 2の概要" href="../neutron-overview/index.html">Neutron 2の概要</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="コンプレッサー" href="../compressor/index.html">コンプレッサー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="イコライザー" href="../equalizer/index.html">イコライザー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="エキサイター" href="../exciter/index.html">エキサイター</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ゲート" href="../gate/index.html">ゲート</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トランジエント成形" href="../transient-shaper/index.html">トランジエント成形</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トラックアシスタント" href="../track-assistant/index.html">トラックアシスタント</a>
+  
+</li>
+
+
+<li>
+  
+    <a class="current" title="マスキングメーター" href="index.html">マスキングメーター</a><ul id="scrollspy">
+</ul>
+  
+</li>
+
+
+<li>
+  
+    <a  title="I/Oセクション" href="../io-section/index.html">I/Oセクション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ミックスタップ" href="../mix-tap/index.html">ミックスタップ</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ビジュアルミキサー" href="../visual-mixer/index.html">ビジュアルミキサー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トーナルバランスコントロ" href="../tonal-balance-control/index.html">トーナルバランスコントロ</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="プリセットシステム" href="../preset-system/index.html">プリセットシステム</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="オプション" href="../options/index.html">オプション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="取り消し履歴" href="../undo-history/index.html">取り消し履歴</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ヒントと使用例" href="../tips-and-examples/index.html">ヒントと使用例</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="オーソリゼーション" href="../authorization/index.html">オーソリゼーション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="カスタマーケアー" href="../customer-care/index.html">カスタマーケアー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ライセンス情報" href="../license-information/index.html">ライセンス情報</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="EULA" href="../eula/index.html">EULA</a>
+  
+</li>
+
+
+</ul>
+          
+          
+                  <hr />
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+          
+          
+            <ul>
+            
+              <li><a href="../../en/masking-meter/index.html"><i class="icon icon-eye"></i> View page in English</a></li>
+            
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </div><article class="article">
+      <div class="wrapper">
+	<h1>マスキングメーター </h1>
+    
+      
+              <div class="lang-buttons-box">
+      <span class="lang-header">言語:</span>
+      <br />
+        
+      
+        <a href="../../en/masking-meter/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+            <a href="../../en/masking-meter/index.html"><button class="lang-btn-active">日本語</button></a>
+            
+          
+      </div>
+      
+    
+    
+    
+
+    
+    
+    
+	
+
+<h2 id="概要">概要</h2>
+
+<p>Neutronのマスキングメーターは、ミックス内で競合し合うトラックを手早く簡単に見分けるために設計されており、ヘッドルームの欠如、濁った音、あるいはマスキングに繋がりかねないその他の要素（大抵はネガティブなもの）となり得る原因を特定するのに役立ちます。</p>
+
+<h2 id="マスキングとは">マスキングとは?</h2>
+
+<p>マスキングとは、一つの音源の時間的かつスペクトラルなコンポーネントが別の音源のそれとオーバーラップすることで混交し、音の識別が困難になる心理音響的現象です。これは、キックドラムとベースギターのバランスを同時に整える、あるいはボーカルとリズムギターの整合性を取る際になどに発生し易い現象であり、一度発生すると、各要素の音的空間を正しくデザインし、認識可能でインパクトのあるサウンドに仕上げることが難しくなります。</p>
+
+<p>一般的に、マスキングは必ずしも悪いことではありません。二つの音源が同時に混在する場合、通常それらの周波数帯はオーバーラップしますので、マスキングは少なからず発生します。例えば、我々はあらゆる意味で“良い”マスキングを駆使する1960年代に生み出されたウォール・オブ・サウンドの技術を享受することが多々あります。とは言え、問題となるマスキングは世界中のどこであれミックスエンジニアにとって悪の元凶であり、これが発生すると、ミックス全体でどのトラックが競合しているのかを聴き分け、分析し、理解しなくてはならなくなります。</p>
+
+<p>聴覚マスキングの削減は、マルチトラックオーディオのミキシング作業における極めて重要な事項であり、しばしば良いミックスと悪いミックスの分水嶺となります。この痛痒に対する解決は、常にゲインのみで達成されるわけではなく、概して、ミックス内の各ステムのゲイン、イコライゼーション、そしてパンニングの緻密な操作によって達成されます。</p>
+
+<p>例えば、モノとしてミックスに着手し、トラック間の程よいボリュームとスペクトラルのバランスを確立した上で、ステレオ、あるいはサラウンドイメージ上にパンニングを展開する手法は良い実践方法であると言えます。このシナリオでは、パンニングの前にマスキングメーターとEQを使用することになりますが、複数の音源を別々の方向にパンすることで聴覚上のマスキングを解決できることも知っておく必要があります。</p>
+
+<p>何が問題となるマスキングであるかという考え方を確立し、その上でEQの使用を念頭に置いている場合に潜在的な問題をどのように視覚化するかという点で、Neutronは熱心な“アイゾトピアン”により開発され特許を得た心理音響的マスキングの仮説理論とアプローチを採用しています。この理論は2016年9月のAESにてコンベンション論文として認められました（AES 141、文書53）。我々のメーターは、マスキングの発生している周波数スペクトラムのエリアをリアルタイムに表示し（マスキングメーター）、マスキングの分量がとりわけ高いエリアを特定することで（マスキングヒストグラム）、注視すべき周波数帯が視認できる仕組みになっています。</p>
+
+<h3 id="neutronはどのようにして問題となるマスキングを計測するのか">Neutronはどのようにして問題となるマスキングを計測するのか?</h3>
+
+<p>AES文書には更に詳細が記載されていますが、要点を述べると、Neutronはラウドネス喪失と呼ばれる計測を基に分析します。 ラウドネス喪失とは、特定のトラックがソロ状態の時のラウドさと（知覚ラウドネス）、その他のトラックも揃っている状態でのラウドさ（知覚部分ラウドネス）との差異のことです。端的に説明すると、Neutronは音源（プラグイン）と外部入力である“マスカー”（マスキングメーターのドロップダウンメニューで選択されたプラグイン）の2つのオーディオ入力を取り出し、その上で、外耳と中耳のモデルを使用し、各知覚ラウドネスとそれらの相対的なラウドネスを計算している、ということになります。その後、マスカーによる音源のラウドネス喪失は次の通り算出されます:</p>
+
+<p><strong>ラウドネス喪失 = 知覚ラウドネス [ホン] – 知覚部分ラウドネス [ホン]</strong></p>
+
+<p>ここでは知覚されるラウドネスを計算する上で、デシベルに似た単位であるホンが使用されます。ホンで計測される音は全て、リスナーにとって同じラウドさを持つ1 kHzの純粋なトーンのdB SPLと相互関係にあります。このラウドネス喪失の計測は、知覚ラウドネスに周波数の及ぼす影響を相殺すべく周波数に特化しており、人間の複雑な聴覚を反映すべく、スペクトラム上で変化します。</p>
+
+<h3 id="マスキングメーター-vs-マスキングヒストグラム">マスキングメーター vs マスキングヒストグラム</h3>
+
+<p>マスキングメーターには、現在のトラックのスペクトラムとEQ曲線に対し、垂直の白線でマスキングのラウドネス喪失を表す瞬間的な度数が表示されます（我々は愛情を込めてこのメーターを「オーロラ」と呼んでいます）。これらの線は、その瞬間にその周波数でラウドネス喪失が発生したことを示します。線が明るいほどマスキングの量は多いことを意味します。</p>
+
+<p>マスキングヒストグラムは、ソースEQ上のグラデーションメーターです。これは各バンド内の周波数衝突の数を計測します。特定の周波数帯におけるラウドネス喪失が、定量的にスレッシュホルドを超過したと見做された場合 * 、極度のマスキングとして定義され、「衝突」として警告されます。</p>
+
+<p>このようにして、マスキングヒストグラムは各周波数帯に対するクリップインジケーターのような役割を果たし、極度のマスキングの発生の有無を表示します（とは言え、クリップインジケーターとは異なり、マスキングヒストグラムは、発生した単一のクリップを表示するのではなく、衝突の回数を計算します）。その帯域で衝突の回数が増えると、ヒストグラムのバーは高くなります。デフォルトでは、衝突の回数は3秒毎の浮動ウィンドウで算出されますが、このウィンドウの尺はオプションメニューで調節することが可能です。</p>
+
+<p>マスキングは必ずしも悪ではないという見方は非常に重要です。例えば、瞬時にミックスに切り込んで来るスネアや、2人のボーカリストによるハーモニー形成は、問題ではなく、認識できる好ましいマスキングであると言えます。これらのツールは飽くまでマスキングの発生を表示しているに過ぎず、そのマスキングが問題であるか、あるいは特筆すべきものであるかという判断はエンジニア（と彼らの耳）に委ねられるのです。</p>
+
+<p>これらのスレッシュホルドは各周波数帯に特有の数値です。これらが如何に決定されたかについては我々のAES文書にその詳細が記載されております。これら数値は、後述のマスキング感度のスライダーで調節できます。</p>
+
+<h2 id="マスキングメーターの操作項目">マスキングメーターの操作項目</h2>
+
+<p><img src="../images/equalizer/eq-softsaturation-masking-module.png" alt="masking" /></p>
+
+<h3 id="masking-オン-オフ">Masking（オン/オフ）</h3>
+
+<p>このボタンでマスキングメーターのオンとオフをトグルします。オンにすると、ドロップダウンメニューにアクセスすることができます。</p>
+
+<h3 id="マスキングのドロップダウンメニュー">マスキングのドロップダウンメニュー</h3>
+
+<p>ドロップダウンメニューには、現在のミックスで使用されているその他全てのNeutronが表示されます（多数のNeutronsを使用する場合、このドロップダウンメニューを使用する方が簡単に各プラグインへナビゲートすることができます）。 ここからどれか一つを選択すると、現在のトラックに対してそこで発生するマスキングの分量が、マスキングメーターとマスキングヒストグラムに表示されます。</p>
+
+<p>では、ここでは仮にセッション内の全てのトラックにNeutronが使われていることにしましょう。キックドラムのトラックで使用されるNeutronを選択し、マスキングメーターを表示させた上で、このドロップダウンメニューから別のトラックのNeutron（例えばベースのトラックなど）を選択すると、そちらの方に自動的に接続されます。これで２つのメーターが、どれだけベース・トラック（この場合のソース）がキックドラムのトラック（この場合のターゲット）をマスキングしているのかを示します（逆に、キックドラムのトラックがベース・トラックをどれだけマスキングしているかを表示するには、先ずベース・トラックのNeutronを開いた上で、ドロップダウンメニューからキックドラムの方のNeutronを選択する必要があります）。</p>
+
+<p>これに加え、2つのEQ曲線が表示されます。キックドラムのEQが上部にカラーで、ベースのEQが下部にグレーで表示され、両方のトラックのEQ調節が可能となります（ただし、選択されたコンポーネント・プラグインが、トランジエント・シェイパー、エキサイター、あるいはコンプレッサーなどのようにEQ操作項目を持たないものである場合、EQの操作自体ができませんので、この分割画面は表示されません）。ターゲット側のEQに変更を加えた場合、実際はその変更を別のプラグインへ送信していることに留意してください。これにより、2番目のEQでの調節はオートメーションの際に、予測のつかない動きをすることがあります。このことから、我々はリモートでのEQの使用に際するオートメーションの書き込みは推奨しておりません。</p>
+
+<h3 id="マスキングヒストグラム">マスキングヒストグラム</h3>
+
+<p>マスキングメーターを使用すると、瞬間的な周波数衝突が垂直の白線で表示されます。これは単に、その瞬間にその周波数でラウドネス喪失が発生したことを意味します。</p>
+
+<p>マスキングヒストグラムは、ソースEQ上のグラデーションメーターです。これは各バンド内の周波数衝突の数を計測します。特定の周波数帯におけるラウドネス喪失が、定量的にスレッシュホルドを超過したと見做された場合 * 、極度のマスキングとして定義され、「衝突」として警告されます。</p>
+
+<p>このようにして、マスキングヒストグラムは各周波数帯に対するクリップインジケーターのような役割を果たし、極度のマスキングの発生の有無を表示します（とは言え、クリップインジケーターとは異なり、マスキングヒストグラムは、発生した単一のクリップを表示するのではなく、衝突の回数を計算します）。その帯域で衝突の回数が増えると、ヒストグラムのバーは高くなります。デフォルトでは、衝突の回数は３秒毎の浮動ウィンドウで算出されますが、このウィンドウの尺はオプションメニューで調節することが可能です。</p>
+
+<p>マスキングヒストグラムの単一のバンドの衝突表示は、クリップインジケーターのように、そのバンドをクリックすることでクリアーすることができます。ヒストグラム上の全イベントは、左側にある「!」インジケーターをクリックすることでクリアーできます。</p>
+
+<h3 id="マスキング感度"><strong>マスキング感度</strong></h3>
+
+<p>マスキング感度では、ラウドネス喪失が衝突と定義付けられるほど極度のものであるかどうか判断するために使われるスレッシュホルドの増減を行います（このため、マスキングヒストグラムに表示されます）。感度が高いほど、より少ない分量のラウドネス喪失でも衝突と判断され、結果としてマスキングヒストグラムがより迅速に満たされることで極度のマスキングが発生しているように表示されます。これとは逆に、感度が低い場合、ラウドネス喪失のスレッシュホルドが高く設定されるため、マスキングヒストグラム上に表示される衝突は減少します。これと同様に、マスキングメーターに表示されるラウドネス喪失の幅も、感度操作による影響を受けますので、感度が高いほどメーターに表示されるラウドネス喪失の分量は減り、感度が低いほどマスキングの量が多いことを示すべく、より多い分量のラウドネス喪失が必要とされます（輝度の高い白線）。</p>
+
+<p>マスキング感度の調節を行ったとしても、オーディオ処理には何ら調節は行われていないということを理解することが重要です。マスキング感度を下げると、マスキング自体が減少したように見えますが、実際は、メーターの感度が調節されたに過ぎません。全てのメーターがそうであるように、メーターの感度はミックスエンジニアが素材に対して最適な設定を適用すべきです。ここで余りに多くのアクティビティが見られるようであれば、それは良いマスキングと悪いマスキングが混在している可能性が高く、その情報は上手く活用できないでしょう。この場合、感度は高過ぎると言えます。感度を下げることにより、2トラック間で発生する極度のマスキングのみを表示させることができます。逆に、音に濁りがありながらもメーター上にマスキングが表示されない場合は、感度を上げることでメーター上に何らかの反応が表示されるようになるでしょう。</p>
+
+<p>これはRMSレベルメーターの統合時間、あるいはピークメーターのピーク維持時間を設定するようなものであり、メーターに反映される情報の活用の仕方は時と場合によります。</p>
+
+<h3 id="インバースリンク">インバースリンク</h3>
+
+<p>インバースリンク（逆リンク）は分離作業をより簡単にします。これがオンの場合、各操作点のゲインと周波数が、別のEQの同じ操作点とリンクされます。例えば、ソースEQの第4操作点に3 dBのブーストを適用したとき、その下にあるターゲットEQの第4操作点には3 dBのカットが適用されます。ここでの目標は、一つのトラックに顕著な変更を加えることではなく、それぞれ1.5 dBずつのブーストとカットを適用するような、各トラックへの微細な変更で最適の分離を生み出すことです。逆リンクは作業に応じてオン/オフをトグルすることができます。</p>
+
+<p>注：逆リンクはゲインと周波数に作用する操作項目ですが、各操作点のその他の要素（例：Q、フィルタータイプ、ダイナミック/スタティック）には作用しません。これは、それらの要素が通常はカット、ブースト、そして周波数位置といった操作を共有する傾向にあることに由来しており、両トラックに別々のQ設定やフィルター形状を適用するのは稀なケースと言えます。共鳴を避けるべく、カットは狭いQで、ブーストは幅広い緩やかな形状で行うのが一般的です。</p>
+
+<h3 id="eqをバイパス">EQをバイパス</h3>
+
+<p>この機能を使うと、ソースとターゲットの両方のEQを一時的にバイパスすることができます。特に複数のトラックでEQを使用する際は、A/B比較、そして使用前/使用後の比較を行い、実際に変更が良い結果をもたらしているかどうかを確認することが重要です。</p>
+
+<p>これは聴覚のトレーニングとしても効果的な機能です。仮に、両方のEQをバイパスしたとき、そちらの方が良い音がしたとしても、それはそれでOKです。その様なことは、業界最高と言われる人にも起こり得ますし、リスニングとトライアルと失敗を重ねることで、我々の技量はより良くなるのです。この様な場合は、EQをリセットしてやり直しましょう。逆にEQに対して実施する変更が毎回完璧という方は、我々にご連絡ください。それは類い稀なる才能です！</p>
+
+<h3 id="衝突ヒストグラムのピーク維持時間">衝突ヒストグラムのピーク維持時間</h3>
+
+<p>前述のヒストグラムはリアルタイムのメーターです。オプションメニュー内で、ピーク維持時間の計算ウィンドウ長を400ミリ秒、3,000ミリ秒（デフォルト）、無限大の何れかに設定することができます。</p>
+
+<p>デフォルト設定の3,000ミリ秒は、最も使い易い設定であり、3秒毎の浮動ウィンドウの中で計算を行います。</p>
+
+<p>無限大は、選択されたオーディオの断片全域で発生するマスキングを確認したい場合に便利です。この設定では、周波数衝突が問題のあった箇所を過ぎても表示されたままとなりますが、開始から終点で対立の原因となったエリアを視認することができます（ヒストグラムをクリアーする場合は、右側の“!”ボタンをクリックしてください）。</p>
+
+<h3 id="ゲインオフセット">ゲインオフセット</h3>
+
+<p>マスキングの計算は、各トラックトラックのレベルに対して極度に敏感です。これは、トラックのゲインを著しくブーストすることで個別化させて音量を際立たせるか、あるは別のトラックのゲインを下げて相対的に音量を上げる効果を狙うかといったように、ラウドネスと部分的なラウドネスの観点からマスキングを考えると理に適っています。</p>
+
+<p>DAWがプリフェーダーでプラグインを適用する場合、Neutronはゲインが適用されたかどうか知る術がないため、DAWのトラックのボリュームフェーダーに応じて、マスキングは減少（あるいは時として増幅）します。 こうした場合、耳では何の変化も起きていないと知覚しつつ、Neutronが多量のマスキングを表示することがあります。ここでは過度に緻密なマスキングの情報が伝達されているため、マスキングが問題となるには、二つの音源のレベルがかけ離れ過ぎており、 Neutronは検知しないながらも、仮にそれらのレベルが近かった場合は対立が発生し得るとレポートすることがあります。</p>
+
+<p>最高かつ最も精度の高いマスキングの計算を実現する上で、我々は、使用される各Neutronのゲインオフセットを、DAWのトラックのボリュームフェーダーと同じ値に設定して頂くことを強く推奨します。これは、Neutronの聴き取れるゲインに影響を与えるわけではなく、単にマスキングを計算する際のレベルに影響を与える設定となります。</p>
+
+</div>
+    </article>
+    <footer class="footer">
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../track-assistant/index.html" title="トラックアシスタント">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              トラックアシスタント
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  <div class="next">
+  
+      <a href="../io-section/index.html" title="I/Oセクション">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              I/Oセクション
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+<div class="copyright">
+
+  
+  
+  <a href="../../en/masking-meter/index.html"><i class="icon icon-eye"></i> View page in English</a>
+  
+
+  <br />
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Neutron 2ヘルプドキュメント 
+
+</div></footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>  <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </main>
+  </body>
+</html>

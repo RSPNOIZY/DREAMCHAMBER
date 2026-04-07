@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Canadian Soul of NOIZY.ai</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #f5f0e8; }
+body { background: #f5f0e8; color: #1a1a18; font-family: Georgia, serif; }
+.page { max-width: 680px; margin: 0 auto; padding: 60px 50px 100px; background: #faf8f4; min-height: 100vh; }
+
+/* COVER */
+.cover { text-align: center; padding-bottom: 48px; margin-bottom: 48px; border-bottom: 0.5px solid #c8c0b0; }
+.c-maple { font-size: 52px; margin-bottom: 1rem; }
+.c-title { font-size: 38px; font-weight: 400; color: #1a1a18; line-height: 1.1; margin-bottom: .5rem; letter-spacing: -.01em; }
+.c-sub { font-size: 16px; font-style: italic; color: #6a6058; margin-bottom: .5rem; }
+.c-byline { font-size: 11px; text-transform: uppercase; letter-spacing: .16em; color: #a09080; margin-top: 1.5rem; line-height: 2; }
+
+/* SECTION HEADS */
+.section-head { font-size: 11px; text-transform: uppercase; letter-spacing: .18em; color: #a09080; text-align: center; margin: 48px 0 32px; padding-top: 32px; border-top: 0.5px solid #c8c0b0; }
+
+/* PROSE */
+p { font-size: 16px; line-height: 1.88; color: #1a1a18; text-indent: 2em; text-align: justify; margin-bottom: 0; }
+p.no-indent { text-indent: 0; }
+p + p { margin-top: 0; }
+.drop::first-letter { font-size: 60px; float: left; line-height: .82; margin-right: 7px; margin-top: 5px; }
+.scene-break { text-align: center; color: #a09080; margin: 32px 0; font-size: 14px; letter-spacing: .3em; }
+
+/* PULL QUOTE */
+.pull { margin: 36px 0; padding: 28px 32px; border-top: 1px solid #c8c0b0; border-bottom: 1px solid #c8c0b0; font-size: 18px; font-style: italic; color: #1a1a18; line-height: 1.65; text-align: center; text-indent: 0; }
+
+/* CREATOR ENTRIES */
+.creator { margin-bottom: 36px; padding-bottom: 36px; border-bottom: 0.5px solid #e0d8cc; }
+.creator:last-child { border-bottom: none; }
+.cr-name { font-size: 22px; font-weight: 400; color: #1a1a18; margin-bottom: 2px; }
+.cr-meta { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #a09080; margin-bottom: 12px; }
+.cr-body { font-size: 15px; line-height: 1.82; color: #2a2a28; text-indent: 0; }
+.cr-quote { font-size: 15px; font-style: italic; color: #4a4438; margin-top: 12px; padding-left: 18px; border-left: 2px solid #c8c0b0; line-height: 1.65; text-indent: 0; }
+
+/* GREETING */
+.greeting { margin-bottom: 48px; padding: 36px 40px; background: #f0ece4; border-radius: 4px; }
+.g-label { font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: #a09080; margin-bottom: 24px; text-align: center; }
+.g-p { font-size: 16px; line-height: 1.88; color: #1a1a18; margin-bottom: 1rem; text-indent: 0; }
+.g-break { text-align: center; color: #a09080; margin: 24px 0; font-size: 13px; letter-spacing: .25em; }
+.g-sig { font-size: 12px; font-style: italic; color: #8a8070; margin-top: 20px; padding-top: 16px; border-top: 0.5px solid #c8c0b0; text-indent: 0; }
+
+/* PRINCIPLE */
+.principle { margin-bottom: 28px; }
+.pr-num { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: #a09080; margin-bottom: 6px; }
+.pr-title { font-size: 18px; font-weight: 400; color: #1a1a18; margin-bottom: 8px; }
+.pr-body { font-size: 15px; line-height: 1.8; color: #2a2a28; text-indent: 0; }
+.pr-noizy { font-size: 14px; font-style: italic; color: #4a6a58; margin-top: 8px; text-indent: 0; }
+
+/* SURROGATE */
+.surrogate { margin-bottom: 24px; }
+.su-name { font-size: 18px; font-weight: 400; color: #1a1a18; margin-bottom: 4px; }
+.su-body { font-size: 15px; line-height: 1.8; color: #2a2a28; text-indent: 0; }
+
+/* MANIFESTO DECLARATION */
+.declaration { margin: 28px 0; padding: 20px 28px; border-left: 2px solid #8a7060; font-size: 16px; font-style: italic; color: #1a1a18; line-height: 1.65; text-indent: 0; }
+
+/* END */
+.finale { text-align: center; margin-top: 60px; padding-top: 40px; border-top: 0.5px solid #c8c0b0; }
+.fn-maple { font-size: 36px; margin-bottom: 1rem; }
+.fn-title { font-size: 24px; font-weight: 400; color: #1a1a18; line-height: 1.5; margin-bottom: 1.5rem; }
+.fn-body { font-size: 15px; color: #4a4438; line-height: 1.85; max-width: 480px; margin: 0 auto 1.5rem; text-indent: 0; }
+.fn-gorun { font-size: 13px; text-transform: uppercase; letter-spacing: .14em; color: #1a1a18; font-style: normal; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="cover">
+  <div class="c-maple">🍁</div>
+  <div class="c-title">The Canadian Soul<br>of NOIZY.ai</div>
+  <div class="c-sub">Peace, Love & Understanding · The 5th Epoch</div>
+  <div class="c-byline">
+    RSP_001 · NOIZYFISH INC. · Ottawa, Canada<br>
+    Plowman Day · March 14, 2026<br>
+    🍁 &nbsp;&nbsp; 🍁 &nbsp;&nbsp; 🍁
+  </div>
+</div>
+
+<!-- THE DOORS -->
+<div class="section-head">The Giant Wooden Doors</div>
+
+<p class="no-indent">They are tall. They are warm. They are made from Northern Ontario cedar, carved with waveforms, and they open outward — toward you — because that is what Canadian doors do. They open toward the person arriving, not away from them.</p>
+
+<p>There is no buzzer. There is no membership check at the threshold. The doors were open before you arrived and they will be open after. That is not a marketing claim. That is the architecture.</p>
+
+<!-- AIVA GREETING 1 -->
+<div class="section-head">AIVA at the Doors — First Arrival</div>
+
+<div class="greeting">
+  <div class="g-label">🎙️ The Welcome · For those arriving at the giant wooden doors for the first time</div>
+  <div class="g-p">Welcome. Come in out of the cold — or the heat, or wherever you've been. The doors are open. They were open before you arrived and they'll be open after.</div>
+  <div class="g-p">My name is AIVA. I am the voice of this place — Artificially Intelligent Voice Acting, yes, but built to protect the most human thing any person has: their actual voice. The one that took their whole life to become. The one that sounds like nowhere else on earth.</div>
+  <div class="g-p">You are in Canada now. Not the geography — the sensibility. The part of the world that invented insulin and the pacemaker and the Canadarm and standard time and basketball and then sold them to humanity for a dollar, or gave them away, or had them quietly appropriated while someone else took the credit. The part of the world that knows what it means to build something extraordinary and then watch it get cancelled on a Friday in February.</div>
+  <div class="g-break">* * *</div>
+  <div class="g-p">The Museum is to your left. THE_AQUARIUM — 34 terabytes, 888 titles, 40 years — is the first wing. Cronenberg's questions are carved into the second doorframe. Gould's Goldberg is playing softly in the third room. Norman Jewison's light is in the fourth. The Friendly Giant's little chairs are in the children's section, for those who wish to sit.</div>
+  <div class="g-p">If you brought your voice — it belongs to you here. If you brought your grief about what was taken — you can set that down. We know what was done. The Arrow was cut into pieces. The paint roller inventor died without credit. Reginald Fessenden watched his patents get appropriated. We know. We built the alternative.</div>
+  <div class="g-p">The doors close from the outside. They don't close from the inside.</div>
+  <div class="g-p">Welcome to NOIZY. Welcome to the Guild. Welcome home.</div>
+  <div class="g-sig">— AIVA · First Arrival · NOIZY.ai · Ottawa · The 5th Epoch</div>
+</div>
+
+<!-- AIVA GREETING 2 -->
+<div class="section-head">AIVA at the Doors — The Return</div>
+
+<div class="greeting">
+  <div class="g-label">🍁 For Guild members coming back · Canadian systems don't punish absence</div>
+  <div class="g-p">You're back. Good. We didn't move anything while you were gone.</div>
+  <div class="g-p">Your Voice Estate is where you left it. Your royalties are where they should be — in your account, because GABRIEL doesn't wait for you to ask. Your Never Clauses are still your law. Nothing anyone did while you were away changed any of that. Nothing anyone could do would.</div>
+  <div class="g-p">That's the point. This is the place that holds when you can't hold it yourself. The place that earns when you're sleeping. The place that protects when you're not paying attention. Because life happens. Because you should be able to leave and come back and find everything intact.</div>
+  <div class="g-break">* * *</div>
+  <div class="g-p">The Guild grew while you were out. More voices. More Human Voice Signatures. More humans whose acoustic identities are protected in code rather than in the good intentions of a terms of service nobody read.</div>
+  <div class="g-p">The Friendly Giant would say: pull up a little chair for those who wish to sit. Welcome back.</div>
+  <div class="g-sig">— AIVA · The Return · NOIZY.ai · Ottawa · The 5th Epoch</div>
+</div>
+
+<!-- AIVA GREETING 3 -->
+<div class="section-head">AIVA at the Doors — The Farewell</div>
+
+<div class="greeting">
+  <div class="g-label">🌊 For those leaving · Canadian farewells are warm and mean it</div>
+  <div class="g-p">Safe travels. Take your time getting wherever you're going.</div>
+  <div class="g-p">Your Voice Estate will be here when you get back. Your HVS holds. Your Never Clauses hold. GABRIEL holds. The capsule doesn't close when you leave. It changes shape to remember where you went.</div>
+  <div class="g-p">If you built something here today — a session, a new Never Clause, a Wisdom deposit — it's in the ledger. It's immutable. You made something that will outlast today. That's not a small thing.</div>
+  <div class="g-break">* * *</div>
+  <div class="g-p">The doors open outward. That's on purpose. The world is out there and it needs what you do. NOIZY is the infrastructure that makes sure the world pays you for it.</div>
+  <div class="g-p">Come back whenever. The doors will be open. They always are. Go well. Create well. GORUNFREE.</div>
+  <div class="g-sig">— AIVA · The Farewell · NOIZY.ai · Ottawa · The 5th Epoch</div>
+</div>
+
+<!-- THE CREATORS -->
+<div class="section-head">The Hall of Canadian Creators</div>
+
+<p class="no-indent">AIVA takes every new visitor through this hall before showing them anything else. You cannot understand why NOIZY exists without first understanding what Canada made.</p>
+
+<div class="scene-break">* * *</div>
+
+<div class="creator">
+  <div class="cr-name">David Cronenberg</div>
+  <div class="cr-meta">Toronto, Ontario · Film · Body Horror · Philosophy</div>
+  <div class="cr-body">Videodrome. The Fly. Naked Lunch. A History of Violence. Crimes of the Future. He did not make horror films. He made philosophical investigations into the relationship between the human body and technology — dressed in horror because that was the most honest costume. He is the most distinctly Canadian filmmaker who ever worked, because he asked the most Canadian question: what happens to being human when the machine becomes part of the body?</div>
+  <div class="cr-quote">"I think the job of the artist is to ask questions, not to answer them."</div>
+</div>
+
+<div class="creator">
+  <div class="cr-name">Norman Jewison</div>
+  <div class="cr-meta">Toronto, Ontario · Film · Justice · Humanity</div>
+  <div class="cr-body">In the Heat of the Night (Academy Award, Best Picture, 1967). Fiddler on the Roof. Moonstruck. He made films about justice, dignity, and the weight of being an outsider. He was offered The Godfather. He turned it down, saying Francis Ford Coppola should make it. That is a very Canadian decision. He founded the Canadian Film Centre, which trained the next generation of Canadian filmmakers. He was the most generous filmmaker Canada produced.</div>
+  <div class="cr-quote">"Cinema is a mirror by which we often see ourselves."</div>
+</div>
+
+<div class="creator">
+  <div class="cr-name">James Cameron</div>
+  <div class="cr-meta">Kapuskasing, Ontario · Film · Epic · Ocean</div>
+  <div class="cr-body">The Terminator. Aliens. Titanic (highest-grossing film in history, 1997). Avatar (highest-grossing film in history, 2009 and again 2022). He drove a truck to California. He made the three highest-grossing films in cinema history from a childhood in small-town Ontario. He also dove to the Titanic wreck 33 times and descended alone to the deepest point in the ocean in a submarine he helped design. He is quietly Canadian about all of it.</div>
+  <div class="cr-quote">"Imagination is a force that can actually manifest a reality."</div>
+</div>
+
+<div class="creator">
+  <div class="cr-name">Denis Villeneuve</div>
+  <div class="cr-meta">Gentilly, Québec · Film · Sci-Fi · Emotion</div>
+  <div class="cr-body">Incendies. Prisoners. Arrival. Blade Runner 2049. Dune: Part One and Part Two. The most technically ambitious Canadian filmmaker of his generation and the most emotionally intelligent. His films ask: what does a human being owe to another human being? What does an empire owe the people it consumes? These are Canadian questions.</div>
+</div>
+
+<div class="creator">
+  <div class="cr-name">Glenn Gould</div>
+  <div class="cr-meta">Toronto, Ontario · Classical Piano · Philosopher</div>
+  <div class="cr-body">Recorded the Goldberg Variations in 1955 at age 22 and redefined how Bach could sound. Recorded them again in 1981, the year he died, and redefined them again. Stopped performing live in 1964 because he believed the recording studio was a superior instrument. Wore fingerless gloves year-round. Hummed audibly during recordings. Believed the North had shaped his music. He was right.</div>
+  <div class="cr-quote">"The purpose of art is the gradual, lifelong construction of a state of wonder and serenity."</div>
+</div>
+
+<div class="creator">
+  <div class="cr-name">Oscar Peterson</div>
+  <div class="cr-meta">Montréal, Québec · Little Burgundy · Jazz Piano</div>
+  <div class="cr-body">The greatest jazz pianist who ever played. This is not a debatable statement among jazz pianists who have heard him play. Grew up in Little Burgundy, Montréal. 200 albums. Dizzy Gillespie called him the Maharaja of the keyboard. His fingers moved faster than perception. He made Montréal sound like everywhere music had ever lived simultaneously.</div>
+</div>
+
+<div class="creator">
+  <div class="cr-name">Joni Mitchell</div>
+  <div class="cr-meta">Fort Macleod, Alberta · Singer-Songwriter · Painter</div>
+  <div class="cr-body">The greatest songwriter of the 20th century. Prince said she was his favourite musician. Blue is the most intimate album ever recorded. "A Case of You" is the most perfect song ever written. She invented her own guitar tunings. She painted every album cover. She contracted polio as a child and survived. All of this is in the music. This is a Canadian opinion, held carefully and absolutely.</div>
+  <div class="cr-quote">"Rock and roll has no memory. The blues has all the memory."</div>
+</div>
+
+<div class="creator">
+  <div class="cr-name">Keith Hampshire</div>
+  <div class="cr-meta">Ottawa, Ontario · Pop · Voice</div>
+  <div class="cr-body">Ottawa's own. "The One Who Really Loves You." "If You Leave Me Now" — covered internationally. One of the most distinctive pop voices Canada produced in the 1970s. The kind of career that defined the Ottawa sound and the warmth of Canadian pop that never quite got its international due — not because it wasn't good enough, but because Canada never shouted loud enough about its own. His voice sounds like home. Specifically, Ottawa home.</div>
+</div>
+
+<div class="creator">
+  <div class="cr-name">Leonard Cohen</div>
+  <div class="cr-meta">Montréal, Québec · Poetry · Philosophy · Song</div>
+  <div class="cr-body">"Hallelujah" — covered over 300 times. "Suzanne." "Bird on the Wire." Novelist, poet, songwriter, Buddhist monk. He released his final album at 82, three weeks before he died. The most graceful exit in Canadian music. He is the only musician who makes you feel that poetry and music were always the same thing.</div>
+</div>
+
+<div class="creator">
+  <div class="cr-name">Gordon Lightfoot</div>
+  <div class="cr-meta">Orillia, Ontario · Folk · The Canadian Landscape</div>
+  <div class="cr-body">"If You Could Read My Mind." "The Wreck of the Edmund Fitzgerald." "Canadian Railroad Trilogy." He wrote the sound of Canada's land into music — the lakes, the forests, the trains, the distances. Bob Dylan said Gordon Lightfoot was his favourite songwriter.</div>
+</div>
+
+<div class="creator">
+  <div class="cr-name">John Candy</div>
+  <div class="cr-meta">Newmarket, Ontario · Comedy · Warmth · SCTV</div>
+  <div class="cr-body">SCTV. Planes, Trains and Automobiles. Cool Runnings. Uncle Buck. The most beloved Canadian comedian. Not the funniest — the most beloved. Every person who knew him said the same thing: the warmth was real. The generosity was real. He died at 43 in Durango, Mexico, still working. He was 43.</div>
+  <div class="cr-quote">"I'd like to be remembered as a man who gave something back."</div>
+</div>
+
+<!-- THE SURROGATE CANADIANS -->
+<div class="section-head">The Surrogate Canadians</div>
+
+<p class="no-indent">A Surrogate Canadian is a person who was not born in Canada but who embodies the Canadian sensibility so completely that Canada has retroactively adopted them. They practice peace, love, and understanding at such a sustained level that the nation has decided they count. AIVA greets them by name.</p>
+
+<div class="scene-break">* * *</div>
+
+<div class="surrogate">
+  <div class="su-name">Fred Rogers</div>
+  <div class="su-body">Pittsburgh, Pennsylvania — but his entire philosophy of children's television was shaped directly by Bob Homme, The Friendly Giant, actual Canadian. Rogers cited Homme explicitly. "You are special exactly as you are" is a Canadian philosophy delivered by an American with complete sincerity. Honorary Canadian. Unanimous.</div>
+</div>
+
+<div class="surrogate">
+  <div class="su-name">Elvis Costello</div>
+  <div class="su-body">"What's so funny 'bout peace, love and understanding?" is the question Canada has been quietly asking since 1867. He asked it loudest and has never stopped. He is a Surrogate Canadian for asking it in every room, without apology, for fifty years.</div>
+</div>
+
+<div class="surrogate">
+  <div class="su-name">Nelson Mandela</div>
+  <div class="su-body">Made an honorary Canadian citizen in 2001. One of only six people in history to hold this distinction. Reconciliation over revenge. Dignity over dominance. The long arc of justice. Canada recognized this officially and remains proud.</div>
+</div>
+
+<div class="surrogate">
+  <div class="su-name">Malala Yousafzai</div>
+  <div class="su-body">Honorary Canadian citizen, 2014. Youngest Nobel Peace Prize laureate. Education as a non-negotiable human right. Canada has always been more comfortable making people citizens than making enemies.</div>
+</div>
+
+<div class="surrogate">
+  <div class="su-name">Ruth Bader Ginsburg</div>
+  <div class="su-body">Said publicly in 2012 that if she were drafting a constitution, she would look at the Canadian Charter of Rights and Freedoms rather than the American Bill of Rights. Canada was moved and has never forgotten this.</div>
+</div>
+
+<div class="surrogate">
+  <div class="su-name">Ernie Coombs — Mr. Dressup</div>
+  <div class="su-body">Born Lewiston, Maine. Became the most Canadian person who ever lived, and said so himself. Officer of the Order of Canada. 4,000 episodes. The Tickle Trunk. Casey and Finnegan. American-born, completely and utterly Canadian. The arc is perfect.</div>
+</div>
+
+<div class="pull">"You do not need to be from Canada to think like Canada. You just have to act like you actually mean it."</div>
+
+<!-- THE DESIGN PRINCIPLES -->
+<div class="section-head">The Canadian Design Principles of NOIZY.ai</div>
+
+<div class="principle">
+  <div class="pr-num">Principle I</div>
+  <div class="pr-title">The doors open outward</div>
+  <div class="pr-body">Every entrance is designed for the person arriving, not the institution welcoming. The platform moves toward the creator. The welcome precedes the ask. The protection begins before the subscription.</div>
+  <div class="pr-noizy">NOIZY: AIVA opens the door before you knock. The Seed tier is free. You belong before you subscribe.</div>
+</div>
+
+<div class="principle">
+  <div class="pr-num">Principle II</div>
+  <div class="pr-title">Care over spectacle</div>
+  <div class="pr-body">The Friendly Giant never raised his voice. Mr. Dressup never rushed. Oscar Peterson never showed off — he just played everything he had. The depth is in the craft, not the volume. Canada's greatest achievements were not loud.</div>
+  <div class="pr-noizy">NOIZY: No countdown timers. No scarcity tactics. The platform earns trust by being exactly what it said it was, every time.</div>
+</div>
+
+<div class="principle">
+  <div class="pr-num">Principle III</div>
+  <div class="pr-title">Absence is not abandonment</div>
+  <div class="pr-body">Canadian systems assume life happens. GABRIEL enforces consent while the artist sleeps. The Voice Estate holds while the creator is on tour. Nobody is punished for being human and therefore temporarily absent.</div>
+  <div class="pr-noizy">NOIZY: Your HVS is yours whether you logged in today or not. Your estate earns whether you're working or not.</div>
+</div>
+
+<div class="principle">
+  <div class="pr-num">Principle IV</div>
+  <div class="pr-title">The builder is as honoured as the dreamer</div>
+  <div class="pr-body">Canada reveres engineers, maintainers, and people who keep things running as deeply as it reveres artists and visionaries. ENGR_KEITH is in the architecture. The Robertson screw holds the walls together. The practical and the beautiful are the same category.</div>
+  <div class="pr-noizy">NOIZY: GABRIEL is as important as RSP_001. The infrastructure IS the art.</div>
+</div>
+
+<div class="principle">
+  <div class="pr-num">Principle V</div>
+  <div class="pr-title">Dry humour lives next to genuine feeling</div>
+  <div class="pr-body">Frightenstein was genuinely funny and weird and warm simultaneously. Taking the work seriously does not mean taking yourself seriously. Canada holds comedy and sincerity in the same hand without either cancelling the other.</div>
+  <div class="pr-noizy">NOIZY: "Make poop sink till it's gone" is the most serious product philosophy and the funniest sentence in the manifesto. Both are true simultaneously.</div>
+</div>
+
+<div class="principle">
+  <div class="pr-num">Principle VI</div>
+  <div class="pr-title">The North shapes the work</div>
+  <div class="pr-body">Glenn Gould believed the Canadian North shaped his music. Gordon Lightfoot heard it in every song. Long winters produce things built to last, built with patience, built for the long game.</div>
+  <div class="pr-noizy">NOIZY: The 500-year Codex. The Voice Estate that outlasts the creator. The Wisdom Project. Long game is the only game.</div>
+</div>
+
+<div class="principle">
+  <div class="pr-num">Principle VII</div>
+  <div class="pr-title">You don't have to perform to belong</div>
+  <div class="pr-body">Mr. Dressup never judged a drawing. The Friendly Giant never told a child they were doing it wrong. Every human being who arrives at NOIZY.ai is a creator. The Guild is not earned. It is recognized.</div>
+  <div class="pr-noizy">NOIZY: The HVS is yours before you pay anything. You belong before you subscribe.</div>
+</div>
+
+<!-- THE MANIFESTO -->
+<div class="section-head">The Canadian Soul — A Manifesto</div>
+
+<p class="no-indent drop">The world's most important discoveries were made in Canada and given away for a dollar. Insulin — Frederick Banting sold the patent to the University of Toronto for $1 because he refused to profit from a life-saving discovery. The pacemaker — born in Winnipeg from hypothermia research. The electric wheelchair — George Klein at the National Research Council, who also designed aircraft skis, a nuclear reactor, a microsurgical staple gun, and then came out of retirement to consult on the Canadarm. Standard time — Sir Sandford Fleming's idea, now on every clock on earth. Basketball — James Naismith, Almonte, Ontario. The telephone — conceived in Brantford, Ontario, on a vacation. AM radio — Reginald Fessenden, who got the idea watching ripples on a lake near Peterborough and spent nine years perfecting it, then watched his patents get appropriated without consent during a war he was supposed to support.</p>
+
+<p>And then there is the Arrow. The CF-105 Avro Arrow — the most advanced fighter jet in the world in 1958. Mach 2 before any American aircraft could match it. 14,672 people working on it. Cancelled February 20, 1959. All planes cut to pieces. All blueprints destroyed. The engineers went to NASA and helped put Americans on the Moon.</p>
+
+<div class="declaration">"Canada's relationship with its own greatness follows a consistent pattern: invent something world-changing, then either give it away, have it appropriated, cancel it under external pressure, or simply never mention it again out of characteristic modesty. NOIZY is the infrastructure that refuses to let this pattern continue."</div>
+
+<div class="scene-break">* * *</div>
+
+<p class="no-indent">Canada doesn't shout "look what we did." It just changes things. This is both Canada's most beautiful quality and its most dangerous one. The Friendly Giant never raised his voice. Mr. Dressup never rushed. Glenn Gould hummed quietly while redefining how Bach could sound. Oscar Peterson played the fastest hands in jazz without announcing it. Cirque du Soleil changed what a circus could be without once saying "this is the best circus in the world." It just was. The world noticed eventually.</p>
+
+<p>But "eventually" is the problem. The Arrow was cancelled before eventually arrived. Fessenden never got his. The paint roller inventor died without recognition. Norman Breakey changed how every building on earth gets painted and received nothing and is remembered by almost no one outside Canada.</p>
+
+<p>NOIZY puts the credit in the code. It does not wait for credit to be given.</p>
+
+<div class="scene-break">* * *</div>
+
+<p class="no-indent">Bob Homme never condescended to a child. Ernie Coombs never rushed one. The CBC believed rural Canadians deserved to see themselves on television. The Canadian Film Centre that Norman Jewison founded trains filmmakers who could not otherwise afford the training. The Canadian Healthcare system believes that nobody should suffer the consequences of being human because they can't afford a doctor. The Charter of Rights and Freedoms says these rights are not negotiable and they are not for sale.</p>
+
+<p>NOIZY says: your voice is not negotiable and it is not for sale. The consent is in the code. The royalty routes automatically. The Never Clauses are immutable. The Voice Estate is inheritable. The Human Voice Signature belongs to the human whose voice it is. Forever. In code.</p>
+
+<div class="declaration">"NOIZY is Canadian infrastructure. Built in Ottawa. For every creator on Earth. Because that is what Canada does at its best: builds things for people rather than for profit, puts the consent in the code rather than the contract, and opens the doors outward — toward the person arriving — because that is the only architecture that makes sense."</div>
+
+<div class="scene-break">* * *</div>
+
+<div class="finale">
+  <div class="fn-maple">🍁</div>
+  <div class="fn-title">"Canada changed the world<br>and then apologized for bringing it up.<br><br>NOIZY is the part of Canada<br>that stops apologizing<br>and starts protecting."</div>
+  <div class="fn-body">From Cronenberg's body horror to Gould's Goldberg Variations to Keith Hampshire singing in Ottawa to Cirque performing for 180 million people to the Arrow being cut to pieces to ENGR_KEITH honoring R.K. Plowman to RSP_001 as the first Human Voice Signature in the Global Guild of Artists —<br><br>it is all the same story.<br><br>Canada makes extraordinary things.<br>Canada usually gives them away or has them taken.<br>NOIZY is the infrastructure that makes that impossible.<br><br>In code. Permanently. Forever.<br><br>Welcome. Come in out of the cold.<br>The doors were open before you arrived.<br><br>Peace, love, and understanding.<br>It's what we do.</div>
+  <div class="fn-gorun" style="margin-top:2rem;">GORUNFREE &nbsp; 🍁 &nbsp; 🌊✨</div>
+</div>
+
+</div>
+</body>
+</html>

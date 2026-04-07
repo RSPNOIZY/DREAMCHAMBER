@@ -1,0 +1,107 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "DreamChamber: Start Dev",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": { "cwd": "${workspaceFolder}/dreamchamber" },
+      "group": "build",
+      "isBackground": true,
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "DreamChamber: Install Dependencies",
+      "type": "shell",
+      "command": "npm install",
+      "options": { "cwd": "${workspaceFolder}/dreamchamber" },
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Heaven: Deploy Worker",
+      "type": "shell",
+      "command": "bash deploy.sh",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      }
+    },
+    {
+      "label": "Heaven: Smoke Tests",
+      "type": "shell",
+      "command": "bash smoke_test.sh",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      }
+    },
+    {
+      "label": "Heaven: Health Check",
+      "type": "shell",
+      "command": "curl -s https://heaven.noizylab.workers.dev/health | python3 -m json.tool",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "DreamChamber: Health Check",
+      "type": "shell",
+      "command": "curl -s http://localhost:7777/health | python3 -m json.tool",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "DB: Apply Schema (Remote D1)",
+      "type": "shell",
+      "command": "npx wrangler d1 execute gabriel_db --remote --file=schema.sql",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "none",
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "DB: Seed Data (Remote D1)",
+      "type": "shell",
+      "command": "npx wrangler d1 execute gabriel_db --remote --file=seed.sql",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "none",
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Voice Bridge: Start",
+      "type": "shell",
+      "command": "node voice-bridge-server.js",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "build",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "showReuseMessage": false
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Git: Status",
+      "type": "shell",
+      "command": "git status && git log --oneline -10",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "none",
+      "presentation": { "reveal": "always", "panel": "shared" }
+    }
+  ]
+}

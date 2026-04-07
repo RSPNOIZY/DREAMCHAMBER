@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY EMPIRE — Email Architecture & MCP Audit</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #12121a;
+    --border: #1e1e2e;
+    --purple: #9b59b6;
+    --gold: #f1c40f;
+    --green: #2ecc71;
+    --red: #e74c3c;
+    --yellow: #f39c12;
+    --cyan: #00d4ff;
+    --text: #e0e0e0;
+    --muted: #888;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', 'SF Mono', 'Fira Code', monospace;
+    line-height: 1.6;
+    padding: 2rem;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(155,89,182,0.15), rgba(241,196,15,0.1));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .header h1 {
+    font-size: 2rem;
+    background: linear-gradient(90deg, var(--purple), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  .header .subtitle { color: var(--muted); font-size: 0.9rem; }
+  .header .date { color: var(--cyan); font-size: 0.85rem; margin-top: 0.5rem; }
+
+  h2 {
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 { font-size: 1.1rem; color: var(--purple); margin: 1.5rem 0 0.75rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--purple); }
+  .card .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .card .domain { font-size: 1.2rem; font-weight: bold; margin: 0.25rem 0; }
+  .card .detail { font-size: 0.85rem; margin: 0.25rem 0; }
+
+  .status {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .status.live { background: rgba(46,204,113,0.2); color: var(--green); }
+  .status.pending { background: rgba(243,156,18,0.2); color: var(--yellow); }
+  .status.broken { background: rgba(231,76,60,0.2); color: var(--red); }
+  .status.unregistered { background: rgba(231,76,60,0.15); color: #ff6b6b; }
+  .status.transfer { background: rgba(0,212,255,0.15); color: var(--cyan); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+  }
+  th {
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    background: rgba(155,89,182,0.1);
+    border-bottom: 2px solid var(--purple);
+    color: var(--purple);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:hover td { background: rgba(155,89,182,0.05); }
+
+  .aliases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+  }
+  .alias {
+    background: rgba(0,212,255,0.08);
+    border: 1px solid rgba(0,212,255,0.2);
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  .alias .addr { color: var(--cyan); font-weight: bold; }
+
+  .mcp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .mcp-card .name { font-size: 1rem; font-weight: bold; color: var(--text); }
+  .mcp-card .account { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+  .mcp-card .stats { font-size: 0.85rem; margin-top: 0.5rem; }
+  .mcp-card .stats span { color: var(--gold); }
+
+  .action-item {
+    background: rgba(243,156,18,0.08);
+    border-left: 3px solid var(--yellow);
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.85rem;
+  }
+  .action-item.critical {
+    background: rgba(231,76,60,0.08);
+    border-left-color: var(--red);
+  }
+  .action-item.success {
+    background: rgba(46,204,113,0.08);
+    border-left-color: var(--green);
+  }
+  .action-item .priority {
+    font-weight: bold;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .dns-record {
+    font-family: monospace;
+    background: rgba(0,0,0,0.3);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin: 0.15rem 0;
+  }
+
+  .section-summary {
+    background: linear-gradient(135deg, rgba(155,89,182,0.1), rgba(0,212,255,0.05));
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0;
+    border-bottom: 1px dotted var(--border);
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-row .val { color: var(--gold); font-weight: bold; }
+
+  .forward-arrow { color: var(--purple); margin: 0 0.5rem; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>NOIZY EMPIRE</h1>
+  <div class="subtitle">Email Architecture & MCP Connector Audit</div>
+  <div class="date">Generated: 2026-03-23 | Account: Fishmusicinc (2446d788...c355)</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 1: DOMAIN REGISTRY             -->
+<!-- ═══════════════════════════════════════ -->
+
+<h2>1. DOMAIN REGISTRY — 7 Domains</h2>
+
+<div class="section-summary">
+  <div class="stat-row"><span>On Cloudflare (ready)</span> <span class="val">2 domains</span></div>
+  <div class="stat-row"><span>On GoDaddy → Cloudflare (transfer needed)</span> <span class="val">3 domains</span></div>
+  <div class="stat-row"><span>Not registered (need purchase)</span> <span class="val">2 domains</span></div>
+  <div class="stat-row"><span>Forward destination</span> <span class="val">rsplowman@icloud.com</span></div>
+  <div class="stat-row"><span>Aliases per domain</span> <span class="val">rsp, hello, support, gabriel, admin, info + catch-all</span></div>
+</div>
+
+<div class="grid">
+
+  <!-- noizy.ai -->
+  <div class="card" style="border-color: var(--green);">
+    <div class="label">Cloudflare — Primary Domain</div>
+    <div class="domain">noizy.ai</div>
+    <span class="status live">ON CLOUDFLARE</span>
+    <div class="detail">Registrar: Cloudflare | DNS: Cloudflare</div>
+    <div class="detail">Email: <strong>rsp@noizy.ai</strong> (primary identity)</div>
+    <div class="detail">Status: Ready for Email Routing setup</div>
+  </div>
+
+  <!-- noizylab.ca -->
+  <div class="card" style="border-color: var(--green);">
+    <div class="label">Cloudflare — R&D Domain</div>
+    <div class="domain">noizylab.ca</div>
+    <span class="status live">ON CLOUDFLARE</span>
+    <div class="detail">Registrar: Cloudflare | DNS: Cloudflare</div>
+    <div class="detail">Email: rsp@noizylab.ca</div>
+    <div class="detail">Status: Ready for Email Routing setup</div>
+  </div>
+
+  <!-- fishmusicinc.com -->
+  <div class="card" style="border-color: var(--yellow);">
+    <div class="label">GoDaddy → Cloudflare (NS Changed)</div>
+    <div class="domain">fishmusicinc.com</div>
+    <span class="status transfer">NS CHANGED</span>
+    <div class="detail">Registrar: GoDaddy | NS: Cloudflare (melinda + alex)</div>
+    <div class="detail">Next: Unlock domain, get EPP code, initiate CF transfer</div>
+    <div class="detail">Parent company domain — FISHMUSICINC.COM</div>
+  </div>
+
+  <!-- noizyfish.com -->
+  <div class="card" style="border-color: var(--red);">
+    <div class="label">GoDaddy — Stuck</div>
+    <div class="domain">noizyfish.com</div>
+    <span class="status pending">NEEDS TRANSFER</span>
+    <div class="detail">Registrar: GoDaddy (acct unknown) | DNS: GoDaddy</div>
+    <div class="detail">Email: rsp@noizyfish.com</div>
+    <div class="detail">Action: Unlock + EPP code + transfer to Cloudflare</div>
+  </div>
+
+  <!-- noizylab.com -->
+  <div class="card" style="border-color: var(--red);">
+    <div class="label">GoDaddy — Stuck</div>
+    <div class="domain">noizylab.com</div>
+    <span class="status pending">NEEDS TRANSFER</span>
+    <div class="detail">Registrar: GoDaddy (acct unknown) | DNS: GoDaddy</div>
+    <div class="detail">Email: rsp@noizylab.com</div>
+    <div class="detail">Action: Unlock + EPP code + transfer to Cloudflare</div>
+  </div>
+
+  <!-- noizyvox.com -->
+  <div class="card" style="border-color: #ff6b6b;">
+    <div class="label">NOT REGISTERED</div>
+    <div class="domain">noizyvox.com</div>
+    <span class="status unregistered">NEEDS PURCHASE</span>
+    <div class="detail">Email: rsp@noizyvox.com (planned)</div>
+    <div class="detail">Critical: Core brand domain for NOIZYVOX voice platform</div>
+    <div class="detail">Register via Cloudflare Registrar (cheapest, stays on CF)</div>
+  </div>
+
+  <!-- noizykids.com -->
+  <div class="card" style="border-color: #ff6b6b;">
+    <div class="label">NOT REGISTERED</div>
+    <div class="domain">noizykids.com</div>
+    <span class="status unregistered">NEEDS PURCHASE</span>
+    <div class="detail">Email: rsp@noizykids.com (planned)</div>
+    <div class="detail">Note: Brand = NOIZYKIDZ (with Z), domain = noizykids (with S)</div>
+    <div class="detail">Consider also registering noizykidz.com if available</div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 2: EMAIL ARCHITECTURE          -->
+<!-- ═══════════════════════════════════════ -->
+
+<h2>2. EMAIL ARCHITECTURE — Per Domain</h2>
+
+<h3>DNS Records (Applied to Each Domain on Cloudflare)</h3>
+
+<table>
+  <thead>
+    <tr><th>Type</th><th>Name</th><th>Value</th><th>Priority</th><th>Purpose</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="dns-record">MX</span></td>
+      <td>@</td>
+      <td>amir.mx.cloudflare.net</td>
+      <td>3</td>
+      <td>Primary mail exchanger</td>
+    </tr>
+    <tr>
+      <td><span class="dns-record">MX</span></td>
+      <td>@</td>
+      <td>linda.mx.cloudflare.net</td>
+      <td>44</td>
+      <td>Secondary mail exchanger</td>
+    </tr>
+    <tr>
+      <td><span class="dns-record">MX</span></td>
+      <td>@</td>
+      <td>isaac.mx.cloudflare.net</td>
+      <td>83</td>
+      <td>Tertiary mail exchanger</td>
+    </tr>
+    <tr>
+      <td><span class="dns-record">TXT</span></td>
+      <td>@</td>
+      <td>v=spf1 include:_spf.mx.cloudflare.net ~all</td>
+      <td>—</td>
+      <td>SPF — authorize Cloudflare</td>
+    </tr>
+    <tr>
+      <td><span class="dns-record">TXT</span></td>
+      <td>_dmarc</td>
+      <td>v=DMARC1; p=quarantine; rua=mailto:dmarc-reports@[domain]; pct=100</td>
+      <td>—</td>
+      <td>DMARC — quarantine + reporting</td>
+    </tr>
+    <tr>
+      <td><span class="dns-record">TXT</span></td>
+      <td>cf2024-1._domainkey</td>
+      <td>(auto-generated by Cloudflare)</td>
+      <td>—</td>
+      <td>DKIM — message signing</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Email Aliases — Every Domain Gets These</h3>
+
+<div class="aliases-grid">
+  <div class="alias"><div class="addr">rsp@</div>Primary inbox</div>
+  <div class="alias"><div class="addr">hello@</div>General contact</div>
+  <div class="alias"><div class="addr">support@</div>Support requests</div>
+  <div class="alias"><div class="addr">gabriel@</div>AI agent inbox</div>
+  <div class="alias"><div class="addr">admin@</div>Administrative</div>
+  <div class="alias"><div class="addr">info@</div>Information</div>
+</div>
+
+<div style="text-align: center; margin: 1rem 0; font-size: 0.9rem;">
+  All aliases <span class="forward-arrow">→</span> <strong style="color: var(--cyan);">rsplowman@icloud.com</strong>
+  <br><span style="color: var(--muted);">Catch-all enabled: any unmatched address also forwards</span>
+</div>
+
+<h3>Email Flow Architecture</h3>
+
+<div class="card" style="padding: 1.5rem; text-align: center; font-size: 0.9rem;">
+  <div style="margin-bottom: 1rem;">
+    <strong style="color: var(--cyan);">INBOUND FLOW</strong>
+  </div>
+  <div>
+    Sender → MX (Cloudflare Edge) → Email Routing Rules → rsplowman@icloud.com
+  </div>
+  <div style="margin: 1.5rem 0; border-top: 1px dashed var(--border); padding-top: 1rem;">
+    <strong style="color: var(--gold);">OUTBOUND FLOW (Future)</strong>
+  </div>
+  <div>
+    Gmail/iCloud → SMTP Relay (Resend.com / Mailgun / CF Worker) → Send as rsp@noizy.ai
+  </div>
+  <div style="margin-top: 1rem; color: var(--muted); font-size: 0.8rem;">
+    Recommended: <strong>Resend.com</strong> — developer-first, free tier covers 100 emails/day, simple API, great Cloudflare integration
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 3: MCP CONNECTOR AUDIT         -->
+<!-- ═══════════════════════════════════════ -->
+
+<h2>3. MCP CONNECTOR AUDIT — 12 Connectors</h2>
+
+<div class="section-summary">
+  <div class="stat-row"><span>Fully operational</span> <span class="val" style="color: var(--green);">8 connectors</span></div>
+  <div class="stat-row"><span>Broken / needs fix</span> <span class="val" style="color: var(--red);">1 connector</span></div>
+  <div class="stat-row"><span>Available but untested</span> <span class="val" style="color: var(--yellow);">3 connectors</span></div>
+</div>
+
+<div class="grid">
+
+  <!-- Cloudflare -->
+  <div class="mcp-card" style="border-left: 3px solid var(--green);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="name">☁️ Cloudflare</div>
+      <span class="status live">OPERATIONAL</span>
+    </div>
+    <div class="account">Account: Fishmusicinc | rsplowman@icloud.com</div>
+    <div class="stats">
+      <span>1</span> Worker (deploy/HEAVEN17) ·
+      <span>10</span> D1 databases (AT LIMIT) ·
+      <span>20</span> KV namespaces ·
+      <span>0</span> R2 buckets (NOT ENABLED)
+    </div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--yellow);">
+      ⚠ R2 requires manual enablement in dashboard<br>
+      ⚠ D1 at 10/10 limit — delete unused DBs to add more
+    </div>
+  </div>
+
+  <!-- Slack -->
+  <div class="mcp-card" style="border-left: 3px solid var(--green);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="name">💬 Slack</div>
+      <span class="status live">OPERATIONAL</span>
+    </div>
+    <div class="account">Workspace: noizyfishcom.slack.com | User: RSP</div>
+    <div class="stats">
+      <span>2</span> channels found: #proj-noizyfish, #all-noizyfishcom
+    </div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted);">
+      Tools: search, read, send, canvas, schedule messages
+    </div>
+  </div>
+
+  <!-- Linear -->
+  <div class="mcp-card" style="border-left: 3px solid var(--green);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="name">📋 Linear</div>
+      <span class="status live">OPERATIONAL</span>
+    </div>
+    <div class="account">Team: NOIZYLAB | User: rspplowman</div>
+    <div class="stats">
+      <span>1</span> team · <span>5</span> projects · <span>12</span> issues · <span>7</span> labels
+    </div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted);">
+      Tools: issues, projects, documents, milestones, cycles, labels
+    </div>
+  </div>
+
+  <!-- Notion -->
+  <div class="mcp-card" style="border-left: 3px solid var(--green);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="name">📝 Notion</div>
+      <span class="status live">OPERATIONAL</span>
+    </div>
+    <div class="account">User: Fish Music | rsplowman@icloud.com</div>
+    <div class="stats">Minimal usage — workspace mostly empty</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted);">
+      Tools: search, fetch, create pages/databases, comments, views
+    </div>
+  </div>
+
+  <!-- Figma -->
+  <div class="mcp-card" style="border-left: 3px solid var(--green);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="name">🎨 Figma</div>
+      <span class="status live">OPERATIONAL</span>
+    </div>
+    <div class="account">Handle: NoizyFish | Team: Fish Music (starter, view seat)</div>
+    <div class="stats">AI Family diagram created</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted);">
+      Tools: design context, screenshots, diagrams, code connect, variables
+    </div>
+  </div>
+
+  <!-- Google Drive -->
+  <div class="mcp-card" style="border-left: 3px solid var(--green);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="name">📁 Google Drive</div>
+      <span class="status live">OPERATIONAL</span>
+    </div>
+    <div class="account">rsplowman@icloud.com</div>
+    <div class="stats">Voice archive, music archive, NOIZY blueprints, NOIZYLAB workspace</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted);">
+      Tools: search, fetch documents
+    </div>
+  </div>
+
+  <!-- Memory -->
+  <div class="mcp-card" style="border-left: 3px solid var(--green);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="name">🧠 Memory (Knowledge Graph)</div>
+      <span class="status live">OPERATIONAL</span>
+    </div>
+    <div class="account">Persistent cross-session memory</div>
+    <div class="stats">
+      <span>40+</span> entities · <span>50+</span> relations · <span>200+</span> observations
+    </div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted);">
+      Full NOIZY Empire knowledge: brands, people, architecture, consent, HVS
+    </div>
+  </div>
+
+  <!-- Filesystem -->
+  <div class="mcp-card" style="border-left: 3px solid var(--green);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="name">💾 Filesystem (GOD)</div>
+      <span class="status live">OPERATIONAL</span>
+    </div>
+    <div class="account">Mac Studio M2 Ultra 192GB — 10.90.90.10</div>
+    <div class="stats">Access: NOIZYLAB, Documents, Desktop, Downloads, Library/CloudStorage</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted);">
+      Tools: read, write, edit, search, directory tree, file info
+    </div>
+  </div>
+
+  <!-- Gmail — BROKEN -->
+  <div class="mcp-card" style="border-left: 3px solid var(--red);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="name">📧 Gmail</div>
+      <span class="status broken">BROKEN</span>
+    </div>
+    <div class="account">rsplowman@icloud.com — "Mail service not enabled"</div>
+    <div class="stats" style="color: var(--red);">Gmail API not activated on Google account</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--yellow);">
+      FIX: Enable Gmail API in Google Cloud Console, or activate Gmail on the account.<br>
+      Google Drive works, so the OAuth connection exists — Gmail just needs API enablement.
+    </div>
+  </div>
+
+  <!-- Domains -->
+  <div class="mcp-card" style="border-left: 3px solid var(--yellow);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="name">🌐 Domains (GoDaddy)</div>
+      <span class="status pending">QUOTA HIT</span>
+    </div>
+    <div class="account">Domain availability checker</div>
+    <div class="stats">Daily search quota exceeded — resets midnight UTC</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted);">
+      Tools: check availability, suggest domains
+    </div>
+  </div>
+
+  <!-- AWS Marketplace -->
+  <div class="mcp-card" style="border-left: 3px solid var(--yellow);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="name">🛒 AWS Marketplace</div>
+      <span class="status pending">AVAILABLE</span>
+    </div>
+    <div class="account">Not actively used</div>
+    <div class="stats">Search for solutions, get reports</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted);">
+      Potential: Search for self-hosted Git, email, voice AI solutions
+    </div>
+  </div>
+
+  <!-- Chrome Control -->
+  <div class="mcp-card" style="border-left: 3px solid var(--yellow);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="name">🌐 Chrome Control</div>
+      <span class="status pending">AVAILABLE</span>
+    </div>
+    <div class="account">Browser automation via Claude in Chrome</div>
+    <div class="stats">Navigate, read pages, execute JS, manage tabs</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted);">
+      Use for: Cloudflare dashboard tasks, GoDaddy domain transfers, manual setups
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 4: ACTION PLAN                 -->
+<!-- ═══════════════════════════════════════ -->
+
+<h2>4. ACTION PLAN — Priority Order</h2>
+
+<div class="action-item critical">
+  <div class="priority" style="color: var(--red);">P0 — IMMEDIATE</div>
+  <strong>Register noizyvox.com + noizykids.com</strong><br>
+  These are core brand domains. Register via Cloudflare Registrar (at-cost pricing, stays on CF).<br>
+  Dashboard: <code>https://dash.cloudflare.com/2446d788cc4280f5ea22a9948410c355/domains/register</code>
+</div>
+
+<div class="action-item critical">
+  <div class="priority" style="color: var(--red);">P0 — IMMEDIATE</div>
+  <strong>Run noizy-email-setup.sh on GOD for noizy.ai + noizylab.ca</strong><br>
+  These domains are on Cloudflare and ready. Script configures MX, SPF, DMARC, aliases, catch-all.<br>
+  <code>export CF_API_TOKEN="..." && ./noizy-email-setup.sh --dry-run</code>
+</div>
+
+<div class="action-item">
+  <div class="priority" style="color: var(--yellow);">P1 — THIS WEEK</div>
+  <strong>Transfer noizyfish.com + noizylab.com from GoDaddy to Cloudflare</strong><br>
+  Log into GoDaddy accounts (may need to locate credentials), unlock domains, get EPP codes, initiate transfers on Cloudflare.
+</div>
+
+<div class="action-item">
+  <div class="priority" style="color: var(--yellow);">P1 — THIS WEEK</div>
+  <strong>Fix Gmail MCP — enable Gmail API</strong><br>
+  Go to Google Cloud Console → APIs & Services → Enable Gmail API.<br>
+  The OAuth connection works (Drive functions) — Gmail just needs the API turned on.
+</div>
+
+<div class="action-item">
+  <div class="priority" style="color: var(--yellow);">P1 — THIS WEEK</div>
+  <strong>Set up outbound email (send as rsp@noizy.ai)</strong><br>
+  Sign up for Resend.com (free: 100 emails/day). Verify noizy.ai domain. Configure Gmail Send-As with SMTP credentials.
+</div>
+
+<div class="action-item">
+  <div class="priority" style="color: var(--yellow);">P2 — NEXT WEEK</div>
+  <strong>Enable R2 storage on Cloudflare</strong><br>
+  Required for THE_AQUARIUM media assets. Manual step in Cloudflare dashboard.
+</div>
+
+<div class="action-item success">
+  <div class="priority" style="color: var(--green);">COMPLETE</div>
+  <strong>D1 domains_registry updated</strong><br>
+  noizyvox.com and noizykids.com added to NOIZYANTHROPIC tracking database with needs_registration status.
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 5: COMPLETE EMAIL MAP          -->
+<!-- ═══════════════════════════════════════ -->
+
+<h2>5. COMPLETE EMAIL MAP — All Addresses</h2>
+
+<table>
+  <thead>
+    <tr><th>Address</th><th>Domain</th><th>Status</th><th>Forwards To</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>rsp@noizy.ai</strong></td><td>noizy.ai</td><td><span class="status live">READY</span></td><td>rsplowman@icloud.com</td></tr>
+    <tr><td>hello@noizy.ai</td><td>noizy.ai</td><td><span class="status live">READY</span></td><td>rsplowman@icloud.com</td></tr>
+    <tr><td>support@noizy.ai</td><td>noizy.ai</td><td><span class="status live">READY</span></td><td>rsplowman@icloud.com</td></tr>
+    <tr><td>gabriel@noizy.ai</td><td>noizy.ai</td><td><span class="status live">READY</span></td><td>rsplowman@icloud.com</td></tr>
+    <tr><td>admin@noizy.ai</td><td>noizy.ai</td><td><span class="status live">READY</span></td><td>rsplowman@icloud.com</td></tr>
+    <tr><td>info@noizy.ai</td><td>noizy.ai</td><td><span class="status live">READY</span></td><td>rsplowman@icloud.com</td></tr>
+    <tr><td>*@noizy.ai</td><td>noizy.ai</td><td><span class="status live">CATCH-ALL</span></td><td>rsplowman@icloud.com</td></tr>
+
+    <tr><td colspan="4" style="border: none; padding: 0.25rem;"></td></tr>
+
+    <tr><td>rsp@noizylab.ca</td><td>noizylab.ca</td><td><span class="status live">READY</span></td><td>rsplowman@icloud.com</td></tr>
+    <tr><td>*@noizylab.ca</td><td>noizylab.ca</td><td><span class="status live">CATCH-ALL</span></td><td>rsplowman@icloud.com</td></tr>
+
+    <tr><td colspan="4" style="border: none; padding: 0.25rem;"></td></tr>
+
+    <tr><td>rsp@noizyfish.com</td><td>noizyfish.com</td><td><span class="status pending">NEEDS TRANSFER</span></td><td>rsplowman@icloud.com</td></tr>
+    <tr><td>*@noizyfish.com</td><td>noizyfish.com</td><td><span class="status pending">NEEDS TRANSFER</span></td><td>rsplowman@icloud.com</td></tr>
+
+    <tr><td colspan="4" style="border: none; padding: 0.25rem;"></td></tr>
+
+    <tr><td>rsp@noizylab.com</td><td>noizylab.com</td><td><span class="status pending">NEEDS TRANSFER</span></td><td>rsplowman@icloud.com</td></tr>
+    <tr><td>*@noizylab.com</td><td>noizylab.com</td><td><span class="status pending">NEEDS TRANSFER</span></td><td>rsplowman@icloud.com</td></tr>
+
+    <tr><td colspan="4" style="border: none; padding: 0.25rem;"></td></tr>
+
+    <tr><td>rsp@fishmusicinc.com</td><td>fishmusicinc.com</td><td><span class="status transfer">NS ON CF</span></td><td>rsplowman@icloud.com</td></tr>
+    <tr><td>*@fishmusicinc.com</td><td>fishmusicinc.com</td><td><span class="status transfer">NS ON CF</span></td><td>rsplowman@icloud.com</td></tr>
+
+    <tr><td colspan="4" style="border: none; padding: 0.25rem;"></td></tr>
+
+    <tr><td>rsp@noizyvox.com</td><td>noizyvox.com</td><td><span class="status unregistered">NOT REGISTERED</span></td><td>rsplowman@icloud.com</td></tr>
+    <tr><td>*@noizyvox.com</td><td>noizyvox.com</td><td><span class="status unregistered">NOT REGISTERED</span></td><td>rsplowman@icloud.com</td></tr>
+
+    <tr><td colspan="4" style="border: none; padding: 0.25rem;"></td></tr>
+
+    <tr><td>rsp@noizykids.com</td><td>noizykids.com</td><td><span class="status unregistered">NOT REGISTERED</span></td><td>rsplowman@icloud.com</td></tr>
+    <tr><td>*@noizykids.com</td><td>noizykids.com</td><td><span class="status unregistered">NOT REGISTERED</span></td><td>rsplowman@icloud.com</td></tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 6: CLOUDFLARE INFRASTRUCTURE   -->
+<!-- ═══════════════════════════════════════ -->
+
+<h2>6. CLOUDFLARE INFRASTRUCTURE — Live Inventory</h2>
+
+<h3>D1 Databases (10/10 — AT LIMIT)</h3>
+<table>
+  <thead>
+    <tr><th>Name</th><th>UUID</th><th>Size</th><th>Purpose</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>agent-memory</td><td>7b813205...</td><td>2.5 MB</td><td>AI agent memory & consent ledger</td></tr>
+    <tr><td>rsp-master-budget</td><td>74e6b824...</td><td>840 KB</td><td>Personal finance tracking</td></tr>
+    <tr><td>gabriel_db</td><td>f75939d5...</td><td>508 KB</td><td>GABRIEL + HVS Consent Kernel (13 tables)</td></tr>
+    <tr><td>noizylab-repairs</td><td>2bd4aa06...</td><td>459 KB</td><td>NOIZYLAB repair tracking</td></tr>
+    <tr><td>tencc-pipeline</td><td>d1a5c748...</td><td>250 KB</td><td>10CC pipeline</td></tr>
+    <tr><td>mc96-command-central</td><td>ef4eda10...</td><td>250 KB</td><td>MC96 ecosystem command</td></tr>
+    <tr><td>aquarium-archive</td><td>e6f98279...</td><td>233 KB</td><td>40-year music archive catalog</td></tr>
+    <tr><td>godaddy-escape-tracker</td><td>dfe9343e...</td><td>94 KB</td><td>GoDaddy domain migration tracking</td></tr>
+    <tr><td>subscription-killer</td><td>145b3abb...</td><td>66 KB</td><td>Subscription management</td></tr>
+    <tr><td>noizyanthropic</td><td>932e36f7...</td><td>61 KB</td><td>Unified account/platform/domain registry</td></tr>
+  </tbody>
+</table>
+
+<h3>KV Namespaces (20 Active)</h3>
+<table>
+  <thead>
+    <tr><th>Name</th><th>Category</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>GABRIEL_KV, GABRIEL_VOICE</td><td>AI Agent</td></tr>
+    <tr><td>noizyvox-signups, noizyvox-royalties</td><td>NOIZYVOX Platform</td></tr>
+    <tr><td>gorunfree-execution-state</td><td>Protocol</td></tr>
+    <tr><td>mc96-hotrod-cache</td><td>Infrastructure</td></tr>
+    <tr><td>agent-state, session-cache, command-queue</td><td>Operations</td></tr>
+    <tr><td>noizylab-edge-config, noizylab-customers, noizylab-submissions</td><td>NOIZYLAB</td></tr>
+    <tr><td>emergency-alerts, discord-queue</td><td>Communications</td></tr>
+    <tr><td>conductor-locks, tencc-locks</td><td>Concurrency</td></tr>
+    <tr><td>antigravity-cache, CRAWLER_KV</td><td>Utilities</td></tr>
+    <tr><td>model-performance</td><td>AI/ML</td></tr>
+    <tr><td>godaddy-escape-state</td><td>Migration</td></tr>
+  </tbody>
+</table>
+
+<div style="text-align: center; margin: 3rem 0 1rem; padding: 1.5rem; border-top: 1px solid var(--border);">
+  <div style="color: var(--muted); font-size: 0.8rem;">
+    NOIZY EMPIRE — Email Architecture & MCP Audit Dashboard<br>
+    Generated 2026-03-23 by Robert Stephen Plowman + Claude (co-architect)<br>
+    Account: Fishmusicinc | ID: 2446d788cc4280f5ea22a9948410c355
+  </div>
+</div>
+
+</body>
+</html>

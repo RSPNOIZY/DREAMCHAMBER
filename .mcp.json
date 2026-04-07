@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "shortcuts": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYLAB/mcp/shortcuts-mcp/dist/index.js"]
+    },
+    "n8n-mcp": {
+      "command": "npx",
+      "args": ["n8n-mcp@latest"],
+      "env": {
+        "N8N_API_URL": "http://localhost:5678",
+        "N8N_API_KEY": "${N8N_API_KEY}",
+        "MCP_MODE": "stdio",
+        "LOG_LEVEL": "error",
+        "DISABLE_CONSOLE_OUTPUT": "true",
+        "N8N_MCP_TELEMETRY_ENABLED": "false"
+      }
+    }
+  }
+}

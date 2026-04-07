@@ -1,0 +1,195 @@
+# Deprecated — use release-pipeline.yml instead
+name: consent-gateway-deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Deploy target"
+        required: true
+        default: "staging"
+        type: choice
+        options: [staging, production]
+
+jobs:
+  validate-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Block placeholder config
+        run: bash scripts/check-placeholders.sh
+        continue-on-error: false
+
+      # ── consent-gateway tests ──────────────────────────────────
+      - name: Install consent-gateway deps
+        working-directory: workers/consent-gateway
+        run: npm ci
+
+      - name: Run consent-gateway tests
+        id: cg_tests
+        working-directory: workers/consent-gateway
+        run: |
+          # Capture JSON reporter output for test counts
+          npx vitest run --reporter=json --outputFile=../../artifacts/test-results/consent-gateway.json 2>/dev/null || true
+          # Also run with default reporter so CI output is human-readable
+          npm test
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      # ── cb01-router tests ──────────────────────────────────────
+      - name: Install cb01-router deps
+        working-directory: workers/cb01-router
+        run: npm ci
+
+      - name: Run cb01-router tests
+        id: cb01_tests
+        working-directory: workers/cb01-router
+        run: |
+          npx vitest run --reporter=json --outputFile=../../artifacts/test-results/cb01-router.json 2>/dev/null || true
+          npm test
+
+      # ── Proof Bundle generation ────────────────────────────────
+      - name: Generate NOIZY Proof Bundle
+        env:
+          PROOF_ENVIRONMENT: ${{ inputs.environment || 'production' }}
+          PROOF_GIT_SHA: ${{ github.sha }}
+          PROOF_GIT_REF: ${{ github.ref_name }}
+          PROOF_RUN_ID: ${{ github.run_id }}
+        run: |
+          mkdir -p artifacts/proof artifacts/test-results
+          node - <<'EOF'
+          const { createHash } = require("crypto");
+          const fs = require("fs");
+
+          const env = process.env;
+          const routingContract = {
+            consent_gateway: {
+              public: ["/health"],
+              protected: ["/verify", "/revoke", "/status/:creatorId"],
+              legacy: ["/v1/check-eligibility", "/v1/revoke", "/v1/consent/:id", "/v1/audit/:asset_id"],
+              auth_model: "X-NOIZY-Key | JWT RS256 | 401=missing | 403=unauthorized"
+            },
+            cb01_router: {
+              forwards: "full path preserved — no segment stripping",
+              upstream: "noizy-consent-gateway.workers.dev"
+            }
+          };
+          const governance = {
+            plowman_standard: "75/25 creator split",
+            ncp_protocol: "NOIZY Consent Protocol — consent as executable code",
+            revocation_is_sacred: "POST /revoke requires caller == consent record owner (403 otherwise)",
+            status_is_sanitized: "GET /status returns { creator_id, status, updated_at } only"
+          };
+          const sha = (s) => createHash("sha256").update(s).digest("hex");
+
+          // Read Vitest JSON results if available
+          function parseVitestResults(path) {
+            try {
+              const raw = JSON.parse(fs.readFileSync(path, "utf8"));
+              const passed = raw.testResults?.reduce((n, f) => n + (f.assertionResults?.filter(r => r.status === "passed").length || 0), 0) ?? 0;
+              const failed = raw.testResults?.reduce((n, f) => n + (f.assertionResults?.filter(r => r.status === "failed").length || 0), 0) ?? 0;
+              const total  = passed + failed;
+              return { passed, failed, total, status: failed === 0 ? "PASS" : "FAIL" };
+            } catch (_) {
+              return { passed: null, failed: null, total: null, status: "RESULTS_NOT_AVAILABLE" };
+            }
+          }
+
+          const testEvidence = {
+            "consent-gateway": parseVitestResults("artifacts/test-results/consent-gateway.json"),
+            "cb01-router":     parseVitestResults("artifacts/test-results/cb01-router.json"),
+          };
+
+          const bundle = {
+            proof_bundle: {
+              version: "1.2",
+              generated_at: new Date().toISOString(),
+              environment: env.PROOF_ENVIRONMENT,
+              git_sha: env.PROOF_GIT_SHA,
+              git_ref: env.PROOF_GIT_REF,
+              run_id: env.PROOF_RUN_ID,
+              constitution: "v2.0",
+              policy: "v2.0"
+            },
+            routing_contract: routingContract,
+            governance_claims: governance,
+            test_evidence: testEvidence,
+            checksums: {
+              routing: sha(JSON.stringify(routingContract)),
+              governance: sha(JSON.stringify(governance)),
+              test_evidence: sha(JSON.stringify(testEvidence)),
+            }
+          };
+          bundle.proof_bundle.bundle_hash = sha(JSON.stringify(bundle.checksums));
+          fs.writeFileSync("artifacts/proof/consent-gateway.production.json", JSON.stringify(bundle, null, 2));
+          const cgTests = testEvidence["consent-gateway"];
+          console.log(`✅ Proof bundle: ${bundle.proof_bundle.bundle_hash.slice(0,16)}...`);
+          console.log(`   Tests: consent-gateway ${cgTests.passed}/${cgTests.total} (${cgTests.status})`);
+          EOF
+
+      - name: Upload Proof Bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: noizy-proof-consent-gateway-${{ github.sha }}
+          path: artifacts/proof/consent-gateway.production.json
+          retention-days: 90
+
+      # ── Deploy consent-gateway ─────────────────────────────────
+      - name: Deploy consent-gateway
+        working-directory: workers/consent-gateway
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          ENV="${{ inputs.environment || 'production' }}"
+          npx wrangler deploy --env "$ENV"
+
+      # ── Deploy cb01-router ─────────────────────────────────────
+      - name: Deploy cb01-router
+        working-directory: workers/cb01-router
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          ENV="${{ inputs.environment || 'production' }}"
+          npx wrangler deploy --env "$ENV"
+
+      # ── Smoke test deployed endpoints ──────────────────────────
+      - name: Smoke test production endpoints
+        if: ${{ inputs.environment == 'production' || github.event_name == 'push' }}
+        run: |
+          sleep 5
+          BASE="https://noizy-consent-gateway.workers.dev"
+
+          # /health — public, must return 200
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$BASE/health")
+          echo "consent-gateway /health → $STATUS"
+          test "$STATUS" = "200"
+
+          # /revoke — no auth → must return 401 (Kill Switch auth gate is live)
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X POST -H "Content-Type: application/json" \
+            -d '{"consent_record_id":"smoke-test","requested_by":"smoke","reason":"ci"}' \
+            "$BASE/revoke")
+          echo "consent-gateway POST /revoke (no auth) → $STATUS"
+          test "$STATUS" = "401"
+
+          # /verify — no auth → must return 401
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X POST -H "Content-Type: application/json" \
+            -d '{"creator_id":"c1","claimant_id":"cl1","action_type":"synthesis"}' \
+            "$BASE/verify")
+          echo "consent-gateway POST /verify (no auth) → $STATUS"
+          test "$STATUS" = "401"
+
+          echo "✅ All smoke tests passed"

@@ -1,0 +1,41 @@
+{
+  "workspace": {
+    "name": "NOIZYBEAST",
+    "description": "NOIZY Empire Super IDE — GABRIEL-led agent orchestration for consent-native AI development",
+    "version": "1.0.0"
+  },
+  "models": {
+    "primary": {
+      "provider": "anthropic",
+      "model": "claude-opus-4-6",
+      "label": "Opus 4.6 — Primary reasoning"
+    },
+    "local": {
+      "provider": "openai-compatible",
+      "endpoint": "http://localhost:11434/v1",
+      "model": "gemma3",
+      "apiKey": "ollama",
+      "label": "Gemma 3 27B (SHIRLEY) — Local agentic tasks"
+    },
+    "fast": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-6",
+      "label": "Sonnet 4.6 — Fast iteration"
+    }
+  },
+  "agents": {
+    "gabriel": { "role": "Lead Orchestrator", "model": "primary" },
+    "lucy": { "role": "Session Organizer", "model": "fast" },
+    "engr_keith": { "role": "Technical Lead", "model": "primary" },
+    "shirley": { "role": "Code & File Manager", "model": "local" },
+    "cb01": { "role": "Ops Runner", "model": "fast" },
+    "dream": { "role": "Visionary", "model": "primary" },
+    "audio": { "role": "Voice Pipeline", "model": "local" }
+  },
+  "services": {
+    "dreamchamber": "http://localhost:7777",
+    "heaven": "https://heaven.noizylab.workers.dev",
+    "voiceBridge": "http://localhost:8080",
+    "ollama": "http://localhost:11434"
+  }
+}

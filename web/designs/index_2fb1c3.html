@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]> 
+<!--><html class="no-js" lang="en"><!--<![endif]-->
+<head lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+  <title>Masking Meter - Neutron 2 User Manual</title>
+  <meta name="generator" content="Hugo 0.40.3" />
+  <meta name="description" content="Neutron 2 User Manual">
+  <link rel="canonical" href="index.html">
+  <meta name="author" content="iZotope">
+  <meta property="og:url" content="http://www.neutron2helpdocs.com/en/masking-meter/index.html">
+  <meta property="og:title" content="Neutron 2 User Manual">
+  
+  <meta name="apple-mobile-web-app-title" content="Neutron 2 User Manual">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <style>@font-face {
+      font-family: 'icon';
+      src: url('../fonts/icon.eot');
+      src: url('../fonts/icon.eot')
+             format('embedded-opentype'),
+           url('../fonts/icon.woff')
+             format('woff'),
+           url('../fonts/icon.ttf')
+             format('truetype'),
+           url('../fonts/icon.svg')
+             format('svg');
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+  <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+  <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    }
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+  
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  
+  <script src="../javascripts/modernizr.js"></script>
+  
+<script>
+  (function(i,s,o,g,r,a,m){
+    i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+    []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+    m.parentNode.insertBefore(a,m)
+  })(window, document,
+    'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+   
+  ga('create', 'UA-63445037-15', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+
+<script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+
+</head>
+<body class="palette-primary-docs palette-accent-docs">
+	
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	
+
+  <div class="backdrop">
+    <div class="backdrop-paper"></div>
+  </div>
+  <input class="toggle" type="checkbox" id="toggle-drawer">
+  <input class="toggle" type="checkbox" id="toggle-search">
+  <label class="toggle-button overlay" for="toggle-drawer"></label>
+  <header class="header">    <nav aria-label="Header">
+      <div class="bar default">
+        <div class="button button-menu" role="button" aria-label="Menu">
+          <label class="toggle-button icon icon-menu" for="toggle-drawer">
+            <span></span>
+          </label>
+        </div>
+        <div class="stretch">
+          <div class="title">
+            <a href="../index.html" >
+            <img src="../images/header-intro-site/site-header.png">    Masking Meter</a>
+          </div>
+        </div>
+            
+      </div>
+      <div class="bar search">
+        <div class="button button-close" role="button" aria-label="Close">
+          <label class="toggle-button icon icon-back" for="toggle-search"></label>
+        </div>
+        <div class="stretch">
+          <div class="field">
+            <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+          </div>
+        </div>
+        <div class="button button-reset" role="button" aria-label="Search">
+          <button class="toggle-button icon icon-close" id="reset-search"></button>
+        </div>
+      </div>
+    </nav></header>
+  <main class="main">    <div class="drawer">
+      <nav aria-label="Navigation">
+        <form action="../search/index.html">
+           <div class="group">      
+              <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+              <span class="highlight"></span>
+              <span class="underline"></span>
+              <label>Search</label>
+              <div style="clear: both;"></div>
+           </div>
+        </form>
+      </nav>
+      
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="toc">
+          
+            <ul>
+
+
+<li>
+  
+    <a  title="Introduction" href="../index.html">Introduction</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Overview" href="../neutron-overview/index.html">Overview</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Compressor" href="../compressor/index.html">Compressor</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Equalizer" href="../equalizer/index.html">Equalizer</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Exciter" href="../exciter/index.html">Exciter</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Gate" href="../gate/index.html">Gate</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Transient Shaper" href="../transient-shaper/index.html">Transient Shaper</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Track Assistant" href="../track-assistant/index.html">Track Assistant</a>
+  
+</li>
+
+
+<li>
+  
+    <a class="current" title="Masking Meter" href="index.html">Masking Meter</a><ul id="scrollspy">
+</ul>
+  
+</li>
+
+
+<li>
+  
+    <a  title="I/O Section" href="../io-section/index.html">I/O Section</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Mix Tap" href="../mix-tap/index.html">Mix Tap</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Visual Mixer" href="../visual-mixer/index.html">Visual Mixer</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Tonal Balance Control" href="../tonal-balance-control/index.html">Tonal Balance Control</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Preset System" href="../preset-system/index.html">Preset System</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Options" href="../options/index.html">Options</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Undo History" href="../undo-history/index.html">Undo History</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Tips &amp; Examples" href="../tips-and-examples/index.html">Tips &amp; Examples</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Authorization" href="../authorization/index.html">Authorization</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Customer Care" href="../customer-care/index.html">Customer Care</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="License Information" href="../license-information/index.html">License Information</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="EULA" href="../eula/index.html">EULA</a>
+  
+</li>
+
+
+</ul>
+          
+          
+                  <hr />
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a></li>
+        </ul>
+        <hr />
+
+    
+          
+          
+            <ul>
+            
+              <li><a href="../../ja/masking-meter/index.html"><i class="icon icon-eye"></i> 日本語での表示ページ</a></li>
+            
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </div><article class="article">
+      <div class="wrapper">
+	<h1>Masking Meter </h1>
+    
+      
+              <div class="lang-buttons-box">
+      <span class="lang-header">Languages:</span>
+      <br />
+        
+      
+        
+             <a href="../../ja/masking-meter/index.html"><button class="lang-btn-active">English</button></a>
+             
+        <a href="../../ja/masking-meter/index.html"><button class="lang-btn-clickable">日本語</button></a>
+          
+      </div>
+      
+    
+    
+    
+
+
+
+
+
+
+<nav>
+  
+  <h4>Table of Contents</h4>
+  <ul>
+    
+      
+      
+
+      
+      
+      <li>
+        <a href="index.html#overview">Overview</a>
+      
+  
+      
+      
+
+      
+      
+        
+        
+          
+      
+          
+          </li>
+          
+          <li>
+            <a href="index.html#what-is-masking">What is Masking?</a>
+      
+      
+  
+      
+      
+
+      
+      
+        
+        
+          
+      
+          
+          </li>
+          
+          <li>
+            <a href="index.html#masking-meter-controls">Masking Meter Controls</a>
+      
+        
+          
+      
+  
+  
+  
+      
+    </ul>
+  </nav>
+  
+  
+    
+    
+    
+	
+
+<h2 id="overview">Overview</h2>
+
+<p>Neutron’s Masking Meter is designed to allow you to quickly and easily see where any tracks in your mix may be competing with one another, potentially contributing to a lack of headroom, a muddy sound, or other subjective (and often negative!) terms that ultimately boil down to one word…masking.</p>
+
+<h2 id="what-is-masking">What is Masking?</h2>
+
+<p>Masking is a psychoacoustic phenomenon that occurs when clear perception of a sound source is rendered harder to discern by another sound source with overlapping temporal and/or spectral components. You may well have experienced this when attempting to balance a kick drum and a bass guitar together, or perhaps a vocal with a rhythm guitar…and finding it hard to carve out the right sonic space for each element to sound impactful and discernable without becoming inaudible.</p>
+
+<p>In general, masking is not necessarily a bad thing: any time two sources “blend” there is likely some overlap in frequency range, and therefore some amount of masking taking place. For instance, we’d be willing to bet the famous wall-of-sound technique pioneered during the 1960s demonstrated all sorts of “good” masking. That said, problematic masking is the bane of mix engineers everywhere, as they try and listen, analyze, and understand where tracks compete across an entire mix.</p>
+
+<p>The reduction of auditory masking is a crucial objective when mixing multitrack audio, and often what separates a good mix from a bad mix. We know this pain, but the answer is not always gain…indeed, it is typically achieved through manipulation of gain, equalization, and/or panning for each stem in a mix.</p>
+
+<p>For instance, it’s good practice to start a mix in mono, and establish a good healthy volume and spectral balance between tracks before subsequently panning tracks around the stereo/surround image. In this scenario, you would use a Masking Meter and EQ prior to panning, but be aware that it’s also possible to resolve audible masking issues by panning one source one direction, and another source the other direction.</p>
+
+<p>In order to establish an idea of what problematic masking might be, and subsequently how to visualize potential problem areas for you to consider when EQ’ing, Neutron uses a proprietary psychoacoustic masking hypothesis and approach developed by some dedicated iZotopians. This hypothesis was accepted as a convention research paper by the Audio Engineering Society in September of 2016 (AES 141, Paper 53). Our meter shows you, in real time, areas of the frequency spectrum where masking is occurring (the Masking Meter) and where masking amounts are particularly high (the Masking Histogram), alerting you to frequency regions that are potentially worthy of attention.</p>
+
+<h3 id="how-does-neutron-measure-problematic-masking">How does Neutron measure problematic Masking?</h3>
+
+<p>There are more extensive details in the AES paper, but in essence, Neutron bases its analysis on a measure called loudness loss: the difference between how loud a track sounds when solo’d (“perceived loudness”) and how loud it sounds in the presence of another track (“perceived partial loudness”). Simply put, Neutron takes two audio inputs—a source (the plug-in) and an external input “masker” (the plug-in selected in the Masking Meter drop-down menu)—and uses a model of the outer/middle ear to calculate perceptual loudness of each, as well as their loudness relative to one another. The source’s loudness loss due to the masker is then calculated as:</p>
+
+<p><strong>Loudness Loss = Perceived loudness [phons] - Perceived partial loudness [phons]</strong></p>
+
+<p>The units used in this calculation are phons, a decibel-like unit of perceived loudness: The measure of any given sound in phons correlates to the dB SPL of a pure tone at 1 kHz that sounds equally as loud to the listener. As such, this loudness loss measurement is frequency specific in order to compensate for the effect of frequency on the perceived loudness of tones, a behavior which changes throughout the spectrum due to the intricacies of human hearing.</p>
+
+<h3 id="masking-meter-vs-masking-histogram">Masking Meter vs Masking Histogram</h3>
+
+<p>The Masking Meter displays momentary indications of masking—loudness loss—as vertical white lines over the current track’s spectrum and EQ curve. These lines indicate that there was some amount of loudness loss at that frequency at that moment: the brighter the line, the greater the masking amount.</p>
+
+<p>The Masking Histogram is the gradiated meter above the source EQ. It counts the number of frequency collisions in each critical band. When the loudness loss in a particular frequency band is over a quantitatively determined threshold * , we consider it extreme masking and flag it as a “collision.”</p>
+
+<p>In this way, the Masking Histogram acts as a sort of clip indicator—for each frequency band, it shows whether or not extreme masking has occurred. (Unlike a clip indicator, however, the Masking Histogram counts the number of collisions rather than just showing that at least one instance of clipping has occurred.) The more collisions that have occurred in a band, the higher its histogram bar. By default, the total number of collisions are measured over a moving window of three seconds, but that window can be adjusted in the Options Menu.</p>
+
+<p>We can’t overstate that masking is not necessarily bad. For example, a snare that quickly cuts through a mix can be an audibly desirable masking event rather than a problem, as can masking between two vocalists harmonizing. These tools merely show where masking is occurring—it is up to the engineers (and their ears!) to determine when this masking is problematic and worthy of reaction.</p>
+
+<p>These thresholds are specific to each frequency band; the way they were determined is discussed in our AES paper. They can be scaled with the Masking Sensitivity slider, discussed below.</p>
+
+<h2 id="masking-meter-controls">Masking Meter Controls</h2>
+
+<p><img src="../images/equalizer/eq-softsaturation-masking-module.png" alt="masking" /></p>
+
+<h3 id="masking-on-off">Masking On/Off</h3>
+
+<p>This button allows you to toggle Masking Meter on or off. When on, the drop-down menu becomes accessible.</p>
+
+<h3 id="masking-drop-down">Masking Drop-down</h3>
+
+<p>This drop-down menu shows you all other instances of Neutron present in your mix. (If you’re using many Neutrons, you may find this drop-down menu easier to navigate if you name each plug-in instance, which you can do in the top-left corner of any plug-in.) When you select one of these instances, the amount that that instance masks your current track will be shown in the Masking Meter and Masking Histogram.</p>
+
+<p>Let’s say hypothetically that you’ve got Neutron on all tracks in your session. From the Neutron session on your Kick Drum track, if you turn on the Masking Meter and then select another Neutron instance (say, the one on your Bass track) from this drop-down list, you’ll automatically be connected to that other instance. The two meters will show how much your Bass track (your source) is masking your Kick track (your target). (To see how much the Kick track masks your Bass track, you’ll need to open up the Neutron instance on your Bass track and then select “Kick” from the drop-down).</p>
+
+<p>Additionally, you’ll see two EQ curves: the Kick Drum EQ on at the top, in color, and the Bass EQ on the bottom, in gray-scale, and you’ll now be able to make changes to the EQs on both tracks. (Note that if your incoming, selected instance is a component plugin without an EQ—e.g., Transient Shaper, Exciter, or Compressor component plug-ins—you won’t see this split view, because there’s no additional EQ to control! You’ll still see accurate masking calculations based on that instance’s signal, however.) Note that when making changes to the target EQ, it’s actually sending those changes to the other plug-in. For this reason, adjustments to this second EQ may behave unpredictably with automation. That’s why we recommend not writing automation on a remote EQ instance.</p>
+
+<h3 id="masking-histogram">Masking Histogram</h3>
+
+<p>When using the Masking Meter, you’ll notice a momentary indication of frequency collisions displayed as vertical white lines. This simply indicates that there was loudness loss at that frequency at that moment.</p>
+
+<p>The Histogram is the gradiated meter above the source EQ. It counts the number of
+frequency collisions in each critical band. When the loudness loss in a particular frequency band goes over a quantitatively measured threshold * , we consider it extreme masking and flag it as a “collision.”</p>
+
+<p>In this way, the Masking Histogram acts as a sort of clip indicator—for each frequency band, it shows whether or not extreme masking has occurred. (Unlike a clip indicator, however, the Masking Histogram counts the number of collisions rather than just showing that at least one instance of clipping has occurred.) The more collisions that have occurred in a band, the higher its bar grows, thus drawing your attention to problem areas. By default, it’s measuring collisions over a moving window of three seconds, but that can be tweaked in the Options Menu.</p>
+
+<p>Collisions in a single band of the Masking Histogram can be cleared by clicking on the band once, as in a clip indicator. All events in the Histogram can be cleared by clicking on the “!” indicator to the left.</p>
+
+<h3 id="masking-sensitivity">Masking Sensitivity</h3>
+
+<p>The Masking Sensitivity scales the threshold used to determine whether loudness loss is extreme enough to count as a collision (and therefore show up in the Masking Histogram). At high sensitivity, smaller amounts of loudness loss count as collisions and it will therefore appear that more [extreme] masking is occurring, as the Masking Histogram will fill up more quickly. Conversely, at low sensitivity, fewer collisions will appear on the masking histogram as the loudness loss thresholds will be much higher. The range of loudness loss displayed in the Masking Meter is similarly affected by this Sensitivity control, so that at higher sensitivity a lower amount of loudness loss appears on the meter and at lower sensitivity a larger loudness loss is required to show high amounts of masking (brighter white lines).</p>
+
+<p>It is important to note that adjustments to Masking Sensitivity will not make any adjustments to audio processing. Even though it may seem that masking has decreased when the masking sensitivity is turned down, it is merely that the sensitivity of the meter has been adjusted. As in any meter, it’s up to the mix engineer to dial in the meter sensitivity most useful for the source material. If you’re seeing a ton of activity, it’s likely a combination of good and bad masking, and you probably can’t parse that information in a useful manner. In that scenario, the sensitivity may be too high; turning down the sensitivity will help show you only the most extreme amounts of masking between your two tracks. Conversely, if you’re seeing no masking but hearing muddiness, it could help to turn the sensitivity up until you see some activity in these meters.</p>
+
+<p>It’s much like you’d adjust the integration time of an RMS level meter, or the peak hold time of a Peak meter…you decide just how much information is useful to you.</p>
+
+<h3 id="inverse-link">Inverse Link</h3>
+
+<p>Inverse Link makes separation much easier. When on, each node’s Gain and Frequency are linked to the same-numbered node in the other EQ. For example, If you add a 3 dB boost in node 4 of the source EQ, you’ll cut 3 dB in node 4 of the target EQ below it. Rather than making big, sweeping changes to one track, the goal is to achieve optimal separation with subtle changes to each individual track, such as boosting and cutting each by 1.5 dB rather than boosting or cutting just one by 3 dB. Inverse Link can be toggled on and off to suit any workflow.</p>
+
+<p>Note: Inverse Link controls Gain and Frequency, but not any other aspects of that particular node (e.g. Q, Filter type, Dynamic / Static). This is because though you may wish to share cuts, boosts and frequency positions, it’s rare that you’d also want to use identical Q and filter shape values in both tracks. It’s more common best practice to cut with narrower Qs and boost with broader, more gentle shapers, to avoid resonance.</p>
+
+<h3 id="bypass-eqs">Bypass EQs</h3>
+
+<p>This is a momentary state that allows you to bypass both the source and the target EQ modules. When doing any equalization, particularly across multiple tracks, it’s especially important to always A/B the After/Before to make sure the changes you’re making are good changes.</p>
+
+<p>It can also be a useful ear training tool: if you Bypass both EQs and it sounds better, that’s OK… it happens to the best of us, and it’s through listening, trial and error that we get better. Reset the EQ, and start over! Conversely, if every EQ change you ever make is magical and perfect, please get in touch… that would be a rare talent!</p>
+
+<h3 id="collision-histogram-peak-hold-time">Collision Histogram Peak Hold Time</h3>
+
+<p>The Histogram described above is a real-time meter; the peak hold times (in the Options menu) adjust the calculation window between three values of 400 ms, 3,000 ms (default), and infinite.</p>
+
+<p>3,000 ms is the default and most useful setting, and calculates events across a moving window of three seconds.</p>
+
+<p>Infinite can be useful if you want to see all masking that occurs over the entire duration of an audio segment. It won’t allow frequency collisions to drop from its memory, displaying them long after they’ve been problematic, but it will result in a visualization of all areas that cause conflict from start to end. (To clear the histogram, just click the “!” button on the right.)</p>
+
+<h3 id="gain-offset">Gain Offset</h3>
+
+<p>Masking calculations are extremely sensitive to the levels of each track. This makes sense when you think of masking in terms of loudness and partial loudness—if you want a track to sound louder, either in isolation or relative to another track, either significantly boosting its gain or significantly cutting the gain of the other track is extremely effective, if potentially naive!</p>
+
+<p>In the case where a DAW applies its plug-ins pre-fader, Neutron has no way to know that this gain has been applied, and therefore that masking has been reduced (or even potentially increased) by changes to the DAW’s track volume faders. In such a case, Neutron may show lots of masking but your ears may tell you that none is happening. Since we’re transferring incredibly detailed masking information between plug-ins that are hosted pre-fader, it’s possible that two audio sources are far enough apart in level for the masking to no longer be problematic and for Neutron not to know, and still report where those sources might be conflicting if they were closer in level.</p>
+
+<p>To get the best, most accurate masking calculations, we highly recommend setting each Neutron instance’s Gain Offset amount to the same value as the DAW’s track volume fader. It will not in any way affect the audible gain of Neutron, simply the levels at which masking is calculated.</p>
+
+</div>
+    </article>
+    <footer class="footer">
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../track-assistant/index.html" title="Track Assistant">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Track Assistant
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  <div class="next">
+  
+      <a href="../io-section/index.html" title="I/O Section">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              I/O Section
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+<div class="copyright">
+
+  
+  
+  <a href="../../ja/masking-meter/index.html"><i class="icon icon-eye"></i> 日本語での表示ページ</a>
+  
+
+  <br />
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Neutron 2 Help Documentation 
+
+</div></footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>  <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </main>
+  </body>
+</html>

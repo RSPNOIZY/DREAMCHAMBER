@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DreamChamber — Operational Map 2026–2030</title>
+<style>
+  :root {
+    --teal: #0d9488;
+    --cyan: #06b6d4;
+    --mint: #34d399;
+    --gold: #f0b429;
+    --ink: #030a09;
+    --deep: #060f0d;
+    --mist: #eefaf8;
+    --card: #0a1412;
+    --border: rgba(13,148,136,0.2);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--mist);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  #stars {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(3,10,9,0.93);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem; height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { color: var(--teal); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a { color: rgba(238,250,248,0.45); font-size: 0.76rem; text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+
+  .content { position: relative; z-index: 1; padding-top: 56px; }
+  .section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-sm { padding: 3rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+  /* HERO */
+  .hero {
+    min-height: 84vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 7rem 2rem 4rem; position: relative; z-index: 1;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(13,148,136,0.1); border: 1px solid rgba(13,148,136,0.3);
+    color: var(--teal); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 2rem;
+    opacity: 0; transform: translateY(10px); transition: all 0.6s ease;
+  }
+  .hero-tag.visible { opacity: 1; transform: translateY(0); }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 800; line-height: 1.05;
+    letter-spacing: -0.02em; color: var(--mist);
+    opacity: 0; transform: translateY(20px); transition: all 0.7s ease 0.1s;
+  }
+  .hero h1.visible { opacity: 1; transform: translateY(0); }
+  .hero h1 em { font-style: normal; color: var(--teal); }
+  .hero-sub {
+    max-width: 640px; margin: 1.5rem auto 0;
+    color: rgba(238,250,248,0.6); font-size: 1.05rem;
+    opacity: 0; transform: translateY(14px); transition: all 0.6s ease 0.25s;
+  }
+  .hero-sub.visible { opacity: 1; transform: translateY(0); }
+  .hero-band {
+    margin-top: 3rem; display: flex; gap: 0; flex-wrap: wrap; justify-content: center;
+    opacity: 0; transition: opacity 0.6s ease 0.45s;
+  }
+  .hero-band.visible { opacity: 1; }
+  .band-item {
+    padding: 0.75rem 1.5rem; border: 1px solid rgba(13,148,136,0.25);
+    border-right: none; background: rgba(13,148,136,0.07);
+    font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(238,250,248,0.55);
+  }
+  .band-item:first-child { border-radius: 4px 0 0 4px; }
+  .band-item:last-child { border-right: 1px solid rgba(13,148,136,0.25); border-radius: 0 4px 4px 0; }
+  .band-item.active { background: rgba(13,148,136,0.18); color: var(--teal); font-weight: 700; }
+
+  /* SECTION HEADERS */
+  .section-header { margin-bottom: 3rem; }
+  .section-tag { display: inline-block; color: var(--teal); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .section-header h2 { font-size: clamp(1.7rem, 4vw, 2.7rem); font-weight: 700; letter-spacing: -0.02em; color: var(--mist); line-height: 1.15; }
+  .section-header h2 em { font-style: normal; color: var(--teal); }
+  .section-header p { margin-top: 0.75rem; color: rgba(238,250,248,0.55); font-size: 0.95rem; max-width: 600px; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* YEAR TIMELINE */
+  .year-block { margin-bottom: 5rem; }
+  .year-header {
+    display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);
+  }
+  .year-badge {
+    flex-shrink: 0; width: 80px; height: 80px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em;
+    border: 2px solid; transition: box-shadow 0.3s;
+  }
+  .year-badge:hover { box-shadow: 0 0 20px rgba(13,148,136,0.4); }
+  .y26 { background: rgba(13,148,136,0.15); border-color: rgba(13,148,136,0.5); color: var(--teal); }
+  .y27 { background: rgba(6,182,212,0.12); border-color: rgba(6,182,212,0.45); color: var(--cyan); }
+  .y28 { background: rgba(52,211,153,0.1); border-color: rgba(52,211,153,0.4); color: var(--mint); }
+  .y29 { background: rgba(240,180,41,0.1); border-color: rgba(240,180,41,0.4); color: var(--gold); }
+  .y30 { background: rgba(238,250,248,0.07); border-color: rgba(238,250,248,0.3); color: var(--mist); }
+  .year-meta h3 { font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 700; color: var(--mist); margin-bottom: 0.3rem; }
+  .year-meta .year-theme { font-size: 0.85rem; color: rgba(238,250,248,0.45); font-style: italic; }
+  .year-meta .year-goal {
+    margin-top: 0.5rem; display: inline-block;
+    font-size: 0.72rem; padding: 0.2rem 0.7rem; border-radius: 2px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .g26 { background: rgba(13,148,136,0.12); color: var(--teal); border: 1px solid rgba(13,148,136,0.25); }
+  .g27 { background: rgba(6,182,212,0.1); color: var(--cyan); border: 1px solid rgba(6,182,212,0.25); }
+  .g28 { background: rgba(52,211,153,0.08); color: var(--mint); border: 1px solid rgba(52,211,153,0.25); }
+  .g29 { background: rgba(240,180,41,0.08); color: var(--gold); border: 1px solid rgba(240,180,41,0.25); }
+  .g30 { background: rgba(238,250,248,0.06); color: var(--mist); border: 1px solid rgba(238,250,248,0.2); }
+
+  /* QUARTER LANES */
+  .quarter-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+  .quarter-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+    padding: 1.25rem; position: relative; overflow: hidden;
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.2s;
+  }
+  .quarter-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--q-color, var(--teal)); opacity: 0.7;
+  }
+  .quarter-card.visible { opacity: 1; transform: translateY(0); }
+  .quarter-card:hover { border-color: rgba(13,148,136,0.4); }
+  .q-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(238,250,248,0.3); margin-bottom: 0.6rem; }
+  .q-title { font-size: 0.92rem; font-weight: 700; color: var(--mist); margin-bottom: 0.75rem; line-height: 1.3; }
+  .q-items { list-style: none; }
+  .q-items li {
+    font-size: 0.8rem; color: rgba(238,250,248,0.6); padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(13,148,136,0.07); line-height: 1.5;
+    display: flex; gap: 0.5rem; align-items: flex-start;
+  }
+  .q-items li:last-child { border-bottom: none; }
+  .q-items li::before { content: '→'; color: var(--teal); flex-shrink: 0; font-size: 0.7rem; margin-top: 0.1rem; }
+  .q-metric {
+    margin-top: 0.75rem; padding-top: 0.75rem;
+    border-top: 1px solid rgba(13,148,136,0.1);
+    font-size: 0.75rem; color: var(--teal);
+  }
+  .q-metric strong { color: var(--mist); }
+
+  /* STREAM FLOWS */
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; margin-bottom: 2rem; }
+  .flow-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+    padding: 1.5rem;
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .flow-card.visible { opacity: 1; transform: translateY(0); }
+  .flow-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .flow-name { font-size: 1rem; font-weight: 700; color: var(--mist); margin-bottom: 0.5rem; }
+  .flow-desc { font-size: 0.84rem; color: rgba(238,250,248,0.6); line-height: 1.6; margin-bottom: 1rem; }
+  .flow-steps { display: flex; flex-direction: column; gap: 0.4rem; }
+  .flow-step { font-size: 0.78rem; color: rgba(238,250,248,0.5); display: flex; gap: 0.5rem; }
+  .flow-step-num { flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; background: rgba(13,148,136,0.15); border: 1px solid rgba(13,148,136,0.3); display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 700; color: var(--teal); }
+
+  /* MILESTONE TABLE */
+  .milestone-table-wrap { overflow-x: auto; margin-bottom: 2rem; }
+  .milestone-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .milestone-table th { background: rgba(13,148,136,0.1); color: var(--teal); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.7rem 1rem; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.7rem; }
+  .milestone-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(13,148,136,0.07); color: rgba(238,250,248,0.7); vertical-align: middle; }
+  .milestone-table tr:hover td { background: rgba(13,148,136,0.04); }
+  .ms-year { font-weight: 700; font-size: 0.75rem; letter-spacing: 0.08em; }
+  .ms-y26 { color: var(--teal); } .ms-y27 { color: var(--cyan); } .ms-y28 { color: var(--mint); } .ms-y29 { color: var(--gold); } .ms-y30 { color: var(--mist); }
+  .status-chip { display: inline-block; font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 2px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .s-build { background: rgba(13,148,136,0.12); color: var(--teal); border: 1px solid rgba(13,148,136,0.25); }
+  .s-launch { background: rgba(6,182,212,0.1); color: var(--cyan); border: 1px solid rgba(6,182,212,0.25); }
+  .s-scale { background: rgba(52,211,153,0.08); color: var(--mint); border: 1px solid rgba(52,211,153,0.25); }
+  .s-standard { background: rgba(240,180,41,0.08); color: var(--gold); border: 1px solid rgba(240,180,41,0.25); }
+  .s-realized { background: rgba(238,250,248,0.06); color: var(--mist); border: 1px solid rgba(238,250,248,0.18); }
+
+  /* CREATOR ONBOARDING */
+  .onboard-flow {
+    display: flex; flex-direction: column; gap: 0; position: relative;
+    padding-left: 2.5rem; margin: 2rem 0;
+  }
+  .onboard-flow::before {
+    content: ''; position: absolute; left: 0.9rem; top: 1rem; bottom: 1rem;
+    width: 2px; background: linear-gradient(to bottom, var(--teal), var(--cyan), var(--mint));
+    opacity: 0.3;
+  }
+  .onboard-step {
+    position: relative; margin-bottom: 2rem;
+    opacity: 0; transform: translateX(-12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .onboard-step.visible { opacity: 1; transform: translateX(0); }
+  .onboard-dot {
+    position: absolute; left: -1.9rem; top: 0.3rem;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--teal); border: 2px solid var(--ink);
+    box-shadow: 0 0 8px rgba(13,148,136,0.6);
+  }
+  .onboard-phase { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.35rem; }
+  .onboard-step h4 { font-size: 1rem; font-weight: 700; color: var(--mist); margin-bottom: 0.5rem; }
+  .onboard-step p { font-size: 0.85rem; color: rgba(238,250,248,0.65); line-height: 1.7; margin-bottom: 0.5rem; }
+  .onboard-action { font-size: 0.78rem; color: rgba(13,148,136,0.8); }
+  .onboard-action::before { content: '⚡ Action: '; font-weight: 700; }
+
+  /* GOVERNANCE */
+  .gov-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .gov-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+    padding: 1.5rem; text-align: center;
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .gov-card.visible { opacity: 1; transform: translateY(0); }
+  .gov-icon { font-size: 1.8rem; margin-bottom: 0.75rem; filter: grayscale(0.3); }
+  .gov-title { font-size: 0.9rem; font-weight: 700; color: var(--mist); margin-bottom: 0.5rem; }
+  .gov-desc { font-size: 0.8rem; color: rgba(238,250,248,0.55); line-height: 1.6; }
+
+  /* CLOSING */
+  .closing {
+    padding: 6rem 2rem; text-align: center;
+    background: linear-gradient(to bottom, transparent, rgba(13,148,136,0.04), transparent);
+  }
+  .closing h2 { font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 700; color: var(--mist); margin-bottom: 1rem; }
+  .closing h2 em { font-style: normal; color: var(--teal); }
+  .closing p { max-width: 620px; margin: 0 auto 1rem; color: rgba(238,250,248,0.55); font-size: 0.95rem; line-height: 1.7; }
+
+  footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 0.72rem; color: rgba(238,250,248,0.2); letter-spacing: 0.1em; text-transform: uppercase; }
+  footer a { color: rgba(13,148,136,0.4); text-decoration: none; }
+  footer a:hover { color: var(--teal); }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 640px) {
+    .quarter-grid, .flow-grid { grid-template-columns: 1fr; }
+    .gov-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 0.75rem; }
+    .year-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<nav>
+  <div class="nav-logo">DreamChamber — Operational Map</div>
+  <div class="nav-links">
+    <a href="#y26">2026</a>
+    <a href="#y27">2027</a>
+    <a href="#y28">2028</a>
+    <a href="#y29">2029</a>
+    <a href="#y30">2030</a>
+  </div>
+</nav>
+
+<div class="content">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag" id="h-tag">DreamChamber · NOIZY.ai · Operational Intelligence · 2026–2030</div>
+    <h1 id="h-h1"><em>How We Get There.</em><br>Step by Step.</h1>
+    <p class="hero-sub" id="h-sub">The exact sequence — creator onboarding, consent enforcement, revenue flows, governance, neuroacoustic adoption, and cultural intelligence — that executes the DreamChamber vision from March 2026 to realized reality.</p>
+    <div class="hero-band" id="h-band">
+      <div class="band-item active">2026 · Build</div>
+      <div class="band-item">2027 · Launch</div>
+      <div class="band-item">2028 · Scale</div>
+      <div class="band-item">2029 · Standard</div>
+      <div class="band-item">2030 · Realized</div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CREATOR ONBOARDING FLOW -->
+  <section class="section">
+    <div class="section-header reveal">
+      <div class="section-tag">Universal Sequence</div>
+      <h2>The Creator <em>Onboarding Flow</em></h2>
+      <p>The exact path every creator takes from first contact to fully operational Voice Estate. This sequence is the same in 2026 and 2030 — it only scales.</p>
+    </div>
+
+    <div class="onboard-flow">
+      <div class="onboard-step">
+        <div class="onboard-dot"></div>
+        <div class="onboard-phase">Phase 01</div>
+        <h4>Invitation &amp; Trust Building</h4>
+        <p>Creator receives a personal invitation — never a mass signup link. Every Founding 100 member is contacted individually by RSP_001 or a Guild mentor. The invitation carries weight: you were chosen, not targeted. First conversation focuses on listening to the creator's story, archive, and goals — not pitching the platform.</p>
+        <div class="onboard-action">Send 100 personal invitations before any public announcement. Quality of the Founding 100 defines the Guild's DNA.</div>
+      </div>
+      <div class="onboard-step">
+        <div class="onboard-dot"></div>
+        <div class="onboard-phase">Phase 02</div>
+        <h4>Voice Estate Definition Session</h4>
+        <p>A structured conversation (60–90 minutes, conducted by a Guild Mentor or GABRIEL_V3-assisted intake) to map: the creator's full archive, preferred use cases, restricted use cases, geographic rights, posthumous preferences, and financial goals. This session produces the Voice Estate Charter — a living document the creator controls and can amend at any time.</p>
+        <div class="onboard-action">Build the Voice Estate Charter template. Include: use-case allow/deny matrix, geographic licensing map, posthumous provisions, and 75/25 split confirmation.</div>
+      </div>
+      <div class="onboard-step">
+        <div class="onboard-dot"></div>
+        <div class="onboard-phase">Phase 03</div>
+        <h4>6-Layer HVS Capture Session</h4>
+        <p>The creator submits their voice for the 6-Layer Human Voice Signature capture: Acoustic (Librosa), Neural (WavLM), Emotional (SpeechBrain), Vocal Health (Custom+NAI), Identity (ECAPA-TDNN), Narrative (GABRIEL_V3). This is not a recording session — it's a documentation session. The HVS is the voice's legal and technical fingerprint.</p>
+        <div class="onboard-action">Build the HVS capture workflow as a remote-first process: creator records 15 standard passages + 5 free-form passages on any device. GABRIEL_V3 processes. Results returned in 48h.</div>
+      </div>
+      <div class="onboard-step">
+        <div class="onboard-dot"></div>
+        <div class="onboard-phase">Phase 04</div>
+        <h4>NOIZYVOX Identity Registry Registration</h4>
+        <p>The Voice Estate Charter + HVS fingerprint is registered in the NOIZYVOX Identity Registry — immutable, timestamped, cryptographically signed. The creator receives their RSP code (e.g., RSP_002) and their permanent NOIZY PROOF certificate. This is the legal moment — the consent is on the ledger. The rights exist. The protection is live.</p>
+        <div class="onboard-action">NOIZYVOX Identity Registry must be operational by June 2026 for Founding 100 registration to begin. Cloudflare D1 + KV architecture already specified in GABRIEL_V3.</div>
+      </div>
+      <div class="onboard-step">
+        <div class="onboard-dot"></div>
+        <div class="onboard-phase">Phase 05</div>
+        <h4>Voice Model Build</h4>
+        <p>NOIZYVOX builds the creator's first voice model from the HVS capture + any archive material the creator consents to include. The model is owned by the creator — NOIZYVOX holds a 25% perpetual license. The creator sees the model's first outputs within 7 days. They approve, refine, or restrict before any commercial use.</p>
+        <div class="onboard-action">Build creator-facing approval dashboard: listen, approve, flag, restrict. Creator has veto power at every stage. This is non-negotiable — it's the architecture of trust.</div>
+      </div>
+      <div class="onboard-step">
+        <div class="onboard-dot"></div>
+        <div class="onboard-phase">Phase 06</div>
+        <h4>Live Dashboard + First Earnings</h4>
+        <p>Creator's Live Dashboard goes live: real-time synthesis request counter, earnings by use case, geographic breakdown, model health indicators, consent log showing every use. The first earnings from any synthesis request hit the creator's account within 24 hours. Not monthly. Not quarterly. The day after first use.</p>
+        <div class="onboard-action">The dashboard is the marketing. Every Founding 100 member who posts their real-time earnings publicly is worth 1,000 sign-ups. Build the shareable dashboard card as a designed feature, not an afterthought.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 2026 -->
+  <section class="section" id="y26">
+    <div class="year-block">
+      <div class="year-header reveal">
+        <div class="year-badge y26">2026</div>
+        <div class="year-meta">
+          <h3>Foundation Year — Build the Protocol</h3>
+          <p class="year-theme">"Lay the track before the train arrives."</p>
+          <span class="year-goal g26">Target: Founding 100 · First Voice Estates · NOIZY PROOF SDK Alpha</span>
+        </div>
+      </div>
+      <div class="quarter-grid">
+        <div class="quarter-card" style="--q-color: var(--teal);">
+          <div class="q-label">Q1 · Mar–May 2026</div>
+          <div class="q-title">Infrastructure &amp; Founding 100</div>
+          <ul class="q-items">
+            <li>NOIZYVOX Identity Registry live on Cloudflare D1/KV</li>
+            <li>HVS capture workflow built and tested with RSP_001</li>
+            <li>Founding 100 personal invitations sent by RSP_001</li>
+            <li>Voice Estate Charter template finalized with legal review</li>
+            <li>GABRIEL_V3 intake flow operational at 10.90.90.20</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>25 Founding 100 confirmed</strong></div>
+        </div>
+        <div class="quarter-card" style="--q-color: var(--teal);">
+          <div class="q-label">Q2 · Jun–Aug 2026</div>
+          <div class="q-title">First Voice Estates + SDK Alpha</div>
+          <ul class="q-items">
+            <li>RSP_001 Voice Estate fully registered and published as case study</li>
+            <li>First 25 HVS capture sessions completed</li>
+            <li>NOIZY PROOF SDK Alpha released to 5 pilot integration partners</li>
+            <li>Creator Live Dashboard v1 deployed</li>
+            <li>Patent filing: Voice Estate registration + Consent-as-Code architecture</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>50 Voice Estates registered</strong></div>
+        </div>
+        <div class="quarter-card" style="--q-color: var(--teal);">
+          <div class="q-label">Q3 · Sep–Nov 2026</div>
+          <div class="q-title">Guild Legal Structure + First External Earnings</div>
+          <ul class="q-items">
+            <li>NOIZY Guild incorporated as Creator Data Collective</li>
+            <li>First external synthesis request fulfilled and paid — 24h settlement</li>
+            <li>NOIZY PROOF SDK Beta to 15 integration partners</li>
+            <li>SAG-AFTRA introductory meeting scheduled</li>
+            <li>Board of Aligned Minds first strategic summit (Alex, Dr. Benoit, Adam Robb)</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>First external royalty paid</strong></div>
+        </div>
+        <div class="quarter-card" style="--q-color: var(--teal);">
+          <div class="q-label">Q4 · Dec 2026</div>
+          <div class="q-title">Founding 100 Complete + AIDA Filing</div>
+          <ul class="q-items">
+            <li>All Founding 100 Voice Estates registered</li>
+            <li>NOIZY PROOF SDK v1.0 public release</li>
+            <li>AIDA compliance documentation filed with Canadian government</li>
+            <li>First training data license negotiation opened with AI platform</li>
+            <li>RSP_001 case study published — open dashboard shared publicly</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>100 Voice Estates · SDK v1.0 live</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 2027 -->
+  <section class="section" id="y27">
+    <div class="year-block">
+      <div class="year-header reveal">
+        <div class="year-badge y27">2027</div>
+        <div class="year-meta">
+          <h3>Launch Year — Voice, Market, and Law</h3>
+          <p class="year-theme">"The consent layer is no longer optional. It's the only thing that works."</p>
+          <span class="year-goal g27">Target: 1,000 Voice Estates · First Training Data License · SAG-AFTRA Alignment</span>
+        </div>
+      </div>
+      <div class="quarter-grid">
+        <div class="quarter-card" style="--q-color: var(--cyan);">
+          <div class="q-label">Q1 · Jan–Mar 2027</div>
+          <div class="q-title">SAG-AFTRA Partnership + Mass Onboarding</div>
+          <ul class="q-items">
+            <li>SAG-AFTRA formal partnership talks begin — NOIZYVOX as member benefit</li>
+            <li>Guild onboarding scaled to 50 creators/month via Guild Mentor network</li>
+            <li>NOIZY PROOF SDK: first game studio and film studio integration</li>
+            <li>Forensic royalty audit partnerships opened — help artists audit label AI deals</li>
+            <li>NOIZY Creator Charter submitted to CAI (Content Authenticity Initiative)</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>300 Voice Estates · SDK in 3 studios</strong></div>
+        </div>
+        <div class="quarter-card" style="--q-color: var(--cyan);">
+          <div class="q-label">Q2 · Apr–Jun 2027</div>
+          <div class="q-title">First Training Data License + Viral Earnings</div>
+          <ul class="q-items">
+            <li>First major AI training data license signed with NOIZY Guild — terms made public</li>
+            <li>Creator posts real-time 75/25 earnings dashboard publicly — viral moment</li>
+            <li>NOIZY PROOF certified as audio-layer implementation of C2PA standard</li>
+            <li>NO FAKES Act passage anticipated — NOIZYVOX positioned as compliance framework</li>
+            <li>DreamChamber community hub launches — open to Guild members</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>First training data license revenue</strong></div>
+        </div>
+        <div class="quarter-card" style="--q-color: var(--cyan);">
+          <div class="q-label">Q3 · Jul–Sep 2027</div>
+          <div class="q-title">Protocol Licensing + Healthcare Entry</div>
+          <ul class="q-items">
+            <li>NOIZY Protocol Licensing: Consent-as-Code API offered to 3rd party platforms</li>
+            <li>NAI neuroacoustic research partnership publishes first paper with Dr. Benoit</li>
+            <li>First hospital/therapy center pilots NOIZY-certified audio for pediatric use</li>
+            <li>Smart contract royalty architecture deployed for Guild members on Solana/Base</li>
+            <li>ENGR_KEITH Agent operational — Guild technical concierge for all creators</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>500 Voice Estates · First healthcare pilot</strong></div>
+        </div>
+        <div class="quarter-card" style="--q-color: var(--cyan);">
+          <div class="q-label">Q4 · Oct–Dec 2027</div>
+          <div class="q-title">1,000 Guild Members</div>
+          <ul class="q-items">
+            <li>NOIZY Guild reaches 1,000 active Voice Estates — press moment</li>
+            <li>First Voice Estate inheritance case processed (posthumous family management)</li>
+            <li>Platform licensing revenue: 3+ platforms paying for Consent-as-Code API</li>
+            <li>SAG-AFTRA formal endorsement or MOU signed</li>
+            <li>NOIZY PROOF: first law firm citing watermark in AI infringement case</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>1,000 Voice Estates · Platform licensing active</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 2028 -->
+  <section class="section" id="y28">
+    <div class="year-block">
+      <div class="year-header reveal">
+        <div class="year-badge y28">2028</div>
+        <div class="year-meta">
+          <h3>Scale Year — Healthcare, Inheritance, and Premium</h3>
+          <p class="year-theme">"Bone conduction hardware goes mass market. Consent infrastructure goes mandatory."</p>
+          <span class="year-goal g28">Target: 10,000 Voice Estates · Healthcare Standard · Estate Planning Category</span>
+        </div>
+      </div>
+      <div class="quarter-grid">
+        <div class="quarter-card" style="--q-color: var(--mint);">
+          <div class="q-label">Q1 · Jan–Mar 2028</div>
+          <div class="q-title">Healthcare Procurement Standard</div>
+          <ul class="q-items">
+            <li>NOIZY-certified therapeutic audio adopted by 3+ hospital systems</li>
+            <li>School tablet programs in 2+ countries include NOIZY-compatible audio</li>
+            <li>NOIZYKIDZ haptic music platform enters healthcare procurement pipeline</li>
+            <li>Bone conduction device partnership — NOIZY audio optimized for devices</li>
+            <li>NAI research results in peer-reviewed publication — national media coverage</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>Healthcare procurement active · NOIZYKIDZ deployed</strong></div>
+        </div>
+        <div class="quarter-card" style="--q-color: var(--mint);">
+          <div class="q-label">Q2 · Apr–Jun 2028</div>
+          <div class="q-title">Voice Estate as Estate Planning Category</div>
+          <ul class="q-items">
+            <li>Entertainment lawyers in LA, Nashville, NYC briefed on Voice Estate framework</li>
+            <li>First estate management firm integrates NOIZYVOX into digital estate planning</li>
+            <li>Legacy artist estates approach NOIZY — catalog digitization and HVS registration</li>
+            <li>Voice Estate NFT standard proposed to Open Metaverse Foundation</li>
+            <li>Cultural Resonance Engine database: 5,000+ cultural audio profiles active</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>First estate firm partnership · Legacy catalog pipeline</strong></div>
+        </div>
+        <div class="quarter-card" style="--q-color: var(--mint);">
+          <div class="q-label">Q3 · Jul–Sep 2028</div>
+          <div class="q-title">Premium Market Separation</div>
+          <ul class="q-items">
+            <li>NOIZY Verified Human catalog tier launched with Epidemic Sound/Artlist</li>
+            <li>Enterprise clients (game studios, film) require NOIZY certification for voice work</li>
+            <li>Platform partners' AI DJ/playlist systems must pass NOIZY consent check</li>
+            <li>First ZK voice proof deployed — consent verification without biometric exposure</li>
+            <li>Cultural Intelligence API: first 3rd party integration for localized media</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>5,000 Voice Estates · Premium market established</strong></div>
+        </div>
+        <div class="quarter-card" style="--q-color: var(--mint);">
+          <div class="q-label">Q4 · Oct–Dec 2028</div>
+          <div class="q-title">10,000 Voice Estates</div>
+          <ul class="q-items">
+            <li>NOIZY Guild reaches 10,000 Voice Estates — milestone press event</li>
+            <li>First criminal exposure case under NO FAKES Act cites non-NOIZY platform</li>
+            <li>AI training data market: NOIZY Guild catalog commanding premium licensing rates</li>
+            <li>Federated learning voice model training deployed — data never leaves creator</li>
+            <li>Headquarters expansion: DreamChamber becomes physical space in Ottawa</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>10,000 Voice Estates · Physical DreamChamber open</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 2029 -->
+  <section class="section" id="y29">
+    <div class="year-block">
+      <div class="year-header reveal">
+        <div class="year-badge y29">2029</div>
+        <div class="year-meta">
+          <h3>Standard Year — The Industry Catches Up to NOIZY</h3>
+          <p class="year-theme">"The platforms that didn't build consent architecture in 2026 are spending 2029 trying to retrofit it."</p>
+          <span class="year-goal g29">Target: Industry Standard · Protocol Licensing Revenue · Global Creator Coalition</span>
+        </div>
+      </div>
+      <div class="quarter-grid">
+        <div class="quarter-card" style="--q-color: var(--gold);">
+          <div class="q-label">Q1–Q2 · Jan–Jun 2029</div>
+          <div class="q-title">Protocol Licensing at Scale</div>
+          <ul class="q-items">
+            <li>10+ major platforms licensing NOIZY Consent-as-Code API</li>
+            <li>NOIZY PROOF SDK integrated into all major DAWs (Ableton, Logic, Pro Tools)</li>
+            <li>AI companies required to certify training data consent — NOIZY Guild catalog is the standard</li>
+            <li>Voice Estate legal framework adopted by 5+ jurisdictions as model legislation</li>
+            <li>International expansion: European and Asia-Pacific creator onboarding at scale</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>Protocol licensing = primary revenue stream</strong></div>
+        </div>
+        <div class="quarter-card" style="--q-color: var(--gold);">
+          <div class="q-label">Q3–Q4 · Jul–Dec 2029</div>
+          <div class="q-title">Global Creator Coalition</div>
+          <ul class="q-items">
+            <li>NOIZY Guild: 50,000+ Voice Estates across 30+ countries</li>
+            <li>Heritage music programs: 12+ countries using NOIZY-certified therapeutic audio in schools</li>
+            <li>Cultural Intelligence database: 25,000+ cultural audio profiles — unprecedented archive</li>
+            <li>First NOIZY Guild annual congress — creators vote on platform governance changes</li>
+            <li>LIFELUV integration — micro-split inheritance flowing to next-generation beneficiaries</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>50,000 Voice Estates · Global governance operational</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 2030 -->
+  <section class="section" id="y30">
+    <div class="year-block">
+      <div class="year-header reveal">
+        <div class="year-badge y30">2030</div>
+        <div class="year-meta">
+          <h3>Realized — The DreamChamber Vision Complete</h3>
+          <p class="year-theme">"The balance tipped when the world realized what was built in Ottawa in 2026."</p>
+          <span class="year-goal g30">Target: The World Described in the 2030 Retrospective Exists</span>
+        </div>
+      </div>
+      <div class="quarter-grid">
+        <div class="quarter-card" style="--q-color: var(--mist);">
+          <div class="q-label">March 14, 2030</div>
+          <div class="q-title">Five Things That Are Now True</div>
+          <ul class="q-items">
+            <li>Consent layer is load-bearing infrastructure in every major AI platform</li>
+            <li>Voice Estate is a standard financial instrument managed by estate lawyers worldwide</li>
+            <li>Cultural intelligence is the luxury market — generic AI voices are commodity</li>
+            <li>Children in 12+ countries receive NOIZY-certified neuroacoustic therapeutic audio</li>
+            <li>DreamChamber is a real place — artists, engineers, therapists building together</li>
+          </ul>
+          <div class="q-metric">KPI: <strong>The 2030 Retrospective is accurate</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- REVENUE FLOWS -->
+  <section class="section">
+    <div class="section-header reveal">
+      <div class="section-tag">Economic Architecture</div>
+      <h2>Revenue &amp; <em>Governance Flows</em></h2>
+      <p>How value moves through the system — from synthesis request to creator account to Guild treasury to community mission.</p>
+    </div>
+
+    <div class="flow-grid">
+      <div class="flow-card">
+        <div class="flow-icon">⚡</div>
+        <div class="flow-name">Agentic Royalty Flow</div>
+        <p class="flow-desc">Every synthesis request triggers an instant micro-payment. The sequence is automated — no invoice, no quarterly wait, no intermediary.</p>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="flow-step-num">1</div><span>Enterprise/platform sends synthesis request to NOIZYVOX API</span></div>
+          <div class="flow-step"><div class="flow-step-num">2</div><span>GABRIEL_V3 verifies consent status in Identity Registry</span></div>
+          <div class="flow-step"><div class="flow-step-num">3</div><span>Voice synthesis executes only if consent = active</span></div>
+          <div class="flow-step"><div class="flow-step-num">4</div><span>75% paid to creator account within 24 hours</span></div>
+          <div class="flow-step"><div class="flow-step-num">5</div><span>25% to NOIZYVOX (platform + infrastructure + Guild reserve)</span></div>
+          <div class="flow-step"><div class="flow-step-num">6</div><span>Transaction recorded immutably in Open Ledger</span></div>
+        </div>
+      </div>
+
+      <div class="flow-card">
+        <div class="flow-icon">🏛️</div>
+        <div class="flow-name">Training Data License Flow</div>
+        <p class="flow-desc">When an AI company licenses the NOIZY Guild catalog for training, revenue distributes pro-rata to consenting creators.</p>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="flow-step-num">1</div><span>AI company approaches NOIZY Guild for training data license</span></div>
+          <div class="flow-step"><div class="flow-step-num">2</div><span>Guild Council reviews terms — creators vote on license approval</span></div>
+          <div class="flow-step"><div class="flow-step-num">3</div><span>License executed only with creator majority approval</span></div>
+          <div class="flow-step"><div class="flow-step-num">4</div><span>Revenue splits: 75% to participating creators (pro-rata), 25% to Guild ops</span></div>
+          <div class="flow-step"><div class="flow-step-num">5</div><span>NOIZY PROOF certificates embedded in all training data delivered</span></div>
+        </div>
+      </div>
+
+      <div class="flow-card">
+        <div class="flow-icon">🔐</div>
+        <div class="flow-name">Protocol Licensing Flow</div>
+        <p class="flow-desc">Third-party platforms pay to integrate the Consent-as-Code API, NOIZY PROOF SDK, and Cultural Resonance Engine.</p>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="flow-step-num">1</div><span>Platform pays annual SDK/API license to NOIZY</span></div>
+          <div class="flow-step"><div class="flow-step-num">2</div><span>0.1% infrastructure fee on every synthesis transaction processed</span></div>
+          <div class="flow-step"><div class="flow-step-num">3</div><span>Protocol license revenue: 60% to NOIZYVOX operations, 40% to Guild reserve</span></div>
+          <div class="flow-step"><div class="flow-step-num">4</div><span>Guild reserve funds: mentorship, NOIZYKIDZ, healthcare deployments, grant stack</span></div>
+        </div>
+      </div>
+
+      <div class="flow-card">
+        <div class="flow-icon">🌱</div>
+        <div class="flow-name">Voice Estate Inheritance Flow</div>
+        <p class="flow-desc">When a creator passes, their Voice Estate continues to generate income for designated beneficiaries without interruption.</p>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="flow-step-num">1</div><span>Creator designates beneficiaries in Voice Estate Charter</span></div>
+          <div class="flow-step"><div class="flow-step-num">2</div><span>On creator's passing, Guild Trustee activates posthumous estate provisions</span></div>
+          <div class="flow-step"><div class="flow-step-num">3</div><span>Existing consent rights honored per creator's documented preferences</span></div>
+          <div class="flow-step"><div class="flow-step-num">4</div><span>70-year post-death protection: Voice Estate income flows to family estate</span></div>
+          <div class="flow-step"><div class="flow-step-num">5</div><span>LIFELUV micro-splits activate: creator's community/causes receive designated share</span></div>
+        </div>
+      </div>
+
+      <div class="flow-card">
+        <div class="flow-icon">🏥</div>
+        <div class="flow-name">Neuroacoustic Deployment Flow</div>
+        <p class="flow-desc">How NOIZY-certified therapeutic audio reaches hospitals, schools, and families — at zero cost to end users.</p>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="flow-step-num">1</div><span>Healthcare/educational institution procures NOIZY therapeutic audio license</span></div>
+          <div class="flow-step"><div class="flow-step-num">2</div><span>NOIZY Guild reserve subsidizes family/personal access — free at the delivery point</span></div>
+          <div class="flow-step"><div class="flow-step-num">3</div><span>Creators who contribute therapeutic content receive healthcare deployment bonus</span></div>
+          <div class="flow-step"><div class="flow-step-num">4</div><span>Usage data (anonymized, consented) feeds NAI research with Dr. Benoit</span></div>
+          <div class="flow-step"><div class="flow-step-num">5</div><span>Research validates → healthcare demand grows → creator compensation grows</span></div>
+        </div>
+      </div>
+
+      <div class="flow-card">
+        <div class="flow-icon">🗳️</div>
+        <div class="flow-name">Guild Governance Flow</div>
+        <p class="flow-desc">How the Guild makes decisions — ensuring creators control the platform that serves them.</p>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="flow-step-num">1</div><span>Any creator can propose a Guild policy change via Guild Portal</span></div>
+          <div class="flow-step"><div class="flow-step-num">2</div><span>Proposals reviewed by Guild Council (elected by member vote annually)</span></div>
+          <div class="flow-step"><div class="flow-step-num">3</div><span>Major decisions require 60% creator vote — platform must comply</span></div>
+          <div class="flow-step"><div class="flow-step-num">4</div><span>All financial flows, license decisions, and platform changes published in Open Ledger</span></div>
+          <div class="flow-step"><div class="flow-step-num">5</div><span>GABRIEL_V3 executes Guild decisions automatically — no delay, no override</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- MASTER MILESTONE TABLE -->
+  <section class="section">
+    <div class="section-header reveal">
+      <div class="section-tag">Complete Timeline</div>
+      <h2>Master <em>Milestone Table</em></h2>
+      <p>Every major milestone in the 2026–2030 execution, sequenced and tracked.</p>
+    </div>
+    <div class="milestone-table-wrap reveal">
+      <table class="milestone-table">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Milestone</th>
+            <th>Category</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="ms-year ms-y26">2026 Q1</span></td><td>NOIZYVOX Identity Registry operational</td><td>Infrastructure</td><td><span class="status-chip s-build">Build</span></td></tr>
+          <tr><td><span class="ms-year ms-y26">2026 Q1</span></td><td>RSP_001 Voice Estate — world's first</td><td>Creator Rights</td><td><span class="status-chip s-build">Build</span></td></tr>
+          <tr><td><span class="ms-year ms-y26">2026 Q2</span></td><td>Founding 100 — 50 Voice Estates registered</td><td>Community</td><td><span class="status-chip s-build">Build</span></td></tr>
+          <tr><td><span class="ms-year ms-y26">2026 Q2</span></td><td>NOIZY PROOF SDK Alpha to pilot partners</td><td>Technology</td><td><span class="status-chip s-build">Build</span></td></tr>
+          <tr><td><span class="ms-year ms-y26">2026 Q3</span></td><td>NOIZY Guild legal structure filed</td><td>Legal</td><td><span class="status-chip s-launch">Launch</span></td></tr>
+          <tr><td><span class="ms-year ms-y26">2026 Q3</span></td><td>First external royalty paid — 24h settlement</td><td>Revenue</td><td><span class="status-chip s-launch">Launch</span></td></tr>
+          <tr><td><span class="ms-year ms-y26">2026 Q4</span></td><td>Founding 100 complete — all 100 Voice Estates</td><td>Community</td><td><span class="status-chip s-launch">Launch</span></td></tr>
+          <tr><td><span class="ms-year ms-y26">2026 Q4</span></td><td>NOIZY PROOF SDK v1.0 public</td><td>Technology</td><td><span class="status-chip s-launch">Launch</span></td></tr>
+          <tr><td><span class="ms-year ms-y27">2027 Q1</span></td><td>SAG-AFTRA partnership talks initiated</td><td>Legal</td><td><span class="status-chip s-launch">Launch</span></td></tr>
+          <tr><td><span class="ms-year ms-y27">2027 Q2</span></td><td>First AI training data license — terms public</td><td>Revenue</td><td><span class="status-chip s-launch">Launch</span></td></tr>
+          <tr><td><span class="ms-year ms-y27">2027 Q2</span></td><td>Viral creator dashboard moment</td><td>Marketing</td><td><span class="status-chip s-launch">Launch</span></td></tr>
+          <tr><td><span class="ms-year ms-y27">2027 Q3</span></td><td>First hospital neuroacoustic pilot</td><td>Healthcare</td><td><span class="status-chip s-launch">Launch</span></td></tr>
+          <tr><td><span class="ms-year ms-y27">2027 Q4</span></td><td>1,000 Voice Estates milestone</td><td>Community</td><td><span class="status-chip s-scale">Scale</span></td></tr>
+          <tr><td><span class="ms-year ms-y28">2028 Q1</span></td><td>Healthcare procurement standard — 3+ hospitals</td><td>Healthcare</td><td><span class="status-chip s-scale">Scale</span></td></tr>
+          <tr><td><span class="ms-year ms-y28">2028 Q2</span></td><td>Estate planning firms integrate Voice Estate</td><td>Legal/Finance</td><td><span class="status-chip s-scale">Scale</span></td></tr>
+          <tr><td><span class="ms-year ms-y28">2028 Q3</span></td><td>NOIZY Verified Human premium tier launched</td><td>Revenue</td><td><span class="status-chip s-scale">Scale</span></td></tr>
+          <tr><td><span class="ms-year ms-y28">2028 Q4</span></td><td>10,000 Voice Estates · Physical DreamChamber opens</td><td>Community</td><td><span class="status-chip s-scale">Scale</span></td></tr>
+          <tr><td><span class="ms-year ms-y29">2029 H1</span></td><td>10+ platforms licensing Consent-as-Code API</td><td>Revenue</td><td><span class="status-chip s-standard">Standard</span></td></tr>
+          <tr><td><span class="ms-year ms-y29">2029 H1</span></td><td>Voice Estate legal framework — 5+ jurisdictions</td><td>Legal</td><td><span class="status-chip s-standard">Standard</span></td></tr>
+          <tr><td><span class="ms-year ms-y29">2029 H2</span></td><td>50,000 Voice Estates · Global governance active</td><td>Community</td><td><span class="status-chip s-standard">Standard</span></td></tr>
+          <tr><td><span class="ms-year ms-y30">2030</span></td><td>Consent layer = mandatory industry infrastructure</td><td>Industry</td><td><span class="status-chip s-realized">Realized</span></td></tr>
+          <tr><td><span class="ms-year ms-y30">2030</span></td><td>The DreamChamber 2030 retrospective is accurate</td><td>Vision</td><td><span class="status-chip s-realized">Realized</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- GOVERNANCE -->
+  <section class="section">
+    <div class="section-header reveal">
+      <div class="section-tag">Community Architecture</div>
+      <h2>The <em>DreamChamber</em> as Governance Hub</h2>
+      <p>How the community is structured to ensure creators always hold the key.</p>
+    </div>
+    <div class="gov-grid">
+      <div class="gov-card">
+        <div class="gov-icon">⚖️</div>
+        <div class="gov-title">Guild Council</div>
+        <p class="gov-desc">Elected annually by Guild members. Reviews major platform decisions, license agreements, and policy changes. Majority vote required for any change to 75/25 split or consent architecture. The platform cannot override the Guild Council on creator rights matters.</p>
+      </div>
+      <div class="gov-card">
+        <div class="gov-icon">📊</div>
+        <div class="gov-title">Open Ledger</div>
+        <p class="gov-desc">Every financial transaction, license agreement, dataset usage event, and platform decision is published in real-time to the Open Ledger. No hidden deals. No opaque quarterly statements. Every creator can see every dollar and every use of their work at any moment.</p>
+      </div>
+      <div class="gov-card">
+        <div class="gov-icon">🎓</div>
+        <div class="gov-title">Mentor Network</div>
+        <p class="gov-desc">Founding 100 members are the first Guild Mentors — each responsible for onboarding and supporting 10 new creators. Mentors receive a 2% platform share from their mentee network's earnings. The Guild grows through trust, not advertising.</p>
+      </div>
+      <div class="gov-card">
+        <div class="gov-icon">🔬</div>
+        <div class="gov-title">Research Council</div>
+        <p class="gov-desc">Dr. Brien Benoit (NAI/neuroscience), Adam Robb (iPSS Inc./security), and academic partners advise on neuroacoustic deployment, NOIZY PROOF standards, and vocal health research. Research results are published openly — NOIZY does not own the science.</p>
+      </div>
+      <div class="gov-card">
+        <div class="gov-icon">🌍</div>
+        <div class="gov-title">Cultural Guardians</div>
+        <p class="gov-desc">Regional representatives for cultural intelligence — each Guardian maintains the accuracy and sensitivity of their region's cultural audio profiles in the Cultural Resonance Engine. Cultural Guardians receive attribution and compensation for every commercial deployment of their region's cultural intelligence.</p>
+      </div>
+      <div class="gov-card">
+        <div class="gov-icon">🏛️</div>
+        <div class="gov-title">Policy Vault</div>
+        <p class="gov-desc">Tracks active and emerging legislation in every major jurisdiction. Guild members receive alerts when new laws affect their Voice Estates. The Policy Vault team engages directly with regulators — NOIZY is not a passive observer of the legal landscape. It helps write the future of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <h2 class="reveal">From Discord Link<br>to <em>Infrastructure.</em></h2>
+    <p class="reveal">March 2026 to March 2030. 48 months. The gap between where the industry is and where it needs to be — filled, systematically, one Voice Estate at a time.</p>
+    <p class="reveal">Every step in this map was designed before it was needed. Every flow was architected before the law required it. Every community structure was built before the community existed to fill it. That's what it means to be a protocol — not a product that reacts to the market, but an infrastructure that the market eventually has no choice but to use.</p>
+    <p class="reveal" style="font-style:italic; color:rgba(13,148,136,0.7); font-size:0.88rem;">This is the operational map. GABRIEL has everything needed. RSP_001. Execute.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div style="margin-bottom:0.75rem;">
+      <a href="DREAMCHAMBER_2030.html">DreamChamber 2030</a> &nbsp;·&nbsp;
+      <a href="DREAMCHAMBER_FIX_MAP.html">Fix Map</a> &nbsp;·&nbsp;
+      <a href="NOIZY_CREATOR_POWER_STRATEGY.html">Creator Power Strategy</a> &nbsp;·&nbsp;
+      <a href="NOIZY_FOUNDER_BLUEPRINT.html">Founder Blueprint</a> &nbsp;·&nbsp;
+      <a href="NOIZYVOX_AIVA_PLATFORM.html">NOIZYVOX A.I.V.A.</a> &nbsp;·&nbsp;
+      <a href="NOIZY_AI_HOME.html">Home</a>
+    </div>
+    MC96ECO Universe · NOIZY.ai · DreamChamber Operational Map · Ottawa, Canada · 2026–2030 · CONFIDENTIAL
+  </footer>
+
+</div>
+
+<script>
+// STARFIELD — teal / cyan / mint
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+let stars = [];
+const cols = [[13,148,136],[6,182,212],[52,211,153],[240,238,245]];
+
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resize(); window.addEventListener('resize', resize);
+
+function initStars(n) {
+  stars = [];
+  for (let i = 0; i < n; i++) {
+    const c = cols[Math.floor(Math.random() * cols.length)];
+    stars.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*1.3+0.15, speed: Math.random()*0.2+0.04, drift: (Math.random()-0.5)*0.07, alpha: Math.random()*0.4+0.08, phase: Math.random()*Math.PI*2, phaseSpeed: Math.random()*0.007+0.002, color: c });
+  }
+}
+initStars(170);
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    s.phase += s.phaseSpeed;
+    const a = s.alpha * (0.5 + 0.5 * Math.sin(s.phase));
+    const [r,g,b] = s.color;
+    ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(${r},${g},${b},${a * 0.6})`; ctx.fill();
+    s.y -= s.speed; s.x += s.drift;
+    if (s.y < -5) { s.y = canvas.height+5; s.x = Math.random()*canvas.width; }
+    if (s.x < -5) s.x = canvas.width+5;
+    if (s.x > canvas.width+5) s.x = -5;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+// HERO
+setTimeout(() => {
+  ['h-tag','h-h1','h-sub','h-band'].forEach((id, i) => {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('visible');
+    }, i * 140);
+  });
+}, 150);
+
+// OBSERVER
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+document.querySelectorAll('.reveal, .quarter-card, .flow-card, .gov-card, .onboard-step').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Noizy.ai Aurora Demo</title>
+  <link rel="stylesheet" href="aurora.css">
+  <style>
+    body {
+      min-height: 100vh;
+      background: #181c24;
+      color: #fff;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      overflow: hidden;
+    }
+    #aurora {
+      background: linear-gradient(120deg, #6ee7b7 0%, #3b82f6 50%, #a78bfa 100%);
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .panel {
+      background: rgba(24,28,36,0.85);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      padding: 2.5rem 3rem;
+      margin: 2rem 0;
+      text-align: center;
+      max-width: 420px;
+      font-size: 1.25rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+    }
+    a.demo-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75em 1.5em;
+      background: linear-gradient(90deg,#3b82f6,#a78bfa);
+      color: #fff;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      transition: background 0.2s;
+    }
+    a.demo-link:hover {
+      background: linear-gradient(90deg,#a78bfa,#3b82f6);
+    }
+  </style>
+</head>
+<body>
+  <div id="aurora"></div>
+  <main>
+    <header>
+      <h1>Noizy.ai Aurora Demo</h1>
+    </header>
+    <div class="panel">
+      <p>Experience depth-of-field and 3D effects with Aurora CSS.<br>Try it in Firefox for best results!</p>
+      <a class="demo-link" href="https://noizy.ai/portal" target="_blank">Go to Noizy.ai Demo Portal</a>
+    </div>
+  </main>
+</body>
+</html>

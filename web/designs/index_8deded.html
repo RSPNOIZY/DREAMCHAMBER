@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="ja"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="ja"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="ja"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]> 
+<!--><html class="no-js" lang="ja"><!--<![endif]-->
+  <head lang="ja">  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+  <title>メーターとターゲット曲線 - Tonalバランスコントロールユーザーズマニュアル</title>
+  <meta name="generator" content="Hugo 0.40.3" />
+  <meta name="description" content="Tonal Balance Control Documentation">
+  <link rel="canonical" href="index.html">
+  <meta name="author" content="iZotope">
+  <meta property="og:url" content="http://www.izotope-tonal_balance_control-docs.com/ja/meters-and-target-curves/index.html">
+  <meta property="og:title" content="Tonalバランスコントロールユーザーズマニュアル">
+  
+  <meta name="apple-mobile-web-app-title" content="Tonalバランスコントロールユーザーズマニュアル">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <style>
+    @font-face {
+      font-family: 'icon';
+      src: url('../fonts/icon.eot');
+      src: url('../fonts/icon.eot')
+             format('embedded-opentype'),
+           url('../fonts/icon.woff')
+             format('woff'),
+           url('../fonts/icon.ttf')
+             format('truetype'),
+           url('../fonts/icon.svg')
+             format('svg');
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+  <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/temporary.css">
+  <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+  <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    }
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+  
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  
+  <script src="../javascripts/modernizr.js"></script>
+  
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-17', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    </head>
+<body class="palette-primary-tbc-grey palette-accent-tbc-grey">
+
+  <div class="backdrop">
+    <div class="backdrop-paper"></div>
+  </div>
+  <input class="toggle" type="checkbox" id="toggle-drawer">
+  <input class="toggle" type="checkbox" id="toggle-search">
+  <label class="toggle-button overlay" for="toggle-drawer"></label>
+  <header class="header">    <nav aria-label="Header">
+      <div class="bar default">
+        <div class="button button-menu" role="button" aria-label="Menu">
+          <label class="toggle-button icon icon-menu" for="toggle-drawer">
+            <span></span>
+          </label>
+        </div>
+        <div class="stretch">
+          <div class="title">
+            <a href="../index.html" >
+            <img src="../images/header-intro-site/site-header.png">   メーターとターゲット曲線</a>
+          </div>
+        </div>
+            
+      </div>
+      <div class="bar search">
+        <div class="button button-close" role="button" aria-label="Close">
+          <label class="toggle-button icon icon-back" for="toggle-search"></label>
+        </div>
+        <div class="stretch">
+          <div class="field">
+            <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+          </div>
+        </div>
+        <div class="button button-reset" role="button" aria-label="Search">
+          <button class="toggle-button icon icon-close" id="reset-search"></button>
+        </div>
+      </div>
+    </nav></header>
+  <main class="main">
+    <div class="drawer">      <nav aria-label="Navigation">
+        <form action="http://www.izotope-tonal_balance_control-docs.com/ja/search/index.html">
+           <div class="group">      
+              <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+              <span class="highlight"></span>
+              <span class="underline"></span>
+              <label>サーチ</label>
+              <div style="clear: both;"></div>
+           </div>
+        </form>
+      </nav>
+      
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="toc">
+          
+            <ul>
+
+
+<li>
+  
+    <a  title="概要" href="../index.html">概要</a>
+  
+</li>
+
+
+<li>
+  
+    <a class="current" title="メーターとターゲット曲線" href="index.html">メーターとターゲット曲線</a><ul id="scrollspy">
+</ul>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トーナルバランスコントロールでのOzone 8" href="../ozone-eq/index.html">トーナルバランスコントロールでのOzone 8</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トーナルバランスコントロールでのNeutron 2" href="../neutron-eq/index.html">トーナルバランスコントロールでのNeutron 2</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="オプション" href="../options/index.html">オプション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="オーソリゼーション" href="../authorization/index.html">オーソリゼーション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="カスタマーケアー" href="../customer-care/index.html">カスタマーケアー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="エンドユーザー向け使用許諾契約" href="../eula/index.html">エンドユーザー向け使用許諾契約</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ライセンス情報" href="../license-information/index.html">ライセンス情報</a>
+  
+</li>
+
+
+</ul>
+          
+          
+                  <hr />
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+          
+          
+            <ul>
+            
+              <li><a href="../../en/meters-and-target-curves/index.html"><i class="icon icon-eye"></i> View page in English</a></li>
+            
+            </ul>
+          </div>
+          
+        </div>
+      </div></div>
+    <article class="article">
+      <div class="wrapper">
+	<h1>メーターとターゲット曲線 </h1>
+    
+      
+              <div class="lang-buttons-box">
+      <span class="lang-header">言語:</span>
+      <br />
+        
+      
+        <a href="../../en/meters-and-target-curves/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+            <a href="../../en/meters-and-target-curves/index.html"><button class="lang-btn-active">日本語</button></a>
+            
+          
+      </div>
+      
+    
+    
+    
+
+    
+    
+    
+	
+
+<h2 id="概要">概要</h2>
+
+<p>トーナルバランスコントロールは、インサートされたトラックのターゲット曲線との相対的なスペクトラムメーター情報を表示します。これは、ミックスやマスタリング時に出来するトーンバランス的な問題に取り組む際に特に便利な機能です。トーナルバランスコントロールは、低域のパワー不足、あるいは高域の鮮やかさ不足など、ミックスやマスタリング時に起こり得る問題を解決する上での道標、あるは改善の文脈を提供することで、プロフェッショナルな完成度のマテリアル作りの手助けをします。</p>
+
+<div class="admonition note">
+<p class="admonition-title">トーナルバランスコントロールは信号チェーンの末尾で使用する必要があります</p>
+<p><ul>
+<li>トーナルバランスコントロール・プラグインを最大限に活用する上で、同プラグインをマスターバストラックの信号処理チェーンの末尾にインサートすることを推奨します。<br /></li>
+<li>これにより、選択されているターゲット曲線と比較するスペクトラム曲線が、確実にセッション内の全ての処理を終えたものとなります。<br /></li>
+<li>トーナルバランスコントロールが信号処理チェーンの末尾にあると、Neutron 2、あるいはOzone 8のEQで行われた調整が、確実にトーナルバランスコントロールに表示されるスペクトラム曲線に反映されるようになります。<br /></li>
+</ul>
+</p>
+</div>
+
+<p>トーナルバランスコントロールのファクトリー仕様のターゲット曲線は、異なるスタイルの音楽で見られる典型的なスペクトラル形状を表しております。これらターゲット曲線は、様々なジャンルやスタイルの音楽の多種多様なトラックのスペクトラル特性を分析した上で作成されました。ターゲット曲線は類似したスタイルの音楽に対し、一定の幅のスペクトラル・バリエーションを表示します。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h2 id="broad-view-広域表示">Broad View（広域表示）</h2>
+
+<p><img src="../images/tbc-target-curves-meters/broad-view.png" alt="Broad View" /></p>
+
+<p>Broad Viewではターゲット曲線が4つの周波数帯域に分割されて表示されます。</p>
+
+<ul>
+<li>低域: 20 Hz - 250 Hz<br /></li>
+<li>低中域: 250 Hz - 2 kHz<br /></li>
+<li>中域: 2kHz - 8 kHz<br /></li>
+<li>高域: 8 kHz - 20 kHz<br />
+<br /></li>
+</ul>
+
+<p>各周波数帯に表示される青いバーは、選択されたターゲット曲線の典型的なスペクトラル・バリエーションを表しています。</p>
+
+<p>白線により、トラックとターゲット曲線の比較状態が更新されます。OzoneやNeutronのEQで調整し、青いターゲット幅に収まるようにミックスを修正することができます。</p>
+
+<h2 id="fine-view-詳細表示">Fine View（詳細表示）</h2>
+
+<p><img src="../images/tbc-target-curves-meters/fine-view.png" alt="Fine View" /></p>
+
+<p>Fine Viewでは周波数スペクトラム全域を通し、選択されたターゲット曲線の幅が青色で表示されます。この表示では白いスペクトラム曲線はその時のトラックを表します。</p>
+
+<h2 id="帯域インジケーター">帯域インジケーター</h2>
+
+<p><img src="../images/tbc-target-curves-meters/target-selection.png" alt="Band Indicators" /></p>
+
+<p>周波数帯の表示は、その時のトラックが選択されているターゲット曲線に対し、典型的な幅に収まっていると白に変わります。</p>
+
+<h2 id="crest-factor-波高因子">Crest Factor（波高因子）</h2>
+
+<p><img src="../images/tbc-target-curves-meters/crest-factor-close.png" alt="Crest Factor" /></p>
+
+<p>Crest Factorメーターは、トラック内の低域のダイナミックレンジに関する情報を表示します。メーターの比重が左側にある場合、そのミックスは低域が「過度にダイナミック」であることを意味します。右側に比重がある場合、そのミックスは低域が「過度に圧縮」されていることを意味します。</p>
+
+<h2 id="ターゲット曲線">ターゲット曲線</h2>
+
+<p><img src="../images/tbc-target-curves-meters/target-selection.png" alt="Target Menu" /></p>
+
+<p>トーナルバランスコントロールには、主要な音楽スタイルに合わせた典型的なスペクトラル曲線を表示する以下の3種類のファクトリー仕様ターゲット曲線があります。</p>
+
+<ul>
+<li><strong>ORCHESTRAL（オーケストラ用）</strong><br /></li>
+<li><strong>BASS HEAVY（重量感ベース）</strong><br /></li>
+<li><strong>MODERN（モダン）</strong><br />
+<br /></li>
+</ul>
+
+<h2 id="カスタムターゲット曲線">カスタムターゲット曲線</h2>
+
+<p>ターゲット曲線のドロップダウンメニュー右側のメニューボタンをクリックすると、自分自身でターゲット曲線を作成するオプションが表示されます。</p>
+
+<table>
+<thead>
+<tr>
+<th>サポートされるファイル形式</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>AIFF</td>
+</tr>
+
+<tr>
+<td>WAV</td>
+</tr>
+
+<tr>
+<td>MP3</td>
+</tr>
+
+<tr>
+<td>M4A</td>
+</tr>
+
+<tr>
+<td>FLAC</td>
+</tr>
+
+<tr>
+<td>OGG</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="create-custom-target-curve-from-file-ファイルからカスタムターゲット曲線を作成">Create custom target curve from file&hellip;（ファイルからカスタムターゲット曲線を作成）</h3>
+
+<p>カスタムターゲット曲線を作成するため、オーディオファイルを選択するシステム画面が開きます。</p>
+
+<h3 id="create-custom-target-from-folder-of-files-ファイルのフォルダからカスタムターゲット曲線を作成">Create custom target from folder of files&hellip;（ファイルのフォルダからカスタムターゲット曲線を作成）</h3>
+
+<p>オーディオファイルのフォルダが選択できます。トーナルバランスコントロールは、選択されたフォルダに存在する全てのオーディオファイルをもとに、単一のターゲット曲線を作成します。</p>
+
+<h3 id="save-custom-target-curve-カスタムターゲット曲線を保存">Save custom target curve&hellip;（カスタムターゲット曲線を保存）</h3>
+
+<p>将来的な使用に備え、作成したカスタムターゲット曲線を保存します。</p>
+
+<h3 id="change-target-curve-folder-ターゲット曲線のフォルダを変更">Change target curve folder&hellip;（ターゲット曲線のフォルダを変更）</h3>
+
+<p>ターゲット曲線の保存とリコールを行うための場所を変更することができます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">ターゲット曲線フォルダのデフォルト位置</p>
+<p><ul>
+<li><strong>Mac</strong>: ユーザ/実際のユーザ名/書類/iZotope/Tonal Balance Control/Target Curves<br /></li>
+<li><strong>Windows</strong>: C:\ユーザ\実際のユーザ名\書類\iZotope\Tonal Balance Control\Target Curves<br /></li>
+</ul>
+</p>
+</div>
+
+<h3 id="show-target-curve-folder-in-finder-explorer-ファインダー-エクスプローラーでターゲット曲線フォルダを表示">Show target curve folder in finder/explorer&hellip;（ファインダー/エクスプローラーでターゲット曲線フォルダを表示）</h3>
+
+<p>ファインダー（Mac）、またはエクスプローラー（Windows）上で現在のターゲット曲線のディレクトリを表示します。</p>
+
+</div>
+    </article>
+    <footer class="footer">
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../ozone-eq/index.html" title="トーナルバランスコントロールでのOzone 8">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              トーナルバランスコントロールでのOzone 8
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+<div class="copyright">
+
+
+  
+  
+  <a class="lang-footer" href="../../en/meters-and-target-curves/index.html"><i class="icon icon-eye"></i> View page in English</a>
+  
+
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Tonal Balance Controlヘルプドキュメント 
+
+
+</div></footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>  <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </main>
+  </body>
+</html>

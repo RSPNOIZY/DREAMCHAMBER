@@ -1,0 +1,28 @@
+{
+  "id": "week_001",
+  "weekOf": "2026-03-16",
+  "theme": "The Charged Line",
+  "artist": {
+    "name": "Heidi Conrod",
+    "location": "Ottawa, Ontario",
+    "bio": "Heidi Conrod is an Ottawa-based mixed media artist whose practice lives in the space between — between eras, between media, between the painted surface and the glowing tube. For 30+ years she has been building a body of work that refuses to sit still. Her current series embeds hand-moulded electric neon directly onto abstract paintings. The neon doesn't decorate the canvas. It charges it.",
+    "instagram": "heidiconrod",
+    "website": "heidiconrod.com",
+    "artsy": "https://www.artsy.net/artist/heidi-conrod"
+  },
+  "work": {
+    "title": "Orange Wedge",
+    "medium": "Acrylic and neon light element on canvas",
+    "year": 2022,
+    "series": "The Charged Line",
+    "description": "A warm wedge of colour anchored by a hand-moulded neon element that simultaneously divides the space and makes it breathe. Neither flat nor sculptural — in between.",
+    "imageUrl": "PENDING — contact artist for approved image",
+    "thumbnailUrl": "PENDING",
+    "purchaseUrl": "https://www.artsy.net/artwork/heidi-conrod-orange-wedge-large-bright-abstract-acrylic-and-neon-light-element-on-canvas"
+  },
+  "noizyAlignment": ["liminality", "physical-digital-hybrid", "human-made", "charged-line", "Canadian-independent"],
+  "curatorNote": "Heidi's work is the visual equivalent of what NOIZY is trying to do in sound — take something physical and human and wire it with energy without losing the hand. The neon IS the nerve.",
+  "status": "PENDING_ARTIST_APPROVAL",
+  "approvedBy": null,
+  "publishedAt": null
+}

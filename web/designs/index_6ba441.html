@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>Presets - Neutron 3 Help Documentation</title>
+<meta name="generator" content="Hugo 0.58.0" />
+
+<meta name="description" content="Neutron 3 Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Neutron 3 Help Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/en/presets/index.html">
+<meta property="og:title" content="Neutron 3 Help Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+      <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  <link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/style-overrides.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-33', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+<body class="palette-primary-neutron3 palette-accent-neutron3">
+  <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html">
+          <img src="../images/header.svg" alt="Neutron 3 docs header image"
+                 width="200px" height="50px"> Presets</a>
+          </div>
+      </div>
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+<div class="drawer">
+  <nav aria-label="Navigation">
+<form action="../search/index.html"><div class="group">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+  </form>
+</nav>
+  <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+    <a title="Introduction" href="../index.html"><span class=""></span>  Introduction</a>
+</li>
+<li>
+    <a title="Getting Started" href="../getting-started/index.html"><span class=""></span>  Getting Started</a>
+</li>
+<li>
+    <a title="General Controls" href="../general-controls/index.html"><span class=""></span>  General Controls</a>
+</li>
+<li>
+    <a title="Assistants" href="../assistants/index.html"><span class=""></span>  Assistants</a>
+</li>
+<li>
+    <a title="Gate" href="../gate/index.html"><span class=""></span>  Gate</a>
+</li>
+<li>
+    <a title="Equalizer" href="../equalizer/index.html"><span class=""></span>  Equalizer</a>
+</li>
+<li>
+    <a title="Masking Meter" href="../masking-meter/index.html"><span class=""></span>  Masking Meter</a>
+</li>
+<li>
+    <a title="Compressor" href="../compressor/index.html"><span class=""></span>  Compressor</a>
+</li>
+<li>
+    <a title="Transient Shaper" href="../transient-shaper/index.html"><span class=""></span>  Transient Shaper</a>
+</li>
+<li>
+    <a title="Exciter" href="../exciter/index.html"><span class=""></span>  Exciter</a>
+</li>
+<li>
+    <a title="Sculptor" href="../sculptor/index.html"><span class=""></span>  Sculptor</a>
+</li>
+<li>
+    <a title="Visual Mixer" href="../visual-mixer/index.html"><span class=""></span>  Visual Mixer</a>
+</li>
+<li>
+    <a title="Relay" href="../relay/index.html"><span class=""></span>  Relay</a>
+</li>
+<li>
+    <a class="current"title="Presets" href="index.html"><span class=""></span>  Presets</a>
+<ul id="scrollspy">
+</ul>
+</li>
+<li>
+    <a title="Options" href="../options/index.html"><span class=""></span>  Options</a>
+</li>
+<li>
+    <a title="Glossary" href="../glossary/index.html"><span class=""></span>  Glossary</a>
+</li>
+<li>
+    <a title="Customer Care" href="../customer-care/index.html"><span class=""></span>  Customer Care</a>
+</li>
+<li>
+    <a title="License Information" href="../license-information/index.html"><span class=""></span>  License Information</a>
+</li>
+<li>
+    <a title="EULA" href="../eula/index.html"><span class=""></span>  EULA</a>
+</li>
+</ul>
+      <hr />
+<span class="section">Connect with iZotope</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+<li>
+    <a href="https://www.izotope.com/en/products/mix/neutron.html" target="_blank" title="iZotope Product Page"><span class="icon icon-sphere"></span>  iZotope.com</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a>
+  </li>
+</ul>
+<hr /><ul>
+  <li>
+<a href="../../ja/presets/index.html"><i class="icon icon-eye"></i>日本語での表示</a>
+</li>
+</ul></div>
+  </div>
+</div>
+</div>
+<article class="article">
+    <div class="wrapper">
+
+      
+
+<h1>Presets </h1>
+<div class="lang-btn-box">
+<a class="lang-btn active" href="../../ja/presets/index.html">English</a>
+<a class="lang-btn clickable" href="../../ja/presets/index.html">日本語</a>
+</div>
+
+
+
+<h2 id="overview">Overview</h2>
+
+<p>Retrieve, store, or customize presets with the Preset Manager System. There are two types Preset Managers as
+outlined in the image and table below.</p>
+
+<figure ><img src="../images/preset-system/labeled-preset-window.png" alt="Labeled Preset Window" /></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>Label</strong></th>
+<th><strong>Type of Preset Manager</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1 Global Preset Manager" /></figure></td>
+<td><strong>Global Preset Manager</strong></td>
+<td>Includes presets for the Neutron 3 mothership plug-in.</td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2 Module Preset Manager" /></figure></td>
+<td><a href="../general-controls/index.html#signal-chain"><strong>Module Preset Manager</strong></a></td>
+<td>Includes presets for an individual module.</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="access-preset-manager">Access Preset Manager</h2>
+
+<p>To access the Preset Manager:</p>
+
+<ol>
+<li>Click the <strong>Preset</strong> button to bring up the <strong>Preset Manager</strong> window.</li>
+<li>Click on a preset to apply the associated parameters to all of the controls in the Neutron plug-in.</li>
+</ol>
+
+<figure ><img src="../images/preset-system/access-preset.png" alt="Preset Window" /></figure>
+
+<p>The Preset Manager controls are outlined in the table below.</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>Preset Controls</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/preset-system/help-preset.png" alt="Help on Presets" /></figure></td>
+<td>Opens Preset Manager section of Help Documentation.</td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/preset-system/add-preset.png" alt="Add Preset" /></figure></td>
+<td>Creates a new preset based on the current settings.</td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/preset-system/delete-preset.png" alt="Delete Preset" /></figure></td>
+<td>Deletes the selected preset or preset folder.</td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/preset-system/create-folder.png" alt="Create New Folder" /></figure></td>
+<td>Make a new folder in your preset directory.</td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/preset-system/change-folder.png" alt="Change Preset Folder Location" /></figure></td>
+<td>Allows you to change where Neutron stores preset files.</td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/preset-system/update-preset.png" alt="Update Preset" /></figure></td>
+<td>Updates the currently selected preset to include changes.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">Edit Preset Comments and Preset Name</p>
+<p class="admonition-body">To add preset comments or edit preset names:</p>
+
+<ul>
+<li><strong>To edit to the preset name</strong>:
+
+<ul>
+<li>Double-click on a preset name.</li>
+<li>Edit the text in the inline edit field.</li>
+<li>Press
+<kbd>Enter</kbd> or
+<kbd>Return</kbd>.</li>
+</ul></li>
+<li><strong>To add comments to the preset</strong>:
+
+<ul>
+<li>Click on the comments field.</li>
+<li>Edit the text in the inline edit field.</li>
+<li>Press
+<kbd>Enter</kbd> or
+<kbd>Return</kbd>.<br /></li>
+</ul></li>
+</ul></p>
+</div>
+
+<hr />
+
+<h2 id="apply-working-settings">Apply Working Settings</h2>
+
+<p>To apply most recent work settings not associated with a preset:</p>
+
+<ol>
+<li>Access Preset Manager.</li>
+<li>Select <code>&lt;Working Settings&gt;</code>.</li>
+<li>Hit <strong>Close</strong> to exit Preset Manager.</li>
+</ol>
+
+<hr />
+
+<h2 id="default">Default</h2>
+
+<p>Select <code>&lt;Default&gt;</code> to reset all parameters of Neutron 3 to their factory default value.</p>
+
+<h3 id="custom-default">Custom Default</h3>
+
+<p>You can override the factory <code>&lt;Default&gt;</code> preset by selecting any preset as your custom default.</p>
+
+<ol>
+<li>Right-click on the preset you want to use as your custom <code>&lt;Default&gt;</code> settings.</li>
+<li>In the context menu, select &ldquo;<strong>Set <em>presetName</em> as Default</strong>.&rdquo;</li>
+</ol>
+
+<h3 id="undo-custom-default">Undo Custom Default</h3>
+
+<p>You can undo your custom <code>&lt;Default&gt;</code> settings by:</p>
+
+<ol>
+<li>Right-click on any preset in the list.</li>
+<li>In the context menu, select <strong>&ldquo;Reset Default to factory default</strong>.&rdquo;</li>
+</ol>
+
+<hr />
+
+<h2 id="preset-folder-locations">Preset Folder Locations</h2>
+
+<p>Neutron 3 presets are installed and saved to the following locations by default:</p>
+
+<ul>
+<li><strong>Windows</strong>: C:\Users\username\Documents\iZotope\Neutron 3\Presets\Global Presets</li>
+<li><strong>Mac</strong>: /Users/username/Documents/iZotope/Neutron 3/Presets/Global Presets</li>
+</ul>
+
+<div class="admonition tip">
+<p class="admonition-title">TIP: Share or Migrate Presets</p>
+<p class="admonition-body">Presets are saved as an .xml file on your hard drive. This allows you to easily migrate presets files to
+another computer or share them with others.</p>
+</div>
+
+
+
+    </div>
+  </article>
+<footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../relay/index.html" title="Relay">
+        <span class="direction">Previous</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">Relay</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../options/index.html" title="Options">
+        <span class="direction">Next</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">Options</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+<a href="../../ja/presets/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+<br />
+&copy; 2019 iZotope, Inc. - Neutron 3.1.0
+  </div>
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </main>
+</body>
+</html>

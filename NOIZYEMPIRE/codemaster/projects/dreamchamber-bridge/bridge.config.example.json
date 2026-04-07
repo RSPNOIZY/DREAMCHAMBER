@@ -1,0 +1,10 @@
+{
+  "pairs": [
+    {
+      "name": "dreamchamber",
+      "slackChannelId": "C0123456789",
+      "discordChannelId": "123456789012345678"
+    }
+  ]
+}
+

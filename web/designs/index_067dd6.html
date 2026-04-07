@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+
+  
+  
+  
+  
+   <html class="no-js">   
+
+
+<head lang="en">
+
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Spectral De-noise [STD &amp; ADV] - RX 6 Help Documentation</title>
+    <meta name="generator" content="Hugo 0.32.3" />
+
+    
+    <meta name="description" content="RX 6 Help Documentation">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.rx6helpdocs.com/en/34-spectral-de-noise/">
+    <meta property="og:title" content="RX 6 Help Documentation">
+    
+    <meta name="apple-mobile-web-app-title" content="RX 6 Help Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+
+</head>
+
+<body class="palette-primary-blue palette-accent-blue">
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../img/izotope-rx6.png"> Spectral De-noise [STD &amp; ADV]</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Introduction" href="../01-introduction/index.html">
+	
+	Introduction
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RX 6 Overview" href="../02-rx6-comparison/index.html">
+	
+	RX 6 Overview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Authorization" href="../03-authorization/index.html">
+	
+	Authorization
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Working with Files" href="../04-working-with-files/index.html">
+	
+	Working with Files
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Recording" href="../05-recording/index.html">
+	
+	Recording
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Transport Controls" href="../06-transport-controls/index.html">
+	
+	Transport Controls
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectrogram/Waveform Display" href="../07-spectrogram-waveform-display/index.html">
+	
+	Spectrogram/Waveform Display
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Interactive Tools" href="../08-interactive-tools/index.html">
+	
+	Interactive Tools
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Undo History" href="../10-undo-history/index.html">
+	
+	Undo History
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Application Menus" href="../11-application-menus/index.html">
+	
+	Application Menus
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Preferences" href="../12-preferences/index.html">
+	
+	Preferences
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Composite View" href="../13-composite-view/index.html">
+	
+	Composite View
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Batch Processing" href="../38-batch-processing/index.html">
+	
+	Batch Processing
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Common Module Controls" href="../14-module-controls/index.html">
+	
+	Common Module Controls
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Module List View" href="../15-module-list/index.html">
+	
+	Module List View
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Module Chain" href="../16-module-chain/index.html">
+	
+	Module Chain
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambience Match" href="../17-ambience-match/index.html">
+	
+	Ambience Match
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Breath Control" href="../18-breath-control/index.html">
+	
+	Breath Control
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Center Extract" href="../19-center-extract/index.html">
+	
+	Center Extract
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-bleed" href="../20-de-bleed/index.html">
+	
+	De-bleed
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-click" href="../21-de-click/index.html">
+	
+	De-click
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-clip" href="../22-de-clip/index.html">
+	
+	De-clip
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-crackle" href="../23-de-crackle/index.html">
+	
+	De-crackle
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-ess" href="../24-de-ess/index.html">
+	
+	De-ess
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-hum" href="../25-de-hum/index.html">
+	
+	De-hum
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-plosive" href="../26-de-plosive/index.html">
+	
+	De-plosive
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-reverb" href="../27-de-reverb/index.html">
+	
+	De-reverb
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-rustle" href="../28-de-rustle/index.html">
+	
+	De-rustle
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-wind" href="../29-de-wind/index.html">
+	
+	De-wind
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Deconstruct" href="../30-deconstruct/index.html">
+	
+	Deconstruct
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dialogue Isolate" href="../31-dialogue-isolate/index.html">
+	
+	Dialogue Isolate
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Interpolate" href="../32-interpolate/index.html">
+	
+	Interpolate
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Mouth De-click" href="../33-mouth-de-click/index.html">
+	
+	Mouth De-click
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Spectral De-noise" href="index.html">
+	
+	Spectral De-noise
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectral Repair" href="../35-spectral-repair/index.html">
+	
+	Spectral Repair
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Voice De-noise" href="../36-voice-de-noise/index.html">
+	
+	Voice De-noise
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Azimuth" href="../37-azimuth/index.html">
+	
+	Azimuth
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dither" href="../39-dither/index.html">
+	
+	Dither
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EQ" href="../40-eq/index.html">
+	
+	EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EQ Match" href="../41-eq-match/index.html">
+	
+	EQ Match
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Fade" href="../42-fade/index.html">
+	
+	Fade
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Gain" href="../44-gain/index.html">
+	
+	Gain
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Leveler" href="../45-leveler/index.html">
+	
+	Leveler
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Loudness" href="../46-loudness/index.html">
+	
+	Loudness
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Mixing" href="../47-mixing/index.html">
+	
+	Mixing
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Normalize" href="../48-normalize/index.html">
+	
+	Normalize
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Phase" href="../49-phase/index.html">
+	
+	Phase
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pitch Contour" href="../50-pitch-contour/index.html">
+	
+	Pitch Contour
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plug-in Hosting" href="../51-plug-in-hosting/index.html">
+	
+	Plug-in Hosting
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Resample" href="../52-resample/index.html">
+	
+	Resample
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Signal Generator" href="../53-signal-generator/index.html">
+	
+	Signal Generator
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Time &amp; Pitch" href="../54-time-and-pitch/index.html">
+	
+	Time &amp; Pitch
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Find Similar" href="../43-find-similar/index.html">
+	
+	Find Similar
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Markers &amp; Regions" href="../55-markers-and-regions/index.html">
+	
+	Markers &amp; Regions
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectrum Analyzer" href="../56-spectrum-analyzer/index.html">
+	
+	Spectrum Analyzer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Waveform Statistics" href="../57-waveform-stats/index.html">
+	
+	Waveform Statistics
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RX Plug-ins" href="../58-rx-plug-ins/index.html">
+	
+	RX Plug-ins
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RX Monitor" href="../59-rx-monitor/index.html">
+	
+	RX Monitor
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RX Connect" href="../60-rx-connect/index.html">
+	
+	RX Connect
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Keyboard Shortcut Guide" href="../63-keyboard-shortcut-guide/index.html">
+	
+	Keyboard Shortcut Guide
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Identifying Audio Problems" href="../68-audio-problems/index.html">
+	
+	Identifying Audio Problems
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotope Customer Care" href="../69-izotope-customer-care/index.html">
+	
+	iZotope Customer Care
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA" href="../70-eula/index.html">
+	
+	EULA
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information" href="../71-license-information/index.html">
+	
+	License Information
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a></li>
+        </ul>
+        <hr />
+
+
+        
+    
+          
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../ja/34-spectral-de-noise/index.html"><i class="icon icon-eye"></i> View Translated Page</a>
+          </li>
+        </ul></div></div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+       
+    
+    
+
+	<h1>Spectral De-noise [STD &amp; ADV] </h1>
+
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">Languages:</span>
+<br />
+    
+
+       
+       <a href="../../ja/34-spectral-de-noise/index.html"><button class="lang-btn-active">English</button></a>
+       
+        
+       <a href="../../ja/34-spectral-de-noise/index.html"><button class="lang-btn-clickable">Japanese</button></a>
+    
+</div>
+ 
+
+
+    
+
+    
+
+
+
+
+
+
+
+<nav>
+  
+  <h4>Table of Contents</h4>
+  <ul>
+    
+      
+      
+
+      
+
+      
+      
+      <li>
+        <a href="index.html#overview">Overview</a>
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#controls">Controls</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#controls-advanced-settings">Controls: Advanced Settings</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#more-information">More Information</a>
+
+          
+            
+          
+      
+    
+
+    
+    
+    
+
+  </ul>
+</nav>
+
+
+
+
+    
+
+	
+
+<table>
+<thead>
+<tr>
+<th>Module &amp; Plug-in</th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
+<h2 id="overview">Overview</h2>
+
+<p>Spectral De-noise is designed to remove stationary or slowly changing tonal noise and broadband hiss by learning a profile of the offending noise and then subtracting it from the signal. It can be useful for tape hiss, HVAC systems, outdoor environments, line noise, ground loops, camera motors, fans, wind, and complex buzz with many harmonics.</p>
+
+<p>Spectral De-noise learns a profile of the background noise, then subtracts that noise when a signal’s amplitude drops below the specified threshold. It is a flexible tool that can be used to quickly achieve accurate, high-quality noise reduction. It also provides separate controls for tonal and broadband noise, management of denoising artifacts, and an editing interface for controlling reduction across the frequency spectrum.</p>
+
+<h2 id="controls">Controls</h2>
+
+<p><img src="../img/34-spectral-de-noise-collapsed.png" alt="spectral de-noise interface" /></p>
+
+<ul>
+<li><strong>LEARN:</strong>  When Learn is enabled, Spectral De-noise will capture a noise profile from your selection. After a noise profile is captured using Learn, it remains fixed for the duration of processing. Manually learned noise profiles are best suited to removing or reducing noise that is constant and continuous throughout the duation of the file.<br />
+<div class="admonition note">
+<p class="admonition-title">How to Learn a noise profile in Spectral De-noise</p>
+<p><ul>
+<li>Make a selection of the longest section of noise you can find in your file (ideally a few seconds in length)<br /></li>
+<li>Click the Learn button to capture a noise profile.<br />
+
+<ul>
+<li><strong>To capture a noise profile in the RX Audio Editor Spectral De-noise module</strong>, make a selection and click &ldquo;Learn&rdquo;<br /></li>
+<li><strong>To capture a noise profile in the RX Spectral De-noise plug-in</strong>, engage the Learn button and playback audio, OR choose &ldquo;Preview&rdquo; in Audiosuite to capture the noise profile from your current selection.<br /></li>
+</ul></li>
+</ul>
+</p>
+</div><br />
+<div class="admonition note">
+<p class="admonition-title">More Information about Learning Noise Profiles</p>
+<p><br>See the <a href="index.html#more-information">More Information</a> section below to learn more about getting the best results when capturing a noise profile and Learning a noise profile from multiple selections in the RX 6 Audio Editor.</p>
+</div><br /></li>
+<li><strong>ADAPTIVE MODE:</strong> When Adaptive Mode is enabled, the noise profile used for Spectral De-noise processing will change based on the incoming audio. Adaptive mode can work well with noise sources that are constantly changing, like recordings in outdoor environments, traffic noise, or ocean waves.<br />
+<div class="admonition note">
+<p class="admonition-title">Spectral De-noise Adaptive mode Performance Note</p>
+<p><br>The Adaptive mode in Spectral De-noise uses a significant amount of memory and computational power. For a more efficient form of adaptive noise reduction, try the Adaptive mode in <a href="../36-voice-de-noise/index.html">Voice De-noise</a>, which is designed to be highly efficient and zero-latency.</p>
+</div><br />
+
+<ul>
+<li><strong>LEARNING TIME [s]:</strong> Determines the amount of lookahead time used by Adaptive mode when learning noise profiles that change over time.<br /></li>
+</ul></li>
+<li><strong>THRESHOLD (NOISY/TONAL):</strong> Controls the amplitude separation of noise and useful signal levels.<br />
+
+<ul>
+<li>Higher threshold settings reduce more noise, but also suppress low-level signal components.<br /></li>
+<li>Lower threshold preserves low-level signal details, but can result in noise being modulated by the signal. Threshold elevation can be done separately for tonal and random noise parts. A good default is 0 dB.<br />
+<div class="admonition note">
+<p class="admonition-title">Tip</p>
+<p><br>If background noise changes in amplitude over time (like traffic noise or record surface noise), raise the Threshold to accommodate for the changes.</p>
+</div><br /></li>
+</ul></li>
+<li><strong>REDUCTION (NOISY/TONAL):</strong> Controls the desired amount of noise suppression in decibels.<br />
+
+<ul>
+<li>Spectral De-noise can automatically separate noise into tonal parts (such as hum, buzz or interference) and random parts (such as hiss). You can specify the amount of suppression for these parts separately (e.g. in some situations it can be desirable to reduce only unpleasant buzz while leaving unobjectionable constant hiss).<br />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><br>Strong suppression of noise can also degrade low-level signals, so it is recommended to apply only as much suppression as needed for reducing the noise to levels where it becomes less objectionable.</p>
+</div><br /></li>
+</ul></li>
+<li><strong>QUALITY:</strong> Affects the quality and computational complexity of the noise reduction. This selection directly affects CPU usage. RX&rsquo;s Spectral De-noise module offers four algorithms that vary in processing time.<br />
+
+<ul>
+<li><strong>A:</strong> is the least CPU intensive process and is suitable for real-time operation. It reduces musical noise artifacts by time smoothing of the signal spectrum.<br /></li>
+<li><strong>B:</strong> achieves more advanced musical noise suppression by using adaptive 2D smoothing (both time and frequency). It is more CPU intensive and has more latency, but can still run in real-time on most machines.<br /></li>
+<li><strong>C:</strong> adds multiresolution operation for better handling of signal transients and even fewer musical noise artifacts. It is a very CPU intensive algorithm and can only run in real-time on faster multicore machines.<br /></li>
+<li><strong>D:</strong> adds high-frequency synthesis for reconstruction of signal details buried in noise. The speed of algorithm D is similar to algorithm C.<br /></li>
+</ul></li>
+<li><strong>ARTIFACT CONTROL:</strong> Determines how much noise reduction will depend upon either spectral subtraction or wide band gating.<br />
+
+<ul>
+<li>With lower values, noise reduction will rely upon spectral subtraction, which can more accurately separate noise from the desired audio signal, but can yield musical noise artifacts, resulting in a “chirpy” or “watery” sound during heavy processing.<br /></li>
+<li>With higher values, the noise reduction will rely more heavily upon wider band gating which will have fewer musical noise artifacts, but sound more like broadband gating, resulting in bursts of noise right after the signal falls below the threshold.<br /></li>
+</ul></li>
+<li><strong>NOISE SPECTRUM DISPLAY:</strong> The Noise Spectrum display shows useful information during both playback and when the noise reduction process is being applied.<br /></li>
+<li><strong>NOISE SPECTRUM COLOR LEGEND:</strong><br />
+
+<ul>
+<li><strong>Input (Gray):</strong> spectrum of input audio signal<br /></li>
+<li><strong>Output (White):</strong> spectrum of the denoised output audio signal<br /></li>
+<li><strong>Noise Profile (Orange):</strong> the learned noise profile plus offset from the Threshold control<br /></li>
+<li><strong>Residual Noise (Yellow):</strong> desired noise floor after denoising, can be controlled by modifying the Reduction Curve<br /></li>
+<li><strong>Reduction Curve (Blue):</strong> manual weighting of the noise reduction across the spectrum<br /></li>
+</ul></li>
+<li><strong>SMOOTHING:</strong> When the Reduction Curve is enabled, this controls the amount of interpolation between your reduction curve points, allowing for sharper or more gradual slopes between edit curve points.<br /></li>
+<li><strong>REDUCTION CURVE:</strong> When enabled, allows for fine tuning of the reduction spectrum with up to 26 edit points. This enables you to customize the amount of noise reduction being applied across different frequency regions.<br />
+
+<ul>
+<li>Higher edit point values result in less noise reduction in the associated frequency region.<br /></li>
+<li>Lower edit point values result in more noise reduction in the associated frequency region.<br /></li>
+<li><strong>For example</strong>, if you wanted to reduce some low HVAC rumble but preserve some energy in higher frequencies, you could drag the curve’s leftmost point down a little bit, then create a point around 5 kHz and drag it up a bit.<br />
+<div class="admonition note">
+<p class="admonition-title">Interacting with the Reduction Curve Edit points</p>
+<p><ul>
+<li><strong>Add an edit point:</strong> left-click, displayed as gray box along envelope curve<br /></li>
+<li><strong>Remove an edit point:</strong> right-click or drag it outside the screen<br /></li>
+<li>You can axis-lock reduction curve points by holding Shift while dragging them, and get very fine control over positioning by holding Control/Command.<br /></li>
+</ul>
+</p>
+</div><br /></li>
+</ul></li>
+<li><strong>RESET:</strong> Returns the Noise Reduction Curve to its default setting of 0dB.<br />
+<br />
+<br /></li>
+</ul>
+
+<h2 id="controls-advanced-settings">Controls: Advanced Settings</h2>
+
+<p><img src="../img/34-spectral-de-noise-advanced-settings.png" alt="Advanced Settings Panel" /></p>
+
+<h3 id="algorithm-behavior-advanced-settings"><strong>Algorithm Behavior (Advanced Settings)</strong></h3>
+
+<p><img src="../img/34-algorithm.png" alt="algorithm behavior" /></p>
+
+<ul>
+<li><strong>SMOOTHING:</strong> Controls the reduction of musical noise artifacts which can be a result of heavy denoising.<br />
+<div class="admonition note">
+<p class="admonition-title">What is musical noise?</p>
+<p><br>Musical noise is caused by random statistical variations of noise spectrum that cause random triggering of sub-band gates. These artifacts are sometimes described as “chirpy” or “watery” sounds left behind during the noise reduction process.</p>
+</div><br /></li>
+<li><strong>ALGORITHM:</strong> Selects the smoothing algorithm for the removal of random ripples (“musical noise” artifacts) that can occur in the spectrogram when processing your audio. The strength of smoothing is controlled by the Smoothing slider.<br />
+
+<ul>
+<li><strong>SIMPLE algorithm:</strong> Performs independent noise gating in every frequency channel of FFT. Release time of sub-band gates is controlled by the Release slider. This is a fast algorithm with low latency that is suitable for real-time operation.<br /></li>
+<li><strong>ADVANCED &amp; EXTREME algorithms:</strong> Perform joint time-frequency analysis of the audio signal which results in better quality and fewer “musical noise” artifacts. These algorithms have higher latency and computational complexity.<br /></li>
+</ul></li>
+<li><strong>FFT SIZE (ms):</strong> Selects the time and frequency resolution of the processing.<br />
+
+<ul>
+<li>Higher FFT sizes give you more frequency bands allowing you to cut noise between closely spaced signal harmonics, or cut steady-state noise harmonics without affecting adjacent signals.<br /></li>
+<li>Lower FFT sizes allow for faster response to changes in the signal and produce fewer noisy echoes around transient events.<br />
+<div class="admonition warning">
+<p class="admonition-title">Re-learn your Noise profile if you change FFT size</p>
+<p><br>Whenever the FFT size is changed, it is recommended that you run the De-noise module’s Learn feature again because the old noise profile was taken at a different FFT size and therefore becomes inaccurate.</p>
+</div><br /></li>
+</ul></li>
+<li><strong>MULTI-RES:</strong> Enables multi-resolution processing for the selected algorithm type.<br />
+
+<ul>
+<li>When you select the Multi-res checkbox, the signal is analyzed in real-time and the most appropriate FFT size is chosen for each segment of the signal. This is done to minimize the smearing of transients and at the same time achieve high frequency resolution where it is needed.<br />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><br>The FFT size control does not have any effect in multi-resolution mode as the FFT resolution is selected automatically. The noise profile does not need to be re-learned when switching to multi-resolution mode.</p>
+</div><br />
+<div class="admonition note">
+<p class="admonition-title">What is an FFT?</p>
+<p><br><strong>Fast Fourier Transform:</strong> a procedure for the calculation of a signal frequency spectrum. The greater the FFT size, the greater the frequency resolution, i.e., notes and tonal events will be clearer at larger sizes. However, when using FFT-based processing, the more audio you remove from your source, the more likely you are to create undesirable artifacts.</p>
+</div><br />
+<br /></li>
+</ul></li>
+</ul>
+
+<h3 id="noise-floor-advanced-settings">Noise Floor (Advanced Settings)</h3>
+
+<p><img src="../img/34-noisefloor.png" alt="noise floor" /></p>
+
+<ul>
+<li><strong>SYNTHESIS:</strong> Synthesizes high frequency material after denoising.<br />
+
+<ul>
+<li>When Synthesis is set to a value greater than zero, signal harmonics are synthesized after denoising. The synthesized harmonics remain at the level of the noise floor, and serve to fill in gaps in high frequencies caused by processing.<br /></li>
+<li>Increasing Synthesis can increase the sense of life and air in processed audio. Too much Synthesis may cause apparent distortion in the signal.<br /></li>
+</ul></li>
+<li><strong>ENHANCEMENT:</strong> Enhances signal harmonics that fall below the noise floor.<br />
+
+<ul>
+<li>Enhancement predicts a signal’s harmonic structure and places less noise reduction in areas where possible signal harmonics could be buried in noise. This aids in preserving high-frequency signal harmonics that may be buried and not detected otherwise.<br /></li>
+<li>Enhancement can make the resulting signal brighter and more natural sounding, but high values of harmonic enhancement can also result in high-frequency noise being modulated by the signal.<br /></li>
+</ul></li>
+<li><strong>MASKING:</strong> Reduces the depth of noise reduction where you wouldn’t perceive any effect from it.<br />
+
+<ul>
+<li>Masking enables a psychoacoustic model that dynamically controls suppression amount to facilitate the use of softer suppression where noise is subjectively inaudible. When noise in certain regions is calculated to be inaudible, this feature prevents any signal processing in these regions. This potentially reduces the amount of processing done to the signal and may positively affect overall signal integrity. The position of the slider controls the influence of psychoacoustic model on suppression levels.<br /></li>
+<li>If you need to cut very high, inaudible frequencies, set this to 0. Otherwise, leave this at 10.<br />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><br>When the Masking slider is set to 0, the feature is turned off, and the amount of noise suppression is uniformly governed to the yellow curve in spectrum analyzer (more precisely — by the difference between the yellow curve and orange curve).</p>
+</div><br /></li>
+</ul></li>
+<li><strong>WHITENING:</strong> Shapes the noise floor after processing to be more like white noise. Whitening modifies the amount of noise reduction (shown by the yellow curve) applied at different frequencies to shape the spectrum of the residual noise.<br />
+
+<ul>
+<li>When Whitening is set to zero, the suppression is uniform at all frequencies, as controlled by Reduction (tonal/broadband) sliders, and the suppressed noise has a similar spectral shape to the original noise.<br /></li>
+<li>When Whitening is set to the maximum value, the desired shape of suppressed noise floor is made close to white noise, so that residual noise has more neutral sound.<br />
+<div class="admonition note">
+<p class="admonition-title">Understanding the effect of the Whitening control</p>
+<p><br>Changing the noise floor balance with Whitening can help prevent gaps from over-processing, but an unnaturally white noise floor can introduce problems like noise modulation when editing or mixing with other noises from a unique space (like a set location.)</p>
+</div><br />
+<br /></li>
+</ul></li>
+</ul>
+
+<h3 id="dynamics-advanced-settings"><strong>Dynamics (Advanced Settings)</strong></h3>
+
+<p><img src="../img/34-dyn.png" alt="dynamics" /></p>
+
+<ul>
+<li><strong>KNEE:</strong> Controls how surgical the algorithm&rsquo;s differentiation is between the signal and noise. This slider controls the sharpness of the gating knee in the denoising process.<br />
+
+<ul>
+<li>At higher values, transitions in the De-noise are more abrupt and can become prone to errors in the detection of the signal with respect to the noise.<br /></li>
+<li>At lower values, the denoising becomes more forgiving around the knee, and applies less attenuation to signals that are only slightly below the threshold. This may result in a lower depth of noise reduction, but can also have fewer artifacts.<br /></li>
+</ul></li>
+<li><strong>RELEASE [ms]:</strong> Selects the release time of sub-band noise gates in milliseconds. Longer release times can result in less musical noise, but may also reduce or soften the signal’s initial transients or reverb tails after the signal’s decay.<br />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><br>The Release control is only available when the <strong>Simple</strong> algorithm is selected.</p>
+</div><br />
+<br /></li>
+</ul>
+
+<h2 id="more-information">More Information</h2>
+
+<h3 id="tips-for-getting-the-best-results-when-learning-noise-profiles-manually">Tips for getting the best results when learning noise profiles manually</h3>
+
+<ul>
+<li>Before learning a noise profile, identify and select the longest section (ideally a few seconds in length) of the recording that contains <em>only</em> the noise you wish to remove or reduce.<br /></li>
+<li>To ensure the best results, your selection should not contain any content that you wish to preserve (for example, do not include any audio you do not consider to be &ldquo;noise&rdquo; in your selection.)<br /></li>
+<li>Usually you can find noise only sections at the beginning or end of a file, or during a pause or break in the recording (for example, a pause between words in dialogue recordings.)<br />
+<br /></li>
+</ul>
+
+<h3 id="learning-a-noise-profile-from-multiple-selections">Learning a Noise Profile From Multiple Selections</h3>
+
+<p>In the RX standalone application, it is possible to create a spectral profile from multiple isolated selections. This is useful when you have a file where it’s impossible to find enough isolated noise to build the profile.</p>
+
+<p>For example, if you are trying to restore a file where someone is speaking over noise, you can select noise in frequencies where none of the voice is present at a given time. If you select enough of this noise with the Lasso or Brush selection tools, you can create an accurate noise profile that will give you good results with Spectral De-noise. You can create more than one selection at a time by holding Shift while making a selection.</p>
+
+<p>Select noise anywhere you can to build a better noise profile.</p>
+
+<p>This feature is not available in the Spectral De-noise plug-in because it requires using RX’s spectral selection tools as well as accurate calculation of the time and frequency of the selected areas.</p>
+
+<p>If you are unable to create a full noise profile with multiple selections, RX can try to build a reasonable noise profile out of your existing profile. If you have an incomplete noise profile, RX will ask you if you want it to complete the profile.</p>
+
+<p>For example, if you can only capture a low frequency rumble below 100 Hz, some broadband noise between 200 Hz and 5000 Hz, and all the noise above 8000 Hz, RX can fill in the gaps for you.</p>
+
+<p>Building a profile from multiple selections gives you some flexibility, and RX will guess any noise you missed.</p>
+
+
+
+    </div>
+  </article>
+
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../33-mouth-de-click/index.html" title="Mouth De-click [STD &amp; ADV]">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Mouth De-click [STD &amp; ADV]
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../35-spectral-repair/index.html" title="Spectral Repair [STD &amp; ADV]">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Spectral Repair [STD &amp; ADV]
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="copyright">
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  RX 6 Help Documentation
+</div>
+
+  
+  </footer>
+
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+
+
+        <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-12', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+    </main>
+  </body>
+</html>

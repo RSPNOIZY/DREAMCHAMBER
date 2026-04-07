@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE>Basic Concepts</TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 3.4  (Unix)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGED" CONTENT="20120110;12584500">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 2cm }
+		P { margin-bottom: 0.21cm }
+		H2 { margin-bottom: 0.11cm }
+		H2.western { font-family: "Times New Roman", serif; font-size: 14pt; font-weight: normal }
+		H2.cjk { font-family: "Arial Unicode MS"; font-size: 14pt; font-weight: normal }
+		H2.ctl { font-family: "Arial", sans-serif; font-size: 14pt; font-style: italic }
+		H1 { margin-bottom: 0.11cm; background: #000000; color: #ffffff }
+		H1.western { font-family: "Arial", sans-serif; font-size: 16pt }
+		H1.cjk { font-family: "Arial Unicode MS"; font-size: 16pt }
+		H1.ctl { font-family: "Arial", sans-serif; font-size: 16pt }
+		A:link { color: #0000ff }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="es-ES" LINK="#0000ff" DIR="LTR">
+<DIV TYPE=HEADER>
+	<P LANG="en-US" ALIGN=RIGHT STYLE="margin-bottom: 0.5cm; background: transparent">
+	<SDFIELD TYPE=PAGE SUBTYPE=RANDOM FORMAT=PAGE VALUE="-1">1</SDFIELD></P>
+</DIV>
+<H1 LANG="en-US" CLASS="western" STYLE="page-break-before: always">Basic
+Concepts</H1>
+<H2 LANG="en-US" CLASS="western"><B>Channel Limiting and Oversampling</B></H2>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">You may now determine the
+number of channels used in the instrument by left-clicking the
+&quot;voices&quot; LED or at <B>EDIT</B> &gt; <B>Config</B>.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">A dialog box will appear
+with the number of voices you wish to enable. Select the desired
+voice number.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><IMG SRC="Manual4_html_m6d43e65d.png" NAME="gráficos7" ALIGN=LEFT WIDTH=126 HEIGHT=133 BORDER=0><BR CLEAR=LEFT>You
+can also select the oversampling mode. 2X will make Discovery work
+internally at 88 Khz when your host is set to  44.1 Khz. 2X
+oversampling is highly recommended however it will require double the
+CPU processing power. It will affect all active Discovery instances.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">HQ Distortion will
+duplicate distortion's internal frequency rate, depending of the
+oversampling mode mode and resulting into 4X in case a global 2X has
+been configured. 
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H2 LANG="en-US" CLASS="western"><B>Quick program select</B></H2>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">Left-click program LCD
+panel to see a list of available patches.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H2 LANG="en-US" CLASS="western"><B>Bank browser</B></H2>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><IMG SRC="Manual4_html_39a5981.png" NAME="gráficos8" ALIGN=LEFT WIDTH=213 HEIGHT=90 BORDER=0><BR CLEAR=LEFT>You
+are able to browse all the .fxb banks by clicking the arrows in the
+status LCD or clicking the bank name to display a drop-down menu. All
+banks are located at <B>Discovery_Pro_data</B> folder. You can add
+your own banks using <B>EDIT &gt; File &gt; Import Bank</B> function.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">For easier preset and
+banks management , <B>EDIT</B> &gt; <B>File</B> &gt; <B>Open</B>
+functions will bring a Finder or Explorer window.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">There is a subfolder
+called <B>User.dwb</B> where WAV files can be copied and recognized
+instantly after each menu drop-down click, providing better workflow.
+There is a quick access for this folder using <B>EDIT &gt; File &gt;
+Open Data Folder</B>.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">Wav files can also be
+imported using <B>EDIT</B> &gt; <B>File</B> &gt; <B>Import Wave</B>
+function.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H2 LANG="en-US" CLASS="western"></H2>
+<H2 LANG="en-US" CLASS="western" STYLE="page-break-before: always"><B>Morphing
+state knob editing</B></H2>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">In normal mode, holding
+<B>CTRL</B> while moving the knob will modify <B>morph sensibility</B>.
+The behavior in the knobs will be backwards when Morph mode is on.
+Use <B>Ctrl+Alt+Left</B> click to reset.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H2 LANG="en-US" CLASS="western"><B>MIDI Aftertouch knob editing</B></H2>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">Since R5.3, MIDI
+Aftertouch can be assigned to any knob. Useful to control LFO speed,
+filter cutoff, resulting in more expressive sounds. In R5.4,
+aftertouch can be switched to Foot (CC# 4), Expression (CC# 11) and
+Breathe (CC# 2) using <B>EDIT &gt; Switch &gt; Aftertouch</B> <B>To</B>
+function.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">To access Aftertouch mode
+simply <B>hold Shift key</B> while <SPAN STYLE="font-weight: normal">pressing</SPAN><B>
+A, B, C or D </B><SPAN STYLE="font-weight: normal">button</SPAN>.
+Layer led will start blinking. To go back to normal editing, press
+again the <B>Layer button</B>.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><IMG SRC="Manual4_html_m549761c.png" NAME="graphics1" ALIGN=LEFT WIDTH=136 HEIGHT=230 BORDER=0><BR CLEAR=LEFT>There
+is a secondary access located at <B>EDIT</B> &gt; <B>Switch</B> &gt;
+<B>Aftertouch mode</B>. 
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H2 LANG="en-US" CLASS="western"><B>Fine tune knob editing</B></H2>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">To have more detailed
+parameter adjustments, <B>hold Shift key</B> while moving the knob to
+edit both states. Shift and Ctrl keys can be used at once too.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H2 LANG="en-US" CLASS="western"><B>LFO Sync to host tempo</B></H2>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">Discovery’s LFO1, LFO2 /
+Arpeggiator, Delay and Panning LFO can be synced your host tempo. To
+enable it, just click the led located next to the LFO knob or Delay
+amount.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><IMG SRC="Manual4_html_4b7e70af.png" NAME="gráficos9" ALIGN=LEFT WIDTH=153 HEIGHT=186 BORDER=0><BR CLEAR=LEFT><BR>
+</P>
+<H2 LANG="en-US" CLASS="western" STYLE="page-break-before: always"><B>Edit
+operations</B></H2>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">There are a set of editing
+operations, clicking EDIT button on your Discovery GUI offers the
+following options:</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><IMG SRC="Manual4_html_m46feff61.png" NAME="gráficos19" ALIGN=LEFT WIDTH=110 HEIGHT=271 BORDER=0><BR CLEAR=LEFT><BR>
+</P>
+<UL>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>File: </B><SPAN STYLE="font-weight: normal">Imports
+	or exports Clavia's Nord Lead patches, FXB preset bank to exchange
+	between several projects or users. Open folders for quick bank, SF2
+	and PAD SFZ cache files. Also opens Unison configuration for quick
+	preset editing.</SPAN></P>
+	<P LANG="en-US" STYLE="margin-bottom: 0cm"></P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Copy, Paste,
+	Randomize, Reset</B>: Allows to do simple editing operations over
+	the current layer, preset, or even selected sections from the
+	current preset, like LFO1, LFO2, ADSR and other ones.</P>
+	<P LANG="en-US" STYLE="margin-bottom: 0cm"></P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Unison</B>:
+	Applies values from text file unison.cfg located at <B>Discovery_Data</B>
+	from first layer to the other ones. For details refer to Unison edit
+	at the end of this manual.</P>
+	<P LANG="en-US" STYLE="margin-bottom: 0cm"></P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Sync</B>: Quickly
+	sync  to host tempo LFO1, LFO2, Panning, Delay sections or all of
+	them at once. 
+	</P>
+	<P LANG="en-US" STYLE="margin-bottom: 0cm"></P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Swap</B>: Enable
+	or disables MIDI Velocity to Program Morphing, FX section or use the
+	classic chorus. Enters Aftertouch MIDI editing mode and assignment
+	(see page 4).</P>
+	<P LANG="en-US" STYLE="margin-bottom: 0cm"></P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Config</B>:
+	Selects global plugin polyphony, oversampling or high-quality
+	distortion. More polyphony, higher oversampling or high-quality
+	distortion can result in a noticeable CPU hit. It's recommended to
+	use higher choices when the projects is going to be bounced. Also
+	enables or disables MIDI CC button mode.</P>
+	<P LANG="en-US" STYLE="margin-bottom: 0cm"></P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Rename</B>:
+	Renames current program name.</P>
+	<P LANG="en-US" STYLE="margin-bottom: 0cm"></P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Help</B>: Opens
+	tutorial screens, users manual and MIDI CC tables. Displays Release
+	number.</P>
+</UL>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H2 LANG="en-US" CLASS="western" STYLE="page-break-before: always"><B>Zone
+presets</B></H2>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">Zone presets has been
+introduced with Release 4. It allows each section to have their own
+presets based on the current state, so they can be stored for later
+use, allowing quicker preset design and getting better overall
+workflow.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><IMG SRC="Manual4_html_m31b36b04.png" NAME="graphics2" ALIGN=LEFT WIDTH=51% HEIGHT=19% BORDER=0><BR CLEAR=LEFT><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">They are stored at
+<B>Discovery_Pro_Data/Presets</B> folder using a standard XML format.
+Such files can be shared without the need of importing or exporting,
+just copying them to their current folder.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+</BODY>
+</HTML>

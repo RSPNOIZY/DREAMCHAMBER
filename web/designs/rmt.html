@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 NOIZY-RMT | Portable CodeMaster</title>
+    <meta name="description" content="NOIZY-RMT - Voice & AI Controls for Real-Time Dev">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --void: #0a0a0f;
+            --space: #0d1117;
+            --purple: #7c3aed;
+            --cyan: #00d4ff;
+            --green: #10b981;
+            --amber: #f59e0b;
+            --red: #ef4444;
+            --white: #e2e8f0;
+            --gray: #94a3b8;
+            --glass: rgba(13, 17, 23, 0.85);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--void);
+            color: var(--white);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-stars {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(2px 2px at 20px 30px, white, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, white, transparent);
+            background-size: 200px 200px;
+            animation: drift 100s linear infinite;
+            opacity: 0.4;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-50%);
+            }
+        }
+
+        /* Main Container */
+        .rmt-app {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .rmt-header {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: var(--glass);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .rmt-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--purple), var(--cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .rmt-subtitle {
+            font-size: 0.8rem;
+            color: var(--gray);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .rmt-status {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--green);
+            border: 1px solid var(--green);
+        }
+
+        .status-badge.shirl {
+            background: rgba(124, 58, 237, 0.2);
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .status-badge.engr {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--cyan);
+            border-color: var(--cyan);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.3);
+            }
+        }
+
+        /* Voice Command Section */
+        .voice-section {
+            background: var(--glass);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .voice-btn {
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--purple), var(--cyan));
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .voice-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .voice-btn:active {
+            transform: scale(0.98);
+        }
+
+        .voice-btn.listening {
+            animation: listening-pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes listening-pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.7);
+            }
+
+            50% {
+                box-shadow: 0 0 30px 10px rgba(124, 58, 237, 0.3);
+            }
+        }
+
+        .voice-icon {
+            font-size: 3rem;
+        }
+
+        .voice-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: white;
+            margin-top: 0.5rem;
+        }
+
+        .voice-input {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 10px;
+            color: var(--white);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            resize: none;
+        }
+
+        .voice-input:focus {
+            outline: none;
+            border-color: var(--cyan);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: var(--glass);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            border-color: var(--cyan);
+            transform: translateY(-3px);
+        }
+
+        .action-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .action-label {
+            font-size: 0.7rem;
+            color: var(--gray);
+        }
+
+        /* MemCell Display */
+        .memcell-section {
+            background: var(--glass);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--cyan);
+        }
+
+        .cell-count {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            background: rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+            color: var(--cyan);
+        }
+
+        .memcell-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .memcell-item {
+            padding: 0.8rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid var(--purple);
+        }
+
+        .memcell-item.shirl {
+            border-color: var(--purple);
+        }
+
+        .memcell-item.engr {
+            border-color: var(--cyan);
+        }
+
+        .memcell-item.core {
+            border-color: var(--green);
+        }
+
+        .cell-subject {
+            font-size: 0.85rem;
+            color: var(--white);
+            margin-bottom: 0.3rem;
+        }
+
+        .cell-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65rem;
+            color: var(--gray);
+        }
+
+        /* Console */
+        .console-section {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 15px;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .console-output {
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+
+        .log {
+            padding: 0.2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .log.success {
+            color: var(--green);
+        }
+
+        .log.info {
+            color: var(--cyan);
+        }
+
+        .log.warning {
+            color: var(--amber);
+        }
+
+        /* Footer */
+        .rmt-footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.7rem;
+            color: var(--gray);
+        }
+
+        .motto {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--green);
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--purple);
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-stars"></div>
+
+    <div class="rmt-app">
+        <!-- Header -->
+        <header class="rmt-header">
+            <div class="rmt-logo">NOIZY-RMT</div>
+            <div class="rmt-subtitle">Portable CodeMaster</div>
+            <div class="rmt-status">
+                <div class="status-badge">
+                    <span class="pulse-dot"></span>
+                    <span>ONLINE</span>
+                </div>
+                <div class="status-badge shirl" id="persona-badge">
+                    <span>💜 SHIRL</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Voice Command -->
+        <section class="voice-section">
+            <button class="voice-btn" id="voice-btn" onclick="toggleVoice()">
+                <div class="voice-icon">🎤</div>
+                <div class="voice-text" id="voice-status">TAP TO SPEAK</div>
+            </button>
+            <textarea class="voice-input" id="command-input" placeholder="Or type your command here..."
+                rows="2"></textarea>
+        </section>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <button class="action-btn" onclick="sendCommand('UPGRADE ALL')">
+                <span class="action-icon">🚀</span>
+                <span class="action-label">Upgrade</span>
+            </button>
+            <button class="action-btn" onclick="sendCommand('DEEP SCAN')">
+                <span class="action-icon">🔍</span>
+                <span class="action-label">Scan</span>
+            </button>
+            <button class="action-btn" onclick="sendCommand('HEAL WORLD')">
+                <span class="action-icon">🌍</span>
+                <span class="action-label">Heal</span>
+            </button>
+            <button class="action-btn" onclick="sendCommand('FIND ORIGINALS')">
+                <span class="action-icon">🎵</span>
+                <span class="action-label">Originals</span>
+            </button>
+            <button class="action-btn" onclick="sendCommand('OPTIMIZE')">
+                <span class="action-icon">⚡</span>
+                <span class="action-label">Optimize</span>
+            </button>
+            <button class="action-btn" onclick="sendCommand('GORUNFREE')">
+                <span class="action-icon">🌌</span>
+                <span class="action-label">GORUN!</span>
+            </button>
+        </div>
+
+        <!-- MemCell Display -->
+        <section class="memcell-section">
+            <div class="section-header">
+                <span class="section-title">📦 MEMCELL TRACKER</span>
+                <span class="cell-count" id="cell-count">0 cells</span>
+            </div>
+            <div class="memcell-list" id="memcell-list">
+                <!-- Cells populated by JS -->
+            </div>
+        </section>
+
+        <!-- Console -->
+        <section class="console-section">
+            <div class="console-output" id="console">
+                <div class="log success">[INIT] NOIZY-RMT Online</div>
+                <div class="log info">[MEMCELL] Ready for collection</div>
+                <div class="log success">[STATUS] GORUNFREE!!!</div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="rmt-footer">
+            <div class="motto">GORUNFREE!!!</div>
+            <div>MC96ECOUNIVERSE | iPhone • iPad • PLANAR2485</div>
+        </footer>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════════
+        // NOIZY-RMT CLIENT
+        // ═══════════════════════════════════════════════════════════════════
+
+        const memcells = [];
+        let isListening = false;
+        let recognition = null;
+
+        // Initialize speech recognition if available
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('command-input').value = transcript;
+                sendCommand(transcript);
+            };
+
+            recognition.onend = () => {
+                isListening = false;
+                updateVoiceUI();
+            };
+        }
+
+        function toggleVoice() {
+            if (!recognition) {
+                log('Voice not supported - use text input', 'warning');
+                return;
+            }
+
+            if (isListening) {
+                recognition.stop();
+                isListening = false;
+            } else {
+                recognition.start();
+                isListening = true;
+            }
+            updateVoiceUI();
+        }
+
+        function updateVoiceUI() {
+            const btn = document.getElementById('voice-btn');
+            const status = document.getElementById('voice-status');
+
+            if (isListening) {
+                btn.classList.add('listening');
+                status.textContent = 'LISTENING...';
+            } else {
+                btn.classList.remove('listening');
+                status.textContent = 'TAP TO SPEAK';
+            }
+        }
+
+        function detectPersona(text) {
+            const shirlWords = ['feel', 'love', 'create', 'beautiful', 'music', 'art', 'soul'];
+            const engrWords = ['code', 'optimize', 'system', 'build', 'deploy', 'fix', 'debug'];
+
+            const lower = text.toLowerCase();
+            const shirlScore = shirlWords.filter(w => lower.includes(w)).length;
+            const engrScore = engrWords.filter(w => lower.includes(w)).length;
+
+            if (shirlScore > engrScore) return 'SHIRL';
+            if (engrScore > shirlScore) return 'ENGR';
+            return 'CORE';
+        }
+
+        function updatePersonaBadge(persona) {
+            const badge = document.getElementById('persona-badge');
+            if (persona === 'SHIRL') {
+                badge.innerHTML = '<span>💜 SHIRL</span>';
+                badge.className = 'status-badge shirl';
+            } else if (persona === 'ENGR') {
+                badge.innerHTML = '<span>⚙️ ENGR</span>';
+                badge.className = 'status-badge engr';
+            } else {
+                badge.innerHTML = '<span>🌌 CORE</span>';
+                badge.className = 'status-badge';
+            }
+        }
+
+        async function sendCommand(command) {
+            const persona = detectPersona(command);
+            updatePersonaBadge(persona);
+
+            log(`[CMD] ${command}`, 'info');
+
+            // REAL API CALL to MC96 Server
+            try {
+                const response = await fetch('http://localhost:5173/api/command', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ command: command })
+                });
+
+                const result = await response.json();
+
+                // Create MemCell from server response
+                const cell = {
+                    id: result.cell_id || Date.now().toString(36),
+                    subject: command,
+                    persona: result.persona || persona,
+                    timestamp: new Date().toISOString(),
+                    overlap: result.overlap || Math.random()
+                };
+
+                memcells.unshift(cell);
+                renderMemcells();
+
+                log(`[${result.persona}] Effectiveness: ${result.effectiveness}%`, 'success');
+                log(`[LATENCY] ${result.latency_ms}ms - ${result.status}`, 'success');
+
+            } catch (error) {
+                // Fallback to local simulation if server offline
+                log('[WARN] Server offline - local mode', 'warning');
+
+                const cell = {
+                    id: Date.now().toString(36),
+                    subject: command,
+                    persona: persona,
+                    timestamp: new Date().toISOString(),
+                    overlap: Math.random()
+                };
+
+                memcells.unshift(cell);
+                renderMemcells();
+                log(`[${persona}] Processing complete (local)`, 'success');
+            }
+
+            document.getElementById('command-input').value = '';
+        }
+
+        function renderMemcells() {
+            const list = document.getElementById('memcell-list');
+            const count = document.getElementById('cell-count');
+
+            count.textContent = `${memcells.length} cells`;
+
+            list.innerHTML = memcells.slice(0, 10).map(cell => `
+                <div class="memcell-item ${cell.persona.toLowerCase()}">
+                    <div class="cell-subject">${cell.subject}</div>
+                    <div class="cell-meta">
+                        <span>${cell.persona}</span>
+                        <span>Overlap: ${(cell.overlap * 100).toFixed(0)}%</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function log(message, type = '') {
+            const console = document.getElementById('console');
+            const entry = document.createElement('div');
+            entry.className = `log ${type}`;
+            entry.textContent = message;
+            console.appendChild(entry);
+            console.scrollTop = console.scrollHeight;
+        }
+
+        // Handle text input
+        document.getElementById('command-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                const cmd = e.target.value.trim();
+                if (cmd) sendCommand(cmd);
+            }
+        });
+
+        // Initial log
+        log('[READY] Voice & Text commands active', 'success');
+    </script>
+</body>
+
+</html>

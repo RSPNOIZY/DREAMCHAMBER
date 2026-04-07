@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY — The Marketing Engine · 25 Vectors</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --gold:#f5c842;--gold2:#c9a020;--cyan:#00e5ff;--green:#00e676;
+    --violet:#b57bee;--magenta:#ff4db8;--amber:#ffab40;--red:#ff6b6b;
+    --bg:#03030c;
+  }
+  body{background:var(--bg);color:#e8e8f0;font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+  #bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .wrap{position:relative;z-index:1}
+
+  /* ── Hero ── */
+  .hero{
+    text-align:center;padding:70px 20px 40px;
+    background:linear-gradient(to bottom,rgba(3,3,12,0.95) 0%,transparent 100%);
+  }
+  .hero-eyebrow{
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:5px;
+    color:rgba(232,232,240,0.35);text-transform:uppercase;margin-bottom:20px
+  }
+  .hero-h1{
+    font-size:clamp(36px,8vw,88px);font-weight:700;line-height:0.95;
+    margin-bottom:20px;letter-spacing:-2px
+  }
+  .h1-engine{
+    background:linear-gradient(135deg,var(--gold) 0%,var(--amber) 40%,var(--gold) 80%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    filter:drop-shadow(0 0 40px rgba(245,200,66,.45))
+  }
+  .h1-vectors{
+    background:linear-gradient(135deg,var(--cyan) 0%,#a0f0ff 50%,var(--cyan) 100%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    font-weight:300;font-size:.55em;display:block;letter-spacing:0
+  }
+  .hero-sub{
+    font-size:clamp(15px,2.2vw,20px);font-weight:300;color:rgba(232,232,240,.6);
+    max-width:600px;margin:0 auto 40px;line-height:1.7
+  }
+  .hero-sub strong{color:var(--gold);font-weight:600}
+
+  /* ── Network canvas stage ── */
+  .network-stage{
+    position:relative;width:100%;
+    height:min(900px,95vw);max-height:920px;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  #netCanvas{position:absolute;inset:0;width:100%;height:100%}
+  .network-ui{
+    position:relative;z-index:2;
+    width:min(860px,96vw);height:min(860px,96vw);max-height:900px
+  }
+
+  /* Central core */
+  .net-core{
+    position:absolute;top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    z-index:10;cursor:pointer;text-align:center
+  }
+  .core-rings{
+    position:relative;width:110px;height:110px;
+    display:flex;align-items:center;justify-content:center
+  }
+  .core-ring{
+    position:absolute;border-radius:50%;border:1.5px solid;
+    animation:ring-pulse 3s ease-in-out infinite
+  }
+  .core-ring:nth-child(1){width:110px;height:110px;border-color:rgba(245,200,66,.5)}
+  .core-ring:nth-child(2){width:82px;height:82px;border-color:rgba(0,229,255,.4);animation-delay:.8s}
+  .core-ring:nth-child(3){width:56px;height:56px;border-color:rgba(245,200,66,.7);animation-delay:1.6s}
+  @keyframes ring-pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+
+  .core-center{
+    width:48px;height:48px;border-radius:50%;
+    background:radial-gradient(circle,#fff8d6 0%,var(--gold) 50%,transparent 100%);
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;z-index:1;position:relative;
+    box-shadow:0 0 30px var(--gold),0 0 60px rgba(245,200,66,.4),0 0 0 20px rgba(0,229,255,.06)
+  }
+  .core-label{
+    position:absolute;bottom:-42px;left:50%;transform:translateX(-50%);
+    white-space:nowrap;font-family:'Space Mono',monospace;font-size:8px;
+    letter-spacing:2px;text-transform:uppercase;color:var(--gold);line-height:1.5;
+    text-align:center
+  }
+
+  /* Vector nodes */
+  .vec-node{
+    position:absolute;transform:translate(-50%,-50%);
+    z-index:8;cursor:pointer;
+    transition:transform .2s
+  }
+  .vec-node:hover{transform:translate(-50%,-50%) scale(1.25);z-index:20}
+  .vec-body{
+    border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:13px;position:relative;
+    animation:vec-twinkle 4s ease-in-out infinite
+  }
+  .vec-body::after{
+    content:'';position:absolute;inset:-3px;border-radius:50%;
+    background:inherit;opacity:.25;filter:blur(6px)
+  }
+  @keyframes vec-twinkle{0%,100%{opacity:1}50%{opacity:.65}}
+  .vec-label{
+    position:absolute;white-space:nowrap;
+    font-family:'Space Mono',monospace;font-size:7px;
+    letter-spacing:.8px;text-transform:uppercase;pointer-events:none;
+    line-height:1.4;text-align:center
+  }
+
+  /* Category legend */
+  .legend{
+    display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+    padding:20px 20px 0;max-width:700px;margin:0 auto
+  }
+  .legend-item{
+    display:flex;align-items:center;gap:7px;
+    font-size:11px;color:rgba(232,232,240,.55)
+  }
+  .legend-dot{width:10px;height:10px;border-radius:50%}
+
+  /* ── Detail overlay ── */
+  .overlay{
+    position:fixed;inset:0;z-index:1000;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(3,3,12,.88);backdrop-filter:blur(12px);
+    opacity:0;pointer-events:none;transition:opacity .3s
+  }
+  .overlay.active{opacity:1;pointer-events:all}
+  .detail-panel{
+    background:linear-gradient(135deg,rgba(10,10,28,.98),rgba(5,5,18,.98));
+    border:1px solid rgba(255,255,255,.1);border-radius:18px;
+    width:min(660px,94vw);max-height:85vh;overflow-y:auto;
+    padding:36px;position:relative;
+    transform:scale(.9);transition:transform .3s cubic-bezier(.34,1.56,.64,1)
+  }
+  .overlay.active .detail-panel{transform:scale(1)}
+  .dp-close{
+    position:absolute;top:14px;right:16px;
+    background:none;border:1px solid rgba(255,255,255,.18);
+    color:rgba(255,255,255,.55);width:30px;height:30px;border-radius:50%;
+    cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;
+    transition:all .2s
+  }
+  .dp-close:hover{background:rgba(255,255,255,.1);color:#fff}
+  .dp-cat{
+    font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;
+    text-transform:uppercase;margin-bottom:10px;display:block
+  }
+  .dp-title{font-size:24px;font-weight:700;margin-bottom:16px;line-height:1.15}
+  .dp-body{font-size:14px;line-height:1.75;color:rgba(232,232,240,.78);margin-bottom:20px}
+  .dp-why{
+    padding:16px 18px;border-radius:10px;
+    background:rgba(255,255,255,.04);border-left:3px solid;margin-bottom:16px
+  }
+  .dp-why-label{
+    font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2.5px;
+    text-transform:uppercase;margin-bottom:7px;opacity:.55
+  }
+  .dp-why-text{font-size:13px;line-height:1.65;font-style:italic}
+  .dp-vector-num{
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;
+    color:rgba(232,232,240,.3);padding-top:14px;border-top:1px solid rgba(255,255,255,.07)
+  }
+
+  /* ── Cards grid (below network) ── */
+  .cards-section{padding:60px 20px;max-width:1100px;margin:0 auto}
+  .cards-header{text-align:center;margin-bottom:40px}
+  .cards-h2{font-size:clamp(24px,4vw,38px);font-weight:700;margin-bottom:10px}
+  .cards-sub{font-size:15px;color:rgba(232,232,240,.55);line-height:1.7}
+  .cards-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px
+  }
+  .vec-card{
+    background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
+    border-radius:14px;padding:22px 20px;
+    transition:all .3s;cursor:pointer;
+    opacity:0;transform:translateY(24px);
+    position:relative;overflow:hidden
+  }
+  .vec-card.visible{opacity:1;transform:translateY(0);transition:opacity .5s ease,transform .5s ease}
+  .vec-card::before{
+    content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+    background:var(--c,var(--gold));opacity:.6
+  }
+  .vec-card:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);transform:translateY(-3px)!important}
+  .vc-num{
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;
+    opacity:.3;margin-bottom:8px;display:block
+  }
+  .vc-icon{font-size:22px;margin-bottom:10px;display:block}
+  .vc-name{font-size:15px;font-weight:600;margin-bottom:6px;line-height:1.25}
+  .vc-desc{font-size:12px;color:rgba(232,232,240,.5);line-height:1.6}
+  .vc-cat{
+    display:inline-block;margin-top:10px;
+    font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:2px;
+    text-transform:uppercase;padding:3px 10px;border-radius:20px;
+    background:rgba(255,255,255,.06);
+  }
+
+  /* ── Bandmate section ── */
+  .bandmate-section{
+    background:linear-gradient(135deg,rgba(245,200,66,.04),rgba(0,229,255,.04));
+    border-top:1px solid rgba(255,255,255,.06);
+    border-bottom:1px solid rgba(255,255,255,.06);
+    padding:70px 20px
+  }
+  .bandmate-inner{max-width:900px;margin:0 auto;text-align:center}
+  .bm-h2{font-size:clamp(26px,4.5vw,44px);font-weight:700;margin-bottom:14px}
+  .bm-sub{font-size:16px;color:rgba(232,232,240,.6);line-height:1.75;max-width:620px;margin:0 auto 50px}
+  .bm-table{
+    width:100%;border-collapse:collapse;max-width:700px;margin:0 auto
+  }
+  .bm-table th{
+    font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;
+    text-transform:uppercase;color:rgba(232,232,240,.35);
+    padding:0 16px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.08)
+  }
+  .bm-table td{
+    padding:14px 16px;font-size:14px;line-height:1.5;
+    border-bottom:1px solid rgba(255,255,255,.05)
+  }
+  .bm-role{color:rgba(232,232,240,.5);font-size:12px}
+  .bm-human{color:var(--gold);font-weight:600}
+  .bm-ai{color:var(--cyan);font-weight:600}
+
+  /* CTA */
+  .cta-block{text-align:center;padding:70px 20px 100px}
+  .cta-h2{font-size:clamp(26px,4vw,42px);font-weight:700;margin-bottom:16px;line-height:1.2}
+  .cta-body{font-size:15px;color:rgba(232,232,240,.6);line-height:1.75;margin-bottom:36px}
+  .cta-body strong{color:var(--gold)}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+  .btn{
+    display:inline-block;padding:13px 28px;border-radius:40px;
+    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;
+    text-transform:uppercase;cursor:pointer;text-decoration:none;
+    transition:all .25s;border:none
+  }
+  .btn-g{background:linear-gradient(135deg,var(--gold),var(--amber));color:#1a0a00;font-weight:700;box-shadow:0 0 25px rgba(245,200,66,.3)}
+  .btn-g:hover{box-shadow:0 0 45px rgba(245,200,66,.6);transform:translateY(-2px)}
+  .btn-o{background:transparent;color:var(--cyan);border:1px solid var(--cyan);box-shadow:0 0 15px rgba(0,229,255,.12)}
+  .btn-o:hover{background:rgba(0,229,255,.07);transform:translateY(-2px)}
+  .gorunfree{
+    display:inline-block;margin-top:36px;
+    font-family:'Space Mono',monospace;font-size:clamp(20px,4vw,38px);font-weight:700;letter-spacing:5px;
+    background:linear-gradient(90deg,var(--gold),var(--cyan),var(--violet),var(--gold));background-size:300% 100%;
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    animation:grf 4s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(245,200,66,.3))
+  }
+  @keyframes grf{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-eyebrow">NOIZY.ai · The Campaign Engine · March 2026</div>
+  <h1 class="hero-h1">
+    <span class="h1-engine">The Marketing Engine</span>
+    <span class="h1-vectors">25 Vectors · AI + Human · Always Growing</span>
+  </h1>
+  <div class="hero-sub">
+    Not advertising. Not a campaign.<br>
+    <strong>The systematic conversion of every real thing that happens on the platform into proof that spreads.</strong>
+  </div>
+</section>
+
+<!-- Legend -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#ff6b6b"></div>Viral Mechanics</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#00e5ff"></div>Content Machine</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f5c842"></div>Event Machine</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#00e676"></div>Alliance Machine</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#b57bee"></div>Science + Education</div>
+</div>
+
+<!-- Network -->
+<div class="network-stage">
+  <canvas id="netCanvas"></canvas>
+  <div class="network-ui" id="netUi">
+    <!-- Core built by JS -->
+  </div>
+</div>
+
+<!-- Bandmate Reframe -->
+<section class="bandmate-section">
+  <div class="bandmate-inner">
+    <h2 class="bm-h2" style="background:linear-gradient(90deg,var(--gold),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">AI as Your Bandmates</h2>
+    <p class="bm-sub">Stop calling AI a "tool." A hammer is a tool. A bandmate thinks with you, responds to you, evolves with you. Every NOIZY artist has a full band — half human, half AI, 100% theirs.</p>
+    <table class="bm-table">
+      <tr>
+        <th>ROLE IN THE BAND</th>
+        <th>THE HUMAN</th>
+        <th>THE AI BANDMATE</th>
+      </tr>
+      <tr>
+        <td class="bm-role">Lead Voice</td>
+        <td class="bm-human">Your HVS™-certified voice</td>
+        <td class="bm-ai">GABRIEL Vocal Harmonizer</td>
+      </tr>
+      <tr>
+        <td class="bm-role">Rhythm Section</td>
+        <td class="bm-human">Your feel, your groove, your body</td>
+        <td class="bm-ai">Cultural Rhythm Intelligence (5,000+ traditions)</td>
+      </tr>
+      <tr>
+        <td class="bm-role">Orchestration</td>
+        <td class="bm-human">Your emotional intention</td>
+        <td class="bm-ai">GABRIEL Full Orchestrator (cross-cultural)</td>
+      </tr>
+      <tr>
+        <td class="bm-role">Sound Designer</td>
+        <td class="bm-human">Your timbre instinct</td>
+        <td class="bm-ai">GABRIEL Texture Engine</td>
+      </tr>
+      <tr>
+        <td class="bm-role">Songwriter</td>
+        <td class="bm-human">Your lived experience, your truth</td>
+        <td class="bm-ai">GABRIEL Pattern Library (300,000+ years of music)</td>
+      </tr>
+      <tr>
+        <td class="bm-role">A&amp;R / Distribution</td>
+        <td class="bm-human">Your artistic vision</td>
+        <td class="bm-ai">GABRIEL Audience Match Engine</td>
+      </tr>
+      <tr>
+        <td class="bm-role">Rights Manager</td>
+        <td class="bm-human">Your consent decisions</td>
+        <td class="bm-ai">Consent-as-Code · HVS™ Auto-Attribution</td>
+      </tr>
+      <tr>
+        <td class="bm-role">Accountant</td>
+        <td class="bm-human">Your voice, your work, your estate</td>
+        <td class="bm-ai">75/25 Auto-Split · Voice Estate Registry</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- Cards grid -->
+<section class="cards-section">
+  <div class="cards-header">
+    <h2 class="cards-h2">All 25 Vectors — Click to Explore</h2>
+    <p class="cards-sub">Every one of these engines runs on the same fuel: the harmony is real. Demonstrate it in every format, to every audience, in every language that audience understands.</p>
+  </div>
+  <div class="cards-grid" id="cardsGrid"></div>
+</section>
+
+<!-- CTA -->
+<section class="cta-block">
+  <h2 class="cta-h2">The harmony is not a metaphor.<br>It is infrastructure.</h2>
+  <p class="cta-body">
+    Not as a marketing claim. As a demonstrated fact, repeated in every possible format,<br>
+    to every possible audience, until there is no version of the conversation about AI and creativity<br>
+    that does not include NOIZY as the answer.<br><br>
+    <strong>"What does it look like when AI and human creativity grow together instead of against each other?"</strong>
+  </p>
+  <div class="btn-row">
+    <a href="#" class="btn btn-g">Join the Guild</a>
+    <a href="noizy_harmony.html" class="btn btn-o">The Harmony Campaign</a>
+  </div>
+  <div class="gorunfree">GORUNFREE</div>
+</section>
+
+</div><!-- /wrap -->
+
+<!-- Detail overlay -->
+<div class="overlay" id="overlay" onclick="closeBg(event)">
+  <div class="detail-panel" id="detailPanel">
+    <button class="dp-close" onclick="closeDetail()">✕</button>
+    <span class="dp-cat" id="dpCat"></span>
+    <div class="dp-title" id="dpTitle"></div>
+    <div class="dp-body" id="dpBody"></div>
+    <div class="dp-why" id="dpWhy">
+      <div class="dp-why-label">Why It Spreads</div>
+      <div class="dp-why-text" id="dpWhyText"></div>
+    </div>
+    <div class="dp-vector-num" id="dpNum"></div>
+  </div>
+</div>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────
+const CATS = {
+  viral:   {label:'Viral Mechanics',    color:'#ff6b6b'},
+  content: {label:'Content Machine',   color:'#00e5ff'},
+  event:   {label:'Event Machine',     color:'#f5c842'},
+  alliance:{label:'Alliance Machine',  color:'#00e676'},
+  science: {label:'Science + Education',color:'#b57bee'},
+};
+
+const VECTORS = [
+  {n:1, icon:'💰', cat:'viral',   name:'The First 43 Dollars',        short:'Every artist\'s first royalty becomes a shareable proof event — the $43 Lagos→Tokyo moment as the template.',         why:'People forward receipts, not manifestos. The first royalty is proof that everything else promised is real.'},
+  {n:2, icon:'📊', cat:'viral',   name:'Cannibal Economy Calculator',  short:'Free web tool: input your streaming history, see what the platform took, see what 75/25 would have paid you.',          why:'Anger is one of the most viral emotions on the internet. Every artist who runs the calculator will share it.'},
+  {n:3, icon:'🎧', cat:'viral',   name:'Anti-Generica Listening Tests',short:'Monthly side-by-side: AI-generated vs Guild human audio, unlabeled, with 100 listeners. Results published live.',      why:'87 of 100 people correctly identify the human-origin audio without being told. That result is the story.'},
+  {n:4, icon:'✊', cat:'viral',   name:'75 for 75 Challenge',         short:'Direct challenge to artists who have spoken publicly about AI rights: here is the platform that actually pays 75%.',      why:'Social cost of saying no — after saying yes publicly for years — is significant leverage.'},
+  {n:5, icon:'🏷️', cat:'viral',   name:'"I Built This" Stamp',        short:'A certification mark for any work created using the NOIZY consent architecture. HUMAN-CERTIFIED · CONSENT-LOCKED · 75/25.',why:'Three years from now, creative work without the stamp is the one that needs explaining.'},
+  {n:6, icon:'🎸', cat:'content', name:'Harmony Sessions — Live Monthly',short:'Monthly broadcast: real artist, real GABRIEL collaboration, real time. AI contribution attributed on screen throughout.',why:'You cannot watch human+AI collaborate live and maintain either fear or complacency. The harmony is visible.'},
+  {n:7, icon:'📬', cat:'content', name:'The Proof Machine Weekly',     short:'Newsletter containing only verified proof events. No marketing copy. Three royalties, one enterprise, one child story.',why:'In a world of marketing noise, radical transparency is radical differentiation.'},
+  {n:8, icon:'📈', cat:'content', name:'Creator Income Report — Annual',short:'Fully transparent: total royalties paid, by sector and country, vs streaming payout data for the same period.',      why:'No competitor will publish equivalent data because their data tells a story of creator exploitation.'},
+  {n:9, icon:'📸', cat:'content', name:'Before & After Series',        short:'Artists tell their story in 2 minutes: what streaming paid, what NOIZY pays, the most important use of their voice.',   why:'The demonstrable transformation is the most powerful format in all of marketing.'},
+  {n:10,icon:'🧬', cat:'content', name:'Heritage Voice Project',       short:'"Before they\'re gone." Record elder voices, HVS™-certify them, preserve permanently. Royalties to family trust.',      why:'The preservation instinct is universal. Every family with an elder understands this pitch immediately.'},
+  {n:11,icon:'🤫', cat:'event',   name:'Silent Concert + Haptic Tour', short:'Concert venue with no speakers. Every audience member feels music through haptic vests. Deaf and hearing together.',       why:'The moment a deaf person feels music for the first time is the most powerful marketing content ever made.'},
+  {n:12,icon:'🏫', cat:'event',   name:'School Concert Series',        short:'Guild artists perform at schools. HVS™ Certificate projected next to the performance. Attribution explained to children.',why:'A child who met a real artist and saw the real certificate is immune to the cannibal\'s foundational argument.'},
+  {n:13,icon:'📅', cat:'event',   name:'Global Harmony Day — March 14',short:'Annual: every Guild artist releases one piece, free forever. Creator Income Report drops. Live ceremonies worldwide.',   why:'In 5 years, March 14 is the most significant creative rights date on the global cultural calendar.'},
+  {n:14,icon:'🏆', cat:'event',   name:'AI Ethics Awards',            short:'Annual recognition of companies excelling in ethical AI creative practices. NOIZY as the standards body.',                why:'Every winner becomes a NOIZY case study. Every non-winner has reason to improve. The industry comes to us.'},
+  {n:15,icon:'🎬', cat:'event',   name:'Sync Licensing Quarterly',     short:'Curated Guild library presented to film, TV, advertising, gaming sync market. Pre-cleared, consented, indemnified.',    why:'One sync placement generates more royalty income than 5 million streams. Four showcases per year.'},
+  {n:16,icon:'⚔️', cat:'alliance','name':'Open Challenge to Competitors',short:'Quarterly public challenge: publish your creator payout ratio. We\'ll celebrate you publicly if you beat us.',          why:'Either they publish (and the low number speaks for itself) or they stay silent (which speaks louder).'},
+  {n:17,icon:'📋', cat:'alliance','name':'The Trust Index',             short:'Monthly platform transparency report: every AI creative platform scored on consent, attribution, royalty, governance.',  why:'Positions NOIZY as the standards body. Every non-winner has incentive to improve to qualify.'},
+  {n:18,icon:'🔄', cat:'alliance','name':'Enterprise Switch Program',   short:'Free liability audit + migration assessment + subsidized first year + compliance guarantee for switchers.',              why:'Enterprise clients talk to each other. One healthcare network that switches generates three more inquiries.'},
+  {n:19,icon:'🌐', cat:'alliance','name':'Living World Map',            short:'Real-time global map: every Guild creator, every royalty event, every healing session — happening live, worldwide.',     why:'Visualizes the harmony as a planetary-scale reality. The network effect made visible.'},
+  {n:20,icon:'🧠', cat:'science', name:'Neuroacoustic Proof Campaign',  short:'When Dr. Benoit\'s paper publishes: simultaneous press release, five pre-committed healthcare partners, 90-day pilots.',why:'When science is public, the conversation shifts from ethical preference to clinical evidence.'},
+  {n:21,icon:'🎥', cat:'science', name:'Living Soundtrack Project',     short:'Partner with 12 documentaries per year for exclusive Guild soundtracks. Creator names in credits. Attribution QR codes.',why:'Each documentary is a marketing vehicle. Every audience member who asks "who made this?" finds NOIZY.'},
+  {n:22,icon:'🏛️', cat:'science', name:'Voice Archaeology Series',      short:'Short-form video: one voice, one tradition, one story. The Griot in Dakar, the throat singer in Tuva, the gamelan master.',why:'The most shareable content NOIZY will produce. Cultural beauty as the entry point. Consent as the ending.'},
+  {n:23,icon:'🏥', cat:'science', name:'Music as Medicine Tour',        short:'Traveling exhibition: Healing Pool room, neuroacoustic science display, Cultural Archive listening room, NOIZYKIDZ corner.',why:'Every person who walks through leaves understanding in their body why the harmony matters. Impossible to un-feel.'},
+  {n:24,icon:'📚', cat:'science', name:'Open Curriculum Initiative',    short:'All NOIZYKIDZ curriculum materials released free, for any teacher worldwide. Open standard for music education.',       why:'10,000 teachers using the curriculum is worth more than 10,000 paid licenses. They build the next generation.'},
+  {n:25,icon:'🎙️', cat:'science', name:'RSP_001 on the Road',          short:'Rob in conversation in every city: the diving accident, the DreamChamber, the C3 injury, GABRIEL, the 34TB archive.',   why:'The founder IS the first proof event. If this is how it started, the claims about what it will build are credible.'},
+];
+
+// Build detail map
+const VMAP = {};
+VECTORS.forEach(v => VMAP[v.n] = v);
+
+// ── Network canvas ────────────────────────────────────────────────
+const NW = 860, NH = 860, CX = 430, CY = 430;
+const RADII = [150, 230, 320, 400];
+
+function polarXY(r, deg) {
+  const rad = (deg - 90) * Math.PI / 180;
+  return { x: CX + r * Math.cos(rad), y: CY + r * Math.sin(rad) };
+}
+
+// Assign positions
+const POSITIONS = [
+  // orbit 1 (r≈150): vectors 1-5
+  {n:1,  r:152, a:-70},
+  {n:2,  r:152, a:10},
+  {n:3,  r:148, a:90},
+  {n:4,  r:154, a:170},
+  {n:5,  r:150, a:250},
+  // orbit 2 (r≈230): vectors 6-10
+  {n:6,  r:232, a:-50},
+  {n:7,  r:228, a:30},
+  {n:8,  r:234, a:110},
+  {n:9,  r:230, a:190},
+  {n:10, r:226, a:270},
+  // orbit 3 (r≈320): vectors 11-17
+  {n:11, r:322, a:-80},
+  {n:12, r:318, a:-25},
+  {n:13, r:324, a:35},
+  {n:14, r:320, a:95},
+  {n:15, r:316, a:155},
+  {n:16, r:322, a:215},
+  {n:17, r:318, a:270},
+  // orbit 4 (r≈400): vectors 18-25
+  {n:18, r:402, a:-65},
+  {n:19, r:398, a:-20},
+  {n:20, r:404, a:30},
+  {n:21, r:400, a:82},
+  {n:22, r:396, a:135},
+  {n:23, r:404, a:190},
+  {n:24, r:400, a:248},
+  {n:25, r:396, a:305},
+];
+
+const POS_MAP = {};
+POSITIONS.forEach(p => POS_MAP[p.n] = polarXY(p.r, p.a));
+
+function catColor(cat) { return CATS[cat] ? CATS[cat].color : '#ffffff'; }
+
+function buildNetworkUI() {
+  const ui = document.getElementById('netUi');
+  const W = ui.offsetWidth, H = ui.offsetHeight;
+  const scaleX = W / NW, scaleY = H / NH;
+
+  // Core
+  const core = document.createElement('div');
+  core.className = 'net-core';
+  core.style.left = (CX * scaleX) + 'px';
+  core.style.top  = (CY * scaleY) + 'px';
+  core.innerHTML = `
+    <div class="core-rings">
+      <div class="core-ring"></div>
+      <div class="core-ring"></div>
+      <div class="core-ring"></div>
+      <div class="core-center">✦</div>
+    </div>
+    <div class="core-label">NOIZY<br>AI+Human Core</div>
+  `;
+  ui.appendChild(core);
+
+  // Vector nodes
+  POSITIONS.forEach(p => {
+    const v = VMAP[p.n];
+    const pos = POS_MAP[p.n];
+    const color = catColor(v.cat);
+    const sz = 30 + (5 - Math.floor((p.n - 1) / 5)) * 2;
+
+    const node = document.createElement('div');
+    node.className = 'vec-node';
+    node.id = 'vn' + p.n;
+    node.style.left = (pos.x * scaleX) + 'px';
+    node.style.top  = (pos.y * scaleY) + 'px';
+    node.onclick = () => openDetail(p.n);
+
+    const body = document.createElement('div');
+    body.className = 'vec-body';
+    body.style.cssText = `
+      width:${sz}px;height:${sz}px;
+      background:radial-gradient(circle,white 0%,${color} 40%,${color}55 75%,transparent 100%);
+      box-shadow:0 0 ${sz*.5}px ${color},0 0 ${sz*1.2}px ${color}44;
+      animation-delay:${(p.n*0.35)%4}s
+    `;
+    body.innerHTML = `<span style="font-size:${sz*.38}px;position:relative;z-index:1">${v.icon}</span>`;
+    node.appendChild(body);
+
+    // Label placement
+    const label = document.createElement('div');
+    label.className = 'vec-label';
+    label.style.color = color;
+    const deg = ((p.a % 360) + 360) % 360;
+    const off = sz / 2 + 7;
+    const lines = v.name.split(' ');
+    const ll = lines.slice(0,2).join(' ');
+    label.textContent = ll;
+    if (deg > 315 || deg <= 45) { label.style.bottom = (off+10)+'px'; label.style.left='50%'; label.style.transform='translateX(-50%)'; }
+    else if (deg > 45 && deg <= 135) { label.style.left=(off+8)+'px'; label.style.top='50%'; label.style.transform='translateY(-50%)'; label.style.textAlign='left'; }
+    else if (deg > 135 && deg <= 225) { label.style.top=(off+10)+'px'; label.style.left='50%'; label.style.transform='translateX(-50%)'; }
+    else { label.style.right=(off+8)+'px'; label.style.top='50%'; label.style.transform='translateY(-50%)'; label.style.textAlign='right'; }
+    node.appendChild(label);
+    ui.appendChild(node);
+  });
+}
+
+// Canvas lines and particles
+(function() {
+  const c = document.getElementById('netCanvas');
+  const ctx = c.getContext('2d');
+  let W, H, scaleX = 1, scaleY = 1;
+  let pulses = []; // signal pulses traveling from core to nodes
+
+  function resize() {
+    W = c.width = c.offsetWidth;
+    H = c.height = c.offsetHeight;
+    scaleX = W / NW; scaleY = H / NH;
+    buildNetworkUI();
+  }
+
+  function addPulse() {
+    const p = POSITIONS[Math.floor(Math.random() * POSITIONS.length)];
+    const v = VMAP[p.n];
+    pulses.push({
+      n: p.n,
+      t: 0, speed: 0.008 + Math.random() * 0.006,
+      color: catColor(v.cat),
+      x0: CX * scaleX, y0: CY * scaleY,
+      x1: POS_MAP[p.n].x * scaleX, y1: POS_MAP[p.n].y * scaleY
+    });
+  }
+
+  setInterval(addPulse, 400);
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Static lines from core to each node
+    POSITIONS.forEach(p => {
+      const pos = POS_MAP[p.n];
+      const v = VMAP[p.n];
+      const color = catColor(v.cat);
+      ctx.beginPath();
+      ctx.moveTo(CX * scaleX, CY * scaleY);
+      ctx.lineTo(pos.x * scaleX, pos.y * scaleY);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = .4;
+      ctx.globalAlpha = .08;
+      ctx.stroke();
+    });
+    ctx.globalAlpha = 1;
+
+    // Pulses
+    pulses = pulses.filter(p => p.t <= 1);
+    pulses.forEach(p => {
+      p.t += p.speed;
+      const t = Math.min(p.t, 1);
+      const x = p.x0 + (p.x1 - p.x0) * t;
+      const y = p.y0 + (p.y1 - p.y0) * t;
+      const alpha = t < 0.2 ? t/0.2 : t > 0.8 ? (1-t)/0.2 : 1;
+      ctx.beginPath();
+      ctx.arc(x, y, 3.5, 0, Math.PI*2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = alpha * 0.85;
+      ctx.fill();
+      // Glow
+      ctx.beginPath();
+      ctx.arc(x, y, 8, 0, Math.PI*2);
+      const g = ctx.createRadialGradient(x,y,0,x,y,8);
+      g.addColorStop(0, p.color + 'aa');
+      g.addColorStop(1, 'transparent');
+      ctx.fillStyle = g;
+      ctx.globalAlpha = alpha * 0.4;
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', () => {
+    document.getElementById('netUi').innerHTML = '';
+    resize();
+  });
+  resize();
+  frame();
+})();
+
+// ── Background canvas ────────────────────────────────────────────
+(function(){
+  const c = document.getElementById('bg');
+  const ctx = c.getContext('2d');
+  let W, H, particles = [];
+  function resize(){
+    W = c.width = window.innerWidth;
+    H = c.height = window.innerHeight;
+    particles = [];
+    for(let i=0;i<60;i++){
+      const cols = ['rgba(245,200,66,','rgba(0,229,255,','rgba(181,123,238,','rgba(0,230,118,'];
+      particles.push({
+        x:Math.random()*W,y:Math.random()*H,
+        vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,
+        r:Math.random()*1.2+.3,
+        a:Math.random()*.2+.04,
+        c:cols[Math.floor(Math.random()*cols.length)]
+      });
+    }
+  }
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;
+      if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+      ctx.globalAlpha=p.a;
+      ctx.fillStyle=p.c+'1)';
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+    });
+    ctx.globalAlpha=1;
+    requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize',resize);
+  resize();frame();
+})();
+
+// ── Cards grid ───────────────────────────────────────────────────
+function buildCards(){
+  const grid = document.getElementById('cardsGrid');
+  VECTORS.forEach((v, i) => {
+    const cat = CATS[v.cat];
+    const card = document.createElement('div');
+    card.className = 'vec-card';
+    card.style.setProperty('--c', cat.color);
+    card.style.transitionDelay = (i * 40) + 'ms';
+    card.onclick = () => openDetail(v.n);
+    card.innerHTML = `
+      <span class="vc-num">VECTOR ${String(v.n).padStart(2,'0')}</span>
+      <span class="vc-icon">${v.icon}</span>
+      <div class="vc-name" style="color:${cat.color}">${v.name}</div>
+      <div class="vc-desc">${v.short}</div>
+      <div class="vc-cat" style="color:${cat.color}">${cat.label}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ── Detail ───────────────────────────────────────────────────────
+function openDetail(n) {
+  const v = VMAP[n];
+  if(!v) return;
+  const cat = CATS[v.cat];
+  document.getElementById('dpCat').textContent = cat.label;
+  document.getElementById('dpCat').style.color = cat.color;
+  document.getElementById('dpTitle').textContent = v.name;
+  document.getElementById('dpTitle').style.color = cat.color;
+  document.getElementById('dpBody').textContent = v.short;
+  document.getElementById('dpWhy').style.borderLeftColor = cat.color;
+  document.getElementById('dpWhyText').textContent = v.why;
+  document.getElementById('dpNum').innerHTML = `<strong style="color:${cat.color}">★</strong> Vector ${String(v.n).padStart(2,'0')} of 25 · ${cat.label}`;
+  document.getElementById('overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeDetail(){
+  document.getElementById('overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function closeBg(e){
+  if(e.target === document.getElementById('overlay')) closeDetail();
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeDetail(); });
+
+// ── Scroll reveal ────────────────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, {threshold:.12});
+
+// ── Init ─────────────────────────────────────────────────────────
+buildCards();
+document.querySelectorAll('.vec-card').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

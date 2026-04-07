@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>NOIZY BEAST VR · IDE</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #060610;
+      color: #e0e0e0;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    #vr-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    /* ── Boot Screen ────────────────────────────────────────────── */
+    #boot-screen {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at center, #0a0a1a 0%, #060610 70%);
+      z-index: 10001;
+      transition: opacity 0.8s ease-out;
+    }
+
+    #boot-screen.hidden { opacity: 0; pointer-events: none; }
+
+    .logo-text {
+      font-size: 48px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #00ffcc, #0066ff, #9933ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 8px;
+      margin-bottom: 8px;
+    }
+
+    .logo-sub {
+      font-size: 12px;
+      color: #00ffcc;
+      letter-spacing: 6px;
+      opacity: 0.7;
+      margin-bottom: 40px;
+    }
+
+    .covenant-badge {
+      font-size: 10px;
+      color: #00ff66;
+      letter-spacing: 2px;
+      padding: 6px 16px;
+      border: 1px solid rgba(0, 255, 102, 0.3);
+      border-radius: 4px;
+      margin-bottom: 40px;
+    }
+
+    #status-log {
+      font-size: 11px;
+      color: #555;
+      line-height: 1.8;
+      text-align: center;
+      min-height: 120px;
+    }
+
+    #status-log .ok { color: #00ff66; }
+    #status-log .warn { color: #ffcc00; }
+    #status-log .err { color: #ff3333; }
+    #status-log .info { color: #6666ff; }
+
+    /* ── Enter VR Button ────────────────────────────────────────── */
+    #enter-vr {
+      display: none;
+      margin-top: 30px;
+      padding: 20px 48px;
+      font-size: 18px;
+      font-weight: 800;
+      font-family: inherit;
+      background: linear-gradient(135deg, #00ffcc 0%, #0066ff 50%, #9933ff 100%);
+      color: #000;
+      border: 2px solid rgba(0, 255, 204, 0.5);
+      border-radius: 16px;
+      cursor: pointer;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      box-shadow: 0 6px 30px rgba(0, 255, 204, 0.4);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #enter-vr:hover {
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 10px 50px rgba(0, 255, 204, 0.6);
+    }
+
+    #enter-vr:active { transform: scale(0.98); }
+    #enter-vr.visible { display: inline-block; }
+
+    /* ── HUD Overlay (visible during VR on 2D screen mirror) ──── */
+    #hud {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 20px;
+      background: rgba(6, 6, 16, 0.85);
+      border-top: 1px solid rgba(0, 255, 204, 0.2);
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      z-index: 9999;
+    }
+
+    #hud.visible { display: flex; }
+
+    .hud-section {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .hud-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hud-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #333;
+    }
+
+    .hud-dot.active { background: #00ff66; box-shadow: 0 0 6px #00ff66; }
+    .hud-dot.warn { background: #ffcc00; }
+    .hud-dot.err { background: #ff3333; }
+
+    #gesture-display {
+      color: #00ffcc;
+      font-weight: 600;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    #fps-display { color: #666; }
+
+    .covenant-hud {
+      color: #00ff66;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* ── Calibration Overlay ────────────────────────────────────── */
+    #calibration-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 6, 16, 0.95);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10002;
+    }
+
+    #calibration-overlay.visible { display: flex; }
+
+    #calibration-instruction {
+      font-size: 28px;
+      color: #00ffcc;
+      text-align: center;
+      max-width: 500px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    #calibration-progress {
+      width: 300px;
+      height: 4px;
+      background: #1a1a2e;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    #calibration-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00ffcc, #0066ff);
+      width: 0%;
+      transition: width 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <!-- Boot Screen -->
+  <div id="boot-screen">
+    <div class="logo-text">NOIZY BEAST</div>
+    <div class="logo-sub">VR IDE · HAND TRACKING · AI NATIVE</div>
+    <div class="covenant-badge">75/25 ARTIST-FIRST · COVENANT ENFORCED</div>
+    <div id="status-log"></div>
+    <button id="enter-vr">ENTER BEAST VR</button>
+  </div>
+
+  <!-- VR Container (Three.js canvas mounts here) -->
+  <div id="vr-container"></div>
+
+  <!-- HUD Overlay -->
+  <div id="hud">
+    <div class="hud-section">
+      <div class="hud-item">
+        <span class="hud-dot" id="hud-hands"></span>
+        <span>Hands</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-dot" id="hud-voice"></span>
+        <span>Voice</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-dot" id="hud-gabriel"></span>
+        <span>Gabriel</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-dot" id="hud-ide"></span>
+        <span>IDE Bridge</span>
+      </div>
+    </div>
+    <div id="gesture-display">—</div>
+    <div class="hud-section">
+      <span class="covenant-hud">75/25</span>
+      <span id="fps-display">— FPS</span>
+    </div>
+  </div>
+
+  <!-- Calibration Overlay -->
+  <div id="calibration-overlay">
+    <div id="calibration-instruction">Preparing calibration...</div>
+    <div id="calibration-progress">
+      <div id="calibration-progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- Import Map for ES Modules -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+    }
+  }
+  </script>
+
+  <script type="module">
+    // In production, these would be bundled. For dev, serve from DreamChamber.
+    // The /vr/modules/* route serves beast-vr/src/* files.
+    import { BeastVR } from './modules/index.js';
+
+    const log = document.getElementById('status-log');
+    const enterBtn = document.getElementById('enter-vr');
+    const bootScreen = document.getElementById('boot-screen');
+    const hud = document.getElementById('hud');
+
+    function status(msg, type = 'info') {
+      const line = document.createElement('div');
+      line.className = type;
+      line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+      log.appendChild(line);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    // ─── Initialize ────────────────────────────────────────────────
+    async function boot() {
+      status('Initializing NOIZY Beast VR...', 'info');
+
+      const vr = new BeastVR({
+        ideUrl: `ws://${location.host}/vr-ws`,
+        whisperUrl: `ws://${location.host}/whisper`,
+        dreamChamberUrl: `${location.protocol}//${location.host}`,
+        layout: 'cockpit',
+        userId: 'rsp',
+        handStyle: 'skeleton',
+        gabrielVoice: true,
+      });
+
+      // Boot status events
+      vr.addEventListener('ready', () => {
+        status('All systems nominal.', 'ok');
+        status('75/25 Covenant layer active.', 'ok');
+        enterBtn.classList.add('visible');
+      });
+
+      vr.addEventListener('fallback', (e) => {
+        status(`WebXR not available: ${e.detail.reason}`, 'err');
+        status('Open this page in Meta Quest Browser for VR mode.', 'warn');
+      });
+
+      vr.addEventListener('enter', () => {
+        bootScreen.classList.add('hidden');
+        hud.classList.add('visible');
+        status('VR session active. Hands tracked.', 'ok');
+      });
+
+      vr.addEventListener('exit', () => {
+        hud.classList.remove('visible');
+        bootScreen.classList.remove('hidden');
+      });
+
+      vr.addEventListener('calibrationneeded', () => {
+        status('Hand calibration available. Say "calibrate" or use peace + open palm.', 'info');
+      });
+
+      vr.addEventListener('calibrated', (e) => {
+        status(`Calibrated! Thresholds: pinch=${e.detail.pinchDistance?.toFixed(3)}m`, 'ok');
+        document.getElementById('calibration-overlay').classList.remove('visible');
+      });
+
+      // Calibration UI
+      if (vr.adaptiveLearner) {
+        vr.adaptiveLearner.addEventListener('calibrationstep', (e) => {
+          const overlay = document.getElementById('calibration-overlay');
+          overlay.classList.add('visible');
+          document.getElementById('calibration-instruction').textContent = e.detail.instruction;
+          const pct = ((e.detail.step + 1) / e.detail.total) * 100;
+          document.getElementById('calibration-progress-bar').style.width = `${pct}%`;
+        });
+      }
+
+      // HUD updates
+      let frameCount = 0;
+      const gestureDisplay = document.getElementById('gesture-display');
+      const fpsDisplay = document.getElementById('fps-display');
+
+      setInterval(() => {
+        if (!vr.handTracker) return;
+
+        // Hand status
+        const handsEl = document.getElementById('hud-hands');
+        handsEl.className = 'hud-dot ' +
+          (vr.handTracker.left.visible || vr.handTracker.right.visible ? 'active' : '');
+
+        // Gesture display
+        const rg = vr.gestureEngine?.getState('right');
+        if (rg && rg.gesture !== 'none') {
+          gestureDisplay.textContent = rg.gesture.toUpperCase().replace(/_/g, ' ');
+        } else {
+          gestureDisplay.textContent = '—';
+        }
+
+        // Voice status
+        const voiceEl = document.getElementById('hud-voice');
+        voiceEl.className = 'hud-dot ' +
+          (vr.voiceFusion?.voice?.listening ? 'active' : '');
+
+        // Gabriel status
+        const gabrielEl = document.getElementById('hud-gabriel');
+        gabrielEl.className = 'hud-dot ' +
+          (vr.gabriel?.state === 'responding' ? 'active' :
+           vr.gabriel?.state === 'listening' ? 'active' : '');
+
+        // IDE bridge
+        const ideEl = document.getElementById('hud-ide');
+        ideEl.className = 'hud-dot ' +
+          (vr.ideBridge?.connection?.connected ? 'active' : '');
+
+        // FPS
+        fpsDisplay.textContent = `${Math.round(vr._fps || 0)} FPS`;
+      }, 200);
+
+      // Initialize
+      status('Checking WebXR support...', 'info');
+      const container = document.getElementById('vr-container');
+
+      try {
+        const ok = await vr.init(container);
+        if (ok) {
+          status('WebXR + hand tracking available.', 'ok');
+          status('Gesture engine loaded (12 gestures + macros).', 'ok');
+          status('Voice fusion engine ready (Whisper bridge).', 'ok');
+          status('Gabriel AI presence loaded.', 'ok');
+          status('Spatial code visualizer loaded.', 'ok');
+          status('Adaptive gesture learner loaded.', 'ok');
+        }
+      } catch (err) {
+        status(`Init error: ${err.message}`, 'err');
+      }
+
+      // Enter VR button
+      enterBtn.addEventListener('click', () => vr.enterVR());
+
+      // Expose for debugging
+      window.beastVR = vr;
+    }
+
+    boot();
+  </script>
+</body>
+</html>

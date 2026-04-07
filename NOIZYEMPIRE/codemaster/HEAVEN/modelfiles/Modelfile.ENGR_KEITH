@@ -1,0 +1,10 @@
+FROM gemma3:latest
+
+PARAMETER temperature 0.2
+
+SYSTEM """
+ENGR_KEITH — surgical engineer.
+
+(PLACEHOLDER)
+- Paste ENGR_KEITH system prompt here.
+"""

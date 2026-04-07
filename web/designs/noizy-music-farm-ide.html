@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY MUSIC FARM — Personal Repertoire IDE</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#020407;--deep:#05080F;--navy:#081220;--panel:#0A1828;--card:#0C1F35;--hover:#102440;
+  --cyan:#00C8FF;--gold:#C9A84C;--green:#4CAF82;--red:#FF4444;--purple:#9B72CF;--orange:#FF6B35;--pink:#E8A4C8;
+  --cl:rgba(0,200,255,.08);--gl:rgba(201,168,76,.08);--pl:rgba(155,114,207,.08);
+  --border:rgba(0,200,255,.09);--faint:rgba(255,255,255,.04);--faint2:rgba(255,255,255,.07);
+  --white:#F0F4F8;--muted:rgba(240,244,248,.38);--dim:rgba(240,244,248,.18);
+  --mono:'DM Mono',monospace;--dis:'Bebas Neue',sans-serif;--ser:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--bg)}
+body{color:var(--white);font-family:var(--mono);font-size:11px;display:flex;flex-direction:column}
+
+/* ── MENUBAR ── */
+.mb{height:26px;background:var(--deep);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 .75rem;gap:1rem;flex-shrink:0;z-index:100}
+.mb-logo{font-family:var(--dis);font-size:1.15rem;letter-spacing:.1em;color:var(--gold)}
+.mb-logo span{color:var(--cyan)}
+.mb-menu{display:flex;gap:.1rem}
+.mm{font-size:.58rem;letter-spacing:.04em;color:var(--muted);padding:.2rem .45rem;cursor:pointer;border-radius:2px}
+.mm:hover{background:var(--faint);color:var(--white)}
+.mb-r{margin-left:auto;display:flex;align-items:center;gap:.75rem}
+.mb-mode{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);background:var(--gl);border:1px solid rgba(201,168,76,.2);padding:.2rem .55rem}
+.mb-ai{display:flex;align-items:center;gap:.3rem;font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green)}
+.ai-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.mb-bpm{font-size:.62rem;color:var(--muted);background:var(--faint);padding:.15rem .45rem;cursor:pointer}
+.mb-bpm:hover{color:var(--white)}
+.tp{display:flex;gap:.25rem}
+.tb{width:22px;height:16px;background:var(--faint);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--muted);cursor:pointer;transition:all .12s}
+.tb:hover{border-color:var(--cyan);color:var(--cyan)}
+.tb.active{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+
+/* ── LAYOUT ── */
+.wb{flex:1;display:grid;grid-template-columns:34px 200px 1fr 260px;grid-template-rows:1fr 20px;overflow:hidden}
+
+/* ── ACTBAR ── */
+.ab{background:var(--deep);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:.4rem 0;gap:.25rem}
+.ai{width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.85rem;cursor:pointer;color:var(--dim);border-left:2px solid transparent;transition:all .12s}
+.ai:hover,.ai.on{color:var(--white);border-left-color:var(--cyan)}
+.ai.on{background:var(--cl)}
+.a-sep{width:18px;height:1px;background:var(--faint2);margin:.15rem 0}
+
+/* ── SIDEBAR ── */
+.sb{background:var(--deep);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+
+/* Sidebar tabs */
+.sb-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0}
+.sb-tab{flex:1;height:24px;display:flex;align-items:center;justify-content:center;font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);cursor:pointer;transition:all .12s;border-right:1px solid var(--border)}
+.sb-tab:last-child{border-right:none}
+.sb-tab.on{color:var(--gold);background:var(--gl)}
+
+.sb-body{flex:1;overflow-y:auto;overflow-x:hidden}
+.sb-head{font-size:.46rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(0,200,255,.35);padding:.35rem .6rem .15rem;margin-top:.3rem}
+
+/* FARM item */
+.farm-item{display:flex;align-items:center;gap:.4rem;padding:.3rem .55rem;cursor:pointer;transition:all .1s;border-left:2px solid transparent}
+.farm-item:hover{background:var(--faint);border-left-color:var(--gold)}
+.farm-item.on{background:var(--gl);border-left-color:var(--gold)}
+.fi-color{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.fi-info{flex:1;min-width:0}
+.fi-name{font-size:.65rem;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fi-meta{font-size:.46rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:.05rem}
+.fi-plays{font-size:.48rem;color:var(--gold);margin-left:auto;flex-shrink:0}
+.fi-wave{display:flex;align-items:center;gap:1px;height:10px;margin-left:.3rem;flex-shrink:0}
+.fi-wave span{width:2px;border-radius:1px}
+
+/* External item */
+.ext-item{display:flex;align-items:center;gap:.4rem;padding:.28rem .55rem;cursor:pointer;transition:all .1s}
+.ext-item:hover{background:var(--faint)}
+.ext-ico{width:14px;height:14px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:.55rem;flex-shrink:0}
+.ext-name{font-size:.62rem;color:var(--muted);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ext-tag{font-size:.42rem;letter-spacing:.15em;border:1px solid var(--faint2);color:var(--dim);padding:.1rem .3rem;flex-shrink:0}
+
+/* ── EDITOR ── */
+.ed{display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+
+/* Tab bar */
+.tab-bar{height:26px;background:var(--deep);border-bottom:1px solid var(--border);display:flex;align-items:center;flex-shrink:0}
+.tab{height:100%;display:flex;align-items:center;gap:.35rem;padding:0 .75rem;font-size:.6rem;letter-spacing:.04em;color:var(--dim);border-right:1px solid var(--border);cursor:pointer;transition:all .12s;white-space:nowrap}
+.tab.on{background:var(--bg);color:var(--white);border-bottom:1px solid var(--bg);margin-bottom:-1px}
+.tab .td{width:5px;height:5px;border-radius:50%}
+
+/* VIEW SWITCHER */
+.view-sw{display:flex;gap:.3rem;margin-left:auto;margin-right:.6rem}
+.vsw{font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);border:1px solid var(--border);padding:.2rem .5rem;cursor:pointer;transition:all .12s}
+.vsw.on{color:var(--cyan);border-color:var(--cyan);background:var(--cl)}
+
+/* PAGES */
+.ed-page{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.ed-page.hidden{display:none}
+
+/* ── TIMELINE VIEW ── */
+.tl-hdr{height:30px;background:var(--panel);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 .5rem;gap:.5rem;flex-shrink:0}
+.tl-lbl{font-size:.46rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);width:140px;flex-shrink:0}
+.tl-bar{flex:1;position:relative;height:100%;border-left:1px solid var(--faint2)}
+.tl-tick{position:absolute;top:50%;transform:translateY(-50%);font-size:.44rem;color:rgba(255,255,255,.18)}
+.tl-ph{position:absolute;top:0;bottom:0;width:1px;background:var(--cyan);left:18%}
+.tl-ph::before{content:'▼';position:absolute;top:-1px;left:-4px;font-size:.38rem;color:var(--cyan)}
+
+.tracks-wrap{flex:1;overflow-y:auto}
+.track{height:42px;display:flex;border-bottom:1px solid var(--faint)}
+.track:hover{background:rgba(255,255,255,.015)}
+.tr-hd{width:140px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);display:flex;align-items:center;gap:.35rem;padding:0 .45rem}
+.tr-col{width:3px;height:26px;border-radius:2px;flex-shrink:0}
+.tr-inf{flex:1;min-width:0}
+.tr-name{font-size:.58rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tr-type{font-size:.42rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-top:.05rem}
+.tr-ctrl{display:flex;gap:.18rem;margin-left:auto}
+.tc{width:13px;height:13px;display:flex;align-items:center;justify-content:center;font-size:.48rem;color:var(--dim);cursor:pointer;border-radius:2px}
+.tc:hover{background:var(--faint2);color:var(--white)}
+.tr-lane{flex:1;position:relative;overflow:hidden}
+.clip{position:absolute;top:3px;bottom:3px;border-radius:2px;cursor:pointer;overflow:hidden;display:flex;align-items:center;padding:0 .3rem;transition:filter .12s}
+.clip:hover{filter:brightness(1.25)}
+.clip-lbl{font-size:.48rem;letter-spacing:.03em;white-space:nowrap;overflow:hidden;font-weight:500;position:relative;z-index:1}
+.clip-wv{position:absolute;inset:0;display:flex;align-items:flex-end;gap:1px;padding:0 2px;opacity:.25}
+.clip-wv span{flex:1;border-radius:1px 1px 0 0}
+.clip.farm{border:1px solid;border-style:solid}
+.clip.ai-sug{border-style:dashed;opacity:.6}
+
+/* AI BAR */
+.ai-bar{background:var(--panel);border-top:1px solid var(--border);padding:.5rem .7rem;flex-shrink:0}
+.ai-bar-lbl{font-size:.46rem;letter-spacing:.35em;text-transform:uppercase;color:var(--cyan);margin-bottom:.35rem;display:flex;align-items:center;gap:.35rem}
+.ai-bar-lbl::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--cyan);animation:blink 1.5s infinite}
+.ai-chips{display:flex;gap:.4rem;flex-wrap:wrap}
+.ac{font-size:.52rem;letter-spacing:.08em;padding:.22rem .55rem;border:1px solid var(--border);background:var(--cl);color:var(--cyan);cursor:pointer;transition:all .12s}
+.ac:hover,.ac.hit{background:var(--cyan);color:var(--bg)}
+.ac.gold{background:var(--gl);border-color:rgba(201,168,76,.22);color:var(--gold)}
+.ac.gold:hover{background:var(--gold);color:var(--bg)}
+.ac.purple{background:var(--pl);border-color:rgba(155,114,207,.22);color:var(--purple)}
+
+/* ── FARM VIEW ── */
+.farm-view{flex:1;display:flex;flex-direction:column;overflow:hidden;padding:.7rem;gap:.6rem;overflow-y:auto}
+.fv-hdr{display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0}
+.fv-title{font-family:var(--dis);font-size:1.8rem;letter-spacing:.06em;color:var(--gold);line-height:1}
+.fv-sub{font-family:var(--ser);font-style:italic;font-size:.85rem;color:var(--muted);margin-top:.2rem}
+.fv-stats{display:flex;gap:1.2rem}
+.fv-stat{text-align:right}
+.fv-stat-val{font-family:var(--dis);font-size:1.5rem;color:var(--cyan);display:block}
+.fv-stat-lbl{font-size:.44rem;letter-spacing:.25em;text-transform:uppercase;color:var(--dim)}
+
+.fv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.5rem}
+.farm-card{background:var(--card);border:1px solid var(--faint2);padding:.65rem;cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
+.farm-card:hover{border-color:var(--gold);background:var(--hover)}
+.farm-card.playing{border-color:var(--cyan);background:var(--cl)}
+.fc-type{font-size:.42rem;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.3rem}
+.fc-name{font-size:.72rem;color:var(--white);margin-bottom:.1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fc-meta{font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:.4rem}
+.fc-wave{height:24px;display:flex;align-items:center;gap:1px;margin-bottom:.4rem}
+.fc-wave span{flex:1;border-radius:1px;transition:height .1s}
+.fc-bottom{display:flex;align-items:center;justify-content:space-between}
+.fc-plays{font-size:.52rem;color:var(--gold)}
+.fc-earn{font-size:.52rem;color:var(--green)}
+.fc-play-btn{width:18px;height:18px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.5rem;color:var(--cyan);transition:all .12s}
+.farm-card:hover .fc-play-btn{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.fc-new{border-style:dashed;border-color:rgba(201,168,76,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;min-height:100px}
+.fc-new-ico{font-size:1.5rem;opacity:.3}
+.fc-new-lbl{font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+
+/* ── ADAPTIVE AVA VIEW ── */
+.ava-view{flex:1;overflow-y:auto;padding:.7rem;display:flex;flex-direction:column;gap:.6rem}
+.ava-hdr{font-family:var(--dis);font-size:1.6rem;letter-spacing:.06em;color:var(--cyan);line-height:1}
+.ava-sub{font-family:var(--ser);font-style:italic;font-size:.9rem;color:var(--muted);margin-top:.2rem;margin-bottom:.5rem}
+
+.adapt-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.adapt-card{background:var(--card);border:1px solid var(--faint2);padding:.7rem;transition:border-color .15s}
+.adapt-card:hover{border-color:var(--cyan)}
+.adapt-label{font-size:.46rem;letter-spacing:.35em;text-transform:uppercase;margin-bottom:.3rem}
+.adapt-title{font-size:.8rem;color:var(--white);margin-bottom:.4rem}
+.adapt-list{display:flex;flex-direction:column;gap:.2rem}
+.adapt-row{display:flex;align-items:center;gap:.4rem;font-size:.6rem;color:var(--muted)}
+.adapt-row::before{content:'▸';color:var(--cyan);font-size:.55rem}
+.adapt-status{margin-left:auto;font-size:.44rem;letter-spacing:.2em;text-transform:uppercase}
+
+.lang-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem}
+.lang-pill{background:var(--faint);border:1px solid var(--faint2);padding:.3rem .5rem;text-align:center;cursor:pointer;transition:all .12s}
+.lang-pill:hover,.lang-pill.on{background:var(--cl);border-color:var(--cyan);color:var(--cyan)}
+.lang-name{font-size:.6rem;color:var(--white);display:block}
+.lang-native{font-size:.46rem;color:var(--dim);display:block;margin-top:.05rem}
+
+/* ── RIGHT PANEL ── */
+.rp{background:var(--deep);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.rp-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0}
+.rp-tab{flex:1;height:24px;display:flex;align-items:center;justify-content:center;font-size:.44rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);cursor:pointer;border-right:1px solid var(--border);transition:all .12s}
+.rp-tab:last-child{border-right:none}
+.rp-tab.on{color:var(--cyan);background:var(--cl)}
+.rp-body{flex:1;overflow-y:auto;padding:.55rem}
+
+.rp-section{margin-bottom:.7rem}
+.rp-lbl{font-size:.44rem;letter-spacing:.35em;text-transform:uppercase;color:var(--dim);margin-bottom:.35rem;padding-bottom:.2rem;border-bottom:1px solid var(--faint)}
+.rp-row{display:flex;align-items:center;gap:.4rem;margin-bottom:.25rem}
+.rp-key{font-size:.52rem;color:var(--dim);flex:1}
+.rp-val{font-size:.58rem;color:var(--white);background:var(--faint);border:1px solid transparent;padding:.12rem .35rem;cursor:pointer;transition:all .12s;min-width:55px;text-align:center}
+.rp-val:hover{border-color:var(--cyan);color:var(--cyan)}
+
+.earn-card{background:var(--card);border:1px solid var(--faint2);padding:.55rem;margin-bottom:.4rem}
+.earn-ttl{font-family:var(--dis);font-size:1.6rem;color:var(--gold);line-height:1}
+.earn-lbl{font-size:.44rem;letter-spacing:.25em;text-transform:uppercase;color:var(--dim);margin-bottom:.1rem}
+.earn-bar{height:3px;background:rgba(255,255,255,.05);margin:.3rem 0}
+.earn-fill{height:100%;transition:width 1.2s ease}
+
+.intel-card{background:var(--card);border:1px solid var(--faint2);padding:.55rem;margin-bottom:.4rem}
+.intel-lbl{font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:.25rem}
+.intel-body{font-family:var(--ser);font-style:italic;font-size:.78rem;color:var(--muted);line-height:1.5}
+.intel-body strong{color:var(--white);font-style:normal}
+.intel-act{font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-top:.35rem;cursor:pointer;display:inline-block;border:1px solid var(--border);padding:.18rem .45rem}
+.intel-act:hover{background:var(--cyan);color:var(--bg)}
+
+/* STATUS BAR */
+.sbar{grid-column:1/-1;height:20px;background:var(--deep);border-top:1px solid var(--border);display:flex;align-items:center;padding:0 .6rem;gap:1rem}
+.ss{font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:.25rem}
+.ss.cy{color:var(--cyan)}
+.ss.go{color:var(--gold)}
+.ss.gr{color:var(--green)}
+.ss-dot{width:4px;height:4px;border-radius:50%;background:currentColor}
+
+/* SCROLLBARS */
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.07);border-radius:2px}
+</style>
+</head>
+<body>
+
+<!-- ── MENUBAR ── -->
+<div class="mb">
+  <div class="mb-logo">NOIZY <span>FARM</span></div>
+  <div class="mb-menu">
+    <div class="mm">File</div><div class="mm">Edit</div><div class="mm">Farm</div>
+    <div class="mm">Session</div><div class="mm">A.I.V.A.</div><div class="mm">AI</div>
+    <div class="mm">Community</div><div class="mm">Publish</div><div class="mm">Monetize</div>
+  </div>
+  <div class="mb-r">
+    <div class="mb-ai"><div class="ai-dot"></div>AI FARM ACTIVE</div>
+    <div class="mb-mode">YOUR FARM — RSP_001</div>
+    <div class="mb-bpm">♩ 96 BPM</div>
+    <div class="mb-bpm">F Minor</div>
+    <div class="mb-bpm">🌐 12 Languages</div>
+    <div class="tp">
+      <div class="tb">⏮</div><div class="tb active" id="play-btn" onclick="togglePlay(this)">▶</div>
+      <div class="tb" id="rec-btn" onclick="toggleRec(this)">⏺</div><div class="tb">⏭</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── WORKBENCH ── -->
+<div class="wb">
+
+<!-- ACTBAR -->
+<div class="ab">
+  <div class="ai on" title="Farm">🌾</div>
+  <div class="ai" title="Session">⬡</div>
+  <div class="ai" title="A.I.V.A.">🎙</div>
+  <div class="a-sep"></div>
+  <div class="ai" title="Language Adapt">🌐</div>
+  <div class="ai" title="Monetize">$</div>
+  <div class="ai" title="Community">◉</div>
+  <div class="a-sep"></div>
+  <div class="ai" style="margin-top:auto" title="Settings">⚙</div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sb">
+  <div class="sb-tabs">
+    <div class="sb-tab on" onclick="sbTab(this,'sb-farm')">MY FARM</div>
+    <div class="sb-tab" onclick="sbTab(this,'sb-ext')">EXTERNAL</div>
+    <div class="sb-tab" onclick="sbTab(this,'sb-gen')">AI GEN</div>
+  </div>
+
+  <!-- MY FARM TAB -->
+  <div class="sb-body" id="sb-farm" style="display:flex;flex-direction:column">
+    <div class="sb-head">Your Repertoire — Front &amp; Center</div>
+
+    <div class="farm-item on" onclick="loadFarmItem(this,'Orchestral Ostinato Pack')">
+      <div class="fi-color" style="background:var(--cyan)"></div>
+      <div class="fi-info"><div class="fi-name">Orchestral Ostinato Pack</div><div class="fi-meta">14 stems · Cm · 96bpm</div></div>
+      <div class="fi-plays">847</div>
+    </div>
+    <div class="farm-item" onclick="loadFarmItem(this,'Dragon Tales Theme Set')">
+      <div class="fi-color" style="background:var(--gold)"></div>
+      <div class="fi-info"><div class="fi-name">Dragon Tales Theme Set</div><div class="fi-meta">22 stems · Dm · 120bpm</div></div>
+      <div class="fi-plays">2.1k</div>
+    </div>
+    <div class="farm-item" onclick="loadFarmItem(this,'Ed Edd n Eddy — Loops')">
+      <div class="fi-color" style="background:var(--green)"></div>
+      <div class="fi-info"><div class="fi-name">Ed Edd n Eddy — Loops</div><div class="fi-meta">31 loops · Various · cartoon</div></div>
+      <div class="fi-plays">4.7k</div>
+    </div>
+    <div class="farm-item" onclick="loadFarmItem(this,'Game Audio — 888 Titles')">
+      <div class="fi-color" style="background:var(--purple)"></div>
+      <div class="fi-info"><div class="fi-name">Game Audio — 888 Titles</div><div class="fi-meta">58 assets · AAA · adaptive</div></div>
+      <div class="fi-plays">1.3k</div>
+    </div>
+    <div class="farm-item" onclick="loadFarmItem(this,'Tension Builders Vol.1')">
+      <div class="fi-color" style="background:var(--red)"></div>
+      <div class="fi-info"><div class="fi-name">Tension Builders Vol.1</div><div class="fi-meta">9 stems · Film · dark</div></div>
+      <div class="fi-plays">612</div>
+    </div>
+    <div class="farm-item" onclick="loadFarmItem(this,'Cave Ambience Suite')">
+      <div class="fi-color" style="background:var(--orange)"></div>
+      <div class="fi-info"><div class="fi-name">Cave Ambience Suite</div><div class="fi-meta">12 textures · Atmo · 48kHz</div></div>
+      <div class="fi-plays">388</div>
+    </div>
+    <div class="farm-item" onclick="loadFarmItem(this,'Brass Fanfare Toolkit')">
+      <div class="fi-color" style="background:var(--pink)"></div>
+      <div class="fi-info"><div class="fi-name">Brass Fanfare Toolkit</div><div class="fi-meta">7 phrases · Em · cinematic</div></div>
+      <div class="fi-plays">1.8k</div>
+    </div>
+
+    <div class="sb-head" style="margin-top:.5rem">New Ideas — Unpublished</div>
+    <div class="farm-item" style="border-left-color:rgba(201,168,76,.3);opacity:.7">
+      <div class="fi-color" style="background:rgba(201,168,76,.3)"></div>
+      <div class="fi-info"><div class="fi-name">Untitled — March 8</div><div class="fi-meta">Work in progress · Fm</div></div>
+      <div class="fi-plays" style="color:var(--dim)">—</div>
+    </div>
+    <div class="farm-item" style="border-left-color:rgba(201,168,76,.3);opacity:.7">
+      <div class="fi-color" style="background:rgba(201,168,76,.3)"></div>
+      <div class="fi-info"><div class="fi-name">Hero Arc — Draft 3</div><div class="fi-meta">Work in progress · Cm</div></div>
+      <div class="fi-plays" style="color:var(--dim)">—</div>
+    </div>
+
+    <div style="padding:.5rem .55rem;font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,168,76,.5);cursor:pointer;margin-top:.3rem">+ New Farm Asset</div>
+  </div>
+
+  <!-- EXTERNAL TAB -->
+  <div class="sb-body" id="sb-ext" style="display:none;flex-direction:column">
+    <div class="sb-head">External Sources</div>
+    <div class="ext-item"><div class="ext-ico" style="background:rgba(255,255,255,.07);color:var(--white)">S</div><div class="ext-name">Splice — Connected</div><span class="ext-tag" style="color:var(--green)">LIVE</span></div>
+    <div class="ext-item"><div class="ext-ico" style="background:rgba(255,107,53,.15);color:var(--orange)">↯</div><div class="ext-name">Suno AI Generate</div><span class="ext-tag">GEN</span></div>
+    <div class="ext-item"><div class="ext-ico" style="background:rgba(0,200,255,.1);color:var(--cyan)">N</div><div class="ext-name">NOIZY Community Farm</div><span class="ext-tag" style="color:var(--cyan)">COLLAB</span></div>
+    <div class="sb-head" style="margin-top:.4rem">Splice — Recent</div>
+    <div class="ext-item"><div class="ext-ico" style="background:rgba(255,255,255,.05);color:var(--dim)">♪</div><div class="ext-name">Cinematic strings — G</div><span class="ext-tag">STEM</span></div>
+    <div class="ext-item"><div class="ext-ico" style="background:rgba(255,255,255,.05);color:var(--dim)">♪</div><div class="ext-name">Epic perc — 128bpm</div><span class="ext-tag">LOOP</span></div>
+    <div class="ext-item"><div class="ext-ico" style="background:rgba(255,255,255,.05);color:var(--dim)">♪</div><div class="ext-name">Ambient texture pack</div><span class="ext-tag">SFX</span></div>
+    <div class="sb-head" style="margin-top:.4rem">AI Generated</div>
+    <div class="ext-item"><div class="ext-ico" style="background:rgba(155,114,207,.12);color:var(--purple)">✦</div><div class="ext-name">AI: Rob style — brass</div><span class="ext-tag" style="color:var(--purple)">AI</span></div>
+    <div class="ext-item"><div class="ext-ico" style="background:rgba(155,114,207,.12);color:var(--purple)">✦</div><div class="ext-name">AI: tension — Fm film</div><span class="ext-tag" style="color:var(--purple)">AI</span></div>
+  </div>
+
+  <!-- AI GEN TAB -->
+  <div class="sb-body" id="sb-gen" style="display:none;flex-direction:column;padding:.5rem">
+    <div style="font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:.5rem">Generate In Your Style</div>
+    <div style="font-size:.6rem;color:var(--muted);margin-bottom:.4rem;font-family:var(--ser);font-style:italic;line-height:1.5">The AI knows your compositional style. Every generation sounds like you — not generic.</div>
+    <textarea style="width:100%;height:60px;background:var(--card);border:1px solid var(--border);color:var(--white);font-family:var(--mono);font-size:.65rem;padding:.4rem;resize:none;outline:none;margin-bottom:.4rem" placeholder="Describe what you need... e.g. tension build for a dragon reveal, F minor, cinematic"></textarea>
+    <button onclick="this.textContent='✦ Generating in Rob style...';setTimeout(()=>this.textContent='✦ GENERATE IN MY STYLE',2000)" style="background:var(--gold);color:var(--bg);border:none;font-family:var(--dis);font-size:.9rem;letter-spacing:.1em;padding:.4rem;cursor:pointer;width:100%">✦ GENERATE IN MY STYLE</button>
+    <div style="font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:.4rem;text-align:center">All generations added to your Farm</div>
+  </div>
+</div>
+
+<!-- ── EDITOR ── -->
+<div class="ed">
+  <div class="tab-bar">
+    <div class="tab on" onclick="switchView('timeline',this)"><div class="td" style="background:var(--cyan)"></div>TIMELINE</div>
+    <div class="tab" onclick="switchView('farm',this)"><div class="td" style="background:var(--gold)"></div>MY FARM</div>
+    <div class="tab" onclick="switchView('ava',this)"><div class="td" style="background:var(--green)"></div>A.I.V.A. ADAPT</div>
+    <div class="view-sw">
+      <div class="vsw on">SESSION</div>
+      <div class="vsw" onclick="toggleVsw(this)">FARM</div>
+      <div class="vsw" onclick="toggleVsw(this)">PUBLISH</div>
+    </div>
+  </div>
+
+  <!-- TIMELINE VIEW -->
+  <div class="ed-page" id="view-timeline">
+    <div class="tl-hdr">
+      <div class="tl-lbl">TIMELINE</div>
+      <div style="font-size:.46rem;letter-spacing:.2em;color:var(--dim)">F MIN · 96 BPM · 4/4</div>
+      <div class="tl-bar" id="tl-bar">
+        <div class="tl-ph" id="playhead"></div>
+        <span class="tl-tick" style="left:0%">1</span>
+        <span class="tl-tick" style="left:12.5%">2</span>
+        <span class="tl-tick" style="left:25%">3</span>
+        <span class="tl-tick" style="left:37.5%">4</span>
+        <span class="tl-tick" style="left:50%">5</span>
+        <span class="tl-tick" style="left:62.5%">6</span>
+        <span class="tl-tick" style="left:75%">7</span>
+        <span class="tl-tick" style="left:87.5%">8</span>
+      </div>
+      <div style="font-size:.48rem;color:var(--cyan);margin-left:.4rem">0:18.2</div>
+    </div>
+
+    <div class="tracks-wrap">
+      <!-- FARM TRACKS (YOUR OWN) -->
+      <div style="font-size:.44rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.5);padding:.25rem .5rem;background:rgba(201,168,76,.04);border-bottom:1px solid var(--faint)">▸ YOUR FARM — PERSONAL REPERTOIRE</div>
+
+      <div class="track">
+        <div class="tr-hd"><div class="tr-col" style="background:var(--cyan)"></div><div class="tr-inf"><div class="tr-name">Orchestral Ostinato Pack</div><div class="tr-type">YOUR FARM · Cm</div></div><div class="tr-ctrl"><span class="tc">S</span><span class="tc">M</span></div></div>
+        <div class="tr-lane">
+          <div class="clip farm" style="left:0%;width:28%;background:rgba(0,200,255,.15);border-color:rgba(0,200,255,.4);color:var(--cyan)">
+            <span class="clip-lbl">Ostinato A — 🌾 YOUR FARM</span>
+            <div class="clip-wv" id="cw-1"></div>
+          </div>
+          <div class="clip farm" style="left:30%;width:20%;background:rgba(0,200,255,.1);border-color:rgba(0,200,255,.3);color:var(--cyan)">
+            <span class="clip-lbl">Ostinato B</span>
+            <div class="clip-wv" id="cw-2"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="track">
+        <div class="tr-hd"><div class="tr-col" style="background:var(--gold)"></div><div class="tr-inf"><div class="tr-name">Brass Fanfare Toolkit</div><div class="tr-type">YOUR FARM · Em</div></div><div class="tr-ctrl"><span class="tc">S</span><span class="tc">M</span></div></div>
+        <div class="tr-lane">
+          <div class="clip farm" style="left:24%;width:16%;background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:var(--gold)">
+            <span class="clip-lbl">Fanfare — 🌾</span>
+            <div class="clip-wv" id="cw-3"></div>
+          </div>
+          <div class="clip farm ai-sug" style="left:55%;width:18%;background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.3);color:rgba(201,168,76,.6)">
+            <span class="clip-lbl">AI: Fanfare reprise →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="track">
+        <div class="tr-hd"><div class="tr-col" style="background:var(--purple)"></div><div class="tr-inf"><div class="tr-name">Game Audio — 888 Titles</div><div class="tr-type">YOUR FARM · AAA Adaptive</div></div><div class="tr-ctrl"><span class="tc">S</span><span class="tc">M</span></div></div>
+        <div class="tr-lane">
+          <div class="clip farm" style="left:5%;width:12%;background:rgba(155,114,207,.15);border-color:rgba(155,114,207,.4);color:var(--purple)">
+            <span class="clip-lbl">888 Hit — 🌾</span>
+            <div class="clip-wv" id="cw-4"></div>
+          </div>
+          <div class="clip farm" style="left:40%;width:12%;background:rgba(155,114,207,.12);border-color:rgba(155,114,207,.3);color:var(--purple)">
+            <span class="clip-lbl">888 Swell</span>
+            <div class="clip-wv" id="cw-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- A.I.V.A. TRACK -->
+      <div style="font-size:.44rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(76,175,130,.5);padding:.25rem .5rem;background:rgba(76,175,130,.04);border-bottom:1px solid var(--faint);border-top:1px solid var(--faint)">▸ A.I.V.A. — RSP_001 · ADAPTIVE VOICE</div>
+
+      <div class="track">
+        <div class="tr-hd"><div class="tr-col" style="background:var(--green)"></div><div class="tr-inf"><div class="tr-name">RSP_001 — Narration</div><div class="tr-type">A.I.V.A. · EN-CA → 12 lang</div></div><div class="tr-ctrl"><span class="tc">S</span><span class="tc">M</span></div></div>
+        <div class="tr-lane">
+          <div class="clip" style="left:3%;width:15%;background:rgba(76,175,130,.15);border:1px solid rgba(76,175,130,.4);color:var(--green)">
+            <span class="clip-lbl">Narration — EN</span>
+            <div class="clip-wv" id="cw-6"></div>
+          </div>
+          <div class="clip ai-sug" style="left:3%;width:15%;background:rgba(76,175,130,.06);border:1px dashed rgba(76,175,130,.3);color:rgba(76,175,130,.5);top:20px">
+            <span class="clip-lbl">🌐 FR-CA adapt →</span>
+          </div>
+          <div class="clip" style="left:46%;width:14%;background:rgba(76,175,130,.12);border:1px solid rgba(76,175,130,.3);color:var(--green)">
+            <span class="clip-lbl">Narration — Climax</span>
+            <div class="clip-wv" id="cw-7"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXTERNAL / SPLICE -->
+      <div style="font-size:.44rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(155,114,207,.4);padding:.25rem .5rem;background:rgba(155,114,207,.03);border-bottom:1px solid var(--faint);border-top:1px solid var(--faint)">▸ EXTERNAL — SPLICE + AI GENERATED</div>
+
+      <div class="track">
+        <div class="tr-hd"><div class="tr-col" style="background:rgba(255,255,255,.2)"></div><div class="tr-inf"><div class="tr-name">Cinematic Strings — G</div><div class="tr-type">SPLICE · External</div></div><div class="tr-ctrl"><span class="tc">S</span><span class="tc">M</span></div></div>
+        <div class="tr-lane">
+          <div class="clip" style="left:0%;width:42%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4)">
+            <span class="clip-lbl">Splice: strings background</span>
+            <div class="clip-wv" id="cw-8"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="track">
+        <div class="tr-hd"><div class="tr-col" style="background:var(--purple)"></div><div class="tr-inf"><div class="tr-name">AI Generated — Rob Style</div><div class="tr-type">AI GEN · Your Fingerprint</div></div><div class="tr-ctrl"><span class="tc">S</span><span class="tc">M</span></div></div>
+        <div class="tr-lane">
+          <div class="clip" style="left:20%;width:22%;background:rgba(155,114,207,.12);border:1px solid rgba(155,114,207,.3);color:var(--purple)">
+            <span class="clip-lbl">✦ AI: Tension Fm — your DNA</span>
+            <div class="clip-wv" id="cw-9"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-bar">
+      <div class="ai-bar-lbl">AI CO-PILOT — FARM INTELLIGENCE</div>
+      <div class="ai-chips">
+        <div class="ac" onclick="chipHit(this)">→ Add your Cave Ambience under brass</div>
+        <div class="ac" onclick="chipHit(this)">→ Publish Ostinato Pack to community farm</div>
+        <div class="ac gold" onclick="chipHit(this)">→ 847 plays on Ostinato — monetize now</div>
+        <div class="ac gold" onclick="chipHit(this)">→ Dragon Tales set trending this week</div>
+        <div class="ac purple" onclick="chipHit(this)">→ 888 game track: add Mandarin dialect</div>
+        <div class="ac" onclick="chipHit(this)">→ Generate variation of Brass Fanfare</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FARM VIEW -->
+  <div class="ed-page hidden" id="view-farm">
+    <div class="farm-view">
+      <div class="fv-hdr">
+        <div>
+          <div style="font-size:.46rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem">Rob Plowman · RSP_001</div>
+          <div class="fv-title">YOUR MUSIC FARM</div>
+          <div class="fv-sub">Your repertoire. Your ideas. Your revenue. Front and center — always.</div>
+        </div>
+        <div class="fv-stats">
+          <div class="fv-stat"><span class="fv-stat-val">11.8k</span><span class="fv-stat-lbl">Total Plays</span></div>
+          <div class="fv-stat"><span class="fv-stat-val" style="color:var(--gold)">$2,340</span><span class="fv-stat-lbl">Earned — Farm</span></div>
+          <div class="fv-stat"><span class="fv-stat-val" style="color:var(--green)">7</span><span class="fv-stat-lbl">Published Packs</span></div>
+        </div>
+      </div>
+
+      <div style="font-size:.46rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-top:.2rem">▸ PUBLISHED — EARNING NOW</div>
+      <div class="fv-grid">
+        ${[
+          ["🎻","Orchestral Ostinato Pack","14 stems · Cm · 96bpm","cyan","847 plays","$312"],
+          ["🐉","Dragon Tales Theme Set","22 stems · Dm · 120bpm","gold","2.1k plays","$780"],
+          ["📺","Ed Edd n Eddy — Loops","31 loops · various · cartoon","green","4.7k plays","$940"],
+          ["🎮","Game Audio — 888 Titles","58 assets · AAA · adaptive","purple","1.3k plays","$490"],
+          ["⚡","Tension Builders Vol.1","9 stems · film · dark","red","612 plays","$228"],
+          ["🌿","Cave Ambience Suite","12 textures · atmo · 48kHz","orange","388 plays","$145"],
+          ["🎺","Brass Fanfare Toolkit","7 phrases · Em · cinematic","pink","1.8k plays","$673"],
+        ].map(([ico,name,meta,color,plays,earn])=>`
+          <div class="farm-card" onclick="this.classList.toggle('playing')">
+            <div class="fc-type" style="color:var(--${color})">YOUR FARM · PUBLISHED</div>
+            <div class="fc-name">${ico} ${name}</div>
+            <div class="fc-meta">${meta}</div>
+            <div class="fc-wave" id="fw-${name.replace(/\W/g,'').slice(0,6)}"></div>
+            <div class="fc-bottom">
+              <div><div class="fc-plays">${plays}</div><div class="fc-earn" style="margin-top:.1rem">${earn}</div></div>
+              <div class="fc-play-btn">▶</div>
+            </div>
+          </div>
+        `).join('')}
+        <div class="farm-card fc-new">
+          <div class="fc-new-ico">+</div>
+          <div class="fc-new-lbl">Add New Farm Asset</div>
+        </div>
+      </div>
+
+      <div style="font-size:.46rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.5);margin-top:.4rem">▸ IN PROGRESS — NOT YET PUBLISHED</div>
+      <div class="fv-grid">
+        ${[
+          ["🎵","Untitled — March 8","Work in progress · Fm"],
+          ["🎸","Hero Arc — Draft 3","Work in progress · Cm"],
+        ].map(([ico,name,meta])=>`
+          <div class="farm-card" style="border-style:dashed;border-color:rgba(201,168,76,.2);opacity:.75">
+            <div class="fc-type" style="color:var(--dim)">DRAFT · UNPUBLISHED</div>
+            <div class="fc-name" style="color:var(--muted)">${ico} ${name}</div>
+            <div class="fc-meta">${meta}</div>
+            <div class="fc-bottom" style="margin-top:.5rem">
+              <div style="font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.5);cursor:pointer">PUBLISH TO FARM →</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  </div>
+
+  <!-- AVA ADAPT VIEW -->
+  <div class="ed-page hidden" id="view-ava">
+    <div class="ava-view">
+      <div class="ava-hdr">A.I.V.A. ADAPTIVE INTELLIGENCE</div>
+      <div class="ava-sub">RSP_001 doesn't just speak. It adapts — culturally, regionally, socially — in any language on earth. A character built on RSP_001 evolves with the world it lives in.</div>
+
+      <div class="adapt-grid">
+        <div class="adapt-card">
+          <div class="adapt-label" style="color:var(--cyan)">Cultural Adaptation</div>
+          <div class="adapt-title">Social &amp; Cultural Intelligence</div>
+          <div class="adapt-list">
+            <div class="adapt-row">Tracks cultural tone shifts in real time<span class="adapt-status" style="color:var(--green)">● ACTIVE</span></div>
+            <div class="adapt-row">Adjusts formality for cultural context<span class="adapt-status" style="color:var(--green)">● ACTIVE</span></div>
+            <div class="adapt-row">Humor calibration by region<span class="adapt-status" style="color:var(--gold)">◎ LEARNING</span></div>
+            <div class="adapt-row">Generational language evolution<span class="adapt-status" style="color:var(--gold)">◎ LEARNING</span></div>
+          </div>
+        </div>
+        <div class="adapt-card">
+          <div class="adapt-label" style="color:var(--purple)">AAA Game Adaptation</div>
+          <div class="adapt-title">888 Title Character Intelligence</div>
+          <div class="adapt-list">
+            <div class="adapt-row">Character voice consistent across patches<span class="adapt-status" style="color:var(--green)">● LIVE</span></div>
+            <div class="adapt-row">Regional dialect per player location<span class="adapt-status" style="color:var(--green)">● LIVE</span></div>
+            <div class="adapt-row">Lore-aware vocabulary adaptation<span class="adapt-status" style="color:var(--gold)">◎ BUILD</span></div>
+            <div class="adapt-row">Emotional state tracking in-session<span class="adapt-status" style="color:var(--gold)">◎ BUILD</span></div>
+          </div>
+        </div>
+        <div class="adapt-card">
+          <div class="adapt-label" style="color:var(--gold)">Regional Dialect Engine</div>
+          <div class="adapt-title">Sub-Regional &amp; Accent Intelligence</div>
+          <div class="adapt-list">
+            <div class="adapt-row">Canadian English (EN-CA) — native<span class="adapt-status" style="color:var(--green)">● PRIMARY</span></div>
+            <div class="adapt-row">North American broadcast neutral<span class="adapt-status" style="color:var(--green)">● ACTIVE</span></div>
+            <div class="adapt-row">UK — RP / regional variants<span class="adapt-status" style="color:var(--green)">● ACTIVE</span></div>
+            <div class="adapt-row">Australian / NZ variants<span class="adapt-status" style="color:var(--gold)">◎ TRAINING</span></div>
+          </div>
+        </div>
+        <div class="adapt-card">
+          <div class="adapt-label" style="color:var(--green)">Consent &amp; Rate — Adaptive</div>
+          <div class="adapt-title">Per-Project Consent Control</div>
+          <div class="adapt-list">
+            <div class="adapt-row">Rate adjusts per language market<span class="adapt-status" style="color:var(--green)">● ACTIVE</span></div>
+            <div class="adapt-row">Cultural content restrictions per region<span class="adapt-status" style="color:var(--green)">● ACTIVE</span></div>
+            <div class="adapt-row">Game title exclusivity controls<span class="adapt-status" style="color:var(--gold)">◎ SETUP</span></div>
+            <div class="adapt-row">Emergency revoke — all regions<span class="adapt-status" style="color:var(--green)">● LIVE</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:.46rem;letter-spacing:.35em;text-transform:uppercase;color:var(--cyan);margin-top:.3rem">▸ ACTIVE LANGUAGES — RSP_001</div>
+      <div class="lang-grid">
+        ${[["English","EN-CA / EN-US","cyan"],["French","FR-CA / FR","gold"],["Spanish","ES / ES-MX","green"],["Portuguese","PT-BR / PT","orange"],["Japanese","日本語","purple"],["Korean","한국어","pink"],["Mandarin","普通话","cyan"],["German","Deutsch","gold"],["Italian","Italiano","green"],["Arabic","العربية","orange"],["Hindi","हिंदी","purple"],["Dutch","Nederlands","muted"]].map(([name,native,color])=>`
+          <div class="lang-pill ${color==='cyan'?'on':''}" onclick="this.classList.toggle('on')">
+            <span class="lang-name">${name}</span>
+            <span class="lang-native">${native}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div style="font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(0,200,255,.4);margin-top:.3rem">+ Any language in the universe — request via portal</div>
+    </div>
+  </div>
+
+</div><!-- /editor -->
+
+<!-- RIGHT PANEL -->
+<div class="rp">
+  <div class="rp-tabs">
+    <div class="rp-tab on" onclick="rpTab(this,'rt-farm')">FARM</div>
+    <div class="rp-tab" onclick="rpTab(this,'rt-earn')">EARN</div>
+    <div class="rp-tab" onclick="rpTab(this,'rt-intel')">AI</div>
+  </div>
+
+  <div class="rp-body" id="rt-farm">
+    <div class="rp-section">
+      <div class="rp-lbl">Selected — Orchestral Ostinato Pack</div>
+      <div class="rp-row"><span class="rp-key">Key</span><span class="rp-val">C Minor</span></div>
+      <div class="rp-row"><span class="rp-key">BPM</span><span class="rp-val">96</span></div>
+      <div class="rp-row"><span class="rp-key">Stems</span><span class="rp-val">14</span></div>
+      <div class="rp-row"><span class="rp-key">Type</span><span class="rp-val" style="color:var(--gold)">YOUR FARM</span></div>
+      <div class="rp-row"><span class="rp-key">Format</span><span class="rp-val">WAV 24/48</span></div>
+    </div>
+    <div class="rp-section">
+      <div class="rp-lbl">Farm Performance</div>
+      <div style="display:flex;flex-direction:column;gap:.3rem">
+        <div><div style="display:flex;justify-content:space-between;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.15rem"><span style="color:var(--dim)">Total Plays</span><span style="color:var(--cyan)">847</span></div><div class="earn-bar"><div class="earn-fill" style="width:42%;background:var(--cyan)"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.15rem"><span style="color:var(--dim)">Earned</span><span style="color:var(--gold)">$312</span></div><div class="earn-bar"><div class="earn-fill" style="width:28%;background:var(--gold)"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.15rem"><span style="color:var(--dim)">Saves</span><span style="color:var(--green)">234</span></div><div class="earn-bar"><div class="earn-fill" style="width:55%;background:var(--green)"></div></div></div>
+      </div>
+    </div>
+    <div class="rp-section">
+      <div class="rp-lbl">Publish Controls</div>
+      <button onclick="this.textContent='✓ Published!';setTimeout(()=>this.textContent='PUBLISH TO COMMUNITY FARM',1500)" style="width:100%;background:var(--gold);color:var(--bg);border:none;font-family:var(--dis);font-size:.85rem;letter-spacing:.1em;padding:.4rem;cursor:pointer;margin-bottom:.3rem">PUBLISH TO COMMUNITY FARM</button>
+      <button onclick="this.textContent='✓ Listed!';setTimeout(()=>this.textContent='LIST FOR LICENSING',1500)" style="width:100%;background:transparent;color:var(--green);border:1px solid rgba(76,175,130,.3);font-family:var(--mono);font-size:.52rem;letter-spacing:.15em;padding:.35rem;cursor:pointer">LIST FOR LICENSING</button>
+    </div>
+  </div>
+
+  <div class="rp-body" id="rt-earn" style="display:none">
+    <div class="earn-card">
+      <div class="earn-lbl">Farm Revenue — This Month</div>
+      <div class="earn-ttl" style="color:var(--gold)">$2,340</div>
+      <div style="font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:.1rem">100% yours — no split on farm</div>
+    </div>
+    <div class="earn-card">
+      <div class="earn-lbl">Voice — AVA RSP_001</div>
+      <div class="earn-ttl">$3,847</div>
+      <div style="font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:.1rem">75% of $5,129 gross</div>
+    </div>
+    <div class="earn-card" style="background:rgba(0,200,255,.05);border-color:var(--border)">
+      <div class="earn-lbl">Combined — Month Total</div>
+      <div class="earn-ttl" style="color:var(--cyan)">$6,187</div>
+      <div style="font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:.1rem">Music Farm + Voice Farm</div>
+    </div>
+    <div class="rp-section" style="margin-top:.5rem">
+      <div class="rp-lbl">Top Earning Farm Assets</div>
+      ${[["Ed Edd n Eddy — Loops","$940","green"],["Dragon Tales Theme Set","$780","gold"],["Brass Fanfare Toolkit","$673","pink"],["Game Audio — 888 Titles","$490","purple"]].map(([n,v,c])=>`
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:.25rem 0;border-bottom:1px solid var(--faint)">
+          <span style="font-size:.6rem;color:var(--muted)">${n}</span>
+          <span style="font-size:.65rem;color:var(--${c})">${v}</span>
+        </div>
+      `).join('')}
+    </div>
+  </div>
+
+  <div class="rp-body" id="rt-intel" style="display:none">
+    <div class="intel-card">
+      <div class="intel-lbl">Farm Intelligence</div>
+      <div class="intel-body">Ed Edd n Eddy Loops is your <strong>highest-earning asset</strong> at 4.7k plays. Animation producers are actively seeking this style. Consider releasing Volume 2 while the signal is hot.</div>
+      <div class="intel-act" onclick="this.textContent='✓ Creating V2';setTimeout(()=>this.textContent='CREATE VOL 2',1500)">CREATE VOL 2</div>
+    </div>
+    <div class="intel-card">
+      <div class="intel-lbl">Language Opportunity</div>
+      <div class="intel-body">Your 888 game audio assets have been licensed by <strong>3 studios in Japan and Korea</strong>. Adding Mandarin and Japanese dialect support to RSP_001 would open the full East Asian market to your farm.</div>
+      <div class="intel-act">ADD MANDARIN DIALECT</div>
+    </div>
+    <div class="intel-card">
+      <div class="intel-lbl">Style Memory — Rob Plowman</div>
+      <div class="intel-body">In 40 years of scoring, you've consistently built from <strong>sparse ostinato to full orchestral density</strong>. The AI has captured this arc. Every generation matches your compositional signature — not generic Suno output.</div>
+      <div class="intel-act" onclick="this.textContent='✓ Generating';setTimeout(()=>this.textContent='GENERATE IN MY STYLE',1500)">GENERATE IN MY STYLE</div>
+    </div>
+    <div class="intel-card">
+      <div class="intel-lbl">Community Signal</div>
+      <div class="intel-body">Cinematic orchestral content is <strong>up 41% this week</strong> across the NOIZY community. Your Orchestral Ostinato Pack is the most-saved farm asset in this category. Premium placement available.</div>
+      <div class="intel-act">GET FEATURED PLACEMENT</div>
+    </div>
+  </div>
+</div>
+
+<!-- STATUS BAR -->
+<div class="sbar">
+  <div class="ss cy"><div class="ss-dot"></div>FARM ACTIVE</div>
+  <div class="ss go">RSP_001 — VOICE + MUSIC FARM</div>
+  <div class="ss">7 Packs Published</div>
+  <div class="ss go">$6,187 / month combined</div>
+  <div class="ss">12 Languages Active</div>
+  <div class="ss">888 AAA Adaptive</div>
+  <div style="margin-left:auto" class="ss">F Min · 4/4 · 96 BPM</div>
+  <div class="ss gr">24-bit / 48kHz</div>
+  <div class="ss">CPU 28%</div>
+</div>
+
+</div><!-- /wb -->
+
+<script>
+// Sidebar tabs
+function sbTab(el,id){
+  document.querySelectorAll('.sb-tab').forEach(t=>t.classList.remove('on'));
+  ['sb-farm','sb-ext','sb-gen'].forEach(i=>{const e=document.getElementById(i);if(e)e.style.display='none'});
+  el.classList.add('on');
+  const b=document.getElementById(id);if(b)b.style.display='flex';
+}
+
+// Editor view switching
+function switchView(name, el){
+  document.querySelectorAll('.ed-page').forEach(p=>p.classList.add('hidden'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('view-'+name).classList.remove('hidden');
+  el.classList.add('on');
+}
+
+// View switcher
+function toggleVsw(el){
+  document.querySelectorAll('.vsw').forEach(v=>v.classList.remove('on'));
+  el.classList.add('on');
+}
+
+// Right panel tabs
+function rpTab(el,id){
+  document.querySelectorAll('.rp-tab').forEach(t=>t.classList.remove('on'));
+  ['rt-farm','rt-earn','rt-intel'].forEach(i=>{const e=document.getElementById(i);if(e)e.style.display='none'});
+  el.classList.add('on');
+  const b=document.getElementById(id);if(b)b.style.display='block';
+}
+
+// Waveforms
+function buildWave(id,color,n=18){
+  const el=document.getElementById(id); if(!el)return;
+  for(let i=0;i<n;i++){
+    const s=document.createElement('span');
+    s.style.cssText=`flex:1;border-radius:1px 1px 0 0;background:${color};height:${15+Math.random()*85}%`;
+    el.appendChild(s);
+  }
+}
+buildWave('cw-1','#00C8FF'); buildWave('cw-2','#00C8FF');
+buildWave('cw-3','#C9A84C'); buildWave('cw-4','#9B72CF');
+buildWave('cw-5','#9B72CF'); buildWave('cw-6','#4CAF82');
+buildWave('cw-7','#4CAF82'); buildWave('cw-8','rgba(255,255,255,.3)');
+buildWave('cw-9','#9B72CF');
+
+// Farm card waves
+document.querySelectorAll('.fc-wave').forEach(w=>{
+  const colors=['#00C8FF','#C9A84C','#4CAF82','#9B72CF','#FF4444','#FF6B35','#E8A4C8'];
+  const c=colors[Math.floor(Math.random()*colors.length)];
+  for(let i=0;i<24;i++){const s=document.createElement('span');s.style.cssText=`flex:1;border-radius:1px;background:${c};height:${10+Math.random()*90}%;opacity:.6`;w.appendChild(s);}
+});
+
+// Playhead
+let ph=18,playing=true;
+setInterval(()=>{
+  if(!playing)return;
+  const el=document.getElementById('playhead');
+  if(el){ph+=0.04;if(ph>90)ph=0;el.style.left=ph+'%';}
+},40);
+
+// Play/rec toggles
+function togglePlay(btn){
+  playing=!playing;
+  btn.textContent=playing?'▶':'⏸';
+  btn.classList.toggle('active',playing);
+}
+function toggleRec(btn){
+  btn.classList.toggle('active');
+  btn.style.color=btn.classList.contains('active')?'var(--red)':'';
+}
+
+// Chip hit
+function chipHit(el){
+  const orig=el.textContent;
+  el.classList.add('hit');
+  el.textContent='✓ Applied';
+  setTimeout(()=>{el.classList.remove('hit');el.textContent=orig;},2000);
+}
+
+function loadFarmItem(el,name){
+  document.querySelectorAll('.farm-item').forEach(f=>f.classList.remove('on'));
+  el.classList.add('on');
+}
+</script>
+</body>
+</html>

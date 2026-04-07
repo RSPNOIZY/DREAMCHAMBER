@@ -1,0 +1,1498 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="en">
+  <head lang="en">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Common Module Controls - Ozone 8 Documentation</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/en/common-module-controls/">
+    <meta property="og:title" content="Ozone 8 Documentation">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone 8 Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | Common Module Controls</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Introduction" href="../index.html">
+	
+	Introduction
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8 Overview" href="../ozone-overview/index.html">
+	
+	Ozone 8 Overview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone Application" href="../ozone-app-overview/index.html">
+	
+	Ozone Application
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Preset System" href="../preset-system/index.html">
+	
+	Preset System
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="General Functions" href="../general-functions/index.html">
+	
+	General Functions
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Common Module Controls" href="index.html">
+	
+	Common Module Controls
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dynamics" href="../dynamics/index.html">
+	
+	Dynamics
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dynamic EQ" href="../dynamic-eq/index.html">
+	
+	Dynamic EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Equalizer" href="../equalizer/index.html">
+	
+	Equalizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Exciter" href="../exciter/index.html">
+	
+	Exciter
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Imager" href="../imager/index.html">
+	
+	Imager
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Maximizer" href="../maximizer/index.html">
+	
+	Maximizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectral Shaper" href="../spectral-shaper/index.html">
+	
+	Spectral Shaper
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Compressor" href="../vintage-compressor/index.html">
+	
+	Vintage Compressor
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage EQ" href="../vintage-eq/index.html">
+	
+	Vintage EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Limiter" href="../vintage-limiter/index.html">
+	
+	Vintage Limiter
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Tape" href="../vintage-tape/index.html">
+	
+	Vintage Tape
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Codec Preview" href="../codec-preview/index.html">
+	
+	Codec Preview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dither" href="../dither/index.html">
+	
+	Dither
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Master Assistant" href="../master-assistant/index.html">
+	
+	Master Assistant
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Track Referencing" href="../track-referencing/index.html">
+	
+	Track Referencing
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tonal Balance Control" href="../tonal-balance-control/index.html">
+	
+	Tonal Balance Control
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Options" href="../options/index.html">
+	
+	Options
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plug-in Automation" href="../plug-in-automation/index.html">
+	
+	Plug-in Automation
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tips &amp; Examples" href="../tips-and-examples/index.html">
+	
+	Tips &amp; Examples
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Authorization" href="../authorization/index.html">
+	
+	Authorization
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotope Customer Care" href="../customer-care/index.html">
+	
+	iZotope Customer Care
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information" href="../license-information/index.html">
+	
+	License Information
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA" href="../eula/index.html">
+	
+	EULA
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../ja/common-module-controls/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>Common Module Controls </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">Languages:</span>
+<br />
+    
+
+       
+       <a href="../../ja/common-module-controls/index.html"><button class="lang-btn-active">English</button></a>
+       
+        
+       <a href="../../ja/common-module-controls/index.html"><button class="lang-btn-clickable">日本語</button></a>
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+
+
+
+<nav>
+  
+  <h4>Table of Contents</h4>
+  <ul>
+    
+      
+      
+
+      
+
+      
+      
+      <li>
+        <a href="index.html#overview">Overview</a>
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#module-chain">Module Chain</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#multiband-modules">Multiband Modules</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#crossovers">Crossovers</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#module-channel-processing-modes">Module Channel Processing Modes</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#stereo-mode">Stereo Mode</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#mid/side-m/s-mode">Mid/Side (M/S) Mode</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#mid/side-metering">Mid/Side Metering</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#left/right-l/r-mode">Left/Right (L/R) Mode</a>
+
+          
+            
+          
+      
+    
+
+    
+    
+    
+
+  </ul>
+</nav>
+
+
+
+
+    
+
+	
+
+<h2 id="overview">Overview</h2>
+
+<p>There are a number of features shared across Ozone modules. This chapter defines these features and their respective workflows.</p>
+
+<h2 id="module-chain">Module Chain</h2>
+
+<p><img src="../images/common-module-controls/module-chain.png" alt="module chain" /></p>
+
+<p>The signal chain in Ozone allows up to 6 modules at at time. The module chain is not available in the component plug-ins.</p>
+
+<p>The following table outlines module chain options:</p>
+
+<table>
+<thead>
+<tr>
+<th>Icon</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><img src="../images/common-module-controls/add.png" alt="add" /></td>
+<td>Add</td>
+<td>When module slots are available, click on this space to view the module selection screen. Click on an available module in the module selection screen to add it to the module chain.</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/xbtn.png" alt="remove" /></td>
+<td>Remove</td>
+<td>Removes the associated module from the module chain.</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/modulepresetbtn.png" alt="module preset" /></td>
+<td>Module Preset</td>
+<td>Opens the Module Preset window. See the <a href="../preset-system/index.html#module-preset-system">Module Preset</a> section for more information.</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/solobtn.png" alt="solo" /></td>
+<td>Solo</td>
+<td>Auditions the processing of the associated module. When a module solo is enabled, all other module processing will be bypassed. Note that the global controls (I/O gain &amp; Auditioning controls) still affect the output when a module solo is enabled. You can Solo one module at a time.</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/powerbtn.png" alt="bypass" /></td>
+<td>Bypass</td>
+<td>Toggles the processing of the associated module on and off. You can bypass multiple modules simultaneously. When a module is bypassed, the module icon and name will be greyed out.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="multiband-modules">Multiband Modules</h2>
+
+<p>Ozone offers multiband processing in the following modules:</p>
+
+<ul>
+<li><a href="../dynamics/index.html">Dynamics</a></li>
+<li><a href="../exciter/index.html">Exciter</a></li>
+<li><a href="../imager/index.html">Imager</a></li>
+</ul>
+
+<p>Multiband Modules allow you to apply frequency dependent processing to your music. You can use up to 4 separate bands and adjust the crossovers by interacting with the handles in the minispectrum view.</p>
+
+<h2 id="crossovers">Crossovers</h2>
+
+<p>Multiband modules offer controls for adjusting and auditioning the crossover frequency bands in the crossover mini-spectrum metering view.</p>
+
+<p><img src="../images/common-module-controls/crossover.png" alt="crossover view" /></p>
+
+<h3 id="adjusting-crossover-cutoffs">Adjusting Crossover Cutoffs</h3>
+
+<p>The multiband crossover points can be manually adjusted in the crossover mini-spectrum view. Crossover cutoff points can be manually adjusted using the following methods:</p>
+
+<ul>
+<li><strong>CLICK &amp; DRAG CUTOFF HANDLES</strong> Crossover cutoffs can be adjusted by hovering over the white crossover handle, left-clicking and dragging the handle to the desired position. The cursor will change to display a left/right arrow icon when hovering over the adjustable crossover cutoff handle.</li>
+<li><strong>TEXT INPUT</strong> Double-clicking on a crossover cutoffs value readout (white text directly above the cutoff handle) will open an inline edit field. Type the desired frequency value for the crossover cutoff into this field and hit the Enter or Return key to update the value.</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><ul>
+<li>Crossover cutoff points are <em>not</em> shared across multiband modules. Adjusting a crossover point in one module will not affect the crossover points in other multiband modules.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="crossover-view-controls">Crossover View Controls</h3>
+
+<p>The following table outlines the common controls available in the multiband crossover view.</p>
+
+<table>
+<thead>
+<tr>
+<th>Icon</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><img src="../images/common-module-controls/b1byp.png" alt="bypb1" /> <img src="../images/common-module-controls/b2byp.png" alt="bypb2" /> <img src="../images/common-module-controls/b3byp.png" alt="bypb3" /> <img src="../images/common-module-controls/b4byp.png" alt="bypb4" /></td>
+<td>Band Power</td>
+<td>Toggles the processing of the associated band on and off. You can bypass multiple bands simultaneously. When a band is bypassed, the band power icon will appear greyed out.</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/b1solo.png" alt="sb1" /> <img src="../images/common-module-controls/b2solo.png" alt="sb2" /> <img src="../images/common-module-controls/b3solo.png" alt="sb3" /> <img src="../images/common-module-controls/b4solo.png" alt="sb4" /></td>
+<td>Band Solo</td>
+<td>Auditions the output of the associated band. You can solo multiple bands simultaneously. When a band solo is not active, the associated solo button will appear greyed out.</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/minusbtn.png" alt="Remove" /></td>
+<td>Remove Band</td>
+<td>Clicking the x button will remove a band. Note: the band will be removed from right to left.</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/plusbtn.png" alt="Add" /></td>
+<td>Add Band</td>
+<td>Clicking the + button will insert a new band. Note multiband modules support up to 4 bands of processing.</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/crossoverlearn.png" alt="Learn" /></td>
+<td>Learn</td>
+<td>When enabled, the crossover points will be automatically adjusted based on the incoming audio. See the &ldquo;Crossover Learn&rdquo; section below for more information.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">Tip: Soloing bands</p>
+<p><ul>
+<li>You can Solo the dry output (pre-processing) of a frequency band by bypassing and soloing the band at the same time. This can be useful for auditioning the affect of an individual band&rsquo;s processing.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="crossover-learn">Crossover Learn</h3>
+
+<p>Ozone multiband modules include an innovative Learn function for determining crossover points. When enabled, the Crossover Learn function will search for natural crossover cutoff points for frequency bands using a few criteria, including identifying minima in the frequency spectrum of the incoming audio.</p>
+
+<p>When the Learn function is active the button will turn blue. When it has determined the ideal values for the crossover cutoffs, it will turn itself off automatically. You can also manually disable learning when it is active by clicking the Learn button again.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Crossover Learn Notes</p>
+<p><ul>
+<li>For crossover learning to behave as expected, the module must be receiving audio input while Learn is engaged.</li>
+<li>The Crossover Learn button is only available in the crossover mini-spectrum view of multiband capable modules.</li>
+<li>The Learn button will not appear in the crossover mini-spectrum view if only one band is enabled in a multiband capable module.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="crossover-context-menu-options">Crossover Context Menu Options</h3>
+
+<p>Right-clicking (or Option+Left-clicking) on the crossover spectrum view in multiband modules will expose the following options in a context menu:</p>
+
+<p><img src="../images/common-module-controls/context.png" alt="context menu" /></p>
+
+<ul>
+<li><strong>INSERT BAND:</strong> Adds a band to the current multiband module. You can add up to 4 bands in each multiband module.
+
+<ul>
+<li>When adding bands using the context menu &lsquo;Insert Band&rsquo; option, the crossover point will be placed at the point in the spectrum you right-clicked on.</li>
+<li><strong>Note:</strong> If a crossover exists at the point you right-clicked on, the new crossover cutoff will be placed to the right of the existing cutoff.</li>
+</ul></li>
+<li><strong>REMOVE BAND:</strong> Removes a band from the current multiband module.
+
+<ul>
+<li>When removing bands using the &lsquo;Remove Band&rsquo; context menu option, the <em>first</em> crossover point to the <em>right</em> of where you right-clicked will be removed.</li>
+</ul></li>
+<li><strong>COPY:</strong> Copies the settings of the band that was right-clicked on to the clipboard.</li>
+<li><strong>PASTE:</strong> Pastes relevant band settings from the clipboard to the band that was right-clicked on.
+
+<ul>
+<li><strong>Note:</strong> You can only paste band settings that were copied from the same multiband module.</li>
+</ul></li>
+<li><strong>SPECTRUM OPTIONS:</strong> Navigates to the Ozone Spectrum Options tab.</li>
+<li><strong>CROSSOVER OPTIONS:</strong> Navigates to the Crossover Options tab for the current module. For more information on the different Crossover Types, see the following section.</li>
+</ul>
+
+<h3 id="crossover-types">Crossover Types</h3>
+
+<p>Each multiband module has independently configurable crossover types. You can change the crossover type used by a given module in the Options menu.</p>
+
+<p>Each multiband module offers the following crossover types:</p>
+
+<ul>
+<li><strong>ANALOG:</strong> The analog crossover option provides a natural character reminiscent of filter slopes in analog equipment.</li>
+<li><strong>HYBRID:</strong> This perfect reconstruction <strong>IIR</strong> (<em>Infinite Impulse Response</em>) analog crossover is designed to reduce phase distortion and frequency distortion found in other analog crossovers while maintaining precise crossover points and the warm characteristics of analog crossovers.</li>
+<li><strong>DIGITAL:</strong> Ozone 3 first introduced the option of digital linear-phase crossovers. These provide a more accurate and transparent sound.</li>
+</ul>
+
+<h4 id="digital-crossover-options">Digital Crossover Options</h4>
+
+<p>When the Digital Crossover Type is selected, the following options also become available:</p>
+
+<ul>
+<li><strong>CROSSOVER BUFFER SIZE:</strong> Sets the buffer size for the digital crossover. See Buffer Sizes for more info.</li>
+<li><strong>CROSSOVER Q:</strong> You can adjust the bandwidth, or Q, of the crossover filters with this control. A higher Q results in tighter crossovers, while a lower Q provides a more gradual transition from one band to the next. This is only available for the digital crossover.</li>
+</ul>
+
+<h2 id="module-channel-processing-modes">Module Channel Processing Modes</h2>
+
+<p>Ozone offers different processing modes that determine how processing is applied in a given module. When a module supports more than one processing mode, processing mode options will appear on the left hand side of the module control area.</p>
+
+<p>The following Ozone modules offer different module channel processing options:</p>
+
+<table>
+<thead>
+<tr>
+<th>MODULE</th>
+<th>STEREO</th>
+<th>M/S</th>
+<th>L/R</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="../dynamics/index.html">Dynamics</a></td>
+<td>YES</td>
+<td>YES</td>
+<td>NO</td>
+</tr>
+
+<tr>
+<td><a href="../dynamic-eq/index.html">Dynamic EQ</a></td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+
+<tr>
+<td><a href="../equalizer/index.html">EQ</a></td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+
+<tr>
+<td><a href="../exciter/index.html">Exciter</a></td>
+<td>YES</td>
+<td>YES</td>
+<td>NO</td>
+</tr>
+
+<tr>
+<td><a href="../spectral-shaper/index.html">Spectral Shaper</a></td>
+<td>YES</td>
+<td>YES</td>
+<td>NO</td>
+</tr>
+
+<tr>
+<td><a href="../vintage-compressor/index.html">Vintage Compressor</a></td>
+<td>YES</td>
+<td>YES</td>
+<td>NO</td>
+</tr>
+
+<tr>
+<td><a href="../vintage-eq/index.html">Vintage EQ</a></td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="stereo-mode">Stereo Mode</h2>
+
+<p>Stereo mode is the default processing mode for all modules. This also applies to modules that do not offer explicit Mid/Side or Left/Right processing options.</p>
+
+<p><img src="../images/common-module-controls/stereo-selected.png" alt="Processing modes Stereo selected" /></p>
+
+<p>When Stereo mode is selected, one set of controls will be available for processing in the selected module.</p>
+
+<h2 id="mid-side-m-s-mode">Mid/Side (M/S) Mode</h2>
+
+<p>Mid/Side processing is enabled by selecting the M-S processing mode button on the left side of the module control area.</p>
+
+<p><img src="../images/common-module-controls/m-s-controls.png" alt="Processing modes MS selected" /></p>
+
+<div class="admonition note">
+<p class="admonition-title">Mid/Side Processing Examples</p>
+<p>For more information about Mid/Side processing, see the <a href="../tips-and-examples/index.html#mid-side-processing-examples">Tips &amp; Examples</a> chapter.</p>
+</div>
+
+<h3 id="mid-side-encoding-decoding">Mid/Side Encoding &amp; Decoding</h3>
+
+<p>When Mid/Side mode is enabled, the input signal to the module is encoded into a Mid/Side configuration. After processing in Mid/Side mode, the signal is decoded from Mid/Side to Stereo at the output of the module.</p>
+
+<ul>
+<li><strong>Mid Channel Encoding:</strong> The encoded Mid channel signal represents the phantom image between left &amp; right speakers, or the center channel of the input audio.</li>
+<li><strong>Side Channel Encoding:</strong> The encoded Side channel signal represents the sides (or edges) of the input audio.</li>
+</ul>
+
+<h3 id="independent-mid-side-control-adjustments">Independent Mid &amp; Side Control Adjustments</h3>
+
+<p>Selecting Mid/Side mode will expose two unique sets of parameters for processing. One set of parameters applies processing to the encoded Mid channel and the second set of parameters applies processing to the encoded Side channel.</p>
+
+<h4 id="mid-channel-controls">Mid Channel Controls</h4>
+
+<ul>
+<li><strong>View &amp; Adjust Mid Channel Controls</strong> Select the &ldquo;Mid&rdquo; button to independently view and adjust the parameters that affect the Mid channel processing of the active module.</li>
+<li><strong>Bypass Mid Channel Processing</strong> Deselect the power button above the Mid channel selector to Bypass the Mid channel processing.</li>
+<li><strong>Solo Mid Channel Processing</strong> Select the &rsquo;S&rsquo; button above the Mid channel selector to solo the module&rsquo;s Mid channel processing.</li>
+</ul>
+
+<h4 id="side-channel-controls">Side Channel Controls</h4>
+
+<ul>
+<li><strong>View &amp; Adjust Side Channel Controls</strong> Select the &ldquo;Side&rdquo; button to independently view and adjust the parameters that affect the Side channel processing in the active module.</li>
+<li><strong>Bypass Side Channel Processing</strong> Deselect the power button below the Side channel selector to Bypass the Side channel processing.</li>
+<li><strong>Solo Side Channel Processing</strong> Select the &rsquo;S&rsquo; button below the Side channel selector to solo the module&rsquo;s Side channel processing.</li>
+</ul>
+
+<h3 id="linked-mid-side-control-adjustments">Linked Mid/Side Control Adjustments</h3>
+
+<p>You can easily link Mid &amp; Side controls by enabling the &lsquo;Link&rsquo; button between the Mid &amp; Side selection buttons.
+When Link is enabled, parameter adjustments in the Mid channel will adjust the corresponding Side channel parameter and vice versa.</p>
+
+<div class="admonition note">
+<p class="admonition-title">More information: Relative Parameter Linking</p>
+<p>See the <a href="../tips-and-examples/index.html#relative-parameter-linking">Tips &amp; Examples</a> chapter for more information about parameter linking in Ozone.</p>
+</div>
+
+<h2 id="mid-side-metering">Mid/Side Metering</h2>
+
+<p>Ozone&rsquo;s I/O meters display Stereo information by default. To change the Input/Output meters to display Mid/Side metering information, click on the I/O button above the I/O meters and change &ldquo;Source&rdquo; selection to Mid/Side.</p>
+
+<p><img src="../images/common-module-controls/mid-side.png" alt="Mid/Side Source Meter" /></p>
+
+<p>When the I/O meters are in Mid/Side mode, the meter in the center represents the Mid channel level information and the meters on the left and right represents Side channel level information. The left and right gain sliders control the left and right gain of your signal, regardless of the Meter Source selection.</p>
+
+<h2 id="left-right-l-r-mode">Left/Right (L/R) Mode</h2>
+
+<p>Left/Right processing is enabled by selecting the L-R processing mode button on the left side of the module control area.</p>
+
+<p><img src="../images/common-module-controls/l-r-selected.png" alt="Processing modes LR selected" /></p>
+
+<p>When enabled, the input signal to the module is split into two processing channels, Left &amp; Right. The signal is &lsquo;summed&rsquo; back to Stereo at the module&rsquo;s output.</p>
+
+<h3 id="independent-left-right-control-adjustments">Independent Left &amp; Right Control Adjustments</h3>
+
+<p>Selecting Left/Right mode will expose two unique sets of parameters for processing. One set of parameters applies processing to the Left channel and the second set of parameters applies processing to the Right channel.</p>
+
+<h4 id="left-channel-controls">Left Channel Controls</h4>
+
+<ul>
+<li><strong>View &amp; Adjust Left Channel Controls</strong> Select the &ldquo;Left&rdquo; button to independently view and adjust the parameters that affect the Left channel processing of the active module.</li>
+<li><strong>Bypass Left Channel Processing</strong> Deselect the power button above the Left channel selector to Bypass the Left channel processing.</li>
+<li><strong>Solo Left Channel Processing</strong> Select the &rsquo;S&rsquo; button above the Left channel selector to solo the module&rsquo;s Left channel processing.</li>
+</ul>
+
+<h4 id="right-channel-controls">Right Channel Controls</h4>
+
+<ul>
+<li><strong>View &amp; Adjust Right Channel Controls</strong> Select the &ldquo;Right&rdquo; button to independently view and adjust the parameters that affect the Right channel processing of the active module.</li>
+<li><strong>Bypass Right Channel Processing</strong> Deselect the power button below the Right channel selector to Bypass the Right channel processing.</li>
+<li><strong>Solo Right Channel Processing</strong> Select the &rsquo;S&rsquo; button above the Right channel selector to solo the module&rsquo;s Right channel processing.</li>
+</ul>
+
+<h3 id="linked-left-right-control-adjustments">Linked Left/Right Control Adjustments</h3>
+
+<p>You can easily link Left &amp; Right controls by enabling the &lsquo;Link&rsquo; button between the Left &amp; Right selection buttons.</p>
+
+<p>When Link is enabled, parameter adjustments in the Left channel will adjust the corresponding Right channel parameter and vice versa.</p>
+
+<div class="admonition note">
+<p class="admonition-title">More information: Relative Parameter Linking</p>
+<p>See the <a href="../tips-and-examples/index.html#relative-parameter-linking">Tips &amp; Examples</a> chapter for more information about parameter linking in Ozone.</p>
+</div>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../general-functions/index.html" title="General Functions">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              General Functions
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../dynamics/index.html" title="Dynamics">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Dynamics
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../ja/common-module-controls/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8 Help Documentation 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

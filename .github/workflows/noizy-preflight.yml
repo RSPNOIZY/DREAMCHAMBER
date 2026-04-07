@@ -1,0 +1,174 @@
+name: NOIZY Pre-Flight Gate
+
+# Hard gate: runs on every PR + push to main
+# ALL checks must pass before ANY deploy proceeds
+# Doctrine: Protocol > Promises. Inventory before deploy.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  preflight:
+    name: Pre-Flight Gate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # ── GATE 1: Config format check ────────────────────────────────────────
+      - name: "GATE 1 — Config Format"
+        run: |
+          echo "Checking Wrangler config format..."
+          # Heaven: root wrangler.toml must exist and have valid name
+          if [ ! -f "wrangler.toml" ]; then echo "❌ Root wrangler.toml missing"; exit 1; fi
+          grep -q 'name = "heaven"' wrangler.toml && echo "✅ heaven worker name OK" || (echo "❌ heaven worker name mismatch"; exit 1)
+          # consent-gateway: wrangler.jsonc preferred
+          if [ -f "workers/consent-gateway/wrangler.jsonc" ]; then
+            echo "✅ consent-gateway: wrangler.jsonc present (preferred format)"
+          else
+            echo "⚠️ consent-gateway: wrangler.jsonc missing — falling back to wrangler.toml"
+            [ -f "workers/consent-gateway/wrangler.toml" ] || (echo "❌ No wrangler config for consent-gateway"; exit 1)
+          fi
+
+      # ── GATE 2: Placeholder scan ───────────────────────────────────────────
+      - name: "GATE 2 — Placeholder Scan"
+        run: |
+          echo "Scanning for placeholder IDs..."
+          HITS=$(grep -rn "PLACEHOLDER\|REPLACE_WITH\|REPLACE_ME\|TODO_ID\|YOUR_ACCOUNT_ID" \
+            workers/ --include="*.toml" --include="*.jsonc" --include="*.json" \
+            --exclude-dir=node_modules 2>/dev/null || echo "")
+          if [ -n "$HITS" ]; then
+            echo "❌ Placeholder IDs found:"
+            echo "$HITS"
+            exit 1
+          fi
+          echo "✅ No placeholder IDs"
+
+      # ── GATE 3: Entrypoint existence ───────────────────────────────────────
+      - name: "GATE 3 — Entrypoint Files Exist"
+        run: |
+          fail=0
+          check() { [ -f "$1" ] && echo "✅ $1" || (echo "❌ MISSING: $1"; fail=1); }
+          check "src/index.js"                                    # Heaven (canonical)
+          check "workers/consent-gateway/index.ts"               # consent-gateway (wrangler.jsonc main)
+          check "workers/cb01-router/src/index.js"               # cb01-router
+          [ $fail -eq 0 ] || exit 1
+
+      # ── GATE 4: Consent-gateway tests ─────────────────────────────────────
+      - name: Install consent-gateway deps
+        working-directory: workers/consent-gateway
+        run: npm ci
+
+      - name: "GATE 4a — Consent Gateway Tests"
+        working-directory: workers/consent-gateway
+        run: |
+          npm test
+          echo "✅ consent-gateway: all tests pass"
+
+      # ── GATE 5: cb01-router tests ──────────────────────────────────────────
+      - name: Install cb01-router deps
+        working-directory: workers/cb01-router
+        run: npm ci
+
+      - name: "GATE 5a — CB01 Router Tests"
+        working-directory: workers/cb01-router
+        run: |
+          npm test
+          echo "✅ cb01-router: all tests pass"
+
+      # ── GATE 6: Auth/authz contract verification ───────────────────────────
+      - name: "GATE 6 — Auth Contract Assertions"
+        run: |
+          echo "Verifying 401/403 split in consent-gateway source..."
+          # 401 must appear in auth gate
+          grep -n "401" workers/consent-gateway/src/index.js | grep -q "Unauthorized" && \
+            echo "✅ 401 unauthorized present" || (echo "❌ 401 Unauthorized not found in source"; exit 1)
+          # 403 must appear for revoke authorization
+          grep -n "403" workers/consent-gateway/src/index.js | grep -q "authorized\|Not authorized" && \
+            echo "✅ 403 forbidden present" || (echo "❌ 403 authorization check not found"; exit 1)
+          # /status must NOT return never_clauses or events
+          grep -n "never_clauses\|revokeReason\|audit_history" workers/consent-gateway/src/index.js | \
+            grep -v "#\|//\|sanitized\|DO NOT" && (echo "❌ Status may leak sensitive fields"; exit 1) || \
+            echo "✅ Status sanitization looks clean"
+
+      # ── GATE 7: Proof bundle generation ───────────────────────────────────
+      - name: "GATE 7 — Generate Proof Bundle"
+        env:
+          PROOF_GIT_SHA: ${{ github.sha }}
+          PROOF_GIT_REF: ${{ github.ref_name }}
+          PROOF_RUN_ID: ${{ github.run_id }}
+          PROOF_ENVIRONMENT: "ci"
+        run: |
+          mkdir -p artifacts/proof
+          node - <<'EOF'
+          const { createHash } = require("crypto");
+          const fs = require("fs");
+          const sha = s => createHash("sha256").update(s).digest("hex").slice(0,16);
+          const contract = {
+            consent_gateway: { public:["/health"], protected:["/verify","/revoke","/status/:id"], auth:"401/403" },
+            cb01_router: { forwards:"full-path-intact", strips_nothing: true },
+            heaven: { version: "17.7.0", webhooks: "live" }
+          };
+          const governance = {
+            plowman_standard: "75/25 creator split",
+            ncp_protocol: "consent as executable code",
+            revocation_is_sacred: true,
+            status_is_sanitized: true
+          };
+          const bundle = {
+            proof_bundle: {
+              version:"1.1", generated_at:new Date().toISOString(),
+              git_sha:process.env.PROOF_GIT_SHA, git_ref:process.env.PROOF_GIT_REF,
+              run_id:process.env.PROOF_RUN_ID, environment:process.env.PROOF_ENVIRONMENT
+            },
+            routing_contract: contract, governance_claims: governance,
+            checksums: { routing: sha(JSON.stringify(contract)), governance: sha(JSON.stringify(governance)) }
+          };
+          bundle.proof_bundle.bundle_hash = sha(JSON.stringify(bundle.checksums));
+          fs.writeFileSync("artifacts/proof/preflight.json", JSON.stringify(bundle, null, 2));
+          console.log("✅ Proof bundle:", bundle.proof_bundle.bundle_hash);
+          EOF
+
+      - name: Upload Proof Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: "noizy-proof-${{ github.sha }}"
+          path: artifacts/proof/preflight.json
+          retention-days: 90
+
+      # ── GATE 8: Observability check ────────────────────────────────────────
+      - name: "GATE 8 — Observability Config"
+        run: |
+          grep -q "observability" wrangler.toml && echo "✅ Heaven: observability enabled" || \
+            echo "⚠️ Heaven: observability not configured"
+          grep -q "observability" workers/consent-gateway/wrangler.jsonc 2>/dev/null && \
+            echo "✅ consent-gateway: observability enabled" || \
+            grep -q "observability" workers/consent-gateway/wrangler.toml 2>/dev/null && \
+            echo "✅ consent-gateway: observability enabled" || \
+            echo "⚠️ consent-gateway: observability not found"
+
+      # ── FINAL GATE ────────────────────────────────────────────────────────
+      - name: "FINAL — Pre-Flight PASS"
+        run: |
+          echo ""
+          echo "╔════════════════════════════════════════════════╗"
+          echo "║  NOIZY PRE-FLIGHT: ALL GATES PASSED           ║"
+          echo "║  Safe to proceed to deploy workflow           ║"
+          echo "╚════════════════════════════════════════════════╝"
+          echo ""
+          echo "Commit: ${{ github.sha }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Actor:  ${{ github.actor }}"

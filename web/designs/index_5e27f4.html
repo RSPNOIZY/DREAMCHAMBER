@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="ja"><![endif]--><!--[if IE 7 ]><html class="no-js ie7" lang="ja"><![endif]--><!--[if IE 8 ]><html class="no-js ie8" lang="ja"><![endif]--><!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>ゲート (Gate) - Neutron 3 Help Documentation</title>
+<meta name="generator" content="Hugo 0.58.0" />
+
+<meta name="description" content="Neutron 3 Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Neutron 3 Help Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/ja/gate/index.html">
+<meta property="og:title" content="Neutron 3 Help Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+      <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  <link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/style-overrides.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-33', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+<body class="palette-primary-neutron3 palette-accent-neutron3">
+  <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html">
+          <img src="../images/header.svg" alt="Neutron 3 docs header image"
+                 width="200px" height="50px"> ゲート (Gate)</a>
+          </div>
+      </div>
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+<div class="drawer">
+  <nav aria-label="Navigation">
+<form action="../search/index.html"><div class="group">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+  </form>
+</nav>
+  <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+    <a title="はじめに" href="../index.html"><span class=""></span>  はじめに</a>
+</li>
+<li>
+    <a title="さあ、始めましょう" href="../getting-started/index.html"><span class=""></span>  さあ、始めましょう</a>
+</li>
+<li>
+    <a title="全般的な操作項目" href="../general-controls/index.html"><span class=""></span>  全般的な操作項目</a>
+</li>
+<li>
+    <a title="アシスタント機能" href="../assistants/index.html"><span class=""></span>  アシスタント機能</a>
+</li>
+<li>
+    <a class="current"title="ゲート" href="index.html"><span class=""></span>  ゲート</a>
+<ul id="scrollspy">
+</ul>
+</li>
+<li>
+    <a title="イコライザー" href="../equalizer/index.html"><span class=""></span>  イコライザー</a>
+</li>
+<li>
+    <a title="マスキング・メーター" href="../masking-meter/index.html"><span class=""></span>  マスキング・メーター</a>
+</li>
+<li>
+    <a title="コンプレッサー" href="../compressor/index.html"><span class=""></span>  コンプレッサー</a>
+</li>
+<li>
+    <a title="トランジェント・シェイパー" href="../transient-shaper/index.html"><span class=""></span>  トランジェント・シェイパー</a>
+</li>
+<li>
+    <a title="エキサイター" href="../exciter/index.html"><span class=""></span>  エキサイター</a>
+</li>
+<li>
+    <a title="スカルプター" href="../sculptor/index.html"><span class=""></span>  スカルプター</a>
+</li>
+<li>
+    <a title="ヴィジュアル・ミキサー" href="../visual-mixer/index.html"><span class=""></span>  ヴィジュアル・ミキサー</a>
+</li>
+<li>
+    <a title="リレイ" href="../relay/index.html"><span class=""></span>  リレイ</a>
+</li>
+<li>
+    <a title="プリセット" href="../presets/index.html"><span class=""></span>  プリセット</a>
+</li>
+<li>
+    <a title="オプション" href="../options/index.html"><span class=""></span>  オプション</a>
+</li>
+<li>
+    <a title="用語集" href="../glossary/index.html"><span class=""></span>  用語集</a>
+</li>
+<li>
+    <a title="カスタマー・ケア" href="../customer-care/index.html"><span class=""></span>  カスタマー・ケア</a>
+</li>
+<li>
+    <a title="ライセンス情報" href="../license-information/index.html"><span class=""></span>  ライセンス情報</a>
+</li>
+<li>
+    <a title="エンドユーザー向け使用許諾契約" href="../eula/index.html"><span class=""></span>  エンドユーザー向け使用許諾契約</a>
+</li>
+</ul>
+      <hr />
+<span class="section">iZotopeと接続する</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+<li>
+    <a href="https://www.izotope.com/en/products/mix/neutron.html" target="_blank" title="iZotope Product Page"><span class="icon icon-sphere"></span>  iZotope.com</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a>
+  </li>
+</ul>
+<hr /><ul>
+  <li>
+<a href="../../en/gate/index.html"><i class="icon icon-eye"></i>View page in English</a>
+</li>
+</ul></div>
+  </div>
+</div>
+</div>
+<article class="article">
+    <div class="wrapper">
+
+      
+
+<h1>ゲート (Gate) </h1>
+<div class="lang-btn-box">
+<a class="lang-btn clickable" href="../../en/gate/index.html">English</a>
+<a class="lang-btn active" href="../../en/gate/index.html">日本語</a>
+</div>
+
+
+
+<h2 id="概要">概要</h2>
+
+<p>Gateモジュールは、入力信号がThresholdを下回った時に、不必要な音を除去、または減衰させます。</p>
+
+<h2 id="モジュール-インターフェイス">モジュール・インターフェイス</h2>
+
+<figure ><img src="../images/gate/module-interface.png" alt="Gate Module Interface" /></figure>
+
+<p>Gateモジュールの操作項目と機能は以下の通りです。</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>番号</strong></th>
+<th><strong>セクション</strong></th>
+<th><strong>操作項目と機能</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label 1 Gate Meters and Displays" /></figure></td>
+<td>メーターとディスプレイ</td>
+<td><a href="index.html#波形ディスプレイ">波形ディスプレイ</a>、<a href="index.html#ゲイン-リダクション-トレース">ゲイン・リダクション・トレース</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label 2 Gate Module Header" /></figure></td>
+<td>モジュール・ヘッダー</td>
+<td><a href="index.html#マルチバンド-クロスオーバー-スペクトラム-ビュー">マルチバンド・クロスオーバー・スペクトラム・ビュー</a>、<a href="index.html#検出フィルター-ビュー">検出フィルター・ビュー</a>、<a href="index.html#learn-学習機能">Learn（学習機能）</a>, <a href="index.html#reset-リセット">Reset（リセット）</a>, <a href="index.html#lfe-低域効果音">LFE（低域効果音）</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="Label 3 Gate Threshold Controls" /></figure></td>
+<td>インタラクティブ・コントロール</td>
+<td><a href="index.html#open-threshold-オープン-スレッショルド">Open Threshold（オープン・スレッショルド）</a>、<a href="index.html#close-threshold-クローズ-スレッショルド">Close Threshold（クローズ・スレッショルド）</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-4.png" alt="Label 4 Gate HUD" /></figure></td>
+<td>HUDの操作項目</td>
+<td><a href="index.html#ratio-レシオ">Ratio（レシオ）</a>、<a href="index.html#attack-アタック">Attack（アタック）</a>、<a href="index.html#hold-ホールド">Hold（ホールド）</a>、<a href="index.html#release-リリース">Release（リリース）</a>、<a href="index.html#gain-reduction-meter-ゲイン-リダクション-メーター">Gain Reduction Meter（ゲイン・リダクション・メーター）</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-5.png" alt="Label 5 Gate Advanced panel" /></figure></td>
+<td>アドバンスト・パネル</td>
+<td><a href="index.html#sidechain-サイドチェーン">Sidechain（サイドチェーン）</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="メーターとディスプレイ">メーターとディスプレイ</h2>
+
+<p>メーターとディスプレイは、Gateモジュールが入力信号に対してどのように反応/処理するかを表示します。</p>
+
+<figure ><img src="../images/gate/meters-displays.png" alt="Meters and Displays" /></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>番号</strong></th>
+<th><strong>セクション</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1 Waveform Displays" /></figure></td>
+<td><a href="index.html#波形ディスプレイ">波形ディスプレイ</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2 Gain Reduction Trace" /></figure></td>
+<td><a href="index.html#ゲイン-リダクション-トレース">ゲイン・リダクション・トレース</a></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="波形ディスプレイ">波形ディスプレイ</h3>
+
+<ul>
+<li><strong>波形のスクロール表示</strong>: 入力信号と出力信号のゲインを時間的に表示します。メーターは右から左にスクロールしま
+す（最新情報は右側に表示）。
+
+<ul>
+<li><strong>入力信号の波形</strong>:出力信号の波形の背景に<strong>ダークグレー</strong>で表示されます。</li>
+<li><strong>出力信号の波形</strong>:入力信号の波形の前に<strong>ライトグレー</strong>で表示されます。 信号がゲートされた時、入力信号とゲ
+イン・リダクションが適用された出力信号の違いを確認することができます。</li>
+</ul></li>
+</ul>
+
+<h3 id="ゲイン-リダクション-トレース">ゲイン・リダクション・トレース</h3>
+
+<p>選択されたバンドに提供されたゲイン・リダクションの量を時間的に線で表示します。**ゲイン・リダクション・トレース
+**を確認しながら、AttackやReleaseを調節してください。</p>
+
+<hr />
+
+<h2 id="モジュール-ヘッダー">モジュール・ヘッダー</h2>
+
+<p>Gateモジュールを全体的に調節する操作項目が表示されています。</p>
+
+<figure ><img src="../images/gate/module-header.png" alt="Gate Module Header Controls" /></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>番号</strong></th>
+<th><strong>セクション</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1 Multiband Crossover Spectrum View" /></figure></td>
+<td><a href="index.html#マルチバンド-クロスオーバー-スペクトラム-ビュー">マルチバンド・クロスオーバー・スペクトラム・ビュー</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2 Detection Filter View" /></figure></td>
+<td><a href="index.html#検出フィルター-ビュー">検出フィルター・ビュー</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="Label-3 Learn" /></figure></td>
+<td><a href="index.html#learn-学習機能">Learn（学習機能）</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-4.png" alt="Label-4 Reset" /></figure></td>
+<td><a href="index.html#reset-リセット">Reset（リセット）</a></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="マルチバンド-クロスオーバー-スペクトラム-ビュー">マルチバンド・クロスオーバー・スペクトラム・ビュー</h3>
+
+<p>マルチバンド・クロスオーバー・スペクトラム・ビューにアクセスします。詳細については、全体的な操作項目のページで
+<a href="../general-controls/index.html#マルチバンド-クロスオーバー-スペクトラム-ビュー">マルチバンド・クロスオーバー・スペクトラム・ビュー</a>
+のセクションをご覧ください。</p>
+
+<h3 id="検出フィルター-ビュー">検出フィルター・ビュー</h3>
+
+<p>検出フィルター・ビューにアクセスします詳細については、
+<a href="../general-controls/index.html#検出フィルター-ビュー"><strong>検出フィルター・ビュー</strong></a>のセクションをご覧ください。</p>
+
+<h3 id="learn-学習機能">Learn（学習機能）</h3>
+
+<p>Neutronにはクロスオーバー・ポイントを解析する革新的な Learn機能（学習機能）があります。Learnボタンをクリックす
+ると、オーディオの周波数スペクトラムから複数の最低値を特定するなどの基準に基づいて、自然なクロスオーバー・ポイ
+ントを探し始めます。最適なクロスオーバー・ポイントが確定されるとLearnボタンは自動でオフになります。Learn機能が
+動作している最中でも、Learnボタンを再度クリックすることで中止できます。</p>
+
+<h3 id="reset-リセット">Reset（リセット）</h3>
+
+<p><strong>Reset</strong>ボタンをクリックすると、Gateモジュールにおける全ての操作項目が初期設定に戻されます。ここからリセット
+前に使用していた設定に戻したい場合は、編集履歴のウインドウで履歴リストからリセット前の項目を選択します。</p>
+
+<h3 id="lfe-低域効果音">LFE（低域効果音）</h3>
+
+<p><strong>LFE</strong>ボタンは、LFE チャンネルを含むサラウンド・トラック (5.1 または 7.1など) で Neutron3 Advancedマザーシッ
+プ・プラグインを挿入した場合のみ表示されます。LFEを無効にすると、LFEチャンネルにおける全てのオーディオ情報は、
+レイテンシー補正されながら、未処理の状態でモジュールを通過します。詳細については、
+<a href="../general-controls/index.html#lfe-low-frequency-effects-低域効果音">LFE</a> のセクションをご覧ください。</p>
+
+<hr />
+
+<h2 id="操作項目">操作項目</h2>
+
+<p>ゲートの操作は <a href="index.html#open-threshold-オープン-スレッショルド">Open Threshold(オープン・スレッショルド)</a>と
+<a href="index.html#close-threshold-クローズ-スレッショルド">Close Threshold (クローズ・スレッショルド)</a>で行います。
+Thresholdのハンドルをクリック＆ドラッグして調節してください。</p>
+
+<figure ><img src="../images/gate/open-close.png" alt="Gate Open/Close Controls" /></figure>
+
+<h3 id="open-threshold-オープン-スレッショルド">Open Threshold (オープン・スレッショルド)</h3>
+
+<p>ゲートが開いて信号が通過するレベルを設定します。入力信号がOpen Thresholdを超えた時、ゲートが開いて信号が通過し
+ます（音の減衰がストップ）。</p>
+
+<h3 id="close-threshold-クローズ-スレッショルド">Close Threshold (クローズ・スレッショルド)</h3>
+
+<p>Open thresholdレベルよりも下に配置し、ゲートが閉じるレベルを設定します。これをヒステリシスとも呼びます。入力信
+号がClose thresholdを下回った時、音が減衰します。</p>
+
+<h4 id="close-thresholdの調節">Close Thresholdの調節</h4>
+
+<p>Close thresholdを<strong>上下に移動</strong>させることでゲートの微調整が可能です。Open thresholdよりも低い位置に設定するこ
+とで、トリガーとなるスレッショルドに影響をあたえることなく長めのディケイが得られます。</p>
+
+<div class="admonition tip">
+<p class="admonition-title">ヒント：ゲートのおかしな挙動を制御する</p>
+<p class="admonition-body">不必要な音がOpen Thresholdで設定したレベルに近い場合、Thresholdを頻繁に超えてしまうためにゲートがおかしな挙動
+を起こすことがあります。この挙動を抑えてくれるのがClose Thresholdです。信号がClose Thresholdを下回った時、Open
+Thresholdを改めて超える時までゲートを開きません。</p>
+</div>
+
+
+<h3 id="hudの操作項目">HUDの操作項目</h3>
+
+<p>GateモジュールのHUD（ヘッド・アップ・ディスプレイ）では以下の操作項目があります。</p>
+
+<ul>
+<li><a href="index.html#ratio-レシオ">Ratio（レシオ）</a></li>
+<li><a href="index.html#attack-アタック">Attack（アタック）</a></li>
+<li><a href="index.html#hold-ホールド">Hold（ホールド）</a></li>
+<li><a href="index.html#release-リリース">Release（リリース）</a></li>
+<li><a href="index.html#gain-reduction-meter-ゲイン-リダクション-メーター">Gain Reduction Meter（ゲイン・リダクション・メーター）</a></li>
+</ul>
+
+<figure ><img src="../images/gate/hud.png" alt="Gate HUD Controls" /></figure>
+
+<h3 id="ratio-レシオ">Ratio（レシオ）</h3>
+
+<p>入力信号がThresholdを下回った時に適用されるゲイン・リダクションの量を設定します。</p>
+
+<h3 id="attack-アタック">Attack（アタック）</h3>
+
+<p>入力信号がThresholdを上回った時に、ゲートが開くまでの時間（ミリ秒）を設定します。</p>
+
+<h3 id="hold-ホールド">Hold（ホールド）</h3>
+
+<p>ゲートが完全に開いた状態の時間（秒）を設定します。Holdの長さはReleaseタイムによって変化します。</p>
+
+<h3 id="release-リリース">Release（リリース）</h3>
+
+<p>入力信号がClose thresholdを下回ってからゲートが閉じるまでの時間（ミリ秒）を設定します。</p>
+
+<h3 id="gain-reduction-meter-ゲイン-リダクション-メーター">Gain Reduction Meter（ゲイン・リダクション・メーター）</h3>
+
+<p>信号に適用されるゲイン・リダクションの量(dB)を表示します。</p>
+
+<hr />
+
+<h2 id="アドバンスト-パネル">アドバンスト・パネル</h2>
+
+<p>Sidechain（サイドチェーン）の操作項目は、HUDのアドバンスト・パネルに収納されています。アドバンスト・パネルを開
+くには、HUDコントロールの右側に表示されている三角矢印マークをクリックしてください。</p>
+
+<figure ><img src="../images/gate/adv-hud.png" alt="Advanced HUD button" /></figure>
+
+<h3 id="sidechain-サイドチェーン">Sidechain（サイドチェーン）</h3>
+
+<p>Gateモジュールは、検出回路にルーティングされた別トラックからの信号でゲイン・リダクションを適用することもできま
+す。選択されたインターナル(Int.)、またはエクスターナル(Ext.)の入力信号がGateモジュールのトリガーとなります。サ
+イドチェーン処理を行うことで、トラック同士のバランスを取ることが可能になります。</p>
+
+<h4 id="sidechainを有効にする">Sidechainを有効にする</h4>
+
+<p>Sidechainボタンをオンにして、その下のドロップダウンメニューからインターナル(Int.)、またはエクスターナル(Ext.)
+のバンドを選択することができます。詳細は以下の通りです。</p>
+
+<ul>
+<li><strong>インターナル (Int.)</strong>:
+
+<ul>
+<li>Gateモジュールで設定されているバンドを選択します。</li>
+<li>インターナル・サイドチェーン・インプットは、別バンドのエネルギーをトリガーとして、選択しているバンドにゲイ
+ン・リダクションを適用します。例えば、低域のバンドがスレッショルドを超えた時に、ハイエンドを抑えることに
+よって、ローエンドにアクセントをつけることができます。</li>
+<li>インターナル・フル（Int Full）は、全バンドをトリガーとしてゲイン・リダクションを適用することができます。</li>
+</ul></li>
+<li><strong>エクスターナル (Ext.)</strong>:
+
+<ul>
+<li>別のトラックやバストラックを選択します。</li>
+<li>エクスターナル・サイドチェーン・インプットは、他のトラックとのバランスを取るための便利なオプションとなりま
+す。</li>
+<li>また、バンドを選択することで（例：Ext. Band 1）、Gateモジュールの特定のバンドだけにサイドチェーンをかける
+ことも可能です。</li>
+</ul></li>
+</ul>
+
+
+    </div>
+  </article>
+<footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../assistants/index.html" title="アシスタント機能 (Assistants)">
+        <span class="direction">前</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">アシスタント機能 (Assistants)</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../equalizer/index.html" title="イコライザー(Equalizer (EQ))">
+        <span class="direction">次</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">イコライザー(Equalizer (EQ))</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+<a href="../../en/gate/index.html"><i class="icon icon-eye"></i> View page in English</a>
+<br />
+&copy; 2019 iZotope, Inc. - Neutron 3.1.0
+  </div>
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </main>
+</body>
+</html>

@@ -1,0 +1,816 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="ja">
+  <head lang="ja">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>イメージャー - Ozone Elementsユーザーズマニュアル</title>
+    <meta name="generator" content="Hugo 0.33" />
+
+    
+    <meta name="description" content="Ozone Elements Help">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.izotopeozoneelementsdocs.com/ja/imager/">
+    <meta property="og:title" content="Ozone Elementsユーザーズマニュアル">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone Elementsユーザーズマニュアル">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg.html')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-18', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-18');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | イメージャー</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="はじめに" href="../index.html">
+	
+	はじめに
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="概要" href="../ozone-overview/index.html">
+	
+	概要
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イコライザー" href="../equalizer/index.html">
+	
+	イコライザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="イメージャー" href="index.html">
+	
+	イメージャー
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マキシマイザー" href="../maximizer/index.html">
+	
+	マキシマイザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マスターアシスタント" href="../master-assistant/index.html">
+	
+	マスターアシスタント
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プリセットシステム" href="../preset-system/index.html">
+	
+	プリセットシステム
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="全般的な機能" href="../general-functions/index.html">
+	
+	全般的な機能
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="標準的なモジュールの操作項目" href="../common-module-controls/index.html">
+	
+	標準的なモジュールの操作項目
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オプション" href="../options/index.html">
+	
+	オプション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プラグインのオートメーション" href="../plug-in-automation/index.html">
+	
+	プラグインのオートメーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ヒントと用例" href="../tips-and-examples/index.html">
+	
+	ヒントと用例
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーソリゼーション" href="../authorization/index.html">
+	
+	オーソリゼーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotopeカスタマーケアー" href="../customer-care/index.html">
+	
+	iZotopeカスタマーケアー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information (ライセンス情報)" href="../license-information/index.html">
+	
+	License Information (ライセンス情報)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA (エンドユーザー向け使用許諾契約)" href="../eula/index.html">
+	
+	EULA (エンドユーザー向け使用許諾契約)
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../en/imager/index.html"><i class="icon icon-eye"></i> View in English</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>イメージャー </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">言語:</span>
+<br />
+    
+
+       
+       <a href="../../en/imager/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+        <a href="../../en/imager/index.html"><button class="lang-btn-active">日本語</button></a>
+       
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+    
+
+	
+
+<h2 id="概要">概要</h2>
+
+<p>Ozoneのイメージャーモジュールはミックスのステレオ幅の調節ができます。</p>
+
+
+
+<figure >
+    
+        <img src="../images/imager/imager.png" alt="Imager Interface" />
+    
+    
+</figure>
+
+
+<h2 id="操作項目">操作項目</h2>
+
+<h3 id="width-幅">Width（幅）</h3>
+
+<p>イメージャーにより適用されるステレオ幅の分量を調整します。</p>
+
+<h3 id="enable-stereoize-ステレオ化の有効">Enable Stereoize（ステレオ化の有効）</h3>
+
+<p>ステレオライズ用スライダーのオン/オフをトグルします。</p>
+
+<h3 id="stereoize-amount-ステレオ化分量">Stereoize Amount（ステレオ化分量）</h3>
+
+<p>ステレオ幅スライダーと組み合わせてこの分量を調節することで、ステレオ効果の性質を操作することができます。このステレオ化効果は完全にモノ互換となっておりますので、オーディオにステレオ幅を持たせたとしても、不快な人口音を付加することなくモノとして再生することができます。ステレオ化効果はモノやステレオ幅の狭い録音素材に、自然な響きのするステレオ幅を加えることができます。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="vectorscope-ベクトロスコープ">Vectorscope（ベクトロスコープ）</h3>
+
+<p>ベクトロスコープで信号のステレオイメージを描写します。ここではイメージャーの信号チェーンにおける位置に関わらず、Ozoneの最終的な出力がモニターされます。このモジュールでステレオ音像の間隔を確認することができ、設定次第でその幅を狭めたり広げたりできます。ベクトロスコープには3種類の表示オプションがあり、これはスコープ下のタブで切り替えることができます:</p>
+
+<h3 id="polar-sample-vectorscope-両極サンプルベクトロスコープ">Polar Sample Vectorscope（両極サンプルベクトロスコープ）</h3>
+
+
+
+<figure >
+    
+        <img src="../images/imager/polar-sample.png" alt="Imager Lissajous Vectorscope" />
+    
+    
+</figure>
+
+
+<p>Polar Sample Vectorscopeはサンプル毎にドットをプロットしますが、極座標を基にした表示方法を採りますので、入力信号のステレオイメージをハイライトする上でより便利な機能です。45度以内に表示されるパターンは正相にあることを意味しますが、その45度線から外れたパターンは位相ずれを意味します。Polar Sample Vectorscopeでは履歴として表示される過去の点がゆっくりとフェードアウトします。直近の数秒間のオーディオ情報が表示され、データ点は徐々にフェードアウトして行きます。メーター上をリクリックすると、画面表示をリセットすることができます。</p>
+
+<h3 id="polar-level-vectorscope-両極レベルベクトロスコープ">Polar Level Vectorscope（両極レベルベクトロスコープ）</h3>
+
+
+
+<figure >
+    
+        <img src="../images/imager/polar-level.png" alt="Imager Polar Level Vectorscope" />
+    
+    
+</figure>
+
+
+<p>録音素材のステレオ熱量はPolar Level Vectorscopeで明確に表示されます。ここでは極座標に表示される点は平均サンプルとなります。光線の長さは振幅度合いを示しており、光線の角度でステレオ位置を表します。45度以内に表示される光線は同位相にあることを意味しますが、その45度線から外れたパターンは異相を意味します。Polar Level Vectorscopeでは時間に対し、プロットされた層が緩やかに縮まることで経緯が表示されます。層はベクトロスコープ中央に向かって縮まり、外郭部分をリアルタイム分析のためのスペースをとして確保します。</p>
+
+<h3 id="lissajous-vectorscope-リサージュベクトロスコープ">Lissajous Vectorscope（リサージュベクトロスコープ）</h3>
+
+
+
+<figure >
+    
+        <img src="../images/imager/lissajous.png" alt="Imager Lissajous Vectorscope" />
+    
+    
+</figure>
+
+
+<p>Polar Sample Vectorscope同様にLissajous Vectorscopeもサンプル毎に点をプロットしますが、全体が伝統的なオシロスコープのような表示画面となります。通常、Lissajous Vectorscopeは横ではなく縦に長いランダムのパターンでステレオ録音素材を表示します。 垂直方向の広がりは左右のチャンネルが似ていることを意味します（垂直の一本線で表示されるモノ信号に近いことを意味します）。水平方向のパターンは、2つのチャンネルに大きな違いがあることを意味しますので、モノ信号との互換性上の問題が発生する可能性があります。</p>
+
+<h3 id="correlation-meter-相関メーター">Correlation Meter（相関メーター）</h3>
+
+
+
+<figure >
+    
+        <img src="../images/imager/correlation-meter.png" alt="Imager Correlation Meter" />
+    
+    
+</figure>
+
+
+<p>相関メーターは左右のチャンネルの類似性（相関性）を+1/0/-1の垂直メーターで明示します。左右のチャンネルの類似性が高い程、メーターは最上部に近づきます。このため、左右のチャンネルが全く同じという極端な例では、相関性は+1となりメーターは一番上に振り切られた状態となります。左右のチャンネルの類似性が低いとメーターは下方へ振れます。例えば左右のチャンネルが完全に逆相という極端な例では、相関性は-1となり、メーターは底部まで振り切れます。</p>
+
+<h3 id="クリッピング">クリッピング</h3>
+
+<ul>
+<li>ベクトロスコープではクリップしたサンプルは赤で表示されます。</li>
+<li>ベクトロスコープをダブルクリックするとメーター表示をクリアすることができます。</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">位相相関メーターに関する注</p>
+<p><ul>
+<li>一般的には、このメーターの値は0から+1の間に収まります。下方に表示される場合、必ずしも問題というわけではありませんが、モノ互換に問題が生じる可能性が指摘できます。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="ミニメーター画面"><strong>ミニメーター画面</strong></h3>
+
+<h3 id="stereo-width-spectrum-ステレオ幅スペクトラム表示">Stereo Width Spectrum（ステレオ幅スペクトラム表示）</h3>
+
+
+
+<figure >
+    
+        <img src="../images/imager/hybrid-spectrum.png" alt="Imager Width Spectrum Meter" />
+    
+    
+</figure>
+
+
+<p>信号のステレオ幅がミラーリングされたハイブリッドのスペクトラム表示です。このメーターが使用できるのはイメージャーのみです。</p>
+
+<h3 id="correlation-trace-相関性トレース表示">Correlation Trace（相関性トレース表示）</h3>
+
+
+
+<figure >
+    
+        <img src="../images/imager/hybrid-spectrum.png" alt="Imager Correlation Trace" />
+    
+    
+</figure>
+
+
+<p>この表示オプションでは、スクロール形式で、画面に入力信号のステレオ相関性がリアルタイム表示されます。プラス数値（同位相）は水色で、マイナス数値（異相）は赤で表示されます。</p>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../equalizer/index.html" title="イコライザー">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              イコライザー
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../maximizer/index.html" title="マキシマイザー">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              マキシマイザー
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../en/imager/index.html"><i class="icon icon-eye"></i> View in English</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone Elementsヘルプドキュメント 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

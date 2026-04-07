@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY.ai — Curated Sound Experiences</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #070708;
+  --deep: #0C0C0E;
+  --surface: #121214;
+  --surface2: #191919;
+  --gold: #C8A97E;
+  --gold-light: #E2CAAA;
+  --gold-dim: rgba(200,169,126,0.18);
+  --text: #F0EAE0;
+  --muted: #7A7468;
+  --border: rgba(200,169,126,0.15);
+  --border-soft: rgba(240,234,224,0.06);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 30px 72px;
+  background: rgba(7,7,8,0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 400; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--text);
+}
+.nav-logo em { font-style: italic; color: var(--gold); }
+.nav-logo sup {
+  font-family: 'Jost', sans-serif;
+  font-size: 9px; font-weight: 300; letter-spacing: 0.15em;
+  color: var(--muted); vertical-align: super; margin-left: 1px;
+}
+.nav-links { display:flex; gap:44px; list-style:none; }
+.nav-links a {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); text-decoration:none; transition: color 0.3s; cursor: pointer;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-cta {
+  font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; border: 1px solid var(--gold);
+  color: var(--gold); background: none; padding: 11px 28px;
+  cursor: pointer; transition: all 0.3s;
+}
+.nav-cta:hover { background: var(--gold); color: var(--black); }
+
+/* ── PAGES ── */
+.page { display:none; min-height:100vh; }
+.page.active { display:block; animation: reveal 0.6s ease both; }
+@keyframes reveal { from { opacity:0; transform: translateY(18px); } to { opacity:1; transform:none; } }
+
+/* ═══════════════════════════
+   HOME
+═══════════════════════════ */
+#page-home {
+  position: relative; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 72px; overflow: hidden;
+}
+
+.home-bg {
+  position: absolute; inset: 0; pointer-events:none;
+}
+.home-bg-grain {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+.home-glow {
+  position:absolute; top: -200px; right: -200px;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(200,169,126,0.06) 0%, transparent 62%);
+}
+.home-line-v {
+  position:absolute; top:0; right: 240px; width:1px; height:100%;
+  background: linear-gradient(to bottom, transparent 0%, var(--border) 25%, var(--border) 75%, transparent 100%);
+}
+.home-line-h {
+  position: absolute; bottom: 160px; left:0; right:0; height:1px;
+  background: linear-gradient(to right, transparent, var(--border) 20%, var(--border) 80%, transparent);
+}
+
+.hero-content { position:relative; z-index:2; max-width: 720px; }
+.hero-eyebrow {
+  display: flex; align-items:center; gap: 18px;
+  font-size: 9px; letter-spacing: 0.42em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 40px;
+  animation: reveal 1s ease both;
+}
+.hero-eyebrow::before {
+  content:''; display:block; width:48px; height:1px; background: var(--gold);
+}
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(56px, 7.5vw, 106px);
+  font-weight: 300; line-height: 0.95; letter-spacing: -0.01em;
+  margin-bottom: 36px;
+  animation: reveal 1s 0.1s ease both;
+}
+h1 em { font-style: italic; color: var(--gold); }
+.hero-sub {
+  font-size: 13px; line-height: 1.95; color: var(--muted);
+  max-width: 460px; margin-bottom: 56px;
+  animation: reveal 1s 0.2s ease both;
+}
+.hero-actions { display:flex; align-items:center; gap: 36px; animation: reveal 1s 0.3s ease both; }
+.btn-primary {
+  background: var(--gold); color: var(--black);
+  border: none; padding: 16px 44px;
+  font-family: 'Jost', sans-serif; font-weight: 400;
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.3s;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,169,126,0.2); }
+.btn-ghost {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Jost', sans-serif; font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); transition: color 0.3s;
+  display: flex; align-items: center; gap: 10px;
+}
+.btn-ghost:hover { color: var(--gold); }
+.btn-ghost .arr { font-size: 15px; }
+
+.hero-aside {
+  position: absolute; right: 72px; bottom: 180px; z-index:2;
+  display: flex; flex-direction: column; gap: 3px;
+  animation: reveal 1s 0.4s ease both;
+}
+.aside-stat {
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 2px solid var(--gold);
+  padding: 18px 28px; min-width: 168px;
+}
+.aside-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px; font-weight: 300; color: var(--gold); line-height:1;
+}
+.aside-lbl { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+
+.scroll-indicator {
+  position: absolute; bottom: 44px; left: 72px; z-index:2;
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted);
+  animation: reveal 1s 0.6s ease both;
+}
+.scroll-line {
+  width: 1px; height: 44px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+/* ═══════════════════════════
+   SOUNDS
+═══════════════════════════ */
+#page-sounds { padding: 148px 72px 100px; }
+
+.section-intro { margin-bottom: 72px; }
+.section-eyebrow {
+  font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px;
+  display: flex; align-items:center; gap:14px;
+}
+.section-eyebrow::before { content:''; display:block; width:32px; height:1px; background: var(--gold); }
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 5vw, 62px);
+  font-weight: 300; letter-spacing: -0.01em; line-height: 1.1;
+}
+h2 em { font-style: italic; color: var(--gold); }
+.section-desc { font-size: 13px; color: var(--muted); line-height: 1.9; max-width: 480px; margin-top: 20px; }
+
+.filter-row { display:flex; gap:10px; margin-bottom: 48px; flex-wrap:wrap; }
+.f-btn {
+  background: none; border: 1px solid var(--border-soft);
+  color: var(--muted); padding: 8px 20px;
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.3s;
+}
+.f-btn:hover, .f-btn.active { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+
+.sounds-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  max-width: 1240px;
+}
+.s-card {
+  background: var(--surface); padding: 44px 36px;
+  border: 1px solid transparent; cursor: pointer;
+  transition: all 0.4s; position: relative; overflow: hidden;
+}
+.s-card::before {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0); transition: transform 0.4s;
+}
+.s-card:hover { border-color: var(--border); background: var(--surface2); transform: translateY(-3px); }
+.s-card:hover::before { transform: scaleX(1); }
+
+.s-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 28px;
+}
+.s-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 400; margin-bottom: 14px; line-height:1.2;
+}
+.s-desc { font-size: 12px; color: var(--muted); line-height: 1.85; margin-bottom: 28px; }
+.s-tags { display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 28px; }
+.s-tag {
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  border: 1px solid var(--border); color: var(--muted); padding: 4px 10px;
+  transition: all 0.3s;
+}
+.s-card:hover .s-tag { border-color: rgba(200,169,126,0.3); color: var(--gold); }
+.s-play {
+  width:100%; background: none; border: 1px solid var(--border);
+  color: var(--gold); padding: 10px;
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.3s;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+}
+.s-play:hover { background: var(--gold-dim); border-color: var(--gold); }
+.s-arrow {
+  position: absolute; top: 40px; right: 36px;
+  width: 32px; height: 32px; border: 1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  color: var(--gold); font-size: 13px;
+  opacity:0; transform: translateX(-6px); transition: all 0.3s;
+}
+.s-card:hover .s-arrow { opacity:1; transform: translateX(0); }
+
+/* ═══════════════════════════
+   MEMBERSHIP
+═══════════════════════════ */
+#page-membership { padding: 148px 72px 100px; }
+
+.membership-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  max-width: 1100px; margin-top: 72px;
+}
+.m-card {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 52px 40px; position:relative; transition: transform 0.3s;
+}
+.m-card:hover { transform: translateY(-5px); }
+.m-card.sel {
+  border-color: var(--gold);
+  background: linear-gradient(160deg, var(--surface2), rgba(200,169,126,0.04));
+}
+.sel-badge {
+  position:absolute; top:-1px; left:50%; transform:translateX(-50%);
+  background: var(--gold); color: var(--black);
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  padding: 6px 20px;
+}
+.m-tier {
+  font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 24px;
+}
+.m-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 60px; font-weight: 300; color: var(--text); line-height:1;
+  margin-bottom: 6px;
+}
+.m-price sup { font-size: 22px; color: var(--gold); vertical-align: super; }
+.m-period { font-size: 11px; color: var(--muted); margin-bottom: 36px; }
+.m-div { height:1px; background: var(--border); margin-bottom: 36px; }
+.m-feats { list-style:none; margin-bottom: 44px; }
+.m-feats li {
+  font-size: 12px; color: var(--muted); padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  display:flex; align-items:center; gap:12px; line-height:1.5;
+}
+.m-feats li.on { color: var(--text); }
+.m-feats li .ck { color: var(--gold); font-size: 12px; flex-shrink:0; }
+.m-feats li .xx { color: var(--muted); opacity:0.35; font-size:12px; flex-shrink:0; }
+.btn-m {
+  width:100%; border: 1px solid var(--gold); color: var(--gold);
+  background: none; padding: 14px;
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.3s;
+}
+.m-card.sel .btn-m { background: var(--gold); color: var(--black); }
+.btn-m:hover { background: var(--gold); color: var(--black); }
+
+/* ═══════════════════════════
+   ABOUT
+═══════════════════════════ */
+#page-about { padding: 148px 72px 100px; }
+
+.about-layout {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 120px;
+  align-items: center; max-width: 1100px;
+}
+.about-visual { position:relative; height: 520px; }
+.about-box-bg {
+  position:absolute; top:0; left:0; right:64px; bottom:64px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.about-corner {
+  position:absolute; top:16px; left:16px;
+  width:36px; height:36px;
+  border-top: 1px solid var(--gold); border-left: 1px solid var(--gold);
+}
+.about-box-accent {
+  position:absolute; right:0; bottom:0;
+  width: 186px; height: 186px;
+  background: linear-gradient(135deg, rgba(200,169,126,0.12), rgba(200,169,126,0.03));
+  border: 1px solid var(--gold);
+  display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center;
+}
+.about-box-accent .roman {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px; font-weight: 300; color: var(--gold); line-height:1;
+}
+.about-box-accent .label { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+
+.about-text h2 { margin-bottom: 26px; }
+.about-lead {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 20px; color: var(--gold-light); line-height: 1.7;
+  margin-bottom: 24px;
+}
+.about-body { font-size: 13px; color: var(--muted); line-height: 2; margin-bottom: 44px; }
+
+/* ═══════════════════════════
+   CONTACT
+═══════════════════════════ */
+#page-contact { padding: 148px 72px 100px; }
+
+.contact-layout {
+  display: grid; grid-template-columns: 1fr 1.3fr; gap: 120px;
+  max-width: 1100px;
+}
+.contact-info h2 { margin-bottom: 20px; }
+.contact-intro { font-size: 13px; color: var(--muted); line-height: 1.95; margin-bottom: 52px; }
+.c-detail { margin-bottom: 28px; }
+.c-detail-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.c-detail-value { font-size: 14px; color: var(--text); }
+
+.contact-form { display:flex; flex-direction:column; gap:22px; }
+.form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.fg { display:flex; flex-direction:column; gap:8px; }
+.fl { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
+.fi, .fsel, .fta {
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); padding: 14px 18px;
+  font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 300;
+  outline:none; transition: border-color 0.3s; appearance: none;
+}
+.fi::placeholder { color: var(--muted); }
+.fi:focus, .fsel:focus, .fta:focus { border-color: var(--gold); }
+.fta { resize: vertical; min-height: 118px; }
+.form-sub {
+  background: var(--gold); color: var(--black); border: none; padding: 16px;
+  font-family: 'Jost', sans-serif; font-weight: 400;
+  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.3s;
+}
+.form-sub:hover { background: var(--gold-light); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 52px 72px;
+  border-top: 1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.foot-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; letter-spacing: 0.28em; text-transform: uppercase;
+}
+.foot-logo em { font-style:italic; color: var(--gold); }
+.foot-copy { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; }
+.foot-links { display:flex; gap:32px; }
+.foot-links a {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); text-decoration:none; cursor:pointer; transition: color 0.3s;
+}
+.foot-links a:hover { color: var(--gold); }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 40px; right: 72px;
+  background: var(--surface2); border: 1px solid var(--gold);
+  color: var(--text); padding: 14px 28px;
+  font-size: 12px; letter-spacing: 0.06em;
+  opacity:0; transform: translateY(14px); pointer-events:none; z-index:999;
+  transition: all 0.4s;
+}
+.toast.show { opacity:1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">No<em>izy</em><sup>.ai</sup></div>
+  <ul class="nav-links">
+    <li><a onclick="goTo('home')" id="nav-home" class="active">Home</a></li>
+    <li><a onclick="goTo('sounds')" id="nav-sounds">Sounds</a></li>
+    <li><a onclick="goTo('membership')" id="nav-membership">Membership</a></li>
+    <li><a onclick="goTo('about')" id="nav-about">About</a></li>
+    <li><a onclick="goTo('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="goTo('membership')">Begin Listening</button>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="home-bg">
+    <div class="home-bg-grain"></div>
+    <div class="home-glow"></div>
+    <div class="home-line-v"></div>
+    <div class="home-line-h"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">AI-Curated Sound Experiences</div>
+    <h1>Sound that<br>moves you<br><em>deeply.</em></h1>
+    <p class="hero-sub">NOIZY.ai crafts bespoke ASMR experiences using generative AI — whispered voices, binaural soundscapes, and tactile textures tailored precisely to your senses.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="goTo('sounds')">Explore Sounds</button>
+      <button class="btn-ghost" onclick="goTo('membership')">View Memberships <span class="arr">→</span></button>
+    </div>
+  </div>
+
+  <div class="hero-aside">
+    <div class="aside-stat"><div class="aside-num">4.2M</div><div class="aside-lbl">Sessions Streamed</div></div>
+    <div class="aside-stat"><div class="aside-num">380+</div><div class="aside-lbl">Sound Models</div></div>
+    <div class="aside-stat"><div class="aside-num">98%</div><div class="aside-lbl">Relaxation Rate</div></div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Scroll to Discover
+  </div>
+</div>
+
+<!-- SOUNDS -->
+<div class="page" id="page-sounds">
+  <div class="section-intro">
+    <div class="section-eyebrow">The Collection</div>
+    <h2>Sounds of <em>Distinction</em></h2>
+    <p class="section-desc">Each soundscape is generated in real time by our AI — no loops, no repetition. Every session is entirely your own.</p>
+  </div>
+  <div class="filter-row">
+    <button class="f-btn active" onclick="setF(this)">All</button>
+    <button class="f-btn" onclick="setF(this)">Whisper</button>
+    <button class="f-btn" onclick="setF(this)">Nature</button>
+    <button class="f-btn" onclick="setF(this)">Tactile</button>
+    <button class="f-btn" onclick="setF(this)">Binaural</button>
+    <button class="f-btn" onclick="setF(this)">Sleep</button>
+  </div>
+  <div class="sounds-grid">
+    <div class="s-card">
+      <div class="s-arrow">→</div>
+      <div class="s-num">01</div>
+      <div class="s-title">Soft Whisper Voice</div>
+      <p class="s-desc">Layered AI-generated whispers with gentle breath textures. Induces deep scalp tingles and immediate calm.</p>
+      <div class="s-tags"><span class="s-tag">Whisper</span><span class="s-tag">Tingles</span></div>
+      <button class="s-play" onclick="play('Soft Whisper Voice')">▷ &nbsp; Play Sample</button>
+    </div>
+    <div class="s-card">
+      <div class="s-arrow">→</div>
+      <div class="s-num">02</div>
+      <div class="s-title">Rainfall on Leaves</div>
+      <p class="s-desc">Spatially rendered rain in binaural 3D audio. Each droplet positioned individually around your listening space.</p>
+      <div class="s-tags"><span class="s-tag">Nature</span><span class="s-tag">Binaural</span></div>
+      <button class="s-play" onclick="play('Rainfall on Leaves')">▷ &nbsp; Play Sample</button>
+    </div>
+    <div class="s-card">
+      <div class="s-arrow">→</div>
+      <div class="s-num">03</div>
+      <div class="s-title">Paper & Pencil</div>
+      <p class="s-desc">Hyper-detailed writing sounds — notebook pages turning, pencil strokes, paper textures. Ideal for deep focus.</p>
+      <div class="s-tags"><span class="s-tag">Tactile</span><span class="s-tag">Focus</span></div>
+      <button class="s-play" onclick="play('Paper & Pencil')">▷ &nbsp; Play Sample</button>
+    </div>
+    <div class="s-card">
+      <div class="s-arrow">→</div>
+      <div class="s-num">04</div>
+      <div class="s-title">Crackling Fireplace</div>
+      <p class="s-desc">Rich, warm crackling tones with AI-enhanced pop and hiss layers. Engineered to lower cortisol levels.</p>
+      <div class="s-tags"><span class="s-tag">Nature</span><span class="s-tag">Sleep</span></div>
+      <button class="s-play" onclick="play('Crackling Fireplace')">▷ &nbsp; Play Sample</button>
+    </div>
+    <div class="s-card">
+      <div class="s-arrow">→</div>
+      <div class="s-num">05</div>
+      <div class="s-title">Scalp Attention</div>
+      <p class="s-desc">Simulated personal care audio — brush strokes, fingertip pressure, quiet breath. Deeply intimate ASMR.</p>
+      <div class="s-tags"><span class="s-tag">Tactile</span><span class="s-tag">Whisper</span></div>
+      <button class="s-play" onclick="play('Scalp Attention')">▷ &nbsp; Play Sample</button>
+    </div>
+    <div class="s-card">
+      <div class="s-arrow">→</div>
+      <div class="s-num">06</div>
+      <div class="s-title">Theta Wave Drift</div>
+      <p class="s-desc">AI-synthesized 4–8 Hz binaural frequencies woven into ambient texture. Designed for meditative sleep onset.</p>
+      <div class="s-tags"><span class="s-tag">Binaural</span><span class="s-tag">Sleep</span></div>
+      <button class="s-play" onclick="play('Theta Wave Drift')">▷ &nbsp; Play Sample</button>
+    </div>
+  </div>
+</div>
+
+<!-- MEMBERSHIP -->
+<div class="page" id="page-membership">
+  <div class="section-intro">
+    <div class="section-eyebrow">Membership</div>
+    <h2>Choose Your <em>Tier</em></h2>
+    <p class="section-desc">Three tiers designed around how deeply you wish to immerse. Every plan begins with a 14-day complimentary trial.</p>
+  </div>
+  <div class="membership-grid">
+    <div class="m-card">
+      <div class="m-tier">Listener — Entry</div>
+      <div class="m-price"><sup>$</sup>0</div>
+      <div class="m-period">Forever free — no card required</div>
+      <div class="m-div"></div>
+      <ul class="m-feats">
+        <li class="on"><span class="ck">—</span>10 AI sounds per day</li>
+        <li class="on"><span class="ck">—</span>Standard audio quality</li>
+        <li class="on"><span class="ck">—</span>5 sound categories</li>
+        <li><span class="xx">×</span>Binaural 3D processing</li>
+        <li><span class="xx">×</span>Personalised AI profiles</li>
+        <li><span class="xx">×</span>Offline downloads</li>
+        <li><span class="xx">×</span>Custom sound generation</li>
+      </ul>
+      <button class="btn-m" onclick="toast('Welcome — your free account is ready.')">Begin Free</button>
+    </div>
+    <div class="m-card sel">
+      <div class="sel-badge">Most Chosen</div>
+      <div class="m-tier">Attuned — Pro</div>
+      <div class="m-price"><sup>$</sup>14</div>
+      <div class="m-period">Per month — billed $168 annually</div>
+      <div class="m-div"></div>
+      <ul class="m-feats">
+        <li class="on"><span class="ck">—</span>Unlimited AI sounds</li>
+        <li class="on"><span class="ck">—</span>Lossless 24-bit audio</li>
+        <li class="on"><span class="ck">—</span>Full binaural processing</li>
+        <li class="on"><span class="ck">—</span>All 380+ sound models</li>
+        <li class="on"><span class="ck">—</span>Personalised AI profiles</li>
+        <li class="on"><span class="ck">—</span>Offline downloads (50/mo)</li>
+        <li><span class="xx">×</span>Custom sound generation</li>
+      </ul>
+      <button class="btn-m" onclick="toast('14-day trial started — enjoy Attuned.')">Start 14-Day Trial</button>
+    </div>
+    <div class="m-card">
+      <div class="m-tier">Immersed — Studio</div>
+      <div class="m-price"><sup>$</sup>39</div>
+      <div class="m-period">Per month — full API & commercial use</div>
+      <div class="m-div"></div>
+      <ul class="m-feats">
+        <li class="on"><span class="ck">—</span>Everything in Attuned</li>
+        <li class="on"><span class="ck">—</span>Custom AI sound generation</li>
+        <li class="on"><span class="ck">—</span>API access (10K calls/mo)</li>
+        <li class="on"><span class="ck">—</span>Unlimited downloads</li>
+        <li class="on"><span class="ck">—</span>Commercial use licence</li>
+        <li class="on"><span class="ck">—</span>Priority rendering queue</li>
+        <li class="on"><span class="ck">—</span>Early access to new models</li>
+      </ul>
+      <button class="btn-m" onclick="toast('Immersed enquiry received — we will be in touch.')">Enquire About Immersed</button>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="page" id="page-about">
+  <div class="about-layout">
+    <div class="about-visual">
+      <div class="about-box-bg"><div class="about-corner"></div></div>
+      <div class="about-box-accent">
+        <div class="roman">III</div>
+        <div class="label">Years Refining<br>the Art of Sound</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-eyebrow">Our Philosophy</div>
+      <h2>Sound as a<br><em>Refined Sense</em></h2>
+      <p class="about-lead">"We believe that the most profound experiences are felt — not simply heard."</p>
+      <p class="about-body">NOIZY.ai was founded on a single conviction: that sound, at its most precise and intentional, can alter consciousness, ease anxiety, and restore the nervous system to calm.<br><br>We draw upon the science of ASMR — autonomous sensory meridian response — and pair it with the generative precision of AI to create experiences that feel personal, alive, and entirely your own. No pre-recorded loops. No repetition. Every session is a unique act of creation.</p>
+      <button class="btn-primary" onclick="goTo('contact')">Begin a Conversation</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+  <div class="contact-layout">
+    <div class="contact-info">
+      <div class="section-eyebrow">Reach Us</div>
+      <h2>A Word<br>with <em>Us</em></h2>
+      <p class="contact-intro">Whether you're curious about a membership, interested in a partnership, or simply wish to share how sound has moved you — we welcome your correspondence.</p>
+      <div class="c-detail">
+        <div class="c-detail-label">Email</div>
+        <div class="c-detail-value">hello@noizy.ai</div>
+      </div>
+      <div class="c-detail">
+        <div class="c-detail-label">Partnerships</div>
+        <div class="c-detail-value">partners@noizy.ai</div>
+      </div>
+      <div class="c-detail">
+        <div class="c-detail-label">Response</div>
+        <div class="c-detail-value">Within 24 hours</div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="handleForm(event)">
+      <div class="form-row2">
+        <div class="fg"><label class="fl">First Name</label><input type="text" class="fi" placeholder="Your name"></div>
+        <div class="fg"><label class="fl">Last Name</label><input type="text" class="fi" placeholder="Your surname"></div>
+      </div>
+      <div class="fg"><label class="fl">Email</label><input type="email" class="fi" placeholder="your@email.com"></div>
+      <div class="fg">
+        <label class="fl">Topic</label>
+        <select class="fsel">
+          <option value="">Select a topic</option>
+          <option>Membership Enquiry</option>
+          <option>Partnership / B2B</option>
+          <option>API & Developer Access</option>
+          <option>Press & Media</option>
+          <option>General</option>
+        </select>
+      </div>
+      <div class="fg"><label class="fl">Message</label><textarea class="fta" placeholder="Share your thoughts..."></textarea></div>
+      <button type="submit" class="form-sub">Send Correspondence</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-logo">No<em>izy</em>.ai</div>
+  <div class="foot-copy">© 2025 NOIZY.ai — All rights reserved.</div>
+  <div class="foot-links">
+    <a onclick="goTo('sounds')">Sounds</a>
+    <a onclick="goTo('membership')">Membership</a>
+    <a onclick="goTo('contact')">Contact</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function goTo(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  const n = document.getElementById('nav-' + page);
+  if (n) n.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3400);
+}
+function play(name) { toast('▷  Now playing: ' + name); }
+function setF(btn) {
+  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function handleForm(e) {
+  e.preventDefault(); toast('Your message has been received.'); e.target.reset();
+}
+</script>
+</body>
+</html>

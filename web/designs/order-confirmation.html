@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        .content {
+            padding: 40px 30px;
+            color: #333333;
+        }
+        .order-summary {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .order-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .order-row:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 18px;
+            padding-top: 15px;
+        }
+        .order-details {
+            margin: 25px 0;
+        }
+        .order-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .order-details th {
+            background-color: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .order-details td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 14px 32px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .info-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>✓ Order Confirmed</h1>
+        </div>
+        
+        <div class="content">
+            <h2>Thank you for your order!</h2>
+            
+            <p>Hi {{customerName}},</p>
+            
+            <p>Your order has been confirmed and will be processed shortly. We'll send you another email when your order ships.</p>
+            
+            <div class="order-summary">
+                <div style="margin-bottom: 15px;">
+                    <strong>Order Number:</strong> {{orderNumber}}<br>
+                    <strong>Order Date:</strong> {{orderDate}}
+                </div>
+                
+                <div class="order-row">
+                    <span>Subtotal:</span>
+                    <span>${{subtotal}}</span>
+                </div>
+                <div class="order-row">
+                    <span>Shipping:</span>
+                    <span>${{shipping}}</span>
+                </div>
+                <div class="order-row">
+                    <span>Tax:</span>
+                    <span>${{tax}}</span>
+                </div>
+                <div class="order-row">
+                    <span>Total:</span>
+                    <span>${{total}}</span>
+                </div>
+            </div>
+            
+            <h3>Order Details</h3>
+            <div class="order-details">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each items}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td>{{quantity}}</td>
+                            <td>${{price}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Shipping Address</h3>
+            <div class="info-box">
+                {{shippingName}}<br>
+                {{shippingAddress}}<br>
+                {{shippingCity}}, {{shippingState}} {{shippingZip}}<br>
+                {{shippingCountry}}
+            </div>
+            
+            <center>
+                <a href="{{trackingUrl}}" class="cta-button">Track Your Order</a>
+            </center>
+            
+            <p>Need help with your order? Contact our customer service team at support@fishmusicinc.com or call us at (555) 123-4567.</p>
+            
+            <p>
+                Best regards,<br>
+                <strong>The Fish Music Inc Team</strong>
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>
+                Fish Music Inc<br>
+                123 Music Street, Suite 456<br>
+                Los Angeles, CA 90001
+            </p>
+            <p style="margin-top: 20px; font-size: 12px; color: #999;">
+                © 2025 Fish Music Inc. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

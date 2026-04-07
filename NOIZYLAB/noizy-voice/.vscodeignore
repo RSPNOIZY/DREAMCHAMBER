@@ -1,0 +1,15 @@
+# Source — compiled to out/ at package time
+src/**
+tsconfig.json
+.vscode/**
+
+# Dev dependencies
+node_modules/**
+
+# Build artifacts (keep out/ — that's the compiled extension)
+**/*.map
+
+# Misc
+.DS_Store
+**/.DS_Store
+*.vsix

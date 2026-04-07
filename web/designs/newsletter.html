@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Newsletter</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 40px 30px;
+            color: #333333;
+        }
+        .article {
+            margin: 30px 0;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .article:last-of-type {
+            border-bottom: none;
+        }
+        .article img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .article h3 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        .read-more {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .highlights {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .highlights h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        .highlight-item {
+            margin: 15px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        .highlight-item:before {
+            content: "★";
+            position: absolute;
+            left: 0;
+            color: #ffc107;
+            font-size: 18px;
+        }
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            text-align: center;
+            color: #ffffff;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 14px 32px;
+            margin: 15px 0;
+            background-color: #ffffff;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>🎵 The Beat</h1>
+            <p>Your Monthly Music Newsletter | {{monthYear}}</p>
+        </div>
+        
+        <div class="content">
+            <p>Hi {{firstName}},</p>
+            
+            <p>Welcome to this month's edition of The Beat! We've got exciting news, new releases, and upcoming events that you won't want to miss.</p>
+            
+            <div class="highlights">
+                <h3>This Month's Highlights</h3>
+                <div class="highlight-item">New album releases from your favorite artists</div>
+                <div class="highlight-item">Exclusive interviews and behind-the-scenes content</div>
+                <div class="highlight-item">Upcoming concerts and events near you</div>
+                <div class="highlight-item">Special member-only discounts</div>
+            </div>
+            
+            <div class="article">
+                <img src="{{article1Image}}" alt="{{article1Title}}">
+                <h3>{{article1Title}}</h3>
+                <p>{{article1Excerpt}}</p>
+                <a href="{{article1Url}}" class="read-more">Read More →</a>
+            </div>
+            
+            <div class="article">
+                <img src="{{article2Image}}" alt="{{article2Title}}">
+                <h3>{{article2Title}}</h3>
+                <p>{{article2Excerpt}}</p>
+                <a href="{{article2Url}}" class="read-more">Read More →</a>
+            </div>
+            
+            <div class="article">
+                <img src="{{article3Image}}" alt="{{article3Title}}">
+                <h3>{{article3Title}}</h3>
+                <p>{{article3Excerpt}}</p>
+                <a href="{{article3Url}}" class="read-more">Read More →</a>
+            </div>
+            
+            <div class="cta-section">
+                <h2>🎸 Upcoming Events</h2>
+                <p>Don't miss out on incredible live performances coming your way!</p>
+                <a href="{{eventsUrl}}" class="cta-button">View All Events</a>
+            </div>
+            
+            <h3>🎧 Top Tracks This Month</h3>
+            <ol>
+                {{#each topTracks}}
+                <li><strong>{{title}}</strong> by {{artist}}</li>
+                {{/each}}
+            </ol>
+            
+            <p>That's all for this month! Stay tuned for more amazing content, and keep the music playing.</p>
+            
+            <p>
+                Rock on! 🤘<br>
+                <strong>The Fish Music Inc Team</strong>
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>
+                <a href="{{facebookUrl}}">Facebook</a> |
+                <a href="{{twitterUrl}}">Twitter</a> |
+                <a href="{{instagramUrl}}">Instagram</a> |
+                <a href="{{spotifyUrl}}">Spotify</a>
+            </p>
+            
+            <p>
+                Fish Music Inc<br>
+                123 Music Street, Suite 456<br>
+                Los Angeles, CA 90001
+            </p>
+            
+            <p>
+                <a href="{{unsubscribeUrl}}">Unsubscribe</a> |
+                <a href="{{preferencesUrl}}">Email Preferences</a>
+            </p>
+            
+            <p style="margin-top: 20px; font-size: 12px; color: #999;">
+                © 2025 Fish Music Inc. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

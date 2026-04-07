@@ -1,0 +1,29 @@
+# NOIZY Empire — CODEOWNERS
+# Every merge to main requires review from designated owners.
+# Constitutional files require RSP001 + one team lead minimum.
+
+# ── Global fallback ──────────────────────────────────────────────────────────
+*                               @rsp001
+
+# ── Constitutional / Sacred Invariants ──────────────────────────────────────
+CLAUDE.md                       @rsp001
+.github/                        @rsp001
+**/consent/**                   @rsp001
+**/estate/**                    @rsp001
+**/policy/**                    @rsp001
+
+# ── GABRIEL Daemon ───────────────────────────────────────────────────────────
+GABRIEL/                        @rsp001
+
+# ── Cloudflare Workers ───────────────────────────────────────────────────────
+NOIZYLAB/noisyvox/              @rsp001
+NOIZYLAB/noisyproof/            @rsp001
+
+# ── Platform & Voice Pipeline ────────────────────────────────────────────────
+NOIZYLAB/noizy_platform/        @rsp001
+NOIZYLAB/rsp001_pipeline/       @rsp001
+NOIZYLAB/rob_ava/               @rsp001
+
+# ── DreamChamber Extension ───────────────────────────────────────────────────
+NOIZYLAB/dreamchamber/          @rsp001
+NOIZYLAB/dreamchamber-extension/ @rsp001

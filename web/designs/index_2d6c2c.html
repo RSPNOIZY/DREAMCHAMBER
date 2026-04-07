@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>Compressor - Neutron 3 Help Documentation</title>
+<meta name="generator" content="Hugo 0.58.0" />
+
+<meta name="description" content="Neutron 3 Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Neutron 3 Help Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/en/compressor/index.html">
+<meta property="og:title" content="Neutron 3 Help Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+      <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  <link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/style-overrides.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-33', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+<body class="palette-primary-neutron3 palette-accent-neutron3">
+  <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html">
+          <img src="../images/header.svg" alt="Neutron 3 docs header image"
+                 width="200px" height="50px"> Compressor</a>
+          </div>
+      </div>
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+<div class="drawer">
+  <nav aria-label="Navigation">
+<form action="../search/index.html"><div class="group">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+  </form>
+</nav>
+  <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+    <a title="Introduction" href="../index.html"><span class=""></span>  Introduction</a>
+</li>
+<li>
+    <a title="Getting Started" href="../getting-started/index.html"><span class=""></span>  Getting Started</a>
+</li>
+<li>
+    <a title="General Controls" href="../general-controls/index.html"><span class=""></span>  General Controls</a>
+</li>
+<li>
+    <a title="Assistants" href="../assistants/index.html"><span class=""></span>  Assistants</a>
+</li>
+<li>
+    <a title="Gate" href="../gate/index.html"><span class=""></span>  Gate</a>
+</li>
+<li>
+    <a title="Equalizer" href="../equalizer/index.html"><span class=""></span>  Equalizer</a>
+</li>
+<li>
+    <a title="Masking Meter" href="../masking-meter/index.html"><span class=""></span>  Masking Meter</a>
+</li>
+<li>
+    <a class="current"title="Compressor" href="index.html"><span class=""></span>  Compressor</a>
+<ul id="scrollspy">
+</ul>
+</li>
+<li>
+    <a title="Transient Shaper" href="../transient-shaper/index.html"><span class=""></span>  Transient Shaper</a>
+</li>
+<li>
+    <a title="Exciter" href="../exciter/index.html"><span class=""></span>  Exciter</a>
+</li>
+<li>
+    <a title="Sculptor" href="../sculptor/index.html"><span class=""></span>  Sculptor</a>
+</li>
+<li>
+    <a title="Visual Mixer" href="../visual-mixer/index.html"><span class=""></span>  Visual Mixer</a>
+</li>
+<li>
+    <a title="Relay" href="../relay/index.html"><span class=""></span>  Relay</a>
+</li>
+<li>
+    <a title="Presets" href="../presets/index.html"><span class=""></span>  Presets</a>
+</li>
+<li>
+    <a title="Options" href="../options/index.html"><span class=""></span>  Options</a>
+</li>
+<li>
+    <a title="Glossary" href="../glossary/index.html"><span class=""></span>  Glossary</a>
+</li>
+<li>
+    <a title="Customer Care" href="../customer-care/index.html"><span class=""></span>  Customer Care</a>
+</li>
+<li>
+    <a title="License Information" href="../license-information/index.html"><span class=""></span>  License Information</a>
+</li>
+<li>
+    <a title="EULA" href="../eula/index.html"><span class=""></span>  EULA</a>
+</li>
+</ul>
+      <hr />
+<span class="section">Connect with iZotope</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+<li>
+    <a href="https://www.izotope.com/en/products/mix/neutron.html" target="_blank" title="iZotope Product Page"><span class="icon icon-sphere"></span>  iZotope.com</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a>
+  </li>
+</ul>
+<hr /><ul>
+  <li>
+<a href="../../ja/compressor/index.html"><i class="icon icon-eye"></i>日本語での表示</a>
+</li>
+</ul></div>
+  </div>
+</div>
+</div>
+<article class="article">
+    <div class="wrapper">
+
+      
+
+<h1>Compressor </h1>
+<div class="lang-btn-box">
+<a class="lang-btn active" href="../../ja/compressor/index.html">English</a>
+<a class="lang-btn clickable" href="../../ja/compressor/index.html">日本語</a>
+</div>
+
+
+
+<h2 id="overview">Overview</h2>
+
+<p>A compressor can be used to reduce dynamic range, maintain consistent levels, and shape the tone and character
+of your audio.</p>
+
+<hr />
+
+<h2 id="module-interface">Module Interface</h2>
+
+<figure ><img src="../images/compressor/module-interface.png" alt="Compressor Module Interface" /></figure>
+
+<p>Neutron 3 Compressor module controls and features are outlined in the table below.</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>Label</strong></th>
+<th><strong>Section</strong></th>
+<th><strong>Controls and Features</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1 Meters and Displays" /></figure></td>
+<td>Meters and Displays</td>
+<td><a href="index.html#waveform-displays">Waveform Displays</a>, <a href="index.html#gain-reduction-trace">Gain Reduction Trace</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2 Module Header" /></figure></td>
+<td>Module Header</td>
+<td><a href="index.html#vintage-mode">Vintage Mode</a>, <a href="index.html#multiband-crossover-spectrum-view">Multiband Crossover Spectrum View</a>, <a href="index.html#detection-filter-view">Detection Filter View</a>, <a href="index.html#level-detection-mode">Level Detection Mode</a>, <a href="index.html#auto-gain">Auto Gain</a>, <a href="index.html#auto-release">Auto Release</a>, <a href="index.html#learn">Learn</a>, <a href="index.html#reset">Reset</a>, <a href="index.html#lfe">LFE</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="Label-3 Controls" /></figure></td>
+<td>Controls</td>
+<td><a href="index.html#threshold">Threshold</a>, <a href="index.html#knee">Knee</a>, <a href="index.html#hud-controls">HUD Controls</a>: <a href="index.html#ratio">Ratio</a>, <a href="index.html#attack">Attack</a>, <a href="index.html#release">Release</a>, <a href="index.html#makeup-gain">Makeup Gain</a>, <a href="index.html#mix">Mix</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-4.png" alt="Label-4 Advanced Panel" /></figure></td>
+<td>Advanced Panel</td>
+<td><a href="index.html#sidechain">Sidechain</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="meters-displays">Meters &amp; Displays</h2>
+
+<p>The meters and displays in the Compressor module are outlined in the image and table below.</p>
+
+<figure ><img src="../images/compressor/meters-displays.png" alt="Compressor Meters and Displays" /></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>Label</strong></th>
+<th><strong>Section</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1 Waveform Displays" /></figure></td>
+<td><a href="index.html#waveform-displays">Waveform Displays</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2 Gain Reduciton Trace" /></figure></td>
+<td><a href="index.html#gain-reduction-meter">Gain Reduction Meter</a></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="waveform-displays">Waveform Displays</h3>
+
+<ul>
+<li><strong>Scrolling waveform</strong>: displays the amplitude of the input (uncompressed) and output (compressed) signals
+over time. The meter scrolls from right to left, with the most recent information on the right.
+
+<ul>
+<li><strong>Input waveform:</strong> the <strong>dark grey</strong> waveform displayed behind the output (wet) signal waveform.</li>
+<li><strong>Output waveform:</strong> the <strong>light grey</strong> waveform displayed in front of the input (dry) signal waveform.
+When the signal is compressed, you can monitor the applied gain reduction compared to the input.</li>
+</ul></li>
+</ul>
+
+<h3 id="gain-reduction-trace">Gain Reduction Trace</h3>
+
+<p>Draws a line that represents the gain reduction applied to the selected band over time. Use the <strong>Gain
+Reduction Trace</strong> to monitor and to set the response times (attack and release) and gain reduction envelope
+applied over time.</p>
+
+<div class="admonition note">
+<p class="admonition-title">NOTE: AUTO GAIN ON THE OUTPUT WAVEFORM</p>
+<p class="admonition-body">Auto Gain adjusts the level of the compressed signal to compensate for any level difference between the
+uncompressed and compressed signals. The gain change introduced by auto gain is reflected in the output
+waveform, which may make it more difficult to differentiate between the input and output waveforms. <strong>The gain
+reduction trace meter can be useful for monitoring gain reduction over time when Auto Gain is enabled.</strong></p>
+</div>
+
+<hr />
+
+<h2 id="module-header">Module Header</h2>
+
+<p>The controls in module header affect all enabled bands in Compressor module.</p>
+
+<figure ><img src="../images/compressor/module-header.png" alt="Compressor Module Header" /></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>Label</strong></th>
+<th><strong>Section</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Vintage Mode" /></figure></td>
+<td><a href="index.html#vintage-mode">Vintage Mode</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Multiband Crossover Spectrum View" /></figure></td>
+<td><a href="index.html#multiband-crossover-spectrum-view">Multiband Crossover Spectrum View</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="Detection Filter View" /></figure></td>
+<td><a href="index.html#detection-filter-view">Detection Filter View</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-4.png" alt="Level Detection mode" /></figure></td>
+<td><a href="index.html#level-detection-mode">Level Detection mode</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-5.png" alt="Auto Gain" /></figure></td>
+<td><a href="index.html#auto-gain">Auto Gain</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-6.png" alt="Auto Release" /></figure></td>
+<td><a href="index.html#auto-release">Auto Release</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-7.png" alt="Gain" /></figure></td>
+<td><a href="index.html#output-gain">Output Gain</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-8.png" alt="Learn" /></figure></td>
+<td><a href="index.html#learn">Learn</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-9.png" alt="Reset" /></figure></td>
+<td><a href="index.html#reset">Reset</a></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="vintage-mode">Vintage Mode</h3>
+
+<p>Enable to switch from the default digital mode to vintage signal processing which offers less transparent,
+more lively and colorful sound.</p>
+
+<div class="admonition tip">
+<p class="admonition-title">TIP: VINTAGE MODE AND HIGH RATIOS</p>
+<p class="admonition-body">By applying high ratios, you can achieve a pumping effect. Although not always desired, this can be used to
+add character to your audio. This effect is particularly useful on room mics.</p>
+</div>
+
+
+<h3 id="multiband-crossover-spectrum-view">Multiband Crossover Spectrum View</h3>
+
+<p>Access the Multiband Crossover Spectrum View and controls. For more information, see the
+<a href="../general-controls/index.html#multiband-crossover-spectrum-view"><strong>Multiband Crossover Spectrum View</strong></a> section.</p>
+
+<h3 id="detection-filter-view">Detection Filter View</h3>
+
+<p>Access the Detection Filter view and controls. For more information, see the
+<a href="../general-controls/index.html#detection-filter-view"><strong>Detection Filter View</strong></a> section.</p>
+
+<h3 id="level-detection-mode">Level Detection Mode</h3>
+
+<p>Determines how input levels are calculated by the compressor. Adjusting the level detection mode will alter
+the level that is considered by the threshold, which will affect when or how often the input level will
+trigger compression. The Compressor includes three level detection modes: <strong>RMS</strong>, <strong>PEAK</strong>, and <strong>TRUE</strong>.</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>Mode</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>RMS (Root Mean Square)</strong></td>
+<td>Determines input level to the compressor by averaging levels of the incoming signal. RMS detection is useful when you are trying to increase the overall volume level without changing the character of the sound.</td>
+</tr>
+
+<tr>
+<td><strong>PEAK</strong></td>
+<td>Determines the input level to the compressor using instantaneous peak levels of the incoming signal. In general, this setting is useful when you are trying to even out sudden transients in your music.</td>
+</tr>
+
+<tr>
+<td><strong>TRUE</strong></td>
+<td>Similar to RMS mode, determines input level to the compressor by averaging levels of the incoming signal, but produces even levels across all frequencies. True mode will not produce aliasing or artifacts- a common side-effect of RMS detection.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="auto-gain">Auto Gain</h3>
+
+<p>Enables the Compressor to calculate the level difference between the input (uncompressed signal) and output
+(compressed signal) and automatically apply the calculated gain adjustment.</p>
+
+<h3 id="auto-release">Auto Release</h3>
+
+<p>Enables the Compressor to analyze the input signal in order to automatically
+scale the <strong>Release</strong> time to values that will help to avoid pumping and
+maintain desired loudness in the processed signal.</p>
+
+<div class="admonition note">
+<p class="admonition-title">NOTE: Auto Release Enabled with Vintage Mode</p>
+<p class="admonition-body">Auto Release is always enabled when Vintage Mode is selected.</p>
+</div>
+
+<h3 id="output-gain">Output Gain</h3>
+
+<p>Allows you to adjust the amount of gain applied to the signal after compression, to make up for any loss or
+increase in level caused by dynamics processing.</p>
+
+<ul>
+<li>This is also useful for managing the signal level as it passes to the input of the next module in the signal
+chain.</li>
+<li>When using Compressor 1 and Compressor 2 in series, adjusting the output gain of Compressor 1 allows you to
+manage the signal level going into Compressor 2, allowing for greater control over how Compressor 2 affects
+your sound.</li>
+</ul>
+
+<h3 id="learn">Learn</h3>
+
+<p>Enables the Compressor to search for natural crossover cutoff points for multiband processing. The Learn
+button will be disabled if only one band exists in a multi-band capable module.</p>
+
+<div class="admonition note">
+<p class="admonition-title">NOTE: LEARN WILL DISABLE WHEN DONE</p>
+<p class="admonition-body">After Learn determines and sets the ideal values for the crossover cutoffs, it will turn itself off
+automatically. When Learn button is toggled OFF the button is grey instead of orange. You can also manually
+disable Learn when it is active by clicking the Learn button again.</p>
+</div>
+
+<h3 id="reset">Reset</h3>
+
+<p>Returns all controls in the Compressor module to their factory default values. If you wish to return to
+settings you were using before clicking the <strong>Reset</strong> button, you can use the
+<a href="../general-controls/index.html#undo-history-controls">Undo History</a> window to revert to the settings before the reset
+event.</p>
+
+<h3 id="lfe">LFE</h3>
+
+<p>Appears when in surround sound configuration in a Neutron 3 Advanced mothership. Enabled by default to include
+LFE in processing. Disable the <strong>LFE</strong> button to exclude low frequencies when passing audio through the Low
+Frequency Effects (LFE) channel with the relative latency compensation. See the
+<a href="../general-controls/index.html#lfe-low-frequency-effects">LFE</a> section for more information.</p>
+
+<hr />
+
+<h2 id="controls">Controls</h2>
+
+<p>You can control compression by setting the <a href="index.html#threshold">Threshold</a> and <a href="index.html#knee">Knee</a>.</p>
+
+<figure ><img src="../images/compressor/threshold-knee.png" alt="Threshold and Knee" /></figure>
+
+<h3 id="threshold">Threshold</h3>
+
+<p>Determines the signal level at which the compressor begins processing.</p>
+
+<p><strong>ADJUSTING THRESHOLD</strong></p>
+
+<ul>
+<li>Click and drag the Threshold slider handle up to increase the Threshold or down to decrease the Threshold.</li>
+<li>Click on the Threshold value readout text and manually enter a value in the inline edit field.</li>
+</ul>
+
+<div class="admonition tip">
+<p class="admonition-title">TIP: USE WAVEFORM DISPLAYS TO SET THRESHOLD</p>
+<p class="admonition-body">You can use the <a href="index.html#waveform-displays">Waveform Displays</a> as a visual guide when setting the threshold level for
+the compressor.</p>
+</div>
+
+
+<h3 id="knee">Knee</h3>
+
+<p>Adjust the knee value to set the desired character of the compression. The range of knee values provide
+different results:</p>
+
+<ul>
+<li><strong>Higher knee values</strong> result in a &ldquo;soft knee&rdquo; setting with a subtle, natural sounding compression.</li>
+<li><strong>Lower knee values</strong> result in a &ldquo;hard knee&rdquo; setting with an aggressive compression.</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">NOTE: Knee disabled in Vintage Mode</p>
+<p class="admonition-body">The Knee control is <strong>not</strong> adjustable when Vintage Mode is enabled.</p>
+</div>
+
+<h3 id="hud-controls">HUD controls</h3>
+
+<p>The Compressor HUD controls work together to influence the character, amount, and speed of the compression
+applied to the input signal. The HUD controls available are:</p>
+
+<ul>
+<li><a href="index.html#attack">Attack</a></li>
+<li><a href="index.html#release">Release</a></li>
+<li><a href="index.html#ratio">Ratio</a></li>
+<li><a href="index.html#gain-reduction-meter">Gain Reduction Meter</a></li>
+<li><a href="index.html#makeup-gain">Makeup Gain</a></li>
+<li><a href="index.html#mix">Mix</a></li>
+</ul>
+
+<figure ><img src="../images/compressor/hud.png" alt="Compressor HUD" /></figure>
+
+<h3 id="attack">Attack</h3>
+
+<p>Determines the amount of time it takes (in milliseconds) for the signal to become fully compressed after
+exceeding the threshold level.</p>
+
+<h3 id="release">Release</h3>
+
+<p>Adjust the amount of time (milliseconds) it takes for the Compressor to return to unity gain (recovers gain)
+when the input signal falls below the threshold, according to the rules set by the <strong>Level Detection Mode</strong>.</p>
+
+<h3 id="ratio">Ratio</h3>
+
+<p>Determines how much gain reduction will be applied to the entire signal or entire band when the threshold is
+crossed, according to the rules set by the <strong>Level Detection Mode</strong>.</p>
+
+<div class="admonition note">
+<p class="admonition-title">NOTE: RATIO SETTINGS AFFECT COMPRESSION</p>
+<p class="admonition-body">Certain ratio settings and <strong>threshold</strong> setting will affect compression:</p>
+
+<ul>
+<li>A ratio setting of <strong>1:1</strong> will cause no attenuation upon signals that exceed the <strong>threshold</strong>.</li>
+<li>Ratio settings of <strong>10:1</strong> or greater will cause the compressor to function as a limiter.</li>
+<li>A ratio above <strong>1.0</strong>  will cause compression. But, if you have a ratio below 1.0, it will cause the module
+to function as an Expander. When performing expansion in this way, the Gain Reduction Meter will show an
+inverted meter display.<br /></li>
+</ul></p>
+</div>
+
+<h3 id="gain-reduction-meter">Gain Reduction Meter</h3>
+
+<p>Displays the current instantaneous amount of gain reduction in decibels (dB) applied to the signal.</p>
+
+<h3 id="makeup-gain">Makeup Gain</h3>
+
+<p>Determines the amount of static gain applied to the output signal <em>after</em> compression.</p>
+
+<h3 id="mix">Mix</h3>
+
+<p>Adjust this slider to control the dry/wet mix of the direct, unprocessed signal with the processed signal for
+the associated band.</p>
+
+<hr />
+
+<h2 id="advanced-controls">Advanced Controls</h2>
+
+<p>The Sidechain controls for the currently selected band are located in the Advanced panel of the HUD. To access
+the Advanced Panel, click the arrow button on the right hand side of the band HUD.</p>
+
+<figure ><img src="../images/compressor/adv-hud.png" alt="Advanced HUD button" /></figure>
+
+<h3 id="sidechain">Sidechain</h3>
+
+<p>Allows you to trigger the amount of gain reduction in the compressor from a signal other than the input to the
+compressor. The signal is routed into the <strong>detection circuit</strong> of the compressor. Sidechained signal levels
+will control the amount of compression as defined by the threshold level. You can choose either an internal or
+external input signal to trigger the Compressor band’s dynamic behavior. By sidechaining, you can alter or
+improve the relationships between the elements of the mix so that they work together.</p>
+
+<h4 id="enabled-sidechain">Enabled Sidechain</h4>
+
+<p>When you enable Sidechain, you have the option to sidechain with an internal band or an external band. The
+sidechain dropdown menu will display active internal bands and active external instances categorized under
+internal or external as described in the table below.</p>
+
+<ul>
+<li><strong>INTERNAL (INT.)</strong>: Choose from any band currently placed in the Compressor module.
+
+<ul>
+<li>Using an internal sidechain input allows you to trigger gain reduction in the selected band from the
+amount of energy in a different band. For example, you can accentuate perceived low end energy by reducing
+high end any time the lowest band exceeds a defined threshold.</li>
+<li>Internal Full allows you to trigger gain reduction will take the sonic information from all active bands.</li>
+</ul></li>
+<li><strong>EXTERNAL (EXT.)</strong>: Choose from any audio from another track or bus.
+
+<ul>
+<li>Using an external sidechain input will help balance a signal with other tracks.</li>
+<li>The external audio source can also be filtered through any of the bands in the Compressor module by
+choosing any of the External bands (for example, Ext. Band 1).</li>
+</ul></li>
+</ul>
+
+
+    </div>
+  </article>
+<footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../masking-meter/index.html" title="Masking Meter">
+        <span class="direction">Previous</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">Masking Meter</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../transient-shaper/index.html" title="Transient Shaper">
+        <span class="direction">Next</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">Transient Shaper</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+<a href="../../ja/compressor/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+<br />
+&copy; 2019 iZotope, Inc. - Neutron 3.1.0
+  </div>
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </main>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{
+  "inputs": [],
+  "servers": {
+    "noizy-claude": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/Users/m2ultra/NOIZYANTHROPIC/NOIZYLAB/noizy-claude/dist/index.js"
+      ]
+    },
+    "noizylab-workspace": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/m2ultra/NOIZYANTHROPIC/NOIZYLAB"
+      ]
+    },
+    "noizy-archive": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/m2ultra/NOIZYANTHROPIC/NOIZYEMPIRE"
+      ]
+    },
+    "noizylab-workspaces-4tbsg": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Volumes/4TBSG/_2026_DOCS/NOIZYLAB_WORKSPACES"
+      ]
+    },
+    "noizy-audio-archive-6tb": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Volumes/6TB/NOIZYLAB_ARCHIVES"
+      ]
+    },
+    "noizyfish-aquarium-4tbsg": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Volumes/4TBSG/_NOIZYFISH - THE AQUARIUM"
+      ]
+    },
+    "gdrive-noizylab": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com/My Drive"
+      ]
+    },
+    "noizy-memory": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
+    },
+    "microsoft/markitdown": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["markitdown-mcp==0.0.1a4"],
+      "gallery": "https://api.mcp.github.com",
+      "version": "1.0.0"
+    }
+  }
+}

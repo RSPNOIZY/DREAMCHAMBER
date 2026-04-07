@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]> 
+<!--><html class="no-js" lang="en"><!--<![endif]-->
+<head lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+  <title>I/O Section - Neutron 2 User Manual</title>
+  <meta name="generator" content="Hugo 0.40.3" />
+  <meta name="description" content="Neutron 2 User Manual">
+  <link rel="canonical" href="index.html">
+  <meta name="author" content="iZotope">
+  <meta property="og:url" content="http://www.neutron2helpdocs.com/en/io-section/index.html">
+  <meta property="og:title" content="Neutron 2 User Manual">
+  
+  <meta name="apple-mobile-web-app-title" content="Neutron 2 User Manual">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <style>@font-face {
+      font-family: 'icon';
+      src: url('../fonts/icon.eot');
+      src: url('../fonts/icon.eot')
+             format('embedded-opentype'),
+           url('../fonts/icon.woff')
+             format('woff'),
+           url('../fonts/icon.ttf')
+             format('truetype'),
+           url('../fonts/icon.svg')
+             format('svg');
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+  <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+  <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    }
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+  
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  
+  <script src="../javascripts/modernizr.js"></script>
+  
+<script>
+  (function(i,s,o,g,r,a,m){
+    i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+    []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+    m.parentNode.insertBefore(a,m)
+  })(window, document,
+    'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+   
+  ga('create', 'UA-63445037-15', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+
+<script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+
+</head>
+<body class="palette-primary-docs palette-accent-docs">
+	
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	
+
+  <div class="backdrop">
+    <div class="backdrop-paper"></div>
+  </div>
+  <input class="toggle" type="checkbox" id="toggle-drawer">
+  <input class="toggle" type="checkbox" id="toggle-search">
+  <label class="toggle-button overlay" for="toggle-drawer"></label>
+  <header class="header">    <nav aria-label="Header">
+      <div class="bar default">
+        <div class="button button-menu" role="button" aria-label="Menu">
+          <label class="toggle-button icon icon-menu" for="toggle-drawer">
+            <span></span>
+          </label>
+        </div>
+        <div class="stretch">
+          <div class="title">
+            <a href="../index.html" >
+            <img src="../images/header-intro-site/site-header.png">    I/O Section</a>
+          </div>
+        </div>
+            
+      </div>
+      <div class="bar search">
+        <div class="button button-close" role="button" aria-label="Close">
+          <label class="toggle-button icon icon-back" for="toggle-search"></label>
+        </div>
+        <div class="stretch">
+          <div class="field">
+            <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+          </div>
+        </div>
+        <div class="button button-reset" role="button" aria-label="Search">
+          <button class="toggle-button icon icon-close" id="reset-search"></button>
+        </div>
+      </div>
+    </nav></header>
+  <main class="main">    <div class="drawer">
+      <nav aria-label="Navigation">
+        <form action="../search/index.html">
+           <div class="group">      
+              <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+              <span class="highlight"></span>
+              <span class="underline"></span>
+              <label>Search</label>
+              <div style="clear: both;"></div>
+           </div>
+        </form>
+      </nav>
+      
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="toc">
+          
+            <ul>
+
+
+<li>
+  
+    <a  title="Introduction" href="../index.html">Introduction</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Overview" href="../neutron-overview/index.html">Overview</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Compressor" href="../compressor/index.html">Compressor</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Equalizer" href="../equalizer/index.html">Equalizer</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Exciter" href="../exciter/index.html">Exciter</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Gate" href="../gate/index.html">Gate</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Transient Shaper" href="../transient-shaper/index.html">Transient Shaper</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Track Assistant" href="../track-assistant/index.html">Track Assistant</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Masking Meter" href="../masking-meter/index.html">Masking Meter</a>
+  
+</li>
+
+
+<li>
+  
+    <a class="current" title="I/O Section" href="index.html">I/O Section</a><ul id="scrollspy">
+</ul>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Mix Tap" href="../mix-tap/index.html">Mix Tap</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Visual Mixer" href="../visual-mixer/index.html">Visual Mixer</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Tonal Balance Control" href="../tonal-balance-control/index.html">Tonal Balance Control</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Preset System" href="../preset-system/index.html">Preset System</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Options" href="../options/index.html">Options</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Undo History" href="../undo-history/index.html">Undo History</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Tips &amp; Examples" href="../tips-and-examples/index.html">Tips &amp; Examples</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Authorization" href="../authorization/index.html">Authorization</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Customer Care" href="../customer-care/index.html">Customer Care</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="License Information" href="../license-information/index.html">License Information</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="EULA" href="../eula/index.html">EULA</a>
+  
+</li>
+
+
+</ul>
+          
+          
+                  <hr />
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a></li>
+        </ul>
+        <hr />
+
+    
+          
+          
+            <ul>
+            
+              <li><a href="../../ja/io-section/index.html"><i class="icon icon-eye"></i> 日本語での表示ページ</a></li>
+            
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </div><article class="article">
+      <div class="wrapper">
+	<h1>I/O Section </h1>
+    
+      
+              <div class="lang-buttons-box">
+      <span class="lang-header">Languages:</span>
+      <br />
+        
+      
+        
+             <a href="../../ja/io-section/index.html"><button class="lang-btn-active">English</button></a>
+             
+        <a href="../../ja/io-section/index.html"><button class="lang-btn-clickable">日本語</button></a>
+          
+      </div>
+      
+    
+    
+    
+
+
+
+
+
+
+<nav>
+  
+  <h4>Table of Contents</h4>
+  <ul>
+    
+      
+      
+
+      
+      
+      <li>
+        <a href="index.html#overview">Overview</a>
+      
+  
+      
+      
+
+      
+      
+        
+        
+          
+      
+          
+          </li>
+          
+          <li>
+            <a href="index.html#controls">Controls</a>
+      
+      
+  
+      
+      
+
+      
+      
+        
+        
+          
+      
+          
+          </li>
+          
+          <li>
+            <a href="index.html#neutrino-modes">Neutrino Modes</a>
+      
+      
+  
+      
+      
+
+      
+      
+        
+        
+          
+      
+          
+          </li>
+          
+          <li>
+            <a href="index.html#limiter">Limiter</a>
+      
+      
+  
+      
+      
+
+      
+      
+        
+        
+          
+      
+          
+          </li>
+          
+          <li>
+            <a href="index.html#surround-sound-adv">Surround Sound [ADV]</a>
+      
+        
+          
+      
+  
+  
+  
+      
+    </ul>
+  </nav>
+  
+  
+    
+    
+    
+	
+
+<h2 id="overview">Overview</h2>
+
+<p>The Global I/O (input/output) section of Neutron allows you to monitor levels and adjust gain, stereo width and pan, limiter settings, channel operations and Neutrino modes.</p>
+
+<p><img src="../images/io-section/io-section.png" alt="io" /></p>
+
+<h2 id="controls">Controls</h2>
+
+<h3 id="bypass">Bypass</h3>
+
+<p>Bypasses Neutron 2 processing.</p>
+
+<h3 id="zero-latency">Zero Latency</h3>
+
+<p>Enables Zero Latency processing. When enabled, some processing options will be unavailable (for instance: IRC Limiter modes or Transparent (Hybrid) crossover types).</p>
+
+<h3 id="gain-input-output">Gain (Input/Output)</h3>
+
+<p>Adjusts the input or output gain. Output gain level comes before the Limiter in the signal flow.</p>
+
+<h3 id="width">Width</h3>
+
+<p>Adjusts the amount of stereo widening. Decreasing this control results in a narrowing effect (-100% is equivalent to mono), increasing this control widens the apparent stereo field. <em>Only functional in stereo instances of Neutron.</em></p>
+
+<h3 id="pan">Pan</h3>
+
+<p>Pans the output signal to the left or right channel.</p>
+
+<h3 id="sum-to-mono">Sum to Mono</h3>
+
+<p><img src="../images/mix-tap/sum-to-mono.png" alt="mix-tap" /></p>
+
+<p>When enabled, sums the left and right channels into a mono output signal.</p>
+
+<h3 id="invert-phase">Invert Phase</h3>
+
+<p><img src="../images/mix-tap/phase-flip.png" alt="phase" /></p>
+
+<p>When enabled, Inverts the polarity of the signal.</p>
+
+<h3 id="swap-channels">Swap Channels</h3>
+
+<p><img src="../images/mix-tap/swap.png" alt="swap" /></p>
+
+<p>When enabled, the left and right output channels of Neutron wil be swapped. The left channel will be routed to the right channel output and the right channel will be routed to the left channel output.</p>
+
+<h2 id="neutrino-modes">Neutrino Modes</h2>
+
+<p><img src="../images/io-section/neutrino-modes.png" alt="Neutrino Modes" /></p>
+
+<p>The Neutrino spectral shaping algorithm, available in both the free Neutrino plug-in and as a part of Neutron’s I/O panel, is designed to improve the overall spectral balance of an entire mix by making subtle changes to each individual track on which it’s used. Built for the discerning audio engineer, Neutrino seeks to be one of your secret weapons. Much like you’d extol the virtues of incrementally better A/D converters or other such subtle improvements, Neutrino hopes to aid you in your quest for a better-sounding mix.</p>
+
+<p>Though (as with any effect) it can be pushed too far, the spectral shaping is less concerned with making indulgent, audibly dramatic, or simply louder changes to an individual track (which would ironically unbalance the mix). Indeed, its greatest and most transformative strength is in the smooth sonic sheen that results when it’s used on each track within the mix. Similar to the methodology behind analog summing, the subtle benefits are increasingly noticeable the more audio tracks are run through the processing and ultimately summed together. Those with good ears will be able to hear the difference, and judge for themselves when and where it’s useful to use across many tracks.</p>
+
+<h3 id="what-is-spectral-shaping">What is Spectral Shaping?</h3>
+
+<p>Spectral shaping refers to real-time, dynamic adjustment of the frequency spectrum, falling somewhere between a Dynamic EQ and a multiband compressor. Neutrino has dozens of psychoacoustically spaced frequency bands, each with an adaptive threshold based on the audio signal’s RMS. The more a signal exceeds its adaptive threshold, the more frequency-specific attenuation is applied. Neutrino therefore dynamically adjusts the frequencies that contribute most to excess peaks, with modes that allow you to tailor its behavior for a variety of sources.</p>
+
+<p>Spectral shaping can help bring balance to the sound of instruments and voices in a way that traditional compressors and equalizers have not been able to in the past. In the same way that transient shaping applies focused dynamics processing to just the transient portion of a waveform in the time-domain, spectral shaping applies focused dynamics processing to just certain areas within the frequency spectrum. It is a form of subtle, low-ratio compression that is employed individually across dozens of frequency bands as necessary, with unique time constants and automatic adjustment of thresholds based on the incoming audio signal.</p>
+
+<p>When compared to other frequency-dependent dynamics tools like multiband compression, spectral shaping can offer far more resolution across the spectrum. By analyzing the signal across 32 mel-spaced frequency bands, each band is processed uniquely and without applying crossovers. You could imagine spectral shaping as a 32-band dynamic equalizer, with individual band shelf filters for every band, each automatically setting thresholds, time constants, and reduction amounts based on tuned models for each sound source. The result is a more transparent form of dynamic control that is constantly aware of the frequency content present in the incoming signal, and adjusts its processing accordingly.</p>
+
+<h3 id="modes">Modes</h3>
+
+<p>As engineers, we’ve grown accustomed to using a single processor on a variety of sources, like an 1176 for compressing vocals, drums, bass, and guitars. However, if you think about how each of these instruments sound, they are really quite unique. With an algorithm like spectral shaping, it’s possible to customize the behavior and performance of the processing to each type of audio source. Therefore, Neutrino offers five modes.</p>
+
+<p>Because the modes are subtly focused on different areas within the frequency spectrum, you’ll likely notice that Neutrino subtly changes the timbral balance of the audio depending on which mode you have selected. You may find that for a particular guitar track, the Bass Mode works well. No problem! Use your ears and enjoy what works best for your music. If you’re happy with the sound then we have no business telling you what to do.</p>
+
+<h3 id="detail">Detail</h3>
+
+<p>Adjusts the granularity of processing across the frequency spectrum. Because Neutrino is constantly listening and adjusting to the incoming signal, we suggest that you make a small adjustment, pause, then listen to the effect it’s had on your signal.</p>
+
+<p>It’s important to note that despite the analogies, Neutrino is not designed to impart its own particular “sonic character” to your audio in the way analog summing, transformers, or tape might. These analog devices often contribute some unique saturation characteristics. Neutrino is designed specifically to not add any distortion, preserving the original signal as transparently as possible.</p>
+
+<h3 id="amount">Amount</h3>
+
+<p>Adjusts how much of Neutrino’s dynamic processing is applied.</p>
+
+<h2 id="limiter">Limiter</h2>
+
+<p>The surround-sound, BS.1770-2/3-compliant True Peak Limiter in Neutron provides intelligent digital loudness maximization of the signal, while ensuring there are no True Peak overflows, across all of your mono, stereo, and surround channels.</p>
+
+<p>The intelligent digital loudness processor is designed for neutral or transparent limiting. It does so by analyzing the incoming source material and leveraging a psychoacoustically pleasing algorithm, reacting quickly to transients and reacting more slowly to steady, lower frequency tones. In doing so, it is optimized to preserve transients which makes them sharper and more clearly present in the output signal, even when aggressive limiting is taking place. This award-winning technology is what’s behind iZotope’s legendary IRC limiting algorithms.</p>
+
+<p>Neutron’s Limiter lives in the I/O section, overlaid on the output meters, which are capable of both Peak+RMS and Peak+Short-term loudness metering. When the Limiter is actively limiting audio, you will see the amount of gain reduction shown in orange from the top of the meter.</p>
+
+<h3 id="limiter-on-off">Limiter On/Off</h3>
+
+<p>The button aptly labeled Limiter enables you to turn the Limiter on or off. If you’re not making extensive use of the Limiter, we recommend you have it disabled so as not to unintentionally limit your audio.</p>
+
+<h3 id="output-gain">Output Gain</h3>
+
+<p>The Output Gain slider is penultimate to the Limiter in the signal flow, so it acts as Limiter input gain when the Limiter is enabled. It allows you to increase the loudness of your audio without affecting the True Peak level. It provides up to 10 dB of additional input gain into the Limiter.</p>
+
+<h3 id="ceiling">Ceiling</h3>
+
+<p>This determines the maximum output level of your audio - all peaks above this point will be limited. You can set the Ceiling of the Limiter via the Ceiling slider overlaid on the output meter, within a range of 0 to -20 dB.</p>
+
+<h3 id="limiter-algorithm">Limiter algorithm</h3>
+
+<p>There are three limiting algorithms in Neutron, each with a different sonic quality and latency requirement. Low latency is important to avoid lag or loss of sync when mixing to picture, dealing with limited latency compensation, or a control surface that needs to remain responsive. You may choose to optimize the limiter in different ways using the following algorithms:</p>
+
+<ul>
+<li><strong>IRC II:</strong> - Transparency. This algorithm uses higher latency (3772 samples at 48 kHz) to ensure maximum transparency when hitting the limiter hard, particularly with low frequencies that you’d like to remain loud, without crunch or distortion.</li>
+<li><strong>IRC LL:</strong> - Low Latency. This algorithm significantly lowers latency (as low as 120 samples at 48 kHz) to ensure efficient performance, yet still maintains a high level of sound quality and broadcast-standard True Peak performance. You may not notice a difference in sound quality unless you’re driving the limiter quite hard. The difference is most noticeable on low frequencies, and you may choose to use this algorithm to add a certain unique sonic character to certain low frequencies.</li>
+<li><strong>Hard:</strong> Brickwall and Zero Latency. The hard limiter uses the Ceiling as an absolute guide, and the final output level will not exceed this point. It’s the most CPU- and latency-efficient algorithm in Neutron, but it is not True Peak compliant, as it is extremely difficult to achieve adequate True Peak compliance with zero latency.</li>
+</ul>
+
+<h3 id="limiter-mode">Limiter mode</h3>
+
+<p>Three user-definable character options allow for more direct control over the adaptive, transparent nature of the limiting algorithm:</p>
+
+<ul>
+<li><strong>Mode 1:</strong> Clear. The Limiter will respond more quickly in order to better present fast-moving transient material in the mix.</li>
+<li><strong>Mode 2:</strong> Smooth. Smooth is the most common, best-sounding middle ground between Clear and Thick. It’s the most appropriate algorithm for the majority of program material, including most vocals and dialogue.</li>
+<li><strong>Mode 3:</strong> Thick. The Limiter will respond to audio more slowly, useful for louder, slower-moving sounds like a big explosion sound effect, or a bass/low-frequency swell, where you wouldn’t want an aggressive limiter to break the sound up.</li>
+</ul>
+
+<h3 id="limiter-lfe-bypass-adv">Limiter LFE Bypass [ADV]</h3>
+
+<p>The LFE (Low Frequency Effects) Bypass button only appears when Neutron is loaded on 5.1 or 7.1 surround tracks. When in surround-sound configurations, the Limiter is linked across all channels, meaning that gain reduction is applied equally to preserve the positioning of the surround image and avoid steering. When enabled, the LFE Bypass will ensure that any audio information in the LFE channel is passed through unprocessed, but with the correct latency compensation.</p>
+
+<h2 id="surround-sound-adv">Surround Sound [ADV]</h2>
+
+<p>Neutron supports the following surround-sound formats in the following hosts. Neutron processes all channels equally, unless LFE processing is bypassed in any particular module.</p>
+
+<h3 id="pro-tools">PRO TOOLS</h3>
+
+<ul>
+<li><strong>Surround Format:</strong> Film<br /></li>
+<li><strong>Channel Configurations:</strong> 1.0, 2.0, 3.0 (LCR), 4.0 (Quad), 5.0, 5.1, 7.0, 7.1</li>
+</ul>
+
+<h3 id="logic-pro">LOGIC PRO</h3>
+
+<ul>
+<li><strong>Surround Format(s):</strong> DTS, ITU/SMPTE, SDDS<br /></li>
+<li><strong>Channel Configurations:</strong> 1.0, 2.0, 4.0 (Quad), 4.0 (LCRS), 5.1 (ITU/SMPTE)</li>
+</ul>
+
+<h3 id="cubase">CUBASE</h3>
+
+<ul>
+<li><strong>Surround Format(s):</strong> ITU/SMPTE<br /></li>
+<li><strong>Channel Configurations:</strong> 1.0, 2.0, 3.0 (LRC), 3.0 (LRS), 4.0 (Quad), 4.0 (LCRS), 5.0, 5.1</li>
+</ul>
+
+<h3 id="nuendo">NUENDO</h3>
+
+<ul>
+<li><strong>Surround Format(s):</strong> DTS, ITU/SMPTE, SDDS<br /></li>
+<li><strong>Channel Configurations:</strong> 1.0, 2.0, 4.0 (Quad), 4.0 (LRCS), 5.0, 5.1, 7.0 (cine), 7.0 (music), 7.1 (cine), 7.1 (music)</li>
+</ul>
+
+<h3 id="lfe-rolloff-filter">LFE Rolloff Filter</h3>
+
+<p>If you happen to be mixing to a surround-sound spec that requires a band-limited LFE signal, the 24 db/octave LFE rolloff filter helps you achieve this. Access this filter in the Options Menu/Metering, where you’ll be able to enable the filter and select the cutoff value.</p>
+
+<div class="admonition note">
+<p class="admonition-title">LFE Rolloff filter</p>
+<p><ul>
+<li>This option only appears when Neutron is instantiated on a 5.1 or 7.1 surround track.</li>
+</ul>
+</p>
+</div>
+
+</div>
+    </article>
+    <footer class="footer">
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../masking-meter/index.html" title="Masking Meter">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Masking Meter
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  <div class="next">
+  
+      <a href="../mix-tap/index.html" title="Mix Tap [ADV]">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Mix Tap [ADV]
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+<div class="copyright">
+
+  
+  
+  <a href="../../ja/io-section/index.html"><i class="icon icon-eye"></i> 日本語での表示ページ</a>
+  
+
+  <br />
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Neutron 2 Help Documentation 
+
+</div></footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>  <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </main>
+  </body>
+</html>

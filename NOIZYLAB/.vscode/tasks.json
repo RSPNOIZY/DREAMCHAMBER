@@ -1,0 +1,346 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Slides: Export PPTX",
+      "type": "shell",
+      "command": "npm run slides:pptx",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Slides: Export PDF",
+      "type": "shell",
+      "command": "npm run slides:pdf",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Slides: Export HTML",
+      "type": "shell",
+      "command": "npm run slides:html",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Slides: Watch HTML",
+      "type": "shell",
+      "command": "npm run slides:watch",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Ideas: Capture (prompt)",
+      "type": "shell",
+      "command": "npm run idea:capture -- \"${input:ideaText}\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "Workstation: Open Cockpit",
+      "type": "shell",
+      "command": "npm run workstation:open",
+      "problemMatcher": []
+    },
+    {
+      "label": "Workstation: Open Aquarium",
+      "type": "shell",
+      "command": "npm run workstation:aquarium",
+      "problemMatcher": []
+    },
+    {
+      "label": "Workstation: Open Actor Journey",
+      "type": "shell",
+      "command": "npm run workstation:actor-journey",
+      "problemMatcher": []
+    },
+    {
+      "label": "Workstation: Open Actor Launch Journey",
+      "type": "shell",
+      "command": "npm run workstation:actor-launch-journey",
+      "problemMatcher": []
+    },
+    {
+      "label": "Workstation: Open Audio Persona Roadmap",
+      "type": "shell",
+      "command": "npm run workstation:audio-persona-roadmap",
+      "problemMatcher": []
+    },
+    {
+      "label": "Workstation: Open Community Starter Pack",
+      "type": "shell",
+      "command": "npm run workstation:community-starter",
+      "problemMatcher": []
+    },
+    {
+      "label": "Workstation: Command Router",
+      "type": "shell",
+      "command": "npm run workstation:command -- \"${input:voiceCommand}\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "Platform: Run NOIZY API",
+      "type": "shell",
+      "command": "npm run platform:api",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+
+    // ─── GABRIEL Control ───────────────────────────────────
+    {
+      "label": "GABRIEL: Status",
+      "type": "shell",
+      "command": "python3 tools/dreamchamber_orchestrator.py --status",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "GABRIEL: Start Server",
+      "type": "shell",
+      "command": "bash GABRIEL/bin/start_server.sh",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "GABRIEL: Start Bridge",
+      "type": "shell",
+      "command": "bash GABRIEL/bin/start_bridge.sh",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "GABRIEL: Health Check",
+      "type": "shell",
+      "command": "bash GABRIEL/bin/health_check.sh",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "GABRIEL: Stop All Servers",
+      "type": "shell",
+      "command": "pkill -f 'uvicorn' && pkill -f 'node.*gabriel' 2>/dev/null; echo '✓ All NOIZY servers stopped'",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Platform: Install Dependencies",
+      "type": "shell",
+      "command": "cd noizy_platform && pip install -r requirements.txt",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+
+    // ─── Intake ────────────────────────────────────────────
+    {
+      "label": "INTAKE: Open Inbox",
+      "type": "shell",
+      "command": "code ${workspaceFolder}/ideas/inbox.md",
+      "problemMatcher": []
+    },
+    {
+      "label": "INTAKE: New Session File",
+      "type": "shell",
+      "command": "FNAME=\"ideas/session_$(date +%Y%m%d_%H%M).md\" && echo '# INTAKE SESSION\\n> '$(date +'%Y-%m-%d %H:%M')\"\\n\\n## Raw Signal\\n\\n## Key Ideas\\n\\n## Next Actions\\n\" > \"${workspaceFolder}/$FNAME\" && code \"${workspaceFolder}/$FNAME\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "INTAKE: Quick Voice Capture",
+      "type": "shell",
+      "command": "npm run idea:capture -- \"${input:quickCapture}\"",
+      "problemMatcher": []
+    },
+
+    // ─── Talon ─────────────────────────────────────────────
+    {
+      "label": "Talon: Copy Voice Commands to ~/.talon",
+      "type": "shell",
+      "command": "cp ${workspaceFolder}/noizylab_voice.talon ~/.talon/user/noizylab_voice.talon && cp ${workspaceFolder}/noizylab_system.talon ~/.talon/user/noizylab_system.talon && cp ${workspaceFolder}/claude_code.talon ~/.talon/user/claude_code.talon && echo '✓ Talon files synced (voice + system + claude)'",
+      "problemMatcher": []
+    },
+
+    // ─── Cloudflare Deploy ─────────────────────────────────
+    {
+      "label": "Deploy: NOIZY Coming Soon → Cloudflare",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/workers/noizy-coming-soon && wrangler deploy",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Deploy: NOIZY Coming Soon (preview)",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/workers/noizy-coming-soon && wrangler dev --port 8788",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+
+    // ─── Health Check ──────────────────────────────────────
+    {
+      "label": "NOIZY: System Health",
+      "type": "shell",
+      "command": "python3 noizylab_system.py --status 2>/dev/null || python3 -c \"import sys; print('Platform API:', 'UP' if __import__('urllib.request', fromlist=['urlopen']).urlopen('http://localhost:8090/health', timeout=2) else 'DOWN')\" 2>/dev/null || echo 'Run GABRIEL: Start to bring up servers'",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+
+    // ─── NOIZY Voice Extension ─────────────────────────────
+    {
+      "label": "Extension: Compile NOIZY Voice",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/noizy-voice && npm install && npm run compile",
+      "group": "build",
+      "problemMatcher": ["$tsc"],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Extension: Watch NOIZY Voice",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/noizy-voice && npm run watch",
+      "isBackground": true,
+      "group": "build",
+      "problemMatcher": ["$tsc-watch"],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Extension: Package NOIZY Voice (.vsix)",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/noizy-voice && npm run package",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Extension: Install NOIZY Voice",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/noizy-voice && npm run compile && code-insiders --install-extension $(ls *.vsix | tail -1)",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+
+    // ─── DreamChamber Extension ────────────────────────────
+    {
+      "label": "DreamChamber: Compile",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/dreamchamber-extension && npm run compile",
+      "group": "build",
+      "problemMatcher": ["$tsc"],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "DreamChamber: Build",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/dreamchamber-extension && npm install && npm run compile",
+      "group": "build",
+      "problemMatcher": ["$tsc"],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "DreamChamber: Watch",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/dreamchamber-extension && npm run watch",
+      "isBackground": true,
+      "group": "build",
+      "problemMatcher": ["$tsc-watch"],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "DreamChamber: Package (.vsix)",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/dreamchamber-extension && npm run compile && npm run package",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "DreamChamber: Install",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/dreamchamber-extension && npm run compile && npm run package && code-insiders --install-extension $(ls *.vsix | tail -1) && echo '✓ DreamChamber installed — restart VSCode Insiders'",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "DreamChamber: Start ASR Server",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/dreamchamber/python && python3 asr_server.py --backend moonshine --port 8099",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "group": "dreamchamber" }
+    },
+    {
+      "label": "DreamChamber: Start TTS Server",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/dreamchamber/python && python3 tts_server.py --backend kokoro --port 8098",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "group": "dreamchamber" }
+    },
+    {
+      "label": "DreamChamber: Install Python deps",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}/dreamchamber/python && pip install -r requirements.txt",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "DreamChamber: Start AI Stack",
+      "dependsOn": ["DreamChamber: Start ASR Server", "DreamChamber: Start TTS Server"],
+      "dependsOrder": "parallel",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always" }
+    },
+
+    // ─── Claude Web (Simple Browser Panels) ────────────────
+    {
+      "label": "Claude Web: Open claude.ai",
+      "type": "shell",
+      "command": "code-insiders --command simpleBrowser.show https://claude.ai",
+      "problemMatcher": []
+    },
+    {
+      "label": "Claude Web: Open Cloudflare Dashboard",
+      "type": "shell",
+      "command": "code-insiders --command simpleBrowser.show https://dash.cloudflare.com",
+      "problemMatcher": []
+    },
+    {
+      "label": "Claude Web: Open NOIZY Platform Docs",
+      "type": "shell",
+      "command": "code-insiders --command simpleBrowser.show http://localhost:8090/docs",
+      "problemMatcher": []
+    },
+    {
+      "label": "CODEMASTER: Morning Report",
+      "type": "shell",
+      "command": "bash ${workspaceFolder}/CODEMASTER/AI_MORNING_NEWS.sh",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "CODEMASTER: Open Dashboard",
+      "type": "shell",
+      "command": "open ${workspaceFolder}/CODEMASTER/index.html",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "ideaText",
+      "type": "promptString",
+      "description": "Enter idea text to append to ideas/inbox.md"
+    },
+    {
+      "id": "voiceCommand",
+      "type": "promptString",
+      "description": "Enter a command phrase (e.g. export slides pptx)"
+    },
+    {
+      "id": "quickCapture",
+      "type": "promptString",
+      "description": "Quick capture — say what's in your mind right now"
+    }
+  ]
+}

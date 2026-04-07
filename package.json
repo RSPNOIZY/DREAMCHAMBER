@@ -1,0 +1,32 @@
+{
+  "name": "noizylab",
+  "version": "17.0.0",
+  "description": "NOIZY Empire — HEAVEN Consent Kernel + DreamChamber AI Platform",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail heaven",
+    "seed": "wrangler d1 execute gabriel_db --remote --file=seed.sql",
+    "schema": "wrangler d1 execute gabriel_db --remote --file=schema.sql",
+    "health": "curl -s https://heaven.noizylab.workers.dev/health",
+    "smoke": "bash smoke_test.sh",
+    "readiness": "bash scripts/deploy-readiness.sh",
+    "readiness:quick": "bash scripts/deploy-readiness.sh --quick",
+    "check:placeholders": "bash scripts/check-placeholders.sh",
+    "test:gateway": "cd workers/consent-gateway && npm test",
+    "test:router": "cd workers/cb01-router && npm test",
+    "test:proxy": "cd workers/claude-proxy && npm test",
+    "dc:dev": "cd dreamchamber && npm run dev",
+    "dc:start": "cd dreamchamber && npm start"
+  },
+  "dependencies": {
+    "docx": "^9.6.1",
+    "express": "^5.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "Robert Stephen Plowman (RSP_001)",
+  "license": "UNLICENSED"
+}

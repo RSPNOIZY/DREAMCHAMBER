@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>Maximizer - Ozone 9 Help Documentation</title>
+<meta name="generator" content="Hugo 0.63.2" />
+
+<meta name="description" content="Ozone 9 Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ozone 9 Help Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/en/maximizer/index.html">
+<meta property="og:title" content="Ozone 9 Help Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+      <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  <link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/style-overrides.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-33', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+<body class="palette-primary-ozone9 palette-accent-ozone9">
+  <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html">
+          <img src="../images/o9-header.svg" alt="Ozone 9 docs header image"
+                 width="190px" height="50px"> Maximizer</a>
+          </div>
+      </div>
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+<div class="drawer">
+  <nav aria-label="Navigation">
+<form action="../search/index.html"><div class="group">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+  </form>
+</nav>
+  <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+    <a title="Introduction" href="../index.html"><span class=""></span>  Introduction</a>
+</li>
+<li>
+    <a title="Getting Started" href="../getting-started/index.html"><span class=""></span>  Getting Started</a>
+</li>
+<li>
+    <a title="General Controls" href="../general-controls/index.html"><span class=""></span>  General Controls</a>
+</li>
+<li>
+    <a title="Views" href="../views/index.html"><span class=""></span>  Views</a>
+</li>
+<li>
+    <a title="Ozone Application" href="../ozone-app/index.html"><span class=""></span>  Ozone Application</a>
+</li>
+<li>
+    <a title="Master Assistant" href="../master-assistant/index.html"><span class=""></span>  Master Assistant</a>
+</li>
+<li>
+    <a title="Dynamics" href="../dynamics/index.html"><span class=""></span>  Dynamics</a>
+</li>
+<li>
+    <a title="Dynamic EQ" href="../dynamic-eq/index.html"><span class=""></span>  Dynamic EQ</a>
+</li>
+<li>
+    <a title="Equalizer" href="../equalizer/index.html"><span class=""></span>  Equalizer</a>
+</li>
+<li>
+    <a title="Exciter" href="../exciter/index.html"><span class=""></span>  Exciter</a>
+</li>
+<li>
+    <a title="Imager" href="../imager/index.html"><span class=""></span>  Imager</a>
+</li>
+<li>
+    <a title="Low End Focus" href="../low-end-focus/index.html"><span class=""></span>  Low End Focus</a>
+</li>
+<li>
+    <a title="Master Rebalance" href="../master-rebalance/index.html"><span class=""></span>  Master Rebalance</a>
+</li>
+<li>
+    <a title="Match EQ" href="../match-eq/index.html"><span class=""></span>  Match EQ</a>
+</li>
+<li>
+    <a class="current"title="Maximizer" href="index.html"><span class=""></span>  Maximizer</a>
+<ul id="scrollspy">
+</ul>
+</li>
+<li>
+    <a title="Spectral Shaper" href="../spectral-shaper/index.html"><span class=""></span>  Spectral Shaper</a>
+</li>
+<li>
+    <a title="Vintage Compressor" href="../vintage-compressor/index.html"><span class=""></span>  Vintage Compressor</a>
+</li>
+<li>
+    <a title="Vintage EQ" href="../vintage-eq/index.html"><span class=""></span>  Vintage EQ</a>
+</li>
+<li>
+    <a title="Vintage Limiter" href="../vintage-limiter/index.html"><span class=""></span>  Vintage Limiter</a>
+</li>
+<li>
+    <a title="Vintage Tape" href="../vintage-tape/index.html"><span class=""></span>  Vintage Tape</a>
+</li>
+<li>
+    <a title="Codec Preview" href="../codec-preview/index.html"><span class=""></span>  Codec Preview</a>
+</li>
+<li>
+    <a title="Dither" href="../dither/index.html"><span class=""></span>  Dither</a>
+</li>
+<li>
+    <a title="Referencing" href="../referencing/index.html"><span class=""></span>  Referencing</a>
+</li>
+<li>
+    <a title="Presets" href="../presets/index.html"><span class=""></span>  Presets</a>
+</li>
+<li>
+    <a title="Options" href="../options/index.html"><span class=""></span>  Options</a>
+</li>
+<li>
+    <a title="Glossary" href="../glossary/index.html"><span class=""></span>  Glossary</a>
+</li>
+<li>
+    <a title="Customer Care" href="../customer-care/index.html"><span class=""></span>  Customer Care</a>
+</li>
+<li>
+    <a title="License Information" href="../license-information/index.html"><span class=""></span>  License Information</a>
+</li>
+<li>
+    <a title="EULA" href="../eula/index.html"><span class=""></span>  EULA</a>
+</li>
+</ul>
+      <hr />
+<span class="section">Connect with iZotope</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+<li>
+    <a href="https://www.izotope.com/en/products/ozone.html" target="_blank" title="iZotope Product Page"><span class="icon icon-sphere"></span>  iZotope.com</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a>
+  </li>
+</ul>
+<hr /></div>
+  </div>
+</div>
+</div>
+<article class="article">
+    <div class="wrapper">
+
+      
+
+<h1>Maximizer </h1>
+
+<h2 id="overview">Overview</h2>
+<p>Ozone’s acclaimed IRC (Intelligent Release Control) technology lets you boost the overall level of your mixes without sacrificing dynamics and clarity. The Maximizer applies to the entire bandwidth of the mix; it is not a multiband effect.</p>
+<hr>
+<h2 id="module-interface">Module Interface</h2>
+<p>Ozone 9&rsquo;s Maximizer module controls and features are outlined in the table below.</p>
+<figure ><img src="../images/maximizer/module-interface.png" alt="Maximizer Interface" /></figure>
+<table>
+<thead>
+<tr>
+<th><strong>LABEL</strong></th>
+<th><strong>SECTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="label-1 Views" /></figure></td>
+<td><a href="index.html#module-header">Module Header</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="label-2 Module Header" /></figure></td>
+<td><a href="index.html#module-header">Meters &amp; Displays</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="label-3" /></figure></td>
+<td><a href="index.html#controls">Controls</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="module-header">Module Header</h2>
+<figure ><img src="../images/maximizer/module-header.png" alt="Maximizer Header" /></figure>
+<table>
+<thead>
+<tr>
+<th><strong>LABEL</strong></th>
+<th><strong>SECTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1 View Selector" /></figure></td>
+<td><a href="index.html#views">Views Selector</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-2 Reset" /></figure></td>
+<td><a href="index.html#reset">Reset</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="view-selector">View Selector</h3>
+<p>The Maximizer module includes the following views:</p>
+<ul>
+<li><a href="../views/index.html#gain-reduction">Gain Reduction</a></li>
+<li><a href="../views/index.html#detection-filter">Detection Filter</a></li>
+</ul>
+<h3 id="reset">Reset</h3>
+<p>Returns all controls in the Maximizer module to their factory default values.</p>
+<div class="admonition tip">
+<p class="admonition-title">UNDO HISTORY TO REVERT SETTINGS</p>
+<p class="admonition-body">If you wish to return to settings you were using before clicking the <strong>Reset</strong> button, you can use the <a href="../general-controls/index.html#undo-history">Undo History</a> window to revert the settings.</p>
+</div>
+
+<hr>
+<h2 id="controls">Controls</h2>
+<p>The Maximizer includes the following controls in the control panel:</p>
+<ul>
+<li><a href="index.html#irc-modes">IRC Modes</a></li>
+<li><a href="index.html#learn-threshold">Learn Threshold</a></li>
+<li><a href="index.html#threshold">Threshold</a></li>
+<li><a href="index.html#stereo-independence">Stereo Independence</a></li>
+<li><a href="index.html#transient-emphasis">Transient Emphasis</a></li>
+</ul>
+<figure ><img src="../images/maximizer/controls.png" alt="Maxmizer Controls" /></figure>
+<h3 id="irc-modes">IRC Modes</h3>
+<p>The Maximizer includes the following Intelligent Release Control (IRC) modes
+outlined in the table below.</p>
+<table>
+<thead>
+<tr>
+<th><strong>MODE</strong></th>
+<th><strong>EFFECT</strong></th>
+<th><strong>CPU PERFORMANCE</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IRC LL</strong></td>
+<td>Provides the intelligent digital loudness maximization of IRC I with lower latency.</td>
+<td>Lowest latency AND least CPU intensive.</td>
+</tr>
+<tr>
+<td><strong>IRC I</strong></td>
+<td>Provides intelligent digital loudness maximization of the signal. It does this by analyzing the source material and applying limiting in a psychoacoustically pleasing manner, reacting quickly to transients (to prevent pumping) and reacting more slowly to steady bass tones (to prevent distortion).</td>
+<td>Not too intensive on CPU performance.</td>
+</tr>
+<tr>
+<td><strong>IRC II</strong></td>
+<td>Similar to IRC I, but optimized to preserve transients even more, so they sound sharper and clearer in the output signal, even when aggressive limiting is taking place.</td>
+<td>Moderately CPU intensive.</td>
+</tr>
+<tr>
+<td><strong>IRC III</strong></td>
+<td>Allows for the most aggressive limiting by using an advanced psychoacoustic model to intelligently determine the speed of limiting that can be done to the incoming signal, before producing distortion that is detectable to the human ear. When set to this mode an option to choose between four different <a href="index.html#irc-iii-character-styles"><strong>character styles</strong></a>, will become available to you. These styles will help you manage the limiter’s sound by constraining its release behavior.</td>
+<td>Very CPU-intensive, and produces high latency, especially at higher sampling rates. You may find that at sampling rates greater than 48kHz you are unable to use IRC III mode in real-time.</td>
+</tr>
+<tr>
+<td><strong>IRC IV</strong></td>
+<td>This mode builds upon our existing IRC technology and by shaping the spectrum to further reduce pumping and distortion. As the signal goes farther over the threshold, the IRC IV algorithm limits frequency bands that contribute most to these peaks. This reduces intermodulation between different signal components and uses dozens of psychoacoustically spaced bands in order to react to any type of audio. When no limiting is necessary, the spectrum will be unaltered.  When set to this mode an optoin to choose between three different <a href="index.html#irc-iv-character-styles"><strong>character styles</strong></a>, will become available to you. These styles will help you manage the limiter’s sound by constraining its release behavior.</td>
+<td>Most CPU-intensive, and produces high latency, especially at higher sampling rates.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="irc-iii-character-styles">IRC III Character Styles</h4>
+<table>
+<thead>
+<tr>
+<th><strong>STYLE</strong></th>
+<th><strong>EFFECT</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Clipping</strong></td>
+<td>The most aggressive style setting of IRC III and will slightly colorize your mix with distortion or achieve the highest degree of loudness with the greatest risk of clipping.</td>
+</tr>
+<tr>
+<td><strong>Crisp</strong></td>
+<td>Agressively constrains the limiter’s release behavior and will favor distortion over any pumping.</td>
+</tr>
+<tr>
+<td><strong>Balanced</strong></td>
+<td>Constrains the release behavior of the limiter in a generally transparent way and should be suitable for most material.</td>
+</tr>
+<tr>
+<td><strong>Pumping</strong></td>
+<td>The least aggressive style setting for IRC III and does not constrain the limiter’s release behavior. It can tend toward a slower release behavior and may result in pumping. This is the “legacy” setting and is the behavior used in Ozone version 5.01 and earlier.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="irc-iv-character-styles">IRC IV Character Styles</h4>
+<table>
+<thead>
+<tr>
+<th><strong>STYLE</strong></th>
+<th><strong>EFFECT</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Classic</strong></td>
+<td>Provides general enhancement of the overall mix with a sound more reminiscent of Ozone’s earlier limiting algorithms which are still being used by professionals today.</td>
+</tr>
+<tr>
+<td><strong>Modern</strong></td>
+<td>Provides general enhancement and life to your mix but with greater detail and clarity than the Classic style.</td>
+</tr>
+<tr>
+<td><strong>Transient</strong></td>
+<td>Optimized for maximum preservation of all transients resulting in a highly detailed overall sound that may benefit some mixes needing added clarity.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="learn-threshold">Learn Threshold</h3>
+<p>Enable to allow the Maximizer to adjust the Threshold slider in
+response to your input audio so that it meets the pre-defined Threshold Target
+value.</p>
+<ul>
+<li>Double-click the Target LUFS value readout to edit the <strong>Lufts Target Value</strong>.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Learn Threshold Dynamically Updates</p>
+<p class="admonition-body">The Learn Threshold control will not disable itself after learning. It can be used to
+continuously update the Threshold to meet the Target value.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Learn Threshold Not Recommended for Loudness Compliance</p>
+<p class="admonition-body">The Learn Threshold control is not intended to be used to meet loudness compliance standards.</p>
+</div>
+<h3 id="threshold">Threshold</h3>
+<p>Adjust the threshold of the Maximizer to set the level at which the limiting
+processing takes place and determines the amount of gain added to maximize the
+output level. The threshold control includes the following
+sub-controls and meter:</p>
+<ul>
+<li><a href="index.html#threshold-meter">Threshold Meter</a></li>
+<li><a href="index.html#ceiling">Ceiling</a></li>
+<li><a href="index.html#link">Link</a></li>
+<li><a href="index.html#true-peak">True Peak</a></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title"> Threshold Triggering and Maximizer Output</p>
+<p class="admonition-body">Setting the Threshold to a non-zero value that <em>doesn&rsquo;t</em>  trigger the limiter will still increase the output of the Maximizer. For example if the input level to the Maximizer is peaking at -15 dB and the Maximizer Threshold is set to -4dB, limiting will not occur, but the level at the output of the Maximizer will
+be peaking at -11dB.</p>
+</div>
+<h4 id="threshold-meter">Threshold Meter</h4>
+<p>Displays the input level to the module alongside the gain reduction applied by
+the module&rsquo;s processing.</p>
+<figure ><img src="../images/maximizer/threshold-meter.png" alt="Threshold Meter" /></figure>
+<ul>
+<li>The two meters on the far left and right of the threshold meter display the
+input audio level.</li>
+<li>The two meters that appear in between the input meters display the gain
+reduction applied.</li>
+</ul>
+<h4 id="ceiling">Ceiling</h4>
+<p>Adjust to set the maximum output level of the Maximizer.</p>
+<div class="admonition note">
+<p class="admonition-title">Ceiling, Dither, and Codec Preview</p>
+<p class="admonition-body">It is generally recommended to use a setting of -0.3 dB when dithering, or a
+more dramatic setting (-0.6 dB to -0.8 dB) when mastering audio to be converted to .mp3 or .aac later, in order to prevent clipping in the future. See the <a href="../codec-preview/index.html">Codec
+Preview</a> section for more details.</p>
+</div>
+<h4 id="threshold-ceiling-link">Threshold &amp; Ceiling Link</h4>
+<p>Enable to link the <a href="index.html#threshold">Threshold</a> and <a href="index.html#ceiling">Ceiling</a> controls.
+Adjusting either control in linked mode will adjust the other control by the
+same amount and vice versa.</p>
+<h4 id="true-peak">True Peak</h4>
+<p>When enabled, the limiter will account for the levels of each digital sample and the levels of the analog signal that will eventually be produced by D/A conversion. Enables the limiter to take into account not only the levels of each digital sample but also the levels of the analog signal that will eventually be produced by D/A conversion. This is sometimes necessary, since an analog signal’s peak level can exceed the corresponding digital signal’s peak level by more than 3 dB.</p>
+<div class="admonition warning">
+<p class="admonition-title">True Peak Limiting &amp; CPU Usage</p>
+<p class="admonition-body">This option will result
+in a small increase in CPU usage, but if your mixes are running very hot you may
+want to enable it to ensure that absolutely no distortion is introduced when
+your audio is finally run through a D/A converter.</p>
+</div>
+<h3 id="character">Character</h3>
+<p>Adjust to customize the overall response time (attack and release times) of the
+maximizer processing.  The attack and release times used are dependent on the
+selected <a href="index.html#mode">Mode</a>, and allows a continuous range from Fast (0.0) to Slow
+(10.0) in each mode.</p>
+<h3 id="stereo-independence">Stereo Independence</h3>
+<p>The Stereo Independence controls represent the next iteration of the Stereo Unlink control in previous versions of Ozone. By default, the Stereo Independence controls (Transient and Sustain) will be linked and set to 0% - mimicking the default settings of the previous Stereo Unlink control.</p>
+<ul>
+<li><strong>Transient Slider:</strong> Adjusts how the limiter responds to transient material across
+channels.</li>
+<li><strong>Sustain Slider:</strong> Adjusts how the limiter responds to sustained material across
+channels.</li>
+<li><strong>Link:</strong> Links the Transient and Sustain sliders.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>SLIDER SETTING</strong></th>
+<th><strong>EFFECT</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Both Sliders set to 100%</strong></td>
+<td>It is possible to achieve a louder output from the Maximizer, but this can result in a narrow stereo image. To alleviate the narrowing effect of the <em>Stereo Unlink control</em>, we split this feature into two sliders.</td>
+</tr>
+<tr>
+<td><strong>Sliders independently set to non-zero values</strong></td>
+<td>Applies limiting to transient and sustained material separately, based on a level envelope generated from a ratio of the individual channel levels and the entire stereo image.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="transient-emphasis">Transient Emphasis</h3>
+<p>Enable Transient Emphasis adjustment by clicking the Transient Emphasis power
+button.</p>
+<ul>
+<li>Adjusting the <strong>Amount</strong> control allows you to fine-tune the shaping of
+transients before limiting takes place. This can be useful for preserving
+sharper sounds, like drums, while still optimizing loudness.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tranisent Emphasis Settings</p>
+<p class="admonition-body">Using higher amount values for Transient Emphasis
+will result in more pronounced transients after the limiting process.</p>
+</div>
+
+<div class="admonition tip">
+<p class="admonition-title">Input Level and Maximizer</p>
+<p class="admonition-body">Try setting Ozone’s input level so that the input meter is peaking at the upper half to
+upper quarter of the meter. It is OK if the input meter peaks close to the top
+when the Maximizer module is enabled, since it will keep the audio from clipping.</p>
+</div>
+
+
+
+    </div>
+  </article>
+<footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../match-eq/index.html" title="Match EQ">
+        <span class="direction">Previous</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">Match EQ</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../spectral-shaper/index.html" title="Spectral Shaper">
+        <span class="direction">Next</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">Spectral Shaper</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+&copy; 2020 iZotope, Inc. - Ozone 9.1.0
+  </div>
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </main>
+</body>
+</html>

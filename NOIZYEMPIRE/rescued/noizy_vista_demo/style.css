@@ -1,0 +1,30 @@
+body {
+  background: #10131a;
+  color: #fff;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  overflow: hidden;
+}
+#aurora {
+  position: fixed; inset: 0; z-index: 0;
+  filter: blur(32px) brightness(1.12) saturate(1.2);
+  mix-blend-mode: lighten;
+  will-change: transform, filter;
+  background: linear-gradient(120deg, #6ee7b7 0%, #3b82f6 50%, #a78bfa 100%);
+  opacity: 0.7;
+}
+#mountains {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 38vh; z-index: 1;
+  background: url('assets/mountains.svg') bottom center/cover no-repeat;
+}
+#moon {
+  position: absolute; top: 10vh; left: 70vw; width: 120px; height: 120px;
+  background: radial-gradient(circle at 40% 40%, #fff 70%, #e0e7ff 100%);
+  border-radius: 50%; box-shadow: 0 0 80px 40px #e0e7ff88; z-index: 2; opacity: 0.85;
+}
+#star-canvas {
+  position: fixed; inset: 0; z-index: 2; pointer-events: none;
+}
+main#cockpit { position: relative; z-index: 3; perspective: 1000px; }
+button { margin: 1em; padding: 0.75em 1.5em; border-radius: 12px; border: none; background: #3b82f6; color: #fff; font-weight: 600; cursor: pointer; }
+button:hover { background: #a78bfa; }

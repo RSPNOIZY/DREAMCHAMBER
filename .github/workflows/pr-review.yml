@@ -1,0 +1,85 @@
+name: PR Constitutional Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  # ── Security Scan (Gemini Code Assist gate) ─────────────────────────────────
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Scan for hardcoded secrets
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          extra_args: --only-verified
+
+      - name: No secrets in diff
+        run: |
+          git diff origin/main...HEAD -- . \
+            ':(exclude)*.lock' ':(exclude)node_modules' | \
+          grep -iE "(api_key|secret|password|token)\s*[:=]\s*['\"][^'\"]{8,}" && {
+            echo "Possible secret in diff — block merge"
+            exit 1
+          } || echo "No hardcoded secrets detected"
+
+  # ── Constitutional Compliance ────────────────────────────────────────────────
+  gospel-enforcement:
+    name: Gospel Deal Enforcement
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check royalty floor invariant
+        run: |
+          VIOLATIONS=$(grep -rn "royalty_split.*0\.[0-6]" \
+            --include="*.ts" --include="*.js" --include="*.py" \
+            --exclude-dir=node_modules . 2>/dev/null || true)
+          if [ -n "$VIOLATIONS" ]; then
+            echo "CONSTITUTIONAL VIOLATION: Royalty below 75% floor"
+            echo "$VIOLATIONS"
+            exit 1
+          fi
+
+      - name: Check consent_audit_trail not mutated
+        run: |
+          MUTATIONS=$(git diff origin/main...HEAD -- . | \
+            grep "^+" | grep -iE "UPDATE.*consent_audit|DELETE.*consent_audit" || true)
+          if [ -n "$MUTATIONS" ]; then
+            echo "CONSTITUTIONAL VIOLATION: consent_audit_trail mutation attempted"
+            exit 1
+          fi
+
+      - name: GORUNFREE NOIZYKIDZ tithe present
+        run: |
+          # Ensure GORUNFREE clause exists in any new payment/royalty code
+          NEW_PAYMENT_FILES=$(git diff origin/main...HEAD --name-only | grep -iE "payment|royalt|stripe|payout" || true)
+          for f in $NEW_PAYMENT_FILES; do
+            if [ -f "$f" ] && ! grep -q "GORUNFREE\|noizykidz\|0\.01" "$f"; then
+              echo "WARN: $f has payment logic without GORUNFREE tithe reference"
+            fi
+          done
+          echo "GORUNFREE check complete"
+
+  # ── PR Size Guard ────────────────────────────────────────────────────────────
+  pr-hygiene:
+    name: PR Hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: PR description required
+        run: |
+          if [ -z "${{ github.event.pull_request.body }}" ]; then
+            echo "PR description is required — add context for the audit trail"
+            exit 1
+          fi

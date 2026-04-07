@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZYKIDZ — World Music Theory Atlas · Every Tradition Since the First Rock</title>
+<style>
+:root {
+  --bg: #050810;
+  --bg2: #090f1c;
+  --surface: #0d1525;
+  --border: #1a2a40;
+  --gold: #f0b429;
+  --gold2: #ffd166;
+  --ember: #ff6b35;
+  --rose: #e84393;
+  --teal: #06d6a0;
+  --violet: #7c4dff;
+  --blue: #118ab2;
+  --green: #22c55e;
+  --cream: #f5e6c8;
+  --text: #e0e8f5;
+  --muted: #7a8fa8;
+  --dim: #3a4a5a;
+
+  /* region colours */
+  --africa: #ff6b35;
+  --southasia: #e84393;
+  --eastasia: #06d6a0;
+  --mena: #f0b429;
+  --seasia: #7c4dff;
+  --europe: #118ab2;
+  --americas: #22c55e;
+  --oceania: #ffd166;
+  --prehistory: #aabbcc;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); font-family:'Georgia',serif; font-size:16px; line-height:1.75; overflow-x:hidden; }
+
+/* ── STARS ── */
+#stars { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+.star { position:absolute; border-radius:50%; background:#fff; animation:twinkle var(--d) ease-in-out infinite; opacity:0; }
+@keyframes twinkle { 0%,100%{opacity:0} 50%{opacity:var(--o)} }
+
+/* ── HERO ── */
+.hero {
+  position:relative; z-index:1;
+  min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:80px 32px;
+  background:radial-gradient(ellipse 90% 70% at 50% 100%, rgba(255,107,53,.15) 0%, transparent 60%),
+             radial-gradient(ellipse 60% 40% at 30% 20%, rgba(6,214,160,.08) 0%, transparent 50%),
+             radial-gradient(ellipse 60% 40% at 70% 30%, rgba(232,67,147,.08) 0%, transparent 50%);
+}
+.hero-badge { font-family:'Courier New',monospace; font-size:11px; letter-spacing:5px; text-transform:uppercase; color:var(--teal); margin-bottom:24px; }
+.hero-title { font-size:clamp(42px,9vw,110px); font-weight:400; color:var(--cream); line-height:1; margin-bottom:16px; }
+.hero-title span { color:var(--gold); }
+.hero-sub { font-size:clamp(14px,2vw,20px); color:var(--muted); margin-bottom:48px; max-width:700px; }
+.hero-stats { display:flex; gap:48px; justify-content:center; flex-wrap:wrap; margin-bottom:64px; }
+.hstat-n { font-size:42px; color:var(--gold2); font-weight:300; }
+.hstat-l { font-family:'Courier New',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
+.scroll-hint { font-family:'Courier New',monospace; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--dim); animation:bounce 2s ease-in-out infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0);opacity:.4} 50%{transform:translateY(8px);opacity:.9} }
+
+/* ── NAV TABS ── */
+.tab-nav {
+  position:sticky; top:0; z-index:100;
+  background:rgba(5,8,16,.95); backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex; overflow-x:auto; padding:0 20px;
+  scrollbar-width:none;
+}
+.tab-nav::-webkit-scrollbar { display:none; }
+.tab { padding:14px 20px; font-family:'Courier New',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase;
+  color:var(--muted); cursor:pointer; white-space:nowrap; border-bottom:2px solid transparent;
+  transition:all .2s; text-decoration:none; }
+.tab:hover { color:var(--text); }
+.tab.active { color:var(--gold); border-bottom-color:var(--gold); }
+
+/* ── PAGE ── */
+.page { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:0 28px 120px; }
+
+/* ── SECTION ── */
+.section { margin-bottom:100px; opacity:0; transform:translateY(28px); transition:opacity .6s,transform .6s; }
+.section.vis { opacity:1; transform:translateY(0); }
+
+.section-label { font-family:'Courier New',monospace; font-size:10px; letter-spacing:5px; text-transform:uppercase;
+  color:var(--accent,var(--gold)); margin-bottom:14px; display:flex; align-items:center; gap:12px; }
+.section-label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--border),transparent); }
+.section-title { font-size:clamp(26px,4vw,52px); font-weight:400; color:var(--cream); margin-bottom:8px; line-height:1.15; }
+.section-subtitle { font-size:16px; color:var(--muted); margin-bottom:36px; font-style:italic; }
+
+/* ── REGION CARDS ── */
+.region-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:2px; margin:40px 0; }
+.rcard {
+  background:var(--surface); border:1px solid var(--border);
+  border-top:3px solid var(--rc); padding:32px 28px;
+  transition:all .3s; cursor:default;
+}
+.rcard:hover { background:#0f1c2e; transform:translateY(-3px); }
+.rcard-region { font-family:'Courier New',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--rc); margin-bottom:8px; }
+.rcard-name { font-size:22px; color:var(--cream); margin-bottom:4px; }
+.rcard-era { font-size:12px; color:var(--muted); margin-bottom:16px; font-style:italic; }
+.rcard-body { font-size:13px; color:var(--text); line-height:1.7; margin-bottom:16px; }
+.rcard-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+.tag { font-family:'Courier New',monospace; font-size:10px; padding:3px 8px; border:1px solid var(--border); color:var(--muted); border-radius:2px; }
+.rcard-instruments { font-size:12px; color:var(--muted); border-top:1px solid var(--border); padding-top:12px; margin-top:12px; }
+.rcard-instruments strong { color:var(--rc); }
+
+/* ── CONCEPT GRID ── */
+.concept-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:2px; margin:40px 0; }
+.ccard { background:var(--surface); border:1px solid var(--border); padding:28px 22px; border-left:3px solid var(--cc,var(--gold)); }
+.ccard-icon { font-size:32px; margin-bottom:12px; }
+.ccard-title { font-size:17px; color:var(--cream); margin-bottom:6px; }
+.ccard-body { font-size:13px; color:var(--muted); line-height:1.65; }
+.ccard-example { font-family:'Courier New',monospace; font-size:11px; color:var(--cc,var(--gold)); margin-top:10px; }
+
+/* ── RHYTHM TABLE ── */
+.rhythm-families { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:2px; margin:40px 0; }
+.rfam { background:var(--surface); border:1px solid var(--border); padding:24px 20px; }
+.rfam-num { font-family:'Courier New',monospace; font-size:10px; letter-spacing:3px; color:var(--gold); margin-bottom:8px; }
+.rfam-title { font-size:17px; color:var(--cream); margin-bottom:8px; }
+.rfam-desc { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:10px; }
+.rfam-examples { font-size:11px; color:var(--teal); font-family:'Courier New',monospace; }
+
+/* ── SCALE TABLE ── */
+.scale-families { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:2px; margin:40px 0; }
+.sfam { background:var(--surface); border:1px solid var(--border); padding:24px 20px; border-top:2px solid var(--sc,var(--border)); }
+.sfam-num { font-family:'Courier New',monospace; font-size:10px; letter-spacing:3px; color:var(--sc,var(--gold)); margin-bottom:8px; }
+.sfam-title { font-size:17px; color:var(--cream); margin-bottom:8px; }
+.sfam-desc { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:10px; }
+.sfam-examples { font-size:11px; color:var(--rose); font-family:'Courier New',monospace; }
+
+/* ── TIMELINE ── */
+.timeline { position:relative; padding-left:40px; margin:40px 0; }
+.timeline::before { content:''; position:absolute; left:12px; top:0; bottom:0; width:2px; background:linear-gradient(180deg,var(--gold),var(--teal),var(--rose),var(--ember)); }
+.tl-item { position:relative; margin-bottom:36px; }
+.tl-dot { position:absolute; left:-34px; top:4px; width:14px; height:14px; border-radius:50%; background:var(--td,var(--gold)); border:2px solid var(--bg); box-shadow:0 0 0 2px var(--td,var(--gold)); }
+.tl-era { font-family:'Courier New',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--td,var(--gold)); margin-bottom:4px; }
+.tl-title { font-size:17px; color:var(--cream); margin-bottom:6px; }
+.tl-body { font-size:13px; color:var(--muted); line-height:1.7; max-width:680px; }
+
+/* ── THEORY BOX ── */
+.theory-box { background:var(--surface); border:1px solid var(--border); padding:36px 32px; margin:32px 0; }
+.theory-box h3 { font-size:20px; color:var(--cream); margin-bottom:12px; font-weight:400; }
+.theory-box p { font-size:14px; color:var(--text); line-height:1.8; margin-bottom:12px; }
+.theory-box .formula { font-family:'Courier New',monospace; font-size:14px; color:var(--teal); background:rgba(6,214,160,.07); padding:10px 16px; margin:12px 0; border-left:3px solid var(--teal); }
+.theory-box .try { background:rgba(240,180,41,.06); border:1px solid rgba(240,180,41,.2); padding:16px 20px; margin-top:16px; border-radius:2px; }
+.theory-box .try strong { color:var(--gold2); }
+.theory-box .try p { color:var(--muted); font-size:13px; margin:0; }
+
+/* ── QUOTE ── */
+.bq { border-left:3px solid var(--gold); padding:20px 28px; margin:28px 0; background:rgba(240,180,41,.04); }
+.bq p { font-size:18px; color:var(--cream); font-style:italic; line-height:1.75; margin-bottom:8px; }
+.bq cite { font-size:12px; color:var(--muted); font-family:'Courier New',monospace; }
+
+/* ── DIVIDER ── */
+.div { display:flex; align-items:center; gap:16px; margin:60px 0; color:var(--dim); }
+.div::before,.div::after { content:''; flex:1; height:1px; background:var(--border); }
+
+/* ── KIDZ ACTIVITY ── */
+.activity { background:linear-gradient(135deg,rgba(6,214,160,.06),rgba(255,107,53,.04)); border:1px solid rgba(6,214,160,.25); padding:28px 28px; margin:28px 0; }
+.activity-badge { font-family:'Courier New',monospace; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--teal); margin-bottom:12px; }
+.activity-title { font-size:18px; color:var(--cream); margin-bottom:10px; }
+.activity-body { font-size:14px; color:var(--text); line-height:1.8; }
+.activity-body ol, .activity-body ul { padding-left:20px; margin-top:8px; }
+.activity-body li { margin-bottom:6px; color:var(--muted); }
+
+/* ── BIG NUMBER ── */
+.big-numbers { display:flex; gap:40px; flex-wrap:wrap; margin:32px 0; }
+.bnum { text-align:center; }
+.bnum-n { font-size:48px; color:var(--gold2); font-weight:300; line-height:1; }
+.bnum-l { font-family:'Courier New',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-top:4px; }
+
+/* ── CLOSING ── */
+.closing { text-align:center; padding:100px 32px; background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(240,180,41,.07) 0%,transparent 70%); border:1px solid var(--border); margin-top:60px; }
+.closing-title { font-size:clamp(28px,5vw,56px); color:var(--cream); margin-bottom:20px; font-weight:400; }
+.closing-body { font-size:17px; color:var(--muted); max-width:600px; margin:0 auto 40px; line-height:1.9; }
+
+/* ── FOOTER ── */
+footer { text-align:center; padding:48px; font-family:'Courier New',monospace; font-size:11px; letter-spacing:2px; color:var(--dim); border-top:1px solid var(--border); position:relative; z-index:1; }
+footer span { color:var(--gold); }
+
+@media(max-width:768px) {
+  .page { padding:0 16px 80px; }
+  .hero { padding:60px 16px; }
+  .hero-stats { gap:24px; }
+  .region-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+
+<!-- ═══════════════════════════════════════════════════ HERO -->
+<header class="hero">
+  <div class="hero-badge">NOIZYKIDZ · World Music Theory Atlas · Every Tradition · Every Country · Every Era</div>
+  <h1 class="hero-title">MUSIC THEORY<br><span>OF THE WORLD</span></h1>
+  <p class="hero-sub">From the first rock ever banged. To the last song ever sung. Every tradition. Every country. Every rhythm and scale the human family has ever invented.</p>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-n">60,000+</div><div class="hstat-l">Years of Music</div></div>
+    <div class="hstat"><div class="hstat-n">7</div><div class="hstat-l">Continents</div></div>
+    <div class="hstat"><div class="hstat-n">64</div><div class="hstat-l">Rhythm Families</div></div>
+    <div class="hstat"><div class="hstat-n">128</div><div class="hstat-l">Scale Structures</div></div>
+    <div class="hstat"><div class="hstat-n">∞</div><div class="hstat-l">Songs Still Unwritten</div></div>
+  </div>
+  <div class="scroll-hint">↓ Start the Journey ↓</div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════ NAV -->
+<nav class="tab-nav">
+  <a class="tab" href="#begin">The Beginning</a>
+  <a class="tab" href="#universal">Universal Laws</a>
+  <a class="tab" href="#africa">Africa</a>
+  <a class="tab" href="#southasia">South Asia</a>
+  <a class="tab" href="#eastasia">East Asia</a>
+  <a class="tab" href="#mena">Middle East</a>
+  <a class="tab" href="#seasia">SE Asia</a>
+  <a class="tab" href="#europe">Europe</a>
+  <a class="tab" href="#americas">Americas</a>
+  <a class="tab" href="#oceania">Oceania</a>
+  <a class="tab" href="#rhythms">64 Rhythms</a>
+  <a class="tab" href="#scales">128 Scales</a>
+  <a class="tab" href="#instruments">Instruments</a>
+  <a class="tab" href="#theory">Core Theory</a>
+</nav>
+
+<div class="page">
+
+<!-- ═══════════════════════════════════════════════════ THE BEGINNING -->
+<section class="section" id="begin" style="--accent:var(--prehistory)">
+  <div class="section-label">Chapter 0 · ~60,000 BCE → ~3000 BCE</div>
+  <h2 class="section-title">The Beginning —<br>When the First Rock Was Banged</h2>
+  <p class="section-subtitle">Before instruments. Before notes. Before anything had a name.</p>
+
+  <div class="theory-box">
+    <h3>🌍 The Very First Music</h3>
+    <p>Before anyone made an instrument, the human body <em>was</em> the instrument. Your heartbeat is already a drum. Your breath is already a rhythm. Your voice was the first melody. Every piece of music ever written — from Beethoven to Beyoncé to a Mongolian throat singer — starts here: with a human body making sound.</p>
+    <p>We know music is at least <strong>60,000 years old</strong> because archaeologists found bone flutes that old. But music almost certainly started long before that — when early humans clapped, stomped, and sang together around fires. The science is clear: music predates agriculture, writing, metalworking, and every other technology humans ever built.</p>
+    <div class="formula">Body → Rhythm. Voice → Melody. Together → Music.</div>
+    <div class="try"><strong>🎵 Try This!</strong><p>Right now: tap your heartbeat on your chest. That's 60–80 beats per minute. That's the oldest rhythm on Earth. Every drum in every culture is an extension of that.</p></div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item" style="--td:var(--prehistory)">
+      <div class="tl-dot"></div>
+      <div class="tl-era">~60,000 BCE — Africa & Europe</div>
+      <div class="tl-title">The First Instruments: Body & Bone</div>
+      <div class="tl-body">Humans clap, stomp, and sing. Bone flutes found in Slovenia (Divje Babe flute, ~60,000 years old) and South Africa. These are tuned to recognizable scales — proof that our ancestors weren't just making noise. They were making <em>music</em>.</div>
+    </div>
+    <div class="tl-item" style="--td:#b0c4de">
+      <div class="tl-dot"></div>
+      <div class="tl-era">~40,000 BCE — Europe</div>
+      <div class="tl-title">Vulture Bone Flutes</div>
+      <div class="tl-body">Flutes carved from vulture and swan bone found in Hohle Fels cave, Germany. Five holes. A playable pentatonic scale. This means our ancestors 40,000 years ago understood that you could divide sound into organized intervals — the foundation of all music theory.</div>
+    </div>
+    <div class="tl-item" style="--td:var(--ember)">
+      <div class="tl-dot"></div>
+      <div class="tl-era">~10,000 BCE — Global</div>
+      <div class="tl-title">Drums, Rattles & The First Ensembles</div>
+      <div class="tl-body">As humans settled into communities, music became communal. Drums made from logs and animal skins. Rattles from seeds and shells. Different people playing different parts at the same time — the birth of ensemble music and polyrhythm.</div>
+    </div>
+    <div class="tl-item" style="--td:var(--gold)">
+      <div class="tl-dot"></div>
+      <div class="tl-era">~3400 BCE — Mesopotamia (Iraq)</div>
+      <div class="tl-title">The World's First Written Music Theory</div>
+      <div class="tl-body">The ancient Sumerians in what is now Iraq wrote about music on clay tablets. They had harps, lyres, and a tuning system. Around 1400 BCE, they wrote the <strong>Hurrian Hymn No. 6</strong> — the oldest fully notated song ever found, written on a clay tablet. It's a hymn to the goddess Nikkal and uses a 7-note scale similar to our modern diatonic scale.</div>
+    </div>
+    <div class="tl-item" style="--td:var(--teal)">
+      <div class="tl-dot"></div>
+      <div class="tl-era">~2700 BCE — China</div>
+      <div class="tl-title">The 12 Lü — Chinese Tuning System</div>
+      <div class="tl-body">Emperor Huangdi's court developed the <strong>Twelve Lü</strong> — 12 standard pitches organized using perfect fifths. From these they derived the <strong>5-tone pentatonic scale</strong>: Gong (宮), Shang (商), Jue (角), Zhi (徵), Yu (羽). This system is one of the oldest and most sophisticated tuning theories in the world.</div>
+    </div>
+    <div class="tl-item" style="--td:var(--rose)">
+      <div class="tl-dot"></div>
+      <div class="tl-era">~1500 BCE — India</div>
+      <div class="tl-title">The Samaveda — The World's Oldest Sung Scripture</div>
+      <div class="tl-body">The Samaveda is a collection of sacred songs using a 3-note reciting system that eventually evolved into the full <strong>sargam</strong> (Sa Re Ga Ma Pa Dha Ni) — India's equivalent of Do Re Mi. This is where the concept of <em>raga</em> begins: not just a scale, but a musical personality with its own emotional color, time of day, and rules for how to move through the notes.</div>
+    </div>
+    <div class="tl-item" style="--td:var(--blue)">
+      <div class="tl-dot"></div>
+      <div class="tl-era">~550 BCE — Greece</div>
+      <div class="tl-title">Pythagoras & The Mathematics of Music</div>
+      <div class="tl-body">Pythagoras (yes, the triangle guy) discovered that musical intervals follow mathematical ratios. A string half as long sounds exactly one octave higher (2:1). Two thirds as long sounds a perfect fifth higher (3:2). He called these the <strong>harmonic series</strong>. Greek musicians organized their music into <strong>modes</strong> — Dorian, Phrygian, Lydian, Mixolydian — each with a different emotional character. These modes are still used in jazz and pop music today.</div>
+    </div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-badge">🥁 NOIZYKIDZ Activity · The Prehistoric Drummer</div>
+    <div class="activity-title">Make Music Like It's 40,000 BCE</div>
+    <div class="activity-body">
+      You don't need any equipment — just your body:
+      <ol>
+        <li>Put your hand on your heart and feel your heartbeat. Count: 1-2-3-4. That's 4/4 time — the most common time signature in music today.</li>
+        <li>Clap on beats 1 and 3. Now clap on 2 and 4. Feel how different that feels? Beat 2 and 4 is called the <strong>backbeat</strong> — it's what makes rock, R&B, and pop feel good.</li>
+        <li>Hum one note — any note. Hold it. That's called a <strong>drone</strong>. Almost every musical tradition on Earth starts with a drone.</li>
+        <li>Now hum a note a bit higher. Then a bit lower. You just made a <strong>melody</strong>.</li>
+        <li>You've just done what humans have been doing for 60,000 years. You ARE the instrument.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ═══════════════════════════════════════════════════ UNIVERSAL LAWS -->
+<section class="section" id="universal" style="--accent:var(--gold)">
+  <div class="section-label">The Universal Laws · Concepts in Every Musical Culture on Earth</div>
+  <h2 class="section-title">Music Theory<br>Everyone Shares</h2>
+  <p class="section-subtitle">Different languages. Different instruments. Same fundamental ideas.</p>
+
+  <div class="concept-grid">
+    <div class="ccard" style="--cc:var(--ember)">
+      <div class="ccard-icon">🥁</div>
+      <div class="ccard-title">Pulse / Beat</div>
+      <div class="ccard-body">The steady heartbeat of music. Every culture has it. West African djembe, Indian tabla, Japanese taiko, techno kick drum — all organizing time around a regular pulse.</div>
+      <div class="ccard-example">EVERY culture has this</div>
+    </div>
+    <div class="ccard" style="--cc:var(--rose)">
+      <div class="ccard-icon">🔄</div>
+      <div class="ccard-title">Rhythm</div>
+      <div class="ccard-body">Patterns of long and short sounds in time. The space between the beats matters as much as the beats themselves. Africa invented polyrhythm — multiple different rhythms at once.</div>
+      <div class="ccard-example">64 rhythm families worldwide</div>
+    </div>
+    <div class="ccard" style="--cc:var(--teal)">
+      <div class="ccard-icon">🎵</div>
+      <div class="ccard-title">Pitch / Tone</div>
+      <div class="ccard-body">How high or low a note sounds. Determined by how fast something vibrates. Every culture organizes pitches into <em>scales</em> — selected sets of notes that sound good together. 128 scale structures documented worldwide.</div>
+      <div class="ccard-example">128 scale structures worldwide</div>
+    </div>
+    <div class="ccard" style="--cc:var(--gold)">
+      <div class="ccard-icon">🎶</div>
+      <div class="ccard-title">Melody</div>
+      <div class="ccard-body">Notes moving one after another through time. Direction matters: going up feels like rising energy, going down feels like settling. Every culture has melodies that tell emotional stories.</div>
+      <div class="ccard-example">The universal language</div>
+    </div>
+    <div class="ccard" style="--cc:var(--violet)">
+      <div class="ccard-icon">🎼</div>
+      <div class="ccard-title">Harmony</div>
+      <div class="ccard-body">Two or more notes at the same time. Some combinations feel stable (consonance), some feel tense (dissonance). But what sounds "dissonant" varies by culture — Bulgarian singers use intervals that sound wrong to Western ears but are beautiful in context.</div>
+      <div class="ccard-example">Varies enormously by culture</div>
+    </div>
+    <div class="ccard" style="--cc:var(--blue)">
+      <div class="ccard-icon">🔊</div>
+      <div class="ccard-title">Timbre / Tone Color</div>
+      <div class="ccard-body">Why a flute and a guitar sound different even playing the same note. The "personality" of a sound. The sitar's buzzing sympathetic strings, the shakuhachi's breathy edge, the djembe's slap — all timbre choices that carry cultural identity.</div>
+      <div class="ccard-example">Each culture has a unique palette</div>
+    </div>
+    <div class="ccard" style="--cc:var(--green)">
+      <div class="ccard-icon">📐</div>
+      <div class="ccard-title">Form / Structure</div>
+      <div class="ccard-body">How music is organized in time: verses and choruses, call-and-response, theme-and-variation, cyclic return, improvisation within a framework. The raga's alap-jor-jhala, the blues' 12-bar form, the gamelan's gong cycles — all examples of musical architecture.</div>
+      <div class="ccard-example">From 8-bar blues to 72-beat tala</div>
+    </div>
+    <div class="ccard" style="--cc:var(--ember)">
+      <div class="ccard-icon">🌊</div>
+      <div class="ccard-title">Dynamics</div>
+      <div class="ccard-body">Loud and soft. Crescendo (getting louder) and decrescendo (getting softer). Every musical tradition uses volume as expression — from a whispered Japanese shakuhachi breath to a Ghanaian drumming ensemble's full thunder.</div>
+      <div class="ccard-example">Universal expression tool</div>
+    </div>
+    <div class="ccard" style="--cc:var(--rose)">
+      <div class="ccard-icon">🤫</div>
+      <div class="ccard-title">Silence / Rest</div>
+      <div class="ccard-body">The notes you <em>don't</em> play. In Japanese music, <strong>ma</strong> (間) is the sacred pause — silence that is as meaningful as sound. In jazz, the rests define the groove. In all music, silence is where the meaning lives.</div>
+      <div class="ccard-example">Japan's "ma" · Jazz rests</div>
+    </div>
+    <div class="ccard" style="--cc:var(--teal)">
+      <div class="ccard-icon">🔁</div>
+      <div class="ccard-title">Repetition & Variation</div>
+      <div class="ccard-body">Music uses repetition to create memory and expectation. Then it varies the repetition to create surprise. The tension between "same" and "different" is the engine of all musical narrative — from a Malian kora ostinato to a Beethoven symphony's development section.</div>
+      <div class="ccard-example">The engine of all music</div>
+    </div>
+    <div class="ccard" style="--cc:var(--gold)">
+      <div class="ccard-icon">📣</div>
+      <div class="ccard-title">Call & Response</div>
+      <div class="ccard-body">One voice calls; another answers. Found in West African drumming, gospel church singing, blues field hollers, Indian raga improvisation, Balinese kecak chanting. This conversational structure is possibly the oldest form of musical organization, rooted in actual human speech patterns.</div>
+      <div class="ccard-example">60,000 years of conversation</div>
+    </div>
+    <div class="ccard" style="--cc:var(--violet)">
+      <div class="ccard-icon">🎙️</div>
+      <div class="ccard-title">Drone</div>
+      <div class="ccard-body">A sustained note held underneath everything else. The Indian tanpura, the Scottish bagpipe, the Australian didgeridoo, Tibetan singing bowls, the boosted bass in dub reggae — all drones. It creates tonal gravity, a home base that everything else orbits around.</div>
+      <div class="ccard-example">India · Scotland · Australia · Tibet</div>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ═══════════════════════════════════════════════════ AFRICA -->
+<section class="section" id="africa" style="--accent:var(--africa)">
+  <div class="section-label">Africa · Mother Continent · ~60,000 BCE → Now</div>
+  <h2 class="section-title">Africa — Where<br>All Rhythm Was Born</h2>
+  <p class="section-subtitle">The oldest musical traditions on Earth. The root of the modern world's groove.</p>
+
+  <div class="bq">
+    <p>"Africa is the mother continent of music. Every drumming tradition, every polyrhythm, every call-and-response structure that lives in jazz, blues, funk, hip-hop, samba, and reggae was carried there from Africa in the holds of slave ships. The music survived. The people survived. And the groove never died."</p>
+    <cite>— NOIZY Music Theory Atlas</cite>
+  </div>
+
+  <div class="region-grid">
+    <div class="rcard" style="--rc:var(--africa)">
+      <div class="rcard-region">West Africa & Sahel</div>
+      <div class="rcard-name">Polyrhythm & The Timeline</div>
+      <div class="rcard-era">~10,000 BCE → Now · Ghana, Mali, Senegal, Nigeria...</div>
+      <div class="rcard-body">The most important musical concept from West Africa is <strong>polyrhythm</strong> — multiple different rhythms playing at the same time. Not random: each rhythm fits together precisely, like gears in a clock. The <strong>bell timeline</strong> (played on an iron bell called the agogô) is the "spine" — everyone locks onto it. If you can hear the timeline, you can always find your place in the music even if you get lost.</div>
+      <div class="rcard-tags"><span class="tag">polyrhythm</span><span class="tag">cross-rhythm</span><span class="tag">timeline</span><span class="tag">call-response</span><span class="tag">interlock</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> djembe, dunun, tama (talking drum), kora, balafon, ngoni, shekere, agogô bell</div>
+    </div>
+    <div class="rcard" style="--rc:var(--africa)">
+      <div class="rcard-region">Griot Tradition</div>
+      <div class="rcard-name">Music as Living Library</div>
+      <div class="rcard-era">Ancient · Mali, Senegal, Gambia, Guinea...</div>
+      <div class="rcard-body">The <strong>griot</strong> (jali) is the keeper of cultural memory. A griot is not just a musician — they are a historian, genealogist, praise-singer, and news-carrier. They memorize thousands of years of family history and community events in music form. The kora (21-string harp-lute) is their primary instrument. This is music as <em>database</em> — oral technology that has preserved African history for millennia.</div>
+      <div class="rcard-tags"><span class="tag">oral tradition</span><span class="tag">praise song</span><span class="tag">cultural memory</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> kora, ngoni, xalam, balafon</div>
+    </div>
+    <div class="rcard" style="--rc:#e87c35">
+      <div class="rcard-region">Central & Southern Africa</div>
+      <div class="rcard-name">The Mbira & Cyclic Music</div>
+      <div class="rcard-era">~1000 CE → Now · Zimbabwe, Congo, Zambia...</div>
+      <div class="rcard-body">The <strong>mbira</strong> (thumb piano, also called mbira dzavadzimu — "voice of the ancestors") uses interlocking parts: two players each play incomplete patterns that fit together to create a complete, continuous cycle. Neither part makes full sense alone. Together they are one. This is how much African music works — the music lives in the <em>relationship between parts</em>, not in any single part.</div>
+      <div class="rcard-tags"><span class="tag">interlocking</span><span class="tag">cyclic</span><span class="tag">ancestor music</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> mbira, hosho, marimba, likembe</div>
+    </div>
+    <div class="rcard" style="--rc:#ff9a5c">
+      <div class="rcard-region">Horn of Africa</div>
+      <div class="rcard-name">Qenet Modes of Ethiopia</div>
+      <div class="rcard-era">Ancient → Now · Ethiopia, Eritrea, Somalia</div>
+      <div class="rcard-body">Ethiopian music has its own unique modal system called <strong>qenet</strong>. The four main qenets are <strong>tezeta</strong> (nostalgic, bittersweet), <strong>bati</strong> (sadder, minor-feeling), <strong>ambassel</strong> (melancholic, meditative), and <strong>anchihoye</strong> (lively, celebratory). Each has its own emotional identity — like Indian ragas but uniquely Ethiopian. The <em>krar</em> (lyre) and <em>masenqo</em> (spike fiddle) carry these modes.</div>
+      <div class="rcard-tags"><span class="tag">qenet</span><span class="tag">tezeta</span><span class="tag">bati</span><span class="tag">ambassel</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> krar, begena, masenqo, washint (flute)</div>
+    </div>
+  </div>
+
+  <div class="theory-box">
+    <h3>🥁 The Clave — Africa's Most Exported Rhythm</h3>
+    <p>The <strong>clave</strong> is a 2-bar rhythmic pattern originally from West African bell timelines. Enslaved Africans brought it to Cuba, where it became the spine of all Cuban music. From Cuba it went into salsa, samba, rumba, mambo, cha-cha, reggaeton, and eventually hip-hop and pop.</p>
+    <div class="formula">3-2 Clave:  x . . x . . x . . . x . x . . .
+2-3 Clave:  x . x . . . x . x . . x . . . .</div>
+    <p>Every professional musician in the world needs to know the clave. It's one of the most important rhythmic concepts ever developed.</p>
+    <div class="try"><strong>🎵 Try This!</strong><p>Clap this pattern: CLAP pause pause CLAP pause CLAP (then CLAP pause CLAP pause pause CLAP pause pause). That's the 3-2 son clave. Now put on any salsa or Afrobeats song and find it hiding underneath everything else.</p></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-badge">🥁 NOIZYKIDZ Activity · African Polyrhythm</div>
+    <div class="activity-title">Three Rhythms at Once</div>
+    <div class="activity-body">
+      You need 3 friends (or try all three with different body parts):
+      <ol>
+        <li><strong>Person 1 (feet):</strong> Tap a steady 1-2-3-4 beat. Never stop. Never change.</li>
+        <li><strong>Person 2 (left hand):</strong> Clap every 3rd count: 1, 4, 3, 2, 1, 4... (this is 3 over 4)</li>
+        <li><strong>Person 3 (right hand):</strong> Snap on 2 and 4 only.</li>
+        <li>All three at once = African polyrhythm. The groove lives in how these three layers fit together. Welcome to West Africa.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ═══════════════════════════════════════════════════ SOUTH ASIA -->
+<section class="section" id="southasia" style="--accent:var(--rose)">
+  <div class="section-label">South Asia · India, Pakistan, Bangladesh, Sri Lanka · ~1500 BCE → Now</div>
+  <h2 class="section-title">South Asia —<br>Raga, Tala & The Mathematics of Feeling</h2>
+  <p class="section-subtitle">The most sophisticated scale and rhythm theory ever developed by any civilization.</p>
+
+  <div class="region-grid">
+    <div class="rcard" style="--rc:var(--rose)">
+      <div class="rcard-region">Raga — The Soul of Indian Music</div>
+      <div class="rcard-name">Not Just a Scale — A Musical Personality</div>
+      <div class="rcard-era">~500 BCE → Now · Carnatic & Hindustani traditions</div>
+      <div class="rcard-body">A <strong>raga</strong> is not just a collection of notes. It is a complete musical world with: its own scale (ascending and descending may use different notes); its own characteristic phrases you must use; its own "home" notes that feel most important; its own ornamentation style; its own emotional color (<em>rasa</em>); and in classical tradition, its own time of day or season when it should be played. There are hundreds of ragas — each one a distinct emotional landscape.</div>
+      <div class="rcard-tags"><span class="tag">raga</span><span class="tag">rasa</span><span class="tag">aroha</span><span class="tag">avaroha</span><span class="tag">vadi</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> sitar, sarod, bansuri, sarangi, tanpura, tabla</div>
+    </div>
+    <div class="rcard" style="--rc:#ff7eb6">
+      <div class="rcard-region">Tala — The Rhythm Cycle</div>
+      <div class="rcard-name">Counting Beats with Your Body</div>
+      <div class="rcard-era">~500 BCE → Now</div>
+      <div class="rcard-body">A <strong>tala</strong> is a rhythmic cycle. Indian musicians keep track of the cycle by clapping and waving their hands — a physical notation system called <em>kriyas</em>. The most common tala is <strong>Teentaal</strong> (16 beats, split 4+4+4+4). But talas can be 6, 7, 8, 10, 12, 14 or even 128 beats long. The challenge: an improviser can freely elaborate for hours, but must land exactly on beat 1 (called <em>sam</em>) at the right moment — even after the most complex detours.</div>
+      <div class="rcard-tags"><span class="tag">tala</span><span class="tag">teentaal</span><span class="tag">sam</span><span class="tag">vibhag</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> tabla, mridangam, pakhawaj, ghatam, kanjira</div>
+    </div>
+    <div class="rcard" style="--rc:var(--rose)">
+      <div class="rcard-region">Shruti — The 22 Microtones</div>
+      <div class="rcard-name">Notes Between the Notes</div>
+      <div class="rcard-era">Ancient theory · Natya Shastra ~200 BCE</div>
+      <div class="rcard-body">Western music divides the octave into 12 equal semitones. Indian classical music recognizes <strong>22 shruti</strong> — subtle pitch inflections within the octave that a Western piano can't produce. Different ragas use different shrutis to create their characteristic emotional color. A C-sharp in one raga might be slightly higher than in another — creating an entirely different feeling even though Western notation would write them the same way.</div>
+      <div class="rcard-tags"><span class="tag">microtone</span><span class="tag">shruti</span><span class="tag">intonation</span></div>
+      <div class="rcard-instruments"><strong>Reveals on:</strong> sitar, sarangi, voice</div>
+    </div>
+    <div class="rcard" style="--rc:#e84393">
+      <div class="rcard-region">Carnatic vs. Hindustani</div>
+      <div class="rcard-name">Two Great Classical Traditions</div>
+      <div class="rcard-era">Diverged ~13th century CE</div>
+      <div class="rcard-body"><strong>Carnatic music</strong> (South India) is more compositionally structured. It has the <strong>72 melakarta</strong> system — a mathematically complete classification of all possible heptatonic scales. Every raga belongs to a melakarta parent scale. <strong>Hindustani music</strong> (North India) is more improvisation-focused, influenced by Persian and Mughal court music, organized into <strong>10 thaats</strong> (parent scales). Both traditions share the same soul but speak different dialects.</div>
+      <div class="rcard-tags"><span class="tag">Carnatic</span><span class="tag">Hindustani</span><span class="tag">72 melakarta</span><span class="tag">10 thaat</span></div>
+      <div class="rcard-instruments"><strong>Carnatic:</strong> vina, mridangam · <strong>Hindustani:</strong> sitar, tabla</div>
+    </div>
+  </div>
+
+  <div class="theory-box">
+    <h3>🎵 Sargam — The Indian Do-Re-Mi</h3>
+    <p>The Western system uses Do-Re-Mi-Fa-Sol-La-Ti. India has <strong>Sa-Re-Ga-Ma-Pa-Dha-Ni</strong>. These syllables are short for: <em>Shadja, Rishabh, Gandhar, Madhyam, Pancham, Dhaivat, Nishad</em>.</p>
+    <div class="formula">Sa  Re  Ga  Ma  Pa  Dha  Ni  Sa
+Do  Re  Mi  Fa  Sol  La   Ti  Do</div>
+    <p>The key difference: in Western music, the notes are fixed (C D E F G A B). In Indian music, the notes are <em>relative</em> — Sa can be any pitch, and everything else is measured from it. This makes Indian music more portable across voice ranges.</p>
+    <div class="try"><strong>🎵 Try This!</strong><p>Hum a comfortable note — that's your Sa. Now hum: Sa Re Ga Ma Pa Dha Ni Sa — moving up each time. You just played an Indian major scale. Now go back down: Sa Ni Dha Pa Ma Ga Re Sa. That's a complete octave in sargam.</p></div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ═══════════════════════════════════════════════════ EAST ASIA -->
+<section class="section" id="eastasia" style="--accent:var(--teal)">
+  <div class="section-label">East Asia · China, Japan, Korea, Mongolia · ~2700 BCE → Now</div>
+  <h2 class="section-title">East Asia —<br>Pentatonic, Silence & The Calligraphy of Sound</h2>
+  <p class="section-subtitle">Five notes can contain the whole world. Silence is music. Time bends.</p>
+
+  <div class="region-grid">
+    <div class="rcard" style="--rc:var(--teal)">
+      <div class="rcard-region">China</div>
+      <div class="rcard-name">The Five Tones & 12 Lü</div>
+      <div class="rcard-era">~2700 BCE → Now</div>
+      <div class="rcard-body">Chinese music is built on a <strong>5-tone pentatonic scale</strong>: <em>Gong (宮), Shang (商), Jue (角), Zhi (徵), Yu (羽)</em>. Each tone was associated with elements, seasons, directions, and even government. The <strong>12 Lü</strong> (律) tuning system uses perfect-fifth relationships to generate all 12 chromatic pitches — similar to Pythagoras's system but developed independently. Chinese music treats pitch as <em>calligraphy</em>: the shape of how you move to and from a note matters as much as the note itself.</div>
+      <div class="rcard-tags"><span class="tag">pentatonic</span><span class="tag">12 lü</span><span class="tag">contour</span><span class="tag">pitch bend</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> guqin, guzheng, erhu, pipa, dizi, sheng</div>
+    </div>
+    <div class="rcard" style="--rc:#06f5c0">
+      <div class="rcard-region">Japan</div>
+      <div class="rcard-name">Ma — The Sacred Pause</div>
+      <div class="rcard-era">Ancient → Now</div>
+      <div class="rcard-body">The most important concept in Japanese music is <strong>ma</strong> (間) — the meaningful pause between sounds. In Western music, silence is an absence. In Japan, silence is a presence. It's what gives the next note its power. The shakuhachi player might hold a breath for 10 seconds before the next note — that silence is the music. Japanese scales: <strong>yo</strong> (bright, pentatonic) and <strong>in</strong> (darker, more melancholic, contains semitones).</div>
+      <div class="rcard-tags"><span class="tag">ma (間)</span><span class="tag">yo scale</span><span class="tag">in scale</span><span class="tag">silence</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> shakuhachi, koto, shamisen, taiko, biwa</div>
+    </div>
+    <div class="rcard" style="--rc:#0ee8c0">
+      <div class="rcard-region">Korea</div>
+      <div class="rcard-name">Jangdan & Jeong-gan-bo</div>
+      <div class="rcard-era">Ancient → Now</div>
+      <div class="rcard-body">Korean music uses <strong>jangdan</strong> (장단) — rhythmic cycles with elastic, breathing phrasing. Unlike Western time signatures, jangdan patterns have their own feel and emotional quality. The most famous: <em>jangdan in 3</em> (jinyang, long and meditative), <em>jangdan in 6</em> (jungmori, medium pace), and <em>jangdan in 12</em> (hwimori, fast and exciting). Korea also invented one of the world's most sophisticated notation systems: <strong>jeongganbo</strong>, which maps pitch AND rhythm on a grid.</div>
+      <div class="rcard-tags"><span class="tag">jangdan</span><span class="tag">jeongganbo</span><span class="tag">pyeongjo</span><span class="tag">gyemyeonjo</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> gayageum, geomungo, haegeum, janggu, daegeum</div>
+    </div>
+    <div class="rcard" style="--rc:var(--teal)">
+      <div class="rcard-region">Mongolia & Central Steppe</div>
+      <div class="rcard-name">Throat Singing & Overtones</div>
+      <div class="rcard-era">Ancient → Now</div>
+      <div class="rcard-body"><strong>Khoomei</strong> (Mongolian throat singing) is one of the most extraordinary musical techniques ever developed. A single singer produces TWO notes simultaneously — a low fundamental drone and a high, flute-like overtone melody. By shaping the mouth and throat, you can select different harmonics from the overtone series to create melodies. This is singing the <em>mathematics of sound itself</em>. The morin khuur (horse-head fiddle) plays pentatonic melodies that sound like the endless Mongolian steppe.</div>
+      <div class="rcard-tags"><span class="tag">khoomei</span><span class="tag">overtone singing</span><span class="tag">harmonic series</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> morin khuur, yatga, tobshuur, dombra, jaw harp</div>
+    </div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-badge">🎵 NOIZYKIDZ Activity · The Japanese Pause</div>
+    <div class="activity-title">Practice Ma — The Art of Silence</div>
+    <div class="activity-body">
+      <ol>
+        <li>Hum one note. Hold it for 4 beats. Then stop completely — no sound.</li>
+        <li>Count 4 beats of silence. Really feel the silence.</li>
+        <li>Hum a different note. Hold it for 2 beats. Stop. Count 6 beats of silence.</li>
+        <li>Hum a note. Let it slowly fade. Count 8 beats of complete silence before you make any sound again.</li>
+        <li>Notice how the silence changes the meaning of the next note. That's <strong>ma</strong>. That's Japanese music theory. The pause is doing the emotional work.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ═══════════════════════════════════════════════════ MIDDLE EAST & NORTH AFRICA -->
+<section class="section" id="mena" style="--accent:var(--mena)">
+  <div class="section-label">Middle East & North Africa · Arab World, Turkey, Persia, Iran · ~3000 BCE → Now</div>
+  <h2 class="section-title">Middle East —<br>Maqam, Quarter Tones & The Notes Between the Notes</h2>
+  <p class="section-subtitle">A 24-tone universe. Notes the piano can't play. Modal systems of infinite depth.</p>
+
+  <div class="region-grid">
+    <div class="rcard" style="--rc:var(--mena)">
+      <div class="rcard-region">Arab World</div>
+      <div class="rcard-name">Maqam — The Modal Landscape</div>
+      <div class="rcard-era">~700 CE (theorized) → Now · Egypt, Iraq, Syria, Lebanon...</div>
+      <div class="rcard-body">A <strong>maqam</strong> (plural: maqamat) is like an Indian raga — a complete musical world, not just a scale. Each maqam has: a characteristic scale using <strong>quarter tones</strong> (notes halfway between Western semitones); a typical starting pitch; a characteristic direction for melodic movement; specific cadence formulas; and an emotional character. There are over 70 named maqamat in common use. The system uses a 24-tone-per-octave grid versus Western music's 12.</div>
+      <div class="rcard-tags"><span class="tag">maqam</span><span class="tag">quarter tone</span><span class="tag">jins</span><span class="tag">seyir</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> oud, qanun, ney, violin (retuned), riq, darbuka</div>
+    </div>
+    <div class="rcard" style="--rc:#f5c842">
+      <div class="rcard-region">The Core Maqamat</div>
+      <div class="rcard-name">The Seven Essential Modal Worlds</div>
+      <div class="rcard-era">Core system · Used across Arab world</div>
+      <div class="rcard-body"><strong>Rast</strong> — bright, optimistic, similar to major with a neutral 3rd. <strong>Bayati</strong> — bittersweet, most common in Egyptian music; starts on D with a lowered 2nd. <strong>Hijaz</strong> — exotic, dramatic, the "Arabian Nights" sound (actually used everywhere from Spain to India). <strong>Nahawand</strong> — minor-feeling, emotional. <strong>Kurd</strong> — similar to Phrygian mode. <strong>Saba</strong> — mournful, searching. <strong>Ajam</strong> — bright major. Each has quarter-tone inflections that give them their unique personality.</div>
+      <div class="rcard-tags"><span class="tag">Rast</span><span class="tag">Bayati</span><span class="tag">Hijaz</span><span class="tag">Nahawand</span><span class="tag">Saba</span></div>
+      <div class="rcard-instruments"><strong>Carries best on:</strong> oud, voice, ney</div>
+    </div>
+    <div class="rcard" style="--rc:var(--mena)">
+      <div class="rcard-region">Turkey</div>
+      <div class="rcard-name">Makam & The Ottoman Tradition</div>
+      <div class="rcard-era">~1300 CE → Now</div>
+      <div class="rcard-body">Turkish <strong>makam</strong> theory is related to Arabic maqam but is more systematized. It uses a 53-tone-per-octave theoretical framework (the Arel-Ezgi-Uzdilek system) to precisely define every interval. Makam also has a concept called <strong>seyir</strong> — a characteristic melodic journey through the mode, specifying which notes to emphasize in the ascent and which in the descent. Two musicians playing the same makam will take similar melodic paths without having rehearsed together.</div>
+      <div class="rcard-tags"><span class="tag">makam</span><span class="tag">seyir</span><span class="tag">53-EDO</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> saz/baglama, ney, tanbur, kemençe, daf</div>
+    </div>
+    <div class="rcard" style="--rc:#e8c020">
+      <div class="rcard-region">Persia / Iran</div>
+      <div class="rcard-name">Dastgah — The Radif System</div>
+      <div class="rcard-era">Ancient → Now</div>
+      <div class="rcard-body">Persian classical music is organized around <strong>dastgah</strong> — 12 main modal systems (7 dastgah and 5 avaz). Within each dastgah is a <strong>radif</strong> — a vast repertoire of traditional melodic fragments called <em>gusheh</em>. A master improviser navigates through the gusheh like walking through rooms of a great building, modulating between tonal centers. The result is improvisation that is deeply rooted in tradition — thousands of years of accumulated melodic wisdom flowing through a single performance.</div>
+      <div class="rcard-tags"><span class="tag">dastgah</span><span class="tag">radif</span><span class="tag">gusheh</span><span class="tag">avaz</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> tar, setar, santur, kamancheh, ney, tombak</div>
+    </div>
+  </div>
+
+  <div class="theory-box">
+    <h3>🎵 Quarter Tones — The Notes the Piano Can't Play</h3>
+    <p>A standard piano has 88 keys, covering 7+ octaves with 12 semitones per octave. But the Middle Eastern 24-tone system includes <strong>quarter tones</strong> — notes exactly halfway between two piano keys. They're not "out of tune" — they're precise, intentional, and beautiful. The neutral third (between major and minor third) gives maqam music its characteristic bittersweet quality that Western music can't quite reproduce.</p>
+    <div class="formula">Western piano:  C — C# — D — D# — E — F...
+                    (12 semitones per octave)
+Arab maqam:     C — C+ — C# — D- — D — D+ — D# — ...
+                    (24 quarter-tones per octave)</div>
+    <div class="try"><strong>🎵 Try This!</strong><p>Sing the note between "mi" and "re" — neither major nor minor third. Try to find it with your voice. That floating, in-between quality? That's a neutral third. Your voice can do it naturally. The piano can't.</p></div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ═══════════════════════════════════════════════════ SOUTHEAST ASIA -->
+<section class="section" id="seasia" style="--accent:var(--violet)">
+  <div class="section-label">Southeast Asia · Indonesia, Thailand, Vietnam, Philippines, Cambodia · ~500 BCE → Now</div>
+  <h2 class="section-title">Southeast Asia —<br>Gamelan, Gongs & The Living Instrument</h2>
+  <p class="section-subtitle">Where the ensemble IS the instrument. Where tuning defies the piano. Where bronze speaks.</p>
+
+  <div class="region-grid">
+    <div class="rcard" style="--rc:var(--violet)">
+      <div class="rcard-region">Indonesia — Gamelan</div>
+      <div class="rcard-name">The Ensemble as One Giant Instrument</div>
+      <div class="rcard-era">~900 CE → Now · Java & Bali</div>
+      <div class="rcard-body">A <strong>gamelan</strong> is not a band — it's one instrument played by many people. Each gamelan set is hand-tuned and unique: no two gamelans in the world are tuned identically. Gamelan uses two scale systems: <strong>slendro</strong> (5 tones per octave, roughly equal spacing but NOT equal to Western pentatonic) and <strong>pelog</strong> (7 tones per octave, NOT equal to Western diatonic). The gong structure divides musical time: smaller gongs mark short phrases, larger gongs mark longer sections, and the enormous <em>gong ageng</em> marks the end of each complete cycle.</div>
+      <div class="rcard-tags"><span class="tag">slendro</span><span class="tag">pelog</span><span class="tag">gong cycle</span><span class="tag">interlocking</span><span class="tag">pathet</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> saron, bonang, gender, gong ageng, kendhang, rebab, suling</div>
+    </div>
+    <div class="rcard" style="--rc:#9c70ff">
+      <div class="rcard-region">Balinese Gamelan</div>
+      <div class="rcard-name">Kotekan — Interlocking at Lightning Speed</div>
+      <div class="rcard-era">~1000 CE → Now · Bali, Indonesia</div>
+      <div class="rcard-body">Balinese gamelan uses a technique called <strong>kotekan</strong> — interlocking patterns where two players each play incomplete, complementary parts that together form one fast, continuous melody. Neither part makes musical sense alone. The speed is breathtaking — the combined result can be faster than any single human can play. This is similar to West African hocket techniques: the music emerges from the relationship between parts, not from any single player.</div>
+      <div class="rcard-tags"><span class="tag">kotekan</span><span class="tag">hocket</span><span class="tag">polos/sangsih</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> gangsa (metallophone), kendang, gong</div>
+    </div>
+    <div class="rcard" style="--rc:var(--violet)">
+      <div class="rcard-region">Vietnam</div>
+      <div class="rcard-name">Ngũ Cung — Five Modes, Five Regions</div>
+      <div class="rcard-era">Ancient → Now</div>
+      <div class="rcard-body">Vietnamese music uses five modal systems called <strong>ngũ cung</strong>, each associated with a different region of the country and a different emotional character. The most distinctive feature: the <em>đàn bầu</em> (monochord), a single-string instrument that produces pitches entirely through harmonics and bends — the entire scale is played on one string using pitch inflection. Vietnamese music also uses tones from the Vietnamese language as a source of melodic structure.</div>
+      <div class="rcard-tags"><span class="tag">ngũ cung</span><span class="tag">tonal language</span><span class="tag">harmonics</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> đàn bầu, đàn tranh, đàn nguyệt, sáo (flute)</div>
+    </div>
+    <div class="rcard" style="--rc:#7040e0">
+      <div class="rcard-region">Philippines — Kulintang</div>
+      <div class="rcard-name">The Bronze Voice of the South</div>
+      <div class="rcard-era">Ancient → Now · Mindanao, Sulu</div>
+      <div class="rcard-body">The <strong>kulintang</strong> is a row of small gongs played by one person, used with accompanying gongs and drums. It is a complete melodic-rhythmic system — the gongs serve as both melody and rhythmic timeline. Different playing styles (patternistic, ornamented, metric) create entirely different musical worlds from the same instruments. The kulintang tradition is one of the oldest gong music cultures in the world and was the cultural music of the Moro people long before Spanish colonization.</div>
+      <div class="rcard-tags"><span class="tag">kulintang</span><span class="tag">gong melody</span><span class="tag">timeline</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> kulintang, agung, gandingan, dabakan</div>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ═══════════════════════════════════════════════════ EUROPE -->
+<section class="section" id="europe" style="--accent:var(--blue)">
+  <div class="section-label">Europe · Ancient Greece → Medieval → Renaissance → Modern · ~550 BCE → Now</div>
+  <h2 class="section-title">Europe —<br>Modes, Harmony & The Theory Revolution</h2>
+  <p class="section-subtitle">Where harmony was codified. Where notation was invented. Where modes became major and minor.</p>
+
+  <div class="region-grid">
+    <div class="rcard" style="--rc:var(--blue)">
+      <div class="rcard-region">Ancient Greece → Church Modes</div>
+      <div class="rcard-name">The Seven Modes</div>
+      <div class="rcard-era">~550 BCE → ~1600 CE</div>
+      <div class="rcard-body">The ancient Greeks named seven modes based on the ethnic groups they thought each mood represented: <strong>Dorian</strong> (D to D on white keys — minor-feeling but strong), <strong>Phrygian</strong> (E to E — Spanish/flamenco flavor), <strong>Lydian</strong> (F to F — dreamy, raised 4th), <strong>Mixolydian</strong> (G to G — major with flat 7th, used in rock and blues), <strong>Aeolian</strong> (A to A — pure natural minor), <strong>Locrian</strong> (B to B — unstable, rarely used), <strong>Ionian</strong> (C to C — our modern major scale). Medieval Christian monks preserved and systematized these as <em>church modes</em> for Gregorian chant.</div>
+      <div class="rcard-tags"><span class="tag">Dorian</span><span class="tag">Phrygian</span><span class="tag">Lydian</span><span class="tag">Mixolydian</span><span class="tag">Ionian</span><span class="tag">Aeolian</span></div>
+      <div class="rcard-instruments"><strong>Key context:</strong> Gregorian chant, medieval organ, folk music</div>
+    </div>
+    <div class="rcard" style="--rc:#3ab0e0">
+      <div class="rcard-region">Renaissance & Baroque</div>
+      <div class="rcard-name">The Invention of Harmony</div>
+      <div class="rcard-era">~1400–1750 CE</div>
+      <div class="rcard-body">European music gradually moved from modal to <strong>tonal harmony</strong> — the system where chords have specific functions: <em>tonic</em> (home), <em>dominant</em> (tension), <em>subdominant</em> (preparation). This gave rise to <strong>functional harmony</strong>: chord progressions that create a sense of journey and return. The most powerful: <strong>V → I</strong> (dominant to tonic) — the sound of "arriving home." Counterpoint (J.S. Bach's specialty) governed how multiple melodic lines could move independently while creating beautiful harmony.</div>
+      <div class="rcard-tags"><span class="tag">tonic</span><span class="tag">dominant</span><span class="tag">V-I</span><span class="tag">counterpoint</span><span class="tag">voice leading</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> organ, harpsichord, violin, lute</div>
+    </div>
+    <div class="rcard" style="--rc:var(--blue)">
+      <div class="rcard-region">Balkans & Eastern Europe</div>
+      <div class="rcard-name">Aksak — The Asymmetric Beat</div>
+      <div class="rcard-era">Ancient → Now · Bulgaria, Turkey, Serbia, Greece...</div>
+      <div class="rcard-body"><strong>Aksak</strong> (Turkish: "limping") meters are asymmetric time signatures built from groups of 2 and 3. Examples: 7/8 (2+2+3 or 3+2+2), 11/8 (2+2+3+2+2), 9/8 (2+2+2+3). These aren't "wrong" 4/4 time — they're complete dance structures that have worked for centuries. Bulgarian women's choirs sing in these meters naturally. The body learns to hear the uneven beat as its own kind of groove. This directly influenced 20th-century composers like Bartók and later prog rock and jazz musicians.</div>
+      <div class="rcard-tags"><span class="tag">aksak</span><span class="tag">7/8</span><span class="tag">11/8</span><span class="tag">asymmetric meter</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> gaida (bagpipe), tambura, tapan drum, accordion</div>
+    </div>
+    <div class="rcard" style="--rc:#1a90c0">
+      <div class="rcard-region">Celtic & Nordic</div>
+      <div class="rcard-name">Modes & Drones of the North</div>
+      <div class="rcard-era">Ancient → Now · Ireland, Scotland, Scandinavia, Wales</div>
+      <div class="rcard-body">Celtic and Nordic music preserved modes long after the rest of Europe switched to major/minor. The <strong>Dorian mode</strong> is the heart of Irish traditional music (Dm without B♭ — minor but with a raised 6th giving it lightness). The <strong>Mixolydian mode</strong> underlies much Scottish melody. Nordic fiddle music uses <strong>drone strings</strong> — the Hardanger fiddle has 4-5 sympathetic strings underneath that vibrate in resonance, creating a shimmering drone layer that completely transforms the tonal landscape.</div>
+      <div class="rcard-tags"><span class="tag">Dorian</span><span class="tag">Mixolydian</span><span class="tag">drone</span><span class="tag">reel</span><span class="tag">jig</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> uilleann pipes, Celtic harp, fiddle, Hardanger fiddle, bodhran</div>
+    </div>
+  </div>
+
+  <div class="theory-box">
+    <h3>🎵 How Western Harmony Works — The Circle of Fifths</h3>
+    <p>The <strong>Circle of Fifths</strong> is a map of all 12 major and minor keys, arranged so that adjacent keys share the most notes. Moving clockwise = adding one sharp. Moving counter-clockwise = adding one flat. Keys close together sound related; keys far apart sound distant and dramatic.</p>
+    <div class="formula">C → G → D → A → E → B → F# → Db → Ab → Eb → Bb → F → C
+(Each step = perfect fifth up / adds one sharp going right)</div>
+    <p>A <strong>chord</strong> is 3+ notes played at once. In any major key, the most important chords are built on the 1st (tonic), 4th (subdominant), and 5th (dominant) notes. The famous I-IV-V progression is the foundation of blues, rock, country, and folk music worldwide.</p>
+    <div class="try"><strong>🎵 Try This!</strong><p>In the key of C: play C-E-G together (C major chord). Then F-A-C (F major). Then G-B-D (G major). Then back to C-E-G. You just played I-IV-V-I — the chord progression in thousands of rock and pop songs.</p></div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ═══════════════════════════════════════════════════ AMERICAS -->
+<section class="section" id="americas" style="--accent:var(--green)">
+  <div class="section-label">The Americas · Indigenous → Colonial → Blues → Jazz → Hip-Hop · ~15,000 BCE → Now</div>
+  <h2 class="section-title">The Americas —<br>From Sacred Mountains to the Birth of Modern Music</h2>
+  <p class="section-subtitle">Where African rhythm met European harmony and created the modern world's soundtrack.</p>
+
+  <div class="region-grid">
+    <div class="rcard" style="--rc:#48c762">
+      <div class="rcard-region">Indigenous Americas — 500+ Nations</div>
+      <div class="rcard-name">Nation-Specific Song Systems</div>
+      <div class="rcard-era">~15,000 BCE → Now · Across all Americas</div>
+      <div class="rcard-body">There is no single "Native American music theory" — there are 500+ distinct musical systems, one for each nation. What they share: the <strong>frame drum</strong> as the heartbeat of the Earth; <strong>vocables</strong> (syllables like "hey ya" that carry musical meaning without literal words); <strong>ceremonial function</strong> — music is medicine, prayer, and community technology; and <strong>oral transmission</strong> — knowledge passed person-to-person across generations without notation. The flute traditions of the Lakota, Navajo, and others use pentatonic and modal scales with profound emotional depth.</div>
+      <div class="rcard-tags"><span class="tag">vocables</span><span class="tag">frame drum</span><span class="tag">ceremony</span><span class="tag">oral tradition</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> frame drum, cedar flute, water drum, rattles, communal voice</div>
+    </div>
+    <div class="rcard" style="--rc:var(--green)">
+      <div class="rcard-region">Andes — Peru, Bolivia, Ecuador</div>
+      <div class="rcard-name">Panpipes, Hocket & Mountain Breath</div>
+      <div class="rcard-era">~1000 BCE → Now</div>
+      <div class="rcard-body">Andean music uses <strong>anhemitonic pentatonic scales</strong> — 5 notes with no half steps (like the black keys on a piano). The <strong>siku</strong> (panpipes) are played in pairs using <strong>hocket</strong> — one player has the odd notes, another has the even notes, and they alternate so fast it sounds like one instrument. The breath of high altitudes (Machu Picchu is 2,430m above sea level) shapes Andean music's pacing. The <em>quena</em> flute produces a longing, breathed tone unique to this geography.</div>
+      <div class="rcard-tags"><span class="tag">pentatonic</span><span class="tag">hocket</span><span class="tag">siku</span><span class="tag">huayno</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> siku, quena, charango, bombo, harp, violin</div>
+    </div>
+    <div class="rcard" style="--rc:#22c55e">
+      <div class="rcard-region">Blues — African-American South USA</div>
+      <div class="rcard-name">The Blue Note & The 12-Bar Form</div>
+      <div class="rcard-era">~1870s → Now · Mississippi Delta, Texas, Chicago</div>
+      <div class="rcard-body">The <strong>blues scale</strong> is a pentatonic minor scale with an added <em>blue note</em> — a flattened 5th (also called the tritone or "the devil's interval") that creates the characteristically searching, unresolved tension of blues. The <strong>12-bar blues form</strong> (I-I-I-I-IV-IV-I-I-V-IV-I-I) is the most important chord progression in modern music history — it's the foundation of jazz, rock and roll, R&B, soul, and much of pop. Born from African American field hollers, spirituals, and work songs: music made from suffering, transformed into beauty.</div>
+      <div class="rcard-tags"><span class="tag">blues scale</span><span class="tag">blue note</span><span class="tag">12-bar</span><span class="tag">I-IV-V</span><span class="tag">call-response</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> guitar (bottleneck slide), harmonica, upright bass, drums</div>
+    </div>
+    <div class="rcard" style="--rc:#16a34a">
+      <div class="rcard-region">Jazz — USA, Global</div>
+      <div class="rcard-name">The Most Sophisticated Harmony in Popular Music</div>
+      <div class="rcard-era">~1900 → Now · New Orleans → World</div>
+      <div class="rcard-body">Jazz took European harmony and African rhythm and created something entirely new. Key jazz theory concepts: <strong>chord extensions</strong> (7ths, 9ths, 11ths, 13ths — stacking thirds beyond the basic triad); <strong>chord substitution</strong> (swapping one chord for a harmonically related one); <strong>modal jazz</strong> (Miles Davis's Kind of Blue used modes instead of chord progressions); <strong>bebop scales</strong> (adding a chromatic passing tone to scales); <strong>ii-V-I progression</strong> (the most common jazz cadence); and <strong>swing feel</strong> (triplet-based subdivision that makes the rhythm breathe).</div>
+      <div class="rcard-tags"><span class="tag">ii-V-I</span><span class="tag">extensions</span><span class="tag">bebop</span><span class="tag">swing</span><span class="tag">modal jazz</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> trumpet, saxophone, piano, upright bass, drum kit</div>
+    </div>
+    <div class="rcard" style="--rc:#48c762">
+      <div class="rcard-region">Brazil</div>
+      <div class="rcard-name">Samba, Bossa Nova & Syncopation</div>
+      <div class="rcard-era">~1850s → Now · Rio de Janeiro, São Paulo</div>
+      <div class="rcard-body"><strong>Samba</strong> is built on layered polyrhythm from Afro-Brazilian traditions — the surdo (bass drum) holds the 2-beat pulse while layers of pandeiro, agogô, and tamborim weave syncopated patterns. <strong>Bossa nova</strong> (1950s) combined samba rhythm with jazz harmony — João Gilberto played complex chords on guitar while the rhythm was embedded in the syncopated strumming pattern itself. The result: a quiet, intimate music where the sophistication is hidden inside apparent simplicity. Chord extensions (major 7ths, 9ths) and chromatic voice leading are signatures of bossa nova.</div>
+      <div class="rcard-tags"><span class="tag">samba</span><span class="tag">bossa nova</span><span class="tag">syncopation</span><span class="tag">chromatic</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> nylon-string guitar, surdo, pandeiro, cavaquinho</div>
+    </div>
+    <div class="rcard" style="--rc:var(--green)">
+      <div class="rcard-region">Hip-Hop — Global</div>
+      <div class="rcard-name">Sampling as Music Theory</div>
+      <div class="rcard-era">~1973 → Now · South Bronx, NYC → World</div>
+      <div class="rcard-body">Hip-hop invented a new form of musical composition: <strong>sampling</strong> — taking a fragment of an existing recording (often a drum break or melodic hook) and looping it as the foundation of a new piece. This is not stealing — it's a new form of musical analysis and recontextualization, a tradition as old as call-and-response and jazz improvisation. <strong>Beat production</strong> in hip-hop uses the drum machine's 16-step grid (16th-note subdivisions of a 4/4 bar) as the primary compositional canvas. The kick-snare-hihat architecture is the modern form of the West African timeline.</div>
+      <div class="rcard-tags"><span class="tag">sampling</span><span class="tag">breakbeat</span><span class="tag">808</span><span class="tag">MPC</span><span class="tag">16-step grid</span></div>
+      <div class="rcard-instruments"><strong>Key Tools:</strong> MPC, turntable, 808 drum machine, DAW</div>
+    </div>
+  </div>
+
+  <div class="theory-box">
+    <h3>🎵 The Blues Scale — The Most Powerful 6 Notes in Modern Music</h3>
+    <p>Start with a minor pentatonic scale (5 notes). Add one note — the "blue note" (♭5). That's the blues scale. These 6 notes are the foundation of blues, jazz, rock, R&B, funk, hip-hop, and most Western pop music.</p>
+    <div class="formula">Minor Pentatonic:  A — C — D — E — G
+Blues Scale:       A — C — D — E♭ — E — G
+                           ↑ The Blue Note (♭5 / tritone)</div>
+    <div class="try"><strong>🎵 Try This!</strong><p>Play or sing: A – C – D – Eb – E – G – A (blues scale in A). Those 6 notes, played over a 12-bar blues chord progression (A7-D7-A7-A7-D7-D7-A7-A7-E7-D7-A7-E7), is all you need to improvise the blues. Every guitar solo in rock history starts here.</p></div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ═══════════════════════════════════════════════════ OCEANIA -->
+<section class="section" id="oceania" style="--accent:var(--oceania)">
+  <div class="section-label">Oceania & Pacific · Australia, New Zealand, Pacific Islands · ~50,000 BCE → Now</div>
+  <h2 class="section-title">Oceania —<br>Songlines, Drones & The Music of Navigation</h2>
+  <p class="section-subtitle">The oldest continuous music culture on Earth. Songs that are maps. Instruments that are land.</p>
+
+  <div class="region-grid">
+    <div class="rcard" style="--rc:var(--oceania)">
+      <div class="rcard-region">Aboriginal Australia</div>
+      <div class="rcard-name">Songlines — Music as Map</div>
+      <div class="rcard-era">~50,000 BCE → Now · The world's oldest continuous culture</div>
+      <div class="rcard-body">Aboriginal Australians developed <strong>songlines</strong> — a network of songs that literally encode the geography of the continent. Singing a songline is traveling it: specific melodies describe landmarks, waterholes, and paths. The same songline exists in multiple languages because it maps the same physical journey. This is music as GPS — an acoustic mapping technology developed 50,000 years before digital navigation. The <strong>didgeridoo</strong> (yidaki) produces a continuous drone through circular breathing (breathing in through the nose while pushing air out through the mouth) and contains an entire sonic landscape within it.</div>
+      <div class="rcard-tags"><span class="tag">songlines</span><span class="tag">circular breathing</span><span class="tag">drone</span><span class="tag">oral geography</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> yidaki (didgeridoo), clapsticks, voice</div>
+    </div>
+    <div class="rcard" style="--rc:#e8c060">
+      <div class="rcard-region">Māori — New Zealand</div>
+      <div class="rcard-name">Waiata — Song as Identity</div>
+      <div class="rcard-era">~800 CE (arrival in NZ) → Now</div>
+      <div class="rcard-body">Māori music centers on <strong>waiata</strong> — songs that carry genealogy, history, love, lament, and identity. They are not performance pieces — they are living records. The <strong>taonga pūoro</strong> (traditional Māori instruments) were rediscovered and revived in the late 20th century: the <em>pūtōrino</em> (flute that can produce three distinct tones including a "speaking" voice), the <em>kōauau</em> (small flute), and the <em>pūtatara</em> (conch shell). The <strong>haka</strong> combines percussive voice, body percussion, and stamping into a musical-physical performance unlike anything else in the world.</div>
+      <div class="rcard-tags"><span class="tag">waiata</span><span class="tag">taonga pūoro</span><span class="tag">haka</span><span class="tag">genealogy</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> pūtōrino, kōauau, pūtatara, voice, body percussion</div>
+    </div>
+    <div class="rcard" style="--rc:var(--oceania)">
+      <div class="rcard-region">Polynesia — Hawaii, Samoa, Tonga, Tahiti</div>
+      <div class="rcard-name">Navigation Songs & Communal Chant</div>
+      <div class="rcard-era">~1000 BCE → Now</div>
+      <div class="rcard-body">Polynesian wayfinders encoded <strong>star maps, ocean currents, and wind patterns in songs</strong> — allowing navigation across thousands of miles of open ocean using music as the instrument. The <em>oli</em> (Hawaiian chant) and <em>hula</em> carry genealogy, history, and sacred knowledge. Traditional Polynesian music uses <strong>drone harmony</strong> — a fundamental pitch held while melodies move over it — and characteristic parallel intervals (fourths and fifths) that give Polynesian vocal music its distinctive spacious sound.</div>
+      <div class="rcard-tags"><span class="tag">navigation songs</span><span class="tag">oli</span><span class="tag">hula</span><span class="tag">drone</span><span class="tag">parallel harmony</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> pahu (drum), ukulele (post-colonial), ipu (gourd), nose flute</div>
+    </div>
+    <div class="rcard" style="--rc:#d4a820">
+      <div class="rcard-region">Arctic — Inuit & Circumpolar</div>
+      <div class="rcard-name">Throat Singing & The Sound of Ice</div>
+      <div class="rcard-era">Ancient → Now · Alaska, Canada, Greenland, Siberia</div>
+      <div class="rcard-body">Inuit <strong>katajjaq</strong> (throat singing) is a game/song between two people standing face-to-face. One sets a rhythmic pattern using breath sounds and voice; the other responds, building in complexity. The first person to break into laughter loses. It's not about pitch — it's about breath, rhythm, and the physical sound of breath passing between two bodies. Different from Mongolian throat singing but equally extraordinary. Reflects a world where sound is survival — where animals, weather, and landscape all communicate through sound.</div>
+      <div class="rcard-tags"><span class="tag">katajjaq</span><span class="tag">breath singing</span><span class="tag">duet game</span></div>
+      <div class="rcard-instruments"><strong>Key Instruments:</strong> frame drum, voice, environment</div>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ═══════════════════════════════════════════════════ 64 RHYTHMS -->
+<section class="section" id="rhythms" style="--accent:var(--ember)">
+  <div class="section-label">The 64 Rhythm Families · NOIZY Research Taxonomy</div>
+  <h2 class="section-title">64 Rhythm Families<br>of the World</h2>
+  <p class="section-subtitle">Not 64 boxes to trap rhythm in — 64 doors to understand how every culture organizes time.</p>
+
+  <div class="big-numbers">
+    <div class="bnum"><div class="bnum-n">8</div><div class="bnum-l">Super-Families</div></div>
+    <div class="bnum"><div class="bnum-n">64</div><div class="bnum-l">Rhythm Archetypes</div></div>
+    <div class="bnum"><div class="bnum-n">7</div><div class="bnum-l">Ways to Think About Time</div></div>
+  </div>
+
+  <div class="rhythm-families">
+    <div class="rfam">
+      <div class="rfam-num">FAMILY 01</div>
+      <div class="rfam-title">Pulse Foundations</div>
+      <div class="rfam-desc">The basic ways humans organize a steady beat: march, waltz, rock, compound rhythms, offbeats, and motor drives. These are the bones that everything else grows on.</div>
+      <div class="rfam-examples">R01-R08 · March, Waltz, 4/4, 6/8, Offbeat, Anchor-Answer, Subdivisions, Motor</div>
+    </div>
+    <div class="rfam">
+      <div class="rfam-num">FAMILY 02</div>
+      <div class="rfam-title">Cycles & Return Points</div>
+      <div class="rfam-desc">Rhythms that define a cycle you keep returning to — like Indian tala, West African bell patterns, or the 12-bar blues form. The "home" of time.</div>
+      <div class="rfam-examples">R09-R16 · Short Loop, 8-Beat Ring, 12-Beat, Long Cycle, Bell Spine, Call-Return</div>
+    </div>
+    <div class="rfam">
+      <div class="rfam-num">FAMILY 03</div>
+      <div class="rfam-title">Additive & Aksak</div>
+      <div class="rfam-desc">Asymmetric rhythms built from uneven groups of 2 and 3. Bulgarian 7/8, Turkish 9/8, Greek 5/8. The "limping" rhythms that feel natural once you know them.</div>
+      <div class="rfam-examples">R17-R24 · 2+3, 3+2, 2+2+3 Seven, 3+3+2 Eight, Long-Short Chain</div>
+    </div>
+    <div class="rfam">
+      <div class="rfam-num">FAMILY 04</div>
+      <div class="rfam-title">Cross-Rhythm & Polyrhythm</div>
+      <div class="rfam-desc">Multiple different rhythms at once — 3 over 2, 4 over 3, the clave cross-rhythm. The groove that lives in the tension between layers. West Africa's greatest gift to world music.</div>
+      <div class="rfam-examples">R25-R32 · 3:2 Tension, 4:3 Pull, Ternary-Duple Braid, Phase Drift, Cross-Cycle</div>
+    </div>
+    <div class="rfam">
+      <div class="rfam-num">FAMILY 05</div>
+      <div class="rfam-title">Interlock & Hocket</div>
+      <div class="rfam-desc">One melody split between multiple players — Balinese kotekan, Andean siku panpipes, Medieval hocket. Music that no single person could play alone.</div>
+      <div class="rfam-examples">R33-R40 · Split Hocket, Bell-Body Weave, Drum Braid, Metallophone Mesh</div>
+    </div>
+    <div class="rfam">
+      <div class="rfam-num">FAMILY 06</div>
+      <div class="rfam-title">Pocket, Swing & Microtiming</div>
+      <div class="rfam-desc">The subtle placement of notes just before or after the beat. Jazz swing, blues shuffle, hip-hop pocket. The "feel" that makes music breathe and move bodies.</div>
+      <div class="rfam-examples">R41-R48 · Forward Lean, Laid-Back, Shuffle, Triplet Swing, Ghost Notes, Backbeat</div>
+    </div>
+    <div class="rfam">
+      <div class="rfam-num">FAMILY 07</div>
+      <div class="rfam-title">Elastic & Breath-Led Time</div>
+      <div class="rfam-desc">Rhythm that follows breath, voice, and emotion rather than a fixed beat. Indian alap, Islamic recitation, shakuhachi phrasing, lament. Time that serves expression, not the clock.</div>
+      <div class="rfam-examples">R49-R56 · Free Chant, Recitation Spine, Lament Stretch, Rubato, Drone Float</div>
+    </div>
+    <div class="rfam">
+      <div class="rfam-num">FAMILY 08</div>
+      <div class="rfam-title">Ritual, Trance & Procession</div>
+      <div class="rfam-desc">Rhythms built to change states of consciousness, mark sacred time, or move through space together. The heartbeat trance, the acceleration spiral, the processional step. Music as medicine.</div>
+      <div class="rfam-examples">R57-R64 · Heartbeat Trance, Rattle Entrainment, Processional, Possession Wave, Release</div>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ═══════════════════════════════════════════════════ 128 SCALES -->
+<section class="section" id="scales" style="--accent:var(--rose)">
+  <div class="section-label">The 128 Scale Structures · NOIZY Research Taxonomy</div>
+  <h2 class="section-title">128 Scale Families<br>of the World</h2>
+  <p class="section-subtitle">Every way humans have organized pitch across all cultures and all time.</p>
+
+  <div class="scale-families">
+    <div class="sfam" style="--sc:#aabbcc">
+      <div class="sfam-num">FAMILY 01 · S001-S016</div>
+      <div class="sfam-title">Narrow Fields & Recitation</div>
+      <div class="sfam-desc">Music built on 1–4 notes: single-tone chant, reciting tone with ornaments, the narrow range of lament. Found in Gregorian chant, Islamic recitation, ritual invocation worldwide.</div>
+      <div class="sfam-examples">Single Tone · Neighbor Cells · Lament Range · Speech Contour · Threshold Invocation</div>
+    </div>
+    <div class="sfam" style="--sc:var(--teal)">
+      <div class="sfam-num">FAMILY 02 · S017-S032</div>
+      <div class="sfam-title">Pentatonic Structures</div>
+      <div class="sfam-desc">5-note scales — the most universal scale family in human music. Found in West Africa, China, Korea, Celtic, Andes, Japan. Each culture's pentatonic has its own tuning personality.</div>
+      <div class="sfam-examples">Major Pentatonic · Minor Pentatonic · Blues Pentatonic · Yo · In · Celtic · Andean · Slendro-like</div>
+    </div>
+    <div class="sfam" style="--sc:var(--green)">
+      <div class="sfam-num">FAMILY 03 · S033-S048</div>
+      <div class="sfam-title">Hexatonic Structures</div>
+      <div class="sfam-desc">6-note scales including the blues scale, whole-tone scale (dreamy, no gravity), and augmented scale (symmetric, unsettling). The blues hexatonic is the backbone of all modern Western popular music.</div>
+      <div class="sfam-examples">Blues Hexatonic · Whole-Tone · Augmented · Drone Hexatonic · Pelog-Subset</div>
+    </div>
+    <div class="sfam" style="--sc:var(--blue)">
+      <div class="sfam-num">FAMILY 04 · S049-S064</div>
+      <div class="sfam-title">Heptatonic (7-Note) Structures</div>
+      <div class="sfam-desc">The 7 church modes (Ionian, Dorian, Phrygian, Lydian, Mixolydian, Aeolian, Locrian) plus harmonic minor, melodic minor, double harmonic (Arabic scale), and more.</div>
+      <div class="sfam-examples">Ionian (Major) · Dorian · Phrygian · Lydian · Mixolydian · Aeolian (Minor) · Harmonic Minor</div>
+    </div>
+    <div class="sfam" style="--sc:var(--gold)">
+      <div class="sfam-num">FAMILY 05 · S065-S080</div>
+      <div class="sfam-title">Maqam & Modal Segment Chains</div>
+      <div class="sfam-desc">Middle Eastern and Turkish modal systems built from tetrachord segments (jins). Rast, Bayati, Hijaz, Nahawand, Saba — each a complete musical world with quarter-tone inflections.</div>
+      <div class="sfam-examples">Rast · Bayati · Hijaz · Nahawand · Saba · Kurd · Segah · Dastgah · Mugham</div>
+    </div>
+    <div class="sfam" style="--sc:var(--rose)">
+      <div class="sfam-num">FAMILY 06 · S081-S096</div>
+      <div class="sfam-title">Raga, Drone & Pathway Structures</div>
+      <div class="sfam-desc">Indian raga systems — not just scales but melodic pathways with ascending/descending rules, characteristic phrases, ornament patterns, and emotional identities. 72 Carnatic melakarta + 10 Hindustani thaat.</div>
+      <div class="sfam-examples">Ascending-Descending Split · Omitted Degrees · Crooked Path (Vakra) · Time-of-Day Color</div>
+    </div>
+    <div class="sfam" style="--sc:var(--violet)">
+      <div class="sfam-num">FAMILY 07 · S097-S112</div>
+      <div class="sfam-title">Microtonal & Intonation-Sensitive</div>
+      <div class="sfam-desc">Notes between the piano's keys. Indian shruti (22 microtones), Arabic quarter tones, gamelan's unequal tuning, blue notes, the sliding pitch of Korean music. The world beyond 12-tone equal temperament.</div>
+      <div class="sfam-examples">Shruti · Quarter-Tone Grid · Neutral Third · Blue-Note Inflection · Sliding Center</div>
+    </div>
+    <div class="sfam" style="--sc:#888888">
+      <div class="sfam-num">FAMILY 08 · S113-S128</div>
+      <div class="sfam-title">Symmetric, Hybrid & Future Structures</div>
+      <div class="sfam-desc">Octatonic (diminished) scale, bebop scales, 12-tone rows, 19-tone and 31-tone equal temperament, spectral scales, sensor-adaptive pitches. Where theory goes next.</div>
+      <div class="sfam-examples">Octatonic · Bebop · 24-Tone · Spectral · Biometric · Unknown World</div>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ═══════════════════════════════════════════════════ INSTRUMENTS -->
+<section class="section" id="instruments" style="--accent:var(--teal)">
+  <div class="section-label">Instruments of the World · The Hornbostel-Sachs Classification + NOIZY Extensions</div>
+  <h2 class="section-title">The World's<br>Instrument Families</h2>
+  <p class="section-subtitle">Every instrument ever made is an extension of the human body. Here's how they're organized.</p>
+
+  <div class="concept-grid">
+    <div class="ccard" style="--cc:var(--ember)">
+      <div class="ccard-icon">🥁</div>
+      <div class="ccard-title">Membranophones</div>
+      <div class="ccard-body">Drums — instruments with a membrane (skin) that vibrates. Frame drums, hand drums, barrel drums, kettledrums, talking drums. The pulse of every civilization.</div>
+      <div class="ccard-example">djembe · tabla · taiko · timpani · frame drum · talking drum</div>
+    </div>
+    <div class="ccard" style="--cc:var(--blue)">
+      <div class="ccard-icon">🎺</div>
+      <div class="ccard-title">Aerophones</div>
+      <div class="ccard-body">Wind instruments — sound made by vibrating air. Flutes, pipes, reeds, free reeds, conch shells, horns. The breath of the world made audible.</div>
+      <div class="ccard-example">flute · shakuhachi · ney · oud · duduk · sho · panpipes · didgeridoo</div>
+    </div>
+    <div class="ccard" style="--cc:var(--rose)">
+      <div class="ccard-icon">🎸</div>
+      <div class="ccard-title">Chordophones</div>
+      <div class="ccard-body">Stringed instruments — sound made by vibrating strings. Harps, lyres, lutes, zithers, bowed strings. Tension and release made sonic.</div>
+      <div class="ccard-example">kora · sitar · oud · violin · guqin · koto · morin khuur · charango</div>
+    </div>
+    <div class="ccard" style="--cc:var(--teal)">
+      <div class="ccard-icon">🔔</div>
+      <div class="ccard-title">Idiophones</div>
+      <div class="ccard-body">Self-sounding instruments — the body of the instrument itself vibrates. Bells, rattles, metallophones, xylophones, mbira, gongs, clappers. Touch into resonance.</div>
+      <div class="ccard-example">gamelan · mbira · balafon · agogô bell · gong · marimba · singing bowl</div>
+    </div>
+    <div class="ccard" style="--cc:var(--gold)">
+      <div class="ccard-icon">🗣️</div>
+      <div class="ccard-title">Voice & Body</div>
+      <div class="ccard-body">The original instruments — the ones you were born with. Solo voice, choral singing, overtone singing, throat singing, body percussion, handclaps, foot stomps.</div>
+      <div class="ccard-example">khoomei · katajjaq · gospel choir · beatbox · palmas · haka</div>
+    </div>
+    <div class="ccard" style="--cc:var(--violet)">
+      <div class="ccard-icon">🎛️</div>
+      <div class="ccard-title">Electrophones</div>
+      <div class="ccard-body">Electronic instruments — sound made or modified electrically. Synthesizers, samplers, drum machines, turntables, vocoders, DAWs. Technology as instrument.</div>
+      <div class="ccard-example">MPC · 808 · vocoder · modular synth · turntable · Ableton · DreamChamber</div>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ═══════════════════════════════════════════════════ CORE THEORY -->
+<section class="section" id="theory" style="--accent:var(--gold2)">
+  <div class="section-label">Core Music Theory · The Building Blocks · For Every Creator</div>
+  <h2 class="section-title">Core Theory —<br>What Every NOIZYKIDZ Creator Needs to Know</h2>
+  <p class="section-subtitle">The fundamentals. In plain language. No shortcuts.</p>
+
+  <div class="theory-box">
+    <h3>📐 Time Signatures — How Music Counts</h3>
+    <p>A time signature tells you how many beats are in each measure and what kind of note gets one beat. The top number = beats per measure. The bottom number = what kind of note gets 1 beat (4 = quarter note, 8 = eighth note).</p>
+    <div class="formula">4/4 — Four quarter-note beats: 1-2-3-4 (rock, pop, blues, most Western music)
+3/4 — Three quarter-note beats: 1-2-3 (waltz, many folk traditions)
+6/8 — Six eighth-note beats felt as 2 groups of 3: 1-2-3-4-5-6 (jigs, compound time)
+5/4 — Five beats: 1-2-3-4-5 (Dave Brubeck's "Take Five", some Indian talas)
+7/8 — Seven eighth-notes: 2+2+3 or 3+2+2 (Bulgarian folk, Balkans)
+12/8 — Twelve eighth-notes in 4 groups of 3 (slow blues, triplet feel)</div>
+  </div>
+
+  <div class="theory-box">
+    <h3>🎵 Intervals — The DNA of All Scales and Chords</h3>
+    <p>An interval is the distance between two notes. Every scale, chord, and melody is built from intervals. Learning intervals by ear is the most important skill in music theory.</p>
+    <div class="formula">Unison:         Same note
+Minor 2nd:      Half step (C→C#) — very tense, dissonant
+Major 2nd:      Whole step (C→D) — stepwise motion
+Minor 3rd:      (C→Eb) — sad quality, blues, minor scales
+Major 3rd:      (C→E) — bright quality, major scales, major chords
+Perfect 4th:    (C→F) — stable, quartal harmony (used in folk)
+Tritone:        (C→F#) — maximum tension, "devil's interval," blue note
+Perfect 5th:    (C→G) — power chord, open and stable
+Minor 6th:      (C→Ab) — yearning, used in melodies
+Major 6th:      (C→A) — sweet, major pentatonic contains this
+Minor 7th:      (C→Bb) — dominant tension (V7 chord), blues
+Major 7th:      (C→B) — jazzy, bittersweet, almost but not quite home
+Octave:         (C→C) — same note, double the frequency, complete circle</div>
+  </div>
+
+  <div class="theory-box">
+    <h3>🎼 Chord Construction — Building Harmony from Intervals</h3>
+    <div class="formula">Major Chord:     Root + Major 3rd + Perfect 5th    (C-E-G: bright, stable)
+Minor Chord:     Root + Minor 3rd + Perfect 5th    (C-Eb-G: darker, sadder)
+Dominant 7th:    Root + M3 + P5 + Minor 7th        (C-E-G-Bb: tension, wants to resolve)
+Major 7th:       Root + M3 + P5 + Major 7th        (C-E-G-B: jazzy, sophisticated)
+Minor 7th:       Root + m3 + P5 + Minor 7th        (C-Eb-G-Bb: smooth, jazz)
+Diminished:      Root + m3 + Tritone               (C-Eb-F#: maximum instability)
+Augmented:       Root + M3 + Augmented 5th         (C-E-G#: unresolved, dreamy)
+Sus2:            Root + Major 2nd + P5             (C-D-G: open, no 3rd)
+Sus4:            Root + Perfect 4th + P5           (C-F-G: suspended, unresolved)</div>
+  </div>
+
+  <div class="theory-box">
+    <h3>🌍 Why Music Theory is Different in Different Cultures</h3>
+    <p>Western classical music theory (the kind taught in most schools) describes one specific tradition that developed in Europe over roughly 400 years. It is NOT universal music theory. Different cultures have developed completely different but equally sophisticated systems:</p>
+    <div class="formula">Western theory:   12 equal semitones, major/minor, functional harmony
+Indian theory:    22 shrutis, raga pathways, tala cycles, drone gravity
+Arab theory:      24 quarter-tones, maqam segments, emotional character
+Japanese theory:  Ma (silence), in/yo pentatonics, timbre over pitch
+West African:     Polyrhythm, bell timelines, interlock, social role
+Gamelan theory:   Non-equal tuning, gong cycles, collective instrument</div>
+    <p>NOIZYKIDZ learns ALL of them — because the world's music is richer than any single system can describe.</p>
+  </div>
+
+  <div class="activity">
+    <div class="activity-badge">🌍 NOIZYKIDZ Final Challenge · The World Composer</div>
+    <div class="activity-title">Write a Song Using Three Traditions</div>
+    <div class="activity-body">
+      Create a short piece that combines elements from at least three musical traditions:
+      <ol>
+        <li><strong>Choose your rhythm:</strong> Pick a clave pattern (Caribbean/Africa), a 7/8 aksak beat (Balkans), or a tala cycle (India)</li>
+        <li><strong>Choose your scale:</strong> Try a raga scale (India), maqam (Middle East), pentatonic (Africa/China), or blues scale (USA)</li>
+        <li><strong>Choose your texture:</strong> Add a drone note underneath (India/Scotland), a call-and-response part (Africa/Gospel), or interlocking parts (Bali/Andes)</li>
+        <li><strong>Leave space:</strong> Put in some ma — silence that means something (Japan)</li>
+        <li><strong>Name your influences:</strong> Write down which traditions you borrowed from. That's lineage literacy. That's how NOIZY works.</li>
+      </ol>
+      You're not mixing cultures without permission — you're studying and celebrating them. Know where you got it. Say thank you. Pass it forward.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ CLOSING -->
+<section class="closing">
+  <h2 class="closing-title">You Are the Next Chapter</h2>
+  <p class="closing-body">
+    60,000 years of humans making music. Every tradition in this Atlas is still alive somewhere in the world — being played tonight, being taught to someone, being carried forward.<br><br>
+    Your voice. Your rhythm. Your sound.<br>
+    They belong to this lineage too.<br><br>
+    <strong style="color:var(--gold2)">Make something. Name your teachers. Pass it on.</strong>
+  </p>
+  <div style="font-family:'Courier New',monospace; font-size:11px; letter-spacing:3px; color:var(--dim)">NOIZYKIDZ · NOIZY · GLOBAL GUILD OF ARTISTS · 2026</div>
+</section>
+
+</div><!-- /page -->
+
+<footer>
+  <div><span>NOIZYKIDZ</span> · World Music Theory Atlas · Built on 14 months of research · <span>NOIZY</span> · 2026</div>
+  <div style="margin-top:8px; color:var(--dim)">64 Rhythm Families · 128 Scale Structures · Every Country · Since the First Rock Was Banged</div>
+</footer>
+
+<script>
+// Stars
+(function(){
+  const c=document.getElementById('stars');
+  for(let i=0;i<180;i++){
+    const s=document.createElement('div');s.className='star';
+    const sz=Math.random()*2.5+.5;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${3+Math.random()*9}s;--o:${.3+Math.random()*.7};animation-delay:${Math.random()*10}s`;
+    c.appendChild(s);
+  }
+})();
+
+// IntersectionObserver
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});
+},{threshold:.06,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.section').forEach(el=>obs.observe(el));
+
+// Active nav tab
+const tabs=document.querySelectorAll('.tab');
+const sections=document.querySelectorAll('.section[id]');
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      tabs.forEach(t=>t.classList.remove('active'));
+      const t=document.querySelector(`.tab[href="#${e.target.id}"]`);
+      if(t){t.classList.add('active');t.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});}
+    }
+  });
+},{threshold:.3});
+sections.forEach(s=>io.observe(s));
+</script>
+</body>
+</html>

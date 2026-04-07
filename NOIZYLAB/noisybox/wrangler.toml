@@ -1,0 +1,39 @@
+# ============================================================
+# NOISY BOX (A.I.V.A.) — Cloudflare Worker
+# Consent-native digital voice talent agency
+# ============================================================
+
+name = "noisybox"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[build]
+command = "npm run build"
+
+# Production route
+[env.production]
+routes = [
+  { pattern = "box.noisy.io/*", custom_domain = true }
+]
+
+# D1 Database — NOISY BOX
+[[d1_databases]]
+binding = "DB"
+database_name = "noisybox"
+database_id = "PLACEHOLDER_NOISYBOX_DB_ID"
+
+# Service binding to noisyproof for consent/provenance
+[[services]]
+binding = "PROOF"
+service = "noisyproof"
+
+[vars]
+NOISY_PROOF_API_URL = "https://proof.noisy.io"
+NOISY_FISH_API_URL = "https://fish.noisy.io"
+PLATFORM_NAME = "NOISY BOX"
+PLATFORM_VERSION = "0.1.0"
+
+# Sacred invariants — coded, not configured
+# ROYALTY_FLOOR = 0.75 (hardcoded in source)
+# GORUNFREE_TITHE = 0.01 (hardcoded in source)
+# KILL_SWITCH = "absolute" (hardcoded in source)

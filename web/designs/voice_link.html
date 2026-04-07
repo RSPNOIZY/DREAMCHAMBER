@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <title>GABRIEL VOICE LINK</title>
+     <style>
+          body {
+               background-color: #000;
+               color: #00ff9d;
+               font-family: 'Courier New', Courier, monospace;
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               justify-content: center;
+               height: 100vh;
+               margin: 0;
+               overflow: hidden;
+               touch-action: none;
+          }
+
+          #activate-btn {
+               background: transparent;
+               border: 2px solid #00ff9d;
+               color: #00ff9d;
+               padding: 20px 40px;
+               font-size: 24px;
+               border-radius: 50px;
+               cursor: pointer;
+               box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+               transition: all 0.3s;
+          }
+
+          #activate-btn:active {
+               background: #00ff9d;
+               color: #000;
+               transform: scale(0.95);
+          }
+
+          #status {
+               margin-top: 30px;
+               font-size: 14px;
+               opacity: 0.7;
+               text-align: center;
+               max-width: 80%;
+          }
+
+          .wave-box {
+               height: 60px;
+               display: flex;
+               align-items: center;
+               gap: 5px;
+               margin-bottom: 50px;
+               opacity: 0.5;
+          }
+
+          .bar {
+               width: 8px;
+               height: 20px;
+               background: #7c3aed;
+               animation: wave 1s infinite;
+          }
+
+          .listening .bar {
+               background: #00ff9d;
+               animation-duration: 0.5s;
+          }
+
+          @keyframes wave {
+
+               0%,
+               100% {
+                    height: 10px;
+               }
+
+               50% {
+                    height: 40px;
+               }
+          }
+
+          .bar:nth-child(1) {
+               animation-delay: 0.0s;
+          }
+
+          .bar:nth-child(2) {
+               animation-delay: 0.1s;
+          }
+
+          .bar:nth-child(3) {
+               animation-delay: 0.2s;
+          }
+
+          .bar:nth-child(4) {
+               animation-delay: 0.3s;
+          }
+
+          .bar:nth-child(5) {
+               animation-delay: 0.4s;
+          }
+
+          .hidden {
+               display: none !important;
+          }
+
+          .controls {
+               display: flex;
+               flex-direction: column;
+               gap: 20px;
+               align-items: center;
+          }
+
+          #mic-btn {
+               background: transparent;
+               border: 2px solid #00ff9d;
+               color: #00ff9d;
+               width: 200px;
+               height: 200px;
+               border-radius: 50%;
+               font-size: 20px;
+               font-weight: bold;
+               cursor: pointer;
+               box-shadow: 0 0 30px rgba(0, 255, 157, 0.2);
+               transition: all 0.2s;
+               user-select: none;
+               -webkit-user-select: none;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               font-family: inherit;
+          }
+
+          #mic-btn:active {
+               transform: scale(0.95);
+          }
+
+          #mic-status {
+               margin-bottom: 20px;
+               font-weight: bold;
+               color: #7c3aed;
+          }
+     </style>
+</head>
+
+<body>
+
+     <div class="wave-box" id="visualizer">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+     </div>
+
+     <div id="mic-status" class="hidden">MIC: OFF</div>
+
+     <button id="activate-btn" onclick="activateUplink()">INITIATE UPLINK</button>
+
+     <div class="controls hidden" id="controls-area">
+          <button id="mic-btn" onmousedown="startListening()" onmouseup="stopListening()"
+               ontouchstart="startListening()" ontouchend="stopListening()">
+               HOLD TO SPEAK
+          </button>
+     </div>
+
+     <div id="status">WAITING FOR CONNECTION...</div>
+
+     <script>
+          const API_BASE = '/api'; // Relative path
+          let active = false;
+          let voice = null;
+          let recognition = null;
+
+          function activateUplink() {
+               // Unlock Audio Context & Speech
+               const synth = window.speechSynthesis;
+               const u = new SpeechSynthesisUtterance("Uplink Established. Microphone Online.");
+               synth.speak(u);
+
+               active = true;
+               document.getElementById('activate-btn').style.display = 'none';
+               document.getElementById('controls-area').classList.remove('hidden');
+               document.getElementById('mic-status').classList.remove('hidden');
+               document.getElementById('status').innerText = "LINK ESTABLISHED. AWAITING DATA.";
+
+               // Init Mic
+               initMic();
+
+               // Find best voice
+               const voices = synth.getVoices();
+               // Try to find a good English voice
+               voice = voices.find(v => v.name.includes('Samantha')) ||
+                    voices.find(v => v.name.includes('Daniel')) ||
+                    voices.find(v => v.lang.startsWith('en'));
+
+               console.log("Selected Voice:", voice ? voice.name : "Default");
+
+               // Start Polling
+               pollVoiceQueue();
+          }
+
+          function initMic() {
+               if ('webkitSpeechRecognition' in window) {
+                    recognition = new webkitSpeechRecognition();
+                    recognition.continuous = false;
+                    recognition.interimResults = false;
+                    recognition.lang = 'en-US';
+
+                    recognition.onstart = () => {
+                         document.getElementById('mic-status').innerText = "MIC: LISTENING...";
+                         document.getElementById('mic-status').style.color = "#00ff9d";
+                         document.querySelector('.wave-box').classList.add('listening');
+                    };
+
+                    recognition.onend = () => {
+                         document.getElementById('mic-status').innerText = "MIC: READY";
+                         document.getElementById('mic-status').style.color = "#7c3aed";
+                         document.querySelector('.wave-box').classList.remove('listening');
+                    };
+
+                    recognition.onresult = (event) => {
+                         const transcript = event.results[0][0].transcript;
+                         console.log("Heard:", transcript);
+                         document.getElementById('status').innerText = `CMD: "${transcript}"`;
+                         sendCommand(transcript);
+                    };
+
+                    recognition.onerror = (event) => {
+                         console.error("Mic Error", event.error);
+                         document.getElementById('status').innerText = "MIC ERROR: " + event.error;
+                    };
+
+                    document.getElementById('mic-status').innerText = "MIC: READY";
+               } else {
+                    document.getElementById('mic-status').innerText = "MIC: NOT SUPPORTED (Use Chrome/Safari)";
+               }
+          }
+
+          function startListening() {
+               if (recognition) {
+                    try { recognition.start(); } catch (e) { }
+                    document.getElementById('mic-btn').style.background = '#00ff9d';
+                    document.getElementById('mic-btn').style.color = '#000';
+               }
+          }
+
+          function stopListening() {
+               if (recognition) {
+                    try { recognition.stop(); } catch (e) { }
+                    document.getElementById('mic-btn').style.background = 'transparent';
+                    document.getElementById('mic-btn').style.color = '#00ff9d';
+               }
+          }
+
+          async function sendCommand(text) {
+               try {
+                    const res = await fetch(`${API_BASE}/command`, {
+                         method: 'POST',
+                         headers: { 'Content-Type': 'application/json' },
+                         body: JSON.stringify({ command: text })
+                    });
+                    const data = await res.json();
+
+                    // Speak Feedback
+                    // Only speak if there's no incoming voice message queue
+                    // But for now, simple feedback is good
+                    speak(`Processed: ${data.persona}`);
+
+               } catch (e) {
+                    console.error("Command Error", e);
+                    speak("Command Failed.");
+               }
+          }
+
+          async function pollVoiceQueue() {
+               if (!active) return;
+
+               try {
+                    const res = await fetch(`${API_BASE}/voice/poll`);
+                    const data = await res.json();
+
+                    if (data.message) {
+                         speak(data.message);
+                    }
+               } catch (e) {
+                    console.error("Poll error", e);
+               }
+
+               setTimeout(pollVoiceQueue, 1000);
+          }
+
+          function speak(text) {
+               // Update status only if not listening
+               if (document.getElementById('mic-status').innerText !== "MIC: LISTENING...") {
+                    document.getElementById('status').innerText = "SYSTEM: " + text.toUpperCase();
+               }
+
+               const u = new SpeechSynthesisUtterance(text);
+               if (voice) u.voice = voice;
+               u.rate = 1.0;
+               u.pitch = 1.0;
+
+               window.speechSynthesis.speak(u);
+          }
+
+          // Ensure voices are loaded
+          window.speechSynthesis.onvoiceschanged = () => {
+               console.log("Voices loaded");
+          };
+
+     </script>
+</body>
+
+</html>

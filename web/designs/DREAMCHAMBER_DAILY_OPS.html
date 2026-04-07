@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DREAMCHAMBER — Daily Operations</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-deep: #0A0E17;
+  --bg-panel: #0F1420;
+  --bg-card: #141926;
+  --bg-hover: #1A2030;
+  --amber: #D4A017;
+  --amber-dim: rgba(212, 160, 23, 0.15);
+  --amber-glow: rgba(212, 160, 23, 0.3);
+  --teal: #0D9488;
+  --teal-dim: rgba(13, 148, 136, 0.15);
+  --red: #FF4D6D;
+  --red-dim: rgba(255, 77, 109, 0.12);
+  --green: #00FFB3;
+  --green-dim: rgba(0, 255, 179, 0.12);
+  --blue: #3B82F6;
+  --blue-dim: rgba(59, 130, 246, 0.12);
+  --text: #E2E8F0;
+  --text-dim: #64748B;
+  --text-muted: #475569;
+  --border: rgba(212, 160, 23, 0.12);
+  --scanline: rgba(212, 160, 23, 0.03);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: 'IBM Plex Mono', monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scanline overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    var(--scanline) 2px,
+    var(--scanline) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* ═══ HEADER ═══ */
+.header {
+  padding: 32px 40px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header-left h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--amber);
+  letter-spacing: 0.08em;
+}
+
+.header-left .subtitle {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.date-display {
+  font-size: 0.85rem;
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.mode-badge {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 14px;
+  border: 1px solid var(--amber);
+  border-radius: 20px;
+  font-size: 0.65rem;
+  color: var(--amber);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ═══ OPERATOR RULE ═══ */
+.operator-rule {
+  margin: 24px 40px;
+  padding: 16px 24px;
+  background: var(--amber-dim);
+  border-left: 3px solid var(--amber);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.78rem;
+  color: var(--amber);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.operator-rule span {
+  color: var(--text);
+  font-weight: 300;
+}
+
+/* ═══ FOCUS ZONE ═══ */
+.focus-zone {
+  margin: 24px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.focus-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  position: relative;
+  transition: border-color 0.3s;
+  cursor: default;
+}
+
+.focus-card:hover { border-color: var(--amber-glow); }
+
+.focus-card.active {
+  border-color: var(--amber);
+  box-shadow: 0 0 20px rgba(212, 160, 23, 0.08);
+}
+
+.focus-number {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: rgba(212, 160, 23, 0.08);
+  line-height: 1;
+}
+
+.focus-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.focus-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.focus-project {
+  font-size: 0.68rem;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
+
+.focus-agents {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.agent-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.agent-gabriel { background: rgba(255, 77, 109, 0.15); color: #FF4D6D; }
+.agent-keith { background: rgba(59, 130, 246, 0.15); color: #3B82F6; }
+.agent-lucy { background: rgba(168, 85, 247, 0.15); color: #A855F7; }
+.agent-cb01 { background: rgba(100, 116, 139, 0.15); color: #94A3B8; }
+.agent-dream { background: rgba(0, 255, 179, 0.15); color: #00FFB3; }
+
+/* ═══ MAIN GRID ═══ */
+.main-grid {
+  margin: 24px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.panel-title {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ═══ ACTIVE CORE AGENTS ═══ */
+.agent-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.agent-row:last-child { border-bottom: none; }
+
+.agent-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.agent-info { flex: 1; }
+
+.agent-name {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.agent-role {
+  font-size: 0.62rem;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.agent-status {
+  font-size: 0.6rem;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.status-active { background: var(--green-dim); color: var(--green); }
+.status-standby { background: rgba(100,116,139,0.12); color: #94A3B8; }
+
+/* ═══ ISSUE QUEUE ═══ */
+.issue-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.issue-item:last-child { border-bottom: none; }
+
+.issue-priority {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.priority-urgent { background: var(--red); box-shadow: 0 0 6px rgba(255,77,109,0.4); }
+.priority-high { background: #F59E0B; }
+.priority-medium { background: var(--blue); }
+.priority-low { background: #64748B; }
+
+.issue-info { flex: 1; }
+
+.issue-id {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+.issue-title-text {
+  font-size: 0.72rem;
+  color: var(--text);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.issue-meta {
+  font-size: 0.58rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+/* ═══ INFRASTRUCTURE ═══ */
+.infra-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.infra-stat {
+  background: var(--bg-panel);
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: center;
+}
+
+.infra-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+}
+
+.infra-label {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  margin-top: 6px;
+}
+
+.infra-sub {
+  font-size: 0.52rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ═══ DAILY FLOW ═══ */
+.flow-container {
+  margin: 24px 40px;
+}
+
+.flow-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.flow-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.flow-step:hover {
+  border-color: var(--amber-glow);
+  transform: translateY(-2px);
+}
+
+.flow-step.step-done {
+  border-color: var(--teal);
+  opacity: 0.6;
+}
+
+.flow-step.step-done .flow-check { display: block; }
+
+.flow-check {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  color: var(--teal);
+  font-size: 1rem;
+}
+
+.flow-time {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+
+.time-morning { color: #F59E0B; }
+.time-build { color: var(--blue); }
+.time-capture { color: var(--teal); }
+.time-stop { color: var(--red); }
+
+.flow-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.flow-desc {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.flow-action {
+  margin-top: 12px;
+  font-size: 0.62rem;
+  color: var(--amber);
+  font-weight: 500;
+}
+
+/* ═══ PROGRESS FOOTER ═══ */
+.progress-section {
+  margin: 32px 40px;
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.progress-title {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+.progress-bars {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.progress-item { }
+
+.progress-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.progress-item-name {
+  font-size: 0.7rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.progress-item-pct {
+  font-size: 0.65rem;
+  color: var(--amber);
+  font-weight: 600;
+}
+
+.progress-bar-bg {
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1s ease;
+}
+
+.fill-amber { background: linear-gradient(90deg, var(--amber), #E8A87C); }
+.fill-teal { background: linear-gradient(90deg, var(--teal), #00FFB3); }
+.fill-red { background: linear-gradient(90deg, var(--red), #F59E0B); }
+
+/* ═══ PROJECTS TABLE ═══ */
+.projects-section {
+  margin: 24px 40px;
+}
+
+.project-row {
+  display: grid;
+  grid-template-columns: 24px 1fr 120px 100px 100px 80px;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  transition: border-color 0.3s;
+}
+
+.project-row:hover { border-color: var(--amber-glow); }
+
+.project-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.project-name {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.project-status {
+  font-size: 0.6rem;
+  padding: 3px 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.ps-progress { background: var(--amber-dim); color: var(--amber); }
+.ps-planned { background: var(--blue-dim); color: var(--blue); }
+.ps-backlog { background: rgba(100,116,139,0.12); color: #94A3B8; }
+
+.project-priority {
+  font-size: 0.62rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+.project-dates {
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.project-issues {
+  font-size: 0.68rem;
+  color: var(--teal);
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ═══ GROUND RULES ═══ */
+.ground-rules {
+  margin: 24px 40px 40px;
+  padding: 20px 24px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.ground-rules-title {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.rule-item {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+}
+
+.rule-item::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--amber);
+}
+
+/* ═══ SECTION HEADERS ═══ */
+.section-header {
+  margin: 32px 40px 0;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+  .focus-zone { grid-template-columns: 1fr; }
+  .main-grid { grid-template-columns: 1fr; }
+  .flow-steps { grid-template-columns: 1fr 1fr; }
+  .progress-bars { grid-template-columns: 1fr; }
+  .rules-grid { grid-template-columns: 1fr; }
+  .project-row { grid-template-columns: 1fr; gap: 4px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>DREAMCHAMBER</h1>
+    <div class="subtitle">Focused Creation Environment &mdash; MC96ECO Universe</div>
+  </div>
+  <div class="header-right">
+    <div class="date-display" id="currentDate"></div>
+    <div class="mode-badge">Operator Mode</div>
+  </div>
+</div>
+
+<!-- OPERATOR RULE -->
+<div class="operator-rule">
+  You are the operator of this system. <span>The AI family works for you. Focus on 1&ndash;3 priorities. Always produce something usable. Never overextend.</span>
+</div>
+
+<!-- TODAY'S FOCUS — TOP 3 PRIORITIES -->
+<div class="section-header">Today's Focus &mdash; 3 Priorities Maximum</div>
+<div class="focus-zone">
+  <div class="focus-card active">
+    <div class="focus-number">1</div>
+    <div class="focus-label">Priority One &mdash; Urgent</div>
+    <div class="focus-title">Deploy HEAVEN17 Worker</div>
+    <div class="focus-project">Infrastructure &mdash; Cloudflare & DNS</div>
+    <div class="focus-agents">
+      <span class="agent-chip agent-keith">ENGR_KEITH</span>
+      <span class="agent-chip agent-gabriel">GABRIEL</span>
+    </div>
+  </div>
+  <div class="focus-card">
+    <div class="focus-number">2</div>
+    <div class="focus-label">Priority Two &mdash; Urgent</div>
+    <div class="focus-title">Enable R2 Storage</div>
+    <div class="focus-project">Infrastructure &mdash; Cloudflare & DNS</div>
+    <div class="focus-agents">
+      <span class="agent-chip agent-cb01">CB01</span>
+    </div>
+  </div>
+  <div class="focus-card">
+    <div class="focus-number">3</div>
+    <div class="focus-label">Priority Three &mdash; Urgent</div>
+    <div class="focus-title">Build Consent Kernel v1</div>
+    <div class="focus-project">NOIZYVOX &mdash; Consent Platform</div>
+    <div class="focus-agents">
+      <span class="agent-chip agent-keith">ENGR_KEITH</span>
+      <span class="agent-chip agent-gabriel">GABRIEL</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="main-grid">
+  <!-- ACTIVE CORE AGENTS -->
+  <div class="panel">
+    <div class="panel-title">Active Core Agents</div>
+    <div class="agent-row">
+      <div class="agent-icon" style="background:rgba(255,77,109,0.15);color:#FF4D6D;">G</div>
+      <div class="agent-info">
+        <div class="agent-name">GABRIEL</div>
+        <div class="agent-role">Direction &bull; Warrior Executor &bull; Leads NOIZYVOX + Infrastructure</div>
+      </div>
+      <div class="agent-status status-active">ACTIVE</div>
+    </div>
+    <div class="agent-row">
+      <div class="agent-icon" style="background:rgba(168,85,247,0.15);color:#A855F7;">L</div>
+      <div class="agent-info">
+        <div class="agent-name">LUCY</div>
+        <div class="agent-role">Organization &bull; Structure &bull; Keeps projects clean</div>
+      </div>
+      <div class="agent-status status-active">ACTIVE</div>
+    </div>
+    <div class="agent-row">
+      <div class="agent-icon" style="background:rgba(59,130,246,0.15);color:#3B82F6;">K</div>
+      <div class="agent-info">
+        <div class="agent-name">ENGR_KEITH</div>
+        <div class="agent-role">Building &bull; Engineering Spirit &bull; Systems + Infrastructure</div>
+      </div>
+      <div class="agent-status status-active">ACTIVE</div>
+    </div>
+    <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border);">
+      <div style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-muted);margin-bottom:10px;">On-Demand (activated when needed)</div>
+      <div class="agent-row">
+        <div class="agent-icon" style="background:rgba(0,255,179,0.15);color:#00FFB3;">D</div>
+        <div class="agent-info">
+          <div class="agent-name">DREAM</div>
+          <div class="agent-role">Creative Bursts &bull; Visionary</div>
+        </div>
+        <div class="agent-status status-standby">STANDBY</div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-icon" style="background:rgba(100,116,139,0.15);color:#94A3B8;">C</div>
+        <div class="agent-info">
+          <div class="agent-name">CB01</div>
+          <div class="agent-role">Automation &bull; Operational &bull; GoDaddy Escape</div>
+        </div>
+        <div class="agent-status status-standby">STANDBY</div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-icon" style="background:rgba(232,168,124,0.15);color:#E8A87C;">S</div>
+        <div class="agent-info">
+          <div class="agent-name">SHIRL</div>
+          <div class="agent-role">Nurturing Guide &bull; 24/7 &bull; NOIZYKIDZ</div>
+        </div>
+        <div class="agent-status status-standby">STANDBY</div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-icon" style="background:rgba(245,158,11,0.15);color:#F59E0B;">P</div>
+        <div class="agent-info">
+          <div class="agent-name">POPS</div>
+          <div class="agent-role">Wise Father &bull; 24/7 &bull; LIFELUV</div>
+        </div>
+        <div class="agent-status status-standby">STANDBY</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ISSUE QUEUE — URGENT + HIGH -->
+  <div class="panel">
+    <div class="panel-title">Issue Queue &mdash; Urgent &amp; High Priority</div>
+    <div class="issue-item">
+      <div class="issue-priority priority-urgent"></div>
+      <div class="issue-info">
+        <div class="issue-id">NOI-5</div>
+        <div class="issue-title-text">Deploy HEAVEN17 Worker (replace Hello World stub)</div>
+        <div class="issue-meta">Infrastructure &bull; ENGR_KEITH + GABRIEL</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-priority priority-urgent"></div>
+      <div class="issue-info">
+        <div class="issue-id">NOI-6</div>
+        <div class="issue-title-text">Enable R2 Storage on Cloudflare</div>
+        <div class="issue-meta">Infrastructure &bull; CB01 &bull; Manual action required</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-priority priority-urgent"></div>
+      <div class="issue-info">
+        <div class="issue-id">NOI-13</div>
+        <div class="issue-title-text">Build Consent Kernel v1 &mdash; smart contract implementation</div>
+        <div class="issue-meta">NOIZYVOX &bull; ENGR_KEITH + GABRIEL &bull; RSP_001 entry exists</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-priority priority-urgent"></div>
+      <div class="issue-info">
+        <div class="issue-id">NOI-9</div>
+        <div class="issue-title-text">Inventory all 6 GoDaddy accounts + get Customer IDs</div>
+        <div class="issue-meta">GoDaddy Escape &bull; CB01 &bull; Step 1 of 13</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-priority priority-urgent"></div>
+      <div class="issue-info">
+        <div class="issue-id">NOI-10</div>
+        <div class="issue-title-text">Unlock domains + obtain auth codes</div>
+        <div class="issue-meta">GoDaddy Escape &bull; CB01 &bull; Blocked by NOI-9</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-priority priority-urgent"></div>
+      <div class="issue-info">
+        <div class="issue-id">NOI-11</div>
+        <div class="issue-title-text">Transfer noizyfish.com + noizylab.com to Cloudflare</div>
+        <div class="issue-meta">GoDaddy Escape &bull; ENGR_KEITH + CB01 &bull; Blocked by NOI-10</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-priority priority-high"></div>
+      <div class="issue-info">
+        <div class="issue-id">NOI-7</div>
+        <div class="issue-title-text">Configure DNS records for all 5 domains</div>
+        <div class="issue-meta">Infrastructure &bull; ENGR_KEITH + CB01</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-priority priority-high"></div>
+      <div class="issue-info">
+        <div class="issue-id">NOI-14</div>
+        <div class="issue-title-text">Build Artist Portal MVP</div>
+        <div class="issue-meta">NOIZYVOX &bull; DREAM + GABRIEL</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-priority priority-high"></div>
+      <div class="issue-info">
+        <div class="issue-id">NOI-15</div>
+        <div class="issue-title-text">Archive Slack Consent Blueprint to repo</div>
+        <div class="issue-meta">NOIZYVOX &bull; LUCY &bull; Critical IP in Slack DM</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-priority priority-high"></div>
+      <div class="issue-info">
+        <div class="issue-id">NOI-12</div>
+        <div class="issue-title-text">Remove M365 partner link + close all 6 GoDaddy accounts</div>
+        <div class="issue-meta">GoDaddy Escape &bull; CB01 &bull; Steps 9-13</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAILY FLOW -->
+<div class="section-header">Daily Flow Protocol</div>
+<div class="flow-container">
+  <div class="flow-steps">
+    <div class="flow-step" onclick="this.classList.toggle('step-done')">
+      <div class="flow-check">&#10003;</div>
+      <div class="flow-time time-morning">Morning</div>
+      <div class="flow-name">Scan &amp; Focus</div>
+      <div class="flow-desc">Review system state. Identify top 3 priorities. Confirm which agents are active.</div>
+      <div class="flow-action">9:00 AM automated briefing runs</div>
+    </div>
+    <div class="flow-step" onclick="this.classList.toggle('step-done')">
+      <div class="flow-check">&#10003;</div>
+      <div class="flow-time time-build">Build Block</div>
+      <div class="flow-name">One System</div>
+      <div class="flow-desc">Work on one project. One improvement. One deliverable. 1&ndash;2 focused hours.</div>
+      <div class="flow-action">Pick from issue queue above</div>
+    </div>
+    <div class="flow-step" onclick="this.classList.toggle('step-done')">
+      <div class="flow-check">&#10003;</div>
+      <div class="flow-time time-capture">Capture</div>
+      <div class="flow-name">Ideas &rarr; System</div>
+      <div class="flow-desc">Any new ideas get captured to memcells or Linear issues. Nothing lives only in your head.</div>
+      <div class="flow-action">326 memcells in D1, growing</div>
+    </div>
+    <div class="flow-step" onclick="this.classList.toggle('step-done')">
+      <div class="flow-check">&#10003;</div>
+      <div class="flow-time time-stop">Stop Point</div>
+      <div class="flow-name">Log &amp; Rest</div>
+      <div class="flow-desc">Record what was built today. Mark issues done. Don&rsquo;t overextend. Tomorrow continues.</div>
+      <div class="flow-action">Build forward continuously</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS OVERVIEW -->
+<div class="section-header">All Projects &mdash; Linear</div>
+<div class="projects-section">
+  <div class="project-row">
+    <div class="project-dot" style="background:#FF4D6D;"></div>
+    <div class="project-name">NOIZYVOX &mdash; Consent Platform</div>
+    <div class="project-status ps-progress">In Progress</div>
+    <div class="project-priority">Urgent</div>
+    <div class="project-dates">Mar 19 &rarr; Sep 30</div>
+    <div class="project-issues">3 issues</div>
+  </div>
+  <div class="project-row">
+    <div class="project-dot" style="background:#94A3B8;"></div>
+    <div class="project-name">Infrastructure &mdash; Cloudflare &amp; DNS</div>
+    <div class="project-status ps-progress">In Progress</div>
+    <div class="project-priority">Urgent</div>
+    <div class="project-dates">Mar 19 &rarr; Apr 30</div>
+    <div class="project-issues">4 issues</div>
+  </div>
+  <div class="project-row">
+    <div class="project-dot" style="background:#D4A017;"></div>
+    <div class="project-name">GoDaddy Escape &mdash; Domain Migration</div>
+    <div class="project-status ps-progress">In Progress</div>
+    <div class="project-priority">High</div>
+    <div class="project-dates">Mar 19 &rarr; Apr 15</div>
+    <div class="project-issues">4 issues</div>
+  </div>
+  <div class="project-row">
+    <div class="project-dot" style="background:#00FFB3;"></div>
+    <div class="project-name">NOIZY.AI &amp; DreamChamber</div>
+    <div class="project-status ps-planned">Planned</div>
+    <div class="project-priority">Medium</div>
+    <div class="project-dates">May 1 &rarr; Sep 30</div>
+    <div class="project-issues">0 issues</div>
+  </div>
+  <div class="project-row">
+    <div class="project-dot" style="background:#E8A87C;"></div>
+    <div class="project-name">NOIZYKIDZ &amp; LIFELUV</div>
+    <div class="project-status ps-planned">Planned</div>
+    <div class="project-priority">Low</div>
+    <div class="project-dates">Jul 1 &rarr; Dec 31</div>
+    <div class="project-issues">1 issue</div>
+  </div>
+</div>
+
+<!-- INFRASTRUCTURE -->
+<div class="section-header">Infrastructure &mdash; Cloudflare Live State</div>
+<div style="margin: 16px 40px;">
+  <div class="infra-grid">
+    <div class="infra-stat">
+      <div class="infra-value">10</div>
+      <div class="infra-label">D1 Databases</div>
+      <div class="infra-sub">At account limit</div>
+    </div>
+    <div class="infra-stat">
+      <div class="infra-value">20+</div>
+      <div class="infra-label">KV Namespaces</div>
+      <div class="infra-sub">Needs rationalization</div>
+    </div>
+    <div class="infra-stat">
+      <div class="infra-value">1</div>
+      <div class="infra-label">Workers</div>
+      <div class="infra-sub">HEAVEN17 &mdash; still Hello World stub</div>
+    </div>
+    <div class="infra-stat">
+      <div class="infra-value" style="color:var(--red);">0</div>
+      <div class="infra-label">R2 Buckets</div>
+      <div class="infra-sub">NOT ENABLED &mdash; blocks voice storage</div>
+    </div>
+    <div class="infra-stat">
+      <div class="infra-value">5</div>
+      <div class="infra-label">Domains</div>
+      <div class="infra-sub">3 on CF, 2 on GoDaddy</div>
+    </div>
+    <div class="infra-stat">
+      <div class="infra-value" style="color:var(--red);">0</div>
+      <div class="infra-label">DNS Records</div>
+      <div class="infra-sub">None configured anywhere</div>
+    </div>
+    <div class="infra-stat">
+      <div class="infra-value">3</div>
+      <div class="infra-label">Automations</div>
+      <div class="infra-sub">Daily + Weekly scheduled</div>
+    </div>
+    <div class="infra-stat">
+      <div class="infra-value">326+</div>
+      <div class="infra-label">Memcells</div>
+      <div class="infra-sub">Rob&rsquo;s knowledge in agent-memory</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-section" style="margin-top:32px;">
+  <div class="progress-title">Phase Progress</div>
+  <div class="progress-bars">
+    <div class="progress-item">
+      <div class="progress-item-header">
+        <span class="progress-item-name">Phase 1: Foundation (Mar&ndash;Apr)</span>
+        <span class="progress-item-pct">15%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill fill-amber" style="width:15%"></div>
+      </div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-item-header">
+        <span class="progress-item-name">Phase 2: Prototype (May&ndash;Jun)</span>
+        <span class="progress-item-pct">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill fill-teal" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-item-header">
+        <span class="progress-item-name">Phase 3: Launch (Jul&ndash;Sep)</span>
+        <span class="progress-item-pct">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill fill-red" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GROUND RULES -->
+<div class="ground-rules">
+  <div class="ground-rules-title">DREAMCHAMBER Ground Rules</div>
+  <div class="rules-grid">
+    <div class="rule-item">Convert ideas into systems. Nothing stays abstract.</div>
+    <div class="rule-item">1&ndash;3 priorities per day. No more. No exceptions.</div>
+    <div class="rule-item">Always produce something usable each session.</div>
+    <div class="rule-item">Avoid chaos and over-expansion. Depth over breadth.</div>
+    <div class="rule-item">Intensity &rarr; structured output. Emotion &rarr; meaningful systems.</div>
+    <div class="rule-item">Build forward continuously. Improve, never discard.</div>
+    <div class="rule-item">Stop when you should. Tomorrow continues the work.</div>
+    <div class="rule-item">Trust is earned, proven, and maintained.</div>
+    <div class="rule-item">Peace, love, and understanding are design goals.</div>
+  </div>
+</div>
+
+<script>
+// Date display
+const now = new Date();
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', options);
+</script>
+
+</body>
+</html>

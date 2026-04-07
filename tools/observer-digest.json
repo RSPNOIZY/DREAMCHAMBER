@@ -1,0 +1,324 @@
+{
+  "_meta": {
+    "observer": "NOIZY Full Observer v1.0",
+    "machine": "GOD (M2 Ultra)",
+    "timestamp": "2026-04-04T16:11:06.059Z",
+    "epochMs": 1775319066059
+  },
+  "services": {
+    "voice-bridge": {
+      "status": "RUNNING",
+      "pid": "21213",
+      "cpu": "0.0%",
+      "mem": "0.0%",
+      "started": "Fri02AM"
+    },
+    "gabriel-daemon": {
+      "status": "RUNNING",
+      "pid": "4879",
+      "cpu": "0.4%",
+      "mem": "0.0%",
+      "started": "Fri02AM"
+    },
+    "gabriel-monitor": {
+      "status": "RUNNING",
+      "pid": "91169",
+      "cpu": "0.0%",
+      "mem": "0.0%",
+      "started": "6:25PM"
+    },
+    "voice-server": {
+      "status": "RUNNING",
+      "pid": "91171",
+      "cpu": "0.0%",
+      "mem": "0.0%",
+      "started": "6:25PM"
+    },
+    "audio-hijack": {
+      "status": "RUNNING",
+      "pid": "568",
+      "cpu": "6.0%",
+      "mem": "2.0%",
+      "started": "Fri02AM"
+    },
+    "ollama": {
+      "status": "RUNNING",
+      "pid": "4870",
+      "cpu": "0.7%",
+      "mem": "0.0%",
+      "started": "Fri02AM"
+    },
+    "voice-bridge-http": {
+      "status": "HEALTHY",
+      "response": {
+        "status": "healthy",
+        "timestamp": "2026-04-04T16:11:08.582Z"
+      }
+    }
+  },
+  "ollamaModels": [
+    {
+      "name": "noizy-family-keeper:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-mission-control:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-consent-guardian:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-wisdom-scribe:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-dream-weaver:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-gabriel-mind:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-heaven-forger:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-kidz-worldbuilder:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-fish-cataloguer:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-vox-architect:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "llama3.1:70b",
+      "size": "42 GB"
+    },
+    {
+      "name": "llama3.2:latest",
+      "size": "2.0 GB"
+    },
+    {
+      "name": "deepseek-coder:latest",
+      "size": "776 MB"
+    },
+    {
+      "name": "qwen2.5-coder:7b",
+      "size": "4.7 GB"
+    },
+    {
+      "name": "mistral:latest",
+      "size": "4.4 GB"
+    },
+    {
+      "name": "gemma3:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "llava:34b",
+      "size": "20 GB"
+    }
+  ],
+  "gabriel": {
+    "recentSessions": [],
+    "activeTasks": [],
+    "recentMemory": [
+      {
+        "key": "last_heartbeat",
+        "value": "2026-04-03T22:19:46.097Z",
+        "category": "system",
+        "updated_at": "2026-04-03 22:19:46"
+      },
+      {
+        "key": "daemon_start",
+        "value": "2026-04-03T06:19:46.350Z",
+        "category": "system",
+        "updated_at": "2026-04-03 06:19:46"
+      },
+      {
+        "key": "last_voice_command",
+        "value": "gabriel status",
+        "category": "voice",
+        "updated_at": "2026-03-30 08:44:05"
+      }
+    ],
+    "consent": [
+      {
+        "total": 0,
+        "granted": null
+      }
+    ],
+    "estateMembers": [
+      {
+        "hvs_id": "rsp001",
+        "full_name": "Robert Plowman",
+        "relationship": "founder",
+        "status": "living"
+      }
+    ],
+    "logs": {
+      "gabriel.log": {
+        "lastModified": "2026-04-04T16:11:08.165Z",
+        "sizeBytes": 3435937,
+        "lines": []
+      },
+      "noizyvox.log": {
+        "lastModified": "2026-04-04T16:11:07.874Z",
+        "sizeBytes": 1400420,
+        "lines": [
+          "INFO:     127.0.0.1:63519 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:63814 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:64069 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:64338 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:64601 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:64915 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:65162 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:65429 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:49304 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:49577 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:49852 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:50129 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:50384 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:50662 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:50913 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:51184 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:51613 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:51877 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:52139 - \"GET /api/v1/health HTTP/1.1\" 200 OK",
+          "INFO:     127.0.0.1:52407 - \"GET /api/v1/health HTTP/1.1\" 200 OK"
+        ]
+      },
+      "noizyvox.err": {
+        "lastModified": "2026-04-03T06:20:12.984Z",
+        "sizeBytes": 3944,
+        "lines": [
+          "INFO:     Started server process [806]",
+          "INFO:     Waiting for application startup.",
+          "INFO:     Application startup complete.",
+          "INFO:     Uvicorn running on http://0.0.0.0:8421 (Press CTRL+C to quit)",
+          "INFO:     Shutting down",
+          "INFO:     Waiting for application shutdown.",
+          "INFO:     Application shutdown complete.",
+          "INFO:     Finished server process [806]",
+          "INFO:     Started server process [3462]",
+          "INFO:     Waiting for application startup.",
+          "INFO:     Application startup complete.",
+          "INFO:     Uvicorn running on http://0.0.0.0:8421 (Press CTRL+C to quit)",
+          "INFO:     Shutting down",
+          "INFO:     Waiting for application shutdown.",
+          "INFO:     Application shutdown complete.",
+          "INFO:     Finished server process [3462]",
+          "INFO:     Started server process [4849]",
+          "INFO:     Waiting for application startup.",
+          "INFO:     Application startup complete.",
+          "INFO:     Uvicorn running on http://0.0.0.0:8421 (Press CTRL+C to quit)"
+        ]
+      }
+    }
+  },
+  "voicePipeline": {
+    "state": {
+      "runs": [
+        {
+          "runId": "0d308ad7",
+          "actor_id": "RSP_001",
+          "use_case": "general",
+          "territory": "CA",
+          "voice": "default",
+          "text_hash": "57e477f76f3e8538",
+          "output_path": "/Users/m2ultra/NOIZYLAB/voice-pipeline/responses/voice_2026-03-31T20-20-56-747Z.wav",
+          "output_size": 255116,
+          "consent_ref": "approved",
+          "ts": 1774988456751,
+          "type": "synthesis"
+        }
+      ],
+      "lastRun": {
+        "runId": "0d308ad7",
+        "actor_id": "RSP_001",
+        "use_case": "general",
+        "territory": "CA",
+        "voice": "default",
+        "text_hash": "57e477f76f3e8538",
+        "output_path": "/Users/m2ultra/NOIZYLAB/voice-pipeline/responses/voice_2026-03-31T20-20-56-747Z.wav",
+        "output_size": 255116,
+        "consent_ref": "approved",
+        "ts": 1774988456751,
+        "type": "synthesis"
+      },
+      "totalRuns": 1,
+      "errors": 0
+    },
+    "latestTranscripts": []
+  },
+  "systemLogs": {
+    "n8n.log": {
+      "lastModified": "2026-04-03T06:18:14.838Z",
+      "sizeBytes": 1014,
+      "tail": [
+        "Initializing n8n process",
+        "n8n ready on ::, port 5678",
+        "n8n Task Broker ready on 127.0.0.1, port 5679",
+        "Failed to start Python task runner in internal mode. because its virtual environment is missing from this system. Launching a Python runner in internal mode is intended only for debugging and is not recommended for production. Users are encouraged to deploy in external mode. See: https://docs.n8n.io/hosting/configuration/task-runners/#setting-up-external-mode",
+        "[license SDK] Skipping renewal on init: license cert is not initialized",
+        "Registered runner \"JS Task Runner\" (Qoz5UG_CzPwYJn_XyGj3D) ",
+        "Version: 2.13.4",
+        "Building workflow dependency index...",
+        "Finished building workflow dependency index. Processed 0 draft workflows, 0 published workflows.",
+        "",
+        "Editor is now accessible via:",
+        "http://localhost:5678",
+        "Pruning old insights data",
+        "Pruning old insights data",
+        "Pruning old insights data",
+        "Received SIGTERM. Shutting down...",
+        "[runnner:js] Received SIGTERM signal, shutting down...",
+        "[runnner:js] Task runner stopped",
+        "",
+        "Stopping n8n..."
+      ]
+    },
+    "noizylab_services.log": {
+      "lastModified": "2026-03-30T17:49:27.366Z",
+      "sizeBytes": 1058,
+      "tail": [
+        "[2026-03-30 13:49:23] ✅ GABRIEL: online",
+        "[2026-03-30 13:49:23] ✅ GABRIEL: online",
+        "[2026-03-30 13:49:23] ✅ pm2: 2 processes online",
+        "[2026-03-30 13:49:23] ✅ pm2: 2 processes online",
+        "[2026-03-30 13:49:23] ✅ Ollama: ready",
+        "[2026-03-30 13:49:23] ✅ Ollama: ready",
+        "[2026-03-30 13:49:23] ✅ NOIZYVOX: port 8421 healthy",
+        "[2026-03-30 13:49:23] ✅ NOIZYVOX: port 8421 healthy",
+        "[2026-03-30 13:49:23] ",
+        "[2026-03-30 13:49:23] ",
+        "[2026-03-30 13:49:23] ═══ BOOT COMPLETE ═══",
+        "[2026-03-30 13:49:23] ═══ BOOT COMPLETE ═══",
+        "[2026-03-30 13:49:23]   ❌ GABRIEL",
+        "[2026-03-30 13:49:23]   ❌ GABRIEL",
+        "[2026-03-30 13:49:23]   ❌ VoiceBridge",
+        "[2026-03-30 13:49:23]   ❌ VoiceBridge",
+        "[2026-03-30 13:49:23]   ❌ NOIZYVOX",
+        "[2026-03-30 13:49:23]   ❌ NOIZYVOX",
+        "[2026-03-30 13:49:23]   ❌ Ollama",
+        "[2026-03-30 13:49:23]   ❌ Ollama"
+      ]
+    }
+  },
+  "system": {
+    "disk": {
+      "total": "1.8Ti",
+      "used": "10Gi",
+      "available": "1.2Ti",
+      "percentUsed": "1%"
+    },
+    "uptime": "12:11  up 1 day,  9:53, 2 users, load averages: 18.44 18.92 19.14"
+  }
+}

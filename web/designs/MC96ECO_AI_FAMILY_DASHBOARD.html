@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MC96ECO — AI Family Job Assignment Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep:#0A0E17;--mid:#111827;--panel:#151D2E;
+  --signal:#00D4FF;--nerve:#E8A87C;--restore:#00FFB3;
+  --pulse:#FF4D6D;--soul:#B185DB;--gold:#D4A017;
+  --white:#F1F5F9;--silver:#94A3B8;--mgray:#4A5568;
+  --font-d:'Cormorant Garamond',Georgia,serif;
+  --font-m:'IBM Plex Mono','Courier New',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--deep);color:var(--white);font-family:var(--font-d);line-height:1.6}
+body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px)}
+
+header{padding:24px 32px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(10,14,23,0.95);backdrop-filter:blur(16px);z-index:100}
+.logo{font-size:20px;font-weight:700;letter-spacing:0.15em}
+.logo span{color:var(--gold)}
+.header-right{display:flex;align-items:center;gap:16px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--restore);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,255,179,0.4)}50%{box-shadow:0 0 0 8px rgba(0,255,179,0)}}
+.live-text{font-family:var(--font-m);font-size:11px;color:var(--restore);letter-spacing:0.15em}
+.date{font-family:var(--font-m);font-size:10px;color:var(--mgray)}
+
+main{max-width:1500px;margin:0 auto;padding:32px}
+
+/* ═══ AGENT CARDS ═══ */
+.agents-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-bottom:40px}
+@media(max-width:1200px){.agents-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:768px){.agents-grid{grid-template-columns:repeat(2,1fr)}}
+
+.agent-card{background:var(--panel);border:2px solid transparent;border-radius:10px;padding:16px;cursor:pointer;transition:all 0.3s;text-align:center;position:relative}
+.agent-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.agent-card.selected{border-color:var(--card-color)}
+.agent-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0;background:var(--card-color)}
+.agent-avatar{width:48px;height:48px;border-radius:50%;margin:8px auto 10px;display:flex;align-items:center;justify-content:center;font-size:22px;background:rgba(255,255,255,0.05);border:2px solid var(--card-color)}
+.agent-name{font-family:var(--font-m);font-size:12px;letter-spacing:0.2em;font-weight:600;margin-bottom:4px}
+.agent-role{font-size:12px;color:var(--silver);font-style:italic}
+.agent-load{font-family:var(--font-m);font-size:10px;color:var(--mgray);margin-top:8px}
+.agent-load-bar{height:3px;border-radius:2px;background:rgba(255,255,255,0.08);margin-top:4px;overflow:hidden}
+.agent-load-fill{height:100%;border-radius:2px;transition:width 0.6s}
+
+/* ═══ MATRIX VIEW ═══ */
+.matrix-section{margin-bottom:40px}
+.matrix-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.matrix-title{font-size:22px;font-weight:300}
+.matrix-controls{display:flex;gap:8px}
+.matrix-btn{font-family:var(--font-m);font-size:10px;letter-spacing:0.12em;padding:6px 14px;border-radius:4px;border:1px solid var(--mgray);background:transparent;color:var(--silver);cursor:pointer;transition:all 0.2s;text-transform:uppercase}
+.matrix-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(212,160,23,0.08)}
+.matrix-btn:hover{border-color:var(--silver)}
+
+.matrix-table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:10px;overflow:hidden}
+.matrix-table th{font-family:var(--font-m);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);text-align:center;padding:14px 8px;background:rgba(0,0,0,0.2);border-bottom:1px solid rgba(255,255,255,0.06)}
+.matrix-table th:first-child{text-align:left;padding-left:16px}
+.matrix-table td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:center;font-size:13px}
+.matrix-table td:first-child{text-align:left;padding-left:16px;font-weight:600}
+.matrix-table tr:hover{background:rgba(255,255,255,0.02)}
+.matrix-cell{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;transition:all 0.2s}
+.matrix-cell.primary{background:var(--gold);color:var(--deep)}
+.matrix-cell.secondary{background:rgba(0,212,255,0.2);color:var(--signal)}
+.matrix-cell.support{background:rgba(255,255,255,0.06);color:var(--silver)}
+.matrix-cell.empty{background:transparent;color:var(--mgray);opacity:0.3}
+.matrix-cell:hover{transform:scale(1.3)}
+
+/* ═══ TASK BOARD ═══ */
+.task-section{margin-bottom:40px}
+.task-columns{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:900px){.task-columns{grid-template-columns:repeat(2,1fr)}}
+.task-col{background:var(--panel);border-radius:10px;overflow:hidden;min-height:300px}
+.task-col-header{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between}
+.task-col-title{font-family:var(--font-m);font-size:10px;letter-spacing:0.2em;text-transform:uppercase}
+.task-col-count{font-family:var(--font-m);font-size:10px;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,0.06)}
+.task-col-body{padding:8px}
+.task-card{background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.04);border-radius:6px;padding:12px;margin-bottom:8px;cursor:pointer;transition:all 0.2s;position:relative}
+.task-card:hover{border-color:rgba(255,255,255,0.1);transform:translateY(-1px)}
+.task-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;border-radius:6px 0 0 6px}
+.task-card.p-vox::before{background:var(--signal)}
+.task-card.p-kidz::before{background:var(--gold)}
+.task-card.p-ai::before{background:var(--nerve)}
+.task-card.p-lab::before{background:var(--restore)}
+.task-card.p-dc::before{background:var(--soul)}
+.task-card.p-infra::before{background:var(--pulse)}
+.task-title{font-size:13px;font-weight:600;margin-bottom:6px}
+.task-project{font-family:var(--font-m);font-size:9px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px}
+.task-assignees{display:flex;gap:4px}
+.task-avatar{width:22px;height:22px;border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center;border:1px solid}
+.task-priority{font-family:var(--font-m);font-size:9px;position:absolute;top:8px;right:8px;letter-spacing:0.1em}
+
+/* ═══ PROJECT PROGRESS ═══ */
+.progress-section{margin-bottom:40px}
+.progress-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:768px){.progress-grid{grid-template-columns:1fr}}
+.progress-card{background:var(--panel);border-radius:10px;padding:24px;border-left:3px solid}
+.progress-name{font-size:18px;font-weight:600;margin-bottom:4px}
+.progress-status{font-family:var(--font-m);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px}
+.progress-bar{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;margin-bottom:12px}
+.progress-fill{height:100%;border-radius:3px;transition:width 1s}
+.progress-agents{display:flex;gap:4px;flex-wrap:wrap}
+.progress-agent-tag{font-family:var(--font-m);font-size:9px;padding:2px 8px;border-radius:3px;background:rgba(255,255,255,0.06);color:var(--silver)}
+
+footer{padding:24px 32px;border-top:1px solid rgba(255,255,255,0.04);text-align:center}
+.footer-text{font-family:var(--font-m);font-size:10px;color:var(--mgray);letter-spacing:0.1em}
+.footer-text em{color:var(--gold);font-style:normal}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="logo">MC96ECO <span>AI FAMILY</span></div>
+  </div>
+  <div class="header-right">
+    <div class="live-dot"></div>
+    <span class="live-text">OPERATIONAL</span>
+    <span class="date">March 19, 2026</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══ AGENT CARDS ═══ -->
+<div class="agents-grid">
+  <div class="agent-card" style="--card-color:var(--pulse)" onclick="selectAgent('GABRIEL')">
+    <div class="agent-avatar" style="border-color:var(--pulse)">⚔️</div>
+    <div class="agent-name" style="color:var(--pulse)">GABRIEL</div>
+    <div class="agent-role">Warrior Executor</div>
+    <div class="agent-load">Load: 85%</div>
+    <div class="agent-load-bar"><div class="agent-load-fill" style="width:85%;background:var(--pulse)"></div></div>
+  </div>
+  <div class="agent-card" style="--card-color:var(--signal)" onclick="selectAgent('LUCY')">
+    <div class="agent-avatar" style="border-color:var(--signal)">📋</div>
+    <div class="agent-name" style="color:var(--signal)">LUCY</div>
+    <div class="agent-role">Organizer / Archivist</div>
+    <div class="agent-load">Load: 60%</div>
+    <div class="agent-load-bar"><div class="agent-load-fill" style="width:60%;background:var(--signal)"></div></div>
+  </div>
+  <div class="agent-card" style="--card-color:var(--nerve)" onclick="selectAgent('SHIRL')">
+    <div class="agent-avatar" style="border-color:var(--nerve)">💛</div>
+    <div class="agent-name" style="color:var(--nerve)">SHIRL</div>
+    <div class="agent-role">Nurturing Aunt 24/7</div>
+    <div class="agent-load">Load: 45%</div>
+    <div class="agent-load-bar"><div class="agent-load-fill" style="width:45%;background:var(--nerve)"></div></div>
+  </div>
+  <div class="agent-card" style="--card-color:var(--soul)" onclick="selectAgent('POPS')">
+    <div class="agent-avatar" style="border-color:var(--soul)">🦉</div>
+    <div class="agent-name" style="color:var(--soul)">POPS</div>
+    <div class="agent-role">Wise Father 24/7</div>
+    <div class="agent-load">Load: 40%</div>
+    <div class="agent-load-bar"><div class="agent-load-fill" style="width:40%;background:var(--soul)"></div></div>
+  </div>
+  <div class="agent-card" style="--card-color:var(--restore)" onclick="selectAgent('DREAM')">
+    <div class="agent-avatar" style="border-color:var(--restore)">✨</div>
+    <div class="agent-name" style="color:var(--restore)">DREAM</div>
+    <div class="agent-role">Visionary</div>
+    <div class="agent-load">Load: 70%</div>
+    <div class="agent-load-bar"><div class="agent-load-fill" style="width:70%;background:var(--restore)"></div></div>
+  </div>
+  <div class="agent-card" style="--card-color:var(--silver)" onclick="selectAgent('ENGR_KEITH')">
+    <div class="agent-avatar" style="border-color:var(--silver)">🔧</div>
+    <div class="agent-name" style="color:var(--silver)">ENGR_KEITH</div>
+    <div class="agent-role">Engineering Spirit</div>
+    <div class="agent-load">Load: 55%</div>
+    <div class="agent-load-bar"><div class="agent-load-fill" style="width:55%;background:var(--silver)"></div></div>
+  </div>
+  <div class="agent-card" style="--card-color:var(--gold)" onclick="selectAgent('CB01')">
+    <div class="agent-avatar" style="border-color:var(--gold)">🤖</div>
+    <div class="agent-name" style="color:var(--gold)">CB01</div>
+    <div class="agent-role">Operational</div>
+    <div class="agent-load">Load: 50%</div>
+    <div class="agent-load-bar"><div class="agent-load-fill" style="width:50%;background:var(--gold)"></div></div>
+  </div>
+</div>
+
+<!-- ═══ ASSIGNMENT MATRIX ═══ -->
+<div class="matrix-section">
+  <div class="matrix-header">
+    <h2 class="matrix-title">Assignment Matrix</h2>
+    <div class="matrix-controls">
+      <button class="matrix-btn active">All Projects</button>
+      <button class="matrix-btn">Active Only</button>
+      <button class="matrix-btn">By Priority</button>
+    </div>
+  </div>
+  <table class="matrix-table">
+    <thead>
+      <tr>
+        <th style="min-width:180px">Project / Task</th>
+        <th>GABRIEL</th><th>LUCY</th><th>SHIRL</th><th>POPS</th><th>DREAM</th><th>KEITH</th><th>CB01</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color:var(--signal)">NOIZYVOX Platform</td>
+        <td><span class="matrix-cell primary" title="Lead">★</span></td>
+        <td><span class="matrix-cell secondary" title="Support">○</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell support" title="Advisor">△</span></td>
+        <td><span class="matrix-cell secondary" title="Design">○</span></td>
+        <td><span class="matrix-cell secondary" title="Infra">○</span></td>
+        <td><span class="matrix-cell support" title="Ops">△</span></td>
+        <td><span style="font-family:var(--font-m);font-size:10px;color:var(--gold)">BUILDING</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--gold)">NOIZYKIDZ Ecosystem</td>
+        <td><span class="matrix-cell support">△</span></td>
+        <td><span class="matrix-cell secondary">○</span></td>
+        <td><span class="matrix-cell primary" title="Lead">★</span></td>
+        <td><span class="matrix-cell primary" title="Co-Lead">★</span></td>
+        <td><span class="matrix-cell secondary">○</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span style="font-family:var(--font-m);font-size:10px;color:var(--soul)">PLANNED</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--nerve)">NOIZY.AI Intelligence</td>
+        <td><span class="matrix-cell secondary">○</span></td>
+        <td><span class="matrix-cell primary" title="Lead">★</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell primary" title="Co-Lead">★</span></td>
+        <td><span class="matrix-cell secondary">○</span></td>
+        <td><span class="matrix-cell support">△</span></td>
+        <td><span style="font-family:var(--font-m);font-size:10px;color:var(--gold)">BUILDING</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--restore)">NOIZYLAB Repairs</td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell support">△</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell primary" title="Lead">★</span></td>
+        <td><span class="matrix-cell secondary">○</span></td>
+        <td><span style="font-family:var(--font-m);font-size:10px;color:var(--restore)">LIVE</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--soul)">DreamChamber Portal</td>
+        <td><span class="matrix-cell support">△</span></td>
+        <td><span class="matrix-cell secondary">○</span></td>
+        <td><span class="matrix-cell support">△</span></td>
+        <td><span class="matrix-cell support">△</span></td>
+        <td><span class="matrix-cell primary" title="Lead">★</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span style="font-family:var(--font-m);font-size:10px;color:var(--gold)">BUILDING</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--pulse)">LIFELUV Flow</td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell primary" title="Lead">★</span></td>
+        <td><span class="matrix-cell secondary">○</span></td>
+        <td><span class="matrix-cell secondary">○</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span style="font-family:var(--font-m);font-size:10px;color:var(--soul)">PLANNED</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--gold)">Consent-as-Code Kernel</td>
+        <td><span class="matrix-cell primary" title="Lead">★</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell support" title="Ethics">△</span></td>
+        <td><span class="matrix-cell support">△</span></td>
+        <td><span class="matrix-cell primary" title="Co-Lead">★</span></td>
+        <td><span class="matrix-cell secondary">○</span></td>
+        <td><span style="font-family:var(--font-m);font-size:10px;color:var(--gold)">BUILDING</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--pulse)">Cloudflare Infrastructure</td>
+        <td><span class="matrix-cell secondary">○</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell primary" title="Lead">★</span></td>
+        <td><span class="matrix-cell primary" title="Co-Lead">★</span></td>
+        <td><span style="font-family:var(--font-m);font-size:10px;color:var(--pulse)">ACTION REQ</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--gold)">GoDaddy Escape</td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell primary" title="Lead">★</span></td>
+        <td><span style="font-family:var(--font-m);font-size:10px;color:var(--pulse)">STALLED</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--nerve)">HEAVEN17 Worker Deploy</td>
+        <td><span class="matrix-cell primary" title="Lead">★</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell primary" title="Co-Lead">★</span></td>
+        <td><span class="matrix-cell secondary">○</span></td>
+        <td><span style="font-family:var(--font-m);font-size:10px;color:var(--pulse)">NOT STARTED</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--signal)">A.I.V.A. Animation / Demo</td>
+        <td><span class="matrix-cell secondary">○</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell primary" title="Lead">★</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span class="matrix-cell empty">·</span></td>
+        <td><span style="font-family:var(--font-m);font-size:10px;color:var(--restore)">PROTOTYPE DONE</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top:12px;font-family:var(--font-m);font-size:10px;color:var(--mgray)">
+    ★ = Lead &nbsp;&nbsp; ○ = Active Support &nbsp;&nbsp; △ = Advisory &nbsp;&nbsp; · = Not Assigned
+  </p>
+</div>
+
+<!-- ═══ PROJECT PROGRESS ═══ -->
+<div class="progress-section">
+  <h2 class="matrix-title" style="margin-bottom:20px">Project Progress</h2>
+  <div class="progress-grid">
+    <div class="progress-card" style="border-color:var(--signal)">
+      <div class="progress-name" style="color:var(--signal)">NOIZYVOX</div>
+      <div class="progress-status" style="color:var(--gold)">BUILDING — 35%</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:35%;background:var(--signal)"></div></div>
+      <div class="progress-agents">
+        <span class="progress-agent-tag">GABRIEL ★</span>
+        <span class="progress-agent-tag">DREAM</span>
+        <span class="progress-agent-tag">KEITH</span>
+      </div>
+    </div>
+    <div class="progress-card" style="border-color:var(--nerve)">
+      <div class="progress-name" style="color:var(--nerve)">NOIZY.AI</div>
+      <div class="progress-status" style="color:var(--gold)">BUILDING — 25%</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:25%;background:var(--nerve)"></div></div>
+      <div class="progress-agents">
+        <span class="progress-agent-tag">LUCY ★</span>
+        <span class="progress-agent-tag">DREAM ★</span>
+        <span class="progress-agent-tag">KEITH</span>
+      </div>
+    </div>
+    <div class="progress-card" style="border-color:var(--soul)">
+      <div class="progress-name" style="color:var(--soul)">DreamChamber</div>
+      <div class="progress-status" style="color:var(--restore)">PROTOTYPE DONE — 40%</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:40%;background:var(--soul)"></div></div>
+      <div class="progress-agents">
+        <span class="progress-agent-tag">DREAM ★</span>
+        <span class="progress-agent-tag">LUCY</span>
+      </div>
+    </div>
+    <div class="progress-card" style="border-color:var(--restore)">
+      <div class="progress-name" style="color:var(--restore)">NOIZYLAB</div>
+      <div class="progress-status" style="color:var(--restore)">LIVE — 60%</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:60%;background:var(--restore)"></div></div>
+      <div class="progress-agents">
+        <span class="progress-agent-tag">KEITH ★</span>
+        <span class="progress-agent-tag">CB01</span>
+      </div>
+    </div>
+    <div class="progress-card" style="border-color:var(--gold)">
+      <div class="progress-name" style="color:var(--gold)">Consent Kernel</div>
+      <div class="progress-status" style="color:var(--gold)">BUILDING — 30%</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:30%;background:var(--gold)"></div></div>
+      <div class="progress-agents">
+        <span class="progress-agent-tag">GABRIEL ★</span>
+        <span class="progress-agent-tag">KEITH ★</span>
+      </div>
+    </div>
+    <div class="progress-card" style="border-color:var(--pulse)">
+      <div class="progress-name" style="color:var(--pulse)">Infrastructure</div>
+      <div class="progress-status" style="color:var(--pulse)">ACTION REQUIRED — 15%</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:15%;background:var(--pulse)"></div></div>
+      <div class="progress-agents">
+        <span class="progress-agent-tag">KEITH ★</span>
+        <span class="progress-agent-tag">CB01 ★</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TASK BOARD ═══ -->
+<div class="task-section">
+  <h2 class="matrix-title" style="margin-bottom:20px">Task Board — Current Sprint</h2>
+  <div class="task-columns">
+    <div class="task-col">
+      <div class="task-col-header">
+        <span class="task-col-title" style="color:var(--silver)">Backlog</span>
+        <span class="task-col-count">4</span>
+      </div>
+      <div class="task-col-body">
+        <div class="task-card p-kidz">
+          <div class="task-title">NOIZYKIDZ Podcast Framework</div>
+          <div class="task-project" style="color:var(--gold)">NOIZYKIDZ</div>
+          <div class="task-assignees">
+            <div class="task-avatar" style="border-color:var(--nerve);color:var(--nerve)">S</div>
+            <div class="task-avatar" style="border-color:var(--soul);color:var(--soul)">P</div>
+          </div>
+        </div>
+        <div class="task-card p-ai">
+          <div class="task-title">RAG Pipeline Implementation</div>
+          <div class="task-project" style="color:var(--nerve)">NOIZY.AI</div>
+          <div class="task-assignees">
+            <div class="task-avatar" style="border-color:var(--restore);color:var(--restore)">D</div>
+          </div>
+        </div>
+        <div class="task-card p-vox">
+          <div class="task-title">Voice Union Smart Contracts</div>
+          <div class="task-project" style="color:var(--signal)">NOIZYVOX</div>
+          <div class="task-assignees">
+            <div class="task-avatar" style="border-color:var(--pulse);color:var(--pulse)">G</div>
+          </div>
+        </div>
+        <div class="task-card p-dc">
+          <div class="task-title">500-Year Codex Design</div>
+          <div class="task-project" style="color:var(--soul)">DREAMCHAMBER</div>
+          <div class="task-assignees">
+            <div class="task-avatar" style="border-color:var(--restore);color:var(--restore)">D</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task-col">
+      <div class="task-col-header">
+        <span class="task-col-title" style="color:var(--gold)">In Progress</span>
+        <span class="task-col-count">3</span>
+      </div>
+      <div class="task-col-body">
+        <div class="task-card p-vox">
+          <div class="task-title">NOIZYVOX Consent Ledger v1</div>
+          <div class="task-project" style="color:var(--signal)">NOIZYVOX</div>
+          <div class="task-priority" style="color:var(--pulse)">P1</div>
+          <div class="task-assignees">
+            <div class="task-avatar" style="border-color:var(--pulse);color:var(--pulse)">G</div>
+            <div class="task-avatar" style="border-color:var(--silver);color:var(--silver)">K</div>
+          </div>
+        </div>
+        <div class="task-card p-infra">
+          <div class="task-title">Cloudflare DNS Cleanup</div>
+          <div class="task-project" style="color:var(--pulse)">INFRASTRUCTURE</div>
+          <div class="task-priority" style="color:var(--pulse)">P1</div>
+          <div class="task-assignees">
+            <div class="task-avatar" style="border-color:var(--gold);color:var(--gold)">C</div>
+            <div class="task-avatar" style="border-color:var(--silver);color:var(--silver)">K</div>
+          </div>
+        </div>
+        <div class="task-card p-dc">
+          <div class="task-title">A.I.V.A. Morphing Animation</div>
+          <div class="task-project" style="color:var(--soul)">DREAMCHAMBER</div>
+          <div class="task-priority" style="color:var(--gold)">P2</div>
+          <div class="task-assignees">
+            <div class="task-avatar" style="border-color:var(--restore);color:var(--restore)">D</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task-col">
+      <div class="task-col-header">
+        <span class="task-col-title" style="color:var(--signal)">Review</span>
+        <span class="task-col-count">2</span>
+      </div>
+      <div class="task-col-body">
+        <div class="task-card p-vox">
+          <div class="task-title">RSP_001 Voice Estate Setup</div>
+          <div class="task-project" style="color:var(--signal)">NOIZYVOX</div>
+          <div class="task-assignees">
+            <div class="task-avatar" style="border-color:var(--pulse);color:var(--pulse)">G</div>
+          </div>
+        </div>
+        <div class="task-card p-ai">
+          <div class="task-title">IP Catalog v2.0</div>
+          <div class="task-project" style="color:var(--nerve)">NOIZY.AI</div>
+          <div class="task-assignees">
+            <div class="task-avatar" style="border-color:var(--signal);color:var(--signal)">L</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task-col">
+      <div class="task-col-header">
+        <span class="task-col-title" style="color:var(--restore)">Done</span>
+        <span class="task-col-count">3</span>
+      </div>
+      <div class="task-col-body">
+        <div class="task-card p-ai" style="opacity:0.6">
+          <div class="task-title">NOIZYANTHROPIC Repo v2.0</div>
+          <div class="task-project" style="color:var(--nerve)">NOIZY.AI</div>
+          <div class="task-assignees">
+            <div class="task-avatar" style="border-color:var(--signal);color:var(--signal)">L</div>
+            <div class="task-avatar" style="border-color:var(--gold);color:var(--gold)">C</div>
+          </div>
+        </div>
+        <div class="task-card p-dc" style="opacity:0.6">
+          <div class="task-title">DreamChamber VR Prototype</div>
+          <div class="task-project" style="color:var(--soul)">DREAMCHAMBER</div>
+          <div class="task-assignees">
+            <div class="task-avatar" style="border-color:var(--restore);color:var(--restore)">D</div>
+          </div>
+        </div>
+        <div class="task-card p-vox" style="opacity:0.6">
+          <div class="task-title">NOIZYVOX Dashboard v2.0</div>
+          <div class="task-project" style="color:var(--signal)">NOIZYVOX</div>
+          <div class="task-assignees">
+            <div class="task-avatar" style="border-color:var(--pulse);color:var(--pulse)">G</div>
+            <div class="task-avatar" style="border-color:var(--restore);color:var(--restore)">D</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <p class="footer-text">MC96ECO UNIVERSE · <em>Robert Stephen Plowman</em> · AI Family v2.0 · 7 Agents · 11 Projects · March 2026</p>
+</footer>
+
+<script>
+function selectAgent(name) {
+  document.querySelectorAll('.agent-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+}
+</script>
+</body>
+</html>

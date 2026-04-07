@@ -1,0 +1,415 @@
+<HTML>
+<HEAD>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<TITLE>About TT's Zip Archive Package</TITLE>
+</HEAD>
+
+<body>
+<h1>About TT's Zip Archive Package for Xojo and Real Studio (REALbasic)</h1>
+<p>Version: 3.4.3 (12 Dec 2018)</p>
+<p>This is a collection of REALbasic Classes to <b>extract and create ZIP archives</b> (known as PKZIP and Info-ZIP formats), for Mac OS X, Windows and Linux.</p>
+<p>Written and improved since March 2003 by Thomas Tempelmann</p>
+<p>For updates see <a href="http://www.tempel.org/RB/ZipPackage">http://www.tempel.org/RB/ZipPackage</a><br>
+For feedback and questions, write to: <a href="mailto:tt@tempel.org">tt@tempel.org</a></p>
+
+<h3>License, costs</h3>
+Most of this code is free and open sourced. This includes all code included before version 3.0.
+
+<p>However, recent additions to the code, in particular the <b>ZipFolderItem</b> class, require a license purchase. You can get a license code from me for <b>US $35</b>. Note that you can still use the restricted classes without a license code within Real Studio's debugger. This means that you can fully test the features of this package. You require the code only once you want to use the new features in a standalone (built) application.
+<p>To purchase a license, go to <a href="http://tip.tempel.org/">http://tip.tempel.org/</a> and enter to pay $35. (Note: If you have already sent me money for these classes in the past, e-mail me and I'll send you the code for free.)
+
+<h3>Requirements</h3>
+<a href="http://www.xojo.com/">Xojo or Real Studio</a> (2011r1 or later). The <a href="http://einhugur.com/Html/EcryptIt/">Einhugur e-CryptIt plugin</a> is <strong><em>optional</em></strong>, and must be acquired separately. Alternatively, and only for Microsoft Windows, the "zlib" DLL needs to be acquired, e.g. from <a href="http://www.zlib.net/">http://www.zlib.net/</a> and placed along the built app.</p>
+
+<h3>Features</h3>
+<ul>
+	<li><strong>Works on all platforms</strong> (OS X, Windows, Linux)
+	<li><strong>Very fast</strong> (with the Einhugur plugin, tests on OS X show that it is just as fast as Apple's own zip tool)
+	<li>Can <strong>remove items</strong> from an archive and then even <strong>compact the archive</strong> to regain the free space.
+	<li>Special feature: <i>ZipSnapshots</i> allow you to make <b>incremental backups</b> of the same folder, by which unchanged files will not be stored multiple times. See the notes in the same-named class and the code in the demo app to learn how to use it.
+	<li>Can retrieve data even from corrupted archives (not well documented; contact me directly on this feature)
+</ul>
+<h3>Restrictions</h3>
+<p>It implements only a subset of the entire ZIP archive definition, though:</p>
+<ul>
+	<li>Can't do encryption (neither decryption).
+	<li>Supports only &quot;stored&quot; and &quot;deflate&quot; compression methods, which are the most common ones. This means that it can't read all possible ZIP archives because some of them use different compression methods, but if you're using any Zip creating tool, you usually have control over which methods should be used. And &quot;deflate&quot; is usually the most effective, anyways.
+	<li>No support for multi-segment archives.
+	<li>No support for the newer 64 bit Zip archive format. That means that individual files's original size and the entire archive file size are limited to 4GB each, and that an archive can only hold up to 65535 items.
+</ul>
+<p>The only thing to be sure about is that files created by this class can be read by any modern ZIP tool, such as ZipIt (for Mac OS), OS X's Archives, WinZIP (for Windows), Stuffit Expander (Mac and Windows) and, of course, by itself.</p>
+
+<h2>Programming information</h2>
+<p>To actually be able to create and read compressed items in and archive you will also need a plugin providing the so-called &quot;ZLib&quot; compression functions. You have two choices:</p>
+<ul>
+	<li>The free <strong><em>zlib</em></strong> external library, always available on OS X and Linux, but needs to be added manually on Windows.
+	<li>Einhugur's fast <b>e-CryptIt Engine</b> plugin (http://www.einhugur.com/, costs money).
+</ul>
+
+<h2>Quick Demo</h2>
+<p>If you are using Windows, first download the "zlib compiled DLL" from <a href="http://www.zlib.net/">http://www.zlib.net/</a> and place the contained file <em>zlib1.dll</em> into <i>C:\Windows\system\</i>. If you are using Mac OS X or Linux, you do not need to do this because there is already a zlib library installed on those systems.</p>
+<p>Open the project called &quot;TT's ZipArchiver.rbp&quot; and run it. The program opens a window into which you can drop files and folders to compress or drop zip files to decompress instantly. It also allows you to choose options such as the encoding for the file names.</p>
+
+<h2>Overview of the classes</h2>
+<p>The only classes you usually need to look at are:</p>
+<ul>
+	<li><b>ZipArchive</b> - create/open/close archives.
+	<li><b>ZipFolderItem</b> - access the items in the archive similar to RB's FolderItem.
+	<li><b>ZipEntry</b> - get detailed information about items in an archive.
+	<li><b>ZipConfig</b> - here you may configure a few options on how you want the code to behave.
+</ul>
+<p>Or, if you only want to uncompress .zip files easily, look at:</p>
+<ul>
+	<li><b>ZipExtractor</b> - contains simple methods to check and unzip an archive
+</ul>
+<p>The files inside the ZipSupport folder are not of much interest to you, while the files in the StreamSupport folder may be of general use for you in other projects, as they provide generalized read and write functions for both data and resource forks.</p>
+
+<p>There is a folder called <b>RemoveWhenUsingEinhugurPlugin</b>. As its name suggests, you need to remove it (and the clasess therein) from your project if you have the Einhugur eCrypt-It plugin installed (you then also need to change the value of the constant &quot;HaveEinhugurPlugin&quot; to <em>true</em>).</p>
+
+<h3>Creating an archive and adding files to it</h3>
+<p>First, create a new ZipArchive instance, which is used to reference a zip file. Then you Open the archive by specifying a FolderItem along with a Boolean that is <i>true</i> to signal that you want to write to the archive. If the FolderItem exists, it will be opened as an archive (provided it's a valid archive file), and if no file exists yet, a new archive file will be created. (To always start with a new archive, call the FolderItem's Delete method before calling ZipArchive's Open function.)</p>
+<pre>  dim zar as new ZipArchive
+  if not zar.Open (aZipFile, true) then
+    MsgBox &quot;Error: &quot; + zar.ErrorMessage
+    return
+  end</pre>
+<p>To access the contents, get its root folder:</p>
+<pre>  dim root as ZipFolderItem
+  root = zar.Tree</pre>
+<p>Now you can either add single files or entire folders to the archive:</p>
+<pre>  dim addedItem as ZipFolderItem
+  addedItem = root.StoreFolderItem (aFolderItem)
+  if addedItem = nil then
+    MsgBox &quot;Error: &quot; + root.LastErrorMessage
+    return
+  end</pre>
+<p>There are other Add... functions in the ZipFolderItem class - just take a look at it. They all replace any existing files or folders. If that happens, it'll leave gaps inside the archive, though. Therefore, unless you have checked first that there are no items in archive that get replaced (you could call ZipFolderItem's HasChild function for this) it's prudent to always call zar.Compact at the end to remove any gaps left in the archive.</p>
+<p>Finally, close the archive:</p>
+<pre>  if not zar.Close then
+    MsgBox &quot;Error: &quot; + zar.ErrorMessage
+    return
+  end</pre>
+
+<h3>Extracting items from an archive</h3>
+<p>You can choose from three ways, with different levels of complexity.</p>
+
+<h4>1. Extracting entire zip archive to a folder</h4>
+<p>This is very easy by using the ZipExtractor class:</p>
+<pre>  dim extractor as new ZipExtractor
+  if not extractor.ExtractAllSilently (aZipFile, aDestinationFolderItem) then
+    MsgBox &quot;Error: &quot; + extractor.LastErrMsg
+    return
+  end</pre>
+
+<h4>2. Choosing items from the zip's directory tree</h4>
+<p>Here, you access the items inside the zip via a hierarchical tree with folders and files.</p>
+<p>Create a new ZipArchive instance, then call Open with passing a FolderItem identifying the archive you want to extract from, and <i>false</i> for reading from the archive (instead of <i>true</i> for writing to it):</p>
+<pre>  dim zar as new ZipArchive
+  if not zar.Open (aZipFile, false) then
+    MsgBox &quot;Error: &quot; + zar.ErrorMessage
+    return
+  end</pre>
+<p>Get the root dir of the archive's contents (similar to calling Volume() to get a disk's root dir):</p>
+<pre>  dim root as ZipFolderItem
+  root = zar.Tree</pre>
+<p>You could now extract all items in the root to a new folder on the desktop:</p>
+<pre>  dim destFolder = SpecialFolder.Desktop.Child("Extracted Archive")
+  if not root.ExtractInto (destFolder) then
+    MsgBox &quot;Error: &quot; + root.LastErrorMessage
+  end</pre>
+<p>Or, you could loop over all root items and extract all whose name end in ".jpg":</p>
+<pre>  for each item as ZipFolderItem in root.Children
+    if item.Name.Right(4) = ".jpg" then
+      if not item.ExtractInto (destFolder) then
+        MsgBox &quot;Error: &quot; + item.LastErrorMessage
+        exit
+      end
+    end
+  next</pre>
+
+<h4>3. Using the low level functions to have access even to duplicates</h4>
+<p>At this lowest of all access levels, you get to look at the zip archive entries the way they are actually stored inside the zip file: As a sequental list, each item having a path in the form "TopFolderName/DeeperFolderName/FileName".</p>
+<p>Create a new ZipArchive instance, then call Open with passing a FolderItem identifying the archive you want to extract from, and <i>false</i> for reading from the archive (instead of <i>true</i> for writing to it):</p>
+<pre>  dim zar as new ZipArchive
+  if not zar.Open (aZipFile, false) then
+    MsgBox &quot;Error: &quot; + zar.ErrorMessage
+    return
+  end</pre>
+<p>You can now loop over all entries in the archive, get their &quot;ZipEntry&quot; instances, and then extract their files to a folder hierarchy of which you can provide the starting folder:</p>
+<pre> dim f as FolderItem, e as ZipEntry, i as Integer
+ 
+ for i = 1 to zar.EntryCount
+   e = zar.Entry(i)
+   f = e.MakeDestination(destFolder,false)
+   if f.exists then
+     // here you could ask the user whether to overwrite the
+     // existing file (but it could be even a folder!) or
+     // to skip the item or abort the entire process.
+     f.Delete // this will not work if it's a non-empty folder, though!
+   end
+   if not e.Extract(f) then
+     MsgBox &quot;Extraction of &quot;&quot;&quot;+e.RawPath+&quot;&quot;&quot; failed: &quot;+e.ErrorMessage
+     return
+   end
+ next</pre>
+<p>There is a little caveat here, though: Some operating systems (e.g. OS X) update a folder's modification time to the current time when a new file is added to the folder. While a zip archive usually contains entries for folders and their original timestamps, those usually come first, i.e. before their contents. Hence, even if the above loop extracts a folder entry first, settings its original timestamp, successive files extracted into the folder will modify its timestamp again. There is a work-around for this, fortunately: First, extract only the files, and then perform another extraction loop in which only the folders are extracting, thus setting their timestamps after all modifications to the folder are completed. See <em>ZipExtractor.ExtractAllSilently()</em> for an example.</p>
+		<p>Finally, close the archive again (no need to check for errors because we did only read from the archive):</p>
+		<pre> call zar.Close()</pre>
+<p>Hint: To delete a non-empty folder, use the included FolderItemSupport.DeleteFolder() function.</p>
+
+<h3>More examples</h3>
+<p>Look into the project's <b>Demos</b> module. It contains a few methods showing particular use cases:
+<ul>
+	<li><b>ArchiveSeveralItems</b> - Uses ZipFolderItem to create folders and add selected items to them.
+	<li><b>ExtractSkippingSingleRootFolder</b> - Uses ZipFolderItem to look what's inside the archive and choose what to extract from it.
+	<li><b>ExtractWithNameFiltering</b> - Uses ZipArchive methods to extract all files with a particular name ending.
+</ul>
+
+<h2>More detailed programming information</h2>
+<p>There are many more options to store and retrieve items in a Zip archive:</p>
+<ul>
+	<li>Read and write the global (archive-wide) comment
+	<li>Read and add comments about individual items
+	<li>Read and write the data and resource forks separately, which may be helpful if you want to access the resource fork on Windows where the file system does not support this implicitly.
+	<li>Learn about the size of the uncompressed data for both the items in an existing archive and for data you plan to add to an archive. Helpful for progress bars. See the demo project for an example.
+	<li>Verify the integrity of individual items in an archive without extracting them.
+	<li>Remove or exchange entries in an archive, and compact the archive after removing items.
+	<li>Use a simple undo technique to revert changes made to an archive (see Mark and Rollback)
+	<li>Specify the encoding used in the archive for file names and comments.
+</ul>
+<p>To learn about all these, look up the functions in the classes (mainly ZipArchive, ZipFolderItem and ZipEntry) and see the comments at the top of their code. That's their documentation.</p>
+
+<h3>Caution: Archives may contain duplicate items!</h3>
+<p>Since Zip archives may contain multiple files with the same file name (and path), the methods in ZipArchive to add an item to the archive do not check if such an item already exists in the archive. If you want to avoid adding duplicates to your archive using the ZipArchive.Store... methods, you have to check if they already exist, remove them first, and also compact the archive thereafter, ideally (and since compacting takes a while, you should first remove all items, then compact, then add the new ones). Also note that removing a folder from the archive using ZipArchive's RemoveEntry method will not remove all the items that were added inside that folder. That's because a Zip file organizes the files as a simple sequence, each entry noting the path and file where it came belongs.</p>
+<p>If you do not want to deal with this, I suggest you use the Add functions of the ZipFolderItem class instead, which take care of avoiding duplicates in the archive by always replacing existing items when you add new ones.
+
+<h3>MacBinary information</h3>
+<p>The MacBinary option allows you to preserve Macintosh-specific file information, mainly that's the resource forks (it does also preserve some minor attributes such as the File Creation Date, because standard Zip format only preserves the Modification Date).</p>
+<p>A Mac file's Type and Creator codes will always be preserved, even if no MacBinary is used. You may want to pass MacBinarySmart or MacBinaryAlways instead of MacBinaryNever in order to better preserve Macintosh specific information (when running on Windows, they make no difference).</p>
+<p>The &quot;Smart&quot; version will encode files only as MacBinary if the file contains a Resource Fork.</p>
+<p>Note that many non-Macintosh Zip tools can not handle MacBinary encoding, which means that they would decode such files as a MacBinary file, hiding the data fork in them along with other information (some tools can decode this properly, though, like Stuffit Expander for Windows - they extract the data fork only, ignoring the resource fork).</p>
+
+<h3>Building for Microsoft Windows</h3>
+<p>This code requires the zlib library. While this lib is already installed on OS X and Linux system, it's usually not present on Windows. You can install the "zlib1.dll" into the Windows\system folder during testing, but if you want to deliver your built program to other people, you should to copy the "zlib1.dll" next to the .exe of your built app, along with all the other .dll files that Xojo places there (older Xojo versions placed them into a Libs folder while never ones place them directly next to the .exe file).</p>
+<p>If you're building a 32 bit application, get the compiled DLL from <a href="http://www.zlib.net/">http://www.zlib.net/</a>. For 64 bit apps, as long as the zlib site doesn't provide one, you may get a pre-built one from my own server: <a href="http://files.tempel.org/zlib/Windows_64bit">http://files.tempel.org/zlib/Windows_64bit</a> (currently that's <a href="http://files.tempel.org/zlib/Windows_64bit/zlib1_v1.2.8.zip">zlib1_v1.2.8.zip</a>).</p>
+
+<h3>Bugs and Modifications to the code</h3>
+<p>If you find bugs or make enhancements to this software, please contact me about them (send me your changed version), and I'll see to incorporate them into my next release to have others benefit from it, too.</p>
+
+<h2>Known limitations and problems</h2>
+<ul>
+	<a id="validcheck"></a><li>For performance reasons, this code first checks if a zip file starts with a "PK" header, which is usually the case with plain zip file. However, it is valid to prepend the zip archive with other data. For instance, a common trick to hide data in a file is to merge an innocent JPEG picture with a zip file (an unsuspecting person only sees the picture, not the zipped items behind it). Most Unzip tools can deal with that as they're only looking at the end of the zip file where the zip directory is located. This code here, though, would not accept such a file as a valid zip archive because of the additional check at the start of the file. To change that, find the following line in <i>ZipArchive.z_readDirectory</i>:<br><pre>// new 04Jul04: check the first 4 bytes of the file to make sure we have a Zip file here at all</pre>
+	Comment out the code there. This will make the function <i>ZipExtractor.IsZipArchive</i> much slower when applied to a non-zip file, though.
+	<li>All Stuffit Expander versions up to 7.0.1 for Mac OS can not automatically decode MacBinary-encoded items if those items are in subfolders of the archive. Stuffit Expander 7.0.3 has fixed this problem. (Expander for Windows does not have this problem.)
+	<li>The &quot;MacDefault&quot; encoding does only work on Mac OS, but not on Windows (this is a RB limitation)
+	<li>The archive files are signed to be made by PKZIP, indicating that file names and other Operating System dependencies use MS-DOS as their reference. This means that, by default, file names should be using MS-DOS encodings, and text files should use CR+LF (chr(13)+chr(10)) as end-of-line delimiters.
+	<li>Archive items can have the &quot;text file&quot; flag set. If this is set, the end-of-line (EOL) delimiters of such a file should be converted to the local defaults. This, however, does currently not happen with this software! You can, at least, inquire about this flag along with getting an entry's OS code to determine the source and destination EOL format and convert it then yourself. See ZipEntry methods IsTextFile() and OSMadeBy().
+	<li>Be aware that the Zip directory can officially hold only up to 65535 entries. If you add more, many tools, including this one, may not be able to deal with the archive any more. The limitation comes from the fact that the number of entries is stored in a 16 bit field. There are work-arounds, but they're outside the specification. This Zip Package makes a best effort attempt at dealing with archives that contain more than 65535 entries: You can read them, but you cannot alter them.
+</ul>
+
+<h2>Compatibility &amp; interchangeability considerations</h2>
+There are many different Zip archiver tools around, and many have interchange problems when it comes to these particularities:
+<ul>
+	<li><strong>Non-ASCII file names</strong>. The problem is that the Zip &quot;standard&quot; does not provide clear rules for encoding file name. That means that if a file name uses extended letters such as ç, é or even non-Roman scripts (Japanese etc.), the Zip archive does not include the information how these letters are encoded in the archive. Originally, the DOS character sets were used, but nowadays Apple's OS X uses UTF-8, while most Windows archives rather still use local system encodings (i.e. they depend on the language the Windows system uses). Here are some details on the uses:
+		<ul>
+			<li>Apple's Zip tool in OS X 10.4 and later (as invoked by the Finder) always writes UTF-8 in the names in the directory. When reading an archive, it apparently also always assumes the names to be in UTF-8 format.
+			<li>ZipIt 2.2.2 is a bit more versatile: It has an option in its Preferences to choose whether to use Unicode file names or the older encodings understood better by Windows zip tools. When the option enabled, it will encode the name in UTF-8 and set the lowest byte of the &quot;external permissions&quot; 32 bit value to 1. When reading an archive, it checks this byte: Only when it's non-zero, it interprets the file name as UTF-8, otherwise it uses an old encoding (e.g. MacRoman). The problem is now that Apple's zip does set this same byte to zero. Therefore, non-ASCII file names, when created by Apple's zip and read by ZipIt, are not properly decoded. The other direction works, however, as Apple blindly always assumes UTF-8.
+			<li>This Zip Package will from version 1.3 on, to enable best interchangeability, write the lowest byte of the &quot;external permissions&quot; with the value 1 in order to please ZipIt (former versions of this code did not do this) if UTF-8 encoding is chosen. When reading an archive, it will also check for the special signatures the Apple Zip tool and ZipIt write to an entry in order to detect UTF-8 encoded file names automatically.
+		</ul>
+	<li><strong>Resource Forks</strong>, <strong>MacBinary</strong> format. These are still used on Mac OS systems. Early on, the semi-official pkzip spec has been extended with the description of two possible ways to store resource forks in a Zip archive, one used by Info-Zip (not supported by this Zip Package) and one used by ZipIt and Stuffit (which use the MacBinary format for it and which is supported by this Zip Pacakge). Unfortunately, when Apple added Zip archive support to the Finder in OS 10.4, it invented yet another, and badly documented, alternative: It stores the Resource forks and other Mac-specific information in Appleingle/AppleDouble encoded files which are then stored in separate files (e.g. in a directory structure called &quot;__MACOS&quot;). The problem is that such created archives are not understood by any other Zip tools as of now (AFAIK). This Zip Package, from version 1.3 on, is at least able to decode these Apple-created archives properly, but can't create them yet. On the other hand, Apple's zip tool can't handle MacBinary encoded files. <strong><em>That means that if you want to create Zip archives that contain Resource Forks and that can be unarchived by Apple's Finder (e.g. by a simple double click on the zip file), you have to archive them with Apple's zip tool!</em></strong> If you want this Zip Package to create the new format used by Apple, you have to add this code yourself or pay me (TT) at least a few hundred dollars, as I am otherwise not eager to do it.
+</ul>
+
+<h2>Further reading</h2>
+The &quot;zip archive&quot; standard is quite a loose one. There appear to be lots of zip programs around that do not follow the PKWARE-specs very well, and while I have tried to program this software as close to the specs as I could, you may run into compatibility problems when trying to open archives from or create archives for other zip implementations.
+<p>A universal, open-sourced, reference implementation that attempts to deal with all eventualities is the so-called info-zip code base, in C language, which is also used by Apple with OS X (even though Apple appears to use quite an outdated version of it). Here is the info-zip home page:</p>
+<p><a href="http://www.info-zip.org/pub/infozip/Zip.html">Info-Zip home</a></p>
+<p>The original PKWARE specification for Zip archives is included with this package in the &quot;Technical docs&quot; folder, along with the MacBinary specs.</p>
+
+<h2>List of changes (Version History)</h2>
+<h4>v1.0, 8 Apr 2003</h4>
+<ul>
+	<li>First release
+</ul>
+<h4>v1.1, 25 Apr 2003</h4>
+<ul>
+	<li>Added methods to get and set the &quot;OS Made By&quot; property (ZipEntry: OSMadeBy, SetOSMadeBy; ZipArchive: DefaultOSMadeBy, SetDefaultOSMadeBy)
+	<li>Added methods to get and set the &quot;Text File&quot; flag (ZipEntry: IsTextFile, SetTextFileFlag)
+	<li>Fixed &quot;ZipArchive.Compact&quot;: It damaged archives if duplicate (&quot;fake&quot;) entries were used.
+	<li>Adding a snapshot won't include hidden items any more. A new &quot;ZipSnapshots.IncludeHiddenItems&quot; property can be set to have them added again.
+	<li>Added &quot;ZipSnapshots.RemoveSnapshot&quot;.
+	<li>Internal fix: z_isFakeEntry does not test for &quot;hdr.Long(20)&lt;&gt;0&quot; any more since this test was not always correct.
+	<li>&quot;ZipSnapshots.ExtractFromSnapshot&quot; has a new parameter to specify how to deal with Alias files at the destination (note that snapshots do not contain alias files): They can be skipped (the item in the archive will not be extracted if an alias exists at its destination), followed (the file where the alias points to will be replaced) or overwritten (the alias file is replaced with the file from the archive).
+	<li>Fixed storing 0-length files: They are now using the compression mode &quot;stored&quot;, not &quot;deflated&quot;. This prevents Stuffit Expander and other zip tools from complaining.
+	<li>ZipEntry.ExtraField() does not return <i>nil</i> any more for empty fields, but returns a valid ZipExtrafield object. <i>nil</i> is only returned in case of an error.
+	<li>Fixed a problem where extracting or verifying certain Unix-creatied and other archives would caused a &quot;Header mismatch&quot; error.
+	<li>The &quot;protected&quot; flag is now ignored when extracting an item, unless the new method &quot;ZipEntry.EnableFileLocking&quot; is called before extraction.
+	<li>The &quot;FInfo.fdFlags&quot; in MacBinary headers are now supported, too.
+</ul>
+<h4>v1.1.1, 18 June 2003</h4>
+<ul>
+	<li>Fixed a bug in ZipArchive.z_readDirectory() that made reading a Zip file's comment fail.
+</ul>
+<h4>v1.1.2, 17 July 2003</h4>
+<ul>
+	<li>Fixed a bug in ZipEntry.z_unzip() that flagged some compressed items as being corrupt even though they were just fine. A case of having added more safety checks than necessary (and appropriate).
+</ul>
+<h4>v1.1.3, 29 July 2004</h4>
+<ul>
+	<li>This release also includes Windows versions of the plugins, so that one can compile the Zip Package with a RB IDE running on Windows, too.
+	<li>Added a new Class called ZipExtractor to facility extraction of an entire archive and other common tasks.
+	<li>Improved detection of valid Zip archives by adding a check for a Zip header at the start of the file. This allows for quick checks whether any file is a Zip archive, even if it's not using the proper file type or extension.
+	<li>Increased the minimum and preferred memory amounts of the project files because the values were definetely too low for use in Mac OS 8+9.
+</ul>
+<h4>v.1.2, 2004-2006</h4>
+<ul>
+	<li>These were internal versions, not officially released
+	<li>Can now read zips with &gt; 65535 entries, but will not modify them (they stay read-only)
+	<li>ZipEntry.Extract: added setting CreationDate to avoid Norton and other tools to complain about creation &gt; modification date
+	<li>ZipEntry.ApplyMacBinaryInformation: Fixed setting of creation date
+	<li>Added get/set for UnixPermissions
+	<li>Does not compile with RB 4.5 any more, it requires 5.5.5 now.
+	<li>Added support for reading Apple's zip files (as created by the Finder). They need special handling because resource fork information is being stored in a new, incompatible way: Resource and Finder Info data is stored in separated &quot;__MACOS&quot; folders. Note that this Zip Package can read and uncompress such archives, but not create or alter them (yet). On the other hand, Apple's zip tool can not read the Resource forks as written by all the other Zip tools such as Stuffit, ZipIt, this Zip Package and others. Shame on Apple's OS X team for not observing the long-existing de-facto standards!
+</ul><h4>v1.3.1, 22 March 2007</h4><ul>
+	<li>Updated the classes to build with RB 2006 and later.
+	<li>Uses less plugins: Only the e-CryptIt (and &quot;#TypeLib.rbx&quot;) plugin is now needed, none of the old TT plugins.
+	<li>Tested to work on Intel-Macs
+	<li>Converted all external items to use the modern naming convention with endings such as .rbo etc. in order to make them better usable in IDEs under Windows and Linux.
+</ul><h4>2 August 2007</h4><ul>
+	<li>Added note about <a href="#validcheck">zip file validation</a> under <i>Known limitations and problems</i>.
+</ul><h4>May 2008</h4><ul>
+	<li>Changed the parameters of the ZipProgressNotifier.ZipProgress callback method. Make sure to read the Note "Important change notice" if you're using this in your existing programs.
+</ul><h4>v2.0.0, 18 October 2009</h4><ul>
+	<li>Unzip is now able to deal with zip files between 2GB and 4GB in size thanks to the use of Int64 and UInt32 types. Zipping was updated accordingly, too, but has not been tested for this yet.
+	<li>Added use of the free "zlib" library to replace the Einhugur eCrypt-It plugin. Note that using Einhugur's plugin makes this code faster, though (about 25-30% speed gain, i.e. it is then about as fast as other common Zip programs, at least on Mac OS X). To use "zlib", see the Note "Plugins you will need" in the ZipArchive class.
+	<li>Fixed a OS X Intel (vs. PowerPC) related bug: The FInfo (FinderInfo) flags were incorrectly stored in
+  MacBinary encoded files, leading to nonsense such as a hidden file becoming visible and getting
+  a (colored) label.
+	<li>ZipArchive.AddFolderContents() can now store Alias files instead of dropping them.
+	<li>Fixed "EmulateOSXRenaming": Extracting a name with a ":" in it turns it into "/" or "-" instead of
+	  dropping that character.
+	<li>Improved ZipProgressWin's performance: it does not waste excessive time updating controls all
+	  the time any more.
+	<li>Improved handling of "abort" flag so that the reported error is always "Aborted" and not some
+  irrelevant follow-up error.
+	<li>Bugfix: When extracting MacBinary-encoded files that had no Creator and FileType (i.e. their bytes
+  were all zero), these are correctly restored now - before they turned into "????" codes.
+</ul><h4>v2.0.1, 9 February 2010</h4><ul>
+	<li>Removed a few unused variables, made it compile in console apps again, fixed some warnings, and fixed the parameter use in ZipArchive.AddItemByStreams. Thanks to Kem Tekinay for pointing them out to me.
+</ul><h4>v2.0.2, 25 February 2010</h4><ul>
+	<li>CalcFolderSize function: Swapped useMacBinary and aliasHandling parametes to match the
+  order of AddFolderContents.
+	<li>Unix Permissions are now saved to the archive by default. This obsoletes the functions
+  PreserveUnixPermissions and PreservingUnixPermissions.
+	<li>Symlinks are now handled and stored properly on OSX and Linux.
+	<li>The DOS "hidden" attribute is now observed on all platforms.
+	<li>New parameter in AddFolderContents for choosing to include or exclude invisible items.
+	<li>Cleaned up the project so that only those files are now external that are part of the actually sharable code, meaning you can drop the entire "TT's ZipArchiver Classes" folder into your project now without getting compile errors.
+	<li>Removed GetUnixPermissions and ApplyUnixPermissions. Use TTsFolderItem.Permissions instead.
+	<li>Removed some obsolete Mac OS 9 code, including "Internet Config".
+	<li>Fixed FileReader.Skip.
+	<li>Added bs.Flush call to FileWriter.Flush.
+	<li>New internal classes: StringWriter, SymlinkReader, TTsFolderItem.
+</ul><h4>v2.0.3, 26 February 2010</h4><ul>
+	<li>Removed the obsolete checks for "name overflows".
+	<li>Updated the requirements (i.e. RB 2008r4 or later) in this documentation.
+</ul><h4>v2.0.4, 26 February 2010</h4><ul>
+	<li>Fixed a bug which made it crash on Mac OS X Tiger (10.4)
+</ul><h4>v2.1, 15 October 2010</h4><ul>
+	<li>TestWindow improved: If a single folder is dropped for compression, only contents but not the folder itself are written to the archive, just like in Mac OS X.
+	<li>Previous version did write 4 additional bytes at end of each compressed item. This has been corrected.
+	<li>A few modifications to support writing conforming epub files.
+</ul><h4>v3.0, 8 December 2010</h4><ul>
+	<li>New class: <b>ZipFolderItem</b> gives a hierarchical tree view of the items in the zip file, similar to FolderItems on a Disk. Using it in built apps requires a license key which has to be purchased from me.
+	<li>New Demos module contains a few code examples.
+	<li>Renamed the old (internal) ZipFolderItem class into TTsFolderItem.
+	<li>Code updated to work with RB 2010r5 which doesn't allow the "lib hack" any more.
+	<li>Updated this documentation to use the new ZipFolderItem class.
+	<li>Builds on Windows again without error (tested with RB 2010r2 Enterprise edition).
+	<li>Bugfix: Empty archives are not writing a dummy root item any more, as this did lead to crashes with other zip tools. Instead, it now handles this special case read opening such a file.
+	<li>TestWindow now has a drop field to view the contents of an archive (with the help of the new ZipFolderItem class), and a "New..." button to create an empty archive to start with.
+	<li>ZipArchive.Version is now a shared method and returns the value 3.0
+	<li>Moved private code into super classes so that the main classes (ZipArchive, ZipFolderItem, ZipEntry) only show functions that you can use, but not the internal support functions any more. This should make the classes look less cluttered.
+</ul><h4>v3.0, 15 June 2011</h4><ul>
+	<li>Documentation added: ZipArchive.Compact should be called once after having used ZipFolderItem.Delete
+</ul><h4>v3.1, never officially released, I only sent interim versions to individual users</h4><ul>
+	<li>Added ZipFolderItem.StoreStringAsFile for adding Zip items from a String in memory instead of from a disk based file. See <i>Demos.ArchiveItemGeneratedInMemory</i> for an example of its use.
+	<li>Improved the code in ZipThread.ZipProgress to waste less time due to frequent updating when handling lots of small files.
+	<li>Improved the "StringWriter" class to use MemoryBlocks directly instead of going thru a BinaryStream object, thus avoiding some obscure technical problems.
+	<li>Made code compile in Console apps again.
+</ul><h4>v3.2, 20 August 2011</h4><ul>
+	<li>Fixed a bug when decoding AppleDouble headers from Mac-created zip files which could lead to the error message "Mac meta data is damaged".
+	<li>Got rid of most warnings. However, I can't get rid of the MacFileType and MacDirID deprecation warnings because they're still necessary for <i>proper</i> archiving, no matter what RS thinks of their general need. Feel free to "modernize" the deprecated uses of OpenAsBinaryFile, CreateBinaryFile, CreateTextFile, AppendToTextFile, TrashFolder and StaticText - I only left them in for users who're using older RB versions that do not support their replacements yet.
+	<li>Removed support for pre-Carbon Mac OS versions (i.e. removed declares for "InterfaceLib").
+	<li>Builds now without errors for Mac Cocoa
+	<li>ZipArchive.Version returns the value 3.02
+</ul><h4>v3.2.1, 4 September 2011</h4><ul>
+	<li>Fixed a bug where ZipFolderItem.StoreStringAsFile didn't work in folders but only at the archive's root level.
+</ul><h4>v3.2.2, 6 September 2011</h4><ul>
+	<li>Bugfix: Using the Einhugur e-CryptIt Plugin did create zip files that could not be uncompressed by Mac OS X's own unzip tool (e.g. when opening the zip file in the Finder). Using the libz.dll instead did not cause this problem. This bug existed since version 3.0.
+</ul><h4>v3.2.3, 16 May 2012</h4><ul>
+	<li>Changes the constant <b>ZipConfig.EnableZipIt2_2_2_UnicodeSupport</b> to <i>false</i>. This fixes the issue that folders in a zip file can't be unzipped on Windows 7 (they're end up as read-only files instead).
+</ul><h4>v3.2.4, 31 May 2012</h4><ul>
+	<li>Fixes the issue where Windows XP would unpack folders as files by adding the DOS "directory" flag to the "external attributes" in the dir entries.
+	<li>Also now setting the DOS "read only" flag in the "external attributes" if the file is not writeable. This can be changed in ZipArchive.SetExternalAttributes().
+</ul><h4>v3.2.5, 4 June 2012</h4><ul>
+	<li>Disabled a breakpoint in the hidden encrypted code that caused the app to stop in the Debugger for no apparent reason when zipping.
+	<li>When dropping a folder onto demo window for compression, it will now include the folder itself in the zip file, not only its contents any more.
+</ul><h4>v3.3.0, 9 June 2013</h4><ul>
+	<li>Fixes issues with UI access in ZipThread during threaded execution (necessary to run in Xojo, since 2013r1)
+	<li>ZipArchive.AddMacSpecifica default is now false to cause less problems with epub
+	<li>Fixes Compact() operation for sequentially written zip files (including those written by OSX's Compress command).
+	<li>Some smaller fixes around writing sequentially (though it still can't be read by OSX's unzip due to the additional Adler checksum).
+	<li>Works around a bug in IDE 2012r1b8 where AbsolutePath and Exists for symlinks return results for the symlink target.
+	<li>Removes check for 2GB limit in ZipThread.compressTask, because that's the wrong place to check (the sum of source files does not matter, what matters is the compressed size).
+	<li>Adds "OpenZipInString" demo method
+	<li>Adds check for missing libz on Linux in App.SelfTest
+</ul><h4>v3.3.1, 26 June 2013</h4><ul>
+	<li>Fixes TTsFolderItem.Exists() to work on Windows again.</li>
+</ul><h4>v3.3.2, 16 August 2013</h4><ul>
+	<li>Fixes TTsFolderItem.Exists() to work on Linux.</li>
+	<li>Changes ZLibStream.libz_path for Linux to "libz.so.1" which should make it work on all versions now, hopefully.</li>
+</ul><h4>v3.3.3, 16 August 2013</h4><ul>
+	<li>No more exception on Linux when setting CreationDate (only occurs when built with Xojo).</li>
+</ul><h4>v3.3.4, 24 June 2014</h4><ul>
+	<li>Gets rid of most warnings (deprecations and unused parameters). The MacType is still necessary for zip files on Macs but Xojo offers no replacement, so this one remains as a deprecation warning, sadly.</li>
+	<li>Adds a chapter about "Building for Microsoft Windows" to this documentation.</li>
+	<li>Corrects this documentation about the use of the Einhugur plugin.</li>
+</ul><h4>v3.3.5, 17 March 2015</h4><ul>
+	<li>Fix for Xojo 2015r2: Changes deprecated calls to ReadLong and ReadShort into ReadInt32 and ReadInt16.</li>
+	<li>Got rid of a few more deprecation warnings.</li>
+</ul><h4>v3.3.6, 31 July 2015</h4><ul>
+	<li>Updated for Einhugur e-CryptIt Engine v11.</li>
+	<li>CRC16 and CRC32 functions are now inside the ZipConfig module for easy access.</li>
+</ul><h4>v3.3.7, 8 September 2015</h4><ul>
+	<li>Fixes an issue that prevented building for 64 bit.</li>
+</ul><h4>v3.4, 13 January 2016</h4><ul>
+	<li>Can now be used in 64 bit builds (with Xojo 2015r3 or later). Tested on OS X and Windows.</li>
+	<li>Fixes a memory leak when using ZipFolderItem (thanks to Kem Tekinay for reporting this).</li>
+</ul>
+</ul><h4>v3.4.1, 7 April 2016</h4><ul>
+	<li>Adds a "mayCompress" parameter to all ZipFolder.Store... methods so that one can now easily suppress compression, e.g. for the "mimetype" file of ePub and docx zipped file formats.</li>
+</ul>
+</ul><h4>v3.4.2, 27 July 2017</h4><ul>
+	<li>Fixes a 64 bit structure for OSX. Also improves the 64 structure for Linux, but it's not finished yet, I'm afraid.</li>
+</ul>
+</ul><h4>v3.4.3, 12 Dec 2018</h4><ul>
+	<li>Fixes a 64 bit bug when generating MacBinary headers, and in particular for symlinks: The original file name did not get stored in the MB header.</li>
+	<li>A few minor syntactical improvements provided by Kem Tekinay.</li>
+</ul>
+
+<h2>Copyrights and Acknowledgements</h2>
+	<p>e-CryptIt Engine copyright Björn Eiríksson (www.einhugur.com)</p>
+	<p>e-CryptIt Engine uses zlib code, copyright © 1995-2002 Jean-Loup Gailly and Mark Adler.</p>
+	<p>Original zip format REALbasic code was written by Carsten Friehe for the Mieze program (http://carsten-friehe.de/).</p>
+	<p>RB code improved and reorganized by Thomas Tempelmann (http://www.tempel.org/rb/) for public release.</p>
+	<p>Some of the design and error messages was influenced by Java 1.1's ZipFile and related classes.</p>
+	<p>My thanks go to Leonard Rosenthol (author of Stuffit Zip support and maintainer of MacBinary format) and Tom Brown (author of ZipIt) for providing helpful information.</p>
+	<p>Tom Buchler helped me a lot getting the 64 bit Windows version working.</p>
+
+<h3>Enjoy!</h3>
+8 April 2003
+<br>Thomas Tempelmann
+
+</body>
+
+</HTML>

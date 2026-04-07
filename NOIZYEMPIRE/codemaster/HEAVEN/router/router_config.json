@@ -1,0 +1,63 @@
+{
+  "default_model": "gemma3:latest",
+  "agents": {
+    "CB01": {"temperature": 0.1, "ollama_model": "cb01"},
+    "GABRIEL": {"temperature": 0.4, "ollama_model": "gabriel"},
+    "OPS_MAE": {"temperature": 0.3, "ollama_model": "ops_mae"},
+    "ARCHIVIST_IVY": {"temperature": 0.35, "ollama_model": "archivist_ivy"},
+    "SENTINEL_RAZOR": {"temperature": 0.15, "ollama_model": "sentinel_razor"},
+    "PRODUCER_NOVA": {"temperature": 0.75, "ollama_model": "producer_nova"},
+    "ENGR_KEITH": {"temperature": 0.2, "ollama_model": "engr_keith"},
+    "DREAM": {"temperature": 0.9, "ollama_model": "dream"}
+  },
+  "routing": {
+    "keywords": {
+      "GABRIEL": [
+        "plan",
+        "plans",
+        "priority",
+        "priorities",
+        "what next",
+        "roadmap",
+        "heaven17",
+        "deploy",
+        "wrangler",
+        "worker",
+        "d1",
+        "gabriel_db",
+        "kv",
+        "consent",
+        "never clause",
+        "ledger",
+        "kill switch",
+        "voice dna",
+        "descendant",
+        "r2",
+        "premis",
+        "oais"
+      ],
+      "OPS_MAE": [
+        "deploy",
+        "deployment",
+        "wrangler",
+        "cloudflare",
+        "bindings",
+        "secrets",
+        "env",
+        "kv",
+        "d1",
+        "r2",
+        "routes",
+        "health",
+        "logs",
+        "uptime"
+      ],
+      "ARCHIVIST_IVY": ["oais", "premis", "archive", "archival", "provenance", "c2pa", "r2", "retention", "preservation"],
+      "SENTINEL_RAZOR": ["security", "threat", "attack", "never clause", "policy", "consent token", "revocation", "kill switch", "audit"],
+      "PRODUCER_NOVA": ["script", "session", "record", "voice dna", "narrative", "launch", "demo", "pitch"],
+      "ENGR_KEITH": ["error", "stack trace", "bug", "fix", "python", "node", "typescript", "docker", "kubernetes"],
+      "DREAM": ["vision", "strategy", "brand", "manifesto", "story", "concept", "pitch"],
+      "CB01": ["route", "dispatch", "which agent", "matrix"]
+    }
+  }
+}

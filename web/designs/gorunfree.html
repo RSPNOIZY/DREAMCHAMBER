@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 GORUNFREE! 🎸🔥</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Orbitron:wght@900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%);
+            font-family: 'Orbitron', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .gorunfree-link {
+            display: inline-block;
+            font-size: clamp(2rem, 8vw, 5rem);
+            font-family: 'Permanent Marker', cursive;
+            color: #ff4500;
+            text-decoration: none;
+            text-shadow:
+                0 0 10px #ff4500,
+                0 0 20px #ff4500,
+                0 0 40px #ff4500,
+                0 0 80px #ff0000;
+            padding: 1rem 2rem;
+            border: 4px solid #ff4500;
+            border-radius: 20px;
+            background: rgba(255, 69, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite, float 3s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        .gorunfree-link:hover {
+            transform: scale(1.1);
+            text-shadow:
+                0 0 20px #ff4500,
+                0 0 40px #ff4500,
+                0 0 80px #ff4500,
+                0 0 120px #ff0000;
+            background: rgba(255, 69, 0, 0.2);
+            box-shadow: 0 0 50px rgba(255, 69, 0, 0.5);
+        }
+
+        .gorunfree-link:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subtitle {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            color: #666;
+            letter-spacing: 3px;
+        }
+
+        .links {
+            margin-top: 3rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .action-btn {
+            padding: 1rem 2rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: #fff;
+            background: linear-gradient(135deg, #ff4500, #ff6b00);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.5);
+        }
+
+        .copied-toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: #22c55e;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .copied-toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .fire-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff4500;
+            border-radius: 50%;
+            animation: rise 3s infinite;
+            opacity: 0;
+        }
+
+        @keyframes rise {
+            0% {
+                opacity: 1;
+                transform: translateY(100vh) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0);
+            }
+        }
+
+        .cb01-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: #444;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="fire-particles" id="particles"></div>
+
+    <div class="copied-toast" id="toast">✅ COPIED TO CLIPBOARD!</div>
+
+    <div class="container">
+        <a href="#" class="gorunfree-link" id="mainLink" onclick="copyPhrase(event)">
+            🔥 GORUNFREE! 🎸🔥
+        </a>
+
+        <p class="subtitle">FISH MUSIC INC • CB_01 • ROB'S LIFELUV ENGR</p>
+
+        <div class="links">
+            <a href="mailto:?subject=GORUNFREE!&body=%F0%9F%94%A5%20GORUNFREE!%20%F0%9F%8E%B8%F0%9F%94%A5%0A%0AMaximum%20velocity%2C%20zero%20friction!%0A%0AFish%20Music%20Inc" class="action-btn">
+                📧 EMAIL IT
+            </a>
+            <a href="sms:?body=%F0%9F%94%A5%20GORUNFREE!%20%F0%9F%8E%B8%F0%9F%94%A5" class="action-btn">
+                💬 TEXT IT
+            </a>
+            <button class="action-btn" onclick="copyPhrase(event)">
+                📋 COPY IT
+            </button>
+            <a href="https://twitter.com/intent/tweet?text=%F0%9F%94%A5%20GORUNFREE!%20%F0%9F%8E%B8%F0%9F%94%A5%20%23FishMusicInc%20%23MaximumVelocity" class="action-btn" target="_blank">
+                🐦 TWEET IT
+            </a>
+        </div>
+    </div>
+
+    <div class="cb01-badge">
+        Built with ❤️ by CB_01 • GORUNFREE! 🎸🔥
+    </div>
+
+    <script>
+        // Copy phrase to clipboard
+        function copyPhrase(e) {
+            e.preventDefault();
+            const phrase = "🔥 GORUNFREE! 🎸🔥";
+            navigator.clipboard.writeText(phrase).then(() => {
+                showToast();
+            });
+        }
+
+        // Show toast notification
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // Create fire particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.animationDuration = (2 + Math.random() * 2) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Keyboard shortcut: Press G to copy
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'g') {
+                copyPhrase(e);
+            }
+        });
+    </script>
+</body>
+</html>

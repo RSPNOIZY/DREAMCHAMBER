@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Capsule #47 Status</title>
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="capsule47_status.css">
+  <style>
+    /* Fallback if external CSS fails */
+    body {
+      background: radial-gradient(circle, #1a1a1a, #000000);
+      color: #00ffd5;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .status {
+      font-size: 24px;
+      text-align: center;
+      margin-top: 40px;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00ffd5; }
+      to { text-shadow: 0 0 20px #00ffd5; }
+    }
+  </style>
+</head>
+<body>
+  <div class="status">🧞 Capsule #47 Detonated. Slab Sovereign.</div>
+  </body>
+  <script>
+    window.onload = function() {
+      if ('speechSynthesis' in window) {
+        var msg = new SpeechSynthesisUtterance("Capsule detonated. NOIZYWIND is sovereign.");
+        msg.rate = 1;
+        msg.pitch = 1.1;
+        msg.lang = "en-US";
+        window.speechSynthesis.speak(msg);
+      }
+    };
+  </script>
+</body>
+</html>

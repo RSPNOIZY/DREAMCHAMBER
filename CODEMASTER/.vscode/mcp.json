@@ -1,0 +1,11 @@
+{
+	"servers": {
+		"com.getguru/mcp-server": {
+			"type": "http",
+			"url": "https://mcp.api.getguru.com/mcp",
+			"gallery": "https://api.mcp.github.com",
+			"version": "1.0.2"
+		}
+	},
+	"inputs": []
+}

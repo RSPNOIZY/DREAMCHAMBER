@@ -1,0 +1,32 @@
+{
+  "runs": [
+    {
+      "runId": "0d308ad7",
+      "actor_id": "RSP_001",
+      "use_case": "general",
+      "territory": "CA",
+      "voice": "default",
+      "text_hash": "57e477f76f3e8538",
+      "output_path": "/Users/m2ultra/NOIZYLAB/voice-pipeline/responses/voice_2026-03-31T20-20-56-747Z.wav",
+      "output_size": 255116,
+      "consent_ref": "approved",
+      "ts": 1774988456751,
+      "type": "synthesis"
+    }
+  ],
+  "lastRun": {
+    "runId": "0d308ad7",
+    "actor_id": "RSP_001",
+    "use_case": "general",
+    "territory": "CA",
+    "voice": "default",
+    "text_hash": "57e477f76f3e8538",
+    "output_path": "/Users/m2ultra/NOIZYLAB/voice-pipeline/responses/voice_2026-03-31T20-20-56-747Z.wav",
+    "output_size": 255116,
+    "consent_ref": "approved",
+    "ts": 1774988456751,
+    "type": "synthesis"
+  },
+  "totalRuns": 1,
+  "errors": 0
+}

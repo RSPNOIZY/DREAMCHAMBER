@@ -1,0 +1,80 @@
+{
+  "mcpServers": {
+    "gabriel-mcp": {
+      "command": "node",
+      "args": ["mcp/gabriel-mcp/index.js"],
+      "cwd": "/Users/m2ultra/NOIZYLAB",
+      "env": {
+        "DREAMCHAMBER_URL": "http://localhost:7777",
+        "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB"
+      }
+    },
+    "lucy-mcp": {
+      "command": "node",
+      "args": ["mcp/lucy-mcp/index.js"],
+      "cwd": "/Users/m2ultra/NOIZYLAB",
+      "env": {
+        "HEAVEN_URL": "https://heaven.noizylab.workers.dev",
+        "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB"
+      }
+    },
+    "heaven-mcp": {
+      "command": "node",
+      "args": ["mcp/heaven-mcp/index.js"],
+      "cwd": "/Users/m2ultra/NOIZYLAB",
+      "env": {
+        "HEAVEN_URL": "https://heaven.noizylab.workers.dev"
+      }
+    },
+    "engr-keith-mcp": {
+      "command": "node",
+      "args": ["mcp/engr-keith-mcp/index.js"],
+      "cwd": "/Users/m2ultra/NOIZYLAB",
+      "env": {
+        "HEAVEN_URL": "https://heaven.noizylab.workers.dev",
+        "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB"
+      }
+    },
+    "dream-mcp": {
+      "command": "node",
+      "args": ["mcp/dream-mcp/index.js"],
+      "cwd": "/Users/m2ultra/NOIZYLAB",
+      "env": {
+        "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB"
+      }
+    },
+    "cb01-mcp": {
+      "command": "node",
+      "args": ["mcp/cb01-mcp/index.js"],
+      "cwd": "/Users/m2ultra/NOIZYLAB",
+      "env": {
+        "HEAVEN_URL": "https://heaven.noizylab.workers.dev",
+        "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB"
+      }
+    },
+    "shirley-mcp": {
+      "command": "node",
+      "args": ["mcp/shirley-mcp/index.js"],
+      "cwd": "/Users/m2ultra/NOIZYLAB",
+      "env": {
+        "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB"
+      }
+    },
+    "family-mcp": {
+      "command": "node",
+      "args": ["mcp/family-mcp/index.js"],
+      "cwd": "/Users/m2ultra/NOIZYLAB",
+      "env": {
+        "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB"
+      }
+    },
+    "dreamchamber-audio-mcp": {
+      "command": "python3",
+      "args": ["-m", "dreamchamber_audio_mcp.server"],
+      "cwd": "/Users/m2ultra/NOIZYLAB/dreamchamber-audio-mcp",
+      "env": {
+        "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB"
+      }
+    }
+  }
+}

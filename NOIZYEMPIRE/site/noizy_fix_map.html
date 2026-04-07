@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY — The DreamChamber Fix Map</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap');
+:root {
+  --void: #010306;
+  --crack: #ff3333;
+  --crack-dim: rgba(255,51,51,0.15);
+  --fix: #f5c842;
+  --fix-dim: rgba(245,200,66,0.15);
+  --rise: #2ecc71;
+  --rise-dim: rgba(46,204,113,0.15);
+  --text: #e8e4d8;
+  --dim: rgba(232,228,216,0.35);
+  --mono: 'IBM Plex Mono', monospace;
+  --serif: 'Cormorant Garamond', serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--void); color:var(--text); font-family:var(--mono); overflow-x:hidden; }
+::-webkit-scrollbar { width:2px; } ::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.08); }
+
+/* CANVAS */
+#bg { position:fixed; inset:0; z-index:0; pointer-events:none; }
+
+/* HEADER */
+.hdr {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  padding:20px 48px;
+  display:flex; align-items:center; justify-content:space-between;
+  background:linear-gradient(to bottom, rgba(1,3,6,0.98), transparent);
+}
+.hdr-logo { font-family:var(--serif); font-size:16px; letter-spacing:6px; text-transform:uppercase; }
+.hdr-logo em { font-style:normal; color:var(--fix); }
+.hdr-tag { font-size:8px; letter-spacing:3px; color:var(--dim); text-transform:uppercase; text-align:right; line-height:2; }
+
+/* HERO */
+.hero {
+  position:relative; z-index:1;
+  padding:120px 80px 80px;
+  text-align:center;
+}
+.hero-label { font-size:8px; letter-spacing:5px; color:var(--dim); text-transform:uppercase; margin-bottom:20px; }
+.hero-h1 { font-family:var(--serif); font-size:clamp(40px,7vw,96px); font-weight:300; line-height:1.0; margin-bottom:20px; }
+.hero-h1 .crack-word { color:var(--crack); font-style:italic; }
+.hero-h1 .fix-word { color:var(--fix); font-style:italic; }
+.hero-sub { font-size:12px; letter-spacing:2px; color:var(--dim); max-width:700px; margin:0 auto; line-height:1.8; }
+
+/* LEGEND */
+.legend {
+  position:relative; z-index:1;
+  display:flex; justify-content:center; gap:48px;
+  padding:40px 80px;
+}
+.leg { display:flex; align-items:center; gap:10px; font-size:9px; letter-spacing:3px; text-transform:uppercase; }
+.leg-dot { width:10px; height:10px; border-radius:50%; }
+
+/* THREE-COLUMN MAP */
+.map {
+  position:relative; z-index:1;
+  display:grid; grid-template-columns:1fr 80px 1fr;
+  max-width:1400px; margin:0 auto;
+  padding:0 40px 80px;
+  gap:0;
+}
+
+/* CRACK COLUMN */
+.crack-col, .fix-col {
+  display:flex; flex-direction:column; gap:3px;
+}
+
+/* CONNECTOR COLUMN */
+.connector-col {
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:flex-start;
+  padding-top:20px; gap:3px;
+}
+.conn-arrow {
+  width:100%; height:72px;
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+  flex-shrink:0;
+}
+.conn-arrow svg { width:100%; height:100%; }
+
+/* CARDS */
+.crack-card, .fix-card {
+  padding:20px 22px;
+  border:1px solid;
+  border-radius:2px;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  position:relative;
+  overflow:hidden;
+  min-height:72px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.crack-card { border-color:rgba(255,51,51,0.2); background:rgba(255,51,51,0.04); }
+.fix-card { border-color:rgba(245,200,66,0.2); background:rgba(245,200,66,0.04); }
+.crack-card:hover { border-color:rgba(255,51,51,0.6); background:rgba(255,51,51,0.1); transform:translateX(-4px); }
+.fix-card:hover { border-color:rgba(245,200,66,0.6); background:rgba(245,200,66,0.1); transform:translateX(4px); }
+
+.card-tag { font-size:7px; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+.crack-card .card-tag { color:rgba(255,51,51,0.7); }
+.fix-card .card-tag { color:rgba(245,200,66,0.7); }
+.card-title { font-family:var(--serif); font-size:clamp(15px,1.8vw,20px); font-weight:600; line-height:1.2; margin-bottom:6px; }
+.crack-card .card-title { color:var(--crack); }
+.fix-card .card-title { color:var(--fix); }
+.card-body { font-size:10px; line-height:1.6; color:var(--dim); }
+.card-left-bar { position:absolute; left:0; top:0; bottom:0; width:3px; }
+.crack-card .card-left-bar { background:var(--crack); }
+.fix-card .card-left-bar { background:var(--fix); }
+
+/* HEADERS */
+.col-header {
+  padding:16px 22px;
+  font-size:9px; letter-spacing:4px;
+  text-transform:uppercase; margin-bottom:8px;
+  border-bottom:1px solid;
+}
+.crack-header { color:var(--crack); border-color:rgba(255,51,51,0.3); }
+.fix-header { color:var(--fix); border-color:rgba(245,200,66,0.3); }
+.connector-header { height:52px; }
+
+/* BOTTOM STATEMENT */
+.bottom-stmt {
+  position:relative; z-index:1;
+  text-align:center;
+  padding:60px 80px;
+  background:linear-gradient(to right, transparent, rgba(46,204,113,0.04), transparent);
+  border-top:1px solid rgba(46,204,113,0.15);
+  border-bottom:1px solid rgba(46,204,113,0.15);
+  margin:0 40px 80px;
+}
+.stmt-label { font-size:8px; letter-spacing:5px; color:rgba(46,204,113,0.6); text-transform:uppercase; margin-bottom:20px; }
+.stmt-text { font-family:var(--serif); font-size:clamp(22px,4vw,52px); font-weight:300; font-style:italic; line-height:1.4; max-width:1000px; margin:0 auto 16px; }
+.stmt-text em { color:var(--rise); }
+.stmt-attr { font-size:9px; letter-spacing:3px; color:var(--dim); text-transform:uppercase; }
+
+/* LOOPS SECTION */
+.loops {
+  position:relative; z-index:1;
+  max-width:1400px; margin:0 auto;
+  padding:0 40px 80px;
+}
+.loops-title { font-family:var(--serif); font-size:clamp(28px,4vw,52px); font-weight:300; margin-bottom:8px; }
+.loops-title em { color:var(--crack); font-style:italic; }
+.loops-sub { font-size:11px; color:var(--dim); margin-bottom:40px; line-height:1.7; max-width:600px; }
+.loops-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+.loop-card {
+  padding:28px 24px;
+  border:1px solid rgba(255,51,51,0.15);
+  background:rgba(255,51,51,0.03);
+  transition:all 0.3s; cursor:pointer;
+}
+.loop-card:hover { background:rgba(255,51,51,0.08); border-color:rgba(255,51,51,0.4); }
+.loop-num { font-size:40px; font-weight:300; font-family:var(--serif); color:rgba(255,51,51,0.15); line-height:1; margin-bottom:12px; }
+.loop-title { font-family:var(--serif); font-size:18px; font-style:italic; color:var(--crack); margin-bottom:10px; }
+.loop-body { font-size:10px; line-height:1.7; color:var(--dim); margin-bottom:14px; }
+.loop-fix {
+  font-size:9px; letter-spacing:2px; text-transform:uppercase;
+  color:var(--rise); border-top:1px solid rgba(46,204,113,0.2);
+  padding-top:10px; margin-top:4px;
+}
+.loop-fix::before { content:'→ FIX: '; opacity:0.6; }
+
+/* RISE SECTION */
+.rise-section {
+  position:relative; z-index:1;
+  max-width:1400px; margin:0 auto;
+  padding:0 40px 80px;
+}
+.rise-title { font-family:var(--serif); font-size:clamp(28px,4vw,52px); font-weight:300; margin-bottom:40px; }
+.rise-title em { color:var(--rise); font-style:italic; }
+.rise-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+.rise-card {
+  padding:32px 28px;
+  border:1px solid rgba(46,204,113,0.12);
+  background:rgba(46,204,113,0.03);
+  transition:all 0.3s; cursor:pointer;
+}
+.rise-card:hover { background:rgba(46,204,113,0.08); border-color:rgba(46,204,113,0.35); }
+.rise-icon { font-size:32px; margin-bottom:16px; }
+.rise-card-title { font-family:var(--serif); font-size:20px; color:var(--rise); margin-bottom:8px; font-style:italic; }
+.rise-card-body { font-size:11px; line-height:1.8; color:var(--dim); }
+
+/* VERDICT */
+.verdict {
+  position:relative; z-index:1;
+  text-align:center; padding:80px 80px 120px;
+}
+.verdict-big { font-family:var(--serif); font-size:clamp(32px,6vw,80px); font-weight:300; line-height:1.2; max-width:1000px; margin:0 auto 32px; }
+.verdict-big .red { color:var(--crack); font-style:italic; }
+.verdict-big .gold { color:var(--fix); font-style:italic; }
+.verdict-big .green { color:var(--rise); font-style:italic; }
+.verdict-gorun { font-family:var(--serif); font-size:40px; font-style:italic; color:var(--fix); letter-spacing:4px; margin-top:40px; filter:drop-shadow(0 0 20px rgba(245,200,66,0.4)); }
+
+/* DETAIL PANEL */
+.panel-overlay {
+  display:none; position:fixed; inset:0; z-index:500;
+  background:rgba(1,3,6,0.94); align-items:center; justify-content:center; padding:40px;
+}
+.panel-overlay.open { display:flex; }
+.panel-box {
+  max-width:680px; width:100%; position:relative;
+  max-height:85vh; overflow-y:auto;
+  background:#050c14; border:1px solid rgba(255,255,255,0.08);
+  padding:48px; border-radius:2px;
+}
+.panel-type-bar { height:2px; margin-bottom:28px; border-radius:1px; }
+.panel-type-label { font-size:8px; letter-spacing:4px; text-transform:uppercase; margin-bottom:12px; }
+.panel-title { font-family:var(--serif); font-size:clamp(28px,4vw,48px); font-weight:300; margin-bottom:8px; line-height:1.1; }
+.panel-italic { font-family:var(--serif); font-size:16px; font-style:italic; color:var(--dim); margin-bottom:28px; }
+.panel-content { font-size:13px; line-height:1.9; color:rgba(232,228,216,0.7); }
+.panel-content p { margin-bottom:14px; }
+.panel-content strong { color:var(--text); }
+.panel-content .highlight { padding:16px 20px; border-left:2px solid; margin:16px 0; font-style:italic; background:rgba(255,255,255,0.02); }
+.panel-close {
+  position:absolute; top:20px; right:20px;
+  background:none; border:1px solid rgba(255,255,255,0.1);
+  color:var(--dim); font-family:var(--mono); font-size:10px;
+  letter-spacing:2px; padding:6px 14px; cursor:pointer;
+  text-transform:uppercase; transition:all 0.2s;
+}
+.panel-close:hover { color:var(--text); border-color:rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<div class="hdr">
+  <div class="hdr-logo">NOIZY<em>.</em>ai · Fix Map</div>
+  <div class="hdr-tag">DreamChamber War Room<br>Every Crack. Every Lever. Every Fix.</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">The DreamChamber Fix Map · March 2026</div>
+  <h1 class="hero-h1">
+    Where <span class="crack-word">it breaks.</span><br>
+    Where <span class="fix-word">we fix it.</span>
+  </h1>
+  <p class="hero-sub">The system eats creators because it's designed to ignore humanity. Every crack is visible. Every crack is a lever. Every lever points the same direction.</p>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="leg"><div class="leg-dot" style="background:var(--crack)"></div>The Crack — Where creators are eaten alive</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--fix)"></div>The Fix — NOIZY's structural response</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--rise)"></div>What rises — The world rebuilt</div>
+</div>
+
+<!-- CRACK ↔ FIX MAP -->
+<div class="map">
+
+  <div class="crack-col">
+    <div class="col-header crack-header">↙ The Cracks — Where Creators Are Eaten</div>
+
+    <div class="crack-card" onclick="openPanel('crack-ownership')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">Structural Crack 1</div>
+      <div class="card-title">No Ownership Enforcement</div>
+      <div class="card-body">IP rights rely on contracts and legal wrangling — slow, inconsistent, unenforced globally. By the time a case resolves, the damage is permanent.</div>
+    </div>
+
+    <div class="crack-card" onclick="openPanel('crack-incentives')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">Structural Crack 2</div>
+      <div class="card-title">Misaligned Incentives</div>
+      <div class="card-body">Algorithms prioritize engagement over ethics. Platforms profit from virality. Creators compete for attention, not respect. The race has no floor.</div>
+    </div>
+
+    <div class="crack-card" onclick="openPanel('crack-transparency')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">Structural Crack 3</div>
+      <div class="card-title">Black Box Monetization</div>
+      <div class="card-body">Revenue flows are invisible. AI consumes work silently. Creators can't audit provenance, trace derivatives, or challenge unfair splits. The math is hidden on purpose.</div>
+    </div>
+
+    <div class="crack-card" onclick="openPanel('crack-disconnection')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">Structural Crack 4</div>
+      <div class="card-title">Human Disconnection</div>
+      <div class="card-body">Artists become isolated inputs, not partners. Community and collaboration are deprioritized. The platform profits from competition, not cooperation.</div>
+    </div>
+
+    <div class="crack-card" onclick="openPanel('crack-shortterm')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">Structural Crack 5</div>
+      <div class="card-title">Short-Term Only</div>
+      <div class="card-body">Only trending content matters. No long-term value creation. No legacy preservation. An artist's life's work becomes "old content" in eighteen months.</div>
+    </div>
+
+    <div class="crack-card" onclick="openPanel('crack-memory')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">Structural Crack 6</div>
+      <div class="card-title">Loss of Creative Memory</div>
+      <div class="card-body">Originals are erased in derivative churn. Process and intention are invisible. The platform forgets the story behind the creation because stories don't drive engagement.</div>
+    </div>
+
+    <div class="crack-card" onclick="openPanel('crack-scraping')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">Structural Crack 7</div>
+      <div class="card-title">Unconsented AI Training</div>
+      <div class="card-body">Models trained on scraped voice and music data. Artists find their signature sound in someone else's product. No permission asked. No payment made. Called "innovation."</div>
+    </div>
+
+    <div class="crack-card" onclick="openPanel('crack-legal')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">Structural Crack 8</div>
+      <div class="card-title">Enterprise Legal Exposure</div>
+      <div class="card-body">Game studios, film companies, healthcare systems — all using non-consent voice AI. The NO FAKES Act makes this a criminal exposure. No platform they're using can prove consent.</div>
+    </div>
+  </div>
+
+  <!-- CONNECTOR -->
+  <div class="connector-col">
+    <div class="connector-header"></div>
+    <div class="conn-arrow">
+      <svg viewBox="0 0 80 72"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff3333" stop-opacity="0.6"/><stop offset="100%" stop-color="#f5c842" stop-opacity="0.6"/></linearGradient></defs><line x1="8" y1="36" x2="72" y2="36" stroke="url(#g1)" stroke-width="1.5"/><polygon points="68,31 72,36 68,41" fill="#f5c842" opacity="0.7"/></svg>
+    </div>
+    <div class="conn-arrow"><svg viewBox="0 0 80 72"><defs><linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff3333" stop-opacity="0.6"/><stop offset="100%" stop-color="#f5c842" stop-opacity="0.6"/></linearGradient></defs><line x1="8" y1="36" x2="72" y2="36" stroke="url(#g2)" stroke-width="1.5"/><polygon points="68,31 72,36 68,41" fill="#f5c842" opacity="0.7"/></svg></div>
+    <div class="conn-arrow"><svg viewBox="0 0 80 72"><defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff3333" stop-opacity="0.6"/><stop offset="100%" stop-color="#f5c842" stop-opacity="0.6"/></linearGradient></defs><line x1="8" y1="36" x2="72" y2="36" stroke="url(#g3)" stroke-width="1.5"/><polygon points="68,31 72,36 68,41" fill="#f5c842" opacity="0.7"/></svg></div>
+    <div class="conn-arrow"><svg viewBox="0 0 80 72"><defs><linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff3333" stop-opacity="0.6"/><stop offset="100%" stop-color="#f5c842" stop-opacity="0.6"/></linearGradient></defs><line x1="8" y1="36" x2="72" y2="36" stroke="url(#g4)" stroke-width="1.5"/><polygon points="68,31 72,36 68,41" fill="#f5c842" opacity="0.7"/></svg></div>
+    <div class="conn-arrow"><svg viewBox="0 0 80 72"><defs><linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff3333" stop-opacity="0.6"/><stop offset="100%" stop-color="#f5c842" stop-opacity="0.6"/></linearGradient></defs><line x1="8" y1="36" x2="72" y2="36" stroke="url(#g5)" stroke-width="1.5"/><polygon points="68,31 72,36 68,41" fill="#f5c842" opacity="0.7"/></svg></div>
+    <div class="conn-arrow"><svg viewBox="0 0 80 72"><defs><linearGradient id="g6" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff3333" stop-opacity="0.6"/><stop offset="100%" stop-color="#f5c842" stop-opacity="0.6"/></linearGradient></defs><line x1="8" y1="36" x2="72" y2="36" stroke="url(#g6)" stroke-width="1.5"/><polygon points="68,31 72,36 68,41" fill="#f5c842" opacity="0.7"/></svg></div>
+    <div class="conn-arrow"><svg viewBox="0 0 80 72"><defs><linearGradient id="g7" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff3333" stop-opacity="0.6"/><stop offset="100%" stop-color="#f5c842" stop-opacity="0.6"/></linearGradient></defs><line x1="8" y1="36" x2="72" y2="36" stroke="url(#g7)" stroke-width="1.5"/><polygon points="68,31 72,36 68,41" fill="#f5c842" opacity="0.7"/></svg></div>
+    <div class="conn-arrow"><svg viewBox="0 0 80 72"><defs><linearGradient id="g8" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff3333" stop-opacity="0.6"/><stop offset="100%" stop-color="#f5c842" stop-opacity="0.6"/></linearGradient></defs><line x1="8" y1="36" x2="72" y2="36" stroke="url(#g8)" stroke-width="1.5"/><polygon points="68,31 72,36 68,41" fill="#f5c842" opacity="0.7"/></svg></div>
+  </div>
+
+  <div class="fix-col">
+    <div class="col-header fix-header">The NOIZY Fix — Infrastructure as Answer ↗</div>
+
+    <div class="fix-card" onclick="openPanel('fix-consent')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">NOIZY Fix 1</div>
+      <div class="card-title">Consent-as-Code</div>
+      <div class="card-body">Rights enforced at infrastructure level — Cloudflare D1/KV. No ToS. No contracts. No courts. The code refuses non-consented deployment. Law can't be rewritten. Code enforces.</div>
+    </div>
+
+    <div class="fix-card" onclick="openPanel('fix-7525')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">NOIZY Fix 2</div>
+      <div class="card-title">75/25 Perpetual Split</div>
+      <div class="card-body">75 cents of every dollar to the creator. Same day. Direct. Not eventually. Not approximately. The math is the mission — coded into architecture, not stated in terms of service.</div>
+    </div>
+
+    <div class="fix-card" onclick="openPanel('fix-provenance')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">NOIZY Fix 3</div>
+      <div class="card-title">Provenance Dashboard</div>
+      <div class="card-body">Full audit trail. SHA-256 + C2PA + AudioSeal watermarking. Every deployment logged. Every royalty event visible. The black box becomes a glass wall. Artists see everything.</div>
+    </div>
+
+    <div class="fix-card" onclick="openPanel('fix-guild')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">NOIZY Fix 4</div>
+      <div class="card-title">The Global Guild</div>
+      <div class="card-body">The covenant of artists who refused the extractive terms. Cooperation over competition. Mentorship built into the architecture. The Guild grows stronger as it grows larger — inverse of every extractive platform.</div>
+    </div>
+
+    <div class="fix-card" onclick="openPanel('fix-estate')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">NOIZY Fix 5</div>
+      <div class="card-title">Voice Estate / 500-Year Vision</div>
+      <div class="card-body">Creative output as inheritable perpetual asset. 70-year post-death protection. The 500-Year Codex maps seven epochs of creator-owned music civilization. Legacy is the product, not the afterthought.</div>
+    </div>
+
+    <div class="fix-card" onclick="openPanel('fix-memory')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">NOIZY Fix 6</div>
+      <div class="card-title">The Living Archive</div>
+      <div class="card-body">Every creation preserved with its story — the brief, the intention, the process, the cultural origin. The Music World Museum and the 500-Year Codex give memory back to art. The DreamChamber is the process made visible.</div>
+    </div>
+
+    <div class="fix-card" onclick="openPanel('fix-hvs')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">NOIZY Fix 7</div>
+      <div class="card-title">HVS™ Certification</div>
+      <div class="card-body">Human Voice Signature — the certification mark that separates the real from the replicated. C2PA + AudioSeal + SHA-256. The synthetic voice flood raises the value of the certified human original. Poop sinks. HVS™ rises.</div>
+    </div>
+
+    <div class="fix-card" onclick="openPanel('fix-compliance')">
+      <div class="card-left-bar"></div>
+      <div class="card-tag">NOIZY Fix 8</div>
+      <div class="card-title">Compliance by Default</div>
+      <div class="card-body">NOIZY is the NO FAKES Act implementation layer. Every generation is pre-compliant. Enterprise clients can answer "prove consent" in one click. The legal exposure of every competitor becomes the NOIZY advantage.</div>
+    </div>
+  </div>
+
+</div><!-- /map -->
+
+<!-- STATEMENT -->
+<div class="bottom-stmt">
+  <div class="stmt-label">The Inversion</div>
+  <div class="stmt-text">"Every crack in their system is <em>a door we walk through.</em><br>We don't destroy the bad thing.<br>We build the good thing — and gravity does the rest."</div>
+  <div class="stmt-attr">RSP_001 · NOIZY.ai · Ottawa · 2026</div>
+</div>
+
+<!-- CANNIBALISTIC LOOPS -->
+<div class="loops">
+  <div class="loops-title">The <em>Cannibalistic</em> Loops</div>
+  <div class="loops-sub">Four feedback cycles that turn creativity into extraction. Each one self-reinforcing. Each one reversible with the right infrastructure.</div>
+  <div class="loops-grid">
+    <div class="loop-card" onclick="openPanel('loop-algo')">
+      <div class="loop-num">A</div>
+      <div class="loop-title">Algorithmic Exploitation</div>
+      <div class="loop-body">Platforms reward virality over craft. The hottest 30-second clip gets pushed. Artists compete for attention, not respect. Lower the bar to chase the algorithm. The algorithm rewards the lowering. Loop.</div>
+      <div class="loop-fix">Humanity Weight metrics — reward craft, originality, time, intention</div>
+    </div>
+    <div class="loop-card" onclick="openPanel('loop-copy')">
+      <div class="loop-num">B</div>
+      <div class="loop-title">Copy-Paste Culture</div>
+      <div class="loop-body">AI trained on scraped content copies signature sounds, riffs, melodies. Cheap imitation floods the market. The original creator gets fewer plays. Less money. Less incentive to create the original work the AI was trained on. Loop.</div>
+      <div class="loop-fix">AudioSeal watermarking + HVS™ premium tier — the original becomes undeniable</div>
+    </div>
+    <div class="loop-card" onclick="openPanel('loop-opaque')">
+      <div class="loop-num">C</div>
+      <div class="loop-title">Opaque Monetization</div>
+      <div class="loop-body">Micro-payments. Streaming fractions. AI-generated derivatives with no traceable royalty. The creator can't see the math. Can't challenge it. Can't audit it. Accepts whatever arrives 18 months later. Loop.</div>
+      <div class="loop-fix">Real-time Provenance Dashboard — full audit, full transparency, same-day payment</div>
+    </div>
+    <div class="loop-card" onclick="openPanel('loop-disposable')">
+      <div class="loop-num">D</div>
+      <div class="loop-title">Disposable Art</div>
+      <div class="loop-body">Art becomes commodity, not legacy. The story behind creation is invisible. The originals are erased in derivative churn. A life's work becomes "old content." No memory. No inheritance. No future. Loop.</div>
+      <div class="loop-fix">Voice Estate + 500-Year Codex — every creation becomes permanent, attributed, inherited</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT RISES -->
+<div class="rise-section">
+  <div class="rise-title">What <em>Rises</em></div>
+  <div class="rise-grid">
+    <div class="rise-card" onclick="openPanel('rise-artist')">
+      <div class="rise-icon">🎙</div>
+      <div class="rise-card-title">The Artist Rises</div>
+      <div class="rise-card-body">From content provider to covenant member. From hoping for a payment in 18 months to watching royalties arrive same day. From isolated input to Guild architect. The artist is the center. The technology orbits them.</div>
+    </div>
+    <div class="rise-card" onclick="openPanel('rise-culture')">
+      <div class="rise-icon">🌍</div>
+      <div class="rise-card-title">The Culture Rises</div>
+      <div class="rise-card-body">Endangered traditions preserved with community consent. Lost languages given permanent home. The Global Music Atlas shows what humanity actually sounds like — not what the algorithm decided was popular. Every civilization gets a room in the Archive.</div>
+    </div>
+    <div class="rise-card" onclick="openPanel('rise-child')">
+      <div class="rise-icon">✦</div>
+      <div class="rise-card-title">The Children Rise</div>
+      <div class="rise-card-body">Deaf children feel music through haptic vests. Autism spectrum families get therapeutic audio without ads, without extraction, without data selling. NOIZYKIDZ. Free. Always. The most important thing we build.</div>
+    </div>
+    <div class="rise-card" onclick="openPanel('rise-enterprise')">
+      <div class="rise-icon">⊙</div>
+      <div class="rise-card-title">The Enterprise Rises</div>
+      <div class="rise-card-body">Game studios, film companies, healthcare systems — all operating with verified consent chains, legal compliance built in, no NO FAKES Act exposure. They stop choosing between ethics and efficiency. With NOIZY they're the same thing.</div>
+    </div>
+    <div class="rise-card" onclick="openPanel('rise-economy')">
+      <div class="rise-icon">⊕</div>
+      <div class="rise-card-title">The Economy Rises</div>
+      <div class="rise-card-body">75/25 as the floor. Some platforms move to 80/20. The direction moves consistently toward the creator from the moment the first platform proves it's sustainable. The extractive model starves not because we fought it — because the food ran out.</div>
+    </div>
+    <div class="rise-card" onclick="openPanel('rise-civilization')">
+      <div class="rise-icon">∞</div>
+      <div class="rise-card-title">The Civilization Rises</div>
+      <div class="rise-card-body">The 500-Year Codex. Seven epochs from 2026 to 2526. The living breathing time capsule — open, filling, breathing, permanent. The first time in history that the record of human creativity was built to survive the platforms that tried to consume it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- VERDICT -->
+<div class="verdict">
+  <div class="verdict-big">
+    <span class="red">Poop sinks.</span><br>
+    <span class="gold">Love rises.</span><br>
+    <span class="green">The humans were lifted.</span>
+  </div>
+  <div class="verdict-gorun">GORUNFREE.</div>
+</div>
+
+<!-- PANEL -->
+<div class="panel-overlay" id="panel" onclick="closePanel(event)">
+  <div class="panel-box">
+    <button class="panel-close" onclick="closePanel()">Close ✕</button>
+    <div class="panel-type-bar" id="p-bar"></div>
+    <div class="panel-type-label" id="p-label"></div>
+    <div class="panel-title" id="p-title"></div>
+    <div class="panel-italic" id="p-italic"></div>
+    <div class="panel-content" id="p-body"></div>
+  </div>
+</div>
+
+<script>
+// ── CANVAS ──────────────────────────────────────────────────────
+const c = document.getElementById('bg'), cx = c.getContext('2d');
+let W = c.width = window.innerWidth, H = c.height = window.innerHeight;
+window.addEventListener('resize', () => { W = c.width = window.innerWidth; H = c.height = window.innerHeight; });
+
+const particles = [];
+for (let i = 0; i < 60; i++) {
+  particles.push({
+    x: Math.random()*W, y: Math.random()*H,
+    vx: (Math.random()-.5)*.15, vy: (Math.random()-.5)*.15,
+    r: Math.random()*1.2+.3,
+    color: Math.random() > .5 ? '#ff3333' : '#f5c842',
+    a: Math.random()*.25+.05, ph: Math.random()*Math.PI*2
+  });
+}
+
+const flowParticles = [];
+for (let i = 0; i < 30; i++) {
+  flowParticles.push({ progress: Math.random(), speed: .0015+Math.random()*.002, a: Math.random()*.5+.2 });
+}
+
+function draw() {
+  cx.fillStyle = 'rgba(1,3,6,0.12)';
+  cx.fillRect(0,0,W,H);
+  const t = Date.now()*.001;
+
+  // Stars
+  if (particles.length > 0 && !particles[0].stars) {
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.ph += .015;
+      if (p.x<0) p.x=W; if (p.x>W) p.x=0;
+      if (p.y<0) p.y=H; if (p.y>H) p.y=0;
+      const a = p.a*(.5+.5*Math.sin(p.ph));
+      cx.beginPath(); cx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      cx.fillStyle = p.color+Math.round(a*255).toString(16).padStart(2,'0');
+      cx.fill();
+    });
+  }
+
+  // Flow particles (left to right across middle)
+  flowParticles.forEach(fp => {
+    fp.progress += fp.speed;
+    if (fp.progress > 1) fp.progress = 0;
+    const x = fp.progress * W;
+    const y = H*.4 + Math.sin(fp.progress*Math.PI*4+t)*60;
+    const pct = fp.progress;
+    const r = pct < .5 ? Math.round(255) : Math.round(245);
+    const g = pct < .5 ? Math.round(51) : Math.round(200);
+    const b = pct < .5 ? Math.round(51) : Math.round(66);
+    cx.beginPath(); cx.arc(x,y,1.5,0,Math.PI*2);
+    cx.fillStyle = `rgba(${r},${g},${b},${fp.a*(Math.sin(fp.progress*Math.PI)*0.8+0.2)})`;
+    cx.fill();
+  });
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+// ── PANEL DATA ──────────────────────────────────────────────────
+const panels = {
+  'crack-ownership': { color:'#ff3333', label:'Structural Crack 1', title:'No Ownership Enforcement', italic:'Why your rights are meaningless without infrastructure',
+    body:`<p>The current IP system was designed for a world where copying required physical effort. A pressing plant. A printing press. A broadcast tower. The friction of copying was the enforcement mechanism.</p>
+<p>AI eliminated the friction overnight. Now a voice, a melody, a style can be replicated in seconds — and the legal system that was supposed to protect the original moves on a timeline of years. By the time a lawsuit resolves, the damage is permanent. The market has moved. The artist has been displaced.</p>
+<div class="highlight" style="border-color:#ff3333">The crack: Legal protection that arrives after the exploitation has already been profitable is not protection. It's a historical footnote.</div>
+<p><strong>The NOIZY answer:</strong> Consent-as-Code. Rights enforced at the infrastructure level — not in a court two years from now, but at the moment of attempted deployment. The code refuses. The deployment doesn't happen. No lawsuit required.</p>`},
+
+  'crack-incentives': { color:'#ff3333', label:'Structural Crack 2', title:'Misaligned Incentives', italic:'When the platform profits from your race to the bottom',
+    body:`<p>The algorithm does not care about craft. It cares about engagement. A thirty-second hook that triggers a share earns the same placement as a forty-year career's most important work — and usually more.</p>
+<p>Artists are not racing to the bottom because they lack integrity. They're racing because the infrastructure rewards the race. The platform profits whether the art is good or cheap. The platform profits more when it's cheap, because cheap scales faster.</p>
+<div class="highlight" style="border-color:#ff3333">The crack: You cannot fix the race to the bottom by asking the platform to change its values. The platform has no values. It has incentive structures. Change the structures.</div>
+<p><strong>The NOIZY answer:</strong> 75/25 makes artistic quality economically rational. When an artist's earnings are directly tied to consented, attributed deployment — not to algorithmic play counts — quality has a financial argument. Craft has a ROI.</p>`},
+
+  'crack-transparency': { color:'#ff3333', label:'Structural Crack 3', title:'Black Box Monetization', italic:'The opacity is not accidental',
+    body:`<p>Streaming royalties are notoriously opaque. The calculation involves the platform's total revenue, the platform's chosen allocation methodology, your pro-rata share of streams, the label's deal, the distributor's cut. By the time the number arrives in your account — eighteen months later — it is impossible to verify.</p>
+<p>AI makes this worse. When your style is trained into a model that generates derivative content, you have no visibility into whether that content was deployed, where, how many times, or what it earned. The audit right doesn't exist. The provenance chain doesn't exist.</p>
+<div class="highlight" style="border-color:#ff3333">The crack: Opacity is a revenue strategy. What you can't see, you can't challenge. What you can't challenge, they keep.</div>
+<p><strong>The NOIZY answer:</strong> The Provenance Dashboard. SHA-256 + C2PA + AudioSeal. Every deployment logged. Every royalty event visible in real time. The black box becomes a glass wall. The artist sees exactly what was used, when, where, and what it earned — before the money arrives.</p>`},
+
+  'crack-disconnection': { color:'#ff3333', label:'Structural Crack 4', title:'Human Disconnection', italic:'The platform profits when artists compete instead of connect',
+    body:`<p>Every major platform is algorithmically designed to create competition between creators. The recommendation system shows viewers one artist, then another. The playlist algorithm pits similar artists against each other for the same listener's attention.</p>
+<p>Cooperation between artists — mentorship, collaboration, knowledge sharing — reduces competition for attention and therefore reduces algorithmic engagement. The platforms are not designed to reward it. Some actively discourage it.</p>
+<div class="highlight" style="border-color:#ff3333">The crack: Extractive platforms profit from scarcity mindset. When artists believe their success comes at other artists' expense, they compete instead of cooperating. The platform harvests both.</div>
+<p><strong>The NOIZY answer:</strong> The Guild. A covenant where cooperation is the architecture, not a feature. Creator-to-Creator mentorship. Knowledge codified into the 500-Year Codex. The Guild grows stronger as it grows larger — the inverse of every extractive platform.</p>`},
+
+  'crack-shortterm': { color:'#ff3333', label:'Structural Crack 5', title:'Short-Term Only', italic:'A system that makes 40 years worthless in 40 seconds',
+    body:`<p>Spotify's algorithm actively deprioritizes catalog music in favor of new releases. YouTube's recommendation system rewards recency. TikTok's entire architecture is built on the disposable. The incentive to build something lasting is structurally absent from every major platform.</p>
+<p>An artist's life's work becomes "old content." The 34 terabytes in THE_AQUARIUM — 40 years of professional creation — have no algorithmic value on any existing platform. They are invisible to discovery. They generate nothing.</p>
+<div class="highlight" style="border-color:#ff3333">The crack: A system that treats a lifetime of creative work as expired content is not a creative platform. It's a content factory with a revolving door.</div>
+<p><strong>The NOIZY answer:</strong> The Voice Estate. The Legacy Vault. The 500-Year Codex. The Music World Museum where THE_AQUARIUM has a room of its own — permanently, attributed, accessible, generating royalties. Legacy is the product.</p>`},
+
+  'crack-memory': { color:'#ff3333', label:'Structural Crack 6', title:'Loss of Creative Memory', italic:'When the story behind the art is worth nothing',
+    body:`<p>The platform shows the output. Never the process. A song appears in a playlist with no context — no story of the 3am session, the creative emergency, the cultural heritage, the forty years of practice that made the choice that made the sound.</p>
+<p>When AI trains on this decontextualized output, it learns the pattern without learning the meaning. It can replicate the sound without understanding what the sound cost, what it carries, what it means to the community it came from.</p>
+<div class="highlight" style="border-color:#ff3333">The crack: Art without memory is content. The platform prefers content. Content is cheaper.</div>
+<p><strong>The NOIZY answer:</strong> The DreamChamber. Every piece in the Legacy Vault carries Rob's note — not press copy, the real story. The Cultural Archive carries community knowledge. The creative process is the exhibit. Memory is architecture.</p>`},
+
+  'crack-scraping': { color:'#ff3333', label:'Structural Crack 7', title:'Unconsented AI Training', italic:'The original theft that makes all the others possible',
+    body:`<p>Every major AI voice and music platform was trained on scraped data. ElevenLabs. Suno. Udio. Voice.ai. The training data was not licensed. It was not consented. It was taken because taking was faster than asking, and asking might have been refused.</p>
+<p>The artists whose voices and musical signatures form the foundation of these models received nothing. The companies that trained on them are now worth billions. The artists are now competing against their own stolen sound.</p>
+<div class="highlight" style="border-color:#ff3333">The crack: The $1.5 billion Anthropic settlement — $3,000 per work, retroactively — proved that scraped training data has a price. The AI companies decided scraping was cheaper than licensing until it wasn't. The reckoning is incoming for voice and music.</div>
+<p><strong>The NOIZY answer:</strong> Operation Voice Army. Every voice in the Guild is consented, individually, in writing, with a Consent Key that defines exactly what the voice can be used for. The Guild's training data is the only ethically defensible training dataset in the market.</p>`},
+
+  'crack-legal': { color:'#ff3333', label:'Structural Crack 8', title:'Enterprise Legal Exposure', italic:'The lawsuit that ends a franchise',
+    body:`<p>Every game studio, film company, hospital system, and advertising agency currently using non-consent AI voice is holding unexploded legal risk. The NO FAKES Act makes individual, written, signed consent a legal requirement for AI voice deployment. Most platforms cannot prove it.</p>
+<p>One lawsuit from a voice actor whose voice was cloned without consent costs more than a decade of NOIZY enterprise licensing. One campaign that uses a celebrity voice replica destroys a brand. One therapeutic audio program that can't prove clinical consent fails procurement.</p>
+<div class="highlight" style="border-color:#ff3333">The crack: The enterprise buyers don't know the risk yet. When they find out — from their legal teams, from a lawsuit, from a regulatory filing — they will need a platform that can prove consent immediately. NOIZY is the only one.</div>
+<p><strong>The NOIZY answer:</strong> Compliance by default. Every NOIZY generation includes a provenance certificate. Every deployment is logged. The consent chain is verifiable, exportable, legal-team-ready. The enterprise legal question — "can you prove consent?" — is answered before it's asked.</p>`},
+
+  'fix-consent': { color:'#f5c842', label:'NOIZY Fix 1', title:'Consent-as-Code', italic:'If it\'s not in the code, it isn\'t consent',
+    body:`<p><strong>The principle:</strong> Legal terms can be rewritten by lawyers. Code enforces. Every ethical commitment NOIZY makes to creators is implemented at the architecture level — in the Consent Key, in the royalty split mechanics, in the watermarking system.</p>
+<p>Built on Cloudflare Workers and D1. Every deployment request checks the artist's Consent Key. If the deployment context violates any of the artist's context rules or Seven Never Clauses, the deployment is refused at the infrastructure level. No appeal. No override. The code says no.</p>
+<div class="highlight" style="border-color:#f5c842">The Seven Never Clauses are not terms of service. They are hard-coded conditions. No platform partner, enterprise client, or AI system can override them — regardless of the size of their check.</div>
+<p>This is what "infrastructure is policy" means. The policy isn't written. It runs.</p>`},
+
+  'fix-7525': { color:'#f5c842', label:'NOIZY Fix 2', title:'75/25 Perpetual Split', italic:'The number is the statement',
+    body:`<p>Every platform in the streaming era built its business model on the assumption that creators would accept whatever they were given. Spotify offers $0.003-0.005 per stream. ElevenLabs offers $0 per voice deployment. Suno offers $0 per music generation that learned from scraped artist catalogs.</p>
+<p>75/25 is not a negotiating position. It is a constitutional fact of NOIZY's architecture. The Cloudflare D1 royalty engine distributes 75 cents of every client dollar to the contributing artists — automatically, same day, direct. The math cannot be adjusted by a platform partner. The code runs the split.</p>
+<div class="highlight" style="border-color:#f5c842">"ElevenLabs at $99/mo pays artists $0. NOIZY Creator at $49/mo pays artists $37. You're not paying more for ethics. You're paying less for better."</div>
+<p>The 75/25 is the floor. Guild governance can vote to raise it. It cannot be voted lower. The number moves in one direction.</p>`},
+
+  'fix-provenance': { color:'#f5c842', label:'NOIZY Fix 3', title:'The Provenance Dashboard', italic:'The black box becomes a glass wall',
+    body:`<p><strong>SHA-256 hashing</strong> — every audio asset is fingerprinted at the moment of creation. The hash is immutable. The original is permanently distinguishable from every derivative.</p>
+<p><strong>C2PA Content Credentials</strong> — the industry standard (Adobe, Microsoft, BBC, AP). Every generation carries embedded metadata: who created it, when, under what consent, for what purpose. The metadata survives re-encoding.</p>
+<p><strong>AudioSeal watermarking</strong> — Meta's approach to invisible audio watermarks. Survives compression, re-encoding, speed changes. Detectable even after aggressive post-processing. The mark cannot be removed without audible degradation.</p>
+<p><strong>Arweave permanent storage</strong> — every provenance record anchored to permanent distributed storage. Paid once, preserved forever. The record cannot be deleted, modified, or lost.</p>
+<div class="highlight" style="border-color:#f5c842">The artist's real-time dashboard shows: what was deployed, where, when, under which Consent Key version, what royalty event was triggered, and what arrived in their account. Everything. Always. No 18-month wait.</div>`},
+
+  'fix-guild': { color:'#f5c842', label:'NOIZY Fix 4', title:'The Global Guild of Artists', italic:'The covenant the extractive model cannot replicate',
+    body:`<p>The Guild is not a union. Not a label. Not a platform. A covenant — between artists who have agreed to the same terms, enforced by architecture, not lawyers.</p>
+<p>Every Guild member holds one vote in Guild governance. The Seven Never Clauses require unanimous consent to modify. The royalty floor requires unanimous consent to lower. NOIZY.ai holds no controlling vote. The platform is infrastructure. The Guild is the governing body.</p>
+<p>Creator-to-Creator mentorship is built into the architecture. Knowledge flows without competitive terror — because the consent architecture guarantees that sharing knowledge doesn't mean losing income. What a Guild member teaches, they still own.</p>
+<div class="highlight" style="border-color:#f5c842">The extractive model profits from competition between creators. The Guild profits from cooperation. These are incompatible models. Only one can win when the artist has a genuine choice between them.</div>`},
+
+  'fix-estate': { color:'#f5c842', label:'NOIZY Fix 5', title:'Voice Estate / 500-Year Vision', italic:'Legacy is the product',
+    body:`<p>The Voice Estate is the antithesis of "old content." When an artist registers in the Guild, their Voice Profile is sealed in the NOIZY Vault — encrypted, permissioned, watermarked, permanent. The Consent Key passes to a named Voice Estate holder after death. Royalties continue for 70 years.</p>
+<p>By 2028, estate lawyers in every major market are advising clients on digital replica provisions as standard practice. The platforms that built inheritance architecture first are the platforms that estate managers recommend. Legacy artists, jazz estates, classical musicians, film composers — all flowing into the Guild.</p>
+<div class="highlight" style="border-color:#f5c842">The 500-Year Codex maps seven epochs from 2026 to 2526. Rob's 40-year body of work is the seed. The Codex is the map. We are building for 2526 as seriously as we are building for tomorrow.</div>`},
+
+  'fix-memory': { color:'#f5c842', label:'NOIZY Fix 6', title:'The Living Archive', italic:'Memory as infrastructure',
+    body:`<p>The Music World Museum's Legacy Vault is the first creative archive where the story behind every piece of work is as permanent as the work itself. Rob's note on every track in THE_AQUARIUM — not press copy, the real story. What was happening in his life. What the brief demanded. What it became.</p>
+<p>The Cultural Archive preserves traditions with their full context — the community, the ceremony, the history, the living practitioners. The GABRIEL guide can take a visitor through the archive by mood, by era, by the cultural moment that made the sound necessary.</p>
+<div class="highlight" style="border-color:#f5c842">The DreamChamber makes the creative process visible in real time. The iteration. The surprise. The moment when something becomes something else. The process is the exhibit. Memory is the architecture.</div>`},
+
+  'fix-hvs': { color:'#f5c842', label:'NOIZY Fix 7', title:'HVS™ — Human Voice Signature', italic:'The premium tier the synthetic flood creates',
+    body:`<p>When synthetic voices become infinite and free, certified human voices become the luxury tier. Not because they sound better — because they are provably, verifiably, legally human.</p>
+<p>The HVS™ certification mark combines NOIZYVOX vault registration + C2PA content credentials + SHA-256 hash + AudioSeal watermark. It is the certification that a real human being made this, consented to its use, and will be paid for it.</p>
+<div class="highlight" style="border-color:#f5c842">The difference between a synthetic diamond and a real one is not that the real one is more beautiful. It is that the real one is irreplaceable. HVS™ makes every certified human voice irreplaceable — by definition.</div>
+<p>The synthetic voice flood doesn't destroy HVS™ value. It creates it. The more synthetic the market becomes, the more valuable the verified human original.</p>`},
+
+  'fix-compliance': { color:'#f5c842', label:'NOIZY Fix 8', title:'Compliance by Default', italic:'The legal question answered before it\'s asked',
+    body:`<p>The NO FAKES Act requires individual, written, signed consent for AI voice deployment. Every NOIZY generation already satisfies this requirement — not retroactively, not by contractual amendment, but structurally, by how the platform works.</p>
+<p>When a game studio's legal team asks "show me your consent chain" — the NOIZY Provenance Dashboard shows every consent event, every deployment, every royalty, every timestamp. The chain is complete, exportable, and legally defensible.</p>
+<div class="highlight" style="border-color:#f5c842">The enterprise clients will discover their liability from their lawyers, from a lawsuit, or from a regulatory filing. When they do, they will need a compliant platform immediately. NOIZY is the only platform that is compliant by construction, not by amendment.</div>
+<p>Compliance is not our selling point. It is the floor. The selling point is everything above it.</p>`},
+
+  'loop-algo': { color:'#ff3333', label:'Cannibalistic Loop A', title:'Algorithmic Exploitation', italic:'The feedback cycle that rewards mediocrity',
+    body:`<p>The algorithm has one goal: maximize time on platform. It does not reward craft. It rewards the behaviors that keep people scrolling. A thirty-second hook. A controversial take. A familiar sound. The safest possible version of the most popular thing.</p>
+<p>Artists learn this. They optimize for it. They lower their creative bar because the bar the algorithm rewards is lower. The algorithm rewards the lowering. The platform grows. The art diminishes. The algorithm demands more lowering.</p>
+<div class="highlight" style="border-color:#ff3333">The loop is not fixable within the existing platform logic. You cannot ask an engagement-maximizing algorithm to also maximize artistic integrity. These are mathematically incompatible goals.</div>
+<p><strong>The NOIZY break:</strong> Humanity Weight metrics — generation quality scored not just on output but on input: time invested, cultural depth, originality of source material, consent quality of training data. The algorithm rewards the human signature, not just the viral hook.</p>`},
+
+  'loop-copy': { color:'#ff3333', label:'Cannibalistic Loop B', title:'Copy-Paste Culture', italic:'Eating the seed corn',
+    body:`<p>AI models learn from the best human creative work. They generate derivative work that floods the market. The derivative work competes with the original for the same algorithmic real estate. The original creator gets fewer plays, less money, less incentive to create the high-quality original work the AI was trained on.</p>
+<p>Eventually, the high-quality originators exit the market. The AI now trains on AI-generated derivatives of derivatives. Quality degrades exponentially. The market collapses into a monoculture of self-referential mediocrity.</p>
+<div class="highlight" style="border-color:#ff3333">The loop eats the seed corn. No original creators means no original training data means no quality means no market. The cannibal eventually eats itself.</div>
+<p><strong>The NOIZY break:</strong> AudioSeal watermarking makes every original verifiably distinct. HVS™ certification creates a premium tier for human originators. The original becomes undeniable — and financially superior to the derivative.</p>`},
+
+  'loop-opaque': { color:'#ff3333', label:'Cannibalistic Loop C', title:'Opaque Monetization', italic:'The math you can\'t see is the math you can\'t challenge',
+    body:`<p>The creator receives a number. They cannot verify it. The calculation methodology is proprietary. The audit right is nominally available but practically impossible — requiring resources most independent artists don't have and a legal process that takes years.</p>
+<p>Acceptance of the unverifiable number becomes normalized. The creator stops expecting transparency. The platform stops providing it. The gap between what the work earned and what the creator received grows, invisibly.</p>
+<div class="highlight" style="border-color:#ff3333">Opacity is a business model. Spotify's per-stream rate is not a secret because it's complex. It's a secret because if creators understood the full calculation, they would demand different terms.</div>
+<p><strong>The NOIZY break:</strong> The Provenance Dashboard shows every deployment event in real time. The royalty calculation is not an algorithm — it is a fixed architectural fact: 75% of every client dollar. The math is visible before the money arrives.</p>`},
+
+  'loop-disposable': { color:'#ff3333', label:'Cannibalistic Loop D', title:'Disposable Art', italic:'When legacy has no economic value',
+    body:`<p>The platform rewards new. The algorithm deprioritizes old. An artist's career peak generates a discovery moment, then fades from algorithmic view. The body of work becomes invisible. The artist must keep producing new content to maintain visibility — regardless of whether new content serves their actual creative vision.</p>
+<p>The treadmill never stops. The work accumulates. The platform treats it as expired inventory. The artist has no mechanism to capture the long-term value of a life's creative work. They have a stream count and a 1099.</p>
+<div class="highlight" style="border-color:#ff3333">A system that makes a 40-year career worth less than a viral moment is not a creative platform. It is a content factory with a revolving door and a one-way mirror.</div>
+<p><strong>The NOIZY break:</strong> The Voice Estate. The Legacy Vault. The Music World Museum. THE_AQUARIUM has a permanent room — not because it's trending, but because it's real. Legacy generates royalties. Permanence is the product.</p>`},
+
+  'rise-artist': { color:'#2ecc71', label:'What Rises', title:'The Artist Rises', italic:'From content provider to civilization architect',
+    body:`<p>The artist is the center of the NOIZY universe. Not the platform. Not the algorithm. Not the investor. The human being who made the thing with their voice, their body, their forty years, their cultural inheritance.</p>
+<p>From content provider to covenant member. From hoping for a payment in 18 months to watching royalties arrive same day. From isolated input optimizing for algorithm to Guild architect helping design the infrastructure that serves every creator who comes after.</p>
+<div class="highlight" style="border-color:#2ecc71">RSP_001 is the proof. The first artist. Guild Member #001. Ottawa, 1996 to forever. The Voice Estate is sealed. The dashboard is live. The 75/25 is real. The architecture was built for this person first, before anyone else.</div>
+<p>Every product in the NOIZY universe is validated by the creator who needs it most before it touches the world. If it doesn't work for RSP_001, it ships to nobody.</p>`},
+
+  'rise-culture': { color:'#2ecc71', label:'What Rises', title:'The Culture Rises', italic:'What was almost lost is now preserved forever',
+    body:`<p>Aboriginal Songlines. West African Griot tradition. Tibetan Overtone Singing. Amazonian Icaros. Lost tuning systems. Languages with twelve remaining speakers. Every tradition that the extractive model had no incentive to preserve — because preservation doesn't trend.</p>
+<p>The Cultural Resurrection Engine and the Community Consent Architecture give endangered traditions a permanent home — with the communities who created them holding the key, governing the use, receiving the royalties, controlling the narrative.</p>
+<div class="highlight" style="border-color:#2ecc71">By 2036, traditions that had twelve living speakers in 2026 are being taught in schools across twelve countries. With the creator's name on every lesson. With royalties flowing to the source community in trust. The cultural resurrection is real.</div>`},
+
+  'rise-child': { color:'#2ecc71', label:'What Rises', title:'The Children Rise', italic:'Every child can feel music',
+    body:`<p>NOIZYKIDZ. Haptic + bone conduction + visual music. Deaf children. Autism spectrum families. Every child who experiences sound differently from the standard has a door into music through their body instead of their ears.</p>
+<p>Free. Always. No exceptions. No ads. No data extraction. No algorithm optimizing for retention. Artist-built, consent-locked, neuroacoustic-validated. Funded by institutional licensing fees from the healthcare and education sectors — not by families.</p>
+<div class="highlight" style="border-color:#2ecc71">Inspired by Nims — Mike Nemesvary, quadriplegic world champion, Rob's close friend. Nims showed the world what a human being can do with no limits. NOIZYKIDZ shows what AI can do when it serves that kind of spirit.</div>
+<p>By 2036, fourteen countries have adopted this as standard in autism support programs. The children who received it in 2026 are now composing. The civilization is richer for what they build.</p>`},
+
+  'rise-enterprise': { color:'#2ecc71', label:'What Rises', title:'The Enterprise Rises', italic:'Compliance becomes competitive advantage',
+    body:`<p>Game studios. Film companies. Hospital systems. Advertising agencies. Every enterprise buyer that switched to NOIZY didn't do it because they developed a conscience. They did it because their legal team showed them the exposure of staying on non-consent platforms.</p>
+<p>The NO FAKES Act made non-consent a criminal exposure. GDPR and the EU AI Act follow the same logic. One lawsuit from a voice actor costs more than a decade of NOIZY enterprise licensing. The math is simple when the risk is real.</p>
+<div class="highlight" style="border-color:#2ecc71">VSI London is the beachhead. When VSI requires HVS™ certification for all voice talent — 50+ languages, 1,000+ performers — every other localization company has to follow. One enterprise partnership cascades into a sector-wide standard.</div>
+<p>Ethics and commercial success are not in tension in the NOIZY model. They are the same thing. That is not a moral argument. It is an engineering achievement.</p>`},
+
+  'rise-economy': { color:'#2ecc71', label:'What Rises', title:'The Economy Rises', italic:'The math was always possible',
+    body:`<p>The streaming era was not economically inevitable. It was a choice — by platforms that could have paid more and chose not to. The 75/25 split was always mathematically possible. It was politically undesirable to the platforms that held the power.</p>
+<p>NOIZY proved it works at the Creator tier ($49/mo). Then at the Studio tier. Then at Enterprise. The 75/25 split is sustainable. The soul mission (Healing Pool, Children's Garden, Cultural Archive) is funded from the 25% margin at scale. The economics of dignity work.</p>
+<div class="highlight" style="border-color:#2ecc71">When the first artist posted her NOIZYVOX dashboard — twelve months of Voice Estate royalties, clear as a bank statement, arriving the day they were earned — it went viral in every creator community on earth. Not because 75% was surprising. Because it was real.</div>
+<p>The 75/25 became the floor. Some platforms moved to 80/20. The direction moved consistently toward the creator from the moment the first platform proved it was sustainable.</p>`},
+
+  'rise-civilization': { color:'#2ecc71', label:'What Rises', title:'The Civilization Rises', italic:'The living breathing time capsule',
+    body:`<p>The first time capsule you can live inside while it's being filled. Growing every day. Breathing in real time. Preserved forever. Open now.</p>
+<p>Seven epochs from 2026 to 2526. The DreamChamber Codex maps all of it. Rob's 40-year body of work — THE_AQUARIUM, 34 terabytes — is the seed. The 500-Year Codex is the map. We are in Epoch V. Four more epochs ahead.</p>
+<div class="highlight" style="border-color:#2ecc71">Fifty years from now, someone will open this capsule and find a world where for one brief terrible window, the machines almost won. And they will also find the thing that was built in that window. The covenant. The Guild. The consent architecture. The voices of people who are gone, preserved, attributed, still generating royalties for families who never met them.</div>
+<p>We are not building a company. We are planting a civilization. The planting began March 14, 2026. Ottawa.</p>`}
+};
+
+function openPanel(id) {
+  const d = panels[id];
+  if (!d) return;
+  document.getElementById('p-bar').style.background = d.color;
+  document.getElementById('p-label').textContent = d.label;
+  document.getElementById('p-label').style.color = d.color;
+  document.getElementById('p-title').textContent = d.title;
+  document.getElementById('p-title').style.color = d.color;
+  document.getElementById('p-italic').textContent = d.italic;
+  document.getElementById('p-body').innerHTML = d.body;
+
+  // Set highlight border colors dynamically
+  document.querySelectorAll('.highlight').forEach(h => {
+    h.style.borderColor = d.color;
+    h.style.color = d.color === '#ff3333' ? 'rgba(255,51,51,0.8)' : d.color === '#2ecc71' ? 'rgba(46,204,113,0.8)' : 'rgba(245,200,66,0.8)';
+  });
+
+  document.getElementById('panel').classList.add('open');
+}
+
+function closePanel(e) {
+  if (!e || e.target === document.getElementById('panel') || e.currentTarget?.tagName === 'BUTTON') {
+    document.getElementById('panel').classList.remove('open');
+  }
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('panel').classList.remove('open'); });
+</script>
+</body>
+</html>

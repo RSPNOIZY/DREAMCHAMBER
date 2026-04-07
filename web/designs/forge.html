@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE FORGE</title>
+    <link href="nexus.css" rel="stylesheet">
+    <style>
+        body {
+            background: #08080c;
+            /* Hex Grid Background */
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(8,8,12,0.9) 100%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a1a2e' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            padding: 2rem;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .forge-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 1rem;
+        }
+
+        .forge-title {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ff00cc, #3333ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .forge-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            flex: 1;
+        }
+
+        .forge-panel {
+            background: rgba(20,20,30,0.6);
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s;
+        }
+
+        .forge-panel:hover { border-color: #444; }
+        .forge-panel.audio:hover { border-color: #00ffcc; box-shadow: 0 0 30px rgba(0,255,204,0.1); }
+        .forge-panel.video:hover { border-color: #ff00cc; box-shadow: 0 0 30px rgba(255,0,204,0.1); }
+
+        .panel-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .panel-label { font-size: 0.8rem; text-transform: uppercase; color: #666; letter-spacing: 2px; margin-bottom: 0.5rem; }
+        .panel-head { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 1.5rem; }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 1rem;
+            color: #fff;
+            font-family: monospace;
+            font-size: 1rem;
+            resize: none;
+            margin-bottom: 1rem;
+        }
+        
+        textarea:focus { outline: none; border-color: #fff; }
+
+        .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        
+        .forge-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #444;
+            color: #ccc;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            flex: 1;
+        }
+        
+        .forge-btn:hover { background: #fff; color: #000; }
+        
+        .forge-btn.magic {
+            border-color: #00ffcc;
+            color: #00ffcc;
+        }
+        .forge-btn.magic:hover { background: #00ffcc; color: #000; box-shadow: 0 0 20px #00ffcc; }
+        
+        .forge-btn.cinema {
+            border-color: #ff00cc;
+            color: #ff00cc;
+        }
+        .forge-btn.cinema:hover { background: #ff00cc; color: #000; box-shadow: 0 0 20px #ff00cc; }
+
+        .status-log {
+            margin-top: auto;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #666;
+            min-height: 1.2em;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="forge-header">
+        <div class="forge-title">⚡ THE FORGE</div>
+        <div style="font-family:monospace; color:#444;">V2.0 // GOD MODE</div>
+    </header>
+
+    <main class="forge-grid">
+        
+        <!-- AUDIO FOUNDRY -->
+        <section class="forge-panel audio">
+            <div class="panel-icon">🎹</div>
+            <div class="panel-label">AUDIO FOUNDRY</div>
+            <div class="panel-head">Create Sonic Reality</div>
+            
+            <textarea id="audio-prompt" placeholder="Describe the sound... e.g. 'Cyberpunk city rain with heavy bass drone'"></textarea>
+            
+            <div class="btn-group">
+                <button class="forge-btn magic" onclick="forgeAudio('scene')">🏗️ SCENE CHAIN</button>
+                <button class="forge-btn" onclick="forgeAudio('sfx')">🔊 SFX</button>
+                <button class="forge-btn" onclick="forgeAudio('speech')">🗣️ SPEECH</button>
+            </div>
+            
+            <div class="status-log" id="audio-log">Ready to forge.</div>
+        </section>
+
+        <!-- VIDEO LAB -->
+        <section class="forge-panel video">
+            <div class="panel-icon">🎬</div>
+            <div class="panel-label">VIDEO LAB</div>
+            <div class="panel-head">Generate Cinema</div>
+            
+            <textarea id="video-prompt" placeholder="Describe the scene... e.g. 'Drone shot of a neon city, 8k, realistic'"></textarea>
+            
+            <div class="btn-group">
+                <button class="forge-btn cinema" onclick="forgeVideo('runway')">RUNWAY GEN-3</button>
+                <button class="forge-btn" onclick="forgeVideo('luma')">LUMA DREAM</button>
+                <button class="forge-btn" onclick="forgeVideo('veo')">GOOGLE VEO</button>
+            </div>
+            
+            <div class="status-log" id="video-log">Ready to render.</div>
+        </section>
+
+    </main>
+
+    <script>
+        function forgeAudio(type) {
+            const prompt = document.getElementById('audio-prompt').value;
+            const log = document.getElementById('audio-log');
+            
+            if (!prompt) {
+                log.innerText = "⚠️ ERROR: Prompt required.";
+                log.style.color = "red";
+                return;
+            }
+            
+            log.innerText = "⚡ TRANSMITTING TO CORE...";
+            log.style.color = "#00ffcc";
+            
+            fetch(`/api/generate/audio?type=${type}&prompt=${encodeURIComponent(prompt)}`)
+                .then(r => r.json())
+                .then(data => {
+                    log.innerText = `✅ STARTED: ${data.job}`;
+                    log.style.color = "#00ffcc";
+                    setTimeout(() => log.innerText = "Listening for result...", 2000);
+                })
+                .catch(e => {
+                    log.innerText = "❌ ERROR: Connection Failed";
+                    log.style.color = "red";
+                });
+        }
+
+        function forgeVideo(model) {
+            const prompt = document.getElementById('video-prompt').value;
+            const log = document.getElementById('video-log');
+            
+            if (!prompt) {
+                log.innerText = "⚠️ ERROR: Prompt required.";
+                log.style.color = "red";
+                return;
+            }
+            
+            log.innerText = "⚡ CONTACTING RENDER FARM...";
+            log.style.color = "#ff00cc";
+            
+            fetch(`/api/generate/video?model=${model}&prompt=${encodeURIComponent(prompt)}`)
+                .then(r => r.json())
+                .then(data => {
+                    log.innerText = `✅ STARTED: ${data.job}`;
+                    log.style.color = "#ff00cc";
+                    setTimeout(() => log.innerText = "Polling for render...", 2000);
+                })
+                .catch(e => {
+                    log.innerText = "❌ ERROR: Connection Failed";
+                    log.style.color = "red";
+                });
+        }
+    </script>
+</body>
+</html>

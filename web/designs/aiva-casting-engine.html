@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A.I.V.A. Casting Engine — NOIZYVOX</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:#03050a; --deep:#060d1a; --navy:#0a1628; --ocean:#0d2845;
+  --cyan:#00c8ff; --cyan2:rgba(0,200,255,0.12); --cyan3:rgba(0,200,255,0.06);
+  --gold:#c9a84c; --gold2:rgba(201,168,76,0.12);
+  --green:#4caf82; --orange:#ff6b35; --pink:#e8a4c8;
+  --white:#f0f4f8; --muted:rgba(240,244,248,0.45); --faint:rgba(240,244,248,0.07);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:'JetBrains Mono',monospace;min-height:100vh;overflow-x:hidden}
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.4}
+.app{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:2rem}
+
+/* HEADER */
+.hdr{text-align:center;padding:3rem 0 2rem;border-bottom:1px solid var(--faint)}
+.hdr-brand{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,4rem);letter-spacing:0.12em;color:var(--white)}
+.hdr-brand span{color:var(--cyan);text-shadow:0 0 30px rgba(0,200,255,0.5)}
+.hdr-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1rem;color:var(--muted);margin-top:0.4rem}
+.hdr-tag{display:inline-block;font-size:0.55rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,200,255,0.25);padding:0.3rem 0.8rem;margin-top:0.8rem}
+
+/* BRIEF PANEL */
+.brief-panel{background:var(--deep);border:1px solid var(--faint);padding:2rem;margin:2rem 0}
+.panel-label{font-size:0.58rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem}
+.brief-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+@media(max-width:700px){.brief-grid{grid-template-columns:1fr}}
+.field-group label{font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:0.4rem}
+.field-group select,.field-group input,.field-group textarea{
+  width:100%;background:rgba(0,200,255,0.04);border:1px solid rgba(0,200,255,0.15);
+  color:var(--white);font-family:'JetBrains Mono',monospace;font-size:0.75rem;
+  padding:0.6rem 0.8rem;outline:none;transition:border-color 0.2s;
+}
+.field-group select:focus,.field-group input:focus,.field-group textarea:focus{border-color:var(--cyan)}
+.field-group textarea{resize:vertical;min-height:80px;grid-column:1/-1}
+.brief-actions{display:flex;align-items:center;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
+.btn-cast{background:var(--cyan);border:none;color:var(--black);font-family:'Bebas Neue',sans-serif;
+  font-size:1.1rem;letter-spacing:0.15em;padding:0.75rem 2rem;cursor:pointer;transition:all 0.2s}
+.btn-cast:hover{background:var(--white)}
+.btn-cast:disabled{background:rgba(0,200,255,0.3);cursor:not-allowed}
+.btn-more{background:transparent;border:1px solid var(--faint);color:var(--muted);
+  font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;
+  padding:0.6rem 1.2rem;cursor:pointer;transition:all 0.2s}
+.btn-more:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn-more:disabled{opacity:0.3;cursor:not-allowed}
+.cast-status{font-size:0.6rem;letter-spacing:0.3em;color:var(--muted);text-transform:uppercase}
+.shown-count{font-size:0.6rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-left:auto}
+
+/* THINKING INDICATOR */
+.thinking{display:none;align-items:center;gap:0.75rem;padding:1.5rem 0}
+.thinking.active{display:flex}
+.think-dots span{width:6px;height:6px;border-radius:50%;background:var(--cyan);display:inline-block;margin:0 2px;animation:dot-pulse 1.4s ease-in-out infinite}
+.think-dots span:nth-child(2){animation-delay:0.2s}
+.think-dots span:nth-child(3){animation-delay:0.4s}
+@keyframes dot-pulse{0%,80%,100%{transform:scale(0.6);opacity:0.4}40%{transform:scale(1);opacity:1}}
+.think-text{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted)}
+
+/* RESULTS */
+.results-header{display:flex;justify-content:space-between;align-items:center;margin:2rem 0 1rem}
+.results-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.1em;color:var(--white)}
+.results-sub{font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted)}
+.voice-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--faint)}
+
+/* VOICE CARD */
+.voice-card{
+  background:var(--deep);padding:0;
+  opacity:0;transform:translateY(20px);
+  transition:opacity 0.5s ease,transform 0.5s ease;
+  cursor:pointer;position:relative;overflow:hidden;
+}
+.voice-card.in{opacity:1;transform:translateY(0)}
+.voice-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--card-accent);transform:scaleX(0);transform-origin:left;transition:transform 0.4s}
+.voice-card:hover::before,.voice-card.selected::before{transform:scaleX(1)}
+.voice-card.selected{background:var(--navy)}
+.card-inner{padding:1.5rem}
+.card-rank{font-size:0.5rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+.card-name{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.08em;color:var(--card-accent);line-height:1;margin-bottom:0.2rem}
+.card-id{font-size:0.6rem;letter-spacing:0.3em;color:var(--muted);margin-bottom:1rem}
+.card-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem}
+.tag{font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.2rem 0.5rem;
+  border:1px solid rgba(255,255,255,0.08);color:var(--muted)}
+.card-desc{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:0.9rem;
+  color:rgba(240,244,248,0.55);line-height:1.6;margin-bottom:1.2rem}
+.card-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;margin-bottom:1rem}
+.stat-mini{text-align:center;padding:0.5rem;background:rgba(0,0,0,0.3)}
+.stat-mini .val{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--card-accent)}
+.stat-mini .lbl{font-size:0.45rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+.match-bar-wrap{margin-bottom:1rem}
+.match-label{display:flex;justify-content:space-between;font-size:0.55rem;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem}
+.match-label span:last-child{color:var(--card-accent)}
+.match-bar{height:3px;background:rgba(255,255,255,0.06);overflow:hidden}
+.match-fill{height:100%;background:var(--card-accent);width:0;transition:width 1s ease 0.3s}
+
+/* WAVEFORM */
+.mini-wave{display:flex;align-items:center;gap:2px;height:24px;margin-bottom:1rem}
+.mini-wave span{width:3px;background:var(--card-accent);opacity:0.5;border-radius:2px;
+  animation:wave-bar 1.2s ease-in-out infinite}
+.voice-card:hover .mini-wave span,.voice-card.selected .mini-wave span{opacity:1}
+@keyframes wave-bar{0%,100%{height:4px}50%{height:18px}}
+
+/* SELECT BTN */
+.card-select{display:flex;gap:0.5rem;align-items:center}
+.btn-select{flex:1;background:transparent;border:1px solid var(--card-accent);
+  color:var(--card-accent);font-family:'Bebas Neue',sans-serif;font-size:0.9rem;
+  letter-spacing:0.15em;padding:0.5rem;cursor:pointer;transition:all 0.2s}
+.btn-select:hover,.voice-card.selected .btn-select{background:var(--card-accent);color:var(--black)}
+.btn-preview{background:transparent;border:1px solid var(--faint);color:var(--muted);
+  font-size:0.6rem;letter-spacing:0.2em;padding:0.5rem 0.75rem;cursor:pointer;
+  font-family:'JetBrains Mono',monospace;transition:all 0.2s;white-space:nowrap}
+.btn-preview:hover{border-color:var(--muted);color:var(--white)}
+
+/* CONSENT BADGE */
+.consent-ok{display:flex;align-items:center;gap:0.4rem;font-size:0.5rem;
+  letter-spacing:0.25em;text-transform:uppercase;color:var(--green);margin-top:0.75rem}
+.consent-ok::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);
+  animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+
+/* SELECTED PANEL */
+.selected-panel{background:var(--ocean);border:1px solid rgba(0,200,255,0.2);
+  padding:1.5rem;margin-top:2rem;display:none}
+.selected-panel.active{display:block}
+.sp-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.1em;
+  color:var(--cyan);margin-bottom:0.5rem}
+.sp-sub{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.sp-name{font-size:1.1rem;color:var(--white);font-weight:300}
+.sp-name strong{color:var(--gold)}
+.btn-request{background:var(--gold);border:none;color:var(--black);
+  font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.15em;
+  padding:0.75rem 2rem;cursor:pointer;margin-top:1rem;transition:all 0.2s;display:block}
+.btn-request:hover{background:var(--white)}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:4rem 2rem;color:var(--muted)}
+.empty-state .es-icon{font-size:3rem;margin-bottom:1rem;opacity:0.4}
+.empty-state p{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="app">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-brand">NOIZY<span>VOX</span></div>
+    <div class="hdr-sub">Artificially Intelligent Voice Acting</div>
+    <div class="hdr-tag">A.I.V.A. Casting Engine  ·  Agentic Recommendation System</div>
+  </div>
+
+  <!-- BRIEF -->
+  <div class="brief-panel">
+    <div class="panel-label">Submit Your Casting Brief</div>
+    <div class="brief-grid">
+      <div class="field-group">
+        <label>Project Type</label>
+        <select id="proj-type">
+          <option value="">Select type...</option>
+          <option>Animation Series</option>
+          <option>Audiobook</option>
+          <option>Video Game</option>
+          <option>Documentary</option>
+          <option>Commercial</option>
+          <option>Film / TV</option>
+          <option>Podcast</option>
+          <option>E-Learning</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Tone / Feeling</label>
+        <select id="tone">
+          <option value="">Select tone...</option>
+          <option>Warm & Trustworthy</option>
+          <option>Authoritative & Bold</option>
+          <option>Playful & Energetic</option>
+          <option>Dark & Dramatic</option>
+          <option>Calm & Meditative</option>
+          <option>Quirky & Unique</option>
+          <option>Cinematic & Epic</option>
+          <option>Intimate & Conversational</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Character Age Range</label>
+        <select id="age-range">
+          <option value="">Select range...</option>
+          <option>Child (6–12)</option>
+          <option>Teen (13–19)</option>
+          <option>Young Adult (20–35)</option>
+          <option>Adult (36–55)</option>
+          <option>Senior (55+)</option>
+          <option>Ageless / Creature</option>
+        </select>
+      </div>
+      <div class="field-group" style="grid-column:1/-1">
+        <label>Brief Description (optional)</label>
+        <textarea id="brief-desc" placeholder="e.g. Grizzled war veteran with dry humour. Needs gravitas but not cold. Think Clint Eastwood meets Keith Morrison..."></textarea>
+      </div>
+    </div>
+    <div class="brief-actions">
+      <button class="btn-cast" id="btn-cast" onclick="castVoices()">FIND MY VOICES</button>
+      <button class="btn-more" id="btn-more" onclick="showMore()" disabled>SHOW MORE A.I.V.A.s</button>
+      <span class="cast-status" id="cast-status"></span>
+      <span class="shown-count" id="shown-count"></span>
+    </div>
+    <div class="thinking" id="thinking">
+      <div class="think-dots"><span></span><span></span><span></span></div>
+      <span class="think-text">A.I.V.A. Engine analyzing your brief...</span>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results-wrap" style="display:none">
+    <div class="results-header">
+      <div>
+        <div class="results-title" id="results-title">RECOMMENDED A.I.V.A.s</div>
+        <div class="results-sub" id="results-sub"></div>
+      </div>
+    </div>
+    <div class="voice-grid" id="voice-grid"></div>
+    <div id="selected-panel" class="selected-panel">
+      <div class="sp-title">READY TO CAST</div>
+      <div class="sp-sub">Your selected A.I.V.A.</div>
+      <div class="sp-name" id="sp-name"></div>
+      <button class="btn-request" id="btn-request">REQUEST THIS A.I.V.A. — SUBMIT PROJECT</button>
+    </div>
+  </div>
+
+  <div class="empty-state" id="empty-state">
+    <div class="es-icon">🎙</div>
+    <p>Submit a brief to find your A.I.V.A.</p>
+  </div>
+
+</div>
+
+<script>
+// ── VOICE DATA POOL ──
+const VOICES = [
+  { id:"RSP_001", name:"PLOWMAN", accent:["00C8FF"], tags:["Animation","Documentary","Narration","Game Audio"], desc:"40 years of broadcast authority. The voice that defined entire childhoods. Warmth with weight behind every word.", projects:312, rating:4.9, slots:2, match:98, earned:"$41K", emotion:"Warm Authority" },
+  { id:"VCX_019", name:"TORRES",  accent:["C9A84C"], tags:["Film","Commercial","Drama","Thriller"], desc:"Cinematic range that shifts from whisper to storm. Built for high-stakes scenes where every syllable carries consequence.", projects:187, rating:4.8, slots:4, match:94, earned:"$28K", emotion:"Dark & Dramatic" },
+  { id:"MVR_044", name:"OKAFOR",  accent:["4CAF82"], tags:["Documentary","E-Learning","Podcast","Audiobook"], desc:"The rare voice that makes complex ideas feel like conversation. Academic depth with human warmth. Trusted implicitly.", projects:256, rating:4.9, slots:1, match:91, earned:"$33K", emotion:"Authoritative" },
+  { id:"SLK_007", name:"NAKAMURA",accent:["E8A4C8"], tags:["Animation","Game","Creature","Sci-Fi"], desc:"Limitless range. Has voiced seventeen distinct species across three game franchises. Technically unmatched emotional precision.", projects:408, rating:5.0, slots:3, match:89, earned:"$67K", emotion:"Versatile Epic" },
+  { id:"DRX_033", name:"CALLAHAN",accent:["FF6B35"], tags:["Commercial","Corporate","Podcast","Narration"], desc:"Instantly trustworthy. The voice you want explaining your brand to the world. Clean, clear, credible without being cold.", projects:143, rating:4.7, slots:5, match:86, earned:"$19K", emotion:"Confident Trust" },
+  { id:"PKM_088", name:"REYES",   accent:["00C8FF"], tags:["Animation","Comedy","Kids","Commercial"], desc:"The laugh lives in the voice. Effortless timing, genuine warmth, and a playful intelligence that elevates every script.", projects:221, rating:4.8, slots:2, match:83, earned:"$31K", emotion:"Playful Energy" },
+  { id:"AZR_012", name:"SINCLAIR",accent:["C9A84C"], tags:["Audiobook","Drama","Period Piece","Literary"], desc:"Reads Fitzgerald the way Fitzgerald heard it. Literary sensibility with performance instinct. Rare combination.", projects:98,  rating:4.9, slots:3, match:81, earned:"$22K", emotion:"Literary Depth" },
+  { id:"FNX_055", name:"ODUYA",   accent:["4CAF82"], tags:["Documentary","Cultural","World","Multilingual"], desc:"Twelve languages. Six dialects authenticated. The bridge voice for cross-cultural storytelling that honours its origins.", projects:176, rating:4.8, slots:4, match:78, earned:"$26K", emotion:"Cultural Resonance" },
+  { id:"ZXK_091", name:"PETROV",  accent:["E8A4C8"], tags:["Sci-Fi","Game","Military","Epic"], desc:"Built for worlds that don't exist yet. The commanding presence that makes fictional universes feel inevitable and real.", projects:134, rating:4.7, slots:2, match:76, earned:"$18K", emotion:"Epic Command" },
+  { id:"YWQ_066", name:"MBEKI",   accent:["FF6B35"], tags:["Commercial","Luxury","Fashion","Brand"], desc:"The voice premium brands trust with their identity. Aspirational without arrogance. Sophisticated without distance.", projects:89,  rating:4.9, slots:6, match:74, earned:"$15K", emotion:"Luxury Authority" },
+];
+
+let shown = 0;
+let selected = null;
+const PAGE = 3;
+const MAX  = 10;
+
+function castVoices() {
+  const type = document.getElementById('proj-type').value;
+  const tone = document.getElementById('tone').value;
+  if (!type || !tone) {
+    document.getElementById('cast-status').textContent = '⚠ Please select project type and tone';
+    document.getElementById('cast-status').style.color = '#FF4444';
+    return;
+  }
+  document.getElementById('cast-status').textContent = '';
+  document.getElementById('cast-status').style.color = '';
+  shown = 0;
+  selected = null;
+  document.getElementById('results-wrap').style.display = 'none';
+  document.getElementById('empty-state').style.display = 'none';
+  document.getElementById('selected-panel').classList.remove('active');
+  document.getElementById('btn-cast').disabled = true;
+  document.getElementById('thinking').classList.add('active');
+
+  setTimeout(()=>{
+    document.getElementById('thinking').classList.remove('active');
+    document.getElementById('btn-cast').disabled = false;
+    document.getElementById('results-wrap').style.display = 'block';
+    document.getElementById('voice-grid').innerHTML = '';
+    showPage();
+  }, 2200);
+}
+
+function showPage() {
+  const grid = document.getElementById('voice-grid');
+  const nextShown = Math.min(shown + PAGE, MAX, VOICES.length);
+  for (let i = shown; i < nextShown; i++) {
+    const v = VOICES[i];
+    const card = buildCard(v, i);
+    grid.appendChild(card);
+    setTimeout(()=>card.classList.add('in'), (i - shown) * 120 + 50);
+    setTimeout(()=>{
+      const fill = card.querySelector('.match-fill');
+      if(fill) fill.style.width = v.match + '%';
+    }, (i - shown) * 120 + 300);
+    // Animate wave bars
+    const bars = card.querySelectorAll('.mini-wave span');
+    bars.forEach((b,j)=>{
+      b.style.animationDelay = (j*0.08)+'s';
+      b.style.height = (4 + Math.random()*14) + 'px';
+    });
+  }
+  shown = nextShown;
+  updateControls();
+}
+
+function showMore() {
+  if (shown >= MAX || shown >= VOICES.length) return;
+  showPage();
+}
+
+function updateControls() {
+  const sub = `Showing ${shown} of ${Math.min(MAX, VOICES.length)} A.I.V.A.s — Maximum 10`;
+  document.getElementById('results-sub').textContent = sub;
+  document.getElementById('shown-count').textContent = `${shown} / ${MAX} shown`;
+  const moreBtn = document.getElementById('btn-more');
+  moreBtn.disabled = shown >= MAX || shown >= VOICES.length;
+  moreBtn.textContent = shown >= MAX ? 'MAXIMUM REACHED' : `SHOW MORE (${Math.min(VOICES.length,MAX)-shown} remaining)`;
+}
+
+function buildCard(v, index) {
+  const accentColor = v.accent[0];
+  const card = document.createElement('div');
+  card.className = 'voice-card';
+  card.style.setProperty('--card-accent', `#${accentColor}`);
+
+  const waveBars = Array.from({length:16},(_,i)=>`<span style="animation-delay:${i*0.08}s;height:${4+Math.random()*14}px"></span>`).join('');
+
+  card.innerHTML = `
+    <div class="card-inner">
+      <div class="card-rank">A.I.V.A. RECOMMENDATION ${index+1}</div>
+      <div class="card-name">${v.name}</div>
+      <div class="card-id">${v.id}  ·  ${v.emotion}</div>
+      <div class="card-tags">${v.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="mini-wave">${waveBars}</div>
+      <div class="card-desc">${v.desc}</div>
+      <div class="card-stats">
+        <div class="stat-mini"><div class="val">${v.projects}</div><div class="lbl">Projects</div></div>
+        <div class="stat-mini"><div class="val">${v.rating}</div><div class="lbl">Rating</div></div>
+        <div class="stat-mini"><div class="val">${v.slots}</div><div class="lbl">Slots Left</div></div>
+      </div>
+      <div class="match-bar-wrap">
+        <div class="match-label"><span>Brief Match</span><span>${v.match}%</span></div>
+        <div class="match-bar"><div class="match-fill" style="background:#${accentColor}"></div></div>
+      </div>
+      <div class="card-select">
+        <button class="btn-select" onclick="selectVoice('${v.id}', event)">SELECT THIS A.I.V.A.</button>
+        <button class="btn-preview" onclick="previewVoice(event)">▶ PREVIEW</button>
+      </div>
+      <div class="consent-ok">Consent Verified — Approved for this use case</div>
+    </div>`;
+  return card;
+}
+
+function selectVoice(id, e) {
+  e.stopPropagation();
+  const v = VOICES.find(x=>x.id===id);
+  if (!v) return;
+  selected = v;
+  // Deselect all
+  document.querySelectorAll('.voice-card').forEach(c=>c.classList.remove('selected'));
+  // Select this one
+  e.target.closest('.voice-card').classList.add('selected');
+  // Update panel
+  document.getElementById('sp-name').innerHTML = `<strong>${v.name} (${v.id})</strong> — ${v.emotion}`;
+  document.getElementById('selected-panel').classList.add('active');
+  document.getElementById('selected-panel').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function previewVoice(e) {
+  e.stopPropagation();
+  // Simulate waveform animation burst
+  const card = e.target.closest('.voice-card');
+  card.querySelectorAll('.mini-wave span').forEach((b,i)=>{
+    setTimeout(()=>{ b.style.height=(4+Math.random()*18)+'px'; b.style.opacity='1'; },i*40);
+    setTimeout(()=>{ b.style.height=(4+Math.random()*8)+'px'; b.style.opacity='0.5'; },i*40+400);
+  });
+}
+
+document.getElementById('btn-request').addEventListener('click',()=>{
+  if (!selected) return;
+  document.getElementById('btn-request').textContent = `✓ PROJECT SUBMITTED — ${selected.name} NOTIFIED`;
+  document.getElementById('btn-request').style.background = '#4CAF82';
+  document.getElementById('btn-request').disabled = true;
+});
+
+// ── CANVAS BG ──
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+let W, H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize(); window.addEventListener('resize',resize);
+const pts=Array.from({length:60},()=>({x:Math.random()*5000,y:Math.random()*5000,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2}));
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  pts.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0||p.x>W)p.vx*=-1;
+    if(p.y<0||p.y>H)p.vy*=-1;
+    ctx.beginPath(); ctx.arc(p.x,p.y,1,0,Math.PI*2);
+    ctx.fillStyle='rgba(0,200,255,0.3)'; ctx.fill();
+  });
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+    const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<130){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);
+      ctx.strokeStyle=`rgba(0,200,255,${0.04*(1-d/130)})`;ctx.lineWidth=.5;ctx.stroke();}
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>

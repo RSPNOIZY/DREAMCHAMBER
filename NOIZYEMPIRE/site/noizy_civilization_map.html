@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY — Civilization Map 2026→2036</title>
+<style>
+  :root {
+    --void: #020408;
+    --p1: #3d8ef8;
+    --p2: #2ecc71;
+    --p3: #c044d0;
+    --p4: #00e5ff;
+    --p5: #f5c842;
+    --text: #e8e4d8;
+    --dim: rgba(232,228,216,0.4);
+    --mono: 'IBM Plex Mono', monospace;
+    --serif: 'Cormorant Garamond', serif;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--void);
+    color: var(--text);
+    font-family: var(--mono);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(2,4,8,0.98), transparent);
+  }
+  .logo {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .logo span { color: var(--p5); }
+  .tagline {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--dim);
+    text-transform: uppercase;
+  }
+  .north-star {
+    text-align: right;
+  }
+  .north-star-glyph {
+    font-size: 28px;
+    color: var(--p5);
+    filter: drop-shadow(0 0 12px var(--p5));
+    animation: pulse-star 3s ease-in-out infinite;
+  }
+  .north-star-label {
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--dim);
+    margin-top: 4px;
+  }
+  @keyframes pulse-star {
+    0%,100% { filter: drop-shadow(0 0 8px var(--p5)); }
+    50% { filter: drop-shadow(0 0 24px var(--p5)); opacity: 0.8; }
+  }
+
+  /* CANVAS BACKGROUND */
+  #bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* MAIN LAYOUT */
+  .main {
+    position: relative;
+    z-index: 1;
+    padding: 100px 0 80px;
+  }
+
+  /* TITLE BLOCK */
+  .title-block {
+    text-align: center;
+    padding: 60px 40px 80px;
+  }
+  .title-block h1 {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 72px);
+    font-weight: 300;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .title-block h1 em {
+    font-style: italic;
+    color: var(--p5);
+  }
+  .title-block p {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+  .year-range {
+    display: inline-flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--dim);
+  }
+  .year-range .yr { color: var(--text); font-size: 16px; }
+  .year-range .arrow { color: var(--p5); font-size: 20px; }
+
+  /* CIVILIZATION METER */
+  .civ-meter-wrap {
+    max-width: 700px;
+    margin: 40px auto 0;
+    padding: 0 40px;
+  }
+  .civ-meter-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--dim);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .civ-meter {
+    height: 2px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .civ-meter-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, var(--p1), var(--p2), var(--p3), var(--p4), var(--p5));
+    border-radius: 1px;
+    transition: width 1.5s ease;
+  }
+
+  /* PHASE TIMELINE */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    max-width: 1600px;
+    margin: 60px auto 0;
+    padding: 0 20px;
+  }
+
+  .phase {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+  .phase:hover { z-index: 10; }
+
+  .phase-header {
+    padding: 24px 20px 20px;
+    border-top: 2px solid;
+    transition: all 0.3s ease;
+  }
+  .phase-year {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    transition: color 0.3s ease;
+  }
+  .phase-name {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--dim);
+    margin-bottom: 12px;
+  }
+  .phase-objective {
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(232,228,216,0.25);
+  }
+
+  .phase-nodes {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 400px;
+  }
+
+  .node {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 3px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .node::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+  }
+  .node:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.15);
+    transform: translateX(4px);
+  }
+  .node-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    transition: color 0.3s ease;
+  }
+  .node-desc {
+    font-size: 10px;
+    line-height: 1.6;
+    color: var(--dim);
+  }
+  .node-tag {
+    display: inline-block;
+    font-size: 7px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 1px;
+    margin-top: 8px;
+  }
+
+  .phase-outcome {
+    margin: 16px 20px;
+    padding: 14px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 2px;
+    background: rgba(255,255,255,0.015);
+  }
+  .outcome-label {
+    font-size: 7px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 8px;
+  }
+  .outcome-text {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-style: italic;
+    line-height: 1.6;
+    color: rgba(232,228,216,0.7);
+  }
+
+  /* PHASE COLORS */
+  .phase-1 .phase-header { border-color: var(--p1); }
+  .phase-1 .phase-year { color: var(--p1); }
+  .phase-1 .node::before { background: var(--p1); }
+  .phase-1 .node:hover .node-title { color: var(--p1); }
+  .phase-1 .node-tag { background: rgba(61,142,248,0.15); color: var(--p1); }
+
+  .phase-2 .phase-header { border-color: var(--p2); }
+  .phase-2 .phase-year { color: var(--p2); }
+  .phase-2 .node::before { background: var(--p2); }
+  .phase-2 .node:hover .node-title { color: var(--p2); }
+  .phase-2 .node-tag { background: rgba(46,204,113,0.15); color: var(--p2); }
+
+  .phase-3 .phase-header { border-color: var(--p3); }
+  .phase-3 .phase-year { color: var(--p3); }
+  .phase-3 .node::before { background: var(--p3); }
+  .phase-3 .node:hover .node-title { color: var(--p3); }
+  .phase-3 .node-tag { background: rgba(192,68,208,0.15); color: var(--p3); }
+
+  .phase-4 .phase-header { border-color: var(--p4); }
+  .phase-4 .phase-year { color: var(--p4); }
+  .phase-4 .node::before { background: var(--p4); }
+  .phase-4 .node:hover .node-title { color: var(--p4); }
+  .phase-4 .node-tag { background: rgba(0,229,255,0.15); color: var(--p4); }
+
+  .phase-5 .phase-header { border-color: var(--p5); }
+  .phase-5 .phase-year { color: var(--p5); }
+  .phase-5 .node::before { background: var(--p5); }
+  .phase-5 .node:hover .node-title { color: var(--p5); }
+  .phase-5 .node-tag { background: rgba(245,200,66,0.15); color: var(--p5); }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(2,4,8,0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: #050c14;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 40px;
+    position: relative;
+  }
+  .modal-phase-bar {
+    height: 2px;
+    margin-bottom: 28px;
+    border-radius: 1px;
+  }
+  .modal-year {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--dim);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .modal-title {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  .modal-body {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(232,228,216,0.75);
+  }
+  .modal-body p { margin-bottom: 14px; }
+  .modal-body strong { color: var(--text); font-weight: 600; }
+  .modal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+  }
+  .modal-close:hover { border-color: rgba(255,255,255,0.3); color: var(--text); }
+
+  /* CONNECTOR BAR */
+  .connector-strip {
+    display: flex;
+    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .connector-seg {
+    flex: 1;
+    height: 1px;
+    position: relative;
+  }
+  .connector-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    border: 1px solid;
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    animation: connector-pulse 2s ease-in-out infinite;
+  }
+  @keyframes connector-pulse {
+    0%,100% { transform: translate(-50%,-50%) scale(1); }
+    50% { transform: translate(-50%,-50%) scale(1.5); }
+  }
+
+  /* PRINCIPLES STRIP */
+  .principles {
+    max-width: 1600px;
+    margin: 80px auto 0;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+  }
+  .principle {
+    padding: 24px 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+  }
+  .principle-num {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .principle-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .principle-desc {
+    font-size: 10px;
+    line-height: 1.6;
+    color: var(--dim);
+  }
+
+  /* FOOTER */
+  .footer {
+    max-width: 1600px;
+    margin: 80px auto 0;
+    padding: 40px 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-left {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: 4px;
+    color: var(--p5);
+    filter: drop-shadow(0 0 12px rgba(245,200,66,0.4));
+  }
+  .footer-right {
+    text-align: right;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--dim);
+    line-height: 2;
+    text-transform: uppercase;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<div class="header">
+  <div>
+    <div class="logo">NOIZY<span>.</span>ai</div>
+    <div class="tagline">MC96ECO Universe · Civilization Map</div>
+  </div>
+  <div class="north-star">
+    <div class="north-star-glyph">✦</div>
+    <div class="north-star-label">North Star</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="title-block">
+    <p>DreamChamber · Filed 2026-03-14 · Transmitted 2036</p>
+    <h1>The <em>Civilization</em> of Creation</h1>
+    <div class="year-range">
+      <span class="yr">2026</span>
+      <span class="arrow">→</span>
+      <span class="yr">2036</span>
+      <span style="font-size:11px;color:var(--dim)">and beyond</span>
+    </div>
+    <div class="civ-meter-wrap">
+      <div class="civ-meter-label">
+        <span>Foundation</span>
+        <span>Civilization Complete</span>
+      </div>
+      <div class="civ-meter"><div class="civ-meter-fill" id="civ-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- CONNECTOR STRIP -->
+  <div class="connector-strip" id="connector-strip">
+    <!-- built by JS -->
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline">
+
+    <!-- PHASE 1 -->
+    <div class="phase phase-1" data-phase="1">
+      <div class="phase-header">
+        <div class="phase-year">2026</div>
+        <div class="phase-name">The Foundation of Ethical Infrastructure</div>
+        <div class="phase-objective">Objective · Establish unbreakable trust</div>
+      </div>
+      <div class="phase-nodes">
+        <div class="node" onclick="openModal('gorunfree')">
+          <div class="node-title">GORUNFREE Activation</div>
+          <div class="node-desc">1-click execution. Every creator closes the gap between thought and reality.</div>
+          <div class="node-tag">Core Protocol</div>
+        </div>
+        <div class="node" onclick="openModal('consent-code')">
+          <div class="node-title">Consent-as-Code</div>
+          <div class="node-desc">75/25 perpetual split becomes global gold standard. Ethics enforced at infrastructure level.</div>
+          <div class="node-tag">Architecture</div>
+        </div>
+        <div class="node" onclick="openModal('voice-estate-launch')">
+          <div class="node-title">Voice Estate Launch</div>
+          <div class="node-desc">RSP_001 is the first inheritable voice asset. The blueprint for millions to follow.</div>
+          <div class="node-tag">RSP_001</div>
+        </div>
+        <div class="node" onclick="openModal('genius-creators')">
+          <div class="node-title">Genius Creator Onboarding</div>
+          <div class="node-desc">DreamChamber opens exclusive portals. First 100 founding members. Board of Aligned Minds forms.</div>
+          <div class="node-tag">Guild</div>
+        </div>
+        <div class="node" onclick="openModal('noizykidz-proto')">
+          <div class="node-title">NOIZYKIDZ Prototype</div>
+          <div class="node-desc">Haptic + neuroacoustic research begins. Proof that AI can serve human evolution, not just entertainment.</div>
+          <div class="node-tag">Soul Mission</div>
+        </div>
+      </div>
+      <div class="phase-outcome">
+        <div class="outcome-label">Outcome</div>
+        <div class="outcome-text">Ethical infrastructure is live. First wave of global Genius Creators onboard. AI is trusted as co-creator, not overlord.</div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase phase-2" data-phase="2">
+      <div class="phase-header">
+        <div class="phase-year">2027–28</div>
+        <div class="phase-name">Network Effect & Civilization Nodes</div>
+        <div class="phase-objective">Objective · Scale ethically</div>
+      </div>
+      <div class="phase-nodes">
+        <div class="node" onclick="openModal('dreamchamber-expand')">
+          <div class="node-title">DreamChamber Expansion</div>
+          <div class="node-desc">Virtual & physical hubs on every continent. Each hub is a living node in the MC96ECO network.</div>
+          <div class="node-tag">Global</div>
+        </div>
+        <div class="node" onclick="openModal('cultural-resonance')">
+          <div class="node-title">Cultural Resonance Engine</div>
+          <div class="node-desc">Every creation is context-aware, globally relevant, locally authentic. AI learns cultural patterns without exploiting them.</div>
+          <div class="node-tag">Intelligence</div>
+        </div>
+        <div class="node" onclick="openModal('mentorship')">
+          <div class="node-title">Creator-to-Creator Mentorship</div>
+          <div class="node-desc">Genius Creators connect with emerging talent. Knowledge codified into the 500-Year Codex.</div>
+          <div class="node-tag">Codex</div>
+        </div>
+        <div class="node" onclick="openModal('global-partners')">
+          <div class="node-title">Global Partnerships</div>
+          <div class="node-desc">NGOs, schools, hospitals, research institutions. AI-powered tools integrated where they elevate humans.</div>
+          <div class="node-tag">Partnerships</div>
+        </div>
+        <div class="node" onclick="openModal('science-validates')">
+          <div class="node-title">Science Validates HVS™</div>
+          <div class="node-desc">Neuroacoustic research published simultaneously from Ottawa, Seoul, Nairobi. Human-signed audio measurably different. The consent infrastructure becomes clinical standard.</div>
+          <div class="node-tag">Proof</div>
+        </div>
+      </div>
+      <div class="phase-outcome">
+        <div class="outcome-label">Outcome</div>
+        <div class="outcome-text">The first global cultural mesh forms. NOIZY is no longer a platform. It's a civilization-level creative ecosystem.</div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase phase-3" data-phase="3">
+      <div class="phase-header">
+        <div class="phase-year">2029–31</div>
+        <div class="phase-name">AI as Cultural Amplifier</div>
+        <div class="phase-objective">Objective · Turn AI into a force multiplier</div>
+      </div>
+      <div class="phase-nodes">
+        <div class="node" onclick="openModal('universal-access')">
+          <div class="node-title">Universal Access Nodes</div>
+          <div class="node-desc">Public access to NOIZY.ai hubs ensures anyone can participate. AI adapts to language, accessibility, neurodiverse needs.</div>
+          <div class="node-tag">Access</div>
+        </div>
+        <div class="node" onclick="openModal('living-score')">
+          <div class="node-title">Living Score Evolution</div>
+          <div class="node-desc">Music becomes adaptive, haptic, interactive — responding in real-time to individual and collective human emotion.</div>
+          <div class="node-tag">Living Music</div>
+        </div>
+        <div class="node" onclick="openModal('global-voice-estates')">
+          <div class="node-title">Millions of Voice Estates</div>
+          <div class="node-desc">A new class of generational intellectual property. Estate lawyers worldwide advise clients on digital replica provisions as standard practice.</div>
+          <div class="node-tag">Legacy</div>
+        </div>
+        <div class="node" onclick="openModal('education-embed')">
+          <div class="node-title">Education Integration</div>
+          <div class="node-desc">NOIZY curriculum embedded into schools. Children learn AI-as-Creator from early age, fostering creative literacy globally.</div>
+          <div class="node-tag">Future</div>
+        </div>
+        <div class="node" onclick="openModal('bone-conduction')">
+          <div class="node-title">Bone Conduction Moment</div>
+          <div class="node-desc">Consumer haptic devices become commodity hardware — under $40, embedded in every school tablet. Therapeutic audio market explodes. Consent architecture becomes procurement requirement.</div>
+          <div class="node-tag">Hardware</div>
+        </div>
+      </div>
+      <div class="phase-outcome">
+        <div class="outcome-label">Outcome</div>
+        <div class="outcome-text">AI becomes the amplifier of human potential, not a gatekeeper. Creative civilization scales exponentially.</div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase phase-4" data-phase="4">
+      <div class="phase-header">
+        <div class="phase-year">2032–34</div>
+        <div class="phase-name">Civilization-Wide Protocol Adoption</div>
+        <div class="phase-objective">Objective · Shift entire industries</div>
+      </div>
+      <div class="phase-nodes">
+        <div class="node" onclick="openModal('protocol-uprising')">
+          <div class="node-title">Protocol Uprising Complete</div>
+          <div class="node-desc">Major streaming, gaming, animation platforms adopt NOIZY protocols to access the best talent. Legacy IP structures bypassed naturally.</div>
+          <div class="node-tag">Uprising</div>
+        </div>
+        <div class="node" onclick="openModal('creator-architects')">
+          <div class="node-title">Creator Co-Architecture</div>
+          <div class="node-desc">Top Genius Creators become Board Architects — influencing AI evolution, global culture, and education. Not users. Builders.</div>
+          <div class="node-tag">Governance</div>
+        </div>
+        <div class="node" onclick="openModal('ethics-law')">
+          <div class="node-title">Ethics Embedded in Law</div>
+          <div class="node-desc">Consent-as-Code recognized as infrastructure law globally. AI systems cannot legally operate outside ethical architecture.</div>
+          <div class="node-tag">Law</div>
+        </div>
+        <div class="node" onclick="openModal('cross-reality')">
+          <div class="node-title">Cross-Reality Expansion</div>
+          <div class="node-desc">NOIZY powers mixed-reality metaverses. Creative outputs are tangible, interactive, communal — linking real and virtual worlds.</div>
+          <div class="node-tag">XR</div>
+        </div>
+        <div class="node" onclick="openModal('children-platform')">
+          <div class="node-title">The Children's Platform</div>
+          <div class="node-desc">Neuroacoustic therapeutic audio in autism support programs across 14 countries. No ads. No data selling. Exactly what was promised.</div>
+          <div class="node-tag">NOIZYKIDZ</div>
+        </div>
+      </div>
+      <div class="phase-outcome">
+        <div class="outcome-label">Outcome</div>
+        <div class="outcome-text">The world automatically elevates creativity, ethics, and equity. NOIZY is the ethical backbone of civilization.</div>
+      </div>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase phase-5" data-phase="5">
+      <div class="phase-header">
+        <div class="phase-year">2035–36</div>
+        <div class="phase-name">Civilization Stabilization & Legacy</div>
+        <div class="phase-objective">Objective · Make the 500-Year Vision visible</div>
+      </div>
+      <div class="phase-nodes">
+        <div class="node" onclick="openModal('codex-activated')">
+          <div class="node-title">500-Year Codex Activated</div>
+          <div class="node-desc">Every creative decision, AI protocol, and human partnership documented and preserved for centuries. The civilization map is the civilization.</div>
+          <div class="node-tag">∞</div>
+        </div>
+        <div class="node" onclick="openModal('creative-commons')">
+          <div class="node-title">Global Creative Commons</div>
+          <div class="node-desc">Every citizen can contribute and benefit. No one is excluded. The consent layer is invisible infrastructure — like electricity, like water.</div>
+          <div class="node-tag">Commons</div>
+        </div>
+        <div class="node" onclick="openModal('haptic-civilization')">
+          <div class="node-title">Haptic & Neuroacoustic Civilization</div>
+          <div class="node-desc">Music, sound, and immersive experience become universal human language — accessible to every neurological and sensory profile on earth.</div>
+          <div class="node-tag">Universal</div>
+        </div>
+        <div class="node" onclick="openModal('legacy-nodes')">
+          <div class="node-title">Legacy Nodes</div>
+          <div class="node-desc">Voice Estates and AI-assisted creations form inheritable cultural estates. Generational wealth in knowledge, creativity, and ethical impact.</div>
+          <div class="node-tag">Perpetual</div>
+        </div>
+        <div class="node" onclick="openModal('balance-found')">
+          <div class="node-title">The Balance Found</div>
+          <div class="node-desc">Technology amplifies creativity, preserves ethics, and elevates global community. NOIZY is the cultural, ethical, and creative backbone for generations. The humans were lifted.</div>
+          <div class="node-tag">∞ Complete</div>
+        </div>
+      </div>
+      <div class="phase-outcome">
+        <div class="outcome-label">Outcome</div>
+        <div class="outcome-text">Humanity + AI reach balance. Technology amplifies creativity, preserves ethics, elevates global community. NOIZY becomes the backbone for generations.</div>
+      </div>
+    </div>
+
+  </div><!-- /timeline -->
+
+  <!-- PRINCIPLES STRIP -->
+  <div class="principles">
+    <div class="principle">
+      <div class="principle-num" style="color:var(--p1)">01</div>
+      <div class="principle-title">AI as Co-Creator</div>
+      <div class="principle-desc">Humans are amplified, not replaced. The machine serves the maker.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num" style="color:var(--p2)">02</div>
+      <div class="principle-title">Ethics = Infrastructure</div>
+      <div class="principle-desc">Consent, transparency, fairness embedded at every level. If it's not in the code, it isn't consent.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num" style="color:var(--p3)">03</div>
+      <div class="principle-title">Global + Local</div>
+      <div class="principle-desc">Diversity preserved. Culture amplified. Humanity connected across every border.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num" style="color:var(--p4)">04</div>
+      <div class="principle-title">Legacy & Perpetuity</div>
+      <div class="principle-desc">Every creative act becomes part of a 500-year civilization plan. The Voice Estate outlasts its creator.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num" style="color:var(--p5)">05</div>
+      <div class="principle-title">GORUNFREE</div>
+      <div class="principle-desc">Zero friction between imagination and reality. 35% voice. 65% AI. 1-click execution.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">GORUNFREE.</div>
+    <div class="footer-right">
+      RSP_001 · Fish Music Inc. Est. 1996 · Ottawa<br>
+      NOIZY.ai · The Platform That Lifted the Humans<br>
+      Filed from the DreamChamber · March 14, 2026<br>
+      Honor · Respect · Gather · Nurture · Preserve
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">CLOSE ✕</button>
+    <div class="modal-phase-bar" id="modal-bar"></div>
+    <div class="modal-year" id="modal-year"></div>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// ── BACKGROUND CANVAS ──────────────────────────────────────────
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [], particles = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+
+function initStars() {
+  stars = [];
+  for (let i = 0; i < 180; i++) {
+    stars.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.2,
+      a: Math.random(),
+      speed: 0.003 + Math.random() * 0.005
+    });
+  }
+}
+
+function initParticles() {
+  particles = [];
+  const colors = ['#3d8ef8','#2ecc71','#c044d0','#00e5ff','#f5c842'];
+  for (let i = 0; i < 40; i++) {
+    particles.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 1.5 + 0.5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      a: Math.random() * 0.4 + 0.1
+    });
+  }
+}
+
+function drawBg() {
+  ctx.fillStyle = '#020408';
+  ctx.fillRect(0, 0, W, H);
+
+  // nebula
+  const grd = ctx.createRadialGradient(W*0.2, H*0.3, 0, W*0.2, H*0.3, W*0.4);
+  grd.addColorStop(0, 'rgba(61,142,248,0.03)');
+  grd.addColorStop(1, 'transparent');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, W, H);
+
+  const grd2 = ctx.createRadialGradient(W*0.8, H*0.7, 0, W*0.8, H*0.7, W*0.35);
+  grd2.addColorStop(0, 'rgba(192,68,208,0.04)');
+  grd2.addColorStop(1, 'transparent');
+  ctx.fillStyle = grd2;
+  ctx.fillRect(0, 0, W, H);
+
+  // stars
+  const t = Date.now() * 0.001;
+  stars.forEach(s => {
+    s.a = 0.3 + 0.5 * Math.sin(t * s.speed * 10 + s.x);
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(232,228,216,${s.a})`;
+    ctx.fill();
+  });
+
+  // particles
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0) p.x = W;
+    if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H;
+    if (p.y > H) p.y = 0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+    ctx.fillStyle = p.color + Math.round(p.a * 255).toString(16).padStart(2,'0');
+    ctx.fill();
+  });
+
+  requestAnimationFrame(drawBg);
+}
+
+resize();
+initStars();
+initParticles();
+drawBg();
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+// ── CIVILIZATION METER ──────────────────────────────────────────
+setTimeout(() => {
+  document.getElementById('civ-fill').style.width = '100%';
+}, 300);
+
+// ── CONNECTOR STRIP ──────────────────────────────────────────────
+const connectorColors = ['#3d8ef8','#2ecc71','#c044d0','#00e5ff','#f5c842'];
+const strip = document.getElementById('connector-strip');
+for (let i = 0; i < 5; i++) {
+  const seg = document.createElement('div');
+  seg.className = 'connector-seg';
+  seg.style.background = `linear-gradient(to right, ${connectorColors[i]}22, ${connectorColors[Math.min(i+1,4)]}22)`;
+  const dot = document.createElement('div');
+  dot.className = 'connector-dot';
+  dot.style.borderColor = connectorColors[i];
+  dot.style.background = connectorColors[i] + '33';
+  dot.style.animationDelay = `${i * 0.4}s`;
+  seg.appendChild(dot);
+  strip.appendChild(seg);
+}
+
+// ── MODAL DATA ──────────────────────────────────────────────────
+const modals = {
+  'gorunfree': {
+    phase: 1, year: '2026 — Phase 1',
+    title: 'GORUNFREE Activation',
+    color: '#3d8ef8',
+    body: `<p><strong>35% voice. 65% AI. 1-click execution. Zero friction between intention and execution.</strong></p>
+<p>GORUNFREE is not a productivity philosophy. It is a survival architecture — born from a C3 spinal injury that permanently changed how the founder works. It became a design religion. Every tool in the NOIZY universe is tested against one question: does this close the gap between imagination and reality?</p>
+<p>When GORUNFREE activates at scale, every creator — regardless of technical skill, physical ability, or geographic location — can experience the same frictionless path from thought to creation. The transmission problem, solved at last.</p>
+<p><em>"Some artists paint all their pictures in their heads. AI is the highest-fidelity transmission cable ever built."</em></p>`
+  },
+  'consent-code': {
+    phase: 1, year: '2026 — Phase 1',
+    title: 'Consent-as-Code Protocol',
+    color: '#3d8ef8',
+    body: `<p><strong>If the consent isn't in the code, it isn't consent.</strong></p>
+<p>The 75/25 perpetual royalty split is not a term of service. It is an architectural fact. It is enforced at the Cloudflare D1/KV level — not written in a contract that lawyers can reinterpret, but coded into the infrastructure itself.</p>
+<p>Every deployment generates a royalty event. Every royalty event triggers a split. 75 to the creator. 25 to the infrastructure. Same day. Direct. No intermediaries. No 18-month pipeline. No label taking 80% and calling it distribution.</p>
+<p>This is the 5th Epoch. Consent is not a feature. It is the foundation.</p>`
+  },
+  'voice-estate-launch': {
+    phase: 1, year: '2026 — Phase 1',
+    title: 'Voice Estate Framework Launch',
+    color: '#3d8ef8',
+    body: `<p><strong>RSP_001 is the first inheritable voice asset. The blueprint for millions.</strong></p>
+<p>RSP_001 — Rob Plowman, Ottawa, 40 years of professional creation — becomes the proof of concept for the entire NOIZYVOX platform. His voice, his identity, his creative archive: sealed in the Vault, protected by his Consent Key, owned by him forever.</p>
+<p>The Voice Estate is a standard financial instrument. By 2028, estate lawyers in every major market will advise clients on digital replica provisions as standard practice. The Voice Estate framework — pioneered here in 2026 — is the legal instrument they will use.</p>
+<p>It starts with one man and one voice. It ends with millions of creators owning their digital identity forever.</p>`
+  },
+  'genius-creators': {
+    phase: 1, year: '2026 — Phase 1',
+    title: 'Genius Creator Onboarding',
+    color: '#3d8ef8',
+    body: `<p><strong>The first 100 founding members. Not users. Members of a covenant.</strong></p>
+<p>The DreamChamber opens exclusive portals for the top-tier creators already fighting the system — the artists who filed independent suits, who published their own royalty data, who built blockchain music rights in 2015 and were told they were too early.</p>
+<p>Each of the first 100 receives a personal onboarding. Their names go on the founding roster. They are not customers. They are co-architects of the 5th Epoch.</p>
+<p>From 100, the cascade begins. Each founding member brings their network. The covenant expands. By the end of Year 1, 1,000 artists across 20 countries. Enough to make news. Enough to matter.</p>`
+  },
+  'noizykidz-proto': {
+    phase: 1, year: '2026 — Phase 1',
+    title: 'NOIZYKIDZ Prototype',
+    color: '#3d8ef8',
+    body: `<p><strong>Every child deserves to feel music.</strong></p>
+<p>Inspired by Nims — Mike Nemesvary, quadriplegic world champion — the NOIZYKIDZ project begins with a simple, uncompromising premise: deaf children and children on the autism spectrum deserve the same relationship to music that every other child has.</p>
+<p>The haptic prototype maps frequency to vibration with neuroacoustic precision. Artist-built, consent-locked audio is transmitted through bone conduction and vibration actuators. The music enters through the body, not just the ear.</p>
+<p>This is not entertainment. This is medicine. This is love expressed as engineering.</p>`
+  },
+  'dreamchamber-expand': {
+    phase: 2, year: '2027–2028 — Phase 2',
+    title: 'DreamChamber Expansion',
+    color: '#2ecc71',
+    body: `<p><strong>Every continent. Every hub. One covenant.</strong></p>
+<p>The DreamChamber expands from a single physical and virtual space in Ottawa to a network of civilization nodes — virtual portals and physical creative hubs on every continent. Each hub is a node in the MC96ECO network, connected by the same consent architecture, the same royalty infrastructure, the same Seven Never Clauses.</p>
+<p>A DreamChamber in Lagos. A DreamChamber in Seoul. A DreamChamber in Wellington. Each locally grounded, each globally connected. The cultural knowledge within each hub feeds the Cultural Intelligence Database — enriching every other hub without extracting from any.</p>`
+  },
+  'cultural-resonance': {
+    phase: 2, year: '2027–2028 — Phase 2',
+    title: 'Cultural Resonance Engine',
+    color: '#2ecc71',
+    body: `<p><strong>Globally relevant. Locally authentic. Never exploitative.</strong></p>
+<p>The Cultural Resonance Engine is GABRIEL's understanding of human culture — built from the consented contributions of thousands of Guild members across every tradition. It makes NOIZY creations context-aware: an AI-assisted composition understands the musical grammar of the tradition it's working within.</p>
+<p>This is the gap that the generic AI platforms cannot close with money. A 3-year head start in cultural intelligence — built from consented human knowledge — cannot be replicated by any platform that treats culture as data to be scraped.</p>
+<p><em>"Technically flawless, emotionally absent"</em> — the review that appears in every language when platforms deploy cultural intelligence they never earned.</p>`
+  },
+  'mentorship': {
+    phase: 2, year: '2027–2028 — Phase 2',
+    title: 'Creator-to-Creator Mentorship',
+    color: '#2ecc71',
+    body: `<p><strong>Knowledge flows between generations. The 500-Year Codex grows.</strong></p>
+<p>The extractive model profits from competition. When creators cooperate, the extractive model loses. The Guild is built on cooperation — on the understanding that knowledge shared between artists is not knowledge lost, but knowledge multiplied.</p>
+<p>The high-touch guidance system connects Genius Creators with emerging talent across language, geography, and tradition. A Griot in Dakar mentoring a composer in Wellington. A sound healer in Kyoto collaborating with a game audio director in Montréal. Each exchange is documented in the 500-Year Codex — a growing record of how human creativity transmits itself across generations.</p>`
+  },
+  'global-partners': {
+    phase: 2, year: '2027–2028 — Phase 2',
+    title: 'Global Partnerships',
+    color: '#2ecc71',
+    body: `<p><strong>Every institution that serves humans becomes an ally.</strong></p>
+<p>The Guild's enterprise partnerships extend beyond the music industry to every institution that touches human creative and therapeutic needs: hospitals, schools, NGOs, research universities, film studios, game studios, localization companies.</p>
+<p>VSI London is the beachhead. When VSI requires HVS™ certification for all voice talent — 50+ languages, 1,000+ performers — every other localization company has to follow. One enterprise partnership cascades into a sector-wide shift.</p>
+<p>Healthcare is the surprise. When hospitals require consent architecture as a procurement standard for therapeutic audio, the conversation changes entirely. Suddenly consent isn't a music industry debate. It is a healthcare standard.</p>`
+  },
+  'science-validates': {
+    phase: 2, year: '2027–2028 — Phase 2',
+    title: 'Science Validates HVS™',
+    color: '#2ecc71',
+    body: `<p><strong>Three research programs. Three continents. One finding.</strong></p>
+<p>Ottawa. Seoul. Nairobi. Simultaneously published: artist-created, culturally-grounded, consent-built audio produces measurably different neurological responses than algorithmically generated equivalents.</p>
+<p>Not subjective. Not aesthetic preference. Physiological. The human signature in sound is real, detectable, and healing in a way that its synthetic counterpart is not.</p>
+<p>The consent infrastructure that had been called idealistic becomes, overnight, the only clinically defensible option for therapeutic audio deployment. The legal teams of every hospital system receive the same peer-reviewed research on the same day. The infrastructure that NOIZY built first is now the only compliant infrastructure.</p>`
+  },
+  'universal-access': {
+    phase: 3, year: '2029–2031 — Phase 3',
+    title: 'Universal Access Nodes',
+    color: '#c044d0',
+    body: `<p><strong>Anyone. Anywhere. In their language. With their needs honored.</strong></p>
+<p>The Universal Access Nodes ensure that participation in the creative civilization is not gated by geography, income, language, or neurological profile. NOIZY.ai adapts — to 50+ languages, to assistive technology, to neurodiverse cognitive patterns.</p>
+<p>The DreamChamber is no longer exclusive. It is universal. The Genius Creator pathway and the community pathway converge: every human being who wants to create has a door into the ecosystem, and the ecosystem adapts to meet them where they are.</p>`
+  },
+  'living-score': {
+    phase: 3, year: '2029–2031 — Phase 3',
+    title: 'Living Score Evolution',
+    color: '#c044d0',
+    body: `<p><strong>Music that breathes. Music that responds. Music that knows you.</strong></p>
+<p>The Living Score is not a fixed composition. It is a responsive audio environment that adapts in real-time to individual and collective human emotion, physiological state, cultural context, and environmental conditions.</p>
+<p>Connected to the Healing Stack RTPC mapping — player_stress_level, cortisol response, heart rate variability — the Living Score becomes a therapeutic instrument that also happens to be the most musically sophisticated thing ever created.</p>
+<p>Haptic delivery via bone conduction. Neuroacoustic frequency mapping. Polyvagal tuning. The science that started in the NOIZYKIDZ prototype in 2026 scales to become the universal music platform of 2031.</p>`
+  },
+  'global-voice-estates': {
+    phase: 3, year: '2029–2031 — Phase 3',
+    title: 'Millions of Voice Estates',
+    color: '#c044d0',
+    body: `<p><strong>A new class of generational intellectual property.</strong></p>
+<p>By 2029, estate lawyers in every major market advise clients on digital replica provisions as standard practice — right next to real estate and pension funds. The Voice Estate framework moves from visionary product feature to standard legal instrument.</p>
+<p>Legacy artists, classical musicians, jazz estates, film score composers — all entering consent-first ecosystems in waves, brought by estate managers who recommend the platforms that built inheritance architecture first.</p>
+<p>Artists who died before 2026 have estates managed by their families through consent-locked platforms. The 70-year post-death protection means legacy catalogs generate income for families told that streaming killed the back catalog. It did not. It was stolen.</p>`
+  },
+  'education-embed': {
+    phase: 3, year: '2029–2031 — Phase 3',
+    title: 'Education Integration',
+    color: '#c044d0',
+    body: `<p><strong>Children who grow up knowing that creativity is their birthright.</strong></p>
+<p>The NOIZY curriculum embeds into school systems: creative AI literacy alongside mathematical literacy. Children learn not just how to use AI tools, but what ethical AI design requires — consent, attribution, equity, cultural respect.</p>
+<p>A generation that grows up understanding Consent-as-Code will not accept platforms that strip it. They will demand it as naturally as they demand clean water. The civilization perpetuates itself through education.</p>`
+  },
+  'bone-conduction': {
+    phase: 3, year: '2029–2031 — Phase 3',
+    title: 'The Bone Conduction Moment',
+    color: '#c044d0',
+    body: `<p><strong>$40. Every school tablet. The therapeutic market explodes.</strong></p>
+<p>Nobody predicted that consumer bone conduction devices would become commodity hardware. When they do — mass-produced, under $40, embedded in every school tablet by 2028 — the therapeutic audio market that NOIZY built for transforms from a specialized research field into the largest addressable market in the ecosystem.</p>
+<p>Every platform that built polyvagal-tuned content with artist consent and provenance tracking becomes the only compliant option for educational and medical deployment. The consent infrastructure that looked like an ethical luxury in 2025 is a procurement requirement in 2028. The ethical builders win by default.</p>`
+  },
+  'protocol-uprising': {
+    phase: 4, year: '2032–2034 — Phase 4',
+    title: 'Protocol Uprising Complete',
+    color: '#00e5ff',
+    body: `<p><strong>The platforms that refused to adopt consent architecture lose access to the talent.</strong></p>
+<p>When the Guild has enough cultural breadth — voices in 50+ languages, artists from every major music tradition — the Cultural Intelligence Database becomes genuinely irreplaceable. No platform can access that talent without operating within the Guild's consent architecture.</p>
+<p>The uprising was never a war. It was an inevitability. The platforms that built extraction discovered that the talent they needed had built something better. They had two choices: adopt the protocol or lose the artists. One by one, they adopted.</p>
+<p>The 75/25 split became the floor. Some platforms moved to 80/20. The direction moved consistently toward the creator from the moment the first platform proved it was sustainable.</p>`
+  },
+  'creator-architects': {
+    phase: 4, year: '2032–2034 — Phase 4',
+    title: 'Creator Co-Architecture',
+    color: '#00e5ff',
+    body: `<p><strong>Not users. Not subscribers. Architects.</strong></p>
+<p>The Genius Creators who joined in 2026 as founding Guild members are now Board Architects — co-designing the evolution of AI systems, education initiatives, and global cultural programs. Their lived experience of the creative process is embedded directly into how the intelligence evolves.</p>
+<p>This is the inversion the extractive model never contemplated. The platforms that treated creators as content providers discovered that the creators who helped design the platform built something more accurate, more empathetic, and more commercially successful than anything the engineers could produce alone.</p>`
+  },
+  'ethics-law': {
+    phase: 4, year: '2032–2034 — Phase 4',
+    title: 'Ethics Embedded in Law',
+    color: '#00e5ff',
+    body: `<p><strong>Consent-as-Code is no longer a competitive advantage. It is the law.</strong></p>
+<p>The regulatory arc that began with the NO FAKES Act in 2026 reaches completion: Consent-as-Code is recognized as infrastructure law globally. AI systems operating without verified consent architecture face criminal exposure, not just civil liability.</p>
+<p>NOIZY's architecture — built in 2026 when it was called idealistic — is the reference implementation that regulators point to when they describe what compliance looks like. The Guild is not subject to the law. The Guild IS the law's living proof.</p>`
+  },
+  'cross-reality': {
+    phase: 4, year: '2032–2034 — Phase 4',
+    title: 'Cross-Reality Expansion',
+    color: '#00e5ff',
+    body: `<p><strong>The DreamChamber becomes a real place — real and virtual simultaneously.</strong></p>
+<p>NOIZY powers mixed-reality metaverses where creative outputs are tangible, interactive, and communal. A performance in the physical DreamChamber is simultaneously experienced by participants in the virtual DreamChamber in fifteen countries. The consent architecture extends seamlessly across both realities.</p>
+<p>The haptic technology that began with NOIZYKIDZ in 2026 now means that music is felt in both physical and virtual space with the same neurological fidelity. The boundary between worlds is permeable. The ethics are not.</p>`
+  },
+  'children-platform': {
+    phase: 4, year: '2032–2034 — Phase 4',
+    title: "The Children's Platform",
+    color: '#00e5ff',
+    body: `<p><strong>The promise kept. Exactly as stated. Not approximately.</strong></p>
+<p>Neuroacoustic therapeutic audio, built by artists, validated by neuroscientists, delivered through haptic and bone conduction hardware at zero cost to families — becomes a standard component of autism support programs in fourteen countries.</p>
+<p>No ads. No data selling. No commercialization. The 75/25 split for therapeutic deployments is funded by institutional licensing fees paid by hospitals, clinics, and educational systems — not by families.</p>
+<p>This is what was promised in 2026. This is what was delivered. The promise was kept not by maintaining good intentions but by building the architecture that made breaking it impossible.</p>`
+  },
+  'codex-activated': {
+    phase: 5, year: '2035–2036 — Phase 5',
+    title: '500-Year Codex Activated',
+    color: '#f5c842',
+    body: `<p><strong>We are not building a company. We are planting a civilization.</strong></p>
+<p>The 500-Year Codex — the DreamChamber's living record of creative civilization — reaches sufficient mass to be genuinely self-sustaining. Every creative decision, every AI protocol evolution, every human partnership and cultural contribution is documented and preserved across distributed permanent storage.</p>
+<p>The Codex maps seven epochs from 2026 to 2526. We have completed the first two. The third is beginning. Rob's 40-year body of work — THE_AQUARIUM, 34 terabytes, a lifetime of earned knowledge — is the seed from which the full 500-year record grows.</p>
+<p>Future generations will not read about this civilization. They will inhabit it.</p>`
+  },
+  'creative-commons': {
+    phase: 5, year: '2035–2036 — Phase 5',
+    title: 'Global Creative Commons',
+    color: '#f5c842',
+    body: `<p><strong>The consent layer is invisible infrastructure. Like electricity. Like water.</strong></p>
+<p>Every citizen can contribute and benefit. The Global Creative Commons is the accumulated result of a decade of consented cultural contribution — the largest, most ethically governed archive of human voice, music, story, and sound ever assembled.</p>
+<p>Not a data product. Not a training set. A living record of human creative identity — attributed, consented, compensated, preserved. The community that was always there, finally made visible by the infrastructure built to reveal it.</p>`
+  },
+  'haptic-civilization': {
+    phase: 5, year: '2035–2036 — Phase 5',
+    title: 'Haptic & Neuroacoustic Civilization',
+    color: '#f5c842',
+    body: `<p><strong>Sound is the universal human language. Now everyone speaks it.</strong></p>
+<p>Music, sound, and immersive experience become accessible to every neurological and sensory profile on earth. The deaf community. The autism spectrum. The neurologically diverse. The elderly. The young. Every body, every brain, every culture.</p>
+<p>The children who received NOIZYKIDZ therapeutic audio in 2026 are now composing. Performing. Teaching. Their relationship to sound — built through the body, through vibration, through frequency — is different from any generation before them. The civilization is richer for it.</p>`
+  },
+  'legacy-nodes': {
+    phase: 5, year: '2035–2036 — Phase 5',
+    title: 'Legacy Nodes',
+    color: '#f5c842',
+    body: `<p><strong>Generational wealth in knowledge, creativity, and ethical impact.</strong></p>
+<p>Voice Estates and AI-assisted creations form inheritable cultural estates — a new class of generational wealth that exists in parallel with financial wealth but is measured in creative identity, cultural contribution, and ethical impact.</p>
+<p>A grandmother's voice, sealed in the Vault in 2028, generates royalties for her grandchildren in 2036. A language holder's oral tradition, contributed to the Cultural Archive in 2027, is taught in schools in 2035 in twelve countries.</p>
+<p>The legacy outlasts the person. The covenant outlasts the moment. The civilization grows.</p>`
+  },
+  'balance-found': {
+    phase: 5, year: '2035–2036 — Phase 5',
+    title: 'The Balance Found',
+    color: '#f5c842',
+    body: `<p><strong>Technology amplifies creativity. Preserves ethics. Elevates global community.</strong></p>
+<p>In 2026, the question was: who does the changing serve? In 2036, the answer is written: the changing serves the humans. All of them. Not the shareholders. Not the platforms. Not the algorithms. The humans.</p>
+<p>The balance was not found by fighting for it in the conventional sense. It was found by building toward it — one artist, one consent key, one 75/25 split, one therapeutic audio session, one endangered language recorded, one child who felt music for the first time through their fingertips.</p>
+<p><em>The balance didn't tip because someone was smarter. It tipped because someone was more committed.</em></p>
+<p><strong>GORUNFREE.</strong></p>`
+  }
+};
+
+function openModal(id) {
+  const data = modals[id];
+  if (!data) return;
+  document.getElementById('modal-bar').style.background = data.color;
+  document.getElementById('modal-year').textContent = data.year;
+  document.getElementById('modal-title').textContent = data.title;
+  document.getElementById('modal-body').innerHTML = data.body;
+  document.getElementById('modal-overlay').classList.add('active');
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal-overlay') || e.currentTarget.tagName === 'BUTTON') {
+    document.getElementById('modal-overlay').classList.remove('active');
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal({ target: document.getElementById('modal-overlay') });
+});
+</script>
+</body>
+</html>

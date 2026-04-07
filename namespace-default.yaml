@@ -1,0 +1,14 @@
+NOIZYWORLD: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2026-02-11T17:29:45Z"
+  labels:
+    kubernetes.io/metadata.name: default
+  name: default
+  resourceVersion: "29"
+  uid: 234539a8-cf43-4f18-8a5c-626236b69f73
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active

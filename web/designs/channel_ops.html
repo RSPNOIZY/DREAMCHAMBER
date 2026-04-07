@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>channel_ops</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="channel_ops" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer216" class="Basic-Text-Frame">
+			<p id="_idParaDest-201" class="heading-1"><a id="_idTextAnchor204"></a>Channel Operations</p>
+			<p class="Normal">Channel Operations contains tools for quickly adjusting the amplitude, time, and phase qualities of any channel in a file.</p>
+			<p class="Normal">Many restoration tasks require a simple rebalancing of levels. Channel Operations corrects a number of issues with the stereo relationship of two channels, including variable level problems, phase imbalance, timing, and stereo noise in an otherwise mono signal.</p>
+			<p id="_idParaDest-202" class="heading-2"><a id="_idTextAnchor205"></a>Mixing</p>
+			<p class="Inline-Art"><img src="image/image_3BDDF4HBY5QD5FL5PKXQXCGKTAXBL6ZI" alt="" /></p>
+			<p class="Normal">Provides specific control over both left and right signal and balance levels. This simple operation can be used to downmix stereo material into mono, invert waveforms, transcode left/right stereo into mid/side, subtract a center channel, and much more.</p>
+			<p class="heading-3">Left Output Mix (%)</p>
+			<p class="Normal">Allows you to define how much of the current selection’s left and right channel signal will be present in the new target left channel.</p>
+			<p class="heading-3">Right Output Mix (%)</p>
+			<p class="Normal">Allows you to define how much of the current selection’s left and right signal will be present in the new target right channel.</p>
+			<p id="_idParaDest-203" class="heading-2"><a id="_idTextAnchor206"></a>Phase</p>
+			<p class="Inline-Art"><img src="image/image_HTODGEO5XY2MHD343ZHQFG3SUB6GEDOG" alt="" /></p>
+			<p class="Normal">Balances asymmetric waveforms by rotating signal phase. Rotating the phase of a signal changes its peak values but doesn’t change its loudness, and otherwise has no audible effect on the signal. </p>
+			<p class="Normal">Asymmetric waveforms can occasionally occur in audio such as dialogue, voice, and brass instruments. Making the waveform more symmetrical gives the signal more headroom.</p>
+			<p class="Normal">By rotating the phase of a waveform, you change its amplitude characteristics. Phase rotation does not result in a time shift.</p>
+			<p class="Normal">Because the range of rotation is from −180 to +180 degrees, the Phase tool can be used for simpler purposes, such as inverting signal polarity.</p>
+			<p class="Inline-Art"><img src="image/image_Z5IXXNFHOFWIYAR4FWDQNLF7MM4JKYGX" alt="" /></p>
+			<p class="Normal"><span class="Body-Text-Italic">The waveform on top is a trumpet signal with higher peak values on one side of its waveform.</span></p>
+			<p class="Normal"><span class="Body-Text-Italic">The lower waveform has been rotated in phase by −72 degrees to distribute its peak samples more evenly.</span></p>
+			<p class="heading-3">Adaptive Phase Rotation</p>
+			<p class="Normal">Continuously analyzes the audio selection and applies the time-variable phase rotation to both left and right channels, resulting in a symmetrical waveform with minimal signal peak levels.</p>
+			<p class="Normal">Adaptive phase rotation is best used on vocal material, as it can occasionally yield pitch artifacts on musical material.</p>
+			<p class="heading-3">Rotation (deg)</p>
+			<p class="Normal">Rotates the channel’s phase by the specified degree.</p>
+			<p class="Normal">When a waveform’s phase is rotated, every frequency is rotated equally. Rotating phase by 180 degrees inverts the waveform.</p>
+			<p class="heading-3">Suggest</p>
+			<p class="Normal">Analyzes the selection for the ideal channel-linked fixed phase for reducing overall peak levels of the signal.</p>
+			<p id="_idParaDest-204" class="heading-2"><a id="_idTextAnchor207"></a>Azimuth <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Inline-Art"><img src="image/image_WN5YP4UQK24GMYQXVLUBAGJWKCUR7V4Z" alt="" /></p>
+			<p class="Normal">Provides control over left and right channel gain and delay.</p>
+			<p class="Normal">Azimuth adjustment can help repair stereo imbalances and phase issues that can occur with improper tape head alignment or other speed related issues.</p>
+			<p class="heading-3">Level (dB)</p>
+			<p class="Normal">Adjusts the gain of the left and right audio channels</p>
+			<p class="heading-3">Adaptive Matching</p>
+			<p class="Normal">Enables automatic time-variable adjustment of the right channel gain in order to match the level of the left channel.</p>
+			<p class="heading-3">Delay (samples/ms)</p>
+			<p class="Normal">Allows for manual adjustment over the delay in samples or milliseconds of the left and right audio channels.</p>
+			<p class="Normal">For very accurate azimuth correction, RX uses oversampling to achieve sub-sample delays.</p>
+			<p class="heading-3">Adaptive Azimuth Alignment</p>
+			<p class="Normal">Enables automatic time-variable adjustment of the right channel&apos;s sample delay in order to align the waveform with the left channel.</p>
+			<p class="heading-3">Suggest</p>
+			<p class="Normal">Analyzes the selection and determines the appropriate amounts of fixed gain and delay to apply in order to align the two channels.</p>
+			<p id="_idParaDest-205" class="heading-2"><a id="_idTextAnchor208"></a>Extract Center <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Inline-Art"><img src="image/image_E63BQR4KJFQ4G6OVMVXOUJQH6MZ354N7" alt="" /></p>
+			<p class="Normal">Preserves or removes the center of a stereo file.</p>
+			<p class="Normal">Extracting the center will retain the center of a stereo field and attenuate everything on the sides, such as signals panned to the left or right.</p>
+			<p class="Normal">Center channel extraction will preserve a stereo image if the side channels are retained. This can make it more desirable in some cases than Mid-Side encoding (which would sum left and right hard pans into one channel).</p>
+			<p class="Normal">It is often a good idea to make sure stereo channels are balanced by running <a target="mainFrame" href="#h.hgqdno8mbe15">Azimuth</a> correction before using Extract Center.</p>
+			<p class="heading-3">Keep Center</p>
+			<p class="Normal">When the signal you want to preserve is even in both channels and noise is uneven between channels, extracting the center can remove a lot of noise.</p>
+			<p class="Normal">For example, a mono record transferred to a stereo tape would have side channel noise that would be suppressed by extracting the center channel.</p>
+			<p class="heading-3">Keep Sides</p>
+			<p class="Normal">If you want to preserve the wide stereo information and remove the center information, you can keep the sides of the signal instead. This is useful for karaoke-style removal of vocals from a song, especially because the process results in a coherent stereo image.</p>
+			<p class="Normal">Two different algorithms can be selected:</p>
+			<ul>
+				<li class="Unordered-List"><span class="Bold">True phase</span> — cancels the center with phase information and retains the original panning of the sides.</li>
+				<li class="Unordered-List"><span class="Bold">Pseudo pan</span> — extracts the side information and artificially stereoizes it into two channels.</li>
+			</ul>
+			<p class="heading-3">Reduction Strength</p>
+			<p class="Normal">Controls the level of the preserved signal. Smaller amounts will keep more information, larger amounts will discard more information.</p>
+		</div>
+	</body>
+</html>

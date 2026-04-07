@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAISON — Luxury Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E8D5A3;
+    --black: #0A0A0A;
+    --deep: #111111;
+    --surface: #161616;
+    --text: #F5F0E8;
+    --muted: #888070;
+    --border: rgba(201,169,110,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 60px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 42px; list-style: none; }
+  .nav-links a {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.3s;
+    cursor: pointer;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-cta {
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    border: 1px solid var(--gold); color: var(--gold); padding: 10px 24px;
+    background: none; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat', sans-serif;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+  /* PAGES */
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ====== HERO PAGE ====== */
+  #page-home {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 60px; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 40%, rgba(201,169,110,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(201,169,110,0.04) 0%, transparent 50%);
+  }
+  .hero-line {
+    position: absolute; top: 0; right: 200px; width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
+  }
+  .hero-content { position: relative; max-width: 700px; animation: fadeUp 1s ease both; }
+  .hero-eyebrow {
+    font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 32px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 300; line-height: 1.0;
+    margin-bottom: 32px;
+  }
+  h1 em { font-style: italic; color: var(--gold); }
+  .hero-desc {
+    font-size: 13px; line-height: 1.9; color: var(--muted);
+    max-width: 480px; margin-bottom: 52px;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 32px; }
+  .btn-primary {
+    background: var(--gold); color: var(--black);
+    border: none; padding: 16px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost {
+    background: none; border: none; color: var(--muted);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    cursor: pointer; transition: color 0.3s;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .btn-ghost:hover { color: var(--text); }
+  .btn-ghost::after { content: '→'; font-size: 14px; }
+
+  .hero-stats {
+    position: absolute; right: 60px; bottom: 80px;
+    display: flex; flex-direction: column; gap: 32px;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .stat { text-align: right; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; color: var(--gold); font-weight: 300;
+  }
+  .stat-label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); }
+
+  /* ====== SERVICES PAGE ====== */
+  #page-services { padding: 140px 60px 80px; }
+  .section-header { text-align: center; margin-bottom: 80px; }
+  .section-eyebrow {
+    font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px); font-weight: 300;
+  }
+  h2 em { font-style: italic; color: var(--gold); }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .service-card {
+    background: var(--surface); padding: 52px 40px;
+    border: 1px solid transparent;
+    transition: all 0.4s; cursor: pointer; position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,169,110,0.05), transparent);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .service-card:hover { border-color: var(--border); transform: translateY(-4px); }
+  .service-card:hover::before { opacity: 1; }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; color: var(--gold); letter-spacing: 0.2em;
+    margin-bottom: 32px;
+  }
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 400; margin-bottom: 16px; line-height: 1.2;
+  }
+  .service-desc { font-size: 12px; line-height: 1.9; color: var(--muted); margin-bottom: 32px; }
+  .service-price { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); }
+  .service-arrow {
+    position: absolute; bottom: 40px; right: 40px;
+    width: 36px; height: 36px; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 16px;
+    opacity: 0; transition: opacity 0.3s; transform: translateX(-8px);
+    transition: all 0.3s;
+  }
+  .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
+
+  /* ====== PRICING PAGE ====== */
+  #page-pricing { padding: 140px 60px 80px; }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .pricing-card {
+    background: var(--surface); padding: 52px 40px;
+    border: 1px solid var(--border); position: relative;
+    transition: transform 0.3s;
+  }
+  .pricing-card.featured {
+    background: linear-gradient(160deg, var(--surface), rgba(201,169,110,0.08));
+    border-color: var(--gold);
+  }
+  .pricing-card:hover { transform: translateY(-6px); }
+  .featured-badge {
+    position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--black);
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    padding: 6px 20px;
+  }
+  .plan-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 24px;
+  }
+  .plan-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 58px; font-weight: 300; color: var(--text);
+    line-height: 1; margin-bottom: 8px;
+  }
+  .plan-price span { font-size: 20px; vertical-align: super; color: var(--gold); }
+  .plan-period { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 40px; }
+  .plan-divider { height: 1px; background: var(--border); margin-bottom: 40px; }
+  .plan-features { list-style: none; margin-bottom: 48px; }
+  .plan-features li {
+    font-size: 12px; line-height: 1.8; color: var(--muted); padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .plan-features li::before {
+    content: '—'; color: var(--gold); font-size: 10px; flex-shrink: 0;
+  }
+  .plan-features li.inactive { opacity: 0.35; }
+  .plan-features li.inactive::before { content: '×'; }
+  .btn-plan {
+    width: 100%; padding: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s;
+    border: 1px solid var(--gold); color: var(--gold); background: none;
+  }
+  .pricing-card.featured .btn-plan {
+    background: var(--gold); color: var(--black);
+  }
+  .btn-plan:hover { background: var(--gold); color: var(--black); }
+
+  /* ====== ABOUT PAGE ====== */
+  #page-about { padding: 140px 60px 80px; }
+  .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; max-width: 1100px; margin: 0 auto; }
+  .about-visual {
+    position: relative; height: 500px;
+  }
+  .about-box {
+    position: absolute; background: var(--surface); border: 1px solid var(--border);
+  }
+  .about-box-1 { inset: 0 60px 60px 0; }
+  .about-box-2 {
+    bottom: 0; right: 0; width: 200px; height: 200px;
+    background: linear-gradient(135deg, rgba(201,169,110,0.15), rgba(201,169,110,0.05));
+    border-color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; text-align: center;
+  }
+  .about-box-2 .big { font-family: 'Cormorant Garamond', serif; font-size: 48px; color: var(--gold); }
+  .about-box-2 .small { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); }
+  .corner-mark {
+    position: absolute; top: 20px; left: 20px;
+    width: 40px; height: 40px;
+    border-top: 1px solid var(--gold); border-left: 1px solid var(--gold);
+  }
+  .about-text h2 { margin-bottom: 28px; }
+  .about-lead {
+    font-family: 'Cormorant Garamond', serif; font-size: 20px;
+    font-style: italic; color: var(--gold-light); line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .about-body { font-size: 13px; line-height: 2; color: var(--muted); margin-bottom: 40px; }
+
+  /* ====== CONTACT PAGE ====== */
+  #page-contact { padding: 140px 60px 80px; }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 100px; max-width: 1100px; margin: 0 auto; }
+  .contact-info h2 { margin-bottom: 24px; }
+  .contact-intro { font-size: 13px; line-height: 2; color: var(--muted); margin-bottom: 52px; }
+  .contact-detail { margin-bottom: 28px; }
+  .contact-detail-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .contact-detail-value { font-size: 14px; color: var(--text); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 24px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
+  .form-input, .form-select, .form-textarea {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); padding: 14px 18px;
+    font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 300;
+    outline: none; transition: border-color 0.3s;
+    appearance: none; -webkit-appearance: none;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .form-submit {
+    background: var(--gold); color: var(--black);
+    border: none; padding: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+
+  /* FOOTER */
+  footer {
+    padding: 60px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; letter-spacing: 0.3em; color: var(--gold); }
+  .footer-copy { font-size: 10px; color: var(--muted); letter-spacing: 0.15em; }
+  .footer-links { display: flex; gap: 32px; }
+  .footer-links a { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; cursor: pointer; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 40px; right: 60px;
+    background: var(--surface); border: 1px solid var(--gold);
+    color: var(--text); padding: 16px 28px;
+    font-size: 12px; letter-spacing: 0.1em;
+    transform: translateY(20px); opacity: 0;
+    transition: all 0.4s; pointer-events: none; z-index: 999;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute; bottom: 40px; left: 60px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted);
+    animation: fadeUp 1s 0.6s ease both;
+  }
+  .scroll-hint::before {
+    content: ''; display: block; width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Maison</div>
+  <ul class="nav-links">
+    <li><a onclick="goTo('home')" class="active" id="nav-home">Home</a></li>
+    <li><a onclick="goTo('services')" id="nav-services">Services</a></li>
+    <li><a onclick="goTo('pricing')" id="nav-pricing">Membership</a></li>
+    <li><a onclick="goTo('about')" id="nav-about">Atelier</a></li>
+    <li><a onclick="goTo('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="goTo('pricing')">Begin</button>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Exclusive Membership</div>
+    <h1>Curated for<br>the <em>discerning</em><br>few.</h1>
+    <p class="hero-desc">MAISON offers bespoke subscription services for those who demand nothing less than extraordinary. Each membership is a gateway to a world crafted entirely around you.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="goTo('pricing')">Explore Memberships</button>
+      <button class="btn-ghost" onclick="goTo('services')">View Services</button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Years of Excellence</div></div>
+    <div class="stat"><div class="stat-num">400</div><div class="stat-label">Elite Members</div></div>
+    <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Retention Rate</div></div>
+  </div>
+  <div class="scroll-hint">Scroll to Discover</div>
+</div>
+
+<!-- SERVICES -->
+<div class="page" id="page-services">
+  <div class="section-header">
+    <div class="section-eyebrow">What We Offer</div>
+    <h2>Services of <em>Distinction</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-title">Personal Concierge</div>
+      <p class="service-desc">A dedicated advisor available around the clock, managing your schedule, travel arrangements, and every finer detail of your daily life.</p>
+      <div class="service-price">From $1,200 / month</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-title">Private Estate Management</div>
+      <p class="service-desc">Full-service oversight of your properties worldwide — from staffing and maintenance to seasonal preparation and security.</p>
+      <div class="service-price">From $3,500 / month</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-title">Bespoke Travel Curation</div>
+      <p class="service-desc">Exclusive access to private villas, charter vessels, and closed cultural experiences, crafted to your precise desires.</p>
+      <div class="service-price">From $2,200 / month</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-title">Wellness & Longevity</div>
+      <p class="service-desc">In-home medical consultations, bespoke nutrition protocols, and access to elite practitioners unavailable to the general public.</p>
+      <div class="service-price">From $1,800 / month</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-title">Art & Acquisition</div>
+      <p class="service-desc">Private gallery access, acquisition advisory, and provenance verification for collectors navigating the upper echelons of the art market.</p>
+      <div class="service-price">From $4,000 / month</div>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-title">Exclusive Events</div>
+      <p class="service-desc">Priority access to private openings, curated dinner gatherings, and invitation-only cultural events across major world cities.</p>
+      <div class="service-price">Included in Prestige+</div>
+      <div class="service-arrow">→</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="page" id="page-pricing">
+  <div class="section-header">
+    <div class="section-eyebrow">Memberships</div>
+    <h2>Choose Your <em>Tier</em></h2>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="plan-name">Atelier</div>
+      <div class="plan-price"><span>$</span>1,200</div>
+      <div class="plan-period">per month, billed annually</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Dedicated concierge advisor</li>
+        <li>24/7 availability via private channel</li>
+        <li>Travel curation (2 trips/yr)</li>
+        <li>Monthly lifestyle report</li>
+        <li class="inactive">Estate management</li>
+        <li class="inactive">Art & acquisition access</li>
+        <li class="inactive">Exclusive events</li>
+      </ul>
+      <button class="btn-plan" onclick="showToast('Atelier enquiry submitted. We will be in touch.')">Select Atelier</button>
+    </div>
+    <div class="pricing-card featured">
+      <div class="featured-badge">Most Selected</div>
+      <div class="plan-name">Prestige</div>
+      <div class="plan-price"><span>$</span>3,500</div>
+      <div class="plan-period">per month, billed annually</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Senior concierge advisor</li>
+        <li>24/7 direct phone access</li>
+        <li>Unlimited travel curation</li>
+        <li>Estate management (1 property)</li>
+        <li>Wellness consultations</li>
+        <li>Exclusive events access</li>
+        <li class="inactive">Art & acquisition advisory</li>
+      </ul>
+      <button class="btn-plan" onclick="showToast('Prestige enquiry submitted. We will be in touch.')">Select Prestige</button>
+    </div>
+    <div class="pricing-card">
+      <div class="plan-name">Maison Noir</div>
+      <div class="plan-price"><span>$</span>9,000</div>
+      <div class="plan-period">per month, billed annually</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Elite concierge team (3 advisors)</li>
+        <li>All Prestige services</li>
+        <li>Multi-property estate management</li>
+        <li>Art & acquisition full advisory</li>
+        <li>Private aviation coordination</li>
+        <li>Bespoke event curation</li>
+        <li>Annual strategy retreat</li>
+      </ul>
+      <button class="btn-plan" onclick="showToast('Maison Noir enquiry submitted. We will be in touch.')">Select Maison Noir</button>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="page" id="page-about">
+  <div class="about-layout">
+    <div class="about-visual">
+      <div class="about-box about-box-1">
+        <div class="corner-mark"></div>
+      </div>
+      <div class="about-box about-box-2">
+        <div class="big">XII</div>
+        <div class="small">Years of Excellence</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-eyebrow">Our Atelier</div>
+      <h2>Crafted with<br><em>Intention</em></h2>
+      <p class="about-lead">"We exist not to serve the many, but to perfect the experience of the few."</p>
+      <p class="about-body">MAISON was founded in 2012 with a singular belief: that true luxury is not purchased — it is cultivated. Our team of 80 specialists across 14 cities exists for one purpose alone: to eliminate friction from the lives of those who have earned the right to expect more.<br><br>We accept fewer than 400 members globally. This is not exclusivity for its own sake — it is the only way to guarantee that each member receives the singular attention they deserve.</p>
+      <button class="btn-primary" onclick="goTo('contact')">Request a Private Introduction</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+  <div class="contact-layout">
+    <div class="contact-info">
+      <div class="section-eyebrow">Get in Touch</div>
+      <h2>Begin Your<br><em>Journey</em></h2>
+      <p class="contact-intro">We invite you to reach out through this private channel. A senior advisor will respond personally within 24 hours to begin the introduction process.</p>
+      <div class="contact-detail">
+        <div class="contact-detail-label">Private Line</div>
+        <div class="contact-detail-value">+1 (212) 000 0000</div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-label">Correspondence</div>
+        <div class="contact-detail-value">private@maison.co</div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-label">Atelier Hours</div>
+        <div class="contact-detail-value">Members: Always Available</div>
+      </div>
+    </div>
+    <div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-input" placeholder="Your first name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-input" placeholder="Your last name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="Your private email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Membership Interest</label>
+          <select class="form-select">
+            <option value="">Select a tier</option>
+            <option>Atelier — $1,200/month</option>
+            <option>Prestige — $3,500/month</option>
+            <option>Maison Noir — $9,000/month</option>
+            <option>I'd like guidance</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell us about yourself and what you're looking for..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Submit Private Enquiry</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Maison</div>
+  <div class="footer-copy">© 2025 MAISON. All rights reserved.</div>
+  <div class="footer-links">
+    <a onclick="goTo('services')">Services</a>
+    <a onclick="goTo('pricing')">Membership</a>
+    <a onclick="goTo('contact')">Contact</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  function goTo(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    document.getElementById('nav-' + page)?.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    showToast('Your enquiry has been received. We will be in touch shortly.');
+    e.target.reset();
+  }
+</script>
+</body>
+</html>

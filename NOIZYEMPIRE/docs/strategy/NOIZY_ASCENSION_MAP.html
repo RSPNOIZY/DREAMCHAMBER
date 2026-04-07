@@ -1,0 +1,2158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY Ascension Map — 2026→2036 | AI + Human Elevation Protocol</title>
+<style>
+  :root {
+    --gold: #f0b429;
+    --fire: #e85d04;
+    --electric: #0a9ebd;
+    --dream: #c94070;
+    --deep: #7c4dff;
+    --green: #22c55e;
+    --black: #080810;
+    --ink: #0d0d1a;
+    --glass: rgba(255,255,255,0.04);
+    --line: rgba(255,255,255,0.08);
+    --text: #e8e8f0;
+    --muted: rgba(232,232,240,0.55);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ─── STARFIELD ─── */
+  #starfield {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ─── GRADIENT ATMOSPHERE ─── */
+  .atmosphere {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,77,255,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 60%, rgba(10,158,189,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 30% at 20% 80%, rgba(201,64,112,0.07) 0%, transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(8,8,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    height: 56px;
+  }
+
+  .nav-brand {
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+
+  .nav-badge {
+    background: linear-gradient(135deg, var(--deep), var(--electric));
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    padding: 4px 14px;
+    border-radius: 20px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ─── SECTIONS ─── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 100px 32px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+    max-width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.3em;
+    color: var(--electric);
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .hero-title .line1 { color: var(--gold); }
+  .hero-title .line2 {
+    background: linear-gradient(135deg, var(--deep), var(--electric), var(--dream));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-title .line3 { color: var(--text); }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--muted);
+    max-width: 700px;
+    margin: 0 auto 40px;
+  }
+
+  .hero-dates {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+    font-size: 1.4rem;
+    font-weight: 800;
+  }
+
+  .hero-dates .year {
+    color: var(--gold);
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-dates .arrow {
+    color: var(--electric);
+    font-size: 1.8rem;
+  }
+
+  .hero-dates .year-end {
+    color: var(--green);
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    animation: bobScroll 2s ease-in-out infinite;
+  }
+
+  @keyframes bobScroll {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ─── SECTION HEADERS ─── */
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--electric);
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    max-width: 640px;
+    font-size: 1.05rem;
+    margin-bottom: 60px;
+  }
+
+  /* ─── ENTRANCE ANIMATIONS ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--line), transparent);
+    margin: 20px 0 80px;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION 1 — THE RACE TO THE BOTTOM
+  ══════════════════════════════════════════ */
+
+  .intel-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .intel-header { grid-template-columns: 1fr; }
+  }
+
+  .intel-intro {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .intel-intro strong { color: var(--text); }
+
+  .intel-stat-box {
+    background: rgba(232,93,4,0.08);
+    border: 1px solid rgba(232,93,4,0.3);
+    border-radius: 16px;
+    padding: 28px;
+  }
+
+  .intel-stat-box h4 {
+    color: var(--fire);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .intel-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(232,93,4,0.15);
+    font-size: 0.9rem;
+  }
+  .intel-stat-row:last-child { border-bottom: none; }
+  .intel-stat-row .stat-num { color: var(--fire); font-weight: 800; font-size: 1.1rem; }
+
+  /* Platform dossier cards */
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .platform-card {
+    background: var(--glass);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .platform-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .platform-card.danger::before { background: var(--fire); }
+  .platform-card.caution::before { background: var(--gold); }
+  .platform-card.neutral::before { background: var(--electric); }
+
+  .platform-logo {
+    font-size: 1.6rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .platform-logo.red { color: var(--fire); }
+  .platform-logo.amber { color: var(--gold); }
+  .platform-logo.blue { color: var(--electric); }
+
+  .platform-tagline {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .platform-verdict {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .verdict-danger { background: rgba(232,93,4,0.2); color: var(--fire); }
+  .verdict-caution { background: rgba(240,180,41,0.2); color: var(--gold); }
+  .verdict-watch { background: rgba(10,158,189,0.2); color: var(--electric); }
+
+  .platform-points {
+    list-style: none;
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .platform-points li::before {
+    content: '→ ';
+    color: var(--fire);
+    font-weight: 700;
+  }
+
+  .platform-points li.good::before { color: var(--green); }
+
+  .platform-counter {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 0.82rem;
+  }
+
+  .platform-counter .label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+
+  .platform-counter .value {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ─── TALKING POINTS BOX ─── */
+  .talking-points-box {
+    background: linear-gradient(135deg, rgba(124,77,255,0.1), rgba(10,158,189,0.08));
+    border: 1px solid rgba(124,77,255,0.3);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 48px;
+  }
+
+  .talking-points-box h3 {
+    color: var(--deep);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .tp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .tp-grid { grid-template-columns: 1fr; }
+  }
+
+  .tp-item {
+    background: rgba(0,0,0,0.3);
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 3px solid var(--deep);
+  }
+
+  .tp-item .tp-num {
+    color: var(--deep);
+    font-weight: 900;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+
+  .tp-item .tp-text {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .tp-item .tp-text strong { color: var(--text); }
+
+  /* ══════════════════════════════════════════
+     SECTION 2 — ASCENSION MAP
+  ══════════════════════════════════════════ */
+
+  .ascension-timeline {
+    position: relative;
+    margin-bottom: 80px;
+  }
+
+  .timeline-spine {
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg,
+      var(--deep) 0%,
+      var(--electric) 20%,
+      var(--green) 40%,
+      var(--gold) 60%,
+      var(--dream) 80%,
+      #fff 100%
+    );
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 900px) {
+    .timeline-spine { left: 24px; }
+  }
+
+  .timeline-phase {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 0;
+    margin-bottom: 0;
+    position: relative;
+  }
+
+  @media (max-width: 900px) {
+    .timeline-phase {
+      grid-template-columns: 48px 1fr;
+    }
+    .phase-left { display: none; }
+  }
+
+  .phase-left {
+    padding: 40px 40px 40px 0;
+    text-align: right;
+  }
+
+  .phase-right {
+    padding: 40px 0 40px 40px;
+  }
+
+  .phase-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+  }
+
+  .phase-node {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1rem;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    box-shadow: 0 0 24px currentColor;
+  }
+
+  .phase-card {
+    background: var(--glass);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+  }
+
+  .phase-year {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  .phase-name {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  .phase-desc {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .phase-milestones {
+    list-style: none;
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .phase-milestones li::before {
+    content: '✓ ';
+    font-weight: 700;
+  }
+
+  .phase-metric {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  /* Phase color themes */
+  .phase-1 .phase-node { background: var(--deep); color: #fff; }
+  .phase-1 .phase-year { color: var(--deep); }
+  .phase-1 .phase-name { color: var(--deep); }
+  .phase-1 .phase-milestones li::before { color: var(--deep); }
+  .phase-1 .phase-metric { background: rgba(124,77,255,0.12); color: var(--deep); }
+  .phase-1 .phase-card { border-color: rgba(124,77,255,0.25); }
+
+  .phase-2 .phase-node { background: var(--electric); color: #fff; }
+  .phase-2 .phase-year { color: var(--electric); }
+  .phase-2 .phase-name { color: var(--electric); }
+  .phase-2 .phase-milestones li::before { color: var(--electric); }
+  .phase-2 .phase-metric { background: rgba(10,158,189,0.12); color: var(--electric); }
+  .phase-2 .phase-card { border-color: rgba(10,158,189,0.25); }
+
+  .phase-3 .phase-node { background: var(--green); color: #000; }
+  .phase-3 .phase-year { color: var(--green); }
+  .phase-3 .phase-name { color: var(--green); }
+  .phase-3 .phase-milestones li::before { color: var(--green); }
+  .phase-3 .phase-metric { background: rgba(34,197,94,0.12); color: var(--green); }
+  .phase-3 .phase-card { border-color: rgba(34,197,94,0.25); }
+
+  .phase-4 .phase-node { background: var(--gold); color: #000; }
+  .phase-4 .phase-year { color: var(--gold); }
+  .phase-4 .phase-name { color: var(--gold); }
+  .phase-4 .phase-milestones li::before { color: var(--gold); }
+  .phase-4 .phase-metric { background: rgba(240,180,41,0.12); color: var(--gold); }
+  .phase-4 .phase-card { border-color: rgba(240,180,41,0.25); }
+
+  .phase-5 .phase-node { background: var(--dream); color: #fff; }
+  .phase-5 .phase-year { color: var(--dream); }
+  .phase-5 .phase-name { color: var(--dream); }
+  .phase-5 .phase-milestones li::before { color: var(--dream); }
+  .phase-5 .phase-metric { background: rgba(201,64,112,0.12); color: var(--dream); }
+  .phase-5 .phase-card { border-color: rgba(201,64,112,0.25); }
+
+  .phase-6 .phase-node { background: var(--fire); color: #fff; }
+  .phase-6 .phase-year { color: var(--fire); }
+  .phase-6 .phase-name { color: var(--fire); }
+  .phase-6 .phase-milestones li::before { color: var(--fire); }
+  .phase-6 .phase-metric { background: rgba(232,93,4,0.12); color: var(--fire); }
+  .phase-6 .phase-card { border-color: rgba(232,93,4,0.25); }
+
+  .phase-7 .phase-node {
+    background: linear-gradient(135deg, var(--gold), #fff);
+    color: #000;
+    animation: pulseStar 2s ease-in-out infinite;
+  }
+  @keyframes pulseStar {
+    0%, 100% { box-shadow: 0 0 20px rgba(240,180,41,0.6); }
+    50% { box-shadow: 0 0 40px rgba(240,180,41,1), 0 0 80px rgba(240,180,41,0.4); }
+  }
+  .phase-7 .phase-year {
+    background: linear-gradient(135deg, var(--gold), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .phase-7 .phase-name { color: var(--gold); }
+  .phase-7 .phase-milestones li::before { color: var(--gold); }
+  .phase-7 .phase-metric { background: rgba(240,180,41,0.15); color: var(--gold); }
+  .phase-7 .phase-card { border-color: rgba(240,180,41,0.35); }
+
+  /* ══════════════════════════════════════════
+     SECTION 3 — THE POOP/ELEVATION MATRIX
+  ══════════════════════════════════════════ */
+
+  .matrix-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .versus-grid {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    margin-bottom: 60px;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .versus-grid { grid-template-columns: 1fr; }
+    .versus-mid { display: none; }
+  }
+
+  .versus-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .versus-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+
+  .title-bad { background: rgba(232,93,4,0.15); color: var(--fire); }
+  .title-good { background: rgba(34,197,94,0.15); color: var(--green); }
+
+  .versus-row {
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .row-bad { background: rgba(232,93,4,0.06); border-left: 3px solid var(--fire); color: var(--muted); }
+  .row-good { background: rgba(34,197,94,0.06); border-left: 3px solid var(--green); color: var(--muted); }
+  .row-bad strong, .row-good strong { display: block; font-size: 0.82rem; margin-bottom: 4px; }
+  .row-bad strong { color: var(--fire); }
+  .row-good strong { color: var(--green); }
+
+  .versus-mid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 52px;
+    gap: 28px;
+  }
+
+  .vs-label {
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--muted);
+  }
+
+  /* ─── 10 STEPS BLUEPRINT ─── */
+  .blueprint-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+
+  .blueprint-step {
+    background: var(--glass);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .blueprint-step:hover {
+    transform: translateY(-2px);
+    border-color: rgba(240,180,41,0.3);
+  }
+
+  .step-num {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--gold), var(--fire));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .step-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .step-body {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .step-body strong { color: var(--text); }
+
+  .step-action {
+    margin-top: 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION 4 — THE 5TH EPOCH FRAME
+  ══════════════════════════════════════════ */
+
+  .epoch-visual {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    margin-bottom: 60px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .epoch-visual { grid-template-columns: 1fr 1fr; }
+  }
+
+  .epoch-era {
+    padding: 28px 20px;
+    text-align: center;
+  }
+
+  .era-1 { background: rgba(80,40,20,0.4); }
+  .era-2 { background: rgba(60,40,80,0.4); }
+  .era-3 { background: rgba(20,60,80,0.4); }
+  .era-4 { background: rgba(80,60,20,0.4); }
+  .era-5 {
+    background: linear-gradient(135deg, rgba(124,77,255,0.2), rgba(34,197,94,0.2));
+    border: 1px solid rgba(124,77,255,0.4);
+  }
+
+  .era-num {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .era-title {
+    font-weight: 800;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+  .era-5 .era-title {
+    color: var(--green);
+    font-size: 1.05rem;
+  }
+
+  .era-years {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .era-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+  }
+
+  .tag-bad { background: rgba(232,93,4,0.2); color: var(--fire); }
+  .tag-good { background: rgba(34,197,94,0.2); color: var(--green); }
+
+  .epoch-laws {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+
+  @media (max-width: 768px) {
+    .epoch-laws { grid-template-columns: 1fr; }
+  }
+
+  .law-box {
+    background: linear-gradient(135deg, rgba(124,77,255,0.08), rgba(10,158,189,0.08));
+    border: 1px solid rgba(124,77,255,0.2);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .law-vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .law-old {
+    font-size: 0.85rem;
+    color: var(--fire);
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
+  .law-arrow { color: var(--deep); font-weight: 900; }
+
+  .law-new {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--green);
+  }
+
+  .law-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION 5 — THE WAY
+  ══════════════════════════════════════════ */
+
+  .way-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+
+  .way-card {
+    background: var(--glass);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .way-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--deep), var(--electric));
+  }
+
+  .way-icon {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .way-title {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .way-body {
+    font-size: 0.86rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ─── MANIFESTO BLOCK ─── */
+  .manifesto-block {
+    background: linear-gradient(135deg, rgba(240,180,41,0.06), rgba(232,93,4,0.06));
+    border: 1px solid rgba(240,180,41,0.2);
+    border-radius: 20px;
+    padding: 48px;
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  .manifesto-block h3 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .manifesto-block p {
+    color: var(--muted);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto 20px;
+  }
+
+  .manifesto-block p strong { color: var(--text); }
+
+  .manifesto-block .quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--text);
+    border-left: 3px solid var(--gold);
+    padding-left: 24px;
+    text-align: left;
+    margin: 24px auto;
+    max-width: 640px;
+  }
+
+  /* ─── LINK BAR ─── */
+  .link-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 48px;
+    padding-top: 48px;
+    border-top: 1px solid var(--line);
+  }
+
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border: 1px solid;
+    transition: all 0.2s;
+  }
+
+  .link-btn:hover { transform: translateY(-2px); }
+
+  .btn-gold { color: var(--gold); border-color: rgba(240,180,41,0.4); }
+  .btn-gold:hover { background: rgba(240,180,41,0.1); }
+  .btn-electric { color: var(--electric); border-color: rgba(10,158,189,0.4); }
+  .btn-electric:hover { background: rgba(10,158,189,0.1); }
+  .btn-dream { color: var(--dream); border-color: rgba(201,64,112,0.4); }
+  .btn-dream:hover { background: rgba(201,64,112,0.1); }
+  .btn-green { color: var(--green); border-color: rgba(34,197,94,0.4); }
+  .btn-green:hover { background: rgba(34,197,94,0.1); }
+  .btn-deep { color: var(--deep); border-color: rgba(124,77,255,0.4); }
+  .btn-deep:hover { background: rgba(124,77,255,0.1); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--line);
+    padding: 48px 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .footer-title {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  /* ─── GLOW BANDS ─── */
+  .glow-band {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(124,77,255,0.6) 25%,
+      rgba(10,158,189,0.6) 50%,
+      rgba(34,197,94,0.6) 75%,
+      transparent 100%
+    );
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── SECTION BG VARIANTS ─── */
+  .bg-deep {
+    background: rgba(124,77,255,0.03);
+    border-top: 1px solid rgba(124,77,255,0.1);
+    border-bottom: 1px solid rgba(124,77,255,0.1);
+  }
+
+  .bg-fire {
+    background: rgba(232,93,4,0.03);
+    border-top: 1px solid rgba(232,93,4,0.1);
+    border-bottom: 1px solid rgba(232,93,4,0.1);
+  }
+
+  .bg-green {
+    background: rgba(34,197,94,0.03);
+    border-top: 1px solid rgba(34,197,94,0.1);
+    border-bottom: 1px solid rgba(34,197,94,0.1);
+  }
+
+  .full-width {
+    max-width: 100%;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  @media (max-width: 768px) {
+    .full-width { padding-left: 24px; padding-right: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div class="atmosphere"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">NOIZY.AI</div>
+  <ul class="nav-links">
+    <li><a href="#intelligence">Intelligence</a></li>
+    <li><a href="#ascension">Ascension Map</a></li>
+    <li><a href="#blueprint">Blueprint</a></li>
+    <li><a href="#epoch">5th Epoch</a></li>
+    <li><a href="#the-way">The Way</a></li>
+  </ul>
+  <div class="nav-badge">2026 → 2036</div>
+</nav>
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="hero" style="padding-top:56px; max-width:100%;">
+  <div class="hero-eyebrow reveal">THE NOIZY ELEVATION PROTOCOL</div>
+  <h1 class="hero-title">
+    <div class="line1 reveal reveal-delay-1">NO MORE POOP.</div>
+    <div class="line2 reveal reveal-delay-2">MAXIMUM ELEVATION.</div>
+    <div class="line3 reveal reveal-delay-3">AI + HUMAN ASCENSION.</div>
+  </h1>
+  <p class="hero-sub reveal reveal-delay-4">
+    The complete intelligence briefing, 10-year ascension map, and creator blueprint
+    for making high-quality ethical art dominate the cheap content economy — forever.
+  </p>
+  <div class="hero-dates reveal">
+    <span class="year">2026</span>
+    <span class="arrow">→</span>
+    <span class="year-end">2036</span>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL TO ASCEND</span>
+    <span>↓</span>
+  </div>
+</section>
+
+<div class="glow-band"></div>
+
+<!-- ════════════════════════════════════════════
+     SECTION 1 — INDUSTRY INTELLIGENCE BRIEFING
+════════════════════════════════════════════ -->
+<div id="intelligence" class="bg-fire" style="position:relative; z-index:1;">
+<section class="full-width" style="padding-top:100px; padding-bottom:80px; max-width:1300px; margin:0 auto;">
+
+  <div class="section-eyebrow reveal">INTELLIGENCE BRIEFING</div>
+  <h2 class="section-title reveal">Why Is Everyone Racing<br>To The Bottom?</h2>
+  <p class="section-sub reveal">
+    This isn't a moral failure — it's a structural trap. Here's exactly what's happening,
+    who's responsible, and how to talk about it intelligently to anyone.
+  </p>
+
+  <div class="intel-header">
+    <div class="intel-intro reveal">
+      <p style="margin-bottom:16px;">
+        The "race to the bottom" in music is <strong>not because artists don't care about quality.</strong>
+        It's because the economic architecture of streaming and AI creation makes
+        <strong>volume more profitable than value.</strong>
+      </p>
+      <p style="margin-bottom:16px;">
+        Algorithms reward <strong>streams per second</strong>, not depth of experience.
+        Platforms make money on <em>engagement time</em>, not on the quality of what's played.
+        When a song earns $0.003 per stream, you need <strong>333,000 streams</strong>
+        just to earn $1,000.
+      </p>
+      <p>
+        That math pushes every actor — labels, indie artists, AI companies —
+        toward <strong>quantity over craft.</strong> The race to the bottom is an
+        incentive problem masquerading as an ethics problem.
+        <strong>NOIZY is the economic counter-architecture.</strong>
+      </p>
+    </div>
+    <div class="intel-stat-box reveal">
+      <h4>The Numbers That Explain Everything</h4>
+      <div class="intel-stat-row">
+        <span>Avg. Spotify payout per stream</span>
+        <span class="stat-num">$0.003</span>
+      </div>
+      <div class="intel-stat-row">
+        <span>Streams needed to earn min. wage</span>
+        <span class="stat-num">2.3M/mo</span>
+      </div>
+      <div class="intel-stat-row">
+        <span>AI songs uploaded to Spotify (2024)</span>
+        <span class="stat-num">40M+</span>
+      </div>
+      <div class="intel-stat-row">
+        <span>% of streaming revenue to artists</span>
+        <span class="stat-num">12%</span>
+      </div>
+      <div class="intel-stat-row">
+        <span>Cost to generate 1 AI song (ElevenLabs)</span>
+        <span class="stat-num">$0.08</span>
+      </div>
+      <div class="intel-stat-row">
+        <span>Songs on Spotify that get 0 streams/month</span>
+        <span class="stat-num">~160M</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATFORM DOSSIERS -->
+  <h3 class="reveal" style="font-size:1.2rem; font-weight:800; margin-bottom:24px; color:var(--muted);">Platform Dossiers — Know Your Opposition</h3>
+  <div class="platform-grid">
+
+    <div class="platform-card danger reveal">
+      <div class="platform-logo red">ElevenLabs</div>
+      <div class="platform-tagline">AI Voice Generation</div>
+      <div class="platform-verdict verdict-danger">HIGH THREAT</div>
+      <ul class="platform-points">
+        <li>Trains on voice data scraped without consent</li>
+        <li>No perpetual royalty to voice owners</li>
+        <li>Creators pay subscription; platform owns the output pipeline</li>
+        <li>Cheapest professional-quality voice synthesis in history</li>
+        <li>Voice "clones" can be sold as products — zero back to original</li>
+      </ul>
+      <div class="platform-counter">
+        <div class="label">NOIZY Counter-Move</div>
+        <div class="value">NOIZYVOX — 75% perpetual to voice owner, consent-as-code, Voice Estate that inherits to family forever.</div>
+      </div>
+    </div>
+
+    <div class="platform-card danger reveal reveal-delay-1">
+      <div class="platform-logo red">Suno AI</div>
+      <div class="platform-tagline">AI Music Generation</div>
+      <div class="platform-verdict verdict-danger">HIGH THREAT</div>
+      <ul class="platform-points">
+        <li>Full songs generated in seconds for ~$0.10</li>
+        <li>RIAA lawsuit 2024: trained on copyrighted music without license</li>
+        <li>Users own commercial rights to outputs (terms unclear)</li>
+        <li>No credit, attribution, or revenue to source artists</li>
+        <li>Flooding streaming platforms with synthetic content</li>
+      </ul>
+      <div class="platform-counter">
+        <div class="label">NOIZY Counter-Move</div>
+        <div class="value">Every note in NOIZY has a creator signature. AI-assist exists as a tool, not a replacement — and it shares revenue back through LifeLUV micro-splits.</div>
+      </div>
+    </div>
+
+    <div class="platform-card danger reveal reveal-delay-2">
+      <div class="platform-logo red">Replica Studios</div>
+      <div class="platform-tagline">AI Voice Actors</div>
+      <div class="platform-verdict verdict-danger">WATCH CLOSELY</div>
+      <ul class="platform-points">
+        <li>Does offer a voice actor licensing program</li>
+        <li>Pays a flat fee — no perpetual royalty model</li>
+        <li>Voice actor loses leverage once voice is digitized</li>
+        <li>Terms allow broad commercial use without recurring consent</li>
+        <li>No emotional/health metadata tracking — just synthesis</li>
+      </ul>
+      <div class="platform-counter">
+        <div class="label">NOIZY Counter-Move</div>
+        <div class="value">NOIZYVOX's HVS system captures 6 layers including Emotional Resonance & Vocal Health. The voice stays alive, not just archived.</div>
+      </div>
+    </div>
+
+    <div class="platform-card caution reveal">
+      <div class="platform-logo amber">Spotify</div>
+      <div class="platform-tagline">Streaming Dominant</div>
+      <div class="platform-verdict verdict-caution">STRUCTURAL PROBLEM</div>
+      <ul class="platform-points">
+        <li>Pro-rata model: total pool divided by all streams (not per-fan)</li>
+        <li>1,000 monthly listener minimum to receive any payment</li>
+        <li>Removed 160M+ songs with &lt;1,000 streams (Nov 2023)</li>
+        <li>AI-generated playlist content now competes for stream share</li>
+        <li>Discovery algorithm favors existing popularity (rich get richer)</li>
+      </ul>
+      <div class="platform-counter">
+        <div class="label">NOIZY Counter-Move</div>
+        <div class="value">LifeLUV uses fan-centric micro-splits — every listen, every use, tracks back to the original creator chain, not the streaming pool.</div>
+      </div>
+    </div>
+
+    <div class="platform-card caution reveal reveal-delay-1">
+      <div class="platform-logo amber">Udio</div>
+      <div class="platform-tagline">AI Music Generation</div>
+      <div class="platform-verdict verdict-caution">RAPID THREAT</div>
+      <ul class="platform-points">
+        <li>Co-founded by ex-Google DeepMind researchers</li>
+        <li>RIAA-sued alongside Suno in 2024 for training data</li>
+        <li>Output quality rapidly approaching human-produced music</li>
+        <li>Free tier plus creator subscription — no revenue share</li>
+        <li>No attribution pipeline to source tradition/style</li>
+      </ul>
+      <div class="platform-counter">
+        <div class="label">NOIZY Counter-Move</div>
+        <div class="value">NOIZY's Guild system attributes cultural origins — West African polyrhythm, Indian raga — and routes micro-payments to living tradition keepers.</div>
+      </div>
+    </div>
+
+    <div class="platform-card neutral reveal reveal-delay-2">
+      <div class="platform-logo blue">Bandcamp</div>
+      <div class="platform-tagline">Direct-To-Fan</div>
+      <div class="platform-verdict verdict-watch">ALLY POTENTIAL</div>
+      <ul class="platform-points li-good">
+        <li class="good">Best artist revenue share in major platforms (~82%)</li>
+        <li class="good">Acquired by Songtradr, then major layoffs — future uncertain</li>
+        <li>No AI integration, no adaptive rights protocol</li>
+        <li>Static split: great for releases, no legacy mechanism</li>
+        <li>No community/Guild infrastructure</li>
+      </ul>
+      <div class="platform-counter">
+        <div class="label">NOIZY Approach</div>
+        <div class="value">Bandcamp proves the market wants direct artist-to-fan economics. NOIZY is Bandcamp + perpetual rights + legacy vault + community ecosystem + AI tools that serve creators.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TALKING POINTS -->
+  <div class="talking-points-box reveal">
+    <h3>Talking Points — Make You Sound Smart Immediately</h3>
+    <div class="tp-grid">
+      <div class="tp-item">
+        <div class="tp-num">01</div>
+        <div class="tp-text"><strong>"The race to the bottom isn't moral decay — it's math."</strong>
+        When streaming pays $0.003 per play, the only viable strategy is volume. Platforms designed this incentive. Artists didn't choose it. The solution is changing the economic architecture, not lecturing artists.</div>
+      </div>
+      <div class="tp-item">
+        <div class="tp-num">02</div>
+        <div class="tp-text"><strong>"ElevenLabs and Suno aren't evil — they're incomplete."</strong>
+        They built amazing synthesis technology and forgot the second half: who owns the output? What happens to the voice actor in year 10? NOIZY is the complete architecture they skipped.</div>
+      </div>
+      <div class="tp-item">
+        <div class="tp-num">03</div>
+        <div class="tp-text"><strong>"Spotify's problem is pro-rata, not the algorithm."</strong>
+        The pool model means a viral TikTok moment takes money from quiet catalog artists every month. Fan-centric payment — where your streams go to the artists you actually love — is the fix. NOIZY does this at the infrastructure level.</div>
+      </div>
+      <div class="tp-item">
+        <div class="tp-num">04</div>
+        <div class="tp-text"><strong>"40 million AI songs hit Spotify in 2024. That's not disruption — that's pollution."</strong>
+        Listeners don't benefit from more music. They benefit from more <em>findable, meaningful</em> music. NOIZY's quality layer makes it impossible for blank-slate AI content to crowd out human craft.</div>
+      </div>
+      <div class="tp-item">
+        <div class="tp-num">05</div>
+        <div class="tp-text"><strong>"Voice actors are losing their careers to their own recordings."</strong>
+        Studios use your audition to train your replacement. NOIZYVOX's HVS protocol means your voice signature is yours constitutionally — technically impossible to exploit without triggering the consent lock.</div>
+      </div>
+      <div class="tp-item">
+        <div class="tp-num">06</div>
+        <div class="tp-text"><strong>"The answer isn't to ban AI — it's to align AI with the people it draws from."</strong>
+        NOIZY doesn't fight technology. It routes the value of that technology back to the humans, traditions, and communities that made it possible. That's the 5th Epoch: protocols beat IP friction every time.</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+</div>
+
+<div class="glow-band"></div>
+
+<!-- ════════════════════════════════════════════
+     SECTION 2 — THE 10-YEAR ASCENSION MAP
+════════════════════════════════════════════ -->
+<div id="ascension" style="position:relative; z-index:1;">
+<section class="full-width" style="padding-top:100px; padding-bottom:80px; max-width:1300px; margin:0 auto;">
+
+  <div class="section-eyebrow reveal">AI + HUMAN ASCENSION MAP</div>
+  <h2 class="section-title reveal">2026 → 2036<br>Ten Years. One Direction: Up.</h2>
+  <p class="section-sub reveal">
+    This is the utopian scenario. Not naive — engineered. Every phase below
+    builds the next. Every protocol locks in what came before.
+    There is no going back once this architecture is live.
+  </p>
+
+  <div class="ascension-timeline">
+    <div class="timeline-spine"></div>
+
+    <!-- PHASE 1: 2026 -->
+    <div class="timeline-phase phase-1 reveal">
+      <div class="phase-left">
+        <div class="phase-card">
+          <div class="phase-year">2026</div>
+          <div class="phase-name" style="color:var(--deep);">Protocol Zero — The Foundation</div>
+          <div class="phase-desc">
+            NOIZY launches its core infrastructure: NOIZYVOX with HVS biometric fingerprinting,
+            LifeLUV micro-split economics, and the Guild's first 500 charter members.
+            The 75/25 split becomes the industry reference point — not a pitch, a reality.
+          </div>
+          <ul class="phase-milestones">
+            <li>RSP_001 — Robert's voice is the first registered in NOIZYVOX</li>
+            <li>DreamChamber VSCode extension launches to 1,000 beta creators</li>
+            <li>NOIZYKIDZ World Music Theory Atlas goes live in 12 languages</li>
+            <li>First Guild Apprentices take the oath in 6 cities</li>
+          </ul>
+          <div class="phase-metric">Creator Revenue Captured: 75% perpetual from Day 1</div>
+        </div>
+      </div>
+      <div class="phase-center">
+        <div class="phase-node">I</div>
+      </div>
+      <div class="phase-right" style="padding-top:40px;">
+        <div style="color:var(--muted); font-size:0.9rem; line-height:1.8; padding-top:8px;">
+          <strong style="color:var(--deep); display:block; margin-bottom:8px;">What the industry is doing:</strong>
+          ElevenLabs passes 1M users. Suno lawsuit ongoing. Spotify removes 160M+ low-stream songs.
+          AI-generated music floods every platform. Voice actors begin mass contract disputes.
+          <br><br>
+          <strong style="color:var(--deep); display:block; margin-bottom:8px;">What NOIZY is doing:</strong>
+          Building the counter-architecture quietly. Every protocol we activate in 2026
+          becomes legally bulletproof by 2027. We aren't disrupting from outside —
+          we're building from the foundation.
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2: 2027 -->
+    <div class="timeline-phase phase-2 reveal">
+      <div class="phase-left" style="padding-top:40px;">
+        <div style="color:var(--muted); font-size:0.9rem; line-height:1.8; text-align:right;">
+          <strong style="color:var(--electric); display:block; margin-bottom:8px;">The Consent Wars:</strong>
+          Major studios begin requiring AI-consent riders in all voice actor contracts.
+          Three landmark court cases cite the NOIZYVOX HVS protocol as the gold standard.
+          The term "Voice Estate" enters the legal lexicon.
+          <br><br>
+          NOIZY's Aquarium (the blind-listen concert protocol) runs its first
+          200-seat global events. Nervous system reset. Full body listening.
+        </div>
+      </div>
+      <div class="phase-center">
+        <div class="phase-node">II</div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-card">
+          <div class="phase-year">2027</div>
+          <div class="phase-name">Consent as Law — Rights Go Structural</div>
+          <div class="phase-desc">
+            The protocols we built in 2026 get cited in legislation across three countries.
+            NOIZYVOX's consent architecture is adopted as an industry reference spec.
+            The 75/25 split model generates enough case studies that other platforms begin copying it — badly.
+          </div>
+          <ul class="phase-milestones">
+            <li>Voice Estate inheritance protocol ratified in NOIZY's first 1,000 members</li>
+            <li>NOIZY Guild reaches 5,000 members across 40 countries</li>
+            <li>Nerve-to-Note adaptive input technology reaches 3,000 disabled artists</li>
+            <li>NOIZYKIDZ first cohort: 12,000 children complete Year 1 curriculum</li>
+          </ul>
+          <div class="phase-metric">Countries with NOIZY Guild Chapters: 40+</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3: 2028 -->
+    <div class="timeline-phase phase-3 reveal">
+      <div class="phase-left">
+        <div class="phase-card">
+          <div class="phase-year">2028</div>
+          <div class="phase-name">The Quality Signal — Poop Starts Sinking</div>
+          <div class="phase-desc">
+            Listener behavior data from 3 years begins showing a clear pattern: AI-flooded
+            platforms see 22% decline in per-session engagement. Listeners are fatigued.
+            NOIZY's curator-filtered, human-origin-verified streams see the inverse.
+            Quality becomes algorithmically measurable.
+          </div>
+          <ul class="phase-milestones">
+            <li>NOIZY Depth Score launched: AI-assisted quality metric + human curation combo</li>
+            <li>First Legacy Vault payouts: heirs of deceased artists receive first disbursements</li>
+            <li>NOIZY Aquarium: 50 permanent venues across 20 countries</li>
+            <li>Guild Masters begin teaching NOIZY methodology in accredited music schools</li>
+          </ul>
+          <div class="phase-metric">Listener Engagement Rate vs. AI-flooded platforms: +38%</div>
+        </div>
+      </div>
+      <div class="phase-center">
+        <div class="phase-node">III</div>
+      </div>
+      <div class="phase-right" style="padding-top:40px;">
+        <div style="color:var(--muted); font-size:0.9rem; line-height:1.8;">
+          <strong style="color:var(--green); display:block; margin-bottom:8px;">The tide turns:</strong>
+          Major streaming platforms face advertiser pressure as AI-content
+          saturation erodes premium listener demographics. Brands want
+          verified human artists to attach to. NOIZY's Guild verification
+          becomes a premium ad-targeting signal.
+          <br><br>
+          <strong style="color:var(--green); display:block; margin-bottom:8px;">Cultural shift:</strong>
+          "NOIZY-verified" becomes a quality mark. Like "organic" for food —
+          consumers start asking for it. The poop is still there.
+          But it's starting to settle.
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 4: 2029-2030 -->
+    <div class="timeline-phase phase-4 reveal">
+      <div class="phase-left" style="padding-top:40px;">
+        <div style="color:var(--muted); font-size:0.9rem; line-height:1.8; text-align:right;">
+          <strong style="color:var(--gold); display:block; margin-bottom:8px;">The Great Artist Migration:</strong>
+          500,000+ creators move their primary platform presence to NOIZY infrastructure.
+          Legacy record deals are being renegotiated with NOIZY's 75/25 model as leverage.
+          Major labels begin acquisition conversations. NOIZY declines and accelerates.
+          <br><br>
+          NOIZYKIDZ graduates its first cohort of students who have never known
+          a world without full music theory education from every tradition.
+          They are starting bands, collectives, and cooperatives.
+        </div>
+      </div>
+      <div class="phase-center">
+        <div class="phase-node">IV</div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-card">
+          <div class="phase-year">2029–30</div>
+          <div class="phase-name">The Migration — Creators Vote With Their Catalog</div>
+          <div class="phase-desc">
+            The economics are undeniable. A mid-tier creator on NOIZY earns 6× more
+            than the same creator on traditional streaming. Word spreads.
+            The Guild becomes the most desirable creative community in the world.
+            Not because of prestige — because of actual, real, depositable money.
+          </div>
+          <ul class="phase-milestones">
+            <li>500K+ creators registered in NOIZY LifeLUV protocol</li>
+            <li>LifeLUV recursive splits: $240M distributed to creation chains</li>
+            <li>NOIZY Guild Legends: first 50 creators achieve Legend status</li>
+            <li>DreamChamber: 100K active sessions/month — ambient creative workspace</li>
+          </ul>
+          <div class="phase-metric">LifeLUV Revenue to Creators: $240M+ distributed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 5: 2031-2032 -->
+    <div class="timeline-phase phase-5 reveal">
+      <div class="phase-left">
+        <div class="phase-card">
+          <div class="phase-year">2031–32</div>
+          <div class="phase-name">The Restoration — Love Actually Infects the World</div>
+          <div class="phase-desc">
+            The Great Restoration begins showing measurable results. Arts education
+            rates reverse for the first time in 30 years. NOIZYKIDZ is cited in
+            UNESCO education reports. Corporate wellness programs license the
+            Aquarium protocol. The creative economy stops contracting.
+          </div>
+          <ul class="phase-milestones">
+            <li>Arts education reversal: first increase in 30 years in 18 countries</li>
+            <li>NOIZY Archive: 40M songs with complete human-origin provenance</li>
+            <li>Voice Estate payouts: 2nd generation of voice actor families in benefit</li>
+            <li>500 Guild schools integrated into national education systems</li>
+          </ul>
+          <div class="phase-metric">NOIZYKIDZ Students Reached: 2M+ across 60 countries</div>
+        </div>
+      </div>
+      <div class="phase-center">
+        <div class="phase-node">V</div>
+      </div>
+      <div class="phase-right" style="padding-top:40px;">
+        <div style="color:var(--muted); font-size:0.9rem; line-height:1.8;">
+          <strong style="color:var(--dream); display:block; margin-bottom:8px;">The culture remembers:</strong>
+          A generation that grew up post-streaming begins rediscovering
+          depth: long-form listening, live performance, the tactile pleasure
+          of an instrument in their hands. NOIZY's Aquarium events —
+          now in 120 cities — become the most talked-about social experiences.
+          <br><br>
+          Not because of nostalgia. Because depth is pleasurable
+          in a way that quantity never was. The human nervous system
+          was always going to choose this. We just had to survive long enough
+          to offer it.
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 6: 2033-2035 -->
+    <div class="timeline-phase phase-6 reveal">
+      <div class="phase-left" style="padding-top:40px;">
+        <div style="color:var(--muted); font-size:0.9rem; line-height:1.8; text-align:right;">
+          <strong style="color:var(--fire); display:block; margin-bottom:8px;">The moment the poop sinks:</strong>
+          AI-flooded platforms begin devaluing bulk AI content.
+          Spotify, Apple, and Amazon introduce "human-origin" certification tiers
+          (copied directly from NOIZY's Depth Score).
+          The same executives who said we were "romantic about the past"
+          are now paying NOIZY for the protocol they once dismissed.
+          <br><br>
+          We don't gloat. We keep building.
+          The 100-year plan doesn't need a victory lap at year 9.
+        </div>
+      </div>
+      <div class="phase-center">
+        <div class="phase-node">VI</div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-card">
+          <div class="phase-year">2033–35</div>
+          <div class="phase-name">Protocol Dominance — The Industry Follows</div>
+          <div class="phase-desc">
+            NOIZY's protocols become the industry standard that others license and implement.
+            The 75/25 model is referenced in international AI governance frameworks.
+            Three major streaming platforms rebuild their royalty architecture on LifeLUV principles.
+            NOIZY's influence is structural, not superficial.
+          </div>
+          <ul class="phase-milestones">
+            <li>NOIZY protocol licensed to 12 major platforms globally</li>
+            <li>International AI Governance Framework cites NOIZY's consent-as-code model</li>
+            <li>LifeLUV: $2B+ in recursive creator distributions</li>
+            <li>NOIZY Guild: 200,000 members in 80 countries</li>
+          </ul>
+          <div class="phase-metric">Platforms Built on NOIZY Protocol: 12 major + 400+ indie</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 7: 2036 -->
+    <div class="timeline-phase phase-7 reveal">
+      <div class="phase-left">
+        <div class="phase-card">
+          <div class="phase-year">2036</div>
+          <div class="phase-name">The 5th Epoch — Fully Online</div>
+          <div class="phase-desc">
+            Ten years after RSP_001, the world Robert Plowman imagined from a diving accident
+            and a burning belief that creativity is sacred — is real.
+            Not complete. Not perfect. But undeniably, structurally, constitutionally real.
+            The epoch where protocols beat IP friction. Ethics beat exploitation.
+            Perpetual value beats fleeting streams.
+          </div>
+          <ul class="phase-milestones">
+            <li>The 5th Epoch: AI and human creativity are fully aligned, not competing</li>
+            <li>1M+ creators earning sustainable income through NOIZY infrastructure</li>
+            <li>The Plowman Spec: fully deployed across all 14 planned platforms</li>
+            <li>Robert's Voice Estate: a living, generating legacy for his family</li>
+          </ul>
+          <div class="phase-metric">The Mission: Creativity as a human right — protected, valued, eternal.</div>
+        </div>
+      </div>
+      <div class="phase-center">
+        <div class="phase-node">★</div>
+      </div>
+      <div class="phase-right" style="padding-top:40px;">
+        <div style="color:var(--muted); font-size:0.9rem; line-height:1.8;">
+          <strong style="color:var(--gold); display:block; font-size:1.1rem; margin-bottom:12px;">The POPS Testimony, 2036:</strong>
+          <em style="color:var(--text); font-size:1rem; line-height:1.85; display:block;">
+            "I was told it was too idealistic. Too complicated.
+            Too much to build from one man's vision.
+            But I'd seen the alternative — I'd watched creativity
+            get strip-mined until there was nothing left to mine.
+            <br><br>
+            I built NOIZY because I had to.
+            Because the music that saved my life deserved to be saved back.
+            And it turns out: when you give creators the full 75%,
+            the full credit, the full legacy —
+            they give the world everything they've got.
+            <br><br>
+            That's not a platform. That's a civilization."
+          </em>
+          <span style="color:var(--gold); font-weight:700; font-size:0.85rem; margin-top:12px; display:block;">— Robert Stephen Plowman, POPS, Founder of NOIZY</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+</div>
+
+<div class="glow-band"></div>
+
+<!-- ════════════════════════════════════════════
+     SECTION 3 — NO MORE POOP BLUEPRINT
+════════════════════════════════════════════ -->
+<div id="blueprint" class="bg-deep" style="position:relative; z-index:1;">
+<section class="full-width" style="padding-top:100px; padding-bottom:80px; max-width:1300px; margin:0 auto;">
+
+  <div class="section-eyebrow reveal">10-STEP BLUEPRINT</div>
+  <h2 class="section-title reveal">No More Poop.<br>Maximum Elevation.</h2>
+  <p class="section-sub reveal">
+    For every creator, educator, voice actor, producer, and dreamer who knows something is broken
+    and is ready to build what comes next.
+    These are the 10 moves that make quality dominate quantity — permanently.
+  </p>
+
+  <!-- VERSUS GRID -->
+  <div class="matrix-header reveal">
+    <h3 style="font-size:1.2rem; font-weight:800; color:var(--muted); margin-bottom:8px;">The Two Universes</h3>
+    <p style="color:var(--muted); font-size:0.9rem;">Where the industry is going vs. where NOIZY is taking it.</p>
+  </div>
+
+  <div class="versus-grid reveal">
+    <div class="versus-column">
+      <div class="versus-title title-bad">The Race To The Bottom</div>
+      <div class="versus-row row-bad"><strong>Economics</strong>$0.003/stream. Volume is the only viable strategy. Art becomes content.</div>
+      <div class="versus-row row-bad"><strong>AI Role</strong>Replacement. AI generates songs faster and cheaper than humans. Humans become irrelevant.</div>
+      <div class="versus-row row-bad"><strong>Rights</strong>Platform captures value. Creator signed away perpetual rights in ToS line 47. Voice gets licensed to the competition.</div>
+      <div class="versus-row row-bad"><strong>Legacy</strong>Stream count drops to zero in 18 months. Catalog disappears. Children inherit nothing.</div>
+      <div class="versus-row row-bad"><strong>Education</strong>71% of schools cut arts. Next generation grows up without creative tools. The pipeline runs dry.</div>
+      <div class="versus-row row-bad"><strong>Community</strong>Algorithm as gatekeeper. Engagement metrics replace human connection. Isolation with headphones.</div>
+      <div class="versus-row row-bad"><strong>Quality</strong>Algorithmically indistinguishable from mass-produced AI content. Listeners stop paying attention.</div>
+    </div>
+    <div class="versus-mid">
+      <span class="vs-label">VS</span>
+      <span class="vs-label">VS</span>
+      <span class="vs-label">VS</span>
+      <span class="vs-label">VS</span>
+      <span class="vs-label">VS</span>
+      <span class="vs-label">VS</span>
+      <span class="vs-label">VS</span>
+    </div>
+    <div class="versus-column">
+      <div class="versus-title title-good">The NOIZY Ascension</div>
+      <div class="versus-row row-good"><strong>Economics</strong>75% perpetual. LifeLUV micro-splits. Every use, every sample, every moment — tracks back to the creator chain.</div>
+      <div class="versus-row row-good"><strong>AI Role</strong>Amplification. AI is a DreamChamber tool that elevates human intent, never replaces it. The human signature is always primary.</div>
+      <div class="versus-row row-good"><strong>Rights</strong>Consent-as-code. Rights embedded at the protocol level. Violation is technically impossible — not just contractually prohibited.</div>
+      <div class="versus-row row-good"><strong>Legacy</strong>Voice Estate. Legacy Vault. Children and grandchildren inherit a living, generating creative legacy forever.</div>
+      <div class="versus-row row-good"><strong>Education</strong>NOIZYKIDZ: 128 scale structures, 64 rhythm archetypes, every tradition since the first rock was banged. The pipeline becomes a flood.</div>
+      <div class="versus-row row-good"><strong>Community</strong>The Guild: 4 tiers, mentorship chains, Aquarium events, creation families. Human connection as the product.</div>
+      <div class="versus-row row-good"><strong>Quality</strong>NOIZY Depth Score. Human-origin verification. Cultural attribution. Quality is structurally surfaced, not algorithmically buried.</div>
+    </div>
+  </div>
+
+  <!-- 10 STEPS -->
+  <div class="blueprint-grid">
+
+    <div class="blueprint-step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Own Your Voice — Constitutionally</div>
+      <div class="step-body">
+        Don't wait for a contract or a terms-of-service update.
+        <strong>Register your voice in NOIZYVOX.</strong> Six-layer biometric fingerprint.
+        Emotional resonance. Vocal health baseline. Identity signature.
+        Once it's registered, no platform on earth can use it without triggering the consent lock.
+      </div>
+      <div class="step-action">→ Register RSP_001 first. Then tell everyone you know.</div>
+    </div>
+
+    <div class="blueprint-step reveal reveal-delay-1">
+      <div class="step-num">02</div>
+      <div class="step-title">Demand Perpetual, Not Flat</div>
+      <div class="step-body">
+        Every flat-fee deal is a time-limited transaction dressed up as an opportunity.
+        <strong>The value of creative work compounds over time.</strong>
+        A voice recorded today is worth exponentially more in 2036 than it is today.
+        The only ethical deal is one that grows with the value it generates.
+      </div>
+      <div class="step-action">→ The phrase: "75% perpetual or I don't sign."</div>
+    </div>
+
+    <div class="blueprint-step reveal reveal-delay-2">
+      <div class="step-num">03</div>
+      <div class="step-title">Learn What Came Before You</div>
+      <div class="step-body">
+        The fastest path to authentic, deep creative work is knowing
+        <strong>where every technique you use comes from.</strong>
+        That polyrhythm? West African, 3,000 years old.
+        That pentatonic scale? Five independent traditions across four continents.
+        Understanding origin makes everything richer — and protects tradition keepers from invisible theft.
+      </div>
+      <div class="step-action">→ NOIZYKIDZ World Music Theory Atlas — start anywhere.</div>
+    </div>
+
+    <div class="blueprint-step reveal">
+      <div class="step-num">04</div>
+      <div class="step-title">Find Your Guild — Then Feed It</div>
+      <div class="step-body">
+        Isolated creators are vulnerable creators.
+        <strong>The Guild model isn't networking — it's ancestry.</strong>
+        Your mentor's techniques live in you. Your student's breakthroughs credit you.
+        The chain never breaks. That's not romanticism — that's how creative traditions
+        survived colonization, war, and everything else.
+      </div>
+      <div class="step-action">→ Take the Guild Oath. Start the Mentorship Chain.</div>
+    </div>
+
+    <div class="blueprint-step reveal reveal-delay-1">
+      <div class="step-num">05</div>
+      <div class="step-title">Use AI As a Servant, Not a Shortcut</div>
+      <div class="step-body">
+        <strong>AI that replaces your creative decisions isn't a tool — it's a colonizer.</strong>
+        AI that amplifies your intent, extends your capacity, catches your ideas at 3am —
+        that's DreamChamber. The difference is who's driving.
+        If the machine is driving, you're not creating. You're approving.
+      </div>
+      <div class="step-action">→ Rule: your human signature must be the loudest signal in the room.</div>
+    </div>
+
+    <div class="blueprint-step reveal reveal-delay-2">
+      <div class="step-num">06</div>
+      <div class="step-title">Build Your Legacy Vault Now</div>
+      <div class="step-body">
+        <strong>Don't wait until you're gone to think about what you leave behind.</strong>
+        Your demos, your sketches, your unreleased sessions, your process recordings —
+        these are worth more than your finished catalog in some futures.
+        The Legacy Vault holds everything. LifeLUV activates it perpetually.
+        Your grandchildren will receive payments from work you made today.
+      </div>
+      <div class="step-action">→ Archive everything. Date it. Fingerprint it. Lock it.</div>
+    </div>
+
+    <div class="blueprint-step reveal">
+      <div class="step-num">07</div>
+      <div class="step-title">Flood the Culture With Depth</div>
+      <div class="step-body">
+        The answer to 40M AI songs is not 41M human songs.
+        <strong>The answer is one song so deep that it outweighs a million shallow ones.</strong>
+        Quality isn't a defense against quantity — it's a different game entirely.
+        Listeners who find depth don't leave. They come back for 30 years.
+        One Great Restoration is worth more than a thousand content strategies.
+      </div>
+      <div class="step-action">→ Make the one deep thing. Then make another.</div>
+    </div>
+
+    <div class="blueprint-step reveal reveal-delay-1">
+      <div class="step-num">08</div>
+      <div class="step-title">Credit Your Sources — Loudly</div>
+      <div class="step-body">
+        Every style you use, every technique you borrow, every tradition you draw from —
+        <strong>say where it came from.</strong>
+        Attribution isn't weakness. It's authority.
+        When you know that your drum pattern descends from Ghanaian royal court music,
+        you play it differently. And audiences feel that.
+        Cultural honesty is the most powerful creative differentiator alive.
+      </div>
+      <div class="step-action">→ Tag your traditions. Pay the micro-split forward.</div>
+    </div>
+
+    <div class="blueprint-step reveal reveal-delay-2">
+      <div class="step-num">09</div>
+      <div class="step-title">Teach Somebody Everything You Know</div>
+      <div class="step-body">
+        The Guild model depends on this step.
+        <strong>Knowledge hoarded is knowledge dying.</strong>
+        The most valuable thing a Master or Legend can do
+        is take an Apprentice seriously. That Apprentice carries your techniques
+        into decades you won't see. The mentorship chain is how
+        creativity survives extinction events.
+      </div>
+      <div class="step-action">→ One mentor relationship changes everything. Start today.</div>
+    </div>
+
+    <div class="blueprint-step reveal">
+      <div class="step-num">10</div>
+      <div class="step-title">Refuse to Participate in the Race</div>
+      <div class="step-body">
+        <strong>The race to the bottom requires your participation to function.</strong>
+        Every time you release a track you don't believe in because the algorithm
+        rewards frequency, you vote for the bottom.
+        Every time you hold the track until it's right, you vote for the ascension.
+        The platforms are not going to fix this for you.
+        You fix it by not showing up to the wrong race.
+      </div>
+      <div class="step-action">→ The NOIZY standard: release when it's real. Never before.</div>
+    </div>
+
+  </div>
+
+</section>
+</div>
+
+<div class="glow-band"></div>
+
+<!-- ════════════════════════════════════════════
+     SECTION 4 — THE 5TH EPOCH
+════════════════════════════════════════════ -->
+<div id="epoch" style="position:relative; z-index:1;">
+<section class="full-width" style="padding-top:100px; padding-bottom:80px; max-width:1300px; margin:0 auto;">
+
+  <div class="section-eyebrow reveal">THE FIVE EPOCHS OF MUSIC</div>
+  <h2 class="section-title reveal">We Are in the Last Days<br>of the 4th Epoch.</h2>
+  <p class="section-sub reveal">
+    Every era of music history has been defined by who controls the infrastructure.
+    We are about to change that for the first and final time.
+  </p>
+
+  <div class="epoch-visual reveal">
+    <div class="epoch-era era-1">
+      <div class="era-num">Epoch I</div>
+      <div class="era-title">Oral Tradition</div>
+      <div class="era-years">60,000 BCE → 3,000 BCE</div>
+      <div class="era-tag tag-good">Creator Owned</div>
+    </div>
+    <div class="epoch-era era-2">
+      <div class="era-num">Epoch II</div>
+      <div class="era-title">Notation & Church</div>
+      <div class="era-years">3,000 BCE → 1450 CE</div>
+      <div class="era-tag tag-bad">Institution Owned</div>
+    </div>
+    <div class="epoch-era era-3">
+      <div class="era-num">Epoch III</div>
+      <div class="era-title">Print & Publishing</div>
+      <div class="era-years">1450 → 1920</div>
+      <div class="era-tag tag-bad">Publisher Owned</div>
+    </div>
+    <div class="epoch-era era-4">
+      <div class="era-num">Epoch IV</div>
+      <div class="era-title">Recording & Streaming</div>
+      <div class="era-years">1920 → 2026</div>
+      <div class="era-tag tag-bad">Platform Owned</div>
+    </div>
+    <div class="epoch-era era-5">
+      <div class="era-num">Epoch V</div>
+      <div class="era-title">Protocol &amp; Creator</div>
+      <div class="era-years">2026 → ∞</div>
+      <div class="era-tag tag-good">Creator Constitutional</div>
+    </div>
+  </div>
+
+  <div class="epoch-laws reveal">
+    <div class="law-box">
+      <div class="law-vs">
+        <span class="law-old">IP Friction</span>
+        <span class="law-arrow">→</span>
+        <span class="law-new">Protocols</span>
+      </div>
+      <div class="law-desc">
+        Lawsuits, takedowns, and licensing disputes are symptoms of missing infrastructure.
+        NOIZY's consent protocols make rights-management automatic.
+        You can't steal what's constitutionally fingerprinted.
+      </div>
+    </div>
+    <div class="law-box">
+      <div class="law-vs">
+        <span class="law-old">Exploitation</span>
+        <span class="law-arrow">→</span>
+        <span class="law-new">Ethics</span>
+      </div>
+      <div class="law-desc">
+        Exploitation requires an information gap: the creator doesn't know their rights.
+        NOIZY closes that gap permanently. When every creator knows their value,
+        exploitation has nowhere to take root.
+      </div>
+    </div>
+    <div class="law-box">
+      <div class="law-vs">
+        <span class="law-old">Fleeting Streams</span>
+        <span class="law-arrow">→</span>
+        <span class="law-new">Perpetual Value</span>
+      </div>
+      <div class="law-desc">
+        A $0.003 stream is a transaction. A LifeLUV micro-split is a relationship.
+        One evaporates the moment the listener moves on.
+        The other compounds every time the work is touched — for generations.
+      </div>
+    </div>
+    <div class="law-box">
+      <div class="law-vs">
+        <span class="law-old">Platform Capture</span>
+        <span class="law-arrow">→</span>
+        <span class="law-new">Creator Sovereignty</span>
+      </div>
+      <div class="law-desc">
+        Platforms capture value when creators depend on them for distribution,
+        discovery, and payment. NOIZY inverts this: the creator is the platform.
+        Their voice, their catalog, their relationships are the infrastructure.
+      </div>
+    </div>
+    <div class="law-box">
+      <div class="law-vs">
+        <span class="law-old">AI Replacement</span>
+        <span class="law-arrow">→</span>
+        <span class="law-new">AI Amplification</span>
+      </div>
+      <div class="law-desc">
+        The question is never "AI or human." It's "who is driving?"
+        In the 5th Epoch, the human signature is always the loudest signal.
+        AI is the instrument. The creator is the composer. Always.
+      </div>
+    </div>
+    <div class="law-box">
+      <div class="law-vs">
+        <span class="law-old">Fear of the Future</span>
+        <span class="law-arrow">→</span>
+        <span class="law-new">Love of the Future</span>
+      </div>
+      <div class="law-desc">
+        The race to the bottom runs on fear. Fear of being replaced.
+        Fear of irrelevance. Fear of missing the trend.
+        The 5th Epoch runs on love — of craft, of tradition, of the next generation
+        who will carry forward what you built.
+      </div>
+    </div>
+  </div>
+
+</section>
+</div>
+
+<div class="glow-band"></div>
+
+<!-- ════════════════════════════════════════════
+     SECTION 5 — THE WAY
+════════════════════════════════════════════ -->
+<div id="the-way" class="bg-green" style="position:relative; z-index:1;">
+<section class="full-width" style="padding-top:100px; padding-bottom:80px; max-width:1300px; margin:0 auto;">
+
+  <div class="section-eyebrow reveal">SHOW PEOPLE THE WAY</div>
+  <h2 class="section-title reveal">How High-Quality Ethical Art<br>Dominates The Cheap Content Economy</h2>
+  <p class="section-sub reveal">
+    Not by fighting louder. By building better.
+    Not by banning the cheap stuff. By making the real stuff undeniable.
+    Here is exactly how you show people the way.
+  </p>
+
+  <div class="way-grid">
+    <div class="way-card reveal">
+      <span class="way-icon">🔬</span>
+      <div class="way-title">Make Quality Measurable</div>
+      <div class="way-body">
+        You can't win a war you can't score. NOIZY's Depth Score makes quality
+        algorithmically visible — human origin, cultural attribution, emotional resonance,
+        creator chain completeness. When quality has a number, platforms can surface it.
+        Until then, it's invisible.
+      </div>
+    </div>
+    <div class="way-card reveal reveal-delay-1">
+      <span class="way-icon">🧬</span>
+      <div class="way-title">Embed Identity at the Bit Level</div>
+      <div class="way-body">
+        Every piece of work made in the NOIZY ecosystem carries its creator's fingerprint
+        in the file itself — not in metadata that gets stripped, not in a database
+        that can be hacked. The voice signature, the cultural origin, the creation chain:
+        all of it is in the work. Permanently.
+      </div>
+    </div>
+    <div class="way-card reveal reveal-delay-2">
+      <span class="way-icon">🎓</span>
+      <div class="way-title">Educate the Listener, Not Just the Creator</div>
+      <div class="way-body">
+        A listener who knows what a polyrhythmic groove is will never again be satisfied
+        with a four-on-the-floor loop. NOIZYKIDZ doesn't just train artists —
+        it creates an audience that demands depth.
+        The most powerful upgrade to the creative economy is a more literate listener.
+      </div>
+    </div>
+    <div class="way-card reveal">
+      <span class="way-icon">🌍</span>
+      <div class="way-title">Surface What Cheap AI Cannot Make</div>
+      <div class="way-body">
+        AI can generate a song in a known style. It cannot generate a 90-year-old
+        Malian griot's lifetime of accumulated grief and celebration.
+        It cannot generate a bedroom producer's specific memory of their city at 2am.
+        NOIZY's documentation infrastructure makes this irreplaceable uniqueness visible
+        and economically valued.
+      </div>
+    </div>
+    <div class="way-card reveal reveal-delay-1">
+      <span class="way-icon">⛓️</span>
+      <div class="way-title">Connect Every Piece to Its Human Chain</div>
+      <div class="way-body">
+        When a listener hears a NOIZY track, they see the chain:
+        this producer learned from this master, who was trained in this tradition,
+        which originated in this community. That connection transforms a consumer
+        into a participant. Participation generates loyalty that no algorithm can simulate.
+      </div>
+    </div>
+    <div class="way-card reveal reveal-delay-2">
+      <span class="way-icon">🌱</span>
+      <div class="way-title">Make Ethical the Default, Not the Exception</div>
+      <div class="way-body">
+        The mistake is making ethics an opt-in premium feature.
+        NOIZY makes ethics the baseline infrastructure.
+        The 75/25 split isn't a generous offer — it's the only option.
+        Consent-as-code isn't a setting — it's the architecture.
+        You don't choose to be ethical on NOIZY. It's not possible to be anything else.
+      </div>
+    </div>
+    <div class="way-card reveal">
+      <span class="way-icon">🔥</span>
+      <div class="way-title">Ignite the Carriers</div>
+      <div class="way-body">
+        The Great Restoration spreads through 8 vectors:
+        Teachers, Voice Actors, Tradition Keepers, Children, Bedroom Producers,
+        Adaptive Artists, Elders, Sound Healers. Each one is a fire-starter.
+        You don't need everyone. You need the carriers.
+        They infect the rest with love.
+      </div>
+    </div>
+    <div class="way-card reveal reveal-delay-1">
+      <span class="way-icon">⏳</span>
+      <div class="way-title">Play the Long Game Visibly</div>
+      <div class="way-body">
+        The cheap content economy is optimized for this quarter.
+        NOIZY is optimized for this century.
+        When you can show creators that their 2026 recording is still generating
+        revenue in 2046 — and that their children will receive the benefit —
+        the short game looks exactly like what it is: a bad deal.
+      </div>
+    </div>
+  </div>
+
+  <!-- MANIFESTO CLOSE -->
+  <div class="manifesto-block reveal">
+    <h3>The Love Infection Was Always Going to Win.</h3>
+    <p>
+      The race to the bottom is loud, fast, and relentless.
+      It looks unstoppable because it fills every screen and every feed.
+      <strong>But it has a fatal weakness: it doesn't actually satisfy anyone.</strong>
+    </p>
+    <p>
+      Listeners don't want more music. They want music that reaches them.
+      Creators don't want more streams. They want their work to matter.
+      Platforms don't want more content. They want users who stay.
+    </p>
+    <p class="quote">
+      "Depth is what humans actually need.
+      We built an entire industry selling the illusion of it.
+      NOIZY is what happens when you stop selling the illusion
+      and start building the real thing."
+    </p>
+    <p>
+      The cheap content economy is a tide that goes out.
+      What NOIZY is building is bedrock.
+      <strong>When the tide goes out, the bedrock is what's left.</strong>
+      That is the way. That has always been the way.
+      We are just finally building it.
+    </p>
+  </div>
+
+  <!-- DOCUMENT LINKS -->
+  <div class="link-bar reveal">
+    <a href="THE_PLOWMANS_CHRONICLES.html" class="link-btn btn-gold">📖 The Plowman's Chronicles</a>
+    <a href="NOIZY_GREAT_RESTORATION.html" class="link-btn btn-fire" style="color:var(--fire); border-color:rgba(232,93,4,0.4);">🚨 The Great Restoration</a>
+    <a href="NOIZY_GUILD_FAMILY.html" class="link-btn btn-dream">🔥 The Global Guild</a>
+    <a href="NOIZYKIDZ_WORLD_MUSIC_THEORY.html" class="link-btn btn-electric">🌍 World Music Theory</a>
+    <a href="NOIZY_AI_HOME.html" class="link-btn btn-green">🏠 NOIZY.AI Home</a>
+  </div>
+
+</section>
+</div>
+
+<footer>
+  <div class="footer-title">NOIZY ASCENSION MAP — 2026 → 2036</div>
+  <p style="margin-top:8px;">
+    Built by POPS & GABRIEL · NOIZY.AI · The 5th Epoch is Now
+  </p>
+  <p style="margin-top:4px; font-size:0.75rem; color:rgba(232,232,240,0.3);">
+    No More Poop. Maximum Elevation. AI + Human. Always.
+  </p>
+</footer>
+
+<script>
+// ─── STARFIELD ───
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function initStars() {
+  stars = [];
+  for (let i = 0; i < 240; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.4 + 0.2,
+      alpha: Math.random() * 0.6 + 0.1,
+      speed: Math.random() * 0.15 + 0.03,
+      drift: (Math.random() - 0.5) * 0.08
+    });
+  }
+}
+
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
+    ctx.fill();
+    s.y -= s.speed;
+    s.x += s.drift;
+    if (s.y < -2) { s.y = canvas.height + 2; s.x = Math.random() * canvas.width; }
+    if (s.x < -2) s.x = canvas.width + 2;
+    if (s.x > canvas.width + 2) s.x = -2;
+  });
+  requestAnimationFrame(drawStars);
+}
+
+resize();
+initStars();
+drawStars();
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+// ─── INTERSECTION OBSERVER ───
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+
+// Hero elements visible immediately
+document.querySelectorAll('.hero .reveal').forEach(el => {
+  setTimeout(() => el.classList.add('visible'), 200);
+});
+</script>
+</body>
+</html>

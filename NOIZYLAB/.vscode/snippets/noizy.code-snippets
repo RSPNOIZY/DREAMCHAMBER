@@ -1,0 +1,194 @@
+{
+  // ─── NOIZY: Full Spec Template ──────────────────────────────────────────────
+  "NOIZY Spec": {
+    "scope": "markdown",
+    "prefix": "noizy-spec",
+    "description": "Full NOIZY feature/component spec template",
+    "body": [
+      "# SPEC: ${1:Title}",
+      "",
+      "> **Date**: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}  ",
+      "> **Pillar**: ${2|Nerve-to-Note,Human-Connection Ledger,Noizy-Link,Sovereign Creative,Platform Core|}  ",
+      "> **Priority**: ${3|P0 — Critical,P1 — High,P2 — Normal,P3 — Low|}  ",
+      "> **Status**: ${4|Draft,In Review,Approved,In Progress,Done|}",
+      "",
+      "## Problem",
+      "${5:What problem does this solve? Why does it matter to the artist?}",
+      "",
+      "## Signal",
+      "> // NERVE: ${6:What's the human need behind this? Pain point or desire?}",
+      "",
+      "## Solution",
+      "${7:Describe the solution approach.}",
+      "",
+      "## Components",
+      "- [ ] ${8:Component 1}",
+      "- [ ] ${0:Component 2}",
+      "",
+      "## API / Interface",
+      "```python",
+      "# TODO: Define inputs/outputs",
+      "```",
+      "",
+      "## Acceptance Criteria",
+      "- [ ] ",
+      "",
+      "## Notes",
+      "<!-- VAULT: attribution, licensing, or IP notes here -->"
+    ]
+  },
+
+  // ─── NOIZY: Quick Intake Note ───────────────────────────────────────────────
+  "NOIZY Intake": {
+    "scope": "markdown",
+    "prefix": "noizy-intake",
+    "description": "Quick intake / idea capture block",
+    "body": [
+      "## INTAKE: ${1:Idea or Session Name}",
+      "> ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}",
+      "",
+      "**Raw Signal**: ${2:What came to you?}",
+      "",
+      "**Why it matters**: ${3:Context or motivation}",
+      "",
+      "**Next action**: ${0:What do you do with this?}"
+    ]
+  },
+
+  // ─── NOIZY: Feature Request ─────────────────────────────────────────────────
+  "NOIZY Feature": {
+    "scope": "markdown",
+    "prefix": "noizy-feature",
+    "description": "Feature request card",
+    "body": [
+      "### FEATURE: ${1:Feature Name}",
+      "",
+      "- **User story**: As a ${2:artist/engineer}, I want ${3:to...}, so that ${4:outcome}.",
+      "- **Pillar**: ${5|Nerve-to-Note,Vault,Noizy-Link,Sovereign Creative,Core|}",
+      "- **Effort**: ${6|XS,S,M,L,XL|}",
+      "- **Notes**: ${0:Any additional context}"
+    ]
+  },
+
+  // ─── NOIZY: Nerve-to-Note Annotation ────────────────────────────────────────
+  "NOIZY Nerve Annotation": {
+    "scope": "python,javascript,typescript",
+    "prefix": "nerve",
+    "description": "NERVE annotation — adaptive input / biometric mapping note",
+    "body": [
+      "# NERVE: ${1:Describe the adaptive/biometric behavior expected here}",
+      "# Input: ${2:EMG / velocity / breath / eye-tracking}",
+      "# Intent: ${0:What musical intent is being interpreted?}"
+    ]
+  },
+
+  // ─── NOIZY: GABRIEL Task Block ──────────────────────────────────────────────
+  "GABRIEL Task": {
+    "scope": "python",
+    "prefix": "gabriel-task",
+    "description": "GABRIEL orchestration task scaffold",
+    "body": [
+      "# GABRIEL: ${1:Task Name}",
+      "async def ${2:task_name}(${3:params}) -> ${4:dict}:",
+      "    \"\"\"",
+      "    ${5:What does this GABRIEL task do?}",
+      "    Trigger: ${6:What event or signal fires this?}",
+      "    Output:  ${0:What does it return or dispatch?}",
+      "    \"\"\"",
+      "    pass"
+    ]
+  },
+
+  // ─── NOIZY: Talon Command Block ─────────────────────────────────────────────
+  "Talon Command": {
+    "scope": "talon",
+    "prefix": "talon-cmd",
+    "description": "Talon voice command template",
+    "body": [
+      "# ${1:Command description}",
+      "${2:voice phrase} <${3:user.text}>:",
+      "    user.${0:action_name}(${3:user.text})"
+    ]
+  },
+
+  // ─── NOIZY: Talon Simple Command ────────────────────────────────────────────
+  "Talon Simple Command": {
+    "scope": "talon",
+    "prefix": "talon-simple",
+    "description": "Simple Talon voice command (no argument)",
+    "body": [
+      "# ${1:Command description}",
+      "${2:voice phrase}:",
+      "    user.${0:action_name}()"
+    ]
+  },
+
+  // ─── NOIZY: REST API Test ───────────────────────────────────────────────────
+  "REST Test Block": {
+    "scope": "http",
+    "prefix": "noizy-api",
+    "description": "REST Client test block for NOIZY API endpoint",
+    "body": [
+      "### ${1:Endpoint Name}",
+      "${2|GET,POST,PUT,DELETE,PATCH|} {{${3|PLATFORM_URL,ROB_AVA_URL,GABRIEL_URL|}}}/${0:endpoint}",
+      "Content-Type: application/json",
+      "Authorization: Bearer {{TOKEN}}",
+      "",
+      "{",
+      "  \"${4:key}\": \"${5:value}\"",
+      "}"
+    ]
+  },
+
+  // ─── NOIZY: Research Note ───────────────────────────────────────────────────
+  "Research Note": {
+    "scope": "markdown",
+    "prefix": "noizy-research",
+    "description": "Research note with source and relevance",
+    "body": [
+      "## RESEARCH: ${1:Topic}",
+      "> ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+      "",
+      "**Source**: ${2:URL or paper reference}",
+      "**Relevance to NOIZY**: ${3:How does this inform the platform?}",
+      "",
+      "### Key Findings",
+      "- ${0:Finding}",
+      "",
+      "### Application",
+      "<!-- NOTE: Which pillar / feature does this support? -->"
+    ]
+  },
+
+  // ─── NOIZY: Vault Entry ─────────────────────────────────────────────────────
+  "Vault Entry": {
+    "scope": "markdown",
+    "prefix": "noizy-vault",
+    "description": "Vault of Self / attribution record",
+    "body": [
+      "## VAULT: ${1:Asset Name}",
+      "",
+      "- **Type**: ${2|Harmonic Pattern,Rhythmic Cell,Sonic Texture,Vocal Print,Lyric Fragment|}",
+      "- **Created**: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+      "- **Human Lineage**: ${3:Artist name(s) and input method}",
+      "- **AI Assistance**: ${4:None / Model / % assisted}",
+      "- **Fingerprint**: `${0:hash-or-id}`",
+      "- **License**: Private — NOIZY Human-Connection Ledger"
+    ]
+  },
+
+  // ─── NOIZY: Python FastAPI Route ────────────────────────────────────────────
+  "FastAPI Route": {
+    "scope": "python",
+    "prefix": "noizy-route",
+    "description": "FastAPI route scaffold for NOIZY Platform",
+    "body": [
+      "@router.${1|get,post,put,delete,patch|}(\"/${2:path}\", response_model=${3:ResponseModel})",
+      "async def ${4:handler_name}(",
+      "    ${0:params}",
+      ") -> ${3:ResponseModel}:",
+      "    \"\"\"${5:Describe what this endpoint does.}\"\"\"",
+      "    pass"
+    ]
+  }
+}

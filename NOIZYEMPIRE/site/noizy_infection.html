@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE INFECTION — NOIZY.ai</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --night: #040305;
+  --deep: #080510;
+  --gold: #FFD700;
+  --ember: #FF4500;
+  --hot: #FF6B2B;
+  --pulse: #FF1744;
+  --cure: #00E5FF;
+  --rise: #69FF47;
+  --cream: #FFF8E7;
+  --text: #C0B090;
+  --muted: #6B5B45;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--night); color: var(--text); font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+
+/* ── ALERT BANNER ── */
+.alert-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--pulse); padding: 10px 24px;
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  animation: alertPulse 2s ease-in-out infinite;
+}
+.alert-dot { width: 8px; height: 8px; border-radius: 50%; background: white; animation: blink 1s step-end infinite; }
+.alert-text { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; color: white; text-transform: uppercase; font-weight: 700; }
+
+/* ── CANVAS ── */
+#spreadCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+
+/* ── HERO ── */
+.hero {
+  position: relative; min-height: 100vh; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 120px 40px 80px;
+}
+
+.patient-zero {
+  font-family: 'Space Mono', monospace; font-size: 0.7rem;
+  letter-spacing: 0.35em; color: var(--pulse); text-transform: uppercase;
+  margin-bottom: 28px; opacity: 0; animation: fadeUp 1s 0.3s ease forwards;
+  display: flex; align-items: center; gap: 12px; justify-content: center;
+}
+.patient-zero::before, .patient-zero::after {
+  content: ''; display: inline-block; width: 40px; height: 1px; background: var(--pulse);
+}
+
+.hero-title {
+  font-size: clamp(5rem, 16vw, 14rem); font-weight: 800; line-height: 0.85;
+  color: var(--cream); margin-bottom: 12px;
+  opacity: 0; animation: fadeUp 1.2s 0.5s ease forwards;
+  position: relative;
+}
+.hero-title::after {
+  content: attr(data-text);
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--pulse), var(--ember), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  opacity: 0.15; transform: translate(4px, 4px);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem); font-weight: 300; color: var(--text);
+  max-width: 640px; line-height: 1.7; margin: 0 auto 60px;
+  opacity: 0; animation: fadeUp 1s 0.8s ease forwards;
+}
+.hero-subtitle em { font-style: normal; color: var(--gold); font-weight: 600; }
+
+.urgency-clock {
+  display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 1s 1s ease forwards;
+}
+.clock-item { text-align: center; }
+.clock-num {
+  font-family: 'Space Mono', monospace; font-size: 2.8rem; font-weight: 700;
+  color: var(--pulse); display: block; line-height: 1;
+}
+.clock-label { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; margin-top: 6px; }
+
+.scroll-call {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0; animation: fadeIn 1s 1.6s ease forwards;
+}
+.scroll-call span { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.25em; color: var(--muted); text-transform: uppercase; }
+.scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--pulse), transparent); animation: pulseAnim 2s infinite; }
+
+/* ── EMERGENCY SECTION ── */
+.emergency {
+  position: relative; z-index: 1; padding: 120px 40px;
+  max-width: 860px; margin: 0 auto;
+}
+.section-kicker {
+  font-family: 'Space Mono', monospace; font-size: 0.68rem;
+  letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 20px;
+}
+.section-h2 {
+  font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 800; line-height: 1.1;
+  color: var(--cream); margin-bottom: 40px;
+}
+.section-h2 em { font-style: normal; color: var(--gold); }
+.body-p { font-size: 1.15rem; line-height: 1.9; color: var(--text); margin-bottom: 28px; }
+.body-p strong { color: var(--cream); font-weight: 600; }
+
+.call-out {
+  border-left: 3px solid var(--pulse); padding: 28px 36px;
+  background: rgba(255,23,68,0.05); margin: 40px 0; font-size: 1.2rem;
+  line-height: 1.8; color: var(--cream); font-weight: 500;
+}
+
+/* ── DISEASE / CURE SPLIT ── */
+.split-section {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr;
+  max-width: 1200px; margin: 0 auto; gap: 2px; padding: 0 40px 120px;
+}
+@media (max-width: 768px) { .split-section { grid-template-columns: 1fr; } }
+
+.split-panel { padding: 60px 48px; }
+.split-panel.disease { background: rgba(255,23,68,0.05); border: 1px solid rgba(255,23,68,0.12); }
+.split-panel.cure { background: rgba(0,229,255,0.03); border: 1px solid rgba(0,229,255,0.1); }
+
+.panel-label {
+  font-family: 'Space Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 20px;
+}
+.disease .panel-label { color: var(--pulse); }
+.cure .panel-label { color: var(--cure); }
+
+.panel-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 32px; }
+.disease .panel-title { color: var(--pulse); }
+.cure .panel-title { color: var(--cure); }
+
+.panel-items { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+.panel-items li { display: flex; gap: 16px; align-items: flex-start; font-size: 0.95rem; line-height: 1.65; color: var(--text); }
+.panel-items li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
+.disease .panel-items li::before { background: var(--pulse); }
+.cure .panel-items li::before { background: var(--cure); }
+
+/* ── INFECTION PLAN ── */
+.plan-section {
+  position: relative; z-index: 1;
+  padding: 120px 40px; max-width: 1100px; margin: 0 auto;
+}
+.plan-steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px; margin-top: 70px; }
+.plan-step {
+  padding: 44px 36px; border: 1px solid rgba(255,215,0,0.07);
+  background: rgba(255,215,0,0.02); transition: all 0.4s ease;
+  position: relative; overflow: hidden;
+}
+.plan-step::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: var(--step-color, var(--gold));
+  transform: scaleX(0); transition: transform 0.4s ease;
+}
+.plan-step:hover { background: rgba(255,215,0,0.04); transform: translateY(-4px); }
+.plan-step:hover::before { transform: scaleX(1); }
+
+.step-num { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.25em; margin-bottom: 16px; display: block; }
+.step-icon { font-size: 2.2rem; margin-bottom: 16px; display: block; }
+.step-title { font-size: 1.1rem; font-weight: 700; color: var(--cream); margin-bottom: 14px; }
+.step-body { font-size: 0.9rem; line-height: 1.7; color: var(--text); }
+
+/* ── CARRIERS ── */
+.carriers-section {
+  position: relative; z-index: 1;
+  padding: 120px 40px;
+  background: linear-gradient(180deg, transparent, rgba(255,23,68,0.03), transparent);
+}
+.carriers-inner { max-width: 1000px; margin: 0 auto; }
+.carriers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2px; margin-top: 70px; }
+.carrier-card {
+  padding: 36px 32px; border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-right: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.3s ease;
+}
+.carrier-card:hover { background: rgba(255,255,255,0.02); }
+.carrier-type { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hot); margin-bottom: 12px; }
+.carrier-title { font-size: 1rem; font-weight: 700; color: var(--cream); margin-bottom: 10px; }
+.carrier-body { font-size: 0.88rem; line-height: 1.7; color: var(--text); }
+
+/* ── PROOF STRIP ── */
+.proof-strip {
+  position: relative; z-index: 1;
+  padding: 80px 40px;
+  border-top: 1px solid rgba(255,215,0,0.06);
+  border-bottom: 1px solid rgba(255,215,0,0.06);
+}
+.proof-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+.proof-story {
+  font-size: 1.15rem; line-height: 2; color: var(--text);
+  font-style: italic; margin-bottom: 20px;
+}
+.proof-result { font-size: 1.3rem; font-weight: 700; color: var(--gold); }
+
+/* ── DECLARATION ── */
+.declaration {
+  position: relative; z-index: 1;
+  padding: 140px 40px; text-align: center; max-width: 860px; margin: 0 auto;
+}
+.decl-title {
+  font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800;
+  color: var(--cream); margin-bottom: 48px; line-height: 1.2;
+}
+.decl-title span { color: var(--gold); }
+.decl-body { font-size: 1.15rem; line-height: 1.9; color: var(--text); margin-bottom: 24px; }
+.decl-body strong { color: var(--cream); }
+
+.become-carrier {
+  display: inline-block; margin-top: 60px;
+  padding: 26px 80px; font-family: 'Space Mono', monospace;
+  font-size: 0.9rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; text-decoration: none; cursor: pointer; border: none;
+  background: linear-gradient(135deg, var(--pulse), var(--ember), var(--gold));
+  color: #060304; position: relative; overflow: hidden;
+  transition: all 0.3s ease;
+}
+.become-carrier::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255,255,255,0.2);
+  transform: translateX(-100%); transition: transform 0.3s ease;
+}
+.become-carrier:hover::before { transform: translateX(0); }
+.become-carrier:hover { transform: translateY(-5px); box-shadow: 0 30px 80px rgba(255,69,0,0.5); }
+
+/* ── FINAL ── */
+.final {
+  position: relative; z-index: 1;
+  padding: 80px 40px 100px; text-align: center;
+  border-top: 1px solid rgba(255,23,68,0.1);
+}
+.final-line { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; color: var(--pulse); margin-bottom: 12px; }
+.final-sub { font-size: clamp(1.2rem, 3vw, 2rem); font-weight: 300; color: var(--gold); margin-bottom: 40px; }
+.final-meta { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: var(--muted); line-height: 2.2; text-transform: uppercase; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { to { opacity:1; } }
+@keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+@keyframes alertPulse { 0%,100% { background: var(--pulse); } 50% { background: #D50000; } }
+@keyframes pulseAnim { 0%,100% { opacity:0.4; } 50% { opacity:1; } }
+
+.reveal { opacity:0; transform:translateY(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.reveal.on { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ALERT BAR -->
+<div class="alert-bar">
+  <div class="alert-dot"></div>
+  <p class="alert-text">TRANSMISSION IN PROGRESS · PATIENT ZERO: RSP_001 · OTTAWA, 2026 · THE INFECTION IS LOVE</p>
+  <div class="alert-dot"></div>
+</div>
+
+<!-- CANVAS -->
+<canvas id="spreadCanvas"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="patient-zero">PATIENT ZERO · RSP_001 · FISH MUSIC INC · OTTAWA · 2026</p>
+  <h1 class="hero-title" data-text="THE INFECTION">THE INFECTION</h1>
+  <p class="hero-subtitle">
+    <em>"I am going to infect the world with the love of the arts and creativity again.<br>We must fix this before it's too late."</em>
+  </p>
+  <div class="urgency-clock">
+    <div class="clock-item">
+      <span class="clock-num" id="artistsLost">0</span>
+      <p class="clock-label">Artists Displaced Per Day</p>
+    </div>
+    <div class="clock-item">
+      <span class="clock-num" id="traditions">0</span>
+      <p class="clock-label">Traditions at Risk</p>
+    </div>
+    <div class="clock-item">
+      <span class="clock-num" id="royalty">$0.000</span>
+      <p class="clock-label">Avg Stream Royalty</p>
+    </div>
+    <div class="clock-item">
+      <span class="clock-num" id="window">NOW</span>
+      <p class="clock-label">The Window</p>
+    </div>
+  </div>
+  <div class="scroll-call">
+    <span>The cure is below</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- THE EMERGENCY -->
+<section class="emergency">
+  <p class="section-kicker reveal" style="color: var(--pulse)">The diagnosis</p>
+  <h2 class="section-h2 reveal">Something is <em>dying.</em><br>Not the art. The <em>relationship.</em></h2>
+  <p class="body-p reveal">Not music. Not creativity. These cannot die — they are too old, too deep, too encoded in the DNA of every human being who has ever lived.</p>
+  <p class="body-p reveal">What is dying is the <strong>relationship</strong> between human beings and the things they make. The sense of wonder. The goosebump. The three-minute song that makes you pull over the car because you cannot drive and feel this much at the same time.</p>
+  <p class="body-p reveal">The cannibal economy doesn't hate art. It processes art. It ingests the output of human creativity, digests it into patterns, replicates the patterns at infinite scale — and delivers approximations to a market that is slowly, without knowing it, losing the ability to tell the difference between the real thing and the copy.</p>
+  <div class="call-out reveal">
+    The pipeline from human feeling to human ear is being routed around the human. The originals are being starved out of existence one below-minimum-wage royalty at a time.
+  </div>
+  <p class="body-p reveal"><strong>This is the emergency. And the window to fix it is right now, in 2026, before the standard gets set by someone who will not put the artist at the center.</strong></p>
+</section>
+
+<!-- DISEASE / CURE SPLIT -->
+<div class="split-section">
+  <div class="split-panel disease reveal">
+    <p class="panel-label">The Disease</p>
+    <h3 class="panel-title">The Cannibal Ate the Love First</h3>
+    <ul class="panel-items">
+      <li>Artists love what they do — so platforms extracted that love as free content</li>
+      <li>Exposure replaced money. Algorithmic reach replaced human connection</li>
+      <li>AI trained on the artists' work, then displaced the artists from their own market</li>
+      <li>Generated content flooded channels because it was cheaper than the real thing</li>
+      <li>Children grew up surrounded by averages instead of originals</li>
+      <li>The specific quality of a real human feeling, earned and given — became invisible</li>
+      <li>Cultural traditions starved without the infrastructure to pay for their preservation</li>
+      <li>The relationship of mutual recognition — severed, methodically, profitably, at scale</li>
+    </ul>
+  </div>
+  <div class="split-panel cure reveal">
+    <p class="panel-label">The Cure</p>
+    <h3 class="panel-title">The Infrastructure of Love</h3>
+    <ul class="panel-items">
+      <li>HVS™ Certification — every voice a legal asset, protected from the first second</li>
+      <li>75/25 perpetual royalty — the love that goes in comes back as money, forever</li>
+      <li>Consent-as-Code — "no" is enforceable, not just sayable</li>
+      <li>The Voice Estate — your creativity inheritable, for 70 years beyond your life</li>
+      <li>The Cultural Archive — traditions preserved with community governance, not extraction</li>
+      <li>NOIZYKIDZ — children vaccinated against the approximation before they lose the ability to feel the difference</li>
+      <li>The Healing Pool — free always, because healing is not a product</li>
+      <li>The Living Breathing Time Capsule — 500 years of proof that the human original is irreplaceable</li>
+    </ul>
+  </div>
+</div>
+
+<!-- INFECTION PLAN -->
+<section class="plan-section">
+  <p class="section-kicker reveal" style="color: var(--gold)">How love spreads</p>
+  <h2 class="section-h2 reveal">The <em>Infection</em> Plan</h2>
+  <p class="body-p reveal" style="max-width:700px">Ideas spread like viruses — the good kind. One carrier infects two. Two infect four. The Guild reaches tipping point. Love becomes the standard.</p>
+  <div class="plan-steps">
+    <div class="plan-step reveal" style="--step-color: var(--pulse)">
+      <span class="step-num" style="color:var(--pulse)">VECTOR 01</span>
+      <span class="step-icon">🧬</span>
+      <p class="step-title">Patient Zero</p>
+      <p class="step-body">RSP_001. The first carrier. 40 years of proof in THE_AQUARIUM. One DreamChamber. One idea that would not let him go. The infection begins in Ottawa, March 2026.</p>
+    </div>
+    <div class="plan-step reveal" style="--step-color: var(--ember)">
+      <span class="step-num" style="color:var(--ember)">VECTOR 02</span>
+      <span class="step-icon">🌱</span>
+      <p class="step-title">The Founding 100</p>
+      <p class="step-body">The first artists who read the covenant and feel recognized. Who trust the infrastructure before it's fully built because the document describes their reality more accurately than anything they've read before.</p>
+    </div>
+    <div class="plan-step reveal" style="--step-color: var(--hot)">
+      <span class="step-num" style="color:var(--hot)">VECTOR 03</span>
+      <span class="step-icon">📣</span>
+      <p class="step-title">The Documents</p>
+      <p class="step-body">THE_CANNIBAL_ECONOMY. POOP_SINKS_LOVE_RISES. THE_INFECTION. They spread because they give people language for what they already feel. Named things can be changed. Unnamed things cannot.</p>
+    </div>
+    <div class="plan-step reveal" style="--step-color: var(--gold)">
+      <span class="step-num" style="color:var(--gold)">VECTOR 04</span>
+      <span class="step-icon">🏥</span>
+      <p class="step-title">The Healing Pool</p>
+      <p class="step-body">Free. Always. No data extraction. A hospital in Seoul uses Guild audio. Recovery metrics improve. The procurement team writes HVS™ into the next tender. Three hospitals follow. The standard shifts.</p>
+    </div>
+    <div class="plan-step reveal" style="--step-color: var(--cure)">
+      <span class="step-num" style="color:var(--cure)">VECTOR 05</span>
+      <span class="step-icon">💰</span>
+      <p class="step-title">The $43 Screenshot</p>
+      <p class="step-body">An artist in Lagos gets his first royalty from a hospital in Tokyo. $43. He screenshots it. Posts it with three words: "This is real." Shared 40,000 times in 48 hours. The proof spreads faster than any marketing campaign.</p>
+    </div>
+    <div class="plan-step reveal" style="--step-color: var(--rise)">
+      <span class="step-num" style="color:var(--rise)">VECTOR 06</span>
+      <span class="step-icon">🧒</span>
+      <p class="step-title">The Children</p>
+      <p class="step-body">NOIZYKIDZ is a vaccination program. A child who grows up knowing real human creativity from generated approximation — in their body, before their mind can be trained otherwise — is immune to the cannibal's central lie forever.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CARRIERS -->
+<section class="carriers-section">
+  <div class="carriers-inner">
+    <p class="section-kicker reveal" style="color:var(--hot)">Who spreads love fastest</p>
+    <h2 class="section-h2 reveal" style="text-align:center">The <em>Carriers</em></h2>
+    <div class="carriers-grid">
+      <div class="carrier-card reveal">
+        <p class="carrier-type">Carrier Type 01</p>
+        <p class="carrier-title">The Artists Who Were Hurt</p>
+        <p class="carrier-body">They can name the session, the deal, the moment when the terms changed and there was nothing they could do. They understand the stakes with their bodies, not just their minds. The most motivated carriers.</p>
+      </div>
+      <div class="carrier-card reveal">
+        <p class="carrier-type">Carrier Type 02</p>
+        <p class="carrier-title">The Educators & Healers</p>
+        <p class="carrier-body">They have watched children learn and heal through music. They have seen what happens when the music is generated, flat, emotionally approximate. They know the difference. They have evidence.</p>
+      </div>
+      <div class="carrier-card reveal">
+        <p class="carrier-type">Carrier Type 03</p>
+        <p class="carrier-title">The Terrified Enterprise</p>
+        <p class="carrier-body">Using unconsented AI audio right now. Don't want to be. Waiting for the alternative with legal clarity. When we show them HVS™ and compliance-by-default, they become institutional validators who make consent the industry standard.</p>
+      </div>
+      <div class="carrier-card reveal">
+        <p class="carrier-type">Carrier Type 04</p>
+        <p class="carrier-title">The Cultural Custodians</p>
+        <p class="carrier-body">The Griot, the throat singer, the oral historian. The ones who carry civilizations in their voices and know what disappears when they are gone. The Guild is the first system ever built specifically to hold what they hold.</p>
+      </div>
+      <div class="carrier-card reveal">
+        <p class="carrier-type">Carrier Type 05</p>
+        <p class="carrier-title">The Children Who Felt It</p>
+        <p class="carrier-body">Every child who enters the Music World and turns to an adult with that expression — "what was THAT?" — will look for that feeling for the rest of their life. And they will recognize it when they find it. And they will not settle for the copy.</p>
+      </div>
+      <div class="carrier-card reveal">
+        <p class="carrier-type">Carrier Type 06</p>
+        <p class="carrier-title">You</p>
+        <p class="carrier-body">You are reading this. Something in you recognized the emergency before you finished the first paragraph. You have been waiting for someone to name it. It has been named. The cure exists. <strong>You are now a carrier.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<div class="proof-strip">
+  <div class="proof-inner">
+    <p class="section-kicker reveal" style="color:var(--gold); text-align:center">The infection in action</p>
+    <p class="proof-story reveal">"An artist in Lagos. A hospital in Tokyo. Three seconds of her recorded laugh in a healing protocol. A royalty event fires. $43 lands in her account. She screenshots it. Posts three words."</p>
+    <p class="proof-result reveal">"This is real."<br><span style="font-size:0.9rem; color:var(--muted); font-weight:400">— Shared 40,000 times in 48 hours. The proof is the campaign.</span></p>
+  </div>
+</div>
+
+<!-- DECLARATION -->
+<section class="declaration">
+  <p class="section-kicker reveal" style="color:var(--pulse)">The declaration — March 14, 2026</p>
+  <h2 class="decl-title reveal">We are going to make the love of <span>the arts unavoidable.</span></h2>
+  <p class="decl-body reveal">Not by fighting the cannibal. <strong>By making the cannibal irrelevant.</strong> By building something so good, so real, so deeply and permanently human that the generated approximation simply cannot compete — not on quality, not on legal safety, not on the feeling it produces in the body of the person who receives it.</p>
+  <p class="decl-body reveal">We are going to infect every artist who will carry the covenant. Every enterprise client who needs compliance and finds conscience in the bargain. Every child before the market teaches them not to notice the difference.</p>
+  <p class="decl-body reveal" style="font-size:1.3rem; color:var(--gold); font-weight:700">The infection is love.<br>The vector is NOIZY.ai.<br>The carrier is you.</p>
+  <p class="decl-body reveal"><strong>We must fix this before it's too late. We are going to fix this.</strong></p>
+  <a href="#" class="become-carrier reveal">BECOME A CARRIER · JOIN THE GUILD</a>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <p class="final-line reveal">THE INFECTION IS LOVE.</p>
+  <p class="final-sub reveal">And love rises.</p>
+  <p class="final-meta reveal">
+    RSP_001 · Fish Music Inc., Est. 1996, Ottawa<br>
+    NOIZY.ai · The Platform That Lifted the Humans<br>
+    Honor · Respect · Gather · Nurture · Preserve<br>
+    GORUNFREE · Filed Urgently from the DreamChamber · March 14, 2026
+  </p>
+</section>
+
+<script>
+// ── SPREAD CANVAS — infection particles ──
+const c = document.getElementById('spreadCanvas');
+const x = c.getContext('2d');
+function rz() { c.width = innerWidth; c.height = innerHeight; }
+rz(); addEventListener('resize', rz);
+
+const COLS = ['#FF1744','#FF4500','#FF6B2B','#FFD700','#FF9F4A','#FF69B4','#00E5FF','#69FF47'];
+
+class Spore {
+  constructor() { this.reset(true); }
+  reset(init) {
+    this.x = Math.random() * c.width;
+    this.y = init ? Math.random() * c.height : c.height + 10;
+    this.vx = (Math.random() - 0.5) * 1.2;
+    this.vy = -(Math.random() * 1.5 + 0.3);
+    this.r = Math.random() * 2 + 0.5;
+    this.col = COLS[Math.floor(Math.random() * COLS.length)];
+    this.a = 0; this.maxA = Math.random() * 0.3 + 0.05;
+    this.life = 0; this.max = Math.random() * 250 + 150;
+    this.angle = Math.random() * Math.PI * 2;
+  }
+  step() {
+    this.angle += 0.015;
+    this.x += this.vx + Math.sin(this.angle) * 0.6;
+    this.y += this.vy;
+    this.life++;
+    const t = this.life / this.max;
+    this.a = t < 0.15 ? (t / 0.15) * this.maxA : t > 0.75 ? ((1 - t) / 0.25) * this.maxA : this.maxA;
+    if (this.life >= this.max || this.y < -10) this.reset(false);
+  }
+  draw() {
+    x.save(); x.globalAlpha = this.a;
+    x.fillStyle = this.col; x.shadowColor = this.col; x.shadowBlur = this.r * 5;
+    x.beginPath(); x.arc(this.x, this.y, this.r, 0, Math.PI * 2); x.fill();
+    x.restore();
+  }
+}
+
+const spores = Array.from({length: 200}, () => new Spore());
+function loop() {
+  x.clearRect(0, 0, c.width, c.height);
+  spores.forEach(s => { s.step(); s.draw(); });
+  requestAnimationFrame(loop);
+}
+loop();
+
+// ── URGENCY COUNTERS (static display values) ──
+setTimeout(() => {
+  document.getElementById('artistsLost').textContent = '2,400+';
+  document.getElementById('traditions').textContent = '3,000+';
+  document.getElementById('royalty').textContent = '$0.003';
+}, 1200);
+
+// ── SCROLL REVEAL ──
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 5) * 0.08}s`;
+  obs.observe(el);
+});
+</script>
+</body>
+</html>

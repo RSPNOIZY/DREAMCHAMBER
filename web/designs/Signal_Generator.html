@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Signal_Generator</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="Signal_Generator" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer231" class="Basic-Text-Frame">
+			<p id="_idParaDest-235" class="heading-1"><a id="_idTextAnchor240"></a>Signal Generator</p>
+			<p class="Inline-Art"><img src="image/image_JRGB53LCUR5QGNB3C7FZLPSEKISBED2W" alt="" /></p>
+			<p class="Normal">The Signal Generator is able to synthesize silence, tones, and noise. This is useful for creating test tones, calibration tones for post production delivery specs, repairing DC offset, and even using it as a "bleep" module to eliminate obscenities in a dialogue edit. The Signal Generator module is capable of generating extremely accurate test tones for research and testing purposes.</p>
+			<p class="Normal">To open the Signal Generator module, go to the Window &gt; Modules menu and click “Signal Generator.”</p>
+			<p class="Inline-Art"><img src="image/image_MZ4YOGIGTJ3I2KZ2ZPGRRW3VCXHBDFJQ" alt="" /></p>
+			<p id="_idParaDest-236" class="heading-2"><a id="_idTextAnchor241"></a>Silence</p>
+			<p class="Inline-Art"><img src="image/image_SNFYHA2SJDIBUQII2C56DOM23KPDMFCL" alt="" /></p>
+			<p class="Normal">Silence generates digital silence, which can be used to adjust spacing or duration of your recording. DC offset feature can create or remove positive or negative amounts of the DC offset.</p>
+			<p id="_idParaDest-237" class="heading-2"><a id="_idTextAnchor242"></a>Tones</p>
+			<p class="Inline-Art"><img src="image/image_ATGNN47IWSFMXOGQVBS6MM4CG7A7V32D" alt="" /></p>
+			<p class="heading-3">Tone shape</p>
+			<p class="Normal">Tone shape allows you to choose the waveform for the signal to be generated, with a choice of:</p>
+			<ul>
+				<li class="Unordered-List">Sine</li>
+				<li class="Unordered-List">Triangle</li>
+				<li class="Unordered-List">Sawtooth</li>
+				<li class="Unordered-List">Square</li>
+			</ul>
+			<p class="heading-3">Freq</p>
+			<p class="Normal">Sets the pitch, in Hz, of the signal to be generated, as well as whether you’d like it to move (sweep) over time, or modulate at a certain rate.</p>
+			<p class="heading-3">Amp</p>
+			<p class="Normal">Amp refers to the amplitude of the tone, and much like freq, allows you to adjust both the start and end points in dB for the amplitude, if you wish for it to change over time.</p>
+			<p class="heading-3">Antialiasing</p>
+			<p class="Normal">All test tone shapes, except the sinusoid, contain an infinite set of harmonics. When Antialiasing is not selected, these tones are generated in a "naive" way in the time domain. It leads to aliasing (folding) of higher harmonics into the audible range, which often sounds undesirable. When Antialiasing option is enabled, these higher harmonics are filtered out with a linear-phase low-pass filter. It prevents aliasing, but introduces some ringing into the waveform, which is usually not a problem, because it is concentrated near half the sampling rate.</p>
+			<p class="Normal">Higher quality of antialiasing produces a filter with a sharper frequency cut, which retains more of the useful harmonics and rejects more of the aliased harmonics, at the expense of more time-domain ringing and slower processing.</p>
+			<p class="heading-3">Level</p>
+			<p class="Normal">Specifies the sample peak level of the synthesized waveform in dBFS. When Antialiasing is used, actual sample and true peak levels may exceed the specified peak level due to filter ringing.</p>
+			<p id="_idParaDest-238" class="heading-2"><a id="_idTextAnchor243"></a>Noise</p>
+			<p class="Inline-Art"><img src="image/image_OLC6SARQYYOBDPJJN3L74T4JDGXA547D" alt="" /></p>
+			<p class="Normal">This allows you to generate noise of many different types, with a user definable RMS level. These noise types are:</p>
+			<ul>
+				<li class="Unordered-List">White Gaussian</li>
+				<li class="Unordered-List">White triangular</li>
+				<li class="Unordered-List">White uniform</li>
+				<li class="Unordered-List">White binary</li>
+				<li class="Unordered-List">Pink</li>
+				<li class="Unordered-List">Brown</li>
+			</ul>
+			<p class="Normal">Noise color defines the spectral shape: white noise has flat power spectrum, pink noise decays at 3 dB/octave rate, while brown noise decays at 6 dB/octave rate.</p>
+			<p class="Normal">Gaussian, triangular, uniform, or binary relates to the p.d.f., or probability distribution function, of the noise. It describes how often samples of different amplitude are encountered in the signal. For example, uniform p.d.f. means that all amplitudes below noise peak level are equally popular.</p>
+			<p id="_idParaDest-239" class="heading-2"><a id="_idTextAnchor244"></a>Pasting mode</p>
+			<p class="Inline-Art"><img src="image/image_JK44AJNVMCE45I4SMHBSJQF5BCUNK5MS" alt="" /></p>
+			<p class="Normal">These pasting modes affect how the signals generated will be placed into your audio file.</p>
+			<p class="heading-3">Replace</p>
+			<p class="Normal">Replace will completely replace the audio in your selection with the generated signal. </p>
+			<p class="heading-3">Mix</p>
+			<p class="Normal">Mix will retain the audio in your selection, and mix in the generated signal.</p>
+			<p class="heading-3">Insert</p>
+			<p class="Normal">Insert will allow you to set a custom duration, in seconds, and the Signal Generator will then insert this audio, increasing the length of your audio file by the amount prescribed.</p>
+		</div>
+	</body>
+</html>

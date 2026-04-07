@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>Dither - Ozone 9 Help Documentation</title>
+<meta name="generator" content="Hugo 0.63.2" />
+
+<meta name="description" content="Ozone 9 Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ozone 9 Help Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/en/dither/index.html">
+<meta property="og:title" content="Ozone 9 Help Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+      <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  <link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/style-overrides.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-33', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+<body class="palette-primary-ozone9 palette-accent-ozone9">
+  <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html">
+          <img src="../images/o9-header.svg" alt="Ozone 9 docs header image"
+                 width="190px" height="50px"> Dither</a>
+          </div>
+      </div>
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+<div class="drawer">
+  <nav aria-label="Navigation">
+<form action="../search/index.html"><div class="group">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+  </form>
+</nav>
+  <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+    <a title="Introduction" href="../index.html"><span class=""></span>  Introduction</a>
+</li>
+<li>
+    <a title="Getting Started" href="../getting-started/index.html"><span class=""></span>  Getting Started</a>
+</li>
+<li>
+    <a title="General Controls" href="../general-controls/index.html"><span class=""></span>  General Controls</a>
+</li>
+<li>
+    <a title="Views" href="../views/index.html"><span class=""></span>  Views</a>
+</li>
+<li>
+    <a title="Ozone Application" href="../ozone-app/index.html"><span class=""></span>  Ozone Application</a>
+</li>
+<li>
+    <a title="Master Assistant" href="../master-assistant/index.html"><span class=""></span>  Master Assistant</a>
+</li>
+<li>
+    <a title="Dynamics" href="../dynamics/index.html"><span class=""></span>  Dynamics</a>
+</li>
+<li>
+    <a title="Dynamic EQ" href="../dynamic-eq/index.html"><span class=""></span>  Dynamic EQ</a>
+</li>
+<li>
+    <a title="Equalizer" href="../equalizer/index.html"><span class=""></span>  Equalizer</a>
+</li>
+<li>
+    <a title="Exciter" href="../exciter/index.html"><span class=""></span>  Exciter</a>
+</li>
+<li>
+    <a title="Imager" href="../imager/index.html"><span class=""></span>  Imager</a>
+</li>
+<li>
+    <a title="Low End Focus" href="../low-end-focus/index.html"><span class=""></span>  Low End Focus</a>
+</li>
+<li>
+    <a title="Master Rebalance" href="../master-rebalance/index.html"><span class=""></span>  Master Rebalance</a>
+</li>
+<li>
+    <a title="Match EQ" href="../match-eq/index.html"><span class=""></span>  Match EQ</a>
+</li>
+<li>
+    <a title="Maximizer" href="../maximizer/index.html"><span class=""></span>  Maximizer</a>
+</li>
+<li>
+    <a title="Spectral Shaper" href="../spectral-shaper/index.html"><span class=""></span>  Spectral Shaper</a>
+</li>
+<li>
+    <a title="Vintage Compressor" href="../vintage-compressor/index.html"><span class=""></span>  Vintage Compressor</a>
+</li>
+<li>
+    <a title="Vintage EQ" href="../vintage-eq/index.html"><span class=""></span>  Vintage EQ</a>
+</li>
+<li>
+    <a title="Vintage Limiter" href="../vintage-limiter/index.html"><span class=""></span>  Vintage Limiter</a>
+</li>
+<li>
+    <a title="Vintage Tape" href="../vintage-tape/index.html"><span class=""></span>  Vintage Tape</a>
+</li>
+<li>
+    <a title="Codec Preview" href="../codec-preview/index.html"><span class=""></span>  Codec Preview</a>
+</li>
+<li>
+    <a class="current"title="Dither" href="index.html"><span class=""></span>  Dither</a>
+<ul id="scrollspy">
+</ul>
+</li>
+<li>
+    <a title="Referencing" href="../referencing/index.html"><span class=""></span>  Referencing</a>
+</li>
+<li>
+    <a title="Presets" href="../presets/index.html"><span class=""></span>  Presets</a>
+</li>
+<li>
+    <a title="Options" href="../options/index.html"><span class=""></span>  Options</a>
+</li>
+<li>
+    <a title="Glossary" href="../glossary/index.html"><span class=""></span>  Glossary</a>
+</li>
+<li>
+    <a title="Customer Care" href="../customer-care/index.html"><span class=""></span>  Customer Care</a>
+</li>
+<li>
+    <a title="License Information" href="../license-information/index.html"><span class=""></span>  License Information</a>
+</li>
+<li>
+    <a title="EULA" href="../eula/index.html"><span class=""></span>  EULA</a>
+</li>
+</ul>
+      <hr />
+<span class="section">Connect with iZotope</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+<li>
+    <a href="https://www.izotope.com/en/products/ozone.html" target="_blank" title="iZotope Product Page"><span class="icon icon-sphere"></span>  iZotope.com</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a>
+  </li>
+</ul>
+<hr /></div>
+  </div>
+</div>
+</div>
+<article class="article">
+    <div class="wrapper">
+
+      
+
+<h1>Dither </h1>
+
+<h2 id="overview">Overview</h2>
+<p>Ozone contains a comprehensive set of dithering tools, bit meters, and DC offset meters to help you prepare
+studio-quality audio for CD and other formats, by effectively converting and dithering audio to 24, 20, 16, 12, or 8 bit using iZotope&rsquo;s MBIT+ technology for exceptionally transparent conversion to different bit depths.</p>
+<div class="admonition note">
+<p class="admonition-title">Dither does not include Maximizer</p>
+<p class="admonition-body">Dither processing is independent of the Maximizer module.</p>
+</div>
+<hr>
+<h2 id="accessing-dither">Accessing Dither</h2>
+<p>Access Dither by clicking on the <strong>Dither</strong> button below the I/O meters. Enable or
+disable Dither by clicking Dither&rsquo;s power button.</p>
+<figure ><img src="../images/dither/dither-btn.png" alt="Dither button in IO Panel" /></figure>
+<hr>
+<h2 id="noise-shaping-curve-view">Noise Shaping Curve View</h2>
+<p>Displays the noise-shaping profile curve across a frequency spectrum. The drawn
+curve represents the general frequency curve of the specific dither noise
+profile.</p>
+<figure ><img src="../images/dither/noise-shaping.png" alt="noise shaping curve" /></figure>
+<hr>
+<h2 id="controls">Controls</h2>
+<p>Dither includes the following set of controls in the control panel which allow
+you to talior your audio conversion processing:</p>
+<ul>
+<li><a href="index.html#bit-depth">Bit Depth</a></li>
+<li><a href="index.html#dither-amount">Dither Amount</a></li>
+<li><a href="index.html#noise-shaping">Noise Shaping</a></li>
+<li><a href="index.html#bit-meter">Bit Meter</a></li>
+<li><a href="index.html#dc-offset-meter">DC Offset Meter</a></li>
+</ul>
+<figure ><img src="../images/dither/controls.png" alt="Dither Control Panel" /></figure>
+<h3 id="bit-depth">Bit Depth</h3>
+<p>Select the target bit depth for your audio: 24, 20, 16,12, or 8.</p>
+<div class="admonition note">
+<p class="admonition-title">Ideal CD Bit Options</p>
+<p class="admonition-body">When mastering for CD, industry standards recommend your Bit Depth be set to 16 bit.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note: 8 &amp; 12 Bit Options</p>
+<p class="admonition-body">The 8 &amp; 12 bit options in the
+Dither panel are preview only <strong>WITHIN</strong> the Ozone application, you cannot use 8
+or 12 bit Dither when <em>exporting from</em> the Ozone application.</p>
+</div>
+<h4 id="auto-blanking">Auto-Blanking</h4>
+<p>Selecting this option will completely mute dither output (i.e. dither noise) when the
+input signal is completely silent (0 bits of audio) for at least 0.7 seconds.</p>
+<h3 id="dither-amount">Dither Amount</h3>
+<p>Select the target number of bits or amount of dither that will be used. Dither
+Amount options are outlined in the table below</p>
+<table>
+<thead>
+<tr>
+<th><strong>DITHER AMOUNT</strong></th>
+<th><strong>EFFECT</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Strong</strong></td>
+<td>Completely eliminates the non-linear distortion issues that may result from using Off or Low, but this comes at the expense of a slightly increased noise floor.</td>
+</tr>
+<tr>
+<td><strong>Medium</strong></td>
+<td>Recommended choice for the Dither Amount setting.</td>
+</tr>
+<tr>
+<td><strong>Low</strong></td>
+<td>Can leave some non-linear quantization distortion or dither noise modulation.</td>
+</tr>
+<tr>
+<td><strong>Off</strong></td>
+<td>Can leave some non-linear quantization distortion or dither noise modulation.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="harmonic-suppression">Harmonic Suppression</h4>
+<p>Enable to slightly alter the truncation rules, moving the harmonic quantization
+distortion away from overtones of audible frequencies to maintain better tonal
+quality in the resulting signal.</p>
+<div class="admonition note">
+<p class="admonition-title">Harmonic Suppresion and Artifacts</p>
+<p class="admonition-body">This option doesn’t create any random dithering noise floor. Truncation results
+in harmonic quantization distortion that adds overtones to the signal and
+distorts the timbre.</p>
+</div>
+<h4 id="limit-peaks">Limit Peaks</h4>
+<p>When enabled, the Limit Peaks control allows you to effectively suppress the spurious peaks caused by aggressive dither settings.</p>
+<div class="admonition info">
+<p class="admonition-title">Dither Noise and Spurious Peaks</p>
+<p class="admonition-body">Dither noise is random in nature and has a very low amplitude, so dither peaks
+are not often a problem. However, depending on your dithering settings,
+especially more aggressive modes, the high frequency dither noise can be
+amplified significantly after noise shaping. This can result in spurious peaks in
+the overall dither signal (up to -60 dBFS for 16-bit quantization).</p>
+</div>
+
+<h3 id="noise-shaping">Noise Shaping</h3>
+<p>Selects the amount of noise shaping that is applied during the dithering
+process ranging from Off (no shaping) through Max (roughly 14 dB of audible noise
+suppression).</p>
+<div class="admonition note">
+<p class="admonition-title">Noise Shaping Effects</p>
+<p class="admonition-body">Noise shaping pushes the noise necessary for dithering into less
+audible frequency ranges, allowing for greater dithering with less perceived
+noise. Different amounts of noise shaping will have subtle effects on the sound quality
+of the dither process, so experiment with the different settings with your
+particular program material.</p>
+</div>
+<h3 id="bit-meter">Bit Meter</h3>
+<p>Monitor the digital activity of your program material and the state of bits to look for problems or discontinuities in the digital signal. This can be an invaluable resource for monitoring the digital activity of your program material, including viewing:</p>
+<ul>
+<li>Range of bits (dynamic range) being used</li>
+<li>Output word length</li>
+<li>Faulty A/D converters</li>
+<li>Sub-par plug-in processing</li>
+</ul>
+<h4 id="bit-meter-columns">Bit Meter Columns</h4>
+<p>The columns bit meter provides specific information on the activity of the bits
+comprising your audio. The columns show which bits are being used. If a bit is
+used (goes from 1 to 0 or vice versa), the position for that bit is lit.The
+image and table blow outline the type of activiy being displayed by each column pair.</p>
+<figure ><img src="../images/dither/bit-meter.png" alt="Bit Meter Columns" /></figure>
+<table>
+<thead>
+<tr>
+<th><strong>LABEL</strong></th>
+<th><strong>COLUMN REFERENCE</strong></th>
+<th><strong>DESCRIPTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1" /></figure></td>
+<td><strong>Inner Columns</strong></td>
+<td>Displays the real-time activity of the bits of audio, for the left and right channels.</td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2" /></figure></td>
+<td><strong>Outer Columns</strong></td>
+<td>Displays the real-time activity in a “peak hold” way, retaining momentary information. If the inner columns toggle or “light up”, the outer columns will show that bit as being used.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Using the Bit Meter Effectively </p>
+<p class="admonition-body"><p>In general, you want to see activity on each of the bits (except the top one,
+see below for explanation). Meaning that over a period of a few seconds each of the bits in the outside columns should be lit.</p>
+<p>You should also click on the meter periodically to reset the peak hold of the outside columns. Something like DC offset would toggle a lower bit once
+(lighting the outside column), but would never toggle it after that since the bit is being held.</p>
+<p>If you’re dithering down, you only want to see 16, 12, or 8 bits lit
+(corresponding to the output bit depth of the dither).</p>
+</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">Identifying Signal Problems in Bit Meter </p>
+<p class="admonition-body">Some examples of problems you can identify with a bit meter are:</p>
+<ul>
+<li><strong>HEADROOM:</strong> You may have a 24 bit audio file, but aren’t using all of the
+bits.</li>
+<li><strong>16 BITS:</strong> In a more extreme case, you are only using 16 bits. If you’re
+dithering to 16 bits, this is what you want to see. However, if you’re not
+dithering, this would suggest there is a problem somewhere, either an A/D
+converter that is only putting out 16 bits, a plug-in that’s truncating the
+signal down to 16 bits, or others.</li>
+<li><strong>STUCK BIT:</strong> One bit in the middle of the signal isn’t being exercised,
+possibly due to a faulty A/D converter or bug with a software plug-in.</li>
+</ul></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Why the Top Bit Will Never Light Up in the Bit Meter</p>
+<p class="admonition-body"><ul>
+<li>When samples are stored as a binary number, negative samples are specially
+encoded. Since the binary representation of negative numbers is not intuitive,
+Ozone takes the absolute value of each sample before plotting it on the bit
+meter.</li>
+<li>Since the most significant bit is only set when a sample is negative, this bit
+will never light up. We simply included the top bit as placeholder for
+completeness.</li>
+</ul></p>
+</div>
+<h4 id="reset">Reset</h4>
+<p>Enable to reset the bit meter and start its display over with the program
+material’s current playback point.</p>
+<h3 id="dc-offset-meter">DC Offset Meter</h3>
+<p>Displays the amount of the DC that is being removed when <a href="index.html#filter">Filter</a> is enabled.</p>
+<figure ><img src="../images/dither/dc-offset.png" alt="DC Offset Meter" /></figure>
+<h4 id="filter">Filter</h4>
+<p>Enable to activates a high-pass filter with a 1 Hz cutoff frequency that filters DC Offset before limiting.</p>
+<div class="admonition note">
+<p class="admonition-title">DC Offset Requires Maximizer or Vintage Limiter</p>
+<p class="admonition-body">You cannot access the DC offset meter or Filter control unless you have <a href="../maximizer/index.html">Maximizer</a>
+or <a href="../vintage-limiter/index.html">Vintage-Limiter</a> in your signal chain.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">More information about DC Offset</p>
+<p class="admonition-body"><p>DC offset  is a defect in the recording when the waveform’s average voltage is
+above or below zero. Audio signals are normally represented by an alternating
+current (AC) whose average value is zero. Some malfunctions in the recording
+equipment can result in a direct current leaking into the signal. Thus, the recorded waveform appears to be above or below the zero line.</p>
+<p>In FFT (Fast Fourier Transform) analyzers, the DC offset is represented with
+energy at zero frequency (0 Hz). A DC offset can be removed with a high-pass
+filter. It is important to distinguish DC offset from waveform asymmetry.
+Asymmetry skews the waveform shape towards positive or negative levels, but the
+average current stays at zero. Unlike DC offset, asymmetry has no particular
+energy near 0 Hz and can be reduced using phase rotation filters.</p>
+</p>
+</div>
+
+<div class="admonition info">
+<p class="admonition-title">More information about Dithering</p>
+<p class="admonition-body"><ul>
+<li>If you are interested in getting some practical tips for using dithering, as
+well as some of the theory behind it, please check out the <a href="https://www.izotope.com/en/support/support-resources/guides.html">Educational
+Guides</a> on
+the iZotope website.</li>
+<li>Check out the <a href="../getting-started/index.html#dithering-tips">Getting Started</a> chapter for
+some Dithering tips.</li>
+</ul></p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">Dither in Ozone 9 Component Plug-ins</p>
+<p class="admonition-body">When Using the Plug-In Version of Ozone 9:</p>
+<ul>
+<li>Do NOT perform any processing to your audio <strong>AFTER</strong> applying Dither. It is
+OK, however, to perform level adjustment with the Output Gain sliders in
+Ozone&rsquo;s <a href="../general-controls/index.html">I/O panel</a>, but do NOT change any levels in the host app or with other plug-ins.</li>
+<li>Almost all host apps have their master faders after the effects slot, so any
+level adjustment in the host app will destroy the dither.</li>
+<li>Do not put any plug-ins after Ozone if you are dithering with Ozone. The
+dither must be the last thing that touches the audio.</li>
+<li>Turn off dithering in the host app.</li>
+</ul></p>
+</div>
+
+
+    </div>
+  </article>
+<footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../codec-preview/index.html" title="Codec Preview">
+        <span class="direction">Previous</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">Codec Preview</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../referencing/index.html" title="Referencing">
+        <span class="direction">Next</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">Referencing</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+&copy; 2020 iZotope, Inc. - Ozone 9.1.0
+  </div>
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </main>
+</body>
+</html>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>Assistants - Neutron 3 Help Documentation</title>
+<meta name="generator" content="Hugo 0.58.0" />
+
+<meta name="description" content="Neutron 3 Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Neutron 3 Help Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/en/assistants/index.html">
+<meta property="og:title" content="Neutron 3 Help Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+      <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  <link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/style-overrides.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-33', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+<body class="palette-primary-neutron3 palette-accent-neutron3">
+  <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html">
+          <img src="../images/header.svg" alt="Neutron 3 docs header image"
+                 width="200px" height="50px"> Assistants</a>
+          </div>
+      </div>
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+<div class="drawer">
+  <nav aria-label="Navigation">
+<form action="../search/index.html"><div class="group">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+  </form>
+</nav>
+  <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+    <a title="Introduction" href="../index.html"><span class=""></span>  Introduction</a>
+</li>
+<li>
+    <a title="Getting Started" href="../getting-started/index.html"><span class=""></span>  Getting Started</a>
+</li>
+<li>
+    <a title="General Controls" href="../general-controls/index.html"><span class=""></span>  General Controls</a>
+</li>
+<li>
+    <a class="current"title="Assistants" href="index.html"><span class=""></span>  Assistants</a>
+<ul id="scrollspy">
+</ul>
+</li>
+<li>
+    <a title="Gate" href="../gate/index.html"><span class=""></span>  Gate</a>
+</li>
+<li>
+    <a title="Equalizer" href="../equalizer/index.html"><span class=""></span>  Equalizer</a>
+</li>
+<li>
+    <a title="Masking Meter" href="../masking-meter/index.html"><span class=""></span>  Masking Meter</a>
+</li>
+<li>
+    <a title="Compressor" href="../compressor/index.html"><span class=""></span>  Compressor</a>
+</li>
+<li>
+    <a title="Transient Shaper" href="../transient-shaper/index.html"><span class=""></span>  Transient Shaper</a>
+</li>
+<li>
+    <a title="Exciter" href="../exciter/index.html"><span class=""></span>  Exciter</a>
+</li>
+<li>
+    <a title="Sculptor" href="../sculptor/index.html"><span class=""></span>  Sculptor</a>
+</li>
+<li>
+    <a title="Visual Mixer" href="../visual-mixer/index.html"><span class=""></span>  Visual Mixer</a>
+</li>
+<li>
+    <a title="Relay" href="../relay/index.html"><span class=""></span>  Relay</a>
+</li>
+<li>
+    <a title="Presets" href="../presets/index.html"><span class=""></span>  Presets</a>
+</li>
+<li>
+    <a title="Options" href="../options/index.html"><span class=""></span>  Options</a>
+</li>
+<li>
+    <a title="Glossary" href="../glossary/index.html"><span class=""></span>  Glossary</a>
+</li>
+<li>
+    <a title="Customer Care" href="../customer-care/index.html"><span class=""></span>  Customer Care</a>
+</li>
+<li>
+    <a title="License Information" href="../license-information/index.html"><span class=""></span>  License Information</a>
+</li>
+<li>
+    <a title="EULA" href="../eula/index.html"><span class=""></span>  EULA</a>
+</li>
+</ul>
+      <hr />
+<span class="section">Connect with iZotope</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+<li>
+    <a href="https://www.izotope.com/en/products/mix/neutron.html" target="_blank" title="iZotope Product Page"><span class="icon icon-sphere"></span>  iZotope.com</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a>
+  </li>
+</ul>
+<hr /><ul>
+  <li>
+<a href="../../ja/assistants/index.html"><i class="icon icon-eye"></i>日本語での表示</a>
+</li>
+</ul></div>
+  </div>
+</div>
+</div>
+<article class="article">
+    <div class="wrapper">
+
+      
+
+<h1>Assistants </h1>
+<div class="lang-btn-box">
+<a class="lang-btn active" href="../../ja/assistants/index.html">English</a>
+<a class="lang-btn clickable" href="../../ja/assistants/index.html">日本語</a>
+</div>
+
+
+
+<h2 id="overview">Overview</h2>
+
+<p>Neutron includes two Assistant features aimed at intelligently and efficiently establishing a
+starting point for your mix or individual tracks, freeing you up to focus on creative mixing
+decisions. Choose either <a href="index.html#mix-assistant">Mix Assistant</a> or <a href="index.html#track-assistant">Track Assistant</a> as
+starting points for your mixing session. We highly encourage using Track Assistant and Mix Assistant
+in your workflow to help you setup your mixing session.</p>
+
+<h3 id="accessing-an-assistant">Accessing An Assistant</h3>
+
+<p>Using the Assistants at the right time in your mix workflow is important so that you can get the
+most out of each assistant. In the Neutron 3 mothership, you can access either Assistant through the
+<a href="index.html#mix-assistant">Mix Assistant</a> button.</p>
+
+<p>You will be given two choices:</p>
+
+<ol>
+<li>Choosing <strong>Balance</strong> option will bring up <a href="index.html#mix-assistant">Mix Assistant</a>.</li>
+<li>Choosing <strong>Track Enhance</strong> option will bring up <a href="index.html#track-assistant">Track Assistant</a>.</li>
+</ol>
+
+<figure ><img src="../images/assistants/balance-track.png" alt="Choosing Balance or Track For Assistance Path" /></figure>
+
+<div class="admonition tip">
+<p class="admonition-title">TIP: Use Mix Assistant first for the best results</p>
+<p class="admonition-body">We suggest for you to use Mix Assistant before using Track Assistant since Mix Assistant helps you
+set up your session levels. Mix Assistant will provide you the most accurate results when you begin
+with a new, untouched session.</p>
+</div>
+
+
+<div class="admonition note">
+<p class="admonition-title">NOTE: Can&#39;t use Track Assistant and Mix Assistant at the same time</p>
+<p class="admonition-body">You cannot use Track Assistant and Mix Assistant simultaneously. However, neither of the Assistants
+will overwrite the other.</p>
+</div>
+
+<hr />
+
+<h2 id="mix-assistant">Mix Assistant</h2>
+
+<p>Neutron&rsquo;s Mix Assistant helps you set up your mix, balancing the level of each element around your
+desired focus of the mix.</p>
+
+<ul>
+<li>You can <em>access</em> Mix Assistant either from  <strong>Neutron 3 Advanced mothership</strong> plug-in or from
+<a href="../visual-mixer/index.html">Neutron 3 Visual Mixer</a> plug-in.</li>
+<li>Mix Assistant can <em>listen to and adjust</em> the following IPC compatible iZotope plug-ins. See the
+table below to see which plug-ins are compatible to Mix Assistant.</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Plug-in</strong></th>
+<th align="center"><strong>Access Mix Assistant</strong></th>
+<th align="center"><strong>Mix Assistant Compatible</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Neutron 3 Advanced mothership</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+
+<tr>
+<td align="left">Neutron 3 Standard mothership</td>
+<td align="center">X</td>
+<td align="center">✓</td>
+</tr>
+
+<tr>
+<td align="left"><a href="../visual-mixer/index.html">Neutron 3 Visual Mixer</a></td>
+<td align="center">✓</td>
+<td align="center">X</td>
+</tr>
+
+<tr>
+<td align="left"><a href="../equalizer/index.html">Neutron 3 Equalizer</a></td>
+<td align="center">X</td>
+<td align="center">✓</td>
+</tr>
+
+<tr>
+<td align="left"><a href="../compressor/index.html">Neutron 3 Compressor</a></td>
+<td align="center">X</td>
+<td align="center">✓</td>
+</tr>
+
+<tr>
+<td align="left"><a href="../exciter/index.html">Neutron 3 Exciter</a></td>
+<td align="center">X</td>
+<td align="center">✓</td>
+</tr>
+
+<tr>
+<td align="left"><a href="../gate/index.html">Neutron 3 Gate</a></td>
+<td align="center">X</td>
+<td align="center">✓</td>
+</tr>
+
+<tr>
+<td align="left"><a href="../transient-shaper/index.html">Neutron 3 Transient Shaper</a></td>
+<td align="center">X</td>
+<td align="center">✓</td>
+</tr>
+
+<tr>
+<td align="left"><a href="../sculptor/index.html">Neutron 3 Sculptor</a></td>
+<td align="center">X</td>
+<td align="center">✓</td>
+</tr>
+
+<tr>
+<td align="left"><a href="../relay/index.html">Relay</a></td>
+<td align="center">X</td>
+<td align="center">✓</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="recommended-workflow"><strong>Recommended Workflow</strong></h3>
+
+<p>Automatically set static level in all the tracks with Neutron 3 Advanced mothership, Neutron 3
+components, and Relay. For best possible results, use Mix Assistant <strong>after</strong> you&rsquo;ve imported raw
+stems (tracks) into a new session. We have two recommended workflows:</p>
+
+<ul>
+<li><a href="index.html#mothership-workflow">Mothership Workflow</a></li>
+<li><a href="index.html#visual-mixer-workflow">Visual Mixer Workflow</a></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">NOTE: Don&#39;t Touch Your Faders</p>
+<p class="admonition-body">Before you run Mix Assistant, check that the DAW faders are set to <strong>unity gain,</strong> i.e. don&rsquo;t touch your DAW
+faders. The less you have set up, the easier it is for Mix Assistant to help you.</p>
+</div>
+
+<h4 id="mothership-workflow">Mothership Workflow</h4>
+
+<p>In this workflow, the goal is to start your mix.</p>
+
+<ol>
+<li>Import all tracks needed for your session. The more tracks you include, the more useful Mix Assistant will
+be for you.</li>
+<li>Insert Relay as the first plugin on each track.</li>
+<li>Insert the Neutron mothership on any track you want.</li>
+<li>Click the Mix Assistant button. Select <strong>Balance</strong> and begin using Mix Assistant!</li>
+</ol>
+
+<h4 id="visual-mixer-workflow">Visual Mixer Workflow</h4>
+
+<p>In this workflow, if you want Visual Mixer (exclusively) to set all your pans and faders, make sure to put
+Relay in the last insert on your tracks.</p>
+
+<ol>
+<li>Import all tracks needed for your session. The more tracks you include, the more time Mix Assistant will
+save you!</li>
+<li>Add Visual Mixer on your master bus. Know that Visual Mixer does not process audio, it just needs to know
+at least that there is activity occuring.</li>
+<li>Click on the Mix Assistant button in Visual Mixer and begin using Mix Assistant.</li>
+</ol>
+
+<h3 id="mix-assistant-stages">Mix Assistant Stages</h3>
+
+<p>Interacting with Mix Assistant involves the following stages:</p>
+
+<ol>
+<li><a href="index.html#1-setup">Setup</a></li>
+<li><a href="index.html#2-waiting">Waiting</a></li>
+<li><a href="index.html#3-listening">Listening</a></li>
+<li><a href="index.html#4-audition-and-adjust">Audition and Adjust</a></li>
+<li><a href="index.html#5-accept">Accept</a></li>
+</ol>
+
+<p>In each stage, you need to perform an action that will help Mix Assistant provide you the most accurate
+results.</p>
+
+<figure ><img src="../images/assistants/ma-workflow.png" alt="Mix Assistant Stages" /></figure>
+
+<div class="admonition note">
+<p class="admonition-title">NOTE: Choose One Plug-in Per Audio Source</p>
+<p class="admonition-body">Use buses or individual tracks but don&rsquo;t use both. While Mix Assistant can work on buses and individual
+tracks, you only need to exclusively use EITHER buses or individual tracks. If you have Neutron 3 Advanced and
+Relay all on the same track, you should only select <strong>ONE</strong> of these to represent the track.</p>
+</div>
+
+<div class="admonition tip">
+<p class="admonition-title">TIP: Not Getting The Results You Want?</p>
+<p class="admonition-body"><ul>
+<li>Did you make sure you are only using individual tracks or buses? Mix Assistant was NOT designed to use BOTH
+individual tracks and buses.</li>
+<li>Did you make sure to set your faders and panning to unity gain?</li>
+<li>Did you make sure that you have the appropriate plug-ins set for Focus in the Setup stage?</li>
+<li>If you have more than one iZotope plug-in on any individual track or bus, make sure you selected only one of
+those plug-ins per track in the Setup stage.<br /></li>
+</ul></p>
+</div>
+
+
+<h3 id="1-setup">1. SETUP</h3>
+
+<p>Select the tracks that are the focus of your mix and those that you want to include. Then, click <strong>Begin Listening</strong>.</p>
+
+<figure ><img src="../images/assistants/ma-setup.png" alt="Mix Assistant Setup Stage" /></figure>
+
+<p>This view lists all of the compatible iZotope plug-ins in your session. <strong>Make sure every track you want to
+include is represented and only included once. Do NOT play music during this stage!</strong></p>
+
+<div class="admonition note">
+<p class="admonition-title">NOTE: Select at Least One Track for Focus</p>
+<p class="admonition-body">You need to pick at least one focus of your mix. You cannot proceed to the next stage until you have done
+this. The focus is one instrument that you feel is the most important aspect of your mix. Many tracks can be
+the focus of your mix, for example, if there are two lead vocal tracks. However, if everything is the focus,
+then your Mix Assistant will not yield great results.</p>
+</div>
+
+<h3 id="2-waiting">2. WAITING</h3>
+
+<p>Place the playhead at the beginning of your arrangement. Then, start the transport for the Assistant to begin
+listening.</p>
+
+<figure ><img src="../images/assistants/ma-waiting.png" alt="Mix Assistant Waiting Stage" /></figure>
+
+<p>Mix Assistant can&rsquo;t do anything without listening to your music. So, make sure you play your audio from where
+your audio starts wherever you want Mix Assistant to begin listening.</p>
+
+<div class="admonition note">
+<p class="admonition-title">NOTE: Mix Assistant Will Not Listen To Already Playing Transport</p>
+<p class="admonition-body">If your transport is playing when you enter the Listening page, Mix Assistant will not begin listening
+automatically. You need to stop your audio and start the transport at the beginning of the song for best
+results. If using a large session, there may be a slight delay, try to start, rewind, and restart again.</p>
+</div>
+
+<h3 id="3-listening">3. LISTENING</h3>
+
+<p>When you reach the end of your session, click <strong>Go To Results</strong> to proceed to the results. If you don&rsquo;t, Mix
+Assistant will never stop listening.</p>
+
+<figure ><img src="../images/assistants/ma-listening.png" alt="Mix Assistant Listening Stage" /></figure>
+
+<p>Mix Assistant listens to the overall level of each audio source and categorizes each instrument into groups.</p>
+
+<h3 id="4-audition-and-adjust">4. AUDITION AND ADJUST</h3>
+
+<p>Now that Mix Assistant has listened and has categorized your audio, you can now:</p>
+
+<ul>
+<li>Audition the Mix Assistant&rsquo;s suggestions.</li>
+<li>Adjust the <a href="index.html#group-sliders">Group Sliders</a> to what sounds best to you.</li>
+<li>Compare Mix Assistant&rsquo;s Results with your original session by clicking on the <a href="index.html#bypass-assistant">Bypass Assistant</a>
+button.</li>
+<li><a href="index.html#edit">Edit</a> the classifications of the Group Sliders and the Focus.</li>
+</ul>
+
+<h4 id="group-sliders">Group Sliders</h4>
+
+<p>Adjust the Group Sliders to your preference and audition the differences.</p>
+
+<h5 id="what-are-the-group-sliders">What are the Group Sliders?</h5>
+
+<p>The group sliders are created as a result of Mix Assistant listening to your audio. Mix Assistant gathers up
+all the information it has learned about your music and it sub-mixes these into the groups.</p>
+
+<p>Mix Assistant determines a target level for the following groups:</p>
+
+<ul>
+<li><strong>Focus:</strong> What you choose as the focus of your mix.</li>
+<li><strong>Voice</strong>: Tracks selected with vocals.</li>
+<li><strong>Bass:</strong> Tracks selected with bass.</li>
+<li><strong>Percussion</strong>: Tracks selected with drums/percussion instruments.</li>
+<li><strong>Musical</strong>: Other tracks that may not relate to the groups above.</li>
+</ul>
+
+<p>Each group has an associated, adjustable level slider. The slider itself represents the overall gain
+differences of the groups relative to <em>each other</em>. When you adjust these sliders, you are making gain changes
+<em>relative</em> to Mix Assistant&rsquo;s initial target level suggestion.</p>
+
+<p><strong>Mix Assistant will try to apply gain adjustment to each track within that group so that their combined
+levels achieve the target mix level set by the Group Slider.</strong></p>
+
+<p>The range of adjustment is +/- 12 dB for the Group Sliders.</p>
+
+<div class="admonition tip">
+<p class="admonition-title">TIP: Adjust Group Sliders to Taste</p>
+<p class="admonition-body">If you don&rsquo;t like the way your mix sounds with the group sliders at their starting positions, they are not
+final&ndash;you can always experiment until you get the right level balance for your song.</p>
+</div>
+
+
+<div class="admonition note">
+<p class="admonition-title">Group Slider Behavior</p>
+<p class="admonition-body">Group Sliders will be disabled if there is no content recognized for that group. If all your audio sources are
+selected as the Focus, then only one slider (Focus slider) will be available. With that, any audio source
+that&rsquo;s NOT used or classified is disabled.</p>
+</div>
+
+<h4 id="bypass-assistant">Bypass Assistant</h4>
+
+<p>This button will disable the sliders and allow you to listen to your session pre-Mix Assistant suggestions.</p>
+
+<p><strong>Gain matching</strong>: when you&rsquo;re auditioning Mix Assistant&rsquo;s results, the unprocessed mix will be gain matched
+to the processed mix. By gain matching, you can better discern the differences in balance.</p>
+
+<figure ><img src="../images/assistants/ma-audition.png" alt="Mix Assistant Audition and Adjust Stage" /></figure>
+
+<div class="admonition tip">
+<p class="admonition-title">TIP: The Overall Level May Sound Quieter</p>
+<p class="admonition-body">To avoid clipping, we try to turn things down when trying to go for an overall mix, so the levels that Mix
+Assistant suggests may be lower than the original levels.</p>
+</div>
+
+
+<h4 id="edit">Edit</h4>
+
+<p>Edit which tracks are categorized for each Group by clicking on the &ldquo;<strong>Edit Classifications</strong>&rdquo; button in the
+lower right-hand corner. You can adjust the tracks in focus or reclassify the tracks. Mix Assistant adjusts
+the Groups to reflect your categorization decisions.</p>
+
+<figure ><img src="../images/assistants/ma-edit.png" alt="Mix Assistant Edit View" /></figure>
+
+<div class="admonition tip">
+<p class="admonition-title">NOTE: MIX ASSISTANT&#39;S EDIT PLUG-IN LIST</p>
+<p class="admonition-body">Any plug-ins that you did not select in the Setup stage will not appear in Mix Assistant&rsquo;s Edit plug-in list.
+Also, you cannot add any plug-ins to that list. Additionally, if you add another track with one of the
+associated iZotope IPC plug-ins <em>while</em> Mix Assistant was in the Learning stage, it will not show up in the
+Edit track list.</p>
+</div>
+
+
+<h3 id="5-accept">5. ACCEPT</h3>
+
+<p>When you&rsquo;re happy with the level balance of your mix, click <strong>Accept</strong> and your level settings will be applied
+to each source plugin using iZotope&rsquo;s Inter-plugin Communication Technology (IPC).</p>
+
+<ul>
+<li>If you didn&rsquo;t like anything, close out of the Mix Assistant window to revert the changes.</li>
+<li>If you auditioned the results, you can&rsquo;t click Accept unless you disable <strong>Bypass Assistant</strong>.</li>
+</ul>
+
+<div class="admonition tip">
+<p class="admonition-title">TIP: View Output Gain Adjustments in Visual Mixer</p>
+<p class="admonition-body">You can see the adjustments made to the output gain sliders in every affected plug-in as shown in the results
+list. These changes are easiest to view in Visual Mixer component plug-in.</p>
+</div>
+
+
+<div class="admonition note">
+<p class="admonition-title">NOTE: Once You Close Out, You Can&#39;t Access Group Sliders</p>
+<p class="admonition-body">Once you close out of Mix Assistant, you cannot go back to the same screen to make group level changes. To
+make any Group Level changes, you will have to restart Mix Assistant from the beginning. Mix Assistant will
+re-learn everything unless you have overwritten a class which we will not alter.</p>
+</div>
+
+<hr />
+
+<h2 id="track-assistant">Track Assistant</h2>
+
+<p>A handy customizable assistive tool that offers an intelligent starting point for an individual track, not the
+whole mix. Trained through machine learning, Track Assistant listens carefully to individual tracks and
+provides unique suggestions by dialing in different parameters within Neutron. You can then adjust Neutron 3
+modules to your artistic taste.</p>
+
+<h3 id="recommended-workflow-1">Recommended Workflow</h3>
+
+<p>Track Assistant works on one track at a time and is not aware of the track&rsquo;s context to your session. To use
+Track Assistant in your workflow:</p>
+
+<ol>
+<li>Insert a Neutron 3 mothership instance on a  channel (track) that you want to apply Track Assistant to.</li>
+<li>Open the Neutron 3 mothership instance on one track and click on Track Assistant button.</li>
+<li>Choose the instrument, style and intensity for Track Assistant. You can also allow Neutron to figure out
+what your instrument is by choosing <strong>Auto-detect</strong> from the instrument&rsquo;s dropdown menu.</li>
+<li>After you set Track Assistant, click <strong>Next</strong>.</li>
+<li>Hit the play button in your DAW, and Track Assistant will begin processing your audio.</li>
+<li>Check out the starting point Track Assistant suggested for you.</li>
+<li>Hit <strong>Accept</strong> to apply the results to your session!</li>
+</ol>
+
+<div class="admonition note">
+<p class="admonition-title">NOTE: TRACK ASSISTANT PROCESSING TIME</p>
+<p class="admonition-body">When you use Track Assistant, it requires anywhere between 4 to 10 seconds of audio playback and analysis
+before it makes a decision on which settings to adjust. Neutron is inaccessible during Track Assistant
+processing.</p>
+</div>
+
+<h3 id="track-assistant-settings">Track Assistant Settings</h3>
+
+<p>Adjusting the Track Assistant settings gives a baseline for Track Assistant to help you find a starting point
+relative to your artistic vision. These settings affect parameters such as the amount of processing, the
+number of bands being processed, compression ratios, etc.</p>
+
+<figure ><img src="../images/assistants/track-assistant-settings.png" alt="Track Assistant Settings" /></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Setting</strong></th>
+<th align="left"><strong>Description</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><strong>INSTRUMENT</strong></td>
+<td align="left">Identifies the instrument classification which affects Track Assistant&rsquo;s resulting parameter values and the default <a href="../sculptor/index.html">Sculptor</a> mode. If you do not see your instrument listed, use either:<ul><li><strong>Other</strong>: None of the above (e.g. Synths, Didgeridoo, Vuvuzela).<li><strong>Auto-Detect</strong>: let the Track Assistant auto-detect your instrument class.</ul></td>
+</tr>
+
+<tr>
+<td align="center"><strong>STYLE</strong></td>
+<td align="left">Suggests the aesthetic result that you might want to achieve. <ul><li><strong>Balanced</strong>: Provides general-purpose processing for a well-rounded sound. <li><strong>Warm (open)</strong>: Slightly emphasizes the bass in the instrument for a more pleasant sound.<li><strong>Upfront (midrange)</strong>: Emphasizes the midrange frequencies of the instrument for more presence.</ul></td>
+</tr>
+
+<tr>
+<td align="center"><strong>INTENSITY</strong></td>
+<td align="left">Suggests the amount of processing you&rsquo;re willing to allow Neutron to perform in order to get to the Style result you want.<ul><li><strong>Low (subtle)</strong>: Not a lot of processing added. Just a hint of adjustment to meet the Style. <li><strong>Medium</strong>: Moderate amount of processing added. Noticable change in bringing out that instrument. <li><strong>High (aggressive)</strong>: Heavy amount of processing added to bring the instrument into focus.</ul></td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition tip">
+<p class="admonition-title">TIP: EXPLORE TRACK ASSISTANT SETTINGS</p>
+<p class="admonition-body">Play around with the different <a href="index.html#track-assistant-settings">Track Assistant Settings</a> if Track Assistant isn&rsquo;t
+quite understanding what you&rsquo;re looking for. Between Style and Intensity settings, there are 9 different
+combinations that influence the Track Assistant suggestions. With each combination, there are 6 presets—one
+per audio ID type. Thus, there&rsquo;s a total of 54 unique and varied suggestions.</p>
+</div>
+
+
+<h3 id="track-assistant-processing">Track Assistant Processing</h3>
+
+<p>Track Assistant will process the audio based on the information gained from the settings and the incoming
+audio. Track Assistant will process this information in the following order:</p>
+
+<ol>
+<li>Track Assistant identifies your audio based on its instrument category.</li>
+<li>Track Assistant uses the audio identification to determine a signal flow preset (order of modules).
+
+<ul>
+<li>Sets Target Curve in <a href="../sculptor/index.html">Sculptor</a> module.</li>
+</ul></li>
+<li>Track Assistant determines a preset for how many bands each multiband capable module will have (minimum of
+one, maximum of three).</li>
+</ol>
+
+<p><strong>End Result</strong>: A unique preset including adjustments made to the signal flow, EQ curve, Compressor, Sculptor,
+and Exciter.</p>
+
+<h3 id="track-assistant-effects-on-modules">Track Assistant Effects on Modules</h3>
+
+<p>For each enabled multiband module, Track Assistant will place band crossover points depending on your audio.
+The most transparent crossover points are determined using a few criteria, including minima in the spectrum.</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>Module</strong></th>
+<th><strong>Track Assistant Adjustments</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>Equalizer</strong></td>
+<td>Determines a basic starting curve by enabling and placing filter nodes at optimal shelf points and at energy peaks throughout the spectrum. The filter node placement results in small boosts, cuts, static or dynamic behavior, or bell or shelving filter choices depending on your audio. Track Assistant places nodes at areas of interest already present in the signal.</td>
+</tr>
+
+<tr>
+<td><strong>Exciter</strong></td>
+<td>Uses Exciter presets to determine per-band Exciter parameters such as Tube/Tape/ Warm/Retro on the X/Y pad, and Dry/Wet Blend. Sets the Drive amount relative to the intensity of the input signal.</td>
+</tr>
+
+<tr>
+<td><strong>Compressor</strong> (x2)</td>
+<td>For each enabled Compressor band, Track Assistant chooses thresholds dynamically based on an LKFS signal level analysis. This allows you to spend less time finding the sweet spot, and more time to make artistic decisions on the compressor effects.</td>
+</tr>
+
+<tr>
+<td><strong>Sculptor</strong></td>
+<td>Moved to first position of signal chain and sets a target curve based on your instrument selection in the main Track Assistant options page.</td>
+</tr>
+
+<tr>
+<td><strong>Gate</strong></td>
+<td>Removed from the signal chain.</td>
+</tr>
+
+<tr>
+<td><strong>Transient Shaper</strong></td>
+<td>Bypassed.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition info">
+<p class="admonition-title">INFO: HELP MAKE TRACK ASSISTANT BETTER!</p>
+<p class="admonition-body">If Track Assistant misidentifies your audio file, please send it to iZotope via <a href="https://support.izotope.com/">Customer Care</a>.</p>
+</div>
+
+
+
+    </div>
+  </article>
+<footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../general-controls/index.html" title="General Controls">
+        <span class="direction">Previous</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">General Controls</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../gate/index.html" title="Gate">
+        <span class="direction">Next</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">Gate</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+<a href="../../ja/assistants/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+<br />
+&copy; 2019 iZotope, Inc. - Neutron 3.1.0
+  </div>
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </main>
+</body>
+</html>

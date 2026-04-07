@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOIZYTEAM | CONF HALL</title>
+    <link href="nexus.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050505;
+            color: #e0e0e0;
+            font-family: 'Inter', system-ui, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .header {
+            margin-top: 2rem;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+        .title-text {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+        .subtitle-text {
+            color: #666;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="holo-floor"></div>
+
+
+    <div class="header">
+        <h1 class="title-text">NOIZYTEAM</h1>
+        <p class="subtitle-text">NEURAL CONFERENCE SPACE</p>
+    </div>
+
+    <div class="conf-room">
+        <!-- CORE -->
+        <div class="agent-seat seat-core">
+            <div class="avatar">
+                🌀
+                <div class="status-dot status-active"></div>
+            </div>
+            <div class="agent-name">CORE</div>
+            <div class="agent-role">System Host</div>
+            <div class="metrics">
+                <div class="metric-row"><span>Status</span> <span style="color:#00e5ff">ONLINE</span></div>
+                <div class="metric-row"><span>Focus</span> <span>Monitoring</span></div>
+                <div class="metric-row"><span>Vibe</span> <span>100%</span></div>
+            </div>
+        </div>
+
+        <!-- SHIRL -->
+        <div class="agent-seat seat-shirl">
+            <div class="avatar">
+                ✨
+                <div class="status-dot status-active"></div>
+            </div>
+            <div class="agent-name">SHIRL</div>
+            <div class="agent-role">Scribe & Soul</div>
+            <div class="metrics">
+                <div class="metric-row"><span>Status</span> <span style="color:#ff00ff">ACTIVE</span></div>
+                <div class="metric-row"><span>Focus</span> <span>Subject Matter</span></div>
+                <div class="metric-row"><span>Last Words</span> <span>"Forward Motion"</span></div>
+            </div>
+        </div>
+
+        <!-- ENGR (KEITH) -->
+        <div class="agent-seat seat-engr">
+            <div class="avatar">
+                🛠️
+                <div class="status-dot status-waiting"></div>
+            </div>
+            <div class="agent-name">ENGR</div>
+            <div class="agent-role">Builder (Keith)</div>
+            <div class="metrics">
+                <div class="metric-row"><span>Status</span> <span style="color:#ffb700">STANDBY</span></div>
+                <div class="metric-row"><span>Focus</span> <span>Construction</span></div>
+                <div class="metric-row"><span>Integrity</span> <span>100%</span></div>
+            </div>
+        </div>
+
+        <!-- GABRIEL -->
+        <div class="agent-seat seat-gabriel">
+            <div class="avatar">
+                👁️
+                <div class="status-dot status-active"></div>
+            </div>
+            <div class="agent-name">GABRIEL</div>
+            <div class="agent-role">Preacher (HP-OMEN)</div>
+            <div class="metrics">
+                <div class="metric-row"><span>Status</span> <span style="color:#9d00ff">LISTENING</span></div>
+                <div class="metric-row"><span>Focus</span> <span>The Word</span></div>
+                <div class="metric-row"><span>Protocol</span> <span>PREACH</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: auto; margin-bottom: 2rem; color: #444; font-size: 0.8rem;">
+        MC96ECOUNIVERSE // ABSOLUTE PERFECTION DETECTED
+    </div>
+
+    <script>
+        function updateDashboard() {
+            fetch('team_status.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Update CORE
+                    updateAgent('core', data.agents.CORE);
+                    // Update SHIRL
+                    updateAgent('shirl', data.agents.SHIRL);
+                    // Update ENGR
+                    updateAgent('engr', data.agents.ENGR);
+                    // Update GABRIEL
+                    updateAgent('gabriel', data.agents.GABRIEL);
+                    
+                    // Simple console log for debug
+                    // console.log("Pulse received", data);
+                })
+                .catch(err => console.error(err));
+        }
+        
+        function updateAgent(id, data) {
+            if (!data) return;
+            
+            const seat = document.querySelector(`.seat-${id}`);
+            if (!seat) return;
+            
+            // Status Dot
+            const dot = seat.querySelector('.status-dot');
+            if (data.status === 'ACTIVE') {
+                dot.className = 'status-dot status-active';
+                seat.querySelector('.metric-row:nth-child(1) span:last-child').textContent = 'ACTIVE';
+            } else {
+                dot.className = 'status-dot status-waiting';
+                seat.querySelector('.metric-row:nth-child(1) span:last-child').textContent = 'STANDBY';
+            }
+            
+            // Focus
+            seat.querySelector('.metric-row:nth-child(2) span:last-child').textContent = data.focus || 'Waiting';
+        }
+
+        // Start Pulse
+        setInterval(updateDashboard, 1000);
+        updateDashboard();
+    </script>
+</body>
+</html>

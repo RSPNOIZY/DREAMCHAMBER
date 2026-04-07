@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Noizy Vista Demo</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile_ui.css">
+</head>
+<body>
+  <main id="cockpit">
+    <h1>Noizy Vista Demo</h1>
+    <canvas id="star-canvas"></canvas>
+    <div id="aurora"></div>
+    <div id="mountains"></div>
+    <div id="moon"></div>
+    <div id="dashboard"></div>
+    <audio id="ambient-audio" src="assets/ambient.mp3" loop autoplay></audio>
+    <button id="bookmark-btn">Bookmark Portal</button>
+    <button id="voice-btn">Voice Control</button>
+  </main>
+  <script src="script.js"></script>
+  <script src="canvas.js"></script>
+  <script src="twinkle.js"></script>
+  <script src="bookmark.js"></script>
+  <script src="voice_trigger.js"></script>
+  <script src="socket.js"></script>
+  <script src="log.js"></script>
+  <script src="badge.js"></script>
+  <script src="analytics.js"></script>
+  <script src="agent.js"></script>
+  <script src="cockpit_launcher.js"></script>
+</main>
+<script src="handshake.js"></script>
+<script src="fleet_notify.js"></script>
+</body>
+</html>

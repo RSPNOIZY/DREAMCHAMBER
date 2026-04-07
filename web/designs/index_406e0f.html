@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>Vintage EQ - Ozone 9 Help Documentation</title>
+<meta name="generator" content="Hugo 0.63.2" />
+
+<meta name="description" content="Ozone 9 Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ozone 9 Help Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/en/vintage-eq/index.html">
+<meta property="og:title" content="Ozone 9 Help Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+      <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  <link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/style-overrides.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-33', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+<body class="palette-primary-ozone9 palette-accent-ozone9">
+  <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html">
+          <img src="../images/o9-header.svg" alt="Ozone 9 docs header image"
+                 width="190px" height="50px"> Vintage EQ</a>
+          </div>
+      </div>
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+<div class="drawer">
+  <nav aria-label="Navigation">
+<form action="../search/index.html"><div class="group">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+  </form>
+</nav>
+  <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+    <a title="Introduction" href="../index.html"><span class=""></span>  Introduction</a>
+</li>
+<li>
+    <a title="Getting Started" href="../getting-started/index.html"><span class=""></span>  Getting Started</a>
+</li>
+<li>
+    <a title="General Controls" href="../general-controls/index.html"><span class=""></span>  General Controls</a>
+</li>
+<li>
+    <a title="Views" href="../views/index.html"><span class=""></span>  Views</a>
+</li>
+<li>
+    <a title="Ozone Application" href="../ozone-app/index.html"><span class=""></span>  Ozone Application</a>
+</li>
+<li>
+    <a title="Master Assistant" href="../master-assistant/index.html"><span class=""></span>  Master Assistant</a>
+</li>
+<li>
+    <a title="Dynamics" href="../dynamics/index.html"><span class=""></span>  Dynamics</a>
+</li>
+<li>
+    <a title="Dynamic EQ" href="../dynamic-eq/index.html"><span class=""></span>  Dynamic EQ</a>
+</li>
+<li>
+    <a title="Equalizer" href="../equalizer/index.html"><span class=""></span>  Equalizer</a>
+</li>
+<li>
+    <a title="Exciter" href="../exciter/index.html"><span class=""></span>  Exciter</a>
+</li>
+<li>
+    <a title="Imager" href="../imager/index.html"><span class=""></span>  Imager</a>
+</li>
+<li>
+    <a title="Low End Focus" href="../low-end-focus/index.html"><span class=""></span>  Low End Focus</a>
+</li>
+<li>
+    <a title="Master Rebalance" href="../master-rebalance/index.html"><span class=""></span>  Master Rebalance</a>
+</li>
+<li>
+    <a title="Match EQ" href="../match-eq/index.html"><span class=""></span>  Match EQ</a>
+</li>
+<li>
+    <a title="Maximizer" href="../maximizer/index.html"><span class=""></span>  Maximizer</a>
+</li>
+<li>
+    <a title="Spectral Shaper" href="../spectral-shaper/index.html"><span class=""></span>  Spectral Shaper</a>
+</li>
+<li>
+    <a title="Vintage Compressor" href="../vintage-compressor/index.html"><span class=""></span>  Vintage Compressor</a>
+</li>
+<li>
+    <a class="current"title="Vintage EQ" href="index.html"><span class=""></span>  Vintage EQ</a>
+<ul id="scrollspy">
+</ul>
+</li>
+<li>
+    <a title="Vintage Limiter" href="../vintage-limiter/index.html"><span class=""></span>  Vintage Limiter</a>
+</li>
+<li>
+    <a title="Vintage Tape" href="../vintage-tape/index.html"><span class=""></span>  Vintage Tape</a>
+</li>
+<li>
+    <a title="Codec Preview" href="../codec-preview/index.html"><span class=""></span>  Codec Preview</a>
+</li>
+<li>
+    <a title="Dither" href="../dither/index.html"><span class=""></span>  Dither</a>
+</li>
+<li>
+    <a title="Referencing" href="../referencing/index.html"><span class=""></span>  Referencing</a>
+</li>
+<li>
+    <a title="Presets" href="../presets/index.html"><span class=""></span>  Presets</a>
+</li>
+<li>
+    <a title="Options" href="../options/index.html"><span class=""></span>  Options</a>
+</li>
+<li>
+    <a title="Glossary" href="../glossary/index.html"><span class=""></span>  Glossary</a>
+</li>
+<li>
+    <a title="Customer Care" href="../customer-care/index.html"><span class=""></span>  Customer Care</a>
+</li>
+<li>
+    <a title="License Information" href="../license-information/index.html"><span class=""></span>  License Information</a>
+</li>
+<li>
+    <a title="EULA" href="../eula/index.html"><span class=""></span>  EULA</a>
+</li>
+</ul>
+      <hr />
+<span class="section">Connect with iZotope</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+<li>
+    <a href="https://www.izotope.com/en/products/ozone.html" target="_blank" title="iZotope Product Page"><span class="icon icon-sphere"></span>  iZotope.com</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a>
+  </li>
+</ul>
+<hr /></div>
+  </div>
+</div>
+</div>
+<article class="article">
+    <div class="wrapper">
+
+      
+
+<h1>Vintage EQ </h1>
+
+<h2 id="overview">Overview</h2>
+<p>The Vintage EQ module can be used to add the emulated frequency response of the
+Pultec EQP-1A and Pultec MEQ-5.</p>
+<hr>
+<h2 id="module-interface">Module Interface</h2>
+<p>The Ozone 9 Vintage EQ module controls and features are outlined in the table below.</p>
+<figure ><img src="../images/vintage-eq/module-interface.png" alt="Vintage EQ Interface" /></figure>
+<table>
+<thead>
+<tr>
+<th><strong>LABEL</strong></th>
+<th><strong>SECTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="label-1 Views" /></figure></td>
+<td><a href="index.html#module-header">Module Header</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="label-2 Module Header" /></figure></td>
+<td><a href="index.html#module-header">Meters &amp; Displays</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="label-3" /></figure></td>
+<td><a href="index.html#controls">Controls</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="module-header">Module Header</h2>
+<figure ><img src="../images/vintage-eq/module-header.png" alt="Vintage EQ Module Header" /></figure>
+<table>
+<thead>
+<tr>
+<th><strong>LABEL</strong></th>
+<th><strong>SECTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1 View" /></figure></td>
+<td><a href="index.html#view-selector">View Selector</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2 Channel Processing Modes" /></figure></td>
+<td><a href="index.html#channel-processing-modes">Channel Processing Modes</a></td>
+</tr>
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="Label-3 Reset" /></figure></td>
+<td><a href="index.html#reset">Reset</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="view-selector">View Selector</h3>
+<p>The Vintage EQ module includes the following views:</p>
+<ul>
+<li><a href="../views/index.html#spectrum-analyzer">Spectrum Analyzer</a></li>
+</ul>
+<h2 id="channel-processing-modes">Channel Processing Modes</h2>
+<p>The Vintage EQ module can operate in either Stereo mode or Mid/Side mode. See the <a href="../general-controls/index.html#channel-processing-modes">General Controls</a> chapter for more information regarding Mid/Side Processing.</p>
+<h3 id="reset">Reset</h3>
+<p>Returns all controls in the Vintage EQ module to their factory default values.</p>
+<div class="admonition tip">
+<p class="admonition-title">UNDO HISTORY TO REVERT SETTINGS</p>
+<p class="admonition-body">If you wish to return to the settings you were using before clicking the <strong>Reset</strong> button, you can use the <a href="../general-controls/index.html#undo-history">Undo History</a> window to revert the settings.</p>
+</div>
+
+<hr>
+<h2 id="controls">Controls</h2>
+<p>The Vintage EQ control panel includes two sets of controls: the <a href="index.html#pultec-eqp-1a-controls">Pultec EQP-1A Equalizer</a> and the <a href="index.html#pultec-meq-5-equalizer-controls">Pultec MEQ-5 Equalizer</a>.</p>
+<figure ><img src="../images/vintage-eq/controls.png" alt=" Pultec EQP-1A Equalizer and Pultec MEQ-5 Equalizer Controls" /></figure>
+<p>The top row of parameters are modeled after the <strong>Pultec EQP-1A Equalizer</strong>.
+This includes the following controls which are further described in the tables
+below:</p>
+<ul>
+<li><a href="index.html#low-frequency">Low Frequency</a></li>
+<li><a href="index.html#high-frequency-boost">High Frequency Boost</a></li>
+<li><a href="index.html#high-frequency-cut">High Frequency Cut</a></li>
+</ul>
+<p>The bottom row of parameters are modeled after the <strong>Pultec MEQ-5 Equalizer</strong>.
+This includes the following controls which are further described in the tables
+below:</p>
+<ul>
+<li><a href="index.html#mid-frequency">Mid Frequency</a></li>
+<li><a href="index.html#mid-frequency">Low-Mid Frequency</a></li>
+<li><a href="index.html#mid-frequency">High-Mid Frequency</a></li>
+</ul>
+<h3 id="pultec-eqp-1a">Pultec EQP-1A</h3>
+<p>A unique feature of the Pultec EQP-1A is the ability to simultaneously adjust
+the boost and cut parameters for the low frequency band. While the original
+manual warns “Do not attempt to boost and attenuate simultaneously,” these
+controls interact in a way that many engineers have found to be desirable. Rather than canceling each other out, combining these controls results in a boost in the low frequencies, followed by a dip at slightly higher frequencies. This unique filter shape is also available in the Ozone Equalizer module as
+“Vintage Low Shelf”.</p>
+<h4 id="low-frequency">Low Frequency</h4>
+<table>
+<thead>
+<tr>
+<th><strong>CONTROL</strong></th>
+<th><strong>DESCRIPTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LOW FREQUENCY</strong></td>
+<td>Sets the low frequency to be boosted. Options include: 20 Hz, 30 Hz, 45 Hz, 60 Hz, and 100 Hz.</td>
+</tr>
+<tr>
+<td><strong>LOW BOOST</strong></td>
+<td>Sets the amount of boost applied to the selected low frequency. This is a low shelf filter.</td>
+</tr>
+<tr>
+<td><strong>LOW CUT</strong></td>
+<td>Sets the amount of attenuation applied to the selected low frequency. This is a low shelf filter.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Low Frequency Selection Note</p>
+<p class="admonition-body"><ul>
+<li>The 45 Hz option isn’t present in the original hardware unit, but we’ve added
+this frequency because we found it to be useful for mastering.</li>
+</ul></p>
+</div>
+<h4 id="high-frequency-boost">High Frequency Boost</h4>
+<table>
+<thead>
+<tr>
+<th><strong>CONTROL</strong></th>
+<th><strong>DESCRIPTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HIGH BOOST FREQUENCY</strong></td>
+<td>Sets the high frequency to be boosted. Options include 3 kHz, 4 kHz, 5 kHz, 8 kHz, 10 kHz, 12 kHz, and 16 kHz.</td>
+</tr>
+<tr>
+<td><strong>HIGH BOOST</strong></td>
+<td>Sets the amount of boost applied to the selected high frequency. This is a peaking filter.</td>
+</tr>
+<tr>
+<td><strong>HIGH Q</strong></td>
+<td>Sets the bandwidth for high frequency boosting. The boost amount and bandwidth interact (i.e., the Q changes as you boost), as they do in the EQP-1A.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="high-frequency-cut-controls">High Frequency Cut Controls</h4>
+<table>
+<thead>
+<tr>
+<th><strong>CONTROL</strong></th>
+<th><strong>DESCRIPTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HIGH CUT FREQUENCY</strong></td>
+<td>Sets the high frequency to be attenuated. Options include 5 kHz, 10 kHz, and 20kHz.</td>
+</tr>
+<tr>
+<td><strong>HIGH CUT</strong></td>
+<td>Sets the amount of attenuation applied to the selected high frequency. This is a high shelf filter.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pultec-meq-5-equalizer-controls">Pultec MEQ-5 Equalizer Controls</h3>
+<p>All of the mid frequency controls are peaking filters. As in the original MEQ-5,
+the filter bandwidths are affected by the boost/cut amount.</p>
+<h4 id="low-mid-frequency-controls">Low-Mid Frequency Controls</h4>
+<table>
+<thead>
+<tr>
+<th><strong>CONTROL</strong></th>
+<th><strong>DESCRIPTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LOW-MID BOOST FREQUENCY</strong></td>
+<td>Sets the low-mid frequency to be boosted. Options include 200 Hz, 300 Hz, 500 Hz, 700 Hz, and 1000 Hz.</td>
+</tr>
+<tr>
+<td><strong>LM BOOST FREQUENCY</strong></td>
+<td>Sets the amount of boost applied to the selected low-mid frequency band.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="mid-frequency-cut-controls">Mid Frequency Cut Controls</h4>
+<table>
+<thead>
+<tr>
+<th><strong>CONTROL</strong></th>
+<th><strong>DESCRIPTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MID CUT FREQUENCY</strong></td>
+<td>Sets the mid frequency to be attenuated. Options include 200 Hz, 300 Hz, 500 Hz, 700 Hz, 1 kHz, 1.5 kHz, 2 kHz, 3 kHz, 4 kHz, 5 kHz, and 7 kHz.</td>
+</tr>
+<tr>
+<td><strong>MID CUT</strong></td>
+<td>Sets the amount of attenuation applied to the selected mid frequency.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="high-mid-frequency-controls">High-Mid Frequency Controls</h4>
+<table>
+<thead>
+<tr>
+<th><strong>CONTROL</strong></th>
+<th><strong>DESCRIPTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HIGH-MID BOOST FREQUENCY</strong></td>
+<td>Sets the high-mid frequency to be boosted. Options include 1.5 kHz, 2 kHz, 3 kHz, 4 kHz, and 5 kHz.</td>
+</tr>
+<tr>
+<td><strong>HM BOOST</strong></td>
+<td>Sets the amount of boost applied to the selected high-mid frequency.</td>
+</tr>
+</tbody>
+</table>
+
+
+    </div>
+  </article>
+<footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../vintage-compressor/index.html" title="Vintage Compressor">
+        <span class="direction">Previous</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">Vintage Compressor</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../vintage-limiter/index.html" title="Vintage Limiter">
+        <span class="direction">Next</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">Vintage Limiter</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+&copy; 2020 iZotope, Inc. - Ozone 9.1.0
+  </div>
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </main>
+</body>
+</html>

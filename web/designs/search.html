@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Tipue Search Static Mode Demo</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400|Merriweather:300,300italic" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<link href="css/help.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="tipuesearch/tipuesearch_set.js"></script>
+<script type="text/javascript" src="tipuesearch/tipuesearch_content.js"></script>
+<link rel="stylesheet" type="text/css" href="tipuesearch/tipuesearch.css">
+<script type="text/javascript" src="tipuesearch/tipuesearch.min.js"></script>
+
+</head>	<body lang="en-US">
+
+<div id="tipue_search_content"></div>
+
+<!-- this form needs to be on the page for this search to work, but I'm hiding it via css -->
+<form action="search.html" id="hideThisForm">
+<input type="text" name="q" id="tipue_search_input" autocomplete="off" required>
+</form>
+<!-- end of hidden form -->
+
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOIZY A/V AI TOOLKIT - Audio & Video Production Suite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --accent-cyan: #00FFE5;
+            --accent-magenta: #FF00AA;
+            --accent-orange: #FF6B00;
+            --accent-purple: #9D4EDD;
+            --accent-green: #00FF88;
+            --accent-gold: #FFD700;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.6);
+            --text-muted: rgba(255,255,255,0.4);
+            --border: rgba(255,255,255,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(0,255,229,0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255,0,170,0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(157,78,221,0.02) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(42px, 7vw, 72px);
+            letter-spacing: 0.15em;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .header .subtitle {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .header .stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Category Sections */
+        .category {
+            margin-bottom: 60px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .category-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 32px;
+            letter-spacing: 0.1em;
+        }
+
+        .category-count {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        /* Tool Cards Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--card-accent);
+            opacity: 0.8;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.15);
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .tool-logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .tool-info h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .tool-info .company {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tool-description {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .tool-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .feature-tag {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+
+        .tool-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .tool-pricing {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+        }
+
+        .price-free { color: var(--accent-green); }
+        .price-paid { color: var(--accent-gold); }
+        .price-freemium { color: var(--accent-cyan); }
+
+        .tool-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, var(--card-accent), rgba(255,255,255,0.1));
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+        }
+
+        .tool-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        /* Category Colors */
+        .cat-video .category-icon { background: linear-gradient(135deg, var(--accent-magenta), var(--accent-purple)); }
+        .cat-video .category-title { color: var(--accent-magenta); }
+        .cat-video .tool-card { --card-accent: var(--accent-magenta); }
+
+        .cat-audio .category-icon { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green)); }
+        .cat-audio .category-title { color: var(--accent-cyan); }
+        .cat-audio .tool-card { --card-accent: var(--accent-cyan); }
+
+        .cat-stem .category-icon { background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan)); }
+        .cat-stem .category-title { color: var(--accent-purple); }
+        .cat-stem .tool-card { --card-accent: var(--accent-purple); }
+
+        .cat-voice .category-icon { background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold)); }
+        .cat-voice .category-title { color: var(--accent-orange); }
+        .cat-voice .tool-card { --card-accent: var(--accent-orange); }
+
+        .cat-gen .category-icon { background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); }
+        .cat-gen .category-title { color: var(--accent-green); }
+        .cat-gen .tool-card { --card-accent: var(--accent-green); }
+
+        /* Wondershare Hero Card */
+        .hero-tool {
+            grid-column: 1 / -1;
+            background: linear-gradient(145deg, rgba(255,0,170,0.08), rgba(157,78,221,0.05));
+            border-color: rgba(255,0,170,0.2);
+        }
+
+        .hero-tool .tool-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-tool .tool-logo {
+            width: 72px;
+            height: 72px;
+            font-size: 36px;
+        }
+
+        .hero-tool h3 {
+            font-size: 28px;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-tool .tool-features {
+            margin-top: 16px;
+        }
+
+        .hero-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .hero-feature {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .hero-feature h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-magenta);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-feature p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Quick Actions Bar */
+        .quick-actions {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26,26,36,0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 12px 24px;
+            display: flex;
+            gap: 16px;
+            z-index: 100;
+        }
+
+        .quick-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 8px;
+        }
+
+        .quick-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-primary);
+        }
+
+        .quick-btn span:first-child {
+            font-size: 20px;
+        }
+
+        .quick-btn span:last-child {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header .stats {
+                gap: 24px;
+            }
+            
+            .quick-actions {
+                width: calc(100% - 48px);
+                justify-content: space-around;
+            }
+        }
+
+        /* Rating stars */
+        .rating {
+            display: flex;
+            gap: 2px;
+            color: var(--accent-gold);
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>NOIZY A/V TOOLKIT</h1>
+            <p class="subtitle">Professional Audio & Video AI Production Suite</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value">32</div>
+                    <div class="stat-label">AI Tools</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">40</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- VIDEO EDITING -->
+        <section class="category cat-video">
+            <div class="category-header">
+                <div class="category-icon">🎬</div>
+                <h2 class="category-title">VIDEO EDITING & AI</h2>
+                <span class="category-count">8 TOOLS</span>
+            </div>
+            <div class="tools-grid">
+                <!-- Wondershare Filmora - Hero -->
+                <div class="tool-card hero-tool">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #00D4AA, #0099FF);">🎬</div>
+                        <div class="tool-info">
+                            <h3>WONDERSHARE FILMORA 15</h3>
+                            <span class="company">Wondershare • AI Video Editor</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">
+                        The ultimate AI-powered video editor for creators. Combines ease of use with professional-grade features. Perfect for YouTube, TikTok, Reels, and professional productions. Voice-first workflows supported.
+                    </p>
+                    <div class="hero-features-grid">
+                        <div class="hero-feature">
+                            <h4>🤖 AI Copilot</h4>
+                            <p>Intelligent editing recommendations tailored to your content and style</p>
+                        </div>
+                        <div class="hero-feature">
+                            <h4>✂️ Text-Based Editing</h4>
+                            <p>Edit video like a document - transcribe, cut, rearrange by text</p>
+                        </div>
+                        <div class="hero-feature">
+                            <h4>🎵 AI Music Generator</h4>
+                            <p>Create royalty-free music that matches your video's mood</p>
+                        </div>
+                        <div class="hero-feature">
+                            <h4>🎤 AI Vocal Remover</h4>
+                            <p>Isolate vocals, remove background noise, clean audio</p>
+                        </div>
+                        <div class="hero-feature">
+                            <h4>📝 Speech-to-Text</h4>
+                            <p>Auto-generate subtitles and captions instantly</p>
+                        </div>
+                        <div class="hero-feature">
+                            <h4>🖼️ AI Thumbnails</h4>
+                            <p>Generate click-worthy thumbnails optimized for engagement</p>
+                        </div>
+                        <div class="hero-feature">
+                            <h4>🎭 Smart Masking</h4>
+                            <p>AI-powered object detection and background removal</p>
+                        </div>
+                        <div class="hero-feature">
+                            <h4>🎞️ Text-to-Video</h4>
+                            <p>Generate video from prompts - Veo 3.1 & Sora 2 models</p>
+                        </div>
+                    </div>
+                    <div class="tool-features">
+                        <span class="feature-tag">Veo 3.1</span>
+                        <span class="feature-tag">Sora 2</span>
+                        <span class="feature-tag">Beat Sync</span>
+                        <span class="feature-tag">Audio Denoise</span>
+                        <span class="feature-tag">TTS/STT</span>
+                        <span class="feature-tag">Motion Tracking</span>
+                        <span class="feature-tag">Color Match</span>
+                        <span class="feature-tag">2.9M+ Assets</span>
+                    </div>
+                    <div class="tool-footer">
+                        <div class="tool-pricing">
+                            <span class="price-freemium">FREE TRIAL</span> • <span class="price-paid">$49.99/yr</span>
+                        </div>
+                        <a href="https://filmora.wondershare.com/" target="_blank" class="tool-link">Launch →</a>
+                    </div>
+                </div>
+
+                <!-- DaVinci Resolve -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #FF6B00, #FF9500);">🎨</div>
+                        <div class="tool-info">
+                            <h3>DaVinci Resolve</h3>
+                            <span class="company">Blackmagic Design</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Hollywood's choice for color grading and professional editing. Neural Engine AI for face refinement, object removal, and smart reframe.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Color Grading</span>
+                        <span class="feature-tag">Fairlight Audio</span>
+                        <span class="feature-tag">Fusion VFX</span>
+                        <span class="feature-tag">Neural Engine</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-free">FREE</span>
+                        <a href="https://www.blackmagicdesign.com/products/davinciresolve" target="_blank" class="tool-link">Get →</a>
+                    </div>
+                </div>
+
+                <!-- Runway -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);">✨</div>
+                        <div class="tool-info">
+                            <h3>Runway ML</h3>
+                            <span class="company">Runway • Gen-3 Alpha</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Next-gen AI video generation. Text-to-video, image-to-video, video-to-video transformations with cinematic quality.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Gen-3 Alpha</span>
+                        <span class="feature-tag">Text-to-Video</span>
+                        <span class="feature-tag">Inpainting</span>
+                        <span class="feature-tag">Motion Brush</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREEMIUM</span>
+                        <a href="https://runwayml.com/" target="_blank" class="tool-link">Create →</a>
+                    </div>
+                </div>
+
+                <!-- HeyGen -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #34D399);">👤</div>
+                        <div class="tool-info">
+                            <h3>HeyGen</h3>
+                            <span class="company">AI Avatar Videos</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Create AI avatar videos with lip-sync. Perfect for training, marketing, and multilingual content without filming.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">AI Avatars</span>
+                        <span class="feature-tag">Lip Sync</span>
+                        <span class="feature-tag">Voice Clone</span>
+                        <span class="feature-tag">Translation</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-paid">FROM $24/mo</span>
+                        <a href="https://heygen.com/" target="_blank" class="tool-link">Try →</a>
+                    </div>
+                </div>
+
+                <!-- CapCut -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #000, #333);">📱</div>
+                        <div class="tool-info">
+                            <h3>CapCut</h3>
+                            <span class="company">ByteDance • Free Editor</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">TikTok's official editor with powerful AI features. Auto captions, background removal, and trending effects built-in.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Auto Captions</span>
+                        <span class="feature-tag">BG Remove</span>
+                        <span class="feature-tag">Effects</span>
+                        <span class="feature-tag">Templates</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-free">FREE</span>
+                        <a href="https://www.capcut.com/" target="_blank" class="tool-link">Edit →</a>
+                    </div>
+                </div>
+
+                <!-- Pika Labs -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #FBBF24, #F59E0B);">⚡</div>
+                        <div class="tool-info">
+                            <h3>Pika Labs</h3>
+                            <span class="company">AI Video Generation</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Generate and edit videos with AI. Add motion to images, extend clips, and apply cinematic effects with simple prompts.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Pika 2.0</span>
+                        <span class="feature-tag">Scene Extend</span>
+                        <span class="feature-tag">Lip Sync</span>
+                        <span class="feature-tag">FX</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREEMIUM</span>
+                        <a href="https://pika.art/" target="_blank" class="tool-link">Generate →</a>
+                    </div>
+                </div>
+
+                <!-- Kling -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #EC4899, #F472B6);">🎥</div>
+                        <div class="tool-info">
+                            <h3>Kling AI</h3>
+                            <span class="company">Kuaishou • Video Gen</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Generate high-quality 1080p videos up to 2 minutes. Advanced motion physics and character consistency.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">1080p</span>
+                        <span class="feature-tag">2min Videos</span>
+                        <span class="feature-tag">Physics</span>
+                        <span class="feature-tag">Characters</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREEMIUM</span>
+                        <a href="https://klingai.com/" target="_blank" class="tool-link">Create →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEM SEPARATION -->
+        <section class="category cat-stem">
+            <div class="category-header">
+                <div class="category-icon">🎚️</div>
+                <h2 class="category-title">STEM SEPARATION & VOCAL REMOVAL</h2>
+                <span class="category-count">8 TOOLS</span>
+            </div>
+            <div class="tools-grid">
+                <!-- LALAL.AI -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #7C3AED, #A855F7);">🎼</div>
+                        <div class="tool-info">
+                            <h3>LALAL.AI</h3>
+                            <span class="company">World's #1 Stem Splitter</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Industry-leading AI stem separation. Extract vocals, drums, bass, piano, guitar, synths with unmatched quality. Enhanced processing + de-echo.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">8 Stem Types</span>
+                        <span class="feature-tag">De-Echo</span>
+                        <span class="feature-tag">Enhanced AI</span>
+                        <span class="feature-tag">Batch</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREE PREVIEW</span>
+                        <a href="https://lalal.ai/" target="_blank" class="tool-link">Split →</a>
+                    </div>
+                </div>
+
+                <!-- Moises -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #06B6D4, #22D3EE);">🎸</div>
+                        <div class="tool-info">
+                            <h3>Moises.ai</h3>
+                            <span class="company">The Musician's App</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">All-in-one music practice tool. Stem isolation, key/BPM detection, pitch shift, AI click tracks. Perfect for learning and jamming.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Practice Mode</span>
+                        <span class="feature-tag">Key Detection</span>
+                        <span class="feature-tag">Tempo Adjust</span>
+                        <span class="feature-tag">AI Vocals</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREEMIUM</span>
+                        <a href="https://moises.ai/" target="_blank" class="tool-link">Practice →</a>
+                    </div>
+                </div>
+
+                <!-- iZotope RX -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #1E40AF, #3B82F6);">🔊</div>
+                        <div class="tool-info">
+                            <h3>iZotope RX 11</h3>
+                            <span class="company">Pro Audio Repair</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">The gold standard in audio restoration. Spectral editing, dialogue isolation, music rebalance. Used by every major studio.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Spectral Edit</span>
+                        <span class="feature-tag">Dialogue Isolate</span>
+                        <span class="feature-tag">De-Reverb</span>
+                        <span class="feature-tag">Repair</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-paid">$399 PRO</span>
+                        <a href="https://www.izotope.com/rx" target="_blank" class="tool-link">Buy →</a>
+                    </div>
+                </div>
+
+                <!-- Spleeter -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #059669, #10B981);">🐍</div>
+                        <div class="tool-info">
+                            <h3>Spleeter</h3>
+                            <span class="company">Deezer • Open Source</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Free open-source stem splitter by Deezer. Python-based, fast processing, 2/4/5 stem modes. For tech-savvy producers.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Open Source</span>
+                        <span class="feature-tag">Python</span>
+                        <span class="feature-tag">Batch</span>
+                        <span class="feature-tag">Customizable</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-free">FREE</span>
+                        <a href="https://github.com/deezer/spleeter" target="_blank" class="tool-link">GitHub →</a>
+                    </div>
+                </div>
+
+                <!-- UVR5 -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #DC2626, #EF4444);">🎛️</div>
+                        <div class="tool-info">
+                            <h3>Ultimate Vocal Remover 5</h3>
+                            <span class="company">UVR • Multi-Algorithm</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Powerful free stem splitter with multiple AI models including Demucs v4. Ensemble mode for best results. Highly customizable.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Demucs v4</span>
+                        <span class="feature-tag">Ensemble</span>
+                        <span class="feature-tag">Multi-Model</span>
+                        <span class="feature-tag">Free</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-free">FREE</span>
+                        <a href="https://ultimatevocalremover.com/" target="_blank" class="tool-link">Download →</a>
+                    </div>
+                </div>
+
+                <!-- LANDR Stems -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #F97316, #FB923C);">🔌</div>
+                        <div class="tool-info">
+                            <h3>LANDR Stems</h3>
+                            <span class="company">DAW Plugin</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Stem separation as a VST/AU plugin. Powered by AudioShake. Drag-drop in your DAW, get stems instantly without leaving your project.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">VST/AU Plugin</span>
+                        <span class="feature-tag">AudioShake</span>
+                        <span class="feature-tag">In-DAW</span>
+                        <span class="feature-tag">Hi-Fi</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-paid">SUBSCRIPTION</span>
+                        <a href="https://www.landr.com/stems" target="_blank" class="tool-link">Try →</a>
+                    </div>
+                </div>
+
+                <!-- PhonicMind -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">🧠</div>
+                        <div class="tool-info">
+                            <h3>PhonicMind</h3>
+                            <span class="company">Pioneer Since 2016</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">The OG online stem splitter. Studio-grade separation for vocals, instrumental, drums, bass. Free preview before export.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Since 2016</span>
+                        <span class="feature-tag">Free Preview</span>
+                        <span class="feature-tag">Multi-Stem</span>
+                        <span class="feature-tag">Hi-Fi</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREEMIUM</span>
+                        <a href="https://phonicmind.com/" target="_blank" class="tool-link">Split →</a>
+                    </div>
+                </div>
+
+                <!-- Gaudio Studio -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #0EA5E9, #38BDF8);">🎧</div>
+                        <div class="tool-info">
+                            <h3>Gaudio Studio</h3>
+                            <span class="company">CES 2024 Award Winner</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Award-winning GSEP AI model. YouTube URL support, noise removal, multi-instrument separation. API available for developers.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">GSEP Model</span>
+                        <span class="feature-tag">YouTube URL</span>
+                        <span class="feature-tag">API</span>
+                        <span class="feature-tag">SDK</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREE TRIAL</span>
+                        <a href="https://studio.gaudiolab.io/" target="_blank" class="tool-link">Try →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VOICE AI -->
+        <section class="category cat-voice">
+            <div class="category-header">
+                <div class="category-icon">🎤</div>
+                <h2 class="category-title">VOICE AI & CLONING</h2>
+                <span class="category-count">8 TOOLS</span>
+            </div>
+            <div class="tools-grid">
+                <!-- ElevenLabs -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #000, #333);">🗣️</div>
+                        <div class="tool-info">
+                            <h3>ElevenLabs</h3>
+                            <span class="company">Best-in-Class TTS</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">The most natural-sounding AI voices. Voice cloning, multilingual support, emotion control. Industry leader for a reason.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Voice Clone</span>
+                        <span class="feature-tag">29 Languages</span>
+                        <span class="feature-tag">Emotion</span>
+                        <span class="feature-tag">API</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREEMIUM</span>
+                        <a href="https://elevenlabs.io/" target="_blank" class="tool-link">Clone →</a>
+                    </div>
+                </div>
+
+                <!-- Descript -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #4F46E5, #7C3AED);">📝</div>
+                        <div class="tool-info">
+                            <h3>Descript</h3>
+                            <span class="company">Edit Audio Like Text</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Revolutionary audio/video editor. Overdub voice cloning lets you fix narration without re-recording. Edit audio by editing text.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Overdub</span>
+                        <span class="feature-tag">Text Edit</span>
+                        <span class="feature-tag">Screen Rec</span>
+                        <span class="feature-tag">Filler Words</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREE TIER</span>
+                        <a href="https://www.descript.com/" target="_blank" class="tool-link">Edit →</a>
+                    </div>
+                </div>
+
+                <!-- Resemble.AI -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #EC4899, #F472B6);">🎭</div>
+                        <div class="tool-info">
+                            <h3>Resemble.AI</h3>
+                            <span class="company">Enterprise Voice AI</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Enterprise-grade voice cloning and generation. Real-time synthesis, emotion control, localization. Trusted by major brands.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Real-Time</span>
+                        <span class="feature-tag">Emotions</span>
+                        <span class="feature-tag">Localize</span>
+                        <span class="feature-tag">Enterprise</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-paid">FROM $0.006/sec</span>
+                        <a href="https://www.resemble.ai/" target="_blank" class="tool-link">Build →</a>
+                    </div>
+                </div>
+
+                <!-- PlayHT -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">▶️</div>
+                        <div class="tool-info">
+                            <h3>PlayHT</h3>
+                            <span class="company">Ultra-Realistic TTS</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">600+ AI voices in 142 languages. PlayHT 2.0 turbo for instant generation. Voice cloning, SSML control, streaming API.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">600+ Voices</span>
+                        <span class="feature-tag">142 Languages</span>
+                        <span class="feature-tag">Stream API</span>
+                        <span class="feature-tag">SSML</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREEMIUM</span>
+                        <a href="https://play.ht/" target="_blank" class="tool-link">Speak →</a>
+                    </div>
+                </div>
+
+                <!-- Voice.ai -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #14B8A6, #2DD4BF);">🔄</div>
+                        <div class="tool-info">
+                            <h3>Voice.ai</h3>
+                            <span class="company">Real-Time Voice Changer</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Transform your voice in real-time. Thousands of voice skins, streaming integration. Great for gaming, streaming, content.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Real-Time</span>
+                        <span class="feature-tag">Voice Skins</span>
+                        <span class="feature-tag">Streaming</span>
+                        <span class="feature-tag">Free</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-free">FREE</span>
+                        <a href="https://voice.ai/" target="_blank" class="tool-link">Change →</a>
+                    </div>
+                </div>
+
+                <!-- Speechify -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #3B82F6, #60A5FA);">📖</div>
+                        <div class="tool-info">
+                            <h3>Speechify</h3>
+                            <span class="company">Text-to-Speech Reader</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Turn any text into audio. Chrome extension, mobile apps, celebrity voices. Perfect for accessibility and content consumption.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Browser Ext</span>
+                        <span class="feature-tag">Mobile</span>
+                        <span class="feature-tag">Celebrity</span>
+                        <span class="feature-tag">Speed Control</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREEMIUM</span>
+                        <a href="https://speechify.com/" target="_blank" class="tool-link">Listen →</a>
+                    </div>
+                </div>
+
+                <!-- Murf -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">🎙️</div>
+                        <div class="tool-info">
+                            <h3>Murf AI</h3>
+                            <span class="company">Studio-Quality Voiceovers</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">120+ voices in 20 languages. Built-in video editor, pitch/speed control, voice cloning. Enterprise-ready with team features.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">120+ Voices</span>
+                        <span class="feature-tag">Video Editor</span>
+                        <span class="feature-tag">Teams</span>
+                        <span class="feature-tag">API</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREE TIER</span>
+                        <a href="https://murf.ai/" target="_blank" class="tool-link">Voice →</a>
+                    </div>
+                </div>
+
+                <!-- Respeecher -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #DC2626, #EF4444);">🎬</div>
+                        <div class="tool-info">
+                            <h3>Respeecher</h3>
+                            <span class="company">Hollywood Voice AI</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Used in The Mandalorian, Obi-Wan Kenobi. Ethical voice cloning with consent-based model. The industry standard for film/TV.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Hollywood</span>
+                        <span class="feature-tag">Ethical AI</span>
+                        <span class="feature-tag">Film/TV</span>
+                        <span class="feature-tag">Premium</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-paid">ENTERPRISE</span>
+                        <a href="https://www.respeecher.com/" target="_blank" class="tool-link">Contact →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI MUSIC GENERATION -->
+        <section class="category cat-gen">
+            <div class="category-header">
+                <div class="category-icon">🎹</div>
+                <h2 class="category-title">AI MUSIC GENERATION</h2>
+                <span class="category-count">8 TOOLS</span>
+            </div>
+            <div class="tools-grid">
+                <!-- Suno -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #7C3AED, #A855F7);">🎵</div>
+                        <div class="tool-info">
+                            <h3>Suno AI</h3>
+                            <span class="company">Text-to-Song Leader</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Generate full songs with vocals from text prompts. V4 model creates radio-quality tracks. The most viral AI music tool.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">V4 Model</span>
+                        <span class="feature-tag">Full Songs</span>
+                        <span class="feature-tag">Vocals</span>
+                        <span class="feature-tag">Lyrics</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">50 FREE/day</span>
+                        <a href="https://suno.com/" target="_blank" class="tool-link">Create →</a>
+                    </div>
+                </div>
+
+                <!-- Udio -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #0EA5E9, #38BDF8);">🎶</div>
+                        <div class="tool-info">
+                            <h3>Udio</h3>
+                            <span class="company">Suno's Top Competitor</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">High-fidelity AI music generation. Created by ex-Google DeepMind team. Excellent for electronic and complex genres.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Hi-Fi Audio</span>
+                        <span class="feature-tag">DeepMind Team</span>
+                        <span class="feature-tag">Electronic</span>
+                        <span class="feature-tag">Stems</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREE TIER</span>
+                        <a href="https://www.udio.com/" target="_blank" class="tool-link">Make →</a>
+                    </div>
+                </div>
+
+                <!-- AIVA -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #059669, #10B981);">🎼</div>
+                        <div class="tool-info">
+                            <h3>AIVA</h3>
+                            <span class="company">AI Composer</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Professional AI composition. Recognized by SACEM as a composer. Orchestral, cinematic, and game music focus. MIDI export.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Orchestral</span>
+                        <span class="feature-tag">Cinematic</span>
+                        <span class="feature-tag">MIDI Export</span>
+                        <span class="feature-tag">Pro</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREEMIUM</span>
+                        <a href="https://www.aiva.ai/" target="_blank" class="tool-link">Compose →</a>
+                    </div>
+                </div>
+
+                <!-- Soundraw -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #F97316, #FB923C);">🎧</div>
+                        <div class="tool-info">
+                            <h3>Soundraw</h3>
+                            <span class="company">Royalty-Free AI Music</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Generate unique royalty-free tracks. Customize length, tempo, instruments. Perfect for content creators and video editors.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Royalty-Free</span>
+                        <span class="feature-tag">Customizable</span>
+                        <span class="feature-tag">Video Sync</span>
+                        <span class="feature-tag">Commercial</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-paid">$16.99/mo</span>
+                        <a href="https://soundraw.io/" target="_blank" class="tool-link">Generate →</a>
+                    </div>
+                </div>
+
+                <!-- Boomy -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #EC4899, #F472B6);">💥</div>
+                        <div class="tool-info">
+                            <h3>Boomy</h3>
+                            <span class="company">Create & Release Music</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Make songs in seconds and release to streaming platforms. Earn royalties from your AI-generated music. 20M+ songs created.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Streaming</span>
+                        <span class="feature-tag">Royalties</span>
+                        <span class="feature-tag">Distribution</span>
+                        <span class="feature-tag">Easy</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-free">FREE</span>
+                        <a href="https://boomy.com/" target="_blank" class="tool-link">Release →</a>
+                    </div>
+                </div>
+
+                <!-- Soundverse -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #6366F1, #818CF8);">🌐</div>
+                        <div class="tool-info">
+                            <h3>Soundverse</h3>
+                            <span class="company">Full AI Music Studio</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Complete AI music production suite. Generate, separate stems, remix, master. Free stem splitter included. Production-ready output.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Full DAW</span>
+                        <span class="feature-tag">Stem Split</span>
+                        <span class="feature-tag">Mastering</span>
+                        <span class="feature-tag">Free Tools</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREEMIUM</span>
+                        <a href="https://soundverse.ai/" target="_blank" class="tool-link">Studio →</a>
+                    </div>
+                </div>
+
+                <!-- Beatoven.ai -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #14B8A6, #2DD4BF);">🎻</div>
+                        <div class="tool-info">
+                            <h3>Beatoven.ai</h3>
+                            <span class="company">Mood-Based Composition</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Generate music based on mood and scene. Timeline-based mood control. Perfect for video soundtracks and podcasts.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Mood Control</span>
+                        <span class="feature-tag">Timeline</span>
+                        <span class="feature-tag">Podcasts</span>
+                        <span class="feature-tag">Video Sync</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREE TIER</span>
+                        <a href="https://www.beatoven.ai/" target="_blank" class="tool-link">Score →</a>
+                    </div>
+                </div>
+
+                <!-- Stable Audio -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">🔮</div>
+                        <div class="tool-info">
+                            <h3>Stable Audio</h3>
+                            <span class="company">Stability AI</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">From the makers of Stable Diffusion. High-quality audio generation up to 3 minutes. Commercial-safe training data.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">3 Min Tracks</span>
+                        <span class="feature-tag">Commercial Safe</span>
+                        <span class="feature-tag">44.1kHz</span>
+                        <span class="feature-tag">Open Model</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREEMIUM</span>
+                        <a href="https://stableaudio.com/" target="_blank" class="tool-link">Generate →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AUDIO ENHANCEMENT -->
+        <section class="category cat-audio">
+            <div class="category-header">
+                <div class="category-icon">🔧</div>
+                <h2 class="category-title">AUDIO ENHANCEMENT & MASTERING</h2>
+                <span class="category-count">6 TOOLS</span>
+            </div>
+            <div class="tools-grid">
+                <!-- Adobe Podcast -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #FF0000, #CC0000);">🎙️</div>
+                        <div class="tool-info">
+                            <h3>Adobe Podcast</h3>
+                            <span class="company">Enhance Speech AI</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Free AI audio enhancement. Makes any recording sound studio-quality. Remove background noise, room reverb, and more.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Free</span>
+                        <span class="feature-tag">Studio Quality</span>
+                        <span class="feature-tag">Denoise</span>
+                        <span class="feature-tag">Web-Based</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-free">FREE</span>
+                        <a href="https://podcast.adobe.com/enhance" target="_blank" class="tool-link">Enhance →</a>
+                    </div>
+                </div>
+
+                <!-- LANDR -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #F97316, #FB923C);">💿</div>
+                        <div class="tool-info">
+                            <h3>LANDR</h3>
+                            <span class="company">AI Mastering</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Instant AI mastering for your tracks. Distribution to all platforms. Samples, plugins, collaboration tools. One-stop shop.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">AI Master</span>
+                        <span class="feature-tag">Distribution</span>
+                        <span class="feature-tag">Samples</span>
+                        <span class="feature-tag">Plugins</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-paid">FROM $4.99/mo</span>
+                        <a href="https://www.landr.com/" target="_blank" class="tool-link">Master →</a>
+                    </div>
+                </div>
+
+                <!-- Dolby.io -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #000, #333);">🔊</div>
+                        <div class="tool-info">
+                            <h3>Dolby.io Enhance</h3>
+                            <span class="company">Professional Audio API</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Dolby's audio enhancement API. Noise reduction, loudness correction, speech isolation. Enterprise-grade quality.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Dolby Quality</span>
+                        <span class="feature-tag">API</span>
+                        <span class="feature-tag">Batch</span>
+                        <span class="feature-tag">Enterprise</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">FREE TIER</span>
+                        <a href="https://dolby.io/products/enhance/" target="_blank" class="tool-link">API →</a>
+                    </div>
+                </div>
+
+                <!-- Auphonic -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #059669, #10B981);">📻</div>
+                        <div class="tool-info">
+                            <h3>Auphonic</h3>
+                            <span class="company">Podcast Post-Production</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">Automatic audio post-production. Leveling, noise reduction, loudness normalization. Trusted by 100K+ podcasters.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Auto Level</span>
+                        <span class="feature-tag">Loudness</span>
+                        <span class="feature-tag">Chapters</span>
+                        <span class="feature-tag">Batch</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">2hr FREE/mo</span>
+                        <a href="https://auphonic.com/" target="_blank" class="tool-link">Process →</a>
+                    </div>
+                </div>
+
+                <!-- Krisp -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #6366F1, #818CF8);">🔇</div>
+                        <div class="tool-info">
+                            <h3>Krisp</h3>
+                            <span class="company">Real-Time Noise Cancel</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">AI noise cancellation for calls and recordings. Works with any app. Removes background noise, echo, and voices.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Real-Time</span>
+                        <span class="feature-tag">Any App</span>
+                        <span class="feature-tag">Echo Remove</span>
+                        <span class="feature-tag">Voice Focus</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-freemium">60min FREE/day</span>
+                        <a href="https://krisp.ai/" target="_blank" class="tool-link">Quiet →</a>
+                    </div>
+                </div>
+
+                <!-- Neutron -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-logo" style="background: linear-gradient(135deg, #1E40AF, #3B82F6);">⚛️</div>
+                        <div class="tool-info">
+                            <h3>iZotope Neutron 4</h3>
+                            <span class="company">AI Mixing Assistant</span>
+                        </div>
+                    </div>
+                    <p class="tool-description">AI-powered mixing plugin. Unmask competing frequencies, auto-EQ, compression suggestions. Mix faster with AI assistance.</p>
+                    <div class="tool-features">
+                        <span class="feature-tag">Mix Assistant</span>
+                        <span class="feature-tag">Unmask</span>
+                        <span class="feature-tag">Auto-EQ</span>
+                        <span class="feature-tag">VST/AU</span>
+                    </div>
+                    <div class="tool-footer">
+                        <span class="price-paid">$249</span>
+                        <a href="https://www.izotope.com/neutron" target="_blank" class="tool-link">Mix →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Quick Actions Bar -->
+    <div class="quick-actions">
+        <button class="quick-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <span>⬆️</span>
+            <span>Top</span>
+        </button>
+        <button class="quick-btn" onclick="window.open('https://filmora.wondershare.com/', '_blank')">
+            <span>🎬</span>
+            <span>Filmora</span>
+        </button>
+        <button class="quick-btn" onclick="window.open('https://lalal.ai/', '_blank')">
+            <span>🎚️</span>
+            <span>LALAL</span>
+        </button>
+        <button class="quick-btn" onclick="window.open('https://elevenlabs.io/', '_blank')">
+            <span>🗣️</span>
+            <span>ElevenLabs</span>
+        </button>
+        <button class="quick-btn" onclick="window.open('https://suno.com/', '_blank')">
+            <span>🎵</span>
+            <span>Suno</span>
+        </button>
+    </div>
+</body>
+</html>

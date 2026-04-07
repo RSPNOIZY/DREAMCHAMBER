@@ -1,0 +1,1514 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="en">
+  <head lang="en">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Tonal Balance Control - Ozone 8 Documentation</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/en/tonal-balance-control/">
+    <meta property="og:title" content="Ozone 8 Documentation">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone 8 Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | Tonal Balance Control</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Introduction" href="../index.html">
+	
+	Introduction
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8 Overview" href="../ozone-overview/index.html">
+	
+	Ozone 8 Overview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone Application" href="../ozone-app-overview/index.html">
+	
+	Ozone Application
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Preset System" href="../preset-system/index.html">
+	
+	Preset System
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="General Functions" href="../general-functions/index.html">
+	
+	General Functions
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Common Module Controls" href="../common-module-controls/index.html">
+	
+	Common Module Controls
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dynamics" href="../dynamics/index.html">
+	
+	Dynamics
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dynamic EQ" href="../dynamic-eq/index.html">
+	
+	Dynamic EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Equalizer" href="../equalizer/index.html">
+	
+	Equalizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Exciter" href="../exciter/index.html">
+	
+	Exciter
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Imager" href="../imager/index.html">
+	
+	Imager
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Maximizer" href="../maximizer/index.html">
+	
+	Maximizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectral Shaper" href="../spectral-shaper/index.html">
+	
+	Spectral Shaper
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Compressor" href="../vintage-compressor/index.html">
+	
+	Vintage Compressor
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage EQ" href="../vintage-eq/index.html">
+	
+	Vintage EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Limiter" href="../vintage-limiter/index.html">
+	
+	Vintage Limiter
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Tape" href="../vintage-tape/index.html">
+	
+	Vintage Tape
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Codec Preview" href="../codec-preview/index.html">
+	
+	Codec Preview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dither" href="../dither/index.html">
+	
+	Dither
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Master Assistant" href="../master-assistant/index.html">
+	
+	Master Assistant
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Track Referencing" href="../track-referencing/index.html">
+	
+	Track Referencing
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Tonal Balance Control" href="index.html">
+	
+	Tonal Balance Control
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Options" href="../options/index.html">
+	
+	Options
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plug-in Automation" href="../plug-in-automation/index.html">
+	
+	Plug-in Automation
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tips &amp; Examples" href="../tips-and-examples/index.html">
+	
+	Tips &amp; Examples
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Authorization" href="../authorization/index.html">
+	
+	Authorization
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotope Customer Care" href="../customer-care/index.html">
+	
+	iZotope Customer Care
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information" href="../license-information/index.html">
+	
+	License Information
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA" href="../eula/index.html">
+	
+	EULA
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../ja/tonal-balance-control/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>Tonal Balance Control </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">Languages:</span>
+<br />
+    
+
+       
+       <a href="../../ja/tonal-balance-control/index.html"><button class="lang-btn-active">English</button></a>
+       
+        
+       <a href="../../ja/tonal-balance-control/index.html"><button class="lang-btn-clickable">日本語</button></a>
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+
+
+
+<nav>
+  
+  <h4>Table of Contents</h4>
+  <ul>
+    
+      
+      
+
+      
+
+      
+      
+      <li>
+        <a href="index.html#overview">Overview</a>
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#meters">Meters</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#target-curves">Target Curves</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#custom-target-curves">Custom Target Curves</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#options">Options</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#ozone-ampamp-tonal-balance-control">Ozone &amp; Tonal Balance Control</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#global-eq-controls">Global EQ Controls</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#metering-ampamp-navigation">Metering &amp; Navigation</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#eq-controls">EQ Controls</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#general-notes">General Notes</a>
+
+          
+            
+          
+      
+    
+
+    
+    
+    
+
+  </ul>
+</nav>
+
+
+
+
+    
+
+	
+
+<h2 id="overview">Overview</h2>
+
+<p>Tonal Balance Control displays spectrum metering information for the track it is currently inserted on relative to a target curve. This is particularly useful when dealing with tonal balance issues that arise during mixing and mastering. Tonal Balance Control can help provide context and direction toward resolving issues with a mix or master lacking the low-end power or high-end brilliance found in professionally produced, radio-ready material..</p>
+
+<div class="admonition note">
+<p class="admonition-title">Tonal Balance Control should live at the end of your processing chain</p>
+<p><ul>
+<li>To get the most out of the Tonal Balance Control plug-in, we recommend that it is inserted at the end of the processing chain on your master bus track.</li>
+<li>This ensures that the spectrum curve you are comparing to the currently selected target curve is after all other processing in your session.</li>
+<li>When Tonal Balance Control is last in the processing chain, it ensures that adjustments made to Neutron 2 or Ozone 8 EQ instances will affect the spectrum curve displayed in Tonal Balance Control.</li>
+</ul>
+</p>
+</div>
+
+<p>The factory target curves in Tonal Balance Control represent typical spectral shapes found in different styles of music. These target curves were created by analyzing the spectral characteristics of numerous tracks across different genres/styles of music. The target curves display ranges of typical spectral variation across the frequency spectrum for these similar styles of music.</p>
+
+<h2 id="meters">Meters</h2>
+
+<h3 id="broad-view">Broad View</h3>
+
+<p><img src="../images/tbc-target-curves-meters/broad-view.png" alt="Broad View" /></p>
+
+<p>Broad View displays target curve ranges split into four frequency bands.</p>
+
+<ul>
+<li>Low: 20 Hz - 250 Hz</li>
+<li>Low-mid: 250 Hz - 2 kHz</li>
+<li>Mid: 2 kHz - 8 kHz</li>
+<li>High-mid: 8 kHz - 20 kHz</li>
+</ul>
+
+<p>The blue bars shown in each frequency band represent the typical range of spectral variation for the selected target curve.</p>
+
+<p>The white lines will update to show how your track compares to the target curve. You can make adjustments to Ozone and Neutron EQ instances to modify your mix to fall within the blue target ranges.</p>
+
+<h3 id="fine-view">Fine View</h3>
+
+<p><img src="../images/tbc-target-curves-meters/fine-view.png" alt="Fine View" /></p>
+
+<p>Displays the selected target curve range in blue across the frequency spectrum. The white spectrum curve in this view represents your current track.</p>
+
+<h3 id="band-indicators">Band Indicators</h3>
+
+<p><img src="../images/tbc-target-curves-meters/target-selection.png" alt="Band Indicators" /></p>
+
+<p>The frequency band labels will turn white when your current track is within the typical range for the selected target curve.</p>
+
+<h3 id="crest-factor">Crest Factor</h3>
+
+<p><img src="../images/tbc-target-curves-meters/crest-factor-close.png" alt="Crest Factor" /></p>
+
+<p>The Crest Factor meter shows information about the low end dynamic range of your track. When the meter is weighted to the left, it indicates that your mix is &lsquo;too dynamic&rsquo; in the low end. When weighted to the right, it indicates that your mix is &lsquo;too compressed&rsquo; in the low end.</p>
+
+<h2 id="target-curves">Target Curves</h2>
+
+<p><img src="../images/tbc-target-curves-meters/target-selection.png" alt="Target Menu" /></p>
+
+<p>Tonal Balance Control comes with 3 factory target curves that represent the typical spectral curves found in major musical styles.</p>
+
+<ul>
+<li>Orchestral</li>
+<li>Bass Heavy</li>
+<li>Modern</li>
+</ul>
+
+<h2 id="custom-target-curves">Custom Target Curves</h2>
+
+<p>Clicking on the menu button to the left of the target curve dropdown menu exposes options for creating your own target curves to use in Tonal Balance Control.</p>
+
+<table>
+<thead>
+<tr>
+<th>Supported File Formats</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>AIFF</td>
+</tr>
+
+<tr>
+<td>WAV</td>
+</tr>
+
+<tr>
+<td>MP3</td>
+</tr>
+
+<tr>
+<td>M4A</td>
+</tr>
+
+<tr>
+<td>FLAC</td>
+</tr>
+
+<tr>
+<td>OGG</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="create-custom-target-curve-from-file">Create custom target curve from file&hellip;</h3>
+
+<p>Opens a system window that allows you to select an audio file to create a custom target curve.</p>
+
+<h3 id="create-custom-target-from-folder-of-files">Create custom target from folder of files&hellip;</h3>
+
+<p>Allows you to select a folder of audio files. Tonal Balance Control will create a single target curve based on all audio files included in the selected folder.</p>
+
+<h3 id="save-custom-target-curve">Save custom target curve&hellip;</h3>
+
+<p>Save the custom target curve you created to use again in the future.</p>
+
+<h3 id="change-target-curve-folder">Change target curve folder&hellip;</h3>
+
+<p>Allows you to select a different location to store and recall target curves.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Default Target Curve folder locations</p>
+<p><ul>
+<li>Mac: Users/username/Documents/iZotope/Tonal Balance Control/Target Curves</li>
+<li>Windows: C:\Users\username\Documents\iZotope\Tonal Balance Control\Target Curves</li>
+</ul>
+</p>
+</div>
+
+<h3 id="show-target-curve-folder-in-finder-explorer">Show target curve folder in Finder/Explorer&hellip;</h3>
+
+<p>Opens a Finder (Mac) or Explorer (Windows) window to the current target curve directory.</p>
+
+<h2 id="options">Options</h2>
+
+<p>You can access the Options menu by clicking the gear button in the upper right hand corner of the Tonal Balance Control interface.</p>
+
+<p><img src="../images/tbc-options/tonal-balance-control-options.png" alt="Options Window" /></p>
+
+<ul>
+<li><strong>Version String:</strong> The current Tonal Balance Control version and build number are listed in a string located in the upper right hand corner of the Options window.</li>
+<li><strong>Reset:</strong> Resets all Tonal Balance Control options to their factory default values.</li>
+<li><strong>Cancel:</strong> Exits the Options window without saving any changes made since last opening the Options window.</li>
+<li><strong>Ok:</strong> Exits the Options window and saves any changes made since last opening the Options window.</li>
+</ul>
+
+<h3 id="general">General</h3>
+
+<ul>
+<li><strong>Enable Analytics:</strong> When enabled, anonymous usage data will be sent to help iZotope improve future products.</li>
+<li><strong>Enable Tooltips:</strong> When checked, tooltips with information about a control will appear when hovering the cursor over most controls in the Tonal Balance Control interface.</li>
+</ul>
+
+<h3 id="spectrum">Spectrum</h3>
+
+<ul>
+<li><strong>Average Time:</strong> Averages the spectrum according to this setting. Higher average times can be useful for viewing the overall tonal balance of a mix, while shorter average times provide a more real-time display.</li>
+<li><strong>Frequency Scale:</strong> Sets the frequency scale used by the Tonal Balance Control meter. Choices include:
+
+<ul>
+<li><strong>FLAT LOG</strong></li>
+<li><strong>EXTENDED LOG</strong></li>
+<li><strong>PIANO ROLL</strong></li>
+</ul></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can access and change the frequency scale option without opening the options window by right-clicking on the frequency ruler in the Tonal Balance Control interface.</p>
+</div>
+
+<h2 id="ozone-tonal-balance-control">Ozone &amp; Tonal Balance Control</h2>
+
+<p>Select Ozone 8 instances from the plug-in selection menu in Tonal Balance Control to modify EQ parameters remotely or view the spectrum metering of any Ozone 8 plug-in.</p>
+
+<p><img src="../images/tbc-o8/o8-eq-display.png" alt="Ozone 8 instance selected" /></p>
+
+<p>The following table outlines the controls and displays available when the associated Ozone 8 plug-in is selected as the incoming instance in Tonal Balance Control.</p>
+
+<table>
+<thead>
+<tr>
+<th>Plug-in/Module Name</th>
+<th>EQ Controls</th>
+<th>Spectrum Display</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Ozone 8 / EQ module</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 / Post EQ module</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 EQ</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Dynamic EQ</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Dynamics</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Exciter</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Imager</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Maximizer</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Spectral Shaper</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Vintage Limiter</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Vintage EQ</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Vintage Tape</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Ozone 8 Vintage Compressor</td>
+<td>NO</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+
+<p>Ozone 8 plug-ins with no EQ controls will look something like this when selected in Tonal Balance Control:
+<img src="../images/tbc-o8/o8-plugin-no-eq-controls.png" alt="No EQ Controls" /></p>
+
+<p>Ozone 8 plug-ins with compatible EQ controls will look something like this when selected in Tonal Balance Control:
+<img src="../images/tbc-o8/o8-eq-params-close.png" alt="EQ Controls" /></p>
+
+<h2 id="global-eq-controls">Global EQ Controls</h2>
+
+<p><img src="../images/tbc-o8/o8-global-bar.png" alt="global control bar" /></p>
+
+<h3 id="source-plug-in-selection-menu">Source Plug-in Selection Menu</h3>
+
+<p>Allows you to select the instance to display/control from within the Tonal Balance Control interface.</p>
+
+<h3 id="global-eq-filter-mode">Global EQ Filter Mode</h3>
+
+<p>Sets the global EQ processing mode.</p>
+
+<ul>
+<li><strong>ANALOG</strong> When selected, all EQ bands will use analog-modeled filters with minimum phase response.</li>
+<li><strong>DIGITAL</strong> When selected, all EQ bands will use filter shapes with adjustable phase response</li>
+<li><strong>SURGICAL</strong> When selected, all EQ bands will use precise digital filter shapes. Only select filter shapes are available in Surgical mode.</li>
+</ul>
+
+<h3 id="bypass">Bypass</h3>
+
+<p>Momentarily bypasses EQ processing in the selected Ozone 8 plug-in. This bypass control is useful for quick A/B comparisons.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note about EQ Bypass state</p>
+<p><ul>
+<li>If the selected EQ is bypassed in the plug-in, the controls will appear dimmed in Tonal Balance Control. To enable the EQ in the selected plug-in, you will need to open the plug-in window and unbypass the EQ. EQ bypass state of a selected plug-in can&rsquo;t be changed from the Tonal Balance Control interface.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="show-hide-selected-plug-in-display">Show/Hide Selected Plug-in Display</h3>
+
+<p>Toggles the incoming instance display panel open or closed.</p>
+
+<h2 id="metering-navigation">Metering &amp; Navigation</h2>
+
+<p><img src="../images/tbc-o8/o8-spectrum-close-up.png" alt="Spectrum and EQ curve" /></p>
+
+<h3 id="spectrum-metering">Spectrum Metering</h3>
+
+<p>Displays spectrum metering for the selected instance. Ozone 8 plug-ins will display their spectrum metering in blue.</p>
+
+<h3 id="eq-curve">EQ Curve</h3>
+
+<p>If the selected Ozone 8 instance supports EQ control, the EQ curve controls will be displayed in the spectrum meter area.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Tips for working with EQ nodes</p>
+<p><ul>
+<li><strong>Change filter shapes:</strong> You can change filter shapes of any visible node by right-clicking on the node and selecting the filter shape from the context menu that appears.</li>
+<li><strong>Reset node to default:</strong> Double-click on a node to reset it to default values.</li>
+<li><strong>Enable bands with double-click:</strong> Double-click in an empty spot in the spectrum display to enable a band at that frequency/gain.</li>
+</ul>
+</p>
+</div>
+
+<ul>
+<li><strong>BAND SELECTION &amp; ENABLE/DISABLE CONTROLS</strong></li>
+</ul>
+
+<p><img src="../images/tbc-o8/o8-band-selection-enable-disable-bar.png" alt="Band select and enable bar" /></p>
+
+<ul>
+<li>EQ bands can be enabled or disabled by clicking on the power button to the left of the band number.</li>
+<li>Click on the band number directly to view the controls associated with that band.</li>
+</ul>
+
+<h2 id="eq-controls">EQ Controls</h2>
+
+<p>EQ controls for the currently selected Ozone EQ are located in the bottom bar of the Tonal Balance Control interface.</p>
+
+<p><img src="../images/tbc-o8/o8-static-band-controls.png" alt="EQ Controls" /></p>
+
+<ul>
+<li><strong>BAND SHAPE:</strong> Selects the filter shape used by the selected band.</li>
+<li><strong>FREQUENCY:</strong> Sets the center frequency for the selected filter.</li>
+<li><strong>GAIN:</strong> Sets the positive/negative gain applied to the selected filter.</li>
+<li><strong>Q:</strong> Sets the bandwidth of current filter.</li>
+<li><strong>PHASE (Digital/Surgical Mode Only):</strong>  Controls the mixed phase response of the current band. 0% = Linear phase response; 100% = minimum phase response.</li>
+</ul>
+
+<h2 id="general-notes">General Notes</h2>
+
+<h3 id="control-availability">Control Availability</h3>
+
+<p>The following controls are accessible in the Ozone 8 EQ/Post EQ modules and EQ component plug-in, but cannot be accessed from the Tonal Balance Control interface:</p>
+
+<ul>
+<li>EQ module/plug-in Bypass</li>
+<li>Matching EQ controls</li>
+<li>Mid/Side or Left/Right processing mode controls</li>
+<li>EQ module reset</li>
+<li>I/O or Channel Ops controls</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">M/S &amp; L/R control limitation in Tonal Balance Control</p>
+<p>If the Ozone EQ instance selected in Tonal Balance Control is using Mid/Side or Left/Right processing modes, the EQ controls will not appear in the Tonal Balance Control interface. Currently, Tonal Balance Control only supports controlling Ozone EQs that are utilizing Stereo processing mode.</p>
+</div>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../track-referencing/index.html" title="Track Referencing">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Track Referencing
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../options/index.html" title="Options">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Options
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../ja/tonal-balance-control/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8 Help Documentation 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

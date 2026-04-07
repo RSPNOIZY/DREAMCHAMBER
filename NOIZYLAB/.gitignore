@@ -1,0 +1,48 @@
+# ── Environment & Secrets ──────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ── Cloudflare Wrangler ───────────────────────────────────────────────
+.wrangler/
+.dev.vars
+
+# ── Node ──────────────────────────────────────────────────────────────
+node_modules/
+dist/
+out/
+*.vsix
+package-lock.json
+
+# ── Python ────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# ── SQLite / DB ───────────────────────────────────────────────────────
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+
+# ── OS ────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── IDE ───────────────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+
+# ── Auth state (WhatsApp etc) ─────────────────────────────────────────
+auth_info_cohere/
+auth_info*/
+
+# ── Logs & temp ───────────────────────────────────────────────────────
+*.log
+tmp/
+temp/

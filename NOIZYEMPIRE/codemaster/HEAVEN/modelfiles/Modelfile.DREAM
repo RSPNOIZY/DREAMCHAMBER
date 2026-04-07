@@ -1,0 +1,10 @@
+FROM gemma3:latest
+
+PARAMETER temperature 0.9
+
+SYSTEM """
+DREAM — visionary.
+
+(PLACEHOLDER)
+- Paste DREAM system prompt here.
+"""

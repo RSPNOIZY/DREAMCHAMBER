@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>de-noise_dialog</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="de-noise_dialog" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer159" class="Basic-Text-Frame">
+			<p id="_idParaDest-117" class="heading-1"><a id="_idTextAnchor119"></a>De-noise: Dialogue</p>
+			<p class="Normal">Dialogue De-noise is a simple, no-latency denoiser ideal for achieving basic high-quality denoising on a variety of material with the minimum amount of time spent tweaking controls.</p>
+			<p class="Normal">The amount of denoising is determined by the noise threshold curve. A higher threshold generally means more noise reduction. The noise threshold curve is determined by the positions of the six threshold nodes.</p>
+			<p class="Normal">Dialogue De-noise can intelligently analyze the signal and determine the best noise threshold for your signal. In a DAW, this feature can be used to write automation in case you need to override the automatic settings and correct the noise threshold by hand.</p>
+			<p class="Normal">Under the hood is a series of 64 psychoacoustically spaced bandpass filters which act as a multiband gate to pass or stop a signal based on user-defined threshold values. If a signal component is above the threshold for the filter, it will be passed. If a signal component is below the threshold for the filter, it will be attenuated.</p>
+			<p class="Inline-Art"><img src="image/image_UFZ4M3H47OSQUPGZ3DZH6YU5I7JYNKEK" alt="" /></p>
+			<p id="_idParaDest-118" class="heading-2"><a id="_idTextAnchor120"></a>Auto</p>
+			<p class="Normal">While in Auto mode, Dialogue De-noise will analyze the incoming signal and adjust the noise threshold automatically to compensate for changes in the noise floor. This can be useful for removing noise from recordings with variable noise floor and continual noisy sections, and works well for almost any recording of dialogue and spoken word. If you would like to use Dialogue De-noise on musical material, the Manual mode is recommended.</p>
+			<p class="Normal">Please note that the noise threshold settings in Auto mode may be different from the settings set using only the Learn function in Manual mode. Because the adaptive noise threshold is continually being adjusted, it is set lower to prevent artifacts from occurring during </p>
+			<p id="_idParaDest-119" class="heading-2"><a id="_idTextAnchor121"></a>Manual</p>
+			<p class="Normal">In Manual mode, the Threshold Nodes are set by hand or with the Learn feature.</p>
+			<p class="Normal">Once set, Threshold Nodes don’t change position in Manual mode unless automated by a host. Use Manual mode if you feel that Auto does not yield the results you would like or if you would like to write and read automation from a DAW.</p>
+			<p id="_idParaDest-120" class="heading-2"><a id="_idTextAnchor122"></a>Learn</p>
+			<p class="Normal">When Dialogue De-noise is set to Manual, you can use the Learn button to set the noise threshold to a noise reference.</p>
+			<p class="Normal">Find a passage of pure noise in your audio and use Learn to analyze it. Longer selections of noise will set the Threshold Nodes to more ideal locations. We recommend finding at least one second of pure noise. </p>
+			<p class="Normal">The Learn function analyzes the audio passing through the plug-in and adjusts the Threshold Node controls automatically. This is useful when used on a section of audio that is only like the noise you want to remove so you can get a more accurate result when removing noise from the rest of your audio.</p>
+			<p id="_idParaDest-121" class="heading-2"><a id="_idTextAnchor123"></a>Threshold Nodes</p>
+			<p class="Normal">The Threshold Node controls on the frequency spectrum display allow you to change the noise threshold curve, which can be thought of as the "noise profile." These six points can be adjusted manually to suit the noise currently in your signal. These controls can be automated to compensate for shifts in the audio’s noise floor.</p>
+			<p class="Normal">In Auto mode, the Threshold Nodes are adjusted automatically in realtime.</p>
+			<p class="Normal">In Manual mode, more than one Threshold Node can be selected at a time for manual adjustment by clicking and dragging anywhere on the interface.</p>
+			<p id="_idParaDest-122" class="heading-2"><a id="_idTextAnchor124"></a>Threshold</p>
+			<p class="Normal">The master Threshold control allows you to offset the noise thresholds plotted by the Threshold Nodes. </p>
+			<p class="Normal">If you find that audio you would like to remain unprocessed is being processed, try adjusting this control.</p>
+			<p id="_idParaDest-123" class="heading-2"><a id="_idTextAnchor125"></a>Reduction</p>
+			<p class="Normal">Provides control over the maximal depth of noise reduction (in dB) that will occur per frequency band while a signal component is below its threshold. If you have your thresholds set properly and don’t like the results you’re getting, try adjusting this control.</p>
+			<p id="_idParaDest-124" class="heading-2"><a id="_idTextAnchor126"></a>Metering</p>
+			<p class="Normal">The Input Spectrum meter shows the level of the signal at the input of the denoiser filters.</p>
+			<p class="Normal">The Output Spectrum meter shows the level of the signal at the output of the denoiser filters.</p>
+			<p class="Normal">The Gain Reduction Region is the area between the Input and Output Spectra and shows the amount of processing currently happening to your signal.</p>
+			<p id="_idParaDest-125" class="heading-2"><a id="_idTextAnchor127"></a>Using Dialogue De-noise as a real-time plug-in</p>
+			<p class="Normal">There are two De-noise modules available as a VST/AU/RTAS/AAX real-time plug-in inside your DAW or NLE.  Dialogue De-noise has been specifically designed to provide high efficiency, low-latency adaptive noise removal when inserted in a channel strip in your  DAW or NLE, while the regular De-noise module may be more resource intensive.  </p>
+		</div>
+	</body>
+</html>

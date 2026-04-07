@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY EMPIRE — Master Index</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a25;
+    --border: #2a2a3a;
+    --accent: #7c3aed;
+    --accent2: #a855f7;
+    --gold: #f59e0b;
+    --green: #10b981;
+    --blue: #3b82f6;
+    --red: #ef4444;
+    --cyan: #06b6d4;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --text3: #64748b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  header {
+    text-align: center;
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent2), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+  }
+  header .subtitle {
+    color: var(--text2);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+  }
+  header .meta {
+    color: var(--text3);
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    text-align: center;
+  }
+  .stat .num {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent2);
+  }
+  .stat .label {
+    color: var(--text3);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.2rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1.5rem;
+  }
+  .domain-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .domain-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .domain-card .header-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .domain-card .icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .domain-card h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .domain-card .count {
+    font-size: 0.75rem;
+    color: var(--text3);
+    background: var(--surface2);
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-left: auto;
+  }
+  .domain-card .desc {
+    color: var(--text2);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  .file-list {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .file-list li {
+    padding: 0.35rem 0;
+    font-size: 0.8rem;
+    color: var(--text2);
+    border-bottom: 1px solid var(--border);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .file-list li:last-child { border-bottom: none; }
+  .file-list li .ext {
+    display: inline-block;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.65rem;
+    margin-right: 0.4rem;
+    font-weight: 600;
+  }
+  .ext-docx { background: #1e3a5f; color: #60a5fa; }
+  .ext-html { background: #3f1e1e; color: #f87171; }
+  .ext-md { background: #1e3f2e; color: #6ee7b7; }
+  .ext-jsx { background: #3f2e1e; color: #fbbf24; }
+  .ext-xlsx { background: #1e3f1e; color: #34d399; }
+  .ext-pptx { background: #3f1e3f; color: #c084fc; }
+  .ext-py { background: #1e2e3f; color: #93c5fd; }
+  .ext-ps1 { background: #2e1e3f; color: #a78bfa; }
+  .ext-js { background: #3f3a1e; color: #fde047; }
+  .ext-zip { background: #2e2e2e; color: #a1a1aa; }
+  .ext-txt { background: #2e2e2e; color: #d4d4d8; }
+  .ext-png { background: #1e2e2e; color: #5eead4; }
+  .ext-sh { background: #1e3f1e; color: #86efac; }
+  .ext-toml { background: #2e2e1e; color: #fca5a5; }
+
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .tool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+  }
+  .tool-card h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  .tool-card .type {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+  .type-skill { background: #1e3a5f; color: #60a5fa; }
+  .type-mcp { background: #3f1e3f; color: #c084fc; }
+  .type-plugin { background: #1e3f2e; color: #6ee7b7; }
+  .tool-card p {
+    font-size: 0.8rem;
+    color: var(--text3);
+    line-height: 1.4;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text3);
+    font-size: 0.8rem;
+  }
+  footer strong { color: var(--text2); }
+
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; }
+    .tools-grid { grid-template-columns: 1fr; }
+    header h1 { font-size: 1.8rem; }
+    body { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>NOIZY EMPIRE</h1>
+  <div class="subtitle">Master Index &mdash; Robert Stephen Plowman</div>
+  <div class="meta">Generated 2026-03-23 | 16 Domains | 516+ Files | Full Overhaul Complete</div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num">16</div><div class="label">Domain Folders</div></div>
+  <div class="stat"><div class="num">148</div><div class="label">Core Files</div></div>
+  <div class="stat"><div class="num">16</div><div class="label">Custom Skills</div></div>
+  <div class="stat"><div class="num">12</div><div class="label">MCP Connectors</div></div>
+  <div class="stat"><div class="num">70+</div><div class="label">Plugin Skills</div></div>
+  <div class="stat"><div class="num">248</div><div class="label">Archived</div></div>
+</div>
+
+<div class="grid">
+
+  <!-- 00 COMMAND CENTER -->
+  <div class="domain-card" style="border-left: 3px solid #ef4444;">
+    <div class="header-row">
+      <div class="icon" style="background: #3f1e1e;">&#x1F3AF;</div>
+      <h2>00 &mdash; COMMAND CENTER</h2>
+      <span class="count">11 files</span>
+    </div>
+    <div class="desc">Dashboards, daily ops, morning briefings, AI OS, IP digests. The nerve center.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-html">HTML</span>MC96ECO_AI_COMMAND_CENTER.html</li>
+      <li><span class="ext ext-html">HTML</span>MC96ECO_AI_FAMILY_DASHBOARD.html</li>
+      <li><span class="ext ext-html">HTML</span>MC96ECO_NOIZY_AI_OS.html</li>
+      <li><span class="ext ext-html">HTML</span>MC96ECO_CLOUDFLARE_CLEANUP.html</li>
+      <li><span class="ext ext-html">HTML</span>DREAMCHAMBER_DAILY_OPS.html</li>
+      <li><span class="ext ext-docx">DOCX</span>MC96ECO_MASTER_OPERATIONS.docx</li>
+      <li><span class="ext ext-md">MD</span>MC96ECO_IP_WEEKLY_DIGEST.md</li>
+      <li><span class="ext ext-md">MD</span>Morning Briefings (Mar 20–23)</li>
+    </ul>
+  </div>
+
+  <!-- 01 MANIFESTOS -->
+  <div class="domain-card" style="border-left: 3px solid #f59e0b;">
+    <div class="header-row">
+      <div class="icon" style="background: #3f3a1e;">&#x1F4DC;</div>
+      <h2>01 &mdash; MANIFESTOS</h2>
+      <span class="count">11 files</span>
+    </div>
+    <div class="desc">Founder vision, identity declarations, artist rights, human reconnection, indigenous preservation.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Artist_Bill_of_Rights.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Heals_The_World.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Human_Experiment_Manifesto.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Human_Reconnection_Blueprint.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Indigenous_Preservation_Blueprint.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Manifesto_of_the_Adaptive_Artist.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_The_Great_Remembering.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_The_Shaman_Principle.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Canada_Identity_Manifesto.docx</li>
+      <li><span class="ext ext-md">MD</span>NOIZY-AI-Enterprise-Git-Alignment.md</li>
+      <li><span class="ext ext-txt">TXT</span>NOIZY_Human_Experiment_Manifesto_TEXT.txt</li>
+    </ul>
+  </div>
+
+  <!-- 02 NOIZYVOX -->
+  <div class="domain-card" style="border-left: 3px solid #7c3aed;">
+    <div class="header-row">
+      <div class="icon" style="background: #2e1e3f;">&#x1F3A4;</div>
+      <h2>02 &mdash; NOIZYVOX</h2>
+      <span class="count">28 files</span>
+    </div>
+    <div class="desc">Voice platform core — artist sovereignty, consent tokens, provenance, marketplace, DAW plugin, outreach.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-docx">DOCX</span>NOIZYVOX_Strategy_Bible.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZYVOX_Artist_Sovereignty_Architecture.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZYVOX_Consent_Token_Schema.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZYVOX_Artist_Marketplace_Spec.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZYVOX_DAW_Plugin_Beta_Spec.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZYVOX_Evidence_Brief_25_Studies.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZYVOX_Watermark_Fingerprint_Spec.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZYVOX_Provenance_Audit_Pilot_Spec.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Provenance_Spec.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Voice_Library.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Vox_AVA_Architecture.docx</li>
+      <li><span class="ext ext-html">HTML</span>NOIZYVOX_ARTIST_PORTAL.html</li>
+      <li><span class="ext ext-html">HTML</span>NOIZYVOX_AIVA_Demo.html</li>
+      <li><span class="ext ext-html">HTML</span>noizyvox.html</li>
+      <li><span class="ext ext-docx">DOCX</span>+ 14 more specs, playbooks, pilots</li>
+    </ul>
+  </div>
+
+  <!-- 03 DREAMCHAMBER -->
+  <div class="domain-card" style="border-left: 3px solid #06b6d4;">
+    <div class="header-row">
+      <div class="icon" style="background: #1e2e2e;">&#x1F30C;</div>
+      <h2>03 &mdash; DREAMCHAMBER</h2>
+      <span class="count">4 files</span>
+    </div>
+    <div class="desc">Immersive engine — VR experiences, Gabriel architecture, AI consciousness space.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-html">HTML</span>NOIZY_AI_DREAMCHAMBER.html</li>
+      <li><span class="ext ext-html">HTML</span>NOIZY_DreamChamber_VR.html</li>
+      <li><span class="ext ext-html">HTML</span>GABRIEL_MASTER_ARCHITECTURE.html</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_DreamChamber_War.docx</li>
+    </ul>
+  </div>
+
+  <!-- 04 NOIZYFISH -->
+  <div class="domain-card" style="border-left: 3px solid #10b981;">
+    <div class="header-row">
+      <div class="icon" style="background: #1e3f2e;">&#x1F41F;</div>
+      <h2>04 &mdash; NOIZYFISH</h2>
+      <span class="count">14 files</span>
+    </div>
+    <div class="desc">Platform family — brand bible, GTM, economics, recruitment, NoizyStudios specs.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-docx">DOCX</span>NOIZYFISH_Brand_Bible.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZYFISH_Economic_Model.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZYFISH_GTM_Strategy.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZYFISH_Tech_Architecture.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZYFISH_Full_Platform_Adaptation.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZYFISH_Execution_Playbook.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NoizyStudios_Platform_Vision.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NoizyStudios_Nerve_To_Note_Spec.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>+ 6 more</li>
+    </ul>
+  </div>
+
+  <!-- 05 HVS -->
+  <div class="domain-card" style="border-left: 3px solid #3b82f6;">
+    <div class="header-row">
+      <div class="icon" style="background: #1e2e3f;">&#x1F3B5;</div>
+      <h2>05 &mdash; HVS</h2>
+      <span class="count">7 files</span>
+    </div>
+    <div class="desc">Human Voice Symphony / Signature — consent kernel, economics, international law, demo sites.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-html">HTML</span>HVS_CONSENT_KERNEL_SCHEMA.html</li>
+      <li><span class="ext ext-html">HTML</span>HVS_ECONOMICS_DASHBOARD.html</li>
+      <li><span class="ext ext-html">HTML</span>HVS Demo Site (Mar 16)</li>
+      <li><span class="ext ext-html">HTML</span>hvs_human_voice_signature.html</li>
+      <li><span class="ext ext-docx">DOCX</span>HVS_International_Law_Reference.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_HVS_Human_Voice_Symphony.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_HVS_Public_Orchestra_Strategy.docx</li>
+    </ul>
+  </div>
+
+  <!-- 06 BUSINESS -->
+  <div class="domain-card" style="border-left: 3px solid #f59e0b;">
+    <div class="header-row">
+      <div class="icon" style="background: #3f3a1e;">&#x1F4BC;</div>
+      <h2>06 &mdash; BUSINESS</h2>
+      <span class="count">19 files</span>
+    </div>
+    <div class="desc">Strategy, monetization, investor signals, master blueprints, empire roadmap, encyclopedias, NOIZYDROP packages.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-pptx">PPTX</span>NOIZY_Empire_Roadmap.pptx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Empire_Master_Blueprint.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Monetization_Blueprint.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Platform_Blueprint.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>CREATOR-POWER-STRATEGY-RSP001-2026.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY-Founder-Blueprint-2026.docx</li>
+      <li><span class="ext ext-xlsx">XLSX</span>NOIZYANTHROPIC.xlsx</li>
+      <li><span class="ext ext-docx">DOCX</span>+ 11 more</li>
+    </ul>
+  </div>
+
+  <!-- 07 RESEARCH -->
+  <div class="domain-card" style="border-left: 3px solid #8b5cf6;">
+    <div class="header-row">
+      <div class="icon" style="background: #2e1e3f;">&#x1F52C;</div>
+      <h2>07 &mdash; RESEARCH</h2>
+      <span class="count">3 files</span>
+    </div>
+    <div class="desc">Audio science, sonic neuroscience, consciousness mapping — the scientific foundation.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Audio_Research_Beyond_Aural.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Sonic_Consciousness_Map.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Sonic_Neuroscience_White_Paper.docx</li>
+    </ul>
+  </div>
+
+  <!-- 08 CANADA -->
+  <div class="domain-card" style="border-left: 3px solid #ef4444;">
+    <div class="header-row">
+      <div class="icon" style="background: #3f1e1e;">&#x1F1E8;&#x1F1E6;</div>
+      <h2>08 &mdash; CANADA</h2>
+      <span class="count">1 file</span>
+    </div>
+    <div class="desc">Canadian fortress economy, sovereign identity, jurisdiction strategy.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_Canada_Fortress_Economy.docx</li>
+    </ul>
+  </div>
+
+  <!-- 09 BOOK -->
+  <div class="domain-card" style="border-left: 3px solid #ec4899;">
+    <div class="header-row">
+      <div class="icon" style="background: #3f1e2e;">&#x1F4D6;</div>
+      <h2>09 &mdash; BOOK</h2>
+      <span class="count">3 files</span>
+    </div>
+    <div class="desc">One Man's Love outline, My Year With Claude, Plowman's Chronicles template.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-md">MD</span>BOOK_One_Mans_Love_Outline.md</li>
+      <li><span class="ext ext-docx">DOCX</span>MY-YEAR-WITH-CLAUDE-Ch2-Hello.docx</li>
+      <li><span class="ext ext-docx">DOCX</span>Plowmans_Chronicles_TEMPLATE.docx</li>
+    </ul>
+  </div>
+
+  <!-- 10 INFRASTRUCTURE -->
+  <div class="domain-card" style="border-left: 3px solid #06b6d4;">
+    <div class="header-row">
+      <div class="icon" style="background: #1e2e2e;">&#x2699;&#xFE0F;</div>
+      <h2>10 &mdash; INFRASTRUCTURE</h2>
+      <span class="count">19 files</span>
+    </div>
+    <div class="desc">Cloudflare workers (Heaven17, noizy-ai-landing), MCP servers (Commander One), audio pipeline, workspace configs.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-js">JS</span>cloudflare-workers/heaven17/worker.js</li>
+      <li><span class="ext ext-toml">TOML</span>cloudflare-workers/heaven17/wrangler.toml</li>
+      <li><span class="ext ext-html">HTML</span>cloudflare-workers/noizy-ai-landing/index.html</li>
+      <li><span class="ext ext-js">JS</span>cloudflare-workers/noizy-ai-landing/worker.js</li>
+      <li><span class="ext ext-py">PY</span>mcp-servers/commander_one_mcp/server.py</li>
+      <li><span class="ext ext-js">JS</span>audio-pipeline/iPad-to-GOD-AudioHijack.js</li>
+      <li><span class="ext ext-sh">SH</span>audio-pipeline/ipad-to-god-setup.sh</li>
+      <li><span class="ext ext-zip">ZIP</span>NOIZYLAB-INFRA-PACKAGE.zip</li>
+    </ul>
+  </div>
+
+  <!-- 11 PROMPTS AND TOOLS -->
+  <div class="domain-card" style="border-left: 3px solid #fbbf24;">
+    <div class="header-row">
+      <div class="icon" style="background: #3f3a1e;">&#x26A1;</div>
+      <h2>11 &mdash; PROMPTS &amp; TOOLS</h2>
+      <span class="count">10 files</span>
+    </div>
+    <div class="desc">SuperSonic prompts, Gabriel voice engine, IDE guides, Cursorless superstack, agency prompt packs.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-html">HTML</span>SuperSonic-Prompt-v5.2-Enterprise.html</li>
+      <li><span class="ext ext-html">HTML</span>SuperSonic-Prompt-v5.1-Enterprise.html</li>
+      <li><span class="ext ext-py">PY</span>GABRIEL VOICE ENGINE - REFACTORED.py</li>
+      <li><span class="ext ext-ps1">PS1</span>GABRIEL_Backup_PreUpgrade.ps1</li>
+      <li><span class="ext ext-ps1">PS1</span>GABRIEL_PostInstall_Restore.ps1</li>
+      <li><span class="ext ext-md">MD</span>NOIZY-CLAUDE-PROMPTS-MS365-COWORK.md</li>
+      <li><span class="ext ext-md">MD</span>NOIZYVOX-AGENCY-PROMPTS-PACK2.md</li>
+      <li><span class="ext ext-md">MD</span>NOIZY_Cursorless_Superstack.md</li>
+      <li><span class="ext ext-md">MD</span>NOIZY_VSCode_Build_Stack.md</li>
+      <li><span class="ext ext-docx">DOCX</span>NOIZY_IDE_Survival_Guide.docx</li>
+    </ul>
+  </div>
+
+  <!-- 12 DEMOS AND UI -->
+  <div class="domain-card" style="border-left: 3px solid #a855f7;">
+    <div class="header-row">
+      <div class="icon" style="background: #2e1e3f;">&#x1F3A8;</div>
+      <h2>12 &mdash; DEMOS &amp; UI</h2>
+      <span class="count">8 files</span>
+    </div>
+    <div class="desc">Interactive HTML demos, React JSX components, VR prototypes, visual artifacts.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-html">HTML</span>DaVinci_Workshop_VR.html</li>
+      <li><span class="ext ext-html">HTML</span>NOIZY_MINDs_EYE_Foundation.html</li>
+      <li><span class="ext ext-html">HTML</span>NOIZY_Wisdom_Project_Architecture.html</li>
+      <li><span class="ext ext-jsx">JSX</span>NOIZY-MANIFESTO.jsx</li>
+      <li><span class="ext ext-jsx">JSX</span>NOIZYLAB-COMMAND-CENTER.jsx</li>
+      <li><span class="ext ext-jsx">JSX</span>NOIZYVOX-VOICE-ARMY-HQ.jsx</li>
+      <li><span class="ext ext-jsx">JSX</span>noizy-family-design-spec.jsx</li>
+      <li><span class="ext ext-jsx">JSX</span>noizy-master-encyclopedia.jsx</li>
+    </ul>
+  </div>
+
+  <!-- 13 MEDIA -->
+  <div class="domain-card" style="border-left: 3px solid #14b8a6;">
+    <div class="header-row">
+      <div class="icon" style="background: #1e2e2e;">&#x1F4F7;</div>
+      <h2>13 &mdash; MEDIA</h2>
+      <span class="count">9 files</span>
+    </div>
+    <div class="desc">Screenshots, recordings, visual assets.</div>
+    <ul class="file-list">
+      <li><span class="ext ext-png">PNG</span>8 screenshots (Mar 11, 2026)</li>
+      <li><span class="ext ext-txt">TXT</span>recordings/README.txt</li>
+    </ul>
+  </div>
+
+  <!-- 14 NOIZYANTHROPIC -->
+  <div class="domain-card" style="border-left: 3px solid #7c3aed;">
+    <div class="header-row">
+      <div class="icon" style="background: #2e1e3f;">&#x1F916;</div>
+      <h2>14 &mdash; NOIZYANTHROPIC</h2>
+      <span class="count">118 files</span>
+    </div>
+    <div class="desc">Pre-organized mega-archive: AI_FAMILY, BOOK, BUSINESS, CANADA, CODE, COMMS, DEMOS, MANIFESTOS, PROJECTS, RESEARCH, TEMPLATES, _COMMAND_CENTER.</div>
+    <ul class="file-list">
+      <li>AI_FAMILY/ &mdash; Family AI dashboard suite</li>
+      <li>BOOK/ &mdash; Book drafts and outlines</li>
+      <li>BUSINESS/ &mdash; Business strategy docs</li>
+      <li>CODE/ &mdash; Codebase snapshots</li>
+      <li>MANIFESTOS/ &mdash; Core vision documents</li>
+      <li>PROJECTS/ &mdash; Active project files</li>
+      <li>RESEARCH/ &mdash; Research papers</li>
+      <li>_COMMAND_CENTER/ &mdash; Ops dashboards</li>
+    </ul>
+  </div>
+
+  <!-- 15 ARCHIVE -->
+  <div class="domain-card" style="border-left: 3px solid #64748b;">
+    <div class="header-row">
+      <div class="icon" style="background: #2e2e2e;">&#x1F4E6;</div>
+      <h2>15 &mdash; ARCHIVE</h2>
+      <span class="count">248 files</span>
+    </div>
+    <div class="desc">Duplicates, old versions, saved webpages, broken downloads. Nothing lost — just organized out of the way.</div>
+    <ul class="file-list">
+      <li>duplicates/ &mdash; All " 2" suffix copies</li>
+      <li>saved-webpages/ &mdash; Claude.html, NOIZYEMPIRE, etc.</li>
+      <li>broken-downloads/ &mdash; .crdownload files</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- SKILLS, PLUGINS & MCP CONNECTORS -->
+<div class="section-title">Skills, Plugins &amp; MCP Connectors</div>
+
+<div class="tools-grid">
+  <div class="tool-card">
+    <h3>thenoizyman</h3>
+    <span class="type type-skill">Custom Skill</span>
+    <p>NOIZY / ROB.AVA — Trust-native voice infrastructure build pack. TypeScript-first, API + AI + Governance.</p>
+  </div>
+  <div class="tool-card">
+    <h3>wisdom-project</h3>
+    <span class="type type-skill">Custom Skill</span>
+    <p>Capturing &amp; preserving elder visionary wisdom, life stories, creative philosophies.</p>
+  </div>
+  <div class="tool-card">
+    <h3>web-artifacts-builder</h3>
+    <span class="type type-skill">Custom Skill</span>
+    <p>Multi-component HTML artifacts with React, Tailwind, shadcn/ui.</p>
+  </div>
+  <div class="tool-card">
+    <h3>skill-creator</h3>
+    <span class="type type-skill">Custom Skill</span>
+    <p>Create, modify, improve, and benchmark skills.</p>
+  </div>
+  <div class="tool-card">
+    <h3>theme-factory</h3>
+    <span class="type type-skill">Custom Skill</span>
+    <p>10 pre-set themes for styling artifacts — slides, docs, reports, landing pages.</p>
+  </div>
+  <div class="tool-card">
+    <h3>canvas-design</h3>
+    <span class="type type-skill">Custom Skill</span>
+    <p>Visual art creation in .png and .pdf using design philosophy.</p>
+  </div>
+  <div class="tool-card">
+    <h3>algorithmic-art</h3>
+    <span class="type type-skill">Custom Skill</span>
+    <p>p5.js generative art with seeded randomness and interactive params.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Cloudflare MCP</h3>
+    <span class="type type-mcp">MCP Connector</span>
+    <p>Workers, D1 databases, KV namespaces, R2 buckets, Hyperdrive configs.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Slack MCP</h3>
+    <span class="type type-mcp">MCP Connector</span>
+    <p>Channels, messages, search, canvases, drafts, user profiles.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Notion MCP</h3>
+    <span class="type type-mcp">MCP Connector</span>
+    <p>Pages, databases, views, comments, teams, users.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Gmail MCP</h3>
+    <span class="type type-mcp">MCP Connector</span>
+    <p>Messages, threads, drafts, labels, search.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Linear MCP</h3>
+    <span class="type type-mcp">MCP Connector</span>
+    <p>Issues, projects, milestones, cycles, documents, teams.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Figma MCP</h3>
+    <span class="type type-mcp">MCP Connector</span>
+    <p>Design context, screenshots, variables, code connect, FigJam.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Google Drive MCP</h3>
+    <span class="type type-mcp">MCP Connector</span>
+    <p>Search and fetch files from Google Drive.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Domains MCP</h3>
+    <span class="type type-mcp">MCP Connector</span>
+    <p>Check domain availability and get suggestions.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Memory MCP</h3>
+    <span class="type type-mcp">MCP Connector</span>
+    <p>Persistent entity graph — observations, relations, knowledge.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Filesystem MCP</h3>
+    <span class="type type-mcp">MCP Connector</span>
+    <p>Full file system access — read, write, edit, search, move.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Chrome Control</h3>
+    <span class="type type-mcp">MCP Connector</span>
+    <p>Browser automation — tabs, navigation, JavaScript execution, page content.</p>
+  </div>
+</div>
+
+<!-- PLUGIN SKILL PACKS -->
+<div class="section-title">Plugin Skill Packs (70+ Available)</div>
+<div class="tools-grid">
+  <div class="tool-card">
+    <h3>Brand Voice</h3>
+    <span class="type type-plugin">Plugin</span>
+    <p>Discover brand materials, generate guidelines, enforce voice across content.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Data Analytics</h3>
+    <span class="type type-plugin">Plugin</span>
+    <p>SQL queries, visualization, dashboards, statistical analysis, data exploration.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Sales</h3>
+    <span class="type type-plugin">Plugin</span>
+    <p>Account research, call prep, outreach drafting, competitive intel, pipeline review.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Marketing</h3>
+    <span class="type type-plugin">Plugin</span>
+    <p>Campaign planning, content creation, SEO audit, performance analytics, brand review.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Product Management</h3>
+    <span class="type type-plugin">Plugin</span>
+    <p>Feature specs, roadmaps, competitive analysis, metrics, stakeholder comms.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Legal</h3>
+    <span class="type type-plugin">Plugin</span>
+    <p>Contract review, NDA triage, compliance, risk assessment, meeting briefings.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Finance</h3>
+    <span class="type type-plugin">Plugin</span>
+    <p>Journal entries, reconciliation, variance analysis, SOX testing, financial statements.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Enterprise Search</h3>
+    <span class="type type-plugin">Plugin</span>
+    <p>Cross-source search, knowledge synthesis, digests across all connected platforms.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Customer Support</h3>
+    <span class="type type-plugin">Plugin</span>
+    <p>Ticket triage, response drafting, escalation, research, knowledge management.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Bio Research</h3>
+    <span class="type type-plugin">Plugin</span>
+    <p>Clinical trials, single-cell RNA QC, Nextflow pipelines, scvi-tools.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Productivity</h3>
+    <span class="type type-plugin">Plugin</span>
+    <p>Memory management, task tracking, workplace collaboration.</p>
+  </div>
+  <div class="tool-card">
+    <h3>Doc Generation</h3>
+    <span class="type type-plugin">Plugin</span>
+    <p>DOCX, PPTX, XLSX, PDF — professional document creation and manipulation.</p>
+  </div>
+</div>
+
+<footer>
+  <strong>NOIZY EMPIRE</strong> &mdash; Robert Stephen Plowman<br>
+  Full overhaul completed March 23, 2026 &mdash; 16 domains, 12 MCP connectors, 70+ skills cataloged<br>
+  Peace, love, and understanding are not slogans &mdash; they are design goals.
+</footer>
+
+</body>
+</html>

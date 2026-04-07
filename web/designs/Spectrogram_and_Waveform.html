@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Spectrogram_and_Waveform</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="Spectrogram_and_Waveform" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer064" class="Basic-Text-Frame">
+			<p id="_idParaDest-28" class="heading-1"><a id="_idTextAnchor030"></a>Understanding the Spectrogram/Waveform display</p>
+			<p id="_idParaDest-29" class="heading-2"><a id="_idTextAnchor031"></a>Spectrogram overview</p>
+			<p class="Normal">The Spectrogram and Waveform display window combines an advanced Spectrogram with a transparency feature to allow you to view both the frequency content and amplitude of a file simultaneously.</p>
+			<p class="Normal">The Spectrogram shows a range of frequencies (lowest at the bottom of the display, highest at the top) and shows how loud events are at different frequencies.</p>
+			<p class="Normal">Loud events will appear bright and quiet events will appear dark.</p>
+			<p class="Normal">The Spectrogram can let you see at a glance where there is broadband, electrical, and intermittent noise, and allows you to isolate audio problems easily by sight.</p>
+			<p class="Normal">RX features an advanced Spectrogram display that is capable of showing greater time and frequency resolution than other Spectrograms, allowing you to see an unprecedented level of detail when working with audio. </p>
+			<p class="Inline-Art"><img src="image/image_3KCWKFSBPZC55YAEK4TUGEW3JPZNOH7K" alt="" /></p>
+			<p id="_idParaDest-30" class="heading-2"><a id="_idTextAnchor032"></a>Configuring the Spectrogram</p>
+			<p class="Normal">The Spectrogram Display can be configured to show a high level of detail for critical applications.</p>
+			<p class="Normal">Here’s a vocal recording with default Spectrogram settings:</p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_EPIDWDBVRKENWNMQMMCGPVIRA54BVCMQ" alt="" /></p>
+			<p class="Normal">Here’s the same file with reassignment enabled in the Spectrogram Settings dialogue:</p>
+			<p class="Inline-Art"><img src="image/image_Q63IXFGERXQ25MN7T3NBLOY2MY4RHUQX" alt="" /></p>
+			<p class="Normal">The RX 5 Audio Editor Spectrogram has been designed to provide more sharpness and detail than other Spectrograms. In situations where you would like to see crisper detail, and adjust other advanced settings like FFT size (frequency resolution), window and colors, go to the View &gt; Spectrogram Settings menu [Ctrl/Cmd+Shift]. There are presets in this menu for some of the more useful settings.</p>
+			<p class="heading-4">These settings affect your audio as follows:<img src="image/image_BPN6HTZQHO4BNPS64GCTLXF6T6IJWP75" alt="" /></p>
+			<p class="heading-3">Spectrogram Type</p>
+			<p class="Normal">RX offers some different methods for displaying time and frequency information in the Spectrogram. RX’s advanced Spectrogram modes allow you to see sharper time (horizontal) and frequency (vertical) resolution at the same time. There is always a tradeoff of display quality versus processing time, so keep in mind that some modes will take longer to draw on the screen than others.</p>
+			<ul>
+				<li class="Unordered-List"><span class="Bold">Regular STFT (short-time Fourier transform): </span>this refers to the method that&apos;s used to transform the audio data into the Spectrogram display. This type of Spectrogram is the most common one and can be found in other editors. It has a fixed uniform time-frequency resolution. This is the simplest and fastest drawing mode in RX.</li>
+				<li class="Unordered-List"><span class="Bold">Auto-adjustable STFT:</span> this mode automatically adjusts FFT size (i.e. time and frequency resolution of a Spectrogram) according to the zoom level. For example, if you zoom in horizontally (time) you&apos;ll see that percussive sounds and transients will be more clearly defined. When you zoom in vertically (frequency), you&apos;ll see individual musical notes and frequency events will appear more clearly defined.</li>
+				<li class="Unordered-List"><span class="Bold">Multi-resolution: </span>this mode calculates the Spectrogram with better frequency resolution at low frequencies and better time resolution at high frequencies. This mimics psychoacoustic properties of our perception, allowing the Spectrogram display to show you the most important information clearly.</li>
+				<li class="Unordered-List"><span class="Bold">Adaptively sparse: </span>this mode automatically varies the time and frequency resolution of the Spectrogram to achieve the best Spectrogram sharpness in every area of the time-frequency plane. This often lets you see the most details for a thorough analysis, but it&apos;s the slowest mode to calculate.</li>
+			</ul>
+			<p class="heading-3">FFT size</p>
+			<p class="Normal">FFT is a fast Fourier transform, a procedure for calculation of a signal frequency spectrum. The greater the FFT size, the greater the frequency resolution, i.e. notes and tonal events will be clearer at larger sizes. However, choosing a larger number here will make time events less sharply defined because of the way this type of processing is done. Choosing Auto-adjustable or Multi-resolution modes allows you to get a good combination of frequency and time resolution without having to change this setting as you work.</p>
+			<p class="heading-3">Enable reassignment</p>
+			<p class="Normal">This control enables a special technique for Spectrogram calculation that allows very precise pitch tracking for any harmonic components of the signal. When used together with Frequency overlap / Time overlap controls, this option can provide virtually unlimited time and frequency resolution simultaneously for signals consisting of tones.</p>
+			<p class="heading-3">Window</p>
+			<p class="Normal">This control lets you choose different weighting functions (or windows) that are used for the FFT analysis. Window functions control the amount of signal leakage between frequency bins of the FFT. "Weak" windows, such as Rectangular, allow a lot of leakage, which may blur your Spectrogram vertically. "Strong" windows, such as Kaiser or cos3, eliminate leakage at the expense of a slight loss of frequency resolution.</p>
+			<p class="heading-3">Frequency scale</p>
+			<p class="Normal">Using different frequency scales can help you see useful information more easily. Different scales have different characteristics for displaying the vertical (frequency) information in the Spectrogram display.</p>
+			<ul>
+				<li class="Unordered-List"><span class="Bold">Linear:</span> this simply shows frequencies spread out in a uniform way. This is most useful when you want to analyze higher frequencies.</li>
+				<li class="Unordered-List"><span class="Bold">Logarithmic: </span>this scale puts more attention on lower frequencies.</li>
+				<li class="Unordered-List"><span class="Bold">Mel: </span>the Mel scale (derived from the word Melody) is a frequency scale based on how humans perceive sound. This selection is one of the more intuitive choices because it corresponds to how we hear differences in pitch.</li>
+				<li class="Unordered-List"><span class="Bold">Bark: </span>the Bark scale is also based on how we perceive sound, and corresponds to a series of critical bands.</li>
+			</ul>
+			<p class="heading-3">Frequency overlap</p>
+			<p class="Normal">This controls the amount of oversampling on the frequency scale of Spectrogram. When used together with the Reassignment option, it will increase the resolution of the Spectrogram vertically (by frequency).</p>
+			<p class="heading-3">Time overlap</p>
+			<p class="Normal">This controls the time oversampling of the Spectrogram. In most cases, overlap of 4x or 8x is a good setting to start with. However, using higher overlap together with the Reassignment option will increase the time resolution of a Spectrogram, letting you see transient events clearly. </p>
+			<p class="heading-3">Color map</p>
+			<p class="Normal">The Spectrogram display allows you to choose between several different color schemes. There is no right or wrong color setting to use and we recommend you try them all to determine your preference. Sometimes certain color modes will make different types of noise stand out more clearly. Experiment!</p>
+			<p class="heading-3">High-quality rendering</p>
+			<p class="Normal">Accurate max-bilinear interpolation of the Spectrogram (recommended). Turning this control off makes Spectrogram rendering slightly faster, but you&apos;ll lose some detail and clarity in the Spectrogram image.</p>
+			<p class="heading-3">Reduce quality above</p>
+			<p class="Normal">RX&apos;s Spectrogram uses very accurate rendering, letting you see audio problems, such as clicks, even at low zoom levels. However, performing such rendering for long files can be somewhat slow. When the length of the visible Spectrogram is above the specified number of seconds, the Spectrogram calculation is changed to a fast and less accurate preview mode. When you zoom in, the Spectrogram calculation becomes accurate again.</p>
+			<p class="heading-3">Cache size (MB)</p>
+			<p class="Normal">Limits the amount of memory used by the Spectrogram.</p>
+			<p id="_idParaDest-31" class="heading-2"><a id="_idTextAnchor033"></a>Configuring the Rulers</p>
+			<p class="Inline-Art"><img src="image/image_LM6E22ZOT4DWTVDQOY2RK4YBMIVQ42W7" alt="" /></p>
+			<p class="Normal">The interface will automatically hide and show rulers depending on the Spectrogram/Waveform transparency balance slider, which is described in the next section. These rulers allow you to adjust the ways in which your audio is visualized, to help better identify certain audio problems. On the right side of the Spectrogram/Waveform display are the Amplitude ruler for the Waveform, Frequency ruler for the Spectrogram, and Color map ruler for the Spectrogram.</p>
+			<p class="heading-3">Amplitude ruler</p>
+			<p class="Normal">You can right-click on the spectral Amplitude ruler to reveal a selection of amplitude scales:</p>
+			<ul>
+				<li class="Unordered-List"><span class="Bold">dB: </span>shows Waveform levels in decibels, relative to digital full scale (it is the most common type of scale used for spectrum analyzers).</li>
+				<li class="Unordered-List"><span class="Bold">Normalized:</span> shows Waveform levels relative to the full scale level of 1.</li>
+				<li class="Unordered-List"><span class="Bold">16 bit:</span> shows Waveform levels as quantization steps of a 16-bit audio format (−32768 to +32767).</li>
+				<li class="Unordered-List"><span class="Bold">Percent: </span>shows Waveform levels as percentage from full scale.</li>
+			</ul>
+			<p class="heading-3">Frequency ruler</p>
+			<p class="Normal">You can also right-click on the Frequency ruler to reveal a selection of different frequency scales:</p>
+			<ul>
+				<li class="Unordered-List"><span class="Bold">Linear:</span> Linear scale means that Hertz are linearly spaced on a screen.</li>
+				<li class="Unordered-List"><span class="Bold">Mel (default) and Bark:</span> Mel and Bark scale are frequency scales commonly found in psychoacoustics, and reflect how our ears detect pitch. They are approximately linear below 500 Hz and approximately logarithmic above. Mel scale reflects our perception of pitch: equal subjective pitch increments produce equal increments in screen coordinates. Bark scale reflects our subjective loudness perception and energy integration. It is similar to Mel scale, but puts more emphasis on low frequencies.</li>
+				<li class="Unordered-List"><span class="Bold">Log:</span> in this mode, different octaves occupy equal screen space. The screen coordinates are proportional to the logarithm of Hertz down to 100 Hz.</li>
+				<li class="Unordered-List"><span class="Bold">Extended Log:</span> this extends the logarithmic scale down to 10 Hz, so that it puts even more attention on lower frequencies.</li>
+			</ul>
+			<p class="heading-3">Color map</p>
+			<p class="Normal">This ruler shows what color represents what amplitude in the Spectrogram. The range of this display is the dynamic range of the RX Spectrogram. You can click and drag the map to change the range and use the scroll wheel to make the range larger or smaller. This is useful for seeing very quiet noises without using gain to change the level of your audio.</p>
+			<p class="heading-3">Piano Roll Overlay</p>
+			<p class="Normal">A representation of how specific frequency ranges correlate to the western musical scale can be displayed by right clicking on the Frequency ruler and selecting Show Piano Roll. If you would like to hide the frequency indicators so they don’t obscure this piano roll, you can disable Show Frequencies and Ticks (which is enabled by default).</p>
+			<p class="heading-3">Transparency balance</p>
+			<p class="Inline-Art"><img src="image/image_DW2DEZHZC5KCZIJK4XJMTJVKBEQT2UAW" alt="" /></p>
+			<p class="Normal">The Spectrogram Display features a transparency slider that lets you superimpose a Waveform display over the Spectrogram, allowing you to see both frequency and overall amplitude at the same time. This can be invaluable for quickly identifying clipping, clicks and pops, and other events. Here is the same audio file shown as its Waveform, its Waveform and Spectrogram, and its Spectrogram.</p>
+			<p class="Inline-Art"><img src="image/image_XUQWPH2NX3XDF5KZ3UCDQRKENVOIFOR2" alt="" /><img src="image/image_LX2IO6FF3PG2YVATL2DV34HPSRGMV4MW" alt="" /><img src="image/image_5UCIT7GHYPTWJJUAI6JRAI4EDZQLE27X" alt="" /></p>
+			<p id="_idParaDest-32" class="heading-2"><a id="_idTextAnchor034"></a>Waveform overview</p>
+			<p class="Inline-Art"><img src="image/image_35NTI4RJL57SHBCSDKLQL4SAXUQQJN2N" alt="" /></p>
+			<p class="Normal">An overview of the entire audio file&apos;s Waveform will be displayed above the main Spectrogram/Waveform display in order to provide a handy reference point when zooming and making audio selections in RX. The Waveform overview will always display the entire audio file, and will also display any selections made in the main display.</p>
+			<p class="Normal">When zooming in to your audio, the currently visible audio region will also be highlighted in the Waveform overview. Click and drag on the highlighted region in order to scroll your main audio display left or right, and click and drag on the edges of the highlighted region in order to make the zoom tighter or wider. To zoom out fully, simply double click on the highlighted visible region.</p>
+			<p class="Normal">Note: with your mouse hovering over the Waveform overview, you can also use the mouse wheel to scale the amplitude of the Waveform display to provide a clearer overview. This will not affect the amplitude scaling in the main Spectrogram/Waveform display.</p>
+		</div>
+	</body>
+</html>

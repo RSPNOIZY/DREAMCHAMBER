@@ -1,0 +1,1029 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="ja">
+  <head lang="ja">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>コーデックプレビュー - Ozone8ユーザーズマニュアル</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/ja/codec-preview/">
+    <meta property="og:title" content="Ozone8ユーザーズマニュアル">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone8ユーザーズマニュアル">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | コーデックプレビュー</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="はじめに" href="../index.html">
+	
+	はじめに
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8の概要" href="../ozone-overview/index.html">
+	
+	Ozone 8の概要
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone応用" href="../ozone-app-overview/index.html">
+	
+	Ozone応用
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プリセットシステム" href="../preset-system/index.html">
+	
+	プリセットシステム
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="全般的な機能" href="../general-functions/index.html">
+	
+	全般的な機能
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="モジュールの標準的な操作項目" href="../common-module-controls/index.html">
+	
+	モジュールの標準的な操作項目
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミクス" href="../dynamics/index.html">
+	
+	ダイナミクス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミックEQ" href="../dynamic-eq/index.html">
+	
+	ダイナミックEQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イコライザー" href="../equalizer/index.html">
+	
+	イコライザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="エキサイター" href="../exciter/index.html">
+	
+	エキサイター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イメージャー" href="../imager/index.html">
+	
+	イメージャー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マキシマイザー" href="../maximizer/index.html">
+	
+	マキシマイザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="スペクトラル成形" href="../spectral-shaper/index.html">
+	
+	スペクトラル成形
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージコンプレッサー" href="../vintage-compressor/index.html">
+	
+	ビンテージコンプレッサー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージEQ " href="../vintage-eq/index.html">
+	
+	ビンテージEQ 
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージリミッター" href="../vintage-limiter/index.html">
+	
+	ビンテージリミッター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージテープ" href="../vintage-tape/index.html">
+	
+	ビンテージテープ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="コーデックプレビュー" href="index.html">
+	
+	コーデックプレビュー
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ディザー" href="../dither/index.html">
+	
+	ディザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マスターアシスタント" href="../master-assistant/index.html">
+	
+	マスターアシスタント
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トラックリファレンス" href="../track-referencing/index.html">
+	
+	トラックリファレンス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トーナルバランスコントロール" href="../tonal-balance-control/index.html">
+	
+	トーナルバランスコントロール
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オプション" href="../options/index.html">
+	
+	オプション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プラグインオートメーション" href="../plug-in-automation/index.html">
+	
+	プラグインオートメーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ヒントと用例" href="../tips-and-examples/index.html">
+	
+	ヒントと用例
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーソリゼーション" href="../authorization/index.html">
+	
+	オーソリゼーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotopeカスタマーケアー" href="../customer-care/index.html">
+	
+	iZotopeカスタマーケアー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information (ライセンス情報)" href="../license-information/index.html">
+	
+	License Information (ライセンス情報)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA (エンドユーザー向け使用許諾契約)" href="../eula/index.html">
+	
+	EULA (エンドユーザー向け使用許諾契約)
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../en/codec-preview/index.html"><i class="icon icon-eye"></i> View in English</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>コーデックプレビュー </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">言語:</span>
+<br />
+    
+
+       
+       <a href="../../en/codec-preview/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+        <a href="../../en/codec-preview/index.html"><button class="lang-btn-active">日本語</button></a>
+       
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+    
+
+	
+
+<h2 id="概要">概要</h2>
+
+<p>オーディオ方式を（MP3やAACなどへ）不可逆な圧縮変換する際、心理音響アルゴリズムが使用され、より可聴でないオーディオ成分が切り詰められます。これは、実際的にオーディオの一部分が除去されていることを意味し、サウンドに微妙な（ビットレートが低い場合、それなりに顕著な）影響を与えます。</p>
+
+<p>コーデックプレビューにより、不可逆な圧縮変換後の音を予め試聴することができるため、DAWから離れることなく、データ損失に対する補正を行うことができます。例えば、ビットレートの低いMP3へ変換する場合、高周波数データの損失を埋め合わせるべく、音像を全体的に明る目に補正することが効果的であるのが一般的です。</p>
+
+<h3 id="コーデックプレビューの操作パネルへアクセスするには">コーデックプレビューの操作パネルへアクセスするには</h3>
+
+<p><img src="../images/codec-preview/codec-panel.png" alt="Codec Preview button in Auditioning section" /></p>
+
+<p>コーデックプレビューの操作画面にアクセスするには、Ozoneアプリケーション及びOzone 8プラグインの試聴セクション下部にあるCodecボタンをクリックします。</p>
+
+<div class="admonition note">
+<p class="admonition-title">コーデックプレビュー使用について</p>
+<p><ul>
+<li>コーデックプレビューはAdvancedのみの機能であり、コンポーネントプラグインでは使用できませんのでご注意ください。コーデックプレビューへは、メインのOzoneプラグインとOzoneアプリケーションからアクセスできます。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="コーデックプレビューの有効化と無効化">コーデックプレビューの有効化と無効化</h3>
+
+<p><img src="../images/codec-preview/enable-codec.png" alt="Codec Preview enabled" /></p>
+
+<p>試聴セクションにある“Codec”ボタン隣の電源ボタンをクリックすると、コーデックプレビューのオン/オフが切り替えられます。</p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<p>コーデックプレビューの操作画面には以下の操作項目があります:</p>
+
+<p><img src="../images/codec-preview/codec-preview-controls.png" alt="Codec Preview panel controls" /></p>
+
+<h3 id="形式-mp3-aac">形式: MP3/AAC</h3>
+
+<p>試聴のコーデック形式を選択します: 選択肢はMP3かAACとなります。</p>
+
+<div class="admonition note">
+<p class="admonition-title">Ozone Codec Information</p>
+<p><ul>
+<li>AAC: Ozoneはフラウンホーファーのコーデックを使用します。</li>
+<li>MP3: OzoneはLAMEコーデックを使用します<a href="http://www.mp3dev.org">www.mp3dev.org</a>。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="bit-rate-ビットレート-常時適用">Bit Rate（ビットレート：常時適用）</h3>
+
+<p>コーデックプレビューで常時適用されるビットレートを選択します。</p>
+
+<table>
+<thead>
+<tr>
+<th>ビットレート</th>
+<th>注釈</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>96 kpbs</strong></td>
+<td><em>通常、低品質ストリーミングに使用されます</em></td>
+</tr>
+
+<tr>
+<td><strong>112 kbps</strong></td>
+<td></td>
+</tr>
+
+<tr>
+<td><strong>128 kbps</strong></td>
+<td></td>
+</tr>
+
+<tr>
+<td><strong>160 kbps</strong></td>
+<td></td>
+</tr>
+
+<tr>
+<td><strong>192 kbps</strong></td>
+<td></td>
+</tr>
+
+<tr>
+<td><strong>224 kbps</strong></td>
+<td></td>
+</tr>
+
+<tr>
+<td><strong>256 kbps</strong></td>
+<td>コーデックプレビューで<strong>モノファイル</strong>をストリーミングする際に使用可能な最高ビットデプスは256 kbpsとなります。</td>
+</tr>
+
+<tr>
+<td><strong>320 kbps</strong></td>
+<td><em>MP3でサポートされる最高ビットデプス</em></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="solo-codec-artifacts-コーデックのアーティファクトのソロ">Solo Codec Artifacts（コーデックのアーティファクトのソロ）</h3>
+
+<p>このオプションにより、不可逆圧縮変換により失われるオーディオ成分のみを試聴することができます。コーデックアーティファクトとは、エンコード前の信号からコーデックプレビューが出力する信号を差し引いた残りの信号です。</p>
+
+<h2 id="サンプルレートとパフォーマンスについて">サンプルレートとパフォーマンスについて</h2>
+
+<div class="admonition warning">
+<p class="admonition-title">パフォーマンスに関する注</p>
+<p>AACとMP3ファイルでサポートされる最大サンプルレートは48kHzとなります。AACやMP3への圧縮に伴う音質変化を正確に表現するべく、コーデックプレビュー使用時はリアルタイムでの再サンプリングが必要なることがあります。セッションのサンプルレートが44.1kHzまたは48kHz以外に設定されている場合、コーデックプレビューが作動する状況でOzoneは高品質のリアルタム再サンプリングを行います。リアルタイム再サンプリングはCPU使用率が高く、サンプルレートの高いセッションにおいてバッファサイズが低く設定されている際にその傾向はより顕著になります。作業の中断やパフォーマンスの問題を回避する上で、高サンプルレートのセッションでこの機能を使用する際は、バッファサイズを高めに設定して頂くことを推奨します。
+これに加え、リアルタイム再サンプリングは数学的に集約性が高く、負荷が大きいため、著しいレーテンシーの原因となることがあります。大部分のホストアプリケーションにはこのレーテンシーを補正する機能が搭載されていますが、コーデックプレビューが作動していると、再生時に僅かな遅延が聞こえる場合があります。</p>
+</div>
+
+<h2 id="信号の流れ">信号の流れ</h2>
+
+<p>コーデックプレビューはOzoneの中では信号チェーンの末尾に位置します。Ozoneをプラグインとして使用する時にコーデックプレビュー機能を使用する場合は、Ozoneを全てのインサートの後に使用することが重要です。これにより、ミックス内での処理を全て経た状態でコーデックプレビューが適用されることになります。</p>
+
+<p>コーデックプレビューは試聴目的のみでの使用となり、OzoneアプリケーションやDAWからのエクスポートに際し、実際にMP3やAACへの圧縮変換が行われるわけではありません。この機能はエクスポートに最適な設定を模索する上での補助として使用し、実際のエクスポート時は必ずこの機能は切るようにしてください。</p>
+
+<h2 id="ヘッドルームとクリッピング">ヘッドルームとクリッピング</h2>
+
+<p>不可逆圧縮変換には近似値エラーが付き物であり、ソースとなる非圧縮ファイルのピークが0 dBに達していなくとも、ノイズによりピーク値が上がり、クリップが発生することがあります。</p>
+
+<p>このため、AACやMP3のような圧縮方式用にマスタリングする際は、圧縮に伴うクリップを回避するべく、-1 dBから-1.5 dBほどのヘッドルームを持たせるのが理想的です。</p>
+
+<p>コーデックプレビューを使用すると、このクリップを回避するのに必要な微調整を行うことができます。</p>
+
+<p>Ozoneの出力メーター上部のクリップインジケーターを確認し、オーディオのエクスポートを実行する前にクリップの発生していないことを確認してください。</p>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../vintage-tape/index.html" title="ビンテージテープ [ADV]">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              ビンテージテープ [ADV]
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../dither/index.html" title="ディザー">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              ディザー
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../en/codec-preview/index.html"><i class="icon icon-eye"></i> View in English</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8ヘルプドキュメント 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

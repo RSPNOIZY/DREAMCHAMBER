@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="ja"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="ja"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="ja"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head lang="ja">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+  <title>プリセットシステム - Neutron 2 Help Documentation</title>
+  <meta name="generator" content="Hugo 0.40.3" />
+  <meta name="description" content="Neutron 2 User Manual">
+  <link rel="canonical" href="index.html">
+  <meta name="author" content="iZotope">
+  <meta property="og:url" content="http://www.neutron2helpdocs.com/ja/preset-system/index.html">
+  <meta property="og:title" content="Neutron 2 Help Documentation">
+  
+  <meta name="apple-mobile-web-app-title" content="Neutron 2 Help Documentation">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <style>
+    @font-face {
+      font-family: 'icon';
+      src: url('../fonts/icon.eot');
+      src: url('../fonts/icon.eot')
+             format('embedded-opentype'),
+           url('../fonts/icon.woff')
+             format('woff'),
+           url('../fonts/icon.ttf')
+             format('truetype'),
+           url('../fonts/icon.svg')
+             format('svg');
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+  <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+  <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    }
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+  
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  
+  <script src="../javascripts/modernizr.js"></script>
+  
+<script>
+  (function(i,s,o,g,r,a,m){
+    i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+    []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+    m.parentNode.insertBefore(a,m)
+  })(window, document,
+    'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+   
+  ga('create', 'UA-63445037-15', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+
+<script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+
+</head>
+<body class="palette-primary-docs palette-accent-docs">
+	
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	
+
+  <div class="backdrop">
+    <div class="backdrop-paper"></div>
+  </div>
+  <input class="toggle" type="checkbox" id="toggle-drawer">
+  <input class="toggle" type="checkbox" id="toggle-search">
+  <label class="toggle-button overlay" for="toggle-drawer"></label>
+  <header class="header">    <nav aria-label="Header">
+      <div class="bar default">
+        <div class="button button-menu" role="button" aria-label="Menu">
+          <label class="toggle-button icon icon-menu" for="toggle-drawer">
+            <span></span>
+          </label>
+        </div>
+        <div class="stretch">
+          <div class="title">
+            <a href="../index.html" >
+            <img src="../images/header-intro-site/site-header.png">    プリセットシステム</a>
+          </div>
+        </div>
+            
+      </div>
+      <div class="bar search">
+        <div class="button button-close" role="button" aria-label="Close">
+          <label class="toggle-button icon icon-back" for="toggle-search"></label>
+        </div>
+        <div class="stretch">
+          <div class="field">
+            <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+          </div>
+        </div>
+        <div class="button button-reset" role="button" aria-label="Search">
+          <button class="toggle-button icon icon-close" id="reset-search"></button>
+        </div>
+      </div>
+    </nav></header>
+  <main class="main">    <div class="drawer">
+      <nav aria-label="Navigation">
+        <form action="../search/index.html">
+           <div class="group">      
+              <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+              <span class="highlight"></span>
+              <span class="underline"></span>
+              <label>サーチ</label>
+              <div style="clear: both;"></div>
+           </div>
+        </form>
+      </nav>
+      
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="toc">
+          
+            <ul>
+
+
+<li>
+  
+    <a  title="はじめに" href="../index.html">はじめに</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Neutron 2の概要" href="../neutron-overview/index.html">Neutron 2の概要</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="コンプレッサー" href="../compressor/index.html">コンプレッサー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="イコライザー" href="../equalizer/index.html">イコライザー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="エキサイター" href="../exciter/index.html">エキサイター</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ゲート" href="../gate/index.html">ゲート</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トランジエント成形" href="../transient-shaper/index.html">トランジエント成形</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トラックアシスタント" href="../track-assistant/index.html">トラックアシスタント</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="マスキングメーター" href="../masking-meter/index.html">マスキングメーター</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="I/Oセクション" href="../io-section/index.html">I/Oセクション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ミックスタップ" href="../mix-tap/index.html">ミックスタップ</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ビジュアルミキサー" href="../visual-mixer/index.html">ビジュアルミキサー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トーナルバランスコントロ" href="../tonal-balance-control/index.html">トーナルバランスコントロ</a>
+  
+</li>
+
+
+<li>
+  
+    <a class="current" title="プリセットシステム" href="index.html">プリセットシステム</a><ul id="scrollspy">
+</ul>
+  
+</li>
+
+
+<li>
+  
+    <a  title="オプション" href="../options/index.html">オプション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="取り消し履歴" href="../undo-history/index.html">取り消し履歴</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ヒントと使用例" href="../tips-and-examples/index.html">ヒントと使用例</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="オーソリゼーション" href="../authorization/index.html">オーソリゼーション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="カスタマーケアー" href="../customer-care/index.html">カスタマーケアー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ライセンス情報" href="../license-information/index.html">ライセンス情報</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="EULA" href="../eula/index.html">EULA</a>
+  
+</li>
+
+
+</ul>
+          
+          
+                  <hr />
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+          
+          
+            <ul>
+            
+              <li><a href="../../en/preset-system/index.html"><i class="icon icon-eye"></i> View page in English</a></li>
+            
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </div><article class="article">
+      <div class="wrapper">
+	<h1>プリセットシステム </h1>
+    
+      
+              <div class="lang-buttons-box">
+      <span class="lang-header">言語:</span>
+      <br />
+        
+      
+        <a href="../../en/preset-system/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+            <a href="../../en/preset-system/index.html"><button class="lang-btn-active">日本語</button></a>
+            
+          
+      </div>
+      
+    
+    
+    
+
+    
+    
+    
+	
+
+<h2 id="概要">概要</h2>
+
+<p>Neutronには数多くのプリセットが内蔵されており、あらゆる音楽、そしてポスプロの一般的かつクリエイティブなシナリオに対応した設定を網羅しています。Preset Manageボタン、または“Presets”と書かれた部分をクリックすると、プリセットマネージャー画面が表示されます。リスト内のプリセットをクリックすると、Neutronプラグイン内の関係する全てのパラメーターが、然るべき状態に設定されます。</p>
+
+<h3 id="working-settings-前回使用時設定">Working Settings（前回使用時設定）</h3>
+
+<p>プリセットを使用せず、最後に使用した状態を適用したい場合は、“Working Settings”を選択してください。</p>
+
+<h3 id="default-デフォルト">Default（デフォルト）</h3>
+
+<p>“Default”を選択すると、全パラメーターがNeutron起動時のデフォルト状態に戻ります。</p>
+
+<h3 id="プリセット情報">プリセット情報</h3>
+
+<p>プリセットマネージャー内のプリセットのリスト下方には、選択されたプリセットのパラメーター設定に関連した文字情報が表示されます。</p>
+
+<p>プリセットを選択し、プラグインのパラメーターを変更すると、プリセットマネージャーのプリセット名にはアスタリスクが付け加えられます。これは、元々選択したプリセットが最後に保存された状態と現在の状態が異なることを意味します。プリセットマネージャーのプリセット名を再度クリックすると、最後に保存された状態に戻ります。</p>
+
+<h3 id="プリセットの追加と削除">プリセットの追加と削除</h3>
+
+<p>プリセットマネージャーでは、新規プリセットの作成、新規フォルダの作成、そしてプリセットの削除を行うことができます。新規プリセットの作成方法:</p>
+
+<ol>
+<li>Neutronにて、パラメーターをプリセットとして保存したい状態に設定し、プリセットマネージャーを開きます。プリセットマネージャーにて“Working Settings”をクリックすると、プラグインの設定状況を再確認することができます。</li>
+<li>プリセットマネージャーにて“New Preset”ボタンをクリックしてください。保存する新規プリセットの名称を入力するよう促されます。これにより“Working Settings”で保存されたパラメーターの状態が新規プリセットとして、全てのNeutronのプリセットと同じ場所に保存されます（プリセット保存場所は後述）。</li>
+<li>サブフォルダにある場合、あるいはプリセットマネージャーでサブフォルダを選択している場合、新規プリセットは、プリセットのディレクトリの第1階層ではなく、そのサブフォルダ内に保存されます。作成されたプリセットは、他のプリセットと同じように作業の中で使用することができます。特記事項がある場合は、“Click here to comment”と書かれた箇所をクリックして、情報を入力してください。</li>
+<li>更に管理し易くするため、プリセットマネージャーでは、プリセットの保存場所として新たにフォルダを作成することができます。新規フォルダはプリセットマネージャーにて“New Folder”をクリックすると作成できます。その際、フォルダ名を入力するよう促されます。フォルダ間のプリセット、あるいはフォルダの移動は、単純にマウスによるドラッグ＆ドロップで行うことができます。</li>
+</ol>
+
+<p>プリセットマネージャー内のアイテムの名称を変更する際は、プリセット名、またはフォルダ名をダブルクリックして名称を入力してください。</p>
+
+<p>プリセットマネージャー内のアイテムを削除する場合は、該当するアイテムを選択した上で、“Delete”ボタンをクリックします。その後、決定を確定するかどうかを問うダイアログボックスが表示されます。</p>
+
+<h2 id="プリセット保存場所">プリセット保存場所</h2>
+
+<p>Neutronで使用されるプリセットはディスク内の以下の場所に保存されます:</p>
+
+<ul>
+<li>Windows: C:\ユーザ\ユーザ名\書類\iZotope\Neutron 2\Presets\Global Presets</li>
+<li>Mac: /ユーザ/ユーザ名/書類/iZotope/Neutron 2/Presets/Global Presets</li>
+</ul>
+
+<p>上記フォルダには、インストール時に格納されたプリセットと、プリセットマネージャーで作成したカスタムのプリセットの全てが保存されます。プリセットフォルダを削除し、その上でNeutronを再インストールすると工場出荷状態に戻すことができます。</p>
+
+<h2 id="プリセットの分配">プリセットの分配</h2>
+
+<p>これらプリセットは全てハードドライブ内に.xmlファイルとして保存されますので、組織全体や施設内で配布し、共用することができます。</p>
+
+</div>
+    </article>
+    <footer class="footer">
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../tonal-balance-control/index.html" title="トーナルバランスコントロ [ADV]">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              トーナルバランスコントロ [ADV]
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  <div class="next">
+  
+      <a href="../options/index.html" title="オプション">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              オプション
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+<div class="copyright">
+
+  
+  
+  <a href="../../en/preset-system/index.html"><i class="icon icon-eye"></i> View page in English</a>
+  
+
+  <br />
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Neutron 2ヘルプドキュメント 
+
+</div></footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>  <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </main>
+  </body>
+</html>

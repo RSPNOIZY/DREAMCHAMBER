@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GABRIEL Living Avatar 3+++ | Ultimate Web Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        #ui-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        #header {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            pointer-events: auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        #header p {
+            font-size: 14px;
+            color: #a0a0a0;
+        }
+
+        #controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            pointer-events: auto;
+        }
+
+        .control-btn {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 15px 30px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn:hover {
+            background: rgba(79, 172, 254, 0.3);
+            border-color: #4facfe;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(79, 172, 254, 0.4);
+        }
+
+        .control-btn:active {
+            transform: translateY(0);
+        }
+
+        .control-btn.active {
+            background: rgba(79, 172, 254, 0.5);
+            border-color: #4facfe;
+            box-shadow: 0 0 20px rgba(79, 172, 254, 0.6);
+        }
+
+        #status {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            pointer-events: auto;
+            max-width: 300px;
+        }
+
+        #status h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #4facfe;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .status-label {
+            color: #a0a0a0;
+        }
+
+        .status-value {
+            color: #00f2fe;
+            font-weight: 600;
+        }
+
+        #chat-box {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 350px;
+            max-height: 400px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            pointer-events: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 13px;
+        }
+
+        .message.user {
+            background: rgba(79, 172, 254, 0.3);
+            text-align: right;
+        }
+
+        .message.gabriel {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #chat-input-container {
+            display: flex;
+            padding: 15px;
+            gap: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 10px 15px;
+            color: #ffffff;
+            font-size: 13px;
+            outline: none;
+        }
+
+        #chat-input::placeholder {
+            color: #a0a0a0;
+        }
+
+        #send-btn {
+            background: #4facfe;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #send-btn:hover {
+            background: #00f2fe;
+            transform: scale(1.1);
+        }
+
+        #loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px 60px;
+            border-radius: 20px;
+            border: 2px solid rgba(79, 172, 254, 0.5);
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #4facfe;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #vr-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(138, 43, 226, 0.8);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 50px;
+            padding: 15px 30px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+        }
+
+        #vr-btn:hover {
+            background: rgba(138, 43, 226, 1);
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.6);
+        }
+
+        .emotion-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .emotion-calm { background: #4facfe; }
+        .emotion-happy { background: #00f2fe; }
+        .emotion-excited { background: #ffd700; }
+        .emotion-thinking { background: #9b59b6; }
+        .emotion-concerned { background: #e74c3c; }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(79, 172, 254, 0.5);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(79, 172, 254, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <h2>Initializing GABRIEL...</h2>
+        <p style="margin-top: 10px; color: #a0a0a0;">Loading AI Systems & 3D Avatar</p>
+    </div>
+
+    <!-- 3D Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- UI Overlay -->
+    <div id="ui-overlay">
+        <!-- Header -->
+        <div id="header">
+            <h1>GABRIEL</h1>
+            <p>Ultimate Living Avatar Experience</p>
+        </div>
+
+        <!-- Status Panel -->
+        <div id="status">
+            <h3>System Status</h3>
+            <div class="status-item">
+                <span class="status-label">AI Brain:</span>
+                <span class="status-value" id="ai-status">Initializing...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Voice System:</span>
+                <span class="status-value" id="voice-status">Ready</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Avatar State:</span>
+                <span class="status-value" id="avatar-status">Loading...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Current Emotion:</span>
+                <span class="status-value" id="emotion-status">
+                    <span class="emotion-indicator emotion-calm"></span>Calm
+                </span>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div id="controls">
+            <button class="control-btn" id="voice-btn">
+                🎤 Voice Chat
+            </button>
+            <button class="control-btn" id="gesture-btn">
+                👋 Gestures
+            </button>
+            <button class="control-btn" id="emotion-btn">
+                😊 Emotions
+            </button>
+        </div>
+
+        <!-- VR Button -->
+        <button id="vr-btn">🥽 Enter VR</button>
+
+        <!-- Chat Box -->
+        <div id="chat-box">
+            <div id="chat-messages">
+                <div class="message gabriel">
+                    <strong>GABRIEL:</strong> Hello! I'm GABRIEL, your living AI avatar. I can see, hear, and respond with full emotional intelligence. How can I assist you today?
+                </div>
+            </div>
+            <div id="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="send-btn">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+
+    <!-- Core Avatar Modules -->
+    <script src="js/avatar.js"></script>
+    <script src="js/ai-brain.js"></script>
+    <script src="js/voice-system.js"></script>
+    <script src="js/lip-sync.js"></script>
+    <script src="js/gestures.js"></script>
+    <script src="js/physics.js"></script>
+    <script src="js/webxr.js"></script>
+    
+    <!-- Integration & Dashboard Modules -->
+    <script src="js/integration-hub.js"></script>
+    <script src="js/unified-dashboard.js"></script>
+    <script src="js/network-monitor.js"></script>
+    
+    <!-- Main Application Controller -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE>Modulation Section</TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 3.4  (Unix)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGED" CONTENT="20120110;12584600">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 2cm }
+		P { margin-bottom: 0.21cm }
+		H2 { margin-bottom: 0.11cm }
+		H2.western { font-family: "Times New Roman", serif; font-size: 14pt; font-weight: normal }
+		H2.cjk { font-family: "Arial Unicode MS"; font-size: 14pt; font-weight: normal }
+		H2.ctl { font-family: "Arial", sans-serif; font-size: 14pt; font-style: italic }
+		H1 { margin-bottom: 0.11cm; background: #000000; color: #ffffff }
+		H1.western { font-family: "Arial", sans-serif; font-size: 16pt }
+		H1.cjk { font-family: "Arial Unicode MS"; font-size: 16pt }
+		H1.ctl { font-family: "Arial", sans-serif; font-size: 16pt }
+		A:link { color: #0000ff }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="es-ES" LINK="#0000ff" DIR="LTR">
+<DIV TYPE=HEADER>
+	<P LANG="en-US" ALIGN=RIGHT STYLE="margin-bottom: 0.5cm; background: transparent">
+	<SDFIELD TYPE=PAGE SUBTYPE=RANDOM FORMAT=PAGE VALUE="-1">1</SDFIELD></P>
+</DIV>
+<H1 LANG="en-US" CLASS="western" STYLE="page-break-before: always">Modulation
+Section</H1>
+<H2 LANG="en-US" CLASS="western"><IMG SRC="Manual10_html_5fcf5c61.png" NAME="gráficos15" ALIGN=LEFT WIDTH=272 HEIGHT=132 BORDER=0><BR CLEAR=LEFT>Low
+Frequency Oscillator 1 (LFO1)</H2>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">Discovery Pro includes two
+LFO's (<B>L</B>ow <B>F</B>requency <B>O</B>scillators), a Modulation
+Envelope (with 2 stages and state variable amount control) and a
+Graphic Envelope Generator. LFO oscillators operate much like the
+basic Discovery oscillators, only at much slower speeds</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Rate:</B> This control
+sets the speed (frequency) of LFO1.  Smaller values result in slower
+oscillations, larger values in faster oscillations.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">LFO1 can use various
+waveforms (from top to bottom):</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Lowpass Random</B>:
+	Like random waveform, but the value is a smooth curve.</P>
+	<P LANG="en-US" STYLE="margin-bottom: 0cm"></P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Square</B>: If
+	LFO1 phase is above the half of the period length, the LFO will take
+	the highest value, otherwise the lowest.</P>
+	<P LANG="en-US" STYLE="margin-bottom: 0cm"></P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Triangle</B>: Also
+	a ramp, but moves down to up, then back to down in a single cycle. 
+	Primarily used for sweep effects.</P>
+	<P LANG="en-US" STYLE="margin-bottom: 0cm"></P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Saw Tooth</B>:
+	Ramp shape; will move up to down, then instantaneously up when cycle
+	is completed.</P>
+	<P LANG="en-US" STYLE="margin-bottom: 0cm"></P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Random</B>: Each
+	time LFO1 completes a cycle, it will select a new random value.</P>
+</UL>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Retriggered LFOs</B>:
+By cycling through LFO waveform options a second time you can enable
+Retriggered LFO's.  This means that the LFO will be restarted each
+time a note is played.  Retriggered LFO's are indicated by <B>RED</B>
+LEDs.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Destination: </B>To the
+left to the waveform selector is the LFO1 Destination selector.  This
+feature allows you to choose which control(s) this LFO will modulate.
+The following LFO1 modulation destinations are available:</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<UL>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>FM</B>: OSC2 to
+	OSC1 FM (Frequency Modulation) amount.</P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>FILTER</B>: Filter
+	cutoff frequency.</P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>OSC2</B>:	<B> </B>OSC2
+	pitch.</P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>OSC1+2</B>: Both
+	OSC1 and OSC2 pitch.</P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>PW</B>: Width of
+	the pulse of PWM waveforms.</P>
+</UL>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Amount:</B> LFO1 Amount
+control determines the amount of LFO output to use on the destination
+control(s).  Higher values will result in a more dramatic modulation.</P>
+<H2 LANG="en-US" CLASS="western" STYLE="page-break-before: always">Low
+Frequency Oscillator 2 (LFO2) and Arpeggiator (ARP)</H2>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><IMG SRC="Manual10_html_6cf50edf.png" NAME="gráficos16" ALIGN=LEFT WIDTH=269 HEIGHT=121 BORDER=0><BR CLEAR=LEFT>The
+second LFO operates much like the first, yet without a selectable
+waveform.  LFO2 is always a pure <B>sine</B> wave.  In addition LFO2
+has a powerful Arpeggiator (Explained below).</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Rate:</B> Controls the
+speed (frequency) of LFO2.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Destination:</B> The
+following destinations are available to LFO2:</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>OSC1+2</B>: Both
+	OSC1 and OSC2 pitch</P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>AMP</B>:<B>	</B>Amplitude<B>
+	(</B>Creates a Tremolo effect)</P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>FILTER</B>: Filter
+	cutoff frequency</P>
+</UL>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Amount:</B> LFO2 Amount
+control determines the amount of LFO output to use on the destination
+control(s).  Higher values will result in a more dramatic modulation.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H2 LANG="en-US" CLASS="western">LFO2 Arpeggiator</H2>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><B>ARP:</B> You can enable
+Discovery's Arpeggiator by left-clicking the <B>ARP</B> button in the
+LFO2 section.  When active, LFO2 operates in ARP (Arpeggiator) mode.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">An Arpeggiator is
+basically a simple sequencer which continually plays notes
+automatically as a note or notes are held.  The notes played depend
+of the keys currently pressed and the arpeggiator range.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Rate:</B> When in ARP
+mode, the Rate control sets the arpeggiator tempo.  Faster values may
+be achieved with greater values (turning the knob to the right).</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Destination:</B> In Arp
+mode, direction in which the Arpeggiator will play notes. 
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">They can be:</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>DWN</B>: Plays
+	notes from highest to lowest, then restarts.</P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>U&amp;D</B>:
+	Repeats playing highest lowest, then back from lowest to highest.</P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>UP</B>: Plays
+	lowest to highest, restarts.</P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>RND</B>: Plays any
+	random note from the arpeggiator range.</P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>RND2</B>: Play to
+	the next or the prior note in the arpeggiator range randomly.</P>
+</UL>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Arp Rng</B>: Sets range
+in octaves for the arpeggiator, from 1 to 5 octaves.</P>
+<H2 LANG="en-US" CLASS="western"></H2>
+<H2 LANG="en-US" CLASS="western" STYLE="page-break-before: always">Graphic
+Envelope Modulation</H2>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><IMG SRC="Manual10_html_576b8612.png" NAME="gráficos17" ALIGN=LEFT WIDTH=401 HEIGHT=147 BORDER=0><BR CLEAR=LEFT>Graphic
+Envelope modulation is located between GATE and WAVE sections. Just
+left-click the blue LED close to MOD label for easy panel access.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm">Configuration is done in
+the same fashion as Gate, left-clicking the bars with your mouse in
+order, with the only difference of being able to set individual
+amounts for each one. Clicking and holding your mouse button will
+allow to easily draw custom modulations.</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm"><B>Destination: </B>This
+feature allows you to choose which control(s) this envelope will
+modulate. The following graphic envelope modulation destinations are
+available:</P>
+<P LANG="en-US" STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<UL>
+	<LI VALUE=1><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>OSC2</B>:	<B>
+	</B>OSC2 pitch.</P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>FM</B>: OSC2 <FONT FACE="Symbol, serif">to</FONT>
+	OSC1 FM (Frequency Modulation) amount.</P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>PW</B>: Width of
+	the pulse of PWM waveforms.</P>
+	<LI><P LANG="en-US" STYLE="margin-bottom: 0cm"><B>FILTER</B>: Filter
+	cutoff frequency.</P>
+</UL>
+</BODY>
+</HTML>

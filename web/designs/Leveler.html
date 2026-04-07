@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Leveler</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="Leveler" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer178" class="Basic-Text-Frame">
+			<p id="_idParaDest-153" class="heading-1"><a id="_idTextAnchor155"></a>Leveler <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Inline-Art"><img src="image/image_CPHRVKMJCUOGJ33WJCQCSGAZWEIQWBSL" alt="" /></p>
+			<p class="Normal">The Leveler module automatically rides the gain in your file to even out the variations of the signal level. The algorithm consists of a compressor with a makeup gain to achieve the a smooth signal that’s aiming towards (though may not exactly hit) a desired Target RMS level. The compressor has the ability to prevent pumping on speech pauses or breathing sounds, using the Optimization mode, for either Dialogue or Music, in addition to the Ess and Breath parameters. The level detector stage includes the K-weighting filter that helps equalize the audible loudness, not just RMS level. However, the Leveler module is designed for the smoothing of overall audio signals, rather than taking an entire signal and using a fixed gain to ensure it hits a loudness compliant LKFS level, the goal of the Loudness module.</p>
+			<p class="Normal">This all combines to create a transparent, non-destructive Clip Gain curve, without the color or artifacts of a traditional compressor.</p>
+			<p class="Normal">Unlike Loudness module, which applies a constant gain based on Loudness compliant analysis to the whole file, Leveler applies a time-variable gain. For convenience of RX users, the time-variable gain is applied as a Clip Gain envelope, which can be viewed and edited by the user. </p>
+			<p id="_idParaDest-154" class="heading-2"><a id="_idTextAnchor156"></a>Numerical Readouts</p>
+			<p class="Normal">These readouts provide you with the Total, Maximum and Minimum readouts for RMS. The total value is the overall RMS of your audio signal, which may inform where you choose to set the Target RMS level parameter.</p>
+			<p id="_idParaDest-155" class="heading-2"><a id="_idTextAnchor157"></a>Optimize for</p>
+			<p class="Normal">This switches between two modes, Dialogue and Music. Each mode utilizes a slightly different handling of the noise floor.</p>
+			<p class="Normal">Dialogue tends to be audibly juxtaposed against the noise floor, as it’s typically very transient, whereas music often tends to fade into the noise floor, with chords, notes, and other instrumental decays. Switching between these two modes will affect the behavior of the Leveler, and prevent pumping.</p>
+			<p id="_idParaDest-156" class="heading-2"><a id="_idTextAnchor158"></a>Target level</p>
+			<p class="Normal">Sets the desired average RMS level of the recording. Note that Leveler uses K-weighted RMS to better level perceived loudness, but that it is not a loudness compliant leveling tool. It uses the Target Level as a guide, but with the goal of smoothing out variations in an audio signal much more transparently than a compressor typically would. As such, it is not unusual to see the resulting output of Leveler not be an exact 1:1 with the defined Target Level. At high target levels, the leveler may not be able to hit the target without clipping, so the target level will not be reached.</p>
+			<p id="_idParaDest-157" class="heading-2"><a id="_idTextAnchor159"></a>Responsiveness</p>
+			<p class="Normal">Sets the integration time for RMS level detection. Similar to the attack/release setting on a compressor. Lower settings will result in more aggressive Leveling, useful if a signal has a lot of sudden variations. Higher settings will result in smoother behavior, leveling words or phrases rather than individual syllables. If you find the Leveler is responding to any sudden unwanted sounds, such as a cough, and boosting it, a increase the slider to a higher value to see if this results in less aggressive jumps.</p>
+			<p id="_idParaDest-158" class="heading-2"><a id="_idTextAnchor160"></a>Preserve dynamics</p>
+			<p class="Normal">This can be thought of the maximal amount of gain applied by the Leveler, the wider the range of gain adjustments allowed, the further away from the original dynamic range the audio signal will be.</p>
+			<p class="Normal">A lower values, the Leveler will preserve fewer of the original dynamics in the audio signal, and at higher values, the Leveler will preserve more of the original dynamics in the audio signal.</p>
+			<p id="_idParaDest-159" class="heading-2"><a id="_idTextAnchor161"></a>Ess reduction</p>
+			<p class="Normal">Ess reduction is aimed at anyone using the Leveler on dialogue or vocals, and utilizes a smart algorithm, inspired by the DBX 902 De-esser, to detect when ess is present in a signal, and then attenuate it accordingly. This avoids adding any boost to esses, which may otherwise be seen as quiet sounds requiring a boost. The slider sets the amount of ess reduction applied, in dB.</p>
+			<p id="_idParaDest-160" class="heading-2"><a id="_idTextAnchor162"></a>Breath control</p>
+			<p class="Normal">This will automatically detect breaths in your vocal takes and attenuate them. This can be an essential tool when editing a dialogue or vocal track by streamlining a task that can be time-consuming when performed manually.</p>
+			<p class="Normal">Breath Control automatically analyzes the incoming audio take and distinguishes breaths based on their harmonic structure. If any piece of the incoming audio matches a harmonic profile similar to a breath, the Leveler will apply a Clip Gain adjustment. Different from a &apos;Threshold&apos; based process in which the module is only engaged once the audio has risen to a certain volume, this feature will perform its analysis regardless of level. This allows for accurate breath recognition with a multitude of quiet or loud dialogue / vocal styles with minimal adjustment of the module&apos;s controls.</p>
+			<p class="Normal">The slider represents the desired level, in dB, that you wish all detected breaths to be reduced to. This can result in much more natural sounding breath reduction as the detected breaths in your audio are only reduced when necessary. Loud and abrasive breaths will be reduced heavily, and quiet, natural sounding breaths will be left at the same volume. The volume level specified by this slider is a guide, but may not result in exact values.</p>
+			<p id="_idParaDest-161" class="heading-2"><a id="_idTextAnchor163"></a>Limiter</p>
+			<p class="Normal">The Leveler has an inbuilt Limiter, in order to avoid introducing any clipping to the audio signal once the Clip Gain envelope has been applied.</p>
+			<p class="Normal">This cannot be adjusted, but you’ll see the Clip Gain envelope smooth off an audio signal if you’re pushing peaks close to 0 dB.</p>
+		</div>
+	</body>
+</html>

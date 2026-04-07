@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY Moat Map — Every Tech, Legal, Adoption & Social Lever</title>
+<style>
+  :root {
+    --gold: #f0b429;
+    --amber: #d97706;
+    --electric: #0a9ebd;
+    --teal: #14b8a6;
+    --fire: #e85d04;
+    --deep: #7c4dff;
+    --green: #22c55e;
+    --dream: #c94070;
+    --emerald: #059669;
+    --lime: #84cc16;
+    --sky: #38bdf8;
+    --ink: #030508;
+    --mist: #e8f0e8;
+    --pale: rgba(232,240,232,0.7);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--ink);
+    color: var(--mist);
+    font-family: 'Georgia', serif;
+    overflow-x: hidden;
+  }
+
+  #stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(3,5,8,0.92); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(34,197,94,0.18);
+    padding: 13px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-brand { font-size: 11px; letter-spacing: 4px; color: var(--green); text-transform: uppercase; }
+  .nav-links { display: flex; gap: 22px; }
+  .nav-links a {
+    color: rgba(232,240,232,0.45); font-size: 10px; letter-spacing: 2px;
+    text-decoration: none; text-transform: uppercase; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  /* ── MOAT CANVAS ── */
+  #moat-canvas {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.07;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 140px 40px 100px;
+  }
+  .hero-label {
+    font-size: 10px; letter-spacing: 5px; color: rgba(34,197,94,0.6);
+    text-transform: uppercase; margin-bottom: 22px;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+  }
+  .hero-label.visible { opacity: 1; transform: translateY(0); }
+  .hero-title {
+    font-size: clamp(28px, 6.5vw, 80px);
+    font-weight: bold; line-height: 1.0; color: var(--mist);
+    margin-bottom: 10px;
+    text-shadow: 0 0 80px rgba(34,197,94,0.12);
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+  }
+  .hero-title.visible { opacity: 1; transform: translateY(0); }
+  .hero-title span { color: var(--green); }
+  .hero-sub {
+    font-size: clamp(13px, 1.8vw, 17px);
+    color: var(--pale); max-width: 640px; line-height: 1.75;
+    font-style: italic; margin-bottom: 52px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.7s ease 0.45s, transform 0.7s ease 0.45s;
+  }
+  .hero-sub.visible { opacity: 1; transform: translateY(0); }
+
+  .moat-layers-preview {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    max-width: 720px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.7s ease 0.6s, transform 0.7s ease 0.6s;
+  }
+  .moat-layers-preview.visible { opacity: 1; transform: translateY(0); }
+  .mlp-item {
+    border: 1px solid rgba(34,197,94,0.15);
+    border-radius: 4px; padding: 16px 12px; text-align: center;
+    background: rgba(34,197,94,0.03);
+  }
+  .mlp-num { font-size: 22px; font-weight: bold; margin-bottom: 4px; }
+  .mlp-layer { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(232,240,232,0.5); }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── SECTION ── */
+  section {
+    position: relative; z-index: 1;
+    max-width: 1140px; margin: 0 auto;
+    padding: 80px 40px;
+  }
+  .section-header { text-align: center; margin-bottom: 52px; }
+  .section-label { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+  .section-title { font-size: clamp(22px, 3.5vw, 38px); font-weight: bold; color: var(--mist); margin-bottom: 12px; }
+  .section-rule { width: 80px; height: 1px; margin: 0 auto; }
+
+  .divider { max-width: 1140px; margin: 0 auto; height: 1px; }
+
+  /* ── MOAT LAYER PATTERN ── */
+  .moat-layer-section {
+    border: 1px solid; border-radius: 8px; padding: 40px;
+    position: relative; overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .moat-layer-section::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: 8px;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, var(--glow-color, rgba(34,197,94,0.05)) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .mls-header {
+    display: flex; align-items: center; gap: 20px; margin-bottom: 28px;
+  }
+  .mls-icon { font-size: 32px; flex-shrink: 0; }
+  .mls-meta {}
+  .mls-layer { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 6px; }
+  .mls-title { font-size: 22px; font-weight: bold; color: var(--mist); }
+  .mls-sub { font-size: 13px; font-style: italic; margin-top: 4px; }
+
+  .mls-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  @media(max-width:800px){ .mls-grid { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:520px){ .mls-grid { grid-template-columns: 1fr; } }
+
+  .mls-item {
+    border: 1px solid; border-radius: 4px; padding: 20px;
+    background: rgba(3,5,8,0.6);
+    transition: transform 0.2s;
+  }
+  .mls-item:hover { transform: translateY(-2px); }
+  .mls-item-name { font-size: 14px; font-weight: bold; color: var(--mist); margin-bottom: 6px; }
+  .mls-item-desc { font-size: 12px; line-height: 1.6; margin-bottom: 10px; }
+  .mls-item-moat { font-size: 11px; font-style: italic; padding-left: 10px; line-height: 1.45; border-left-width: 2px; border-left-style: solid; }
+  .mls-item-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tech-pill {
+    font-size: 10px; letter-spacing: 1px;
+    border-radius: 2px; padding: 3px 8px;
+    text-transform: uppercase;
+  }
+
+  /* ── TECH LAYER — GREEN ── */
+  .layer-tech { border-color: rgba(34,197,94,0.2); --glow-color: rgba(34,197,94,0.04); }
+  .layer-tech .mls-layer { color: var(--green); }
+  .layer-tech .mls-sub { color: rgba(34,197,94,0.6); }
+  .layer-tech .mls-item { border-color: rgba(34,197,94,0.15); }
+  .layer-tech .mls-item-desc { color: rgba(232,240,232,0.65); }
+  .layer-tech .mls-item-moat { color: var(--green); border-left-color: rgba(34,197,94,0.3); }
+  .layer-tech .tech-pill { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); color: var(--green); }
+
+  /* ── LEGAL LAYER — GOLD ── */
+  .layer-legal { border-color: rgba(240,180,41,0.2); --glow-color: rgba(240,180,41,0.04); }
+  .layer-legal .mls-layer { color: var(--gold); }
+  .layer-legal .mls-sub { color: rgba(240,180,41,0.6); }
+  .layer-legal .mls-item { border-color: rgba(240,180,41,0.15); }
+  .layer-legal .mls-item-desc { color: rgba(232,240,232,0.65); }
+  .layer-legal .mls-item-moat { color: var(--gold); border-left-color: rgba(240,180,41,0.3); }
+  .layer-legal .tech-pill { background: rgba(240,180,41,0.08); border: 1px solid rgba(240,180,41,0.2); color: var(--amber); }
+
+  /* ── ADOPTION LAYER — ELECTRIC ── */
+  .layer-adoption { border-color: rgba(10,158,189,0.2); --glow-color: rgba(10,158,189,0.04); }
+  .layer-adoption .mls-layer { color: var(--electric); }
+  .layer-adoption .mls-sub { color: rgba(10,158,189,0.6); }
+  .layer-adoption .mls-item { border-color: rgba(10,158,189,0.15); }
+  .layer-adoption .mls-item-desc { color: rgba(232,240,232,0.65); }
+  .layer-adoption .mls-item-moat { color: var(--electric); border-left-color: rgba(10,158,189,0.3); }
+  .layer-adoption .tech-pill { background: rgba(10,158,189,0.08); border: 1px solid rgba(10,158,189,0.2); color: var(--electric); }
+
+  /* ── SOCIAL LAYER — DEEP ── */
+  .layer-social { border-color: rgba(124,77,255,0.2); --glow-color: rgba(124,77,255,0.04); }
+  .layer-social .mls-layer { color: var(--deep); }
+  .layer-social .mls-sub { color: rgba(124,77,255,0.6); }
+  .layer-social .mls-item { border-color: rgba(124,77,255,0.15); }
+  .layer-social .mls-item-desc { color: rgba(232,240,232,0.65); }
+  .layer-social .mls-item-moat { color: var(--deep); border-left-color: rgba(124,77,255,0.3); }
+  .layer-social .tech-pill { background: rgba(124,77,255,0.08); border: 1px solid rgba(124,77,255,0.2); color: var(--deep); }
+
+  /* ── EMERGING TECH ── */
+  .layer-emerging { border-color: rgba(248,113,11,0.2); --glow-color: rgba(248,113,11,0.04); }
+  .layer-emerging .mls-layer { color: var(--fire); }
+  .layer-emerging .mls-sub { color: rgba(248,113,11,0.6); }
+  .layer-emerging .mls-item { border-color: rgba(248,113,11,0.15); }
+  .layer-emerging .mls-item-desc { color: rgba(232,240,232,0.65); }
+  .layer-emerging .mls-item-moat { color: var(--fire); border-left-color: rgba(248,113,11,0.3); }
+  .layer-emerging .tech-pill { background: rgba(248,113,11,0.08); border: 1px solid rgba(248,113,11,0.2); color: var(--fire); }
+
+  /* ── MOAT SUMMARY ── */
+  .moat-summary {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+    border: 1px solid rgba(34,197,94,0.15);
+    border-radius: 4px; overflow: hidden;
+  }
+  @media(max-width:900px){ .moat-summary { grid-template-columns: repeat(3,1fr); } }
+  @media(max-width:600px){ .moat-summary { grid-template-columns: 1fr 1fr; } }
+  .ms-item {
+    padding: 24px 16px; text-align: center;
+    border-right: 1px solid rgba(34,197,94,0.08);
+  }
+  .ms-item:last-child { border-right: none; }
+  .ms-num { font-size: 28px; font-weight: bold; margin-bottom: 6px; }
+  .ms-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .ms-desc { font-size: 11px; color: rgba(232,240,232,0.45); font-style: italic; line-height: 1.4; }
+
+  /* ── BALANCE BLOCK ── */
+  .balance-block {
+    border: 2px solid rgba(34,197,94,0.3);
+    border-radius: 8px; padding: 48px;
+    text-align: center; position: relative; overflow: hidden;
+    background: rgba(34,197,94,0.03);
+  }
+  .balance-block::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(34,197,94,0.05) 0%, transparent 70%);
+  }
+  .bb-title { font-size: clamp(18px, 3vw, 30px); font-weight: bold; color: var(--mist); margin-bottom: 16px; }
+  .bb-title span { color: var(--green); }
+  .bb-desc { font-size: 15px; max-width: 640px; margin: 0 auto 28px; color: var(--pale); line-height: 1.75; font-style: italic; }
+  .bb-quote { font-size: 13px; color: rgba(34,197,94,0.6); letter-spacing: 1px; }
+
+  /* ── SEQUENCE TABLE ── */
+  .seq-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+  }
+  .seq-table th {
+    padding: 12px 20px;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--green); border-bottom: 1px solid rgba(34,197,94,0.2);
+    background: rgba(34,197,94,0.04); text-align: left;
+  }
+  .seq-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--pale);
+  }
+  .seq-table tr:last-child td { border-bottom: none; }
+  .seq-table td:first-child { color: var(--green); font-weight: bold; }
+  .seq-table td.result { color: var(--gold); font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer-nav {
+    position: relative; z-index: 1;
+    background: rgba(3,5,8,0.95);
+    border-top: 1px solid rgba(34,197,94,0.1);
+    padding: 40px; text-align: center;
+  }
+  .footer-nav-label { font-size: 9px; letter-spacing: 5px; color: var(--green); text-transform: uppercase; margin-bottom: 18px; }
+  .footer-nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .footer-nav-links a {
+    color: rgba(232,240,232,0.45); font-size: 11px;
+    text-decoration: none; border: 1px solid rgba(34,197,94,0.12);
+    padding: 6px 14px; border-radius: 2px; letter-spacing: 1px;
+    transition: color 0.3s, border-color 0.3s; font-family: 'Georgia', serif;
+  }
+  .footer-nav-links a:hover { color: var(--green); border-color: rgba(34,197,94,0.35); }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<canvas id="moat-canvas"></canvas>
+
+<nav>
+  <span class="nav-brand">NOIZY Moat Map</span>
+  <div class="nav-links">
+    <a href="NOIZY_AI_HOME.html">Home</a>
+    <a href="NOIZY_BILLION_ARCHITECTURE.html">$1B Architecture</a>
+    <a href="NOIZYVOX_AIVA_PLATFORM.html">A.I.V.A.</a>
+    <a href="NOIZY_CREATOR_CHARTER.html">Charter</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════ HERO -->
+<div class="hero">
+  <p class="hero-label" id="hl">Complete Strategic Moat Documentation · March 2026</p>
+  <h1 class="hero-title" id="ht">THE NOIZY<br><span>MOAT MAP</span></h1>
+  <p class="hero-sub" id="hs">
+    Every technology, legal lever, adoption mechanism, and social advantage —
+    mapped in full. Others can copy ideas. Nobody can copy all of this at once.
+    The moat is not one wall. It is five walls, simultaneously.
+  </p>
+  <div class="moat-layers-preview" id="mlp">
+    <div class="mlp-item">
+      <div class="mlp-num" style="color:var(--green);">8</div>
+      <div class="mlp-layer">Technical Levers</div>
+    </div>
+    <div class="mlp-item">
+      <div class="mlp-num" style="color:var(--gold);">6</div>
+      <div class="mlp-layer">Legal / IP Levers</div>
+    </div>
+    <div class="mlp-item">
+      <div class="mlp-num" style="color:var(--electric);">7</div>
+      <div class="mlp-layer">Adoption Levers</div>
+    </div>
+    <div class="mlp-item">
+      <div class="mlp-num" style="color:var(--deep);">6</div>
+      <div class="mlp-layer">Social Levers</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ THE BALANCE STATEMENT -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(34,197,94,0.18),transparent);"></div>
+<section>
+  <div class="balance-block reveal">
+    <h2 class="bb-title">Tipping the <span>Balance Back</span></h2>
+    <p class="bb-desc">
+      We don't mind if others do what we're doing. What matters is that NOIZY owns so many layers —
+      technical, legal, narrative, community, research — that catching up requires not just copying
+      the product, but replicating 40 years of lived experience, a 6-member Board of Aligned Minds,
+      the GORUNFREE founder story, the NOIZYKIDZ soul mission, and a 500-year civilizational vision
+      that no Silicon Valley fund will ever be patient enough to fund. The balance tips when the moat
+      becomes impossible to cross — not because of one wall, but because of five walls built simultaneously.
+    </p>
+    <p class="bb-quote">"I don't mind if others do what we are doing. But I would like to tip the balance back a bit." — RSP_001</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ LAYER 1: TECHNICAL -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(34,197,94,0.15),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--green);">Layer 1 of 5</span>
+    <h2 class="section-title">Technical <span style="color:var(--green);">Moat</span></h2>
+    <p style="font-size:13px;color:rgba(232,240,232,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      8 technical systems. Each one a moat. Combined, an architecture that takes competitors years to replicate —
+      and that's before they find a founder with 40 years of earned archive and a C3 spinal injury to motivate them.
+    </p>
+    <div class="section-rule" style="background:linear-gradient(to right,transparent,var(--green),transparent);margin-top:18px;"></div>
+  </div>
+
+  <div class="moat-layer-section layer-tech reveal">
+    <div class="mls-header">
+      <div class="mls-icon">⚙️</div>
+      <div class="mls-meta">
+        <div class="mls-layer">Technical Layer</div>
+        <div class="mls-title">Infrastructure That Cannot Be Legally Reversed</div>
+        <div class="mls-sub">When consent is in the code, it cannot be revised by a terms of service update</div>
+      </div>
+    </div>
+    <div class="mls-grid">
+      <div class="mls-item">
+        <div class="mls-item-name">Consent-as-Code (Cloudflare D1/KV)</div>
+        <div class="mls-item-desc">Rights enforced at infrastructure level. Every synthesis request verified against consent parameters before execution. Technically impossible to violate without destroying the system.</div>
+        <div class="mls-item-moat">Competitors use legal contracts. We use code. That is not a feature difference — it is a category difference.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Cloudflare D1</span>
+          <span class="tech-pill">Cloudflare KV</span>
+          <span class="tech-pill">HEAVEN Worker</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">NOIZY PROOF — Cryptographic Audio Watermark</div>
+        <div class="mls-item-desc">Cryptographic provenance signature embedded in every asset. Survives format conversion, re-synthesis, and AI transformation. Developed by Adam Robb (iPSS Inc.).</div>
+        <div class="mls-item-moat">C2PA and Adobe are exploring text/image provenance. NOIZY PROOF is built specifically for audio and AI synthesis — a narrower, deeper moat.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Cryptographic Hash</span>
+          <span class="tech-pill">Adam Robb / iPSS</span>
+          <span class="tech-pill">C2PA Aligned</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">6-Layer Human Voice Signature (HVS)</div>
+        <div class="mls-item-desc">Acoustic + Neural + Emotional + Vocal Health + Identity + Narrative. The most comprehensive voice identity system ever built — 6 scientific dimensions no competitor has assembled together.</div>
+        <div class="mls-item-moat">ElevenLabs captures acoustic similarity. NOIZY captures civilizational identity. These are not comparable products.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Librosa</span>
+          <span class="tech-pill">WavLM</span>
+          <span class="tech-pill">SpeechBrain</span>
+          <span class="tech-pill">ECAPA-TDNN</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">GABRIEL_V3 — Mutation-Ready Orchestrator</div>
+        <div class="mls-item-desc">315+ memcells. D1 × 11. KV × 20. Self-evolving AI orchestrator at 10.90.90.20. The HEAVEN Worker routes all platform operations. One command chain, total execution.</div>
+        <div class="mls-item-moat">GABRIEL is not a feature — it is the nervous system of a civilization. Reproducing it requires not just technology but 40 years of professional creative archive to make it intelligent.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">GABRIEL_V3</span>
+          <span class="tech-pill">315+ Memcells</span>
+          <span class="tech-pill">HEAVEN Worker</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">SUPERSONIC AI Stack v2.0 — $16K+ Annual Savings</div>
+        <div class="mls-item-desc">9 layers, 19 HuggingFace models, fully owned and controlled. MusicGen, MaskGCT, Tango 2, Fish Speech, Librosa, XTTS v2, RVC, Pedalboard, Gemma2. Zero dependency on commercial alternatives.</div>
+        <div class="mls-item-moat">Commercial stacks cost $16K+/year more and create dependency risk. NOIZY's self-hosted stack eliminates both. Every AI tool company needs what we already own.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Self-Hosted</span>
+          <span class="tech-pill">19 Models</span>
+          <span class="tech-pill">$16K+ Savings</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Zero-Knowledge Proofs (Roadmap)</div>
+        <div class="mls-item-desc">Verify voice ownership and consent status without exposing the underlying biometric data. Prove that consent was given, and that this voice belongs to this creator, without revealing the voice model itself.</div>
+        <div class="mls-item-moat">As privacy regulation tightens globally (GDPR, CCPA, AI Act), ZK proofs become necessary infrastructure. NOIZY builds for this now before it is required.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">ZK-SNARK</span>
+          <span class="tech-pill">StarkNet</span>
+          <span class="tech-pill">Roadmap · 2027</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Federated Learning (Roadmap)</div>
+        <div class="mls-item-desc">Train AI on creator content without moving data off-device. The creator's voice improves the model without exposing the underlying recordings to any third party or server.</div>
+        <div class="mls-item-moat">Federated learning is the only technically credible solution to "AI training without data exposure." Building it into the platform makes NOIZY the privacy-compliant choice by default.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Federated Learning</span>
+          <span class="tech-pill">On-Device Training</span>
+          <span class="tech-pill">Roadmap · 2027</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Living Score — Adaptive Real-Time Music</div>
+        <div class="mls-item-desc">Music that responds to the emotional and physiological state of the listener. Built on NAI research with Dr. Brien Benoit. Applications: gaming, therapy, accessibility, performance, film.</div>
+        <div class="mls-item-moat">Suno makes songs. Living Score makes music that listens back. The neuro-acoustic research partnership is the differentiator — no competitor has a neurosurgeon partner.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">NAI</span>
+          <span class="tech-pill">Dr. Brien Benoit</span>
+          <span class="tech-pill">Prototype · Sep 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ LAYER 2: LEGAL / IP -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(240,180,41,0.15),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--gold);">Layer 2 of 5</span>
+    <h2 class="section-title">Legal &amp; IP <span style="color:var(--gold);">Moat</span></h2>
+    <p style="font-size:13px;color:rgba(232,240,232,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      Patents protect the protocol. Standards make it unavoidable. Regulatory alignment makes NOIZY
+      the only choice when governments catch up.
+    </p>
+    <div class="section-rule" style="background:linear-gradient(to right,transparent,var(--gold),transparent);margin-top:18px;"></div>
+  </div>
+
+  <div class="moat-layer-section layer-legal reveal">
+    <div class="mls-header">
+      <div class="mls-icon">⚖️</div>
+      <div class="mls-meta">
+        <div class="mls-layer">Legal / IP Layer</div>
+        <div class="mls-title">The Charter, the Patents, and the Standard</div>
+        <div class="mls-sub">Regulation is coming. NOIZY is already compliant. That turns a headwind into a tailwind.</div>
+      </div>
+    </div>
+    <div class="mls-grid">
+      <div class="mls-item">
+        <div class="mls-item-name">Patent Portfolio — Voice Estate + Agentic Royalty</div>
+        <div class="mls-item-desc">Patent the Voice Estate licensing protocol, the Agentic Royalty distribution system, and the Consent-as-Code architecture as applied to audio synthesis. File early — the race for AI audio IP is just beginning.</div>
+        <div class="mls-item-moat">Competitors cannot copy a patented consent+royalty architecture without licensing it. That is how the moat becomes revenue.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Voice Estate Patent</span>
+          <span class="tech-pill">Agentic Royalty Patent</span>
+          <span class="tech-pill">Alex (Board)</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Creator Charter — Open Standard</div>
+        <div class="mls-item-desc">The NOIZY Creator Charter (10 Articles, 5 Pillars) is an open standard that any platform can adopt. Adoption is a public commitment. Non-adoption is a public statement. NOIZY wrote it first — we are the moral reference point.</div>
+        <div class="mls-item-moat">When creators ask "which platform respects my rights?" and show a charter, the answer is NOIZY. That is a brand moat that can't be purchased.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">10 Articles</span>
+          <span class="tech-pill">Open Standard</span>
+          <span class="tech-pill">Live · March 2026</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">C2PA / Content Authenticity Initiative Alignment</div>
+        <div class="mls-item-desc">NOIZY PROOF is aligned with the Content Authenticity Initiative and C2PA standards. This positions NOIZY as the audio-specific implementation of a standard that Adobe, Microsoft, and Google are already adopting for images and video.</div>
+        <div class="mls-item-moat">When C2PA becomes mandatory for AI audio (likely via EU AI Act or US executive order), NOIZY is already compliant. Competitors face months of retrofit work.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">C2PA</span>
+          <span class="tech-pill">Adobe CAI Aligned</span>
+          <span class="tech-pill">EU AI Act Ready</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">SAG-AFTRA / Union Alignment Strategy</div>
+        <div class="mls-item-desc">Position NOIZY as the only AI voice platform that resolves the SAG-AFTRA voice actor dispute — not by fighting unions but by making the NOIZY consent protocol a better protection than union contracts. The Creator Charter is the invitation.</div>
+        <div class="mls-item-moat">Union endorsement is a marketing multiplier that reaches every professional voice actor simultaneously. NOIZY's 75/25 split + consent architecture is more protective than any union agreement currently in force.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">SAG-AFTRA</span>
+          <span class="tech-pill">WGA Aligned</span>
+          <span class="tech-pill">Charter Strategy</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Canadian Ethics Alignment + NRC IRAP</div>
+        <div class="mls-item-desc">Canada's AI regulation (AIDA) and ethics framework is more creator-protective than US or EU equivalents. NOIZY's Consent-as-Code architecture is naturally aligned. NRC IRAP (National Research Council Industrial R&D program) provides non-dilutive funding.</div>
+        <div class="mls-item-moat">Canadian government funding reduces VC dependency. NRC IRAP and SR&ED tax credits can fund early development without equity dilution. This is a financing moat most US startups don't know exists.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">AIDA Compliant</span>
+          <span class="tech-pill">NRC IRAP · Jul 2026</span>
+          <span class="tech-pill">SR&ED Tax Credits</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Voice Estate Legal Framework — Digital Inheritance</div>
+        <div class="mls-item-desc">A creator's registered voice becomes a legally distinct digital asset — inheritable, licensable, and protected under NOIZY's Voice Estate framework. Legal architecture developed in coordination with the Board of Aligned Minds. Estate planning for the digital creative class.</div>
+        <div class="mls-item-moat">No competitor has built the legal framework for voice inheritance. NOIZY builds it in 2026. The legal standard gets set here — and whoever sets it becomes the default registry for an entire category of IP.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Voice Estate</span>
+          <span class="tech-pill">Digital Inheritance</span>
+          <span class="tech-pill">Alex (Board)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ LAYER 3: ADOPTION -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(10,158,189,0.15),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--electric);">Layer 3 of 5</span>
+    <h2 class="section-title">Adoption <span style="color:var(--electric);">Moat</span></h2>
+    <p style="font-size:13px;color:rgba(232,240,232,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      Network effects compound. The first 100 Genius Creators make the next 1,000 inevitable.
+      The first 1,000 make the first major platform adoption unavoidable.
+    </p>
+    <div class="section-rule" style="background:linear-gradient(to right,transparent,var(--electric),transparent);margin-top:18px;"></div>
+  </div>
+
+  <div class="moat-layer-section layer-adoption reveal">
+    <div class="mls-header">
+      <div class="mls-icon">🌊</div>
+      <div class="mls-meta">
+        <div class="mls-layer">Adoption Layer</div>
+        <div class="mls-title">Network Effects That Make the Protocol Unavoidable</div>
+        <div class="mls-sub">When the best creators are here, everyone else follows — and the platforms follow the creators</div>
+      </div>
+    </div>
+    <div class="mls-grid">
+      <div class="mls-item">
+        <div class="mls-item-name">Founding 100 Genius Creator Strategy</div>
+        <div class="mls-item-desc">Personal, invitation-only recruitment of the top 100 creators who understand that their creative legacy is a survival issue. These creators validate the protocol and become its most credible advocates.</div>
+        <div class="mls-item-moat">When the most credentialed creators in the world are NOIZY Founding Members, the marketing argument for every subsequent creator becomes "the best are already here."</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Founding 100</span>
+          <span class="tech-pill">Personal Invitation</span>
+          <span class="tech-pill">Charter Vote Rights</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">DreamChamber — Invitation-Only Ideation Portal</div>
+        <div class="mls-item-desc">The first thing a Genius Creator sees: the DreamChamber Codex, which visually maps the 7 Epochs and their place in the 5th Epoch. Not an upload form — a civilization map. Forces them to think of their work as an inheritable perpetual asset.</div>
+        <div class="mls-item-moat">Every other AI music platform onboards with "upload your audio." NOIZY onboards with "define your civilization." This is not a UX difference. It is a category difference.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Invitation-Only</span>
+          <span class="tech-pill">7-Epoch Codex</span>
+          <span class="tech-pill">GABRIEL Guided</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Guild Mentorship Infrastructure</div>
+        <div class="mls-item-desc">4-tier system: Apprentice → Journeyman → Master → Legend. Knowledge flows forward. Credit flows back. Every creator who teaches earns from what their students build. The platform compounds with every mentorship relationship.</div>
+        <div class="mls-item-moat">Guild mentorship creates platform stickiness that pure financial incentives cannot replicate. Creators don't leave the platform that trained their students.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">4-Tier Guild</span>
+          <span class="tech-pill">Mentorship Royalties</span>
+          <span class="tech-pill">Legend Tier</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Protocol Licensing — Platform Adoption</div>
+        <div class="mls-item-desc">Phase 4 of the roadmap: Consent-as-Code API, NOIZY PROOF white-label, Voice Estate Registry, and Agentic Royalty Engine licensed to other platforms. When a competitor's best creators migrate to NOIZY, the competitor faces a choice: adopt the protocol or lose the talent.</div>
+        <div class="mls-item-moat">Protocol licensing turns competitors into distribution partners. The moat is not walls — it is gravity. We become unavoidable infrastructure.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">API Licensing</span>
+          <span class="tech-pill">White-Label</span>
+          <span class="tech-pill">Roadmap · 2027</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">ENGR_KEITH — Agentic Guidance System</div>
+        <div class="mls-item-desc">Named for Rob's father R.K. Plowman (civil engineer), ENGR_KEITH is the creator's personal Infrastructure Architect guidance agent. Systems-first, precision-engineered guidance on Consent-as-Code and Voice Estate best practices.</div>
+        <div class="mls-item-moat">No AI voice platform offers genuine guidance on creator rights infrastructure. ENGR_KEITH turns NOIZY from a tool into a mentor. Mentors create loyalty. Tools get swapped out.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">ENGR_KEITH Agent</span>
+          <span class="tech-pill">1-Click Guidance</span>
+          <span class="tech-pill">GABRIEL Integration</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Operation Voice Army — 100 Elite Voices</div>
+        <div class="mls-item-desc">May 2026: structured recruitment campaign targeting professional voice actors, composers, sound designers, global tradition keepers, narrators, and singers. Personal outreach, personal invitation, Founding Creator status.</div>
+        <div class="mls-item-moat">100 credentialed professional voices in NOIZYVOX creates a catalog that competitive platforms cannot access without licensing NOIZY's protocol. The talent IS the moat.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">May 2026</span>
+          <span class="tech-pill">6 Artist Tiers</span>
+          <span class="tech-pill">RSP_001 Outreach</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Board of Aligned Minds Summit</div>
+        <div class="mls-item-desc">Announce a Summit for the Future of Creative Rights with Dr. Brien Benoit, Adam Robb, and Alex. Explicit purpose: unveil the 5th Epoch framework to press, regulators, and industry. The new civilization announces itself — the pressure comes from the fact of its existence.</div>
+        <div class="mls-item-moat">First-mover media narrative around creator rights in AI = free distribution across every creator community globally. The story markets itself when the board convenes publicly.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Board Summit</span>
+          <span class="tech-pill">Press Strategy</span>
+          <span class="tech-pill">Roadmap · Q3 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ LAYER 4: SOCIAL / FUNDING -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(124,77,255,0.15),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--deep);">Layer 4 of 5</span>
+    <h2 class="section-title">Social &amp; Funding <span style="color:var(--deep);">Moat</span></h2>
+    <p style="font-size:13px;color:rgba(232,240,232,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      NOIZYKIDZ. LIFELUV. Nims. The soul mission creates a category of funding —
+      grants, research, philanthropy — that no competitor will ever pursue.
+    </p>
+    <div class="section-rule" style="background:linear-gradient(to right,transparent,var(--deep),transparent);margin-top:18px;"></div>
+  </div>
+
+  <div class="moat-layer-section layer-social reveal">
+    <div class="mls-header">
+      <div class="mls-icon">🌍</div>
+      <div class="mls-meta">
+        <div class="mls-layer">Social / Funding Layer</div>
+        <div class="mls-title">The Mission That Makes Commercial Success Ethical</div>
+        <div class="mls-sub">When joining NOIZY means your royalties fund haptic music for deaf children, the choice becomes moral, not just commercial</div>
+      </div>
+    </div>
+    <div class="mls-grid">
+      <div class="mls-item">
+        <div class="mls-item-name">NOIZYKIDZ — Haptic Music for Every Child</div>
+        <div class="mls-item-desc">Haptic music solutions for deaf children and autism spectrum families. Frequency-to-haptic mapping. Inspired by Nims (Mike Nemesvary). Every child deserves to feel music. Research prototype target: August 2026.</div>
+        <div class="mls-item-moat">No AI music startup has an accessibility mission. NOIZY's humanitarian research creates grant eligibility, university partnerships, and philanthropic funding — diversifying revenue away from VC dependence permanently.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Haptic Pipeline</span>
+          <span class="tech-pill">NAI Research</span>
+          <span class="tech-pill">Aug 2026 Prototype</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">LIFELUV — Mike Nemesvary (Nims) Partnership</div>
+        <div class="mls-item-desc">LIFELUV companion AI built for Nims — quadriplegic world champion, Rob's close friend, proof that human limits are negotiable. The LIFELUV alpha launches August 2026, designed as the most human AI companion ever built.</div>
+        <div class="mls-item-moat">The Nims story is the most powerful brand narrative in the NOIZY universe. No Silicon Valley competitor has a story like this. Stories beat features every time in press coverage, investor pitches, and creator recruitment.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">LIFELUV Alpha</span>
+          <span class="tech-pill">Aug 2026</span>
+          <span class="tech-pill">Disability Tech</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">NAI Research + Dr. Brien Benoit Partnership</div>
+        <div class="mls-item-desc">Neuro-Acoustic Intelligence research partnership with a practicing neurosurgeon and Health Canada PMPRB Chair. Scientific backbone of Living Score, NOIZYKIDZ, and the haptics pipeline. Opens academic research funding channels.</div>
+        <div class="mls-item-moat">A neurosurgery research partner is impossible to replicate quickly. It requires years of relationship building and credibility that a well-funded startup cannot buy with a check.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Dr. Brien Benoit</span>
+          <span class="tech-pill">Ottawa Civic Hospital</span>
+          <span class="tech-pill">Health Canada PMPRB</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Nims Philanthropy Tier — Creator Giving Layer</div>
+        <div class="mls-item-desc">Optional creator contribution tier where a portion of royalties funds NOIZYKIDZ and LIFELUV research. Not mandatory — but emotionally compelling. When your commercial success directly funds music accessibility for deaf children, the choice to participate is easy.</div>
+        <div class="mls-item-moat">Creator philanthropy creates community identity. Creators on NOIZY are not just artists — they are members of a mission. Community identity makes churn structurally impossible.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Optional Tier</span>
+          <span class="tech-pill">Mission Aligned</span>
+          <span class="tech-pill">Community Stickiness</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">The Founder Story — RSP_001</div>
+        <div class="mls-item-desc">40 years of professional credits. C3 spinal injury. Built GORUNFREE to survive. Named after his engineer father's principles. NOIZY was not founded by a VC-funded product manager — it was built by a creator who had no choice but to build it.</div>
+        <div class="mls-item-moat">Founder stories compound over time. Steve Jobs. Yvon Chouinard. RSP_001. The story is the most durable marketing asset in existence — and it's true, which makes it impossible to replicate.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">RSP_001</span>
+          <span class="tech-pill">40 Years</span>
+          <span class="tech-pill">GORUNFREE</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Grant & Non-Dilutive Funding Stack</div>
+        <div class="mls-item-desc">NRC IRAP (National Research Council Industrial R&D Program) · SR&ED tax credits (Scientific Research & Experimental Development) · Disability tech grants · Academic research partnerships · Health Canada aligned research funding via Dr. Benoit.</div>
+        <div class="mls-item-moat">Non-dilutive funding reduces VC dependency. Every grant dollar is equity-free. Canadian competitors don't take advantage of this stack — US competitors don't even know it exists. This is a financing moat hiding in plain sight.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">NRC IRAP · Jul 2026</span>
+          <span class="tech-pill">SR&ED Credits</span>
+          <span class="tech-pill">Disability Grants</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ LAYER 5: EMERGING TECH -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(248,113,11,0.15),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--fire);">Layer 5 of 5</span>
+    <h2 class="section-title">Emerging Tech <span style="color:var(--fire);">Levers</span></h2>
+    <p style="font-size:13px;color:rgba(232,240,232,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      Technologies that are not yet standard but will be within 2–3 years.
+      Building for them now means NOIZY is compliant before the mandate arrives.
+    </p>
+    <div class="section-rule" style="background:linear-gradient(to right,transparent,var(--fire),transparent);margin-top:18px;"></div>
+  </div>
+
+  <div class="moat-layer-section layer-emerging reveal">
+    <div class="mls-header">
+      <div class="mls-icon">🚀</div>
+      <div class="mls-meta">
+        <div class="mls-layer">Emerging Technology Layer</div>
+        <div class="mls-title">Building for the Regulation That Is Coming</div>
+        <div class="mls-sub">When the mandate arrives, NOIZY is already there. That is how headwinds become tailwinds.</div>
+      </div>
+    </div>
+    <div class="mls-grid">
+      <div class="mls-item">
+        <div class="mls-item-name">Smart Contract Agentic Royalties</div>
+        <div class="mls-item-desc">Automatic royalty payouts every time AI uses a creator's work, governed by smart contract mechanics. Multi-chain support prevents lock-in. Potential implementation: Ethereum L2, Polygon zkEVM, StarkNet, Solana — or Cloudflare D1 as the off-chain equivalent already in use.</div>
+        <div class="mls-item-moat">The Agentic Royalty is NOIZY's current competitive advantage. Smart contract implementation makes it industry-standard infrastructure that competitors must adopt or license.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">ETH L2</span>
+          <span class="tech-pill">Polygon zkEVM</span>
+          <span class="tech-pill">Roadmap</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">NFT-Based Voice Assets</div>
+        <div class="mls-item-desc">Each voice model uniquely minted, owned, and licenseable on-chain. Inheritable and transferable — estate planning for digital IP. Aligned with SAG-AFTRA digital likeness rights discussions currently underway.</div>
+        <div class="mls-item-moat">NFT infrastructure for voice models turns NOIZY into a marketplace, not just a platform. Voice models become tradeable assets with secondary markets — creating economic gravity beyond any subscription model.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Voice NFT</span>
+          <span class="tech-pill">On-Chain Ownership</span>
+          <span class="tech-pill">SAG-AFTRA Aligned</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Secure Hardware (HSM) Voice Asset Storage</div>
+        <div class="mls-item-desc">Hardware Security Module-backed voice asset storage. The cryptographic keys that protect a creator's Voice Estate are stored in tamper-proof hardware — technically impossible to extract without physical access.</div>
+        <div class="mls-item-moat">HSM-backed storage is the gold standard for financial institutions. Applying it to voice assets positions NOIZY as the most secure voice registry in existence — relevant for high-value celebrity and estate registrations.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">HSM Storage</span>
+          <span class="tech-pill">Hardware-Level Security</span>
+          <span class="tech-pill">Roadmap · 2027</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">C2PA + Adobe CAI Full Implementation</div>
+        <div class="mls-item-desc">Content Authenticity Initiative (CAI) and C2PA standard implementation for all NOIZY-generated audio. Publicly auditable, cryptographically signed logs of which assets were used where — creating the compliance standard that all AI companies must eventually meet.</div>
+        <div class="mls-item-moat">Adobe, Microsoft, and Google are already adopting C2PA for images. NOIZY becomes the audio-specific implementation partner. When C2PA becomes mandatory for audio, NOIZY is the certified infrastructure.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">C2PA</span>
+          <span class="tech-pill">Adobe CAI</span>
+          <span class="tech-pill">Compliance Standard</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Cultural Resonance Engine — Global Pattern Intelligence</div>
+        <div class="mls-item-desc">Global cultural pattern intelligence — how musical traditions from 200+ cultures interact, resonate, and inform each other. Powers the Guild mentorship system, ensures cultural attribution, and enables authentic cross-cultural collaboration without appropriation.</div>
+        <div class="mls-item-moat">As international AI regulation tightens around cultural IP (EU AI Act, UNESCO AI guidelines), NOIZY's Cultural Resonance Engine provides the compliance infrastructure no competitor has built.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">200+ Cultures</span>
+          <span class="tech-pill">AI Act Compliant</span>
+          <span class="tech-pill">Jul 2026 Research</span>
+        </div>
+      </div>
+      <div class="mls-item">
+        <div class="mls-item-name">Verification SDK / API — For Third Parties</div>
+        <div class="mls-item-desc">A verification SDK that any platform, app, or AI company can integrate to check the consent status, ownership, and royalty routing of any audio asset against the NOIZYVOX registry. Makes NOIZY infrastructure unavoidable.</div>
+        <div class="mls-item-moat">When streaming platforms, game studios, and podcast hosts use the NOIZY Verification SDK to check consent before licensing audio, NOIZY becomes the auditing authority for the entire industry — without owning a single content deal.</div>
+        <div class="mls-item-tech">
+          <span class="tech-pill">Verification SDK</span>
+          <span class="tech-pill">Third-Party API</span>
+          <span class="tech-pill">Roadmap · 2027</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ MOAT SUMMARY -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(34,197,94,0.15),transparent);"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label" style="color:var(--green);">The Compound Effect</span>
+    <h2 class="section-title">When All Five <span style="color:var(--green);">Walls Stand Together</span></h2>
+    <p style="font-size:13px;color:rgba(232,240,232,0.45);font-style:italic;margin-top:10px;max-width:600px;margin-left:auto;margin-right:auto;">
+      Each layer is defensible on its own. Combined, they create a moat that cannot be crossed
+      by any competitor that doesn't also have 40 years of professional credits, a C3 spinal injury,
+      a neurosurgeon on the board, a quadriplegic world champion as inspiration,
+      and a founder who built their survival architecture by necessity, not by choice.
+    </p>
+    <div class="section-rule" style="background:linear-gradient(to right,transparent,var(--green),transparent);margin-top:18px;"></div>
+  </div>
+
+  <div class="moat-summary reveal">
+    <div class="ms-item">
+      <div class="ms-num" style="color:var(--green);">8</div>
+      <div class="ms-label" style="color:var(--green);">Technical</div>
+      <div class="ms-desc">Consent-as-Code · NOIZY PROOF · HVS · GABRIEL · SUPERSONIC · ZK · Federated · Living Score</div>
+    </div>
+    <div class="ms-item">
+      <div class="ms-num" style="color:var(--gold);">6</div>
+      <div class="ms-label" style="color:var(--gold);">Legal / IP</div>
+      <div class="ms-desc">Patents · Charter Standard · C2PA · SAG-AFTRA · Canadian Ethics + NRC · Voice Estate Law</div>
+    </div>
+    <div class="ms-item">
+      <div class="ms-num" style="color:var(--electric);">7</div>
+      <div class="ms-label" style="color:var(--electric);">Adoption</div>
+      <div class="ms-desc">Founding 100 · DreamChamber · Guild · Protocol Licensing · ENGR_KEITH · Voice Army · Summit</div>
+    </div>
+    <div class="ms-item">
+      <div class="ms-num" style="color:var(--deep);">6</div>
+      <div class="ms-label" style="color:var(--deep);">Social</div>
+      <div class="ms-desc">NOIZYKIDZ · LIFELUV / Nims · NAI Research · Philanthropy Tier · Founder Story · Grant Stack</div>
+    </div>
+    <div class="ms-item">
+      <div class="ms-num" style="color:var(--fire);">6</div>
+      <div class="ms-label" style="color:var(--fire);">Emerging</div>
+      <div class="ms-desc">Smart Contracts · Voice NFTs · HSM Storage · C2PA Implementation · Cultural Engine · Verify SDK</div>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;overflow:auto;" class="reveal">
+    <div style="margin-bottom:14px;font-size:11px;letter-spacing:3px;color:var(--green);text-transform:uppercase;">The Platform → Protocol Execution Sequence</div>
+    <table class="seq-table">
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>Action</th>
+          <th>Moat Layers Activated</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Stage 1 · 2026</td>
+          <td>Launch NOIZYVOX with RSP_001 as proof. Recruit Founding 100. Voice Estate live. Operation Voice Army.</td>
+          <td>Technical + Legal + Adoption + Social</td>
+          <td class="result">100 elite voices in registry. The moat begins. No competitor has this catalog.</td>
+        </tr>
+        <tr>
+          <td>Stage 2 · 2026</td>
+          <td>Agentic Royalty live. NOIZY PROOF alpha. Open Ledger dashboard public. Charter adopted by first organizations.</td>
+          <td>Technical + Legal + Adoption</td>
+          <td class="result">Public proof of 75/25 split working in real time. Press coverage. Creator migration begins.</td>
+        </tr>
+        <tr>
+          <td>Stage 3 · 2026–2027</td>
+          <td>DreamChamber client beta. Living Score prototype. Cultural Resonance Engine. Board of Aligned Minds Summit.</td>
+          <td>Technical + Adoption + Social</td>
+          <td class="result">Platform launches publicly. Guild infrastructure live. Genius Creator second wave. Media narrative set.</td>
+        </tr>
+        <tr>
+          <td>Stage 4 · 2027–2028</td>
+          <td>Protocol licensing: Consent-as-Code API, NOIZY PROOF white-label, Voice Estate Registry for third parties. ZK proofs. Federated learning.</td>
+          <td>All 5 Layers Simultaneously</td>
+          <td class="result">Competitors adopt the protocol or lose the talent. NOIZY becomes unavoidable infrastructure. $1B pathway opens.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ CLOSING -->
+<div class="divider" style="background:linear-gradient(to right,transparent,rgba(34,197,94,0.15),transparent);"></div>
+<section style="max-width:800px;text-align:center;padding-bottom:100px;">
+  <div class="reveal">
+    <div style="font-size:64px;font-weight:bold;color:var(--green);opacity:0.7;line-height:1;margin-bottom:8px;">∞</div>
+    <div style="font-size:11px;letter-spacing:5px;color:rgba(34,197,94,0.5);text-transform:uppercase;margin-bottom:28px;">The Compound Moat</div>
+    <p style="font-size:clamp(14px,2vw,17px);color:var(--pale);line-height:1.8;font-style:italic;max-width:640px;margin:0 auto 24px;">
+      "Others can do what we're doing. What they cannot do is do all of it — simultaneously —
+      while also being the creator who built it because a spinal injury left them no other choice.
+      The moat is not the technology. The moat is the person behind it, and the 40 years of earned truth
+      that makes everything else credible."
+    </p>
+    <p style="font-size:11px;color:rgba(34,197,94,0.4);letter-spacing:3px;text-transform:uppercase;">RSP_001 · NOIZY Moat Map · March 2026</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ FOOTER -->
+<div class="footer-nav">
+  <div class="footer-nav-label">The NOIZYLAB Collection · 15 Documents</div>
+  <div class="footer-nav-links">
+    <a href="NOIZY_AI_HOME.html">Home</a>
+    <a href="NOIZY_FOUNDER_BLUEPRINT.html">Founder Blueprint</a>
+    <a href="NOIZY_BILLION_ARCHITECTURE.html">$1B Architecture</a>
+    <a href="NOIZYVOX_AIVA_PLATFORM.html">A.I.V.A.</a>
+    <a href="NOIZY_CREATOR_CHARTER.html">Charter</a>
+    <a href="THE_PLOWMANS_CHRONICLES.html">Chronicles</a>
+    <a href="NOIZY_GUILD_FAMILY.html">Guild</a>
+    <a href="NOIZYKIDZ_WORLD_MUSIC_THEORY.html">NOIZYKIDZ</a>
+    <a href="NOIZY_GREAT_RESTORATION.html">Restoration</a>
+    <a href="NOIZY_ASCENSION_MAP.html">Ascension Map</a>
+    <a href="NOIZY_ECONOMIC_ENGINE.html">Economic Engine</a>
+    <a href="NOIZY_MOVEMENT_MANIFESTO.html">Manifesto</a>
+    <a href="NOIZY_HARMONY_CAMPAIGN.html">Harmony Campaign</a>
+    <a href="NOIZY_2526_ARCHIVE.html">2526 Archive</a>
+    <a href="DREAMCHAMBER_FIX_MAP.html">DreamChamber</a>
+  </div>
+</div>
+
+<script>
+  // ── STARFIELD ──
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+  resize(); window.addEventListener('resize',resize);
+  const stars=Array.from({length:150},()=>({
+    x:Math.random()*window.innerWidth, y:Math.random()*window.innerHeight,
+    size:Math.random()*1.2+0.15, speed:Math.random()*0.12+0.02,
+    drift:(Math.random()-0.5)*0.04, alpha:Math.random()*0.35+0.07,
+    phase:Math.random()*Math.PI*2, phaseSpeed:Math.random()*0.009+0.003,
+    g:Math.floor(Math.random()*60+180)
+  }));
+  function animStars(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    stars.forEach(s=>{
+      s.phase+=s.phaseSpeed;
+      const a=s.alpha*(0.6+0.4*Math.sin(s.phase));
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.size,0,Math.PI*2);
+      ctx.fillStyle=`rgba(160,${s.g},180,${a})`; ctx.fill();
+      s.y-=s.speed; s.x+=s.drift;
+      if(s.y<-4){s.y=canvas.height+4;s.x=Math.random()*canvas.width;}
+    });
+    requestAnimationFrame(animStars);
+  }
+  requestAnimationFrame(animStars);
+
+  // ── MOAT RING CANVAS ──
+  const mc=document.getElementById('moat-canvas');
+  const mctx=mc.getContext('2d');
+  function mcResize(){mc.width=window.innerWidth;mc.height=window.innerHeight;}
+  mcResize(); window.addEventListener('resize',mcResize);
+  let moatAngle=0;
+  const rings=[
+    {r:120,color:'rgba(34,197,94,0.4)',speed:0.003,w:1},
+    {r:220,color:'rgba(240,180,41,0.35)',speed:0.002,w:1},
+    {r:320,color:'rgba(10,158,189,0.3)',speed:0.0015,w:1},
+    {r:420,color:'rgba(124,77,255,0.25)',speed:0.001,w:1},
+    {r:520,color:'rgba(248,113,11,0.2)',speed:0.0008,w:1},
+  ];
+  function animMoat(){
+    mctx.clearRect(0,0,mc.width,mc.height);
+    const cx=mc.width/2, cy=mc.height/2;
+    rings.forEach((r,i)=>{
+      mctx.beginPath();
+      mctx.arc(cx,cy,r.r,0,Math.PI*2);
+      mctx.strokeStyle=r.color;
+      mctx.lineWidth=r.w;
+      mctx.stroke();
+    });
+    requestAnimationFrame(animMoat);
+  }
+  requestAnimationFrame(animMoat);
+
+  // ── HERO ──
+  setTimeout(()=>{
+    ['hl','ht','hs','mlp'].forEach((id,i)=>{
+      setTimeout(()=>document.getElementById(id).classList.add('visible'),i*130);
+    });
+  },150);
+
+  // ── OBSERVER ──
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}
+    });
+  },{threshold:0.05,rootMargin:'0px 0px -20px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

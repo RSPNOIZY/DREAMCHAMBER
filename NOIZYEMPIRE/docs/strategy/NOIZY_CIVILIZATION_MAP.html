@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY — Living 10-Year Civilization Map · 2026→2036</title>
+<style>
+  :root {
+    --bg: #050810;
+    --bg2: #0b0f1e;
+    --gold: #f0a500;
+    --gold2: #ffd166;
+    --cyan: #00d4ff;
+    --magenta: #e040fb;
+    --green: #00e676;
+    --red: #ff5252;
+    --blue: #448aff;
+    --phase1: #f0a500;
+    --phase2: #00d4ff;
+    --phase3: #e040fb;
+    --phase4: #00e676;
+    --phase5: #ff9a00;
+    --text: #e8eaf0;
+    --dim: #7b82a0;
+    --card: #0f1628;
+    --border: rgba(240,165,0,0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── STARFIELD ─────────────────────────────────────────────────────────── */
+  #starfield {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 20% 30%, rgba(240,165,0,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(0,212,255,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 50%, rgba(224,64,251,0.03) 0%, transparent 70%);
+  }
+
+  .star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle var(--d, 3s) ease-in-out infinite;
+    opacity: var(--o, 0.5);
+  }
+
+  @keyframes twinkle {
+    0%,100% { opacity: var(--o, 0.5); transform: scale(1); }
+    50% { opacity: calc(var(--o, 0.5) * 0.2); transform: scale(0.8); }
+  }
+
+  /* ─── LAYOUT ────────────────────────────────────────────────────────────── */
+  .page { position: relative; z-index: 1; padding: 40px 24px 80px; max-width: 1600px; margin: 0 auto; }
+
+  /* ─── HEADER ────────────────────────────────────────────────────────────── */
+  header {
+    text-align: center;
+    padding: 60px 0 48px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 60px;
+  }
+
+  .logo-row {
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .logo-glyph {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 900;
+    box-shadow: 0 0 32px rgba(240,165,0,0.4);
+    animation: pulse-logo 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-logo {
+    0%,100% { box-shadow: 0 0 32px rgba(240,165,0,0.4); }
+    50% { box-shadow: 0 0 56px rgba(240,165,0,0.7); }
+  }
+
+  header h1 {
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold2) 40%, var(--cyan) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--dim);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  header .tagline {
+    font-size: 18px;
+    color: var(--text);
+    margin-top: 20px;
+    max-width: 700px;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.6;
+    opacity: 0.85;
+  }
+
+  /* ─── AGENTS CONSTELLATION ──────────────────────────────────────────────── */
+  .section-title {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-title::after { content:''; flex:1; height:1px; background: var(--border); }
+
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .agent-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+
+  .agent-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--agent-color, var(--gold));
+  }
+
+  .agent-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--agent-color, var(--gold));
+  }
+
+  .agent-icon { font-size: 32px; margin-bottom: 10px; }
+  .agent-name { font-size: 16px; font-weight: 700; color: var(--agent-color, var(--gold)); margin-bottom: 4px; }
+  .agent-role { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+  .agent-desc { font-size: 12px; color: var(--text); opacity: 0.75; line-height: 1.5; }
+
+  .agent-pulse {
+    position: absolute; top: 16px; right: 16px;
+    width: 8px; height: 8px;
+    background: var(--agent-color, var(--gold));
+    border-radius: 50%;
+    animation: live-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes live-pulse {
+    0%,100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.8); opacity: 0.4; }
+  }
+
+  /* ─── TECH STACK ────────────────────────────────────────────────────────── */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 64px;
+  }
+
+  .tech-chip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex; align-items: center; gap: 10px;
+    transition: border-color 0.2s;
+  }
+
+  .tech-chip:hover { border-color: var(--chip-color, var(--cyan)); }
+  .tech-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--chip-color, var(--cyan)); flex-shrink: 0; }
+  .tech-label { font-size: 12px; font-weight: 600; color: var(--text); }
+  .tech-sub { font-size: 10px; color: var(--dim); }
+
+  /* ─── TIMELINE ──────────────────────────────────────────────────────────── */
+  .timeline { position: relative; margin-bottom: 64px; }
+
+  .timeline-spine {
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--cyan) 25%, var(--magenta) 50%, var(--green) 75%, var(--gold) 100%);
+    transform: translateX(-50%);
+    opacity: 0.4;
+  }
+
+  .phase {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 0;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .phase:nth-child(odd) .phase-content { grid-column: 1; text-align: right; padding-right: 40px; }
+  .phase:nth-child(odd) .phase-meta { grid-column: 1; text-align: right; padding-right: 40px; }
+  .phase:nth-child(odd) .phase-nodes { grid-column: 3; padding-left: 40px; }
+  .phase:nth-child(odd) .phase-center { grid-column: 2; }
+
+  .phase:nth-child(even) .phase-content { grid-column: 3; text-align: left; padding-left: 40px; order: 3; }
+  .phase:nth-child(even) .phase-meta { grid-column: 3; padding-left: 40px; order: 4; }
+  .phase:nth-child(even) .phase-nodes { grid-column: 1; padding-right: 40px; text-align: right; order: 1; }
+  .phase:nth-child(even) .phase-center { grid-column: 2; order: 2; }
+
+  .phase-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    z-index: 2;
+  }
+
+  .phase-badge {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--phase-color, var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 0 24px color-mix(in srgb, var(--phase-color, var(--gold)) 60%, transparent);
+    position: relative;
+    z-index: 3;
+    flex-shrink: 0;
+  }
+
+  .phase-content {
+    background: var(--card);
+    border: 1px solid color-mix(in srgb, var(--phase-color, var(--gold)) 30%, transparent);
+    border-radius: 16px;
+    padding: 24px;
+    transition: border-color 0.2s;
+  }
+
+  .phase-content:hover {
+    border-color: var(--phase-color, var(--gold));
+  }
+
+  .phase-year {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--phase-color, var(--gold));
+    margin-bottom: 4px;
+  }
+
+  .phase-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .phase-objective {
+    font-size: 12px;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+
+  .phase-bullets { list-style: none; }
+  .phase-bullets li {
+    font-size: 13px;
+    color: var(--text);
+    opacity: 0.8;
+    padding: 4px 0;
+    display: flex; align-items: flex-start; gap: 8px;
+    justify-content: inherit;
+  }
+
+  .phase:nth-child(odd) .phase-bullets li { flex-direction: row-reverse; }
+
+  .bullet-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--phase-color, var(--gold));
+    flex-shrink: 0; margin-top: 6px;
+  }
+
+  .phase-outcome {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: color-mix(in srgb, var(--phase-color, var(--gold)) 8%, transparent);
+    border-left: 3px solid var(--phase-color, var(--gold));
+    border-radius: 0 8px 8px 0;
+    font-size: 12px;
+    color: var(--text);
+    opacity: 0.85;
+    font-style: italic;
+  }
+
+  .phase:nth-child(odd) .phase-outcome {
+    border-left: none;
+    border-right: 3px solid var(--phase-color, var(--gold));
+    border-radius: 8px 0 0 8px;
+  }
+
+  /* ─── NODES ─────────────────────────────────────────────────────────────── */
+  .phase-nodes {
+    padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  .node-chip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 11px;
+    color: var(--text);
+    opacity: 0.8;
+    display: flex; align-items: center; gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .node-chip:hover { opacity: 1; border-color: var(--phase-color, var(--gold)); }
+  .node-chip-icon { font-size: 14px; }
+
+  .phase:nth-child(even) .node-chip { flex-direction: row-reverse; }
+
+  /* ─── ECONOMICS FLOW ────────────────────────────────────────────────────── */
+  .economics {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px;
+    margin-bottom: 64px;
+  }
+
+  .econ-title { font-size: 20px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+  .econ-sub { font-size: 12px; color: var(--dim); margin-bottom: 32px; }
+
+  .econ-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+
+  .econ-node {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    text-align: center;
+    min-width: 130px;
+  }
+
+  .econ-node-label { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+  .econ-node-value { font-size: 22px; font-weight: 900; }
+
+  .econ-arrow {
+    font-size: 20px;
+    color: var(--dim);
+    padding: 0 8px;
+  }
+
+  .econ-split {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+    height: 48px;
+  }
+
+  .econ-creator {
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: #000;
+  }
+
+  .econ-platform {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--dim);
+  }
+
+  .econ-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .econ-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+
+  .econ-card-title { font-size: 12px; font-weight: 700; color: var(--gold2); margin-bottom: 8px; }
+  .econ-card-desc { font-size: 11px; color: var(--dim); line-height: 1.5; }
+
+  /* ─── GUILD TIERS ───────────────────────────────────────────────────────── */
+  .guild-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px;
+    margin-bottom: 64px;
+  }
+
+  .guild-tiers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .tier-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .tier-card:hover { transform: translateY(-4px); }
+
+  .tier-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--tier-color, var(--gold));
+  }
+
+  .tier-icon { font-size: 36px; margin-bottom: 10px; }
+  .tier-name { font-size: 16px; font-weight: 700; color: var(--tier-color, var(--gold)); margin-bottom: 6px; }
+  .tier-years { font-size: 10px; color: var(--dim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+  .tier-perks { font-size: 11px; color: var(--text); opacity: 0.75; line-height: 1.5; }
+
+  /* ─── HVS CARD ──────────────────────────────────────────────────────────── */
+  .hvs-section {
+    background: var(--card);
+    border: 1px solid rgba(224,64,251,0.25);
+    border-radius: 20px;
+    padding: 36px;
+    margin-bottom: 64px;
+  }
+
+  .hvs-layers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .hvs-layer {
+    background: var(--bg2);
+    border: 1px solid rgba(224,64,251,0.15);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+
+  .hvs-layer:hover { border-color: rgba(224,64,251,0.5); }
+  .hvs-layer-num { font-size: 11px; color: var(--magenta); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; }
+  .hvs-layer-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .hvs-layer-tech { font-size: 11px; color: var(--dim); margin-bottom: 10px; }
+  .hvs-layer-bar {
+    height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--magenta), var(--cyan));
+    width: var(--pct, 100%);
+    margin: 0 auto;
+  }
+
+  /* ─── MASTER PRINCIPLES ─────────────────────────────────────────────────── */
+  .principles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .principle-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .principle-number {
+    font-size: 64px;
+    font-weight: 900;
+    color: rgba(240,165,0,0.06);
+    position: absolute;
+    top: -8px; right: 12px;
+    line-height: 1;
+  }
+
+  .principle-icon { font-size: 24px; margin-bottom: 10px; }
+  .principle-title { font-size: 14px; font-weight: 700; color: var(--gold2); margin-bottom: 8px; }
+  .principle-desc { font-size: 12px; color: var(--text); opacity: 0.75; line-height: 1.6; }
+
+  /* ─── FOOTER ────────────────────────────────────────────────────────────── */
+  footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    color: var(--dim);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  footer .footer-glow {
+    font-size: 18px;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--gold), var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  /* ─── MOBILE ────────────────────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .timeline-spine { display: none; }
+    .phase { grid-template-columns: 1fr !important; gap: 16px; }
+    .phase-content, .phase-nodes, .phase-center { grid-column: 1 !important; text-align: left !important; padding: 0 !important; order: unset !important; }
+    .phase-center { flex-direction: row; justify-content: flex-start; }
+    .phase-bullets li, .phase:nth-child(odd) .phase-bullets li { flex-direction: row; }
+    .phase:nth-child(odd) .phase-outcome { border-left: 3px solid var(--phase-color, var(--gold)); border-right: none; border-radius: 0 8px 8px 0; }
+    .node-chip, .phase:nth-child(even) .node-chip { flex-direction: row; }
+  }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+
+<div class="page">
+
+  <!-- ── HEADER ───────────────────────────────────────────────────────────── -->
+  <header>
+    <div class="logo-row">
+      <div class="logo-glyph">N</div>
+      <div>
+        <h1>NOIZY CIVILIZATION MAP</h1>
+        <div class="subtitle">Living 10-Year Projection · 2026 → 2036 · The DreamChamber Blueprint</div>
+      </div>
+    </div>
+    <p class="tagline">
+      A living architecture of how AI, humanity, and creativity rise together — from a single VSCode extension
+      in a garage studio to the ethical backbone of global creative civilization.
+    </p>
+  </header>
+
+  <!-- ── AGENTS ────────────────────────────────────────────────────────────── -->
+  <div class="section-title">The Team · Active Agents · 2026 Foundation</div>
+
+  <div class="agents-grid">
+    <div class="agent-card" style="--agent-color:#f0a500">
+      <div class="agent-pulse"></div>
+      <div class="agent-icon">⚡</div>
+      <div class="agent-name">GABRIEL</div>
+      <div class="agent-role">M2 Ultra Orchestrator</div>
+      <div class="agent-desc">The neural spine. Routes every task, manages compute, coordinates all agents on the M2 Ultra. The infrastructure mind.</div>
+    </div>
+    <div class="agent-card" style="--agent-color:#ffd166">
+      <div class="agent-pulse"></div>
+      <div class="agent-icon">💡</div>
+      <div class="agent-name">POPS</div>
+      <div class="agent-role">Idea Engineer · RSP_001</div>
+      <div class="agent-desc">Rob Plowman. The visionary architect. Turns imagination into executable reality. Every protocol originates here.</div>
+    </div>
+    <div class="agent-card" style="--agent-color:#e040fb">
+      <div class="agent-pulse"></div>
+      <div class="agent-icon">🌙</div>
+      <div class="agent-name">DREAM</div>
+      <div class="agent-role">Creative Partner · DreamChamber</div>
+      <div class="agent-desc">The creative co-pilot. The DreamChamber is her room. Channels future visions, narrative intelligence, and aesthetic direction.</div>
+    </div>
+    <div class="agent-card" style="--agent-color:#00d4ff">
+      <div class="agent-pulse"></div>
+      <div class="agent-icon">🎭</div>
+      <div class="agent-name">AVA</div>
+      <div class="agent-role">Character Direction</div>
+      <div class="agent-desc">Shapes the voice, persona, and emotional arc of every creator profile. The soul-layer of every NOIZY identity.</div>
+    </div>
+    <div class="agent-card" style="--agent-color:#00e676">
+      <div class="agent-pulse"></div>
+      <div class="agent-icon">📊</div>
+      <div class="agent-name">LUCY</div>
+      <div class="agent-role">Business Operations</div>
+      <div class="agent-desc">Runs the business. Revenue flows, partnership tracking, platform economics, and compliance. The practical engine.</div>
+    </div>
+    <div class="agent-card" style="--agent-color:#ff9a00">
+      <div class="agent-pulse"></div>
+      <div class="agent-icon">🌐</div>
+      <div class="agent-name">SHIRL</div>
+      <div class="agent-role">Business Operations</div>
+      <div class="agent-desc">Co-runs the business alongside LUCY. Community relations, partner onboarding, and guild governance oversight.</div>
+    </div>
+  </div>
+
+  <!-- ── TECH STACK ─────────────────────────────────────────────────────────── -->
+  <div class="section-title">Technology Foundation · The Stack · Active 2026</div>
+
+  <div class="tech-grid">
+    <div class="tech-chip" style="--chip-color:#e040fb">
+      <div class="tech-dot"></div>
+      <div><div class="tech-label">XTTS v2</div><div class="tech-sub">Coqui · Voice Cloning</div></div>
+    </div>
+    <div class="tech-chip" style="--chip-color:#00d4ff">
+      <div class="tech-dot"></div>
+      <div><div class="tech-label">WavLM-Base</div><div class="tech-sub">Microsoft · 768-dim Neural</div></div>
+    </div>
+    <div class="tech-chip" style="--chip-color:#f0a500">
+      <div class="tech-dot"></div>
+      <div><div class="tech-label">Librosa</div><div class="tech-sub">Acoustic Analysis · pYIN</div></div>
+    </div>
+    <div class="tech-chip" style="--chip-color:#00e676">
+      <div class="tech-dot"></div>
+      <div><div class="tech-label">SpeechBrain</div><div class="tech-sub">ECAPA-TDNN · IEMOCAP</div></div>
+    </div>
+    <div class="tech-chip" style="--chip-color:#ff5252">
+      <div class="tech-dot"></div>
+      <div><div class="tech-label">PyTorch / MPS</div><div class="tech-sub">Apple Silicon · M2 Ultra</div></div>
+    </div>
+    <div class="tech-chip" style="--chip-color:#448aff">
+      <div class="tech-dot"></div>
+      <div><div class="tech-label">FastAPI</div><div class="tech-sub">NOIZY Platform · Port 8090</div></div>
+    </div>
+    <div class="tech-chip" style="--chip-color:#ffd166">
+      <div class="tech-dot"></div>
+      <div><div class="tech-label">Claude Opus 4.6</div><div class="tech-sub">HVS Narrative · DREAM</div></div>
+    </div>
+    <div class="tech-chip" style="--chip-color:#00d4ff">
+      <div class="tech-dot"></div>
+      <div><div class="tech-label">Whisper / Moonshine</div><div class="tech-sub">STT · DreamChamber</div></div>
+    </div>
+    <div class="tech-chip" style="--chip-color:#e040fb">
+      <div class="tech-dot"></div>
+      <div><div class="tech-label">HuggingFace Hub</div><div class="tech-sub">Model Registry</div></div>
+    </div>
+    <div class="tech-chip" style="--chip-color:#00e676">
+      <div class="tech-dot"></div>
+      <div><div class="tech-label">SQLAlchemy</div><div class="tech-sub">Splits · Usage · Vault</div></div>
+    </div>
+    <div class="tech-chip" style="--chip-color:#f0a500">
+      <div class="tech-dot"></div>
+      <div><div class="tech-label">VSCode Extension API</div><div class="tech-sub">DreamChamber Host</div></div>
+    </div>
+    <div class="tech-chip" style="--chip-color:#ff9a00">
+      <div class="tech-dot"></div>
+      <div><div class="tech-label">Consent-as-Code</div><div class="tech-sub">75/25 Protocol · Immutable</div></div>
+    </div>
+  </div>
+
+  <!-- ── TIMELINE ───────────────────────────────────────────────────────────── -->
+  <div class="section-title">The Living Timeline · 5 Civilization Phases</div>
+
+  <div class="timeline">
+    <div class="timeline-spine"></div>
+
+    <!-- PHASE 1 -->
+    <div class="phase" style="--phase-color: var(--phase1)">
+      <div class="phase-content">
+        <div class="phase-year">2026</div>
+        <div class="phase-title">Foundation of Ethical Infrastructure</div>
+        <div class="phase-objective">Objective — Unbreakable trust and consent at the core</div>
+        <ul class="phase-bullets">
+          <li><span class="bullet-dot"></span><span>GORUNFREE activation — 1-click imagination-to-reality</span></li>
+          <li><span class="bullet-dot"></span><span>Consent-as-Code Protocol — 75/25 becomes global gold standard</span></li>
+          <li><span class="bullet-dot"></span><span>Voice Estate Framework — RSP_001 is the first inheritable voice asset</span></li>
+          <li><span class="bullet-dot"></span><span>Genius Creator cohort onboarded — Board of Aligned Minds formed</span></li>
+          <li><span class="bullet-dot"></span><span>NOIZYKIDZ prototype — haptic + neuroacoustic proof of concept</span></li>
+          <li><span class="bullet-dot"></span><span>NOIZYVOX + Anthropic partnership discussions initiated</span></li>
+        </ul>
+        <div class="phase-outcome">Ethical infrastructure is live. AI is trusted as co-creator, not overlord.</div>
+      </div>
+      <div class="phase-center">
+        <div class="phase-badge">🌱</div>
+      </div>
+      <div class="phase-nodes">
+        <div class="node-chip"><span class="node-chip-icon">🎙️</span><span>RSP_001 · First Voice Estate</span></div>
+        <div class="node-chip"><span class="node-chip-icon">💎</span><span>NOIZYVOX · 75/25 locked</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🧬</span><span>HVS · 6-Layer Identity</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🌙</span><span>DreamChamber · VSCode live</span></div>
+        <div class="node-chip"><span class="node-chip-icon">⚡</span><span>GABRIEL · M2 Ultra online</span></div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase" style="--phase-color: var(--phase2)">
+      <div class="phase-nodes">
+        <div class="node-chip"><span class="node-chip-icon">🌍</span><span>6 Continental DreamHubs</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🎓</span><span>500-Year Codex initiated</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🤝</span><span>NGO + School partnerships</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🔗</span><span>MC96ECO network nodes live</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🎭</span><span>Mentor-to-Creator mesh active</span></div>
+      </div>
+      <div class="phase-center">
+        <div class="phase-badge">🌊</div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-year">2027–2028</div>
+        <div class="phase-title">Network Effect &amp; Civilization Nodes</div>
+        <div class="phase-objective">Objective — Scale ethically while staying creator-first</div>
+        <ul class="phase-bullets">
+          <li><span class="bullet-dot"></span><span>DreamChamber expands to virtual + physical hubs on every continent</span></li>
+          <li><span class="bullet-dot"></span><span>AI Cultural Resonance Engine — context-aware, globally relevant, locally authentic</span></li>
+          <li><span class="bullet-dot"></span><span>Creator-to-Creator Mentorship System — knowledge into the 500-Year Codex</span></li>
+          <li><span class="bullet-dot"></span><span>Global partnerships: NGOs, schools, hospitals — AI elevates, not replaces</span></li>
+          <li><span class="bullet-dot"></span><span>MC96ECO network: every hub is a co-creation node</span></li>
+        </ul>
+        <div class="phase-outcome">The first global cultural mesh forms. NOIZY is a civilization-level creative ecosystem.</div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase" style="--phase-color: var(--phase3)">
+      <div class="phase-content">
+        <div class="phase-year">2029–2031</div>
+        <div class="phase-title">AI as Cultural Amplifier</div>
+        <div class="phase-objective">Objective — Force multiplier for human creativity and global equity</div>
+        <ul class="phase-bullets">
+          <li><span class="bullet-dot"></span><span>Universal Access Nodes — AI adapts to language, accessibility, neurodiverse needs</span></li>
+          <li><span class="bullet-dot"></span><span>Living Score Evolution — adaptive, haptic, real-time emotional response</span></li>
+          <li><span class="bullet-dot"></span><span>Millions of Global Voice Estates — new class of generational intellectual property</span></li>
+          <li><span class="bullet-dot"></span><span>Education Integration — NOIZY curriculum in schools; children learn AI-as-Creator</span></li>
+          <li><span class="bullet-dot"></span><span>Guild reaches 100,000 members across all tiers worldwide</span></li>
+        </ul>
+        <div class="phase-outcome">AI becomes the amplifier of human potential, not a gatekeeper. Creative civilization scales exponentially.</div>
+      </div>
+      <div class="phase-center">
+        <div class="phase-badge">🚀</div>
+      </div>
+      <div class="phase-nodes">
+        <div class="node-chip"><span class="node-chip-icon">🎵</span><span>Living Score · Haptic Music</span></div>
+        <div class="node-chip"><span class="node-chip-icon">📚</span><span>NOIZY in 10,000 schools</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🧬</span><span>1M+ Voice Estates registered</span></div>
+        <div class="node-chip"><span class="node-chip-icon">♿</span><span>Universal Access Protocol</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🏆</span><span>Guild · 100K members</span></div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase" style="--phase-color: var(--phase4)">
+      <div class="phase-nodes">
+        <div class="node-chip"><span class="node-chip-icon">⚖️</span><span>Consent-as-Code = law</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🎮</span><span>Gaming + Animation adopt NOIZY</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🌐</span><span>Mixed-Reality NOIZY Metaverse</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🏛️</span><span>Board Architects · Genius Creators</span></div>
+        <div class="node-chip"><span class="node-chip-icon">📡</span><span>Major streaming platform integrations</span></div>
+      </div>
+      <div class="phase-center">
+        <div class="phase-badge">⚖️</div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-year">2032–2034</div>
+        <div class="phase-title">Civilization-Wide Protocol Adoption</div>
+        <div class="phase-objective">Objective — Shift entire industries toward ethical AI + creator-first</div>
+        <ul class="phase-bullets">
+          <li><span class="bullet-dot"></span><span>Protocol Uprising Complete — streaming, gaming, animation adopt NOIZY to access top talent</span></li>
+          <li><span class="bullet-dot"></span><span>Creator Co-Architecture — Genius Creators become Board Architects influencing AI evolution</span></li>
+          <li><span class="bullet-dot"></span><span>AI Ethics as Infrastructure Law — Consent-as-Code recognized globally</span></li>
+          <li><span class="bullet-dot"></span><span>Cross-Reality Expansion — NOIZY powers mixed-reality metaverses</span></li>
+          <li><span class="bullet-dot"></span><span>Legacy IP structures bypassed naturally by ethical protocol superiority</span></li>
+        </ul>
+        <div class="phase-outcome">The world automatically elevates creativity, ethics, and equity. NOIZY is the ethical backbone of civilization.</div>
+      </div>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase" style="--phase-color: var(--phase5)">
+      <div class="phase-content">
+        <div class="phase-year">2035–2036</div>
+        <div class="phase-title">Civilization Stabilization &amp; Legacy</div>
+        <div class="phase-objective">Objective — Make the 500-Year Vision visible and self-sustaining</div>
+        <ul class="phase-bullets">
+          <li><span class="bullet-dot"></span><span>500-Year Codex Activated — every creative decision preserved for centuries</span></li>
+          <li><span class="bullet-dot"></span><span>Global Creative Commons — every citizen contributes and benefits; no exclusions</span></li>
+          <li><span class="bullet-dot"></span><span>Haptic &amp; Neuroacoustic Civilization — sound becomes universal human language</span></li>
+          <li><span class="bullet-dot"></span><span>Legacy Nodes — Voice Estates form inheritable cultural estates and generational wealth</span></li>
+          <li><span class="bullet-dot"></span><span>NOIZY recognized as cultural, ethical, and creative backbone for generations</span></li>
+        </ul>
+        <div class="phase-outcome">Humanity + AI reach perfect balance. Technology amplifies creativity, preserves ethics, elevates global community.</div>
+      </div>
+      <div class="phase-center">
+        <div class="phase-badge">✨</div>
+      </div>
+      <div class="phase-nodes">
+        <div class="node-chip"><span class="node-chip-icon">📜</span><span>500-Year Codex · Live</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🌍</span><span>Global Creative Commons</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🎙️</span><span>Voice Estates · Generational IP</span></div>
+        <div class="node-chip"><span class="node-chip-icon">🧠</span><span>Neuroacoustic Civilization</span></div>
+        <div class="node-chip"><span class="node-chip-icon">♾️</span><span>Self-Sustaining · Forever</span></div>
+      </div>
+    </div>
+
+  </div><!-- /timeline -->
+
+  <!-- ── HVS ───────────────────────────────────────────────────────────────── -->
+  <div class="hvs-section">
+    <div class="econ-title" style="color: var(--magenta)">🧬 Human Voice Signature · The Identity Engine</div>
+    <div class="econ-sub">6-layer perpetual voice identity — the soul of every Voice Estate</div>
+    <div class="hvs-layers">
+      <div class="hvs-layer">
+        <div class="hvs-layer-num">Layer 1</div>
+        <div class="hvs-layer-name">Acoustic Core</div>
+        <div class="hvs-layer-tech">Librosa · pYIN Pitch · MFCCs</div>
+        <div class="hvs-layer-bar" style="--pct:100%"></div>
+      </div>
+      <div class="hvs-layer">
+        <div class="hvs-layer-num">Layer 2</div>
+        <div class="hvs-layer-name">Neural Embedding</div>
+        <div class="hvs-layer-tech">WavLM-Base · 768-dim</div>
+        <div class="hvs-layer-bar" style="--pct:90%"></div>
+      </div>
+      <div class="hvs-layer">
+        <div class="hvs-layer-num">Layer 3</div>
+        <div class="hvs-layer-name">Emotional Map</div>
+        <div class="hvs-layer-tech">SpeechBrain · IEMOCAP</div>
+        <div class="hvs-layer-bar" style="--pct:85%"></div>
+      </div>
+      <div class="hvs-layer">
+        <div class="hvs-layer-num">Layer 4</div>
+        <div class="hvs-layer-name">Vocal Health</div>
+        <div class="hvs-layer-tech">6 Dimensions · Fatigue Score</div>
+        <div class="hvs-layer-bar" style="--pct:80%"></div>
+      </div>
+      <div class="hvs-layer">
+        <div class="hvs-layer-num">Layer 5</div>
+        <div class="hvs-layer-name">Identity Fingerprint</div>
+        <div class="hvs-layer-tech">ECAPA-TDNN · 192-dim</div>
+        <div class="hvs-layer-bar" style="--pct:95%"></div>
+      </div>
+      <div class="hvs-layer">
+        <div class="hvs-layer-num">Layer 6</div>
+        <div class="hvs-layer-name">Narrative Intelligence</div>
+        <div class="hvs-layer-tech">Claude Opus 4.6 · Plain Language</div>
+        <div class="hvs-layer-bar" style="--pct:100%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ECONOMICS ──────────────────────────────────────────────────────────── -->
+  <div class="economics">
+    <div class="econ-title">💰 Economic Flow · The 75/25 Perpetual Engine</div>
+    <div class="econ-sub">1 NOIZY credit per second of generated audio · Immutable at registration · Activates after 1 month</div>
+
+    <div class="econ-flow">
+      <div class="econ-node">
+        <div class="econ-node-label">Voice Use</div>
+        <div class="econ-node-value" style="color: var(--cyan)">1 Credit/sec</div>
+      </div>
+      <div class="econ-arrow">→</div>
+      <div class="econ-node">
+        <div class="econ-node-label">Creator Earns</div>
+        <div class="econ-node-value" style="color: var(--gold)">75%</div>
+      </div>
+      <div class="econ-arrow">+</div>
+      <div class="econ-node">
+        <div class="econ-node-label">Platform Earns</div>
+        <div class="econ-node-value" style="color: var(--dim)">25%</div>
+      </div>
+      <div class="econ-arrow">→</div>
+      <div class="econ-node">
+        <div class="econ-node-label">Voice Estate</div>
+        <div class="econ-node-value" style="color: var(--magenta)">Forever</div>
+      </div>
+    </div>
+
+    <div class="econ-split">
+      <div class="econ-creator">CREATOR — 75% · Perpetual · Inheritable · Non-Negotiable</div>
+      <div class="econ-platform">PLATFORM 25%</div>
+    </div>
+
+    <div class="econ-grid">
+      <div class="econ-card">
+        <div class="econ-card-title">Voice Estate Inheritance</div>
+        <div class="econ-card-desc">Every Voice Estate passes to the creator's designated heirs. RSP_001 is the proof of concept — a voice that earns forever, for generations.</div>
+      </div>
+      <div class="econ-card">
+        <div class="econ-card-title">LifeLUV Token Layer</div>
+        <div class="econ-card-desc">Triple-lock system. LifeLUV tokens represent valorization of human creative output — recursive micro-splits compound over a 500-year horizon.</div>
+      </div>
+      <div class="econ-card">
+        <div class="econ-card-title">Guild Revenue Paths</div>
+        <div class="econ-card-desc">Guild tiers unlock additional revenue streams: licensing pools, mentorship fees, session royalties, and collective IP governance rights.</div>
+      </div>
+      <div class="econ-card">
+        <div class="econ-card-title">Consent-as-Code Lock</div>
+        <div class="econ-card-desc">The split cannot be renegotiated by any platform, partner, or protocol upgrade. It is written into the smart contract layer as immutable infrastructure law.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GUILD ──────────────────────────────────────────────────────────────── -->
+  <div class="guild-section">
+    <div class="econ-title">🏆 Global Guild of Artists · Tier System</div>
+    <div class="econ-sub">Knowledge ascends. Reputation compounds. Legacy endures.</div>
+    <div class="guild-tiers">
+      <div class="tier-card" style="--tier-color:#cd7f32">
+        <div class="tier-icon">🌱</div>
+        <div class="tier-name">Apprentice</div>
+        <div class="tier-years">Year 0–1</div>
+        <div class="tier-perks">Access to DreamChamber · Basic NOIZYVOX cloning · Community mentorship · HVS baseline report</div>
+      </div>
+      <div class="tier-card" style="--tier-color:#c0c0c0">
+        <div class="tier-icon">⚒️</div>
+        <div class="tier-name">Journeyman</div>
+        <div class="tier-years">Year 1–3</div>
+        <div class="tier-perks">Codex contribution rights · Enhanced split pools · Cross-continental collaborations · Voice Estate activation</div>
+      </div>
+      <div class="tier-card" style="--tier-color:#f0a500">
+        <div class="tier-icon">🔱</div>
+        <div class="tier-name">Master</div>
+        <div class="tier-years">Year 3–7</div>
+        <div class="tier-perks">Mentorship program eligibility · Board advisory voice · Licensing pool governance · Legacy Vault access</div>
+      </div>
+      <div class="tier-card" style="--tier-color:#e040fb">
+        <div class="tier-icon">👑</div>
+        <div class="tier-name">Legend</div>
+        <div class="tier-years">Year 7+</div>
+        <div class="tier-perks">Board Architect status · Protocol co-design rights · Permanent Codex entry · Generational estate recognition · 500-Year legacy lock</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PRINCIPLES ─────────────────────────────────────────────────────────── -->
+  <div class="section-title">Master Principles · The 5 Laws of Creative Civilization</div>
+
+  <div class="principles">
+    <div class="principle-card">
+      <div class="principle-number">1</div>
+      <div class="principle-icon">🤝</div>
+      <div class="principle-title">AI as Co-Creator</div>
+      <div class="principle-desc">Humans are amplified, never replaced. Every AI action in the NOIZY ecosystem requires explicit human creative consent and direction. The artist leads. The AI executes.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">2</div>
+      <div class="principle-icon">⚖️</div>
+      <div class="principle-title">Ethics = Infrastructure</div>
+      <div class="principle-desc">Consent, transparency, and fairness are embedded at the protocol level — not a feature, not a policy, but the load-bearing architecture of every NOIZY system.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">3</div>
+      <div class="principle-icon">🌍</div>
+      <div class="principle-title">Global Community · Local Resonance</div>
+      <div class="principle-desc">Diversity is preserved, not homogenized. Culture is amplified in its authentic local form. Humanity is connected through shared creative infrastructure, not forced uniformity.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">4</div>
+      <div class="principle-icon">♾️</div>
+      <div class="principle-title">Legacy &amp; Perpetuity</div>
+      <div class="principle-desc">Every creative act becomes part of the 500-year civilization plan. Voice Estates, Codex entries, and split records are permanent records of human creative contribution.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">5</div>
+      <div class="principle-icon">⚡</div>
+      <div class="principle-title">Innovation Without Friction</div>
+      <div class="principle-desc">GORUNFREE at civilization scale. Imagination to reality in one step. Every barrier between a creator's vision and its execution is identified and eliminated permanently.</div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-glow">NOIZY · The Civilization of Creation</div>
+    <div>Generated in the DreamChamber · March 14, 2026 · Looking forward to 2036</div>
+    <div style="margin-top:8px; color: rgba(123,130,160,0.5)">RSP_001 · GABRIEL · DREAM · POPS · AVA · LUCY · SHIRL · Built on M2 Ultra · Powered by Love, Code, and Sound</div>
+  </footer>
+
+</div><!-- /page -->
+
+<script>
+  // ── STARFIELD ────────────────────────────────────────────────────────────
+  const sf = document.getElementById('starfield');
+  for (let i = 0; i < 200; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      --d:${(Math.random()*4+2).toFixed(1)}s;
+      --o:${(Math.random()*0.6+0.1).toFixed(2)};
+      animation-delay:${(Math.random()*5).toFixed(1)}s;
+    `;
+    sf.appendChild(s);
+  }
+
+  // ── ENTRANCE ANIMATIONS ───────────────────────────────────────────────────
+  const cards = document.querySelectorAll('.agent-card, .phase-content, .tier-card, .principle-card, .hvs-layer, .econ-card');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = e.target.style.transform.replace('translateY(24px)', 'translateY(0)') || 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  cards.forEach(c => {
+    c.style.opacity = '0';
+    c.style.transform = 'translateY(24px)';
+    c.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    obs.observe(c);
+  });
+
+  // ── LIVE TIMESTAMP ────────────────────────────────────────────────────────
+  const now = new Date();
+  document.title = `NOIZY Civilization Map · ${now.getFullYear()}`;
+</script>
+</body>
+</html>

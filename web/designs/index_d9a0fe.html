@@ -1,0 +1,1055 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="ja">
+  <head lang="ja">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>マキシマイザー - Ozone8ユーザーズマニュアル</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/ja/maximizer/">
+    <meta property="og:title" content="Ozone8ユーザーズマニュアル">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone8ユーザーズマニュアル">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | マキシマイザー</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="はじめに" href="../index.html">
+	
+	はじめに
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8の概要" href="../ozone-overview/index.html">
+	
+	Ozone 8の概要
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone応用" href="../ozone-app-overview/index.html">
+	
+	Ozone応用
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プリセットシステム" href="../preset-system/index.html">
+	
+	プリセットシステム
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="全般的な機能" href="../general-functions/index.html">
+	
+	全般的な機能
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="モジュールの標準的な操作項目" href="../common-module-controls/index.html">
+	
+	モジュールの標準的な操作項目
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミクス" href="../dynamics/index.html">
+	
+	ダイナミクス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミックEQ" href="../dynamic-eq/index.html">
+	
+	ダイナミックEQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イコライザー" href="../equalizer/index.html">
+	
+	イコライザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="エキサイター" href="../exciter/index.html">
+	
+	エキサイター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イメージャー" href="../imager/index.html">
+	
+	イメージャー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="マキシマイザー" href="index.html">
+	
+	マキシマイザー
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="スペクトラル成形" href="../spectral-shaper/index.html">
+	
+	スペクトラル成形
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージコンプレッサー" href="../vintage-compressor/index.html">
+	
+	ビンテージコンプレッサー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージEQ " href="../vintage-eq/index.html">
+	
+	ビンテージEQ 
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージリミッター" href="../vintage-limiter/index.html">
+	
+	ビンテージリミッター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージテープ" href="../vintage-tape/index.html">
+	
+	ビンテージテープ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="コーデックプレビュー" href="../codec-preview/index.html">
+	
+	コーデックプレビュー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ディザー" href="../dither/index.html">
+	
+	ディザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マスターアシスタント" href="../master-assistant/index.html">
+	
+	マスターアシスタント
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トラックリファレンス" href="../track-referencing/index.html">
+	
+	トラックリファレンス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トーナルバランスコントロール" href="../tonal-balance-control/index.html">
+	
+	トーナルバランスコントロール
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オプション" href="../options/index.html">
+	
+	オプション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プラグインオートメーション" href="../plug-in-automation/index.html">
+	
+	プラグインオートメーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ヒントと用例" href="../tips-and-examples/index.html">
+	
+	ヒントと用例
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーソリゼーション" href="../authorization/index.html">
+	
+	オーソリゼーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotopeカスタマーケアー" href="../customer-care/index.html">
+	
+	iZotopeカスタマーケアー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information (ライセンス情報)" href="../license-information/index.html">
+	
+	License Information (ライセンス情報)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA (エンドユーザー向け使用許諾契約)" href="../eula/index.html">
+	
+	EULA (エンドユーザー向け使用許諾契約)
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../en/maximizer/index.html"><i class="icon icon-eye"></i> View in English</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>マキシマイザー </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">言語:</span>
+<br />
+    
+
+       
+       <a href="../../en/maximizer/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+        <a href="../../en/maximizer/index.html"><button class="lang-btn-active">日本語</button></a>
+       
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+    
+
+	
+
+<h2 id="概要">概要</h2>
+
+<p>好評を博すOzoneのIRC（インテリジェント・リリース・コントロール）を使用することで、ダイナミクスやクリアさを犠牲にすることなく、ミックス全体のレベルをブーストすることができます。マキシマイザーはミックスの全帯域に適用されますので、マルチバンドエフェクトではありません。</p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<p><img src="../images/maximizer/max-interface.png" alt="Maximizer interface" /></p>
+
+<h3 id="モード"><strong>モード</strong></h3>
+
+<p>Maximizerには、次のインテリジェントリリースコントロール（IRC）モードが含まれています。</p>
+
+<ul>
+<li><a href="index.html#irc-ll">IRC LL</a></li>
+<li><a href="index.html#irc-i">IRC I</a></li>
+<li><a href="index.html#irc-ii">IRC II</a></li>
+<li><a href="index.html#irc-iii">IRC III</a></li>
+<li><a href="index.html#irc-iv">IRC IV</a></li>
+</ul>
+
+<h3 id="irc-ll">IRC LL</h3>
+
+<p>IRC Iの低レーテンシー版として、インテリジェントな音量極大化を行います。</p>
+
+<h3 id="irc-i">IRC I</h3>
+
+<p>このモードは信号に対するインテリジェントなデジタル音量極大化を行います。これは、ソース素材を分析した上で、心理音響的に心地良いリミッティングを適用し、トランジエントには迅速に反応し（ポンピング防止のため）、一定のベーストーンには（ディストーション防止のため）緩やかに反応することで、実現します。</p>
+
+<h3 id="irc-ii">IRC II</h3>
+
+<p>上記のインテリジェントモードと似ておりますが、このモードは更にトランジエントを保存するために最適化されているため、アグレッシブなリミッティングを実行したとしても、出力信号はシャープでクリアな音像となります。</p>
+
+<h3 id="irc-iii">IRC III</h3>
+
+<p>これは、入力信号に対するリミッティングの速度を、人間の聴覚でも聴き取れるレベルのディストーションが発生する前にインテリジェントに定義する進化した心理音響モデルを使用することにより、最もアグレッシブなリミッティングを可能にしたモードです。</p>
+
+<p>IRC IIIモードはCPU負荷が非常に重く、高いレーテンシーが発生し、特にサンプルレートが高い場合において顕著です。サンプルレートが48kHz以上の場合は、このインテリジェントIIIモードのリアルタイムでの使用は現実的ではないかもしれません。</p>
+
+<p>各IRCモードにはインテリジェントなリリースコントロール機能（オーディオ素材によりリリース時間を自動的に設定）が搭載されます。しかしながら、IRC IIIモードでマキシマイザーを使用する際は、以下の4つのスタイルを使い分け、リリース動作をより細かく設定することで、リミッターの最終的な音の品質をより高めることができます。</p>
+
+<h4 id="irc-iiiのスタイル">IRC IIIのスタイル</h4>
+
+<ul>
+<li><strong>CLIPPING</strong>: これはIRC IIIで最もアグレッシブなスタイルであり、ディストーションで僅かにミックスに色付けしたい場合、あるいはクリッピングの最大リスクと引き換えに最大レベルのラウドネスを実現したい場合の選択肢となります。</li>
+<li><strong>CRISP</strong>: この設定は、リミッターのリリース修正をアグレッシブに抑制し、ディストーションをポンピングに優先させます。</li>
+<li><strong>BALANCED</strong>: この設定はリミッターのリリース修正を概して平明な方法で抑制するため、殆ど全ての素材に適しているといえます。</li>
+<li><strong>PUMPING</strong>: これはIRC IIIでは最もアグレッシブでないスタイル設定であり、リミッターのリリース修正を抑制しません。これを選択するとリリース時間が遅くなり易く、ポンピングの発生に結びつくことがあります。これはOzoneバージョン5.01以前で使用されていた“レガシー”設定です。</li>
+</ul>
+
+<h3 id="irc-iv">IRC IV</h3>
+
+<p>これは既存のIRCテクノロジーを基に、スペクトラムを成型することにより更にポンピングとディストーションを軽減させたモードです。信号がスレッシュホルドを超過すると、IRC IVアルゴリズムはそのピークの中で最も顕著な周波数帯をリミッティングします。これにより、異なる信号成分間で発生する混変調を軽減します。</p>
+
+<p>例えばボーカルとドラムに処理を施す場合、このアルゴリズムはドラムのトランジエントのリミッティングに対する分離感度が高くなりつつ、ボーカルに対する影響を最小限に抑えます。リミッティングが不要な場合はスペクトラムがそのまま保たれます。</p>
+
+<p>通常、典型的なマルチバンドリミッターはクロスオーバーの組み合わせで数バンドに分けて処理するに留まりますが、OzoneのIRC IVアルゴリズムは心理音響的に分離された数多くのバンド数を駆使し、あらゆるタイプのオーディオに適応します。</p>
+
+<h4 id="irc-ivスタイル">IRC IVスタイル</h4>
+
+<ul>
+<li><strong>CLASSIC</strong>: この設定はOzoneの旧バージョンから存在する、ミックス全体を程よく促進する昔ながらの響きのするモードですが、今日も多くのプロフェッショナルが使用しています。</li>
+<li><strong>MODERN</strong>: このスタイルもミックスを活き活きとさせる程よい効果をもたらしますが、クラシックスタイルよりもディテールと清澄性に長けています。</li>
+<li><strong>TRANSIENT</strong>: このスタイルは全てのトランジエントをできる限り保持するよう最適化されており、全体的なサウンドにディテールが備わりますので、更なる清澄性を必要とするミックスに恩恵をもたらします。</li>
+</ul>
+
+<h3 id="threshold-スレッシュホルド"><strong>Threshold（スレッシュホルド）</strong></h3>
+
+<p>どのレベルでリミッティングがトリガーされるかと、出力を最大化するために追加されるゲイン量を決定します。スレッシュホルドの値を、リミッターをトリガーしない0でない数値に設定したとしても、マキシマイザーの出力は増加します。例えば、マキシマイザーの入力レベルが-15 dBでピークを迎え、マキシマイザーのスレッシュホルドが-4dBに設定されている場合、リミッティングは発生しませんが、マキシマイザーの出力は-11dBでピークするようになります。</p>
+
+<h3 id="learn-threshold-スレッシュホルド分析"><strong>Learn Threshold（スレッシュホルド分析）</strong></h3>
+
+<p>ここが有効になっていると、マキシマイザーはスレッシュホルドターゲットの値に入力オーディオを合わせ込むべく、自動的にスレッシュホルドのスライダーを調整します。ターゲットLUFSの数値をダブルクリックすると、LUFSターゲット値を編集することができます。</p>
+
+<p>分析後も、このパラメーターは自動的に無効にはなりません。ターゲット値へ合わせるため、継続的にスレッシュホルドを更新するために使用することができます。</p>
+
+<div class="admonition warning">
+<p class="admonition-title">スレッシュホルド分析機能はラウドネス批准目的での使用には推奨されません</p>
+<p><ul>
+<li>スレッシュホルド分析機能はラウドネス批准のために設計された操作項目ではありません。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="ceiling-シーリング"><strong>Ceiling（シーリング）</strong></h3>
+
+<p>マキシマイザーの出力する最高レベルを設定します。一般的に、ディザー使用時は-0.3 dBが推奨値となりますが、マスタリングされるオーディオを.mp3または.aacへ変換する場合は、将来的なクリッピングを防止すべく、更に低いレベル(-0.6から-0.8)が推奨されます。</p>
+
+<h3 id="threshold-ceiling-link-スレッシュホルドとシーリングをリンク"><strong>Threshold &amp; Ceiling Link（スレッシュホルドとシーリングをリンク）</strong></h3>
+
+<p>有効にするとスレッシュホルドとシーリングの操作がリンクします。片方の操作をすると、もう片方も同じ分量だけ変化します。</p>
+
+<h3 id="true-peak-真正ピーク"><strong>True Peak（真正ピーク）</strong></h3>
+
+<p>各デジタルサンプルのレベルのみならず、D/A変換後のアナログ信号のレベルも鑑みたリミッティングを行う場合は、真正ピークリミッティング機能を有効化します。アナログ信号のピーク値とデジタル信号のピーク値とでは、一致する値であっても実際は3dB以上アナログの方が高い場合がありますので、時としてこの機能が必要となります。</p>
+
+<div class="admonition note">
+<p class="admonition-title">真正ピークリミッティングとCPU使用率</p>
+<p>この機能を使用すると僅かながらCPU使用率が上がりますが、ミックスのレベルが高めに設定されている場合は、D/A変換の段階でディストーションが発生しないよう、この機能を有効化する方が確実と言えます。</p>
+</div>
+
+<h3 id="character-処理性質"><strong>Character（処理性質）</strong></h3>
+
+<p>キャラクタースライダーにより、マキシマイザー処理の音質に直結する全体的なレスポンス時間を調節します。</p>
+
+<h3 id="stereo-independence-ステレオ独立機能"><strong>Stereo Independence（ステレオ独立機能）</strong></h3>
+
+<p>ステレオ独立機能は以前のバージョンのOzoneのステレオアンリンク機能にあたります。ステレオ独立機能の操作（TransientとSustain）はデフォルトで0%に設定されており、以前のステレオアンリンク機能のデフォルト設定と同じ状態になっております。</p>
+
+<p>チャンネルを個別にリミッティングする場合（両スライダーとも100%に設定）、マキシマイザーの出力音量を上げることは可能ですが、これを行うとステレオ野が狭まる可能性があります。ステレオアンリンク時の操作における狭窄効果を軽減するため、この機能ではフェーダーが2本に分離されています。</p>
+
+<p>0でない数値に設定されていると、個別のチャンネルレベルと全体的なステレオ野により生成されたレベルエンベロープに応じて、トランジエントとサステイン成分が別々にリミッティングされる処理が適用されます。</p>
+
+<ul>
+<li><strong>Transient（トランジエント）:</strong> チャンネルを通じ、トランジエントな素材に対しリミッターが如何に反応するかを調整します。</li>
+<li><strong>Sustain（サステイン）:</strong> トラックを通じ、響きの長い素材に対しリミッターが如何に反応するかを調整します。</li>
+<li><strong>Link（リンク）:</strong> トランジエントとサステインのスライダーをリンクさせます。</li>
+</ul>
+
+<h3 id="transient-emphasis-トランジエント強調機能"><strong>Transient Emphasis（トランジエント強調機能）</strong></h3>
+
+<p>Transient Emphasisの電源ボタンをクリックするとトランジエント強調機能の調整が有効になります。 Amountの操作を行うと、リミッティング前のトランジエントの成形の微調整を行うことができます。この機能は、ラウドネスを最適化しつつドラムのような音の鋭さを保持する際に便利です。</p>
+
+<div class="admonition note">
+<p class="admonition-title">ヒント</p>
+<p><ul>
+<li>ここの数値が高い程、リミッティング処理後のトランジエントが際立ちます。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="スレッシュホルドメーター"><strong>スレッシュホルドメーター</strong></h3>
+
+<p><img src="../images/maximizer/max-threshold.png" alt="Maximizer threshold meter" /></p>
+
+<p>スレッシュホルドメーターは、レベルメーター上で発生しているゲインリダクションの量を表示します。外側の2本のメーターが入力信号を示し、ゲインリダクションが発生すると、中央のメーターに赤でその分量が表示されます。</p>
+
+<h3 id="ミニメーター画面"><strong>ミニメーター画面</strong></h3>
+
+<p>マキシマイザーには操作画面上部に以下のミニメーター画面があります。</p>
+
+<h3 id="gain-reduction-trace-ゲイン削減トレース表示">Gain Reduction Trace（ゲイン削減トレース表示）</h3>
+
+<p><img src="../images/maximizer/max-gr-trace.png" alt="gain reduction" /></p>
+
+<p>この画面では、入力信号の波形にゲイン削減の分量がリアルタイムでスーパーインポーズされた曲線が表示されるスクロールメーターが表示されます。ゲイン削減トレース表示はアタックとリリースを正しく設定し、ゲイン削減のエンベロープをモニターする上での一助となります。</p>
+
+<h3 id="spectrum-analyzer-スペクトラムアナライザー">Spectrum Analyzer（スペクトラムアナライザー）</h3>
+
+<p><img src="../images/maximizer/max-spectrum.png" alt="spectrum" /></p>
+
+<p>Ozoneの出力のスペクトラムがリアルタイムで表示されます。</p>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../imager/index.html" title="イメージャー">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              イメージャー
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../spectral-shaper/index.html" title="スペクトラル成形 [ADV]">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              スペクトラル成形 [ADV]
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../en/maximizer/index.html"><i class="icon icon-eye"></i> View in English</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8ヘルプドキュメント 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

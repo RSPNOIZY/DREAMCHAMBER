@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Response</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .content {
+            padding: 40px 30px;
+            color: #333333;
+            line-height: 1.6;
+        }
+        .ticket-info {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .original-message {
+            background-color: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #666;
+        }
+        .help-links {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #e3f2fd;
+            border-radius: 8px;
+        }
+        .help-links h4 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+        .help-links a {
+            display: block;
+            color: #1976d2;
+            text-decoration: none;
+            margin: 8px 0;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>🎧 Fish Music Support</h1>
+        </div>
+        
+        <div class="content">
+            <p>Hi {{customerName}},</p>
+            
+            <p>Thank you for contacting Fish Music Inc support. We've received your message and our team is here to help!</p>
+            
+            <div class="ticket-info">
+                <strong>Ticket #:</strong> {{ticketNumber}}<br>
+                <strong>Subject:</strong> {{subject}}<br>
+                <strong>Status:</strong> {{status}}<br>
+                <strong>Priority:</strong> {{priority}}
+            </div>
+            
+            <h3>Our Response:</h3>
+            
+            <p>{{responseMessage}}</p>
+            
+            <div class="original-message">
+                <strong>Your Original Message:</strong><br>
+                {{originalMessage}}
+            </div>
+            
+            <p>If you have any additional questions or need further assistance, simply reply to this email and we'll continue the conversation on the same ticket.</p>
+            
+            <div class="help-links">
+                <h4>Helpful Resources</h4>
+                <a href="{{helpCenterUrl}}">→ Visit Help Center</a>
+                <a href="{{faqUrl}}">→ Frequently Asked Questions</a>
+                <a href="{{communityUrl}}">→ Community Forum</a>
+                <a href="{{statusUrl}}">→ Service Status</a>
+            </div>
+            
+            <p><strong>Support Hours:</strong><br>
+            Monday - Friday: 9:00 AM - 6:00 PM PST<br>
+            Saturday: 10:00 AM - 4:00 PM PST<br>
+            Sunday: Closed</p>
+            
+            <p>We're committed to providing you with the best support experience!</p>
+            
+            <p>
+                Best regards,<br>
+                <strong>{{agentName}}</strong><br>
+                Fish Music Inc Support Team
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>
+                Fish Music Inc Support<br>
+                support@fishmusicinc.com<br>
+                (555) 123-4567
+            </p>
+            <p style="margin-top: 20px; font-size: 12px; color: #999;">
+                © 2025 Fish Music Inc. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

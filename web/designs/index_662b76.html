@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+
+  
+  
+  
+  
+   <html class="no-js">   
+
+
+<head lang="ja">
+
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Spectral De-noise（スペクトラルノイズ除去）[STD &amp; ADV] - RX6オーディオエディター 取扱説明書</title>
+    <meta name="generator" content="Hugo 0.32.3" />
+
+    
+    <meta name="description" content="RX 6 Help Documentation">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.rx6helpdocs.com/ja/34-spectral-de-noise/">
+    <meta property="og:title" content="RX6オーディオエディター 取扱説明書">
+    
+    <meta name="apple-mobile-web-app-title" content="RX6オーディオエディター 取扱説明書">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+
+</head>
+
+<body class="palette-primary-blue palette-accent-blue">
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../img/izotope-rx6.png"> Spectral De-noise（スペクトラルノイズ除去）[STD &amp; ADV]</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="はじめに" href="../01-introduction/index.html">
+	
+	はじめに
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RX 6の概要" href="../02-rx6-comparison/index.html">
+	
+	RX 6の概要
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーソリゼーション" href="../03-authorization/index.html">
+	
+	オーソリゼーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ファイルの作業" href="../04-working-with-files/index.html">
+	
+	ファイルの作業
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="録音" href="../05-recording/index.html">
+	
+	録音
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トランスポート機能" href="../06-transport-controls/index.html">
+	
+	トランスポート機能
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="スペクトログラム/波形画面" href="../07-spectrogram-waveform-display/index.html">
+	
+	スペクトログラム/波形画面
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="各種ツール" href="../08-interactive-tools/index.html">
+	
+	各種ツール
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="取り消し履歴" href="../10-undo-history/index.html">
+	
+	取り消し履歴
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="アプリケーションメニュー" href="../11-application-menus/index.html">
+	
+	アプリケーションメニュー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="の環境設定メニュ" href="../12-preferences/index.html">
+	
+	の環境設定メニュ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Composite View（コンポジット表示）" href="../13-composite-view/index.html">
+	
+	Composite View（コンポジット表示）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Batch Processing（一括処理)" href="../38-batch-processing/index.html">
+	
+	Batch Processing（一括処理)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="一般的なRXモジュールの操作項目" href="../14-module-controls/index.html">
+	
+	一般的なRXモジュールの操作項目
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="モジュールリスト" href="../15-module-list/index.html">
+	
+	モジュールリスト
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Module Chain（モジュールチェーン）" href="../16-module-chain/index.html">
+	
+	Module Chain（モジュールチェーン）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambience Match（アンビエンスマッチ)" href="../17-ambience-match/index.html">
+	
+	Ambience Match（アンビエンスマッチ)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Breath Control（ブレス音調整）" href="../18-breath-control/index.html">
+	
+	Breath Control（ブレス音調整）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Center Extract（センター抽出）" href="../19-center-extract/index.html">
+	
+	Center Extract（センター抽出）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-bleed（ブリード除去）" href="../20-de-bleed/index.html">
+	
+	De-bleed（ブリード除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-click（クリック除去）" href="../21-de-click/index.html">
+	
+	De-click（クリック除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-clip（クリップ除去）" href="../22-de-clip/index.html">
+	
+	De-clip（クリップ除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-crackle（クラックル除去）" href="../23-de-crackle/index.html">
+	
+	De-crackle（クラックル除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-ess（歯擦音除去）" href="../24-de-ess/index.html">
+	
+	De-ess（歯擦音除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-hum（ハム除去）" href="../25-de-hum/index.html">
+	
+	De-hum（ハム除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-plosive（破裂音除去）" href="../26-de-plosive/index.html">
+	
+	De-plosive（破裂音除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-reverb（リバーブ除去）" href="../27-de-reverb/index.html">
+	
+	De-reverb（リバーブ除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-rustle（布擦れ音除去）" href="../28-de-rustle/index.html">
+	
+	De-rustle（布擦れ音除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-wind（風除去）" href="../29-de-wind/index.html">
+	
+	De-wind（風除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Deconstruct（解体）" href="../30-deconstruct/index.html">
+	
+	Deconstruct（解体）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dialogue Isolate（ダイアログ分離）" href="../31-dialogue-isolate/index.html">
+	
+	Dialogue Isolate（ダイアログ分離）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Interpolate（補間）" href="../32-interpolate/index.html">
+	
+	Interpolate（補間）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Mouth De-click（マウスクリック除去）" href="../33-mouth-de-click/index.html">
+	
+	Mouth De-click（マウスクリック除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Spectral De-noise（スペクトラルノイズ除去）" href="index.html">
+	
+	Spectral De-noise（スペクトラルノイズ除去）
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectral Repair（スペクトラル修復）" href="../35-spectral-repair/index.html">
+	
+	Spectral Repair（スペクトラル修復）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Voice De-noise（声音ノイズ除去）" href="../36-voice-de-noise/index.html">
+	
+	Voice De-noise（声音ノイズ除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Azimuth（アジマス）" href="../37-azimuth/index.html">
+	
+	Azimuth（アジマス）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dither（ディザー）" href="../39-dither/index.html">
+	
+	Dither（ディザー）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EQ" href="../40-eq/index.html">
+	
+	EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EQ Match（EQマッチ）" href="../41-eq-match/index.html">
+	
+	EQ Match（EQマッチ）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Fade（フェード）" href="../42-fade/index.html">
+	
+	Fade（フェード）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Gain（ゲイン）" href="../44-gain/index.html">
+	
+	Gain（ゲイン）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Leveler（レベラー）" href="../45-leveler/index.html">
+	
+	Leveler（レベラー）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Loudness（ラウドネス）" href="../46-loudness/index.html">
+	
+	Loudness（ラウドネス）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Mixing（ミキシング）" href="../47-mixing/index.html">
+	
+	Mixing（ミキシング）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Normalize（ノーマライズ）" href="../48-normalize/index.html">
+	
+	Normalize（ノーマライズ）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Phase（位相）" href="../49-phase/index.html">
+	
+	Phase（位相）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pitch Contour（ピッチ等高線）" href="../50-pitch-contour/index.html">
+	
+	Pitch Contour（ピッチ等高線）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plug-in Hosting（プラグインホスト機能）" href="../51-plug-in-hosting/index.html">
+	
+	Plug-in Hosting（プラグインホスト機能）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Resample（再サンプル）" href="../52-resample/index.html">
+	
+	Resample（再サンプル）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Signal Generator（シグナルジェネレーター）" href="../53-signal-generator/index.html">
+	
+	Signal Generator（シグナルジェネレーター）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Time &amp; Pitch（時間とピッチ）" href="../54-time-and-pitch/index.html">
+	
+	Time &amp; Pitch（時間とピッチ）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Find Similar（類似イベント検出）" href="../43-find-similar/index.html">
+	
+	Find Similar（類似イベント検出）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Markers &amp; Regions（マーカーとリージョン）" href="../55-markers-and-regions/index.html">
+	
+	Markers &amp; Regions（マーカーとリージョン）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectrum Analyzer（スペクトラム・アナライザー）" href="../56-spectrum-analyzer/index.html">
+	
+	Spectrum Analyzer（スペクトラム・アナライザー）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Waveform Statistics（波形の数値）" href="../57-waveform-stats/index.html">
+	
+	Waveform Statistics（波形の数値）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RXプラグイン" href="../58-rx-plug-ins/index.html">
+	
+	RXプラグイン
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RX Monitor（RXモニター）" href="../59-rx-monitor/index.html">
+	
+	RX Monitor（RXモニター）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RX Connect（RXコネクト）" href="../60-rx-connect/index.html">
+	
+	RX Connect（RXコネクト）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="キーボードショートカットガイド" href="../63-keyboard-shortcut-guide/index.html">
+	
+	キーボードショートカットガイド
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーディオの問題の識別" href="../68-audio-problems/index.html">
+	
+	オーディオの問題の識別
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotopeカスタマーケアー" href="../69-izotope-customer-care/index.html">
+	
+	iZotopeカスタマーケアー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="エンドユーザー向け使用許諾契約" href="../70-eula/index.html">
+	
+	エンドユーザー向け使用許諾契約
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ライセンス情報" href="../71-license-information/index.html">
+	
+	ライセンス情報
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+
+        
+    
+          
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../en/34-spectral-de-noise/index.html"><i class="icon icon-eye"></i> 翻訳されたページを見る</a>
+          </li>
+        </ul></div></div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+       
+    
+    
+
+	<h1>Spectral De-noise（スペクトラルノイズ除去）[STD &amp; ADV] </h1>
+
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">言語:</span>
+<br />
+    
+
+       
+       <a href="../../en/34-spectral-de-noise/index.html"><button class="lang-btn-clickable">英語</button></a>
+        
+        <a href="../../en/34-spectral-de-noise/index.html"><button class="lang-btn-active">日本語</button></a>
+       
+    
+</div>
+ 
+
+
+    
+
+    
+
+
+
+
+    
+
+	
+
+<table>
+<thead>
+<tr>
+<th>モジュール&amp;プラグイン</th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
+<h2 id="概要">概要</h2>
+
+<p>スペクトラルノイズ除去は、不快なノイズを分析し、それを信号から差し引くことで固定ノイズや緩やかに変化する音色的なノイズを除去するために設計されました。これは、テープのヒス、HVACシステム、屋外環境、ラインノイズ、グラウンドループ、カメラのモーター音、ファン、風、多くのハーモニクスを持つ複雑なバズなどの除去に便利です。</p>
+
+<p>スペクトラルノイズ除去は、バックグラウンド・ノイズのプロフィールを分析し、信号の振幅が設定されたスレッシュホルドを下回った際に、信号からノイズを差し引きます。スペクトラルノイズ除去は正確かつ高品質なノイズの削減を実現するフレキシブルなツールです。また、個別の操作項目により、広帯域のノイズからノイズ除去において発生する不要物の対応に至るまで諸々の問題を解消する事ができ、周波数スペクトラム上の編集インターフェースが豊かな操作性を実現します。</p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<p><img src="../img/34-spectral-de-noise-collapsed.png" alt="spectral de-noise interface" /></p>
+
+<ul>
+<li><strong>LEARN（分析）:</strong> 分析が有効化されていると、スペクトラルノイズ除去は、選択範囲からノイズプロフィールを作成します。分析機能でノイズプロフィールが作成されると、処理の長さを通して固定されます。ファイルを通してコンスタントかつ連続的に乗っているノイズの除去や減衰には、手動で分析したノイズプロフィールが最も適しています。<br />
+<div class="admonition note">
+<p class="admonition-title">スペクトラルノイズ除去でのノイズプロフィールの分析方法</p>
+<p><ul>
+<li>ノイズのみの箇所で最も長い部分を範囲選択してください（数秒の長さが理想的です）。<br /></li>
+<li>Learnボタンをクリックし、ノイズプロフィールをキャプチャしてください。<br />
+
+<ul>
+<li><strong>RXオーディオエディターのスペクトラルノイズ除去でノイズプロフィールをキャプチャする際は、</strong>範囲選択をした上でLearnボタンをクリックします。<br /></li>
+<li><strong>RXのスペクトラルノイズ除去プラグインでノイズプロフィールをキャプチャする際は、</strong>Learnボタンをエンゲージした上でオーディオを再生するか、あるいは、Audiosuiteで“Preview”を選択し、範囲指定された箇所のノイズプロフィールをキャプチャします。<br /></li>
+</ul></li>
+</ul>
+</p>
+</div><br />
+<div class="admonition note">
+<p class="admonition-title">ノイズプロフィールの分析に関する更なる情報</p>
+<p><br>RX 6オーディオエディターで複数の選択範囲からノイズプロフィールを分析し、最高の結果を得る方法に関しては、後述の更なる情報の項を参照してください。</p>
+</div><br /></li>
+<li><strong>ADAPTIVE MODE（適応モード）:</strong> 適応モードが有効の場合、スペクトラルノイズ除去モジュールの処理で使用されるノイズプロフィールは、入力オーディオに応じて変化します。このモードは、時間の経過と共に変遷する類いのノイズ（交通音や波の音など）を除去する際に有益です。<br />
+<div class="admonition note">
+<p class="admonition-title">スペクトラルノイズ除去の適応モードでのパフォーマンスに関する注意点</p>
+<p><br>スペクトラルノイズ除去の適応モードでは甚大な量のメモリーとコンピュータパワーを消費します。より効率の良い適応モード下でのノイズリダクションには、効率性が高くゼロレーテンシーの声音ノイズ除去の適応モードを使用してください。</p>
+</div><br />
+
+<ul>
+<li><strong>LEARNING TIME（分析時間） [s]:</strong> 適応モードで時間の経過と共に変化するノイズプロフィールを分析する際の先読み時間を決定します。<br /></li>
+</ul></li>
+<li><strong>THRESHOLD (NOISY/TONAL)（スレッシュホルド）:</strong> ノイズとそれ以外の信号の振幅分離調整の操作を行います。<br />
+
+<ul>
+<li>ここの設定値が高いとより多くのノイズを除去しますが、低レベルの非ノイズ部分も損なわれます。<br /></li>
+<li>ここの設定値が高いと低レベルの非ノイズ部分は残されますが、ノイズが信号により変調される結果に繋がる事もあります。スレッシュホルドの上昇操作はトーン的な信号とランダムなノイズとで個別に調整する事が可能です。0 dBがより良いデフォルト値であると言えます。<br />
+<div class="admonition note">
+<p class="admonition-title">ヒント</p>
+<p><br>背景ノイズが時間軸上で振幅を変化させる場合（交通音など）はスレッシュホルドを上げてその変化に順応させます。</p>
+</div><br /></li>
+</ul></li>
+<li><strong>REDUCTION (NOISY/TONAL)（削減）:</strong> ノイズ抑制をデシベル単位で操作します。<br />
+
+<ul>
+<li>スペクトラルノイズ除去はノイズをトーン的なもの（ハムやバズ、そして干渉ノイズなど）とランダムなもの（ヒスなど）とに自動的に分類する事ができます。従いまして、分類されたこれらのノイズに対し個別にノイズの抑制を行う事が可能です（例えば、気にならない程度のヒスは留めつつ、バズのみを削減する際などに有効です）。<br />
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><br>強い抑制は低レベルのマテリアルを劣化させますので、必要に応じた箇所に対する適当な抑制が好ましいと言えます。</p>
+</div><br /></li>
+</ul></li>
+<li><strong>QUALITY（品質）:</strong> これはノイズ削減に対する品質とコンピューター上の相互関係に影響を与えます。ここの設定はCPU使用率に直結します。RXのスペクトラルノイズ除去には４つのアルゴリズムが用意されています。<br />
+
+<ul>
+<li><strong>アルゴリズムA</strong>はCPUへの負荷が最も少なく、リアルタイムのプロセスに向いております。これは信号分布に対し時間的スムーシングを適用する事により音楽的なノイズを除去します。<br /></li>
+<li><strong>アルゴリズムB</strong>は専用の2Dスムーシング（時間と周波数）が適用されるより進化したノイズ抑制です。CPUへの負担は高まり、レーテンシーも発生しますが、殆ど全ての環境でリアルタイムでの使用が可能です。<br /></li>
+<li><strong>アルゴリズムC</strong>にはマルチ解像度制御が追加されており、信号のトランジエントに対するより正確なコントロールと、人工的添加要素の発生の抑制を実現します。CPUへ過度の負担が生じるため、マルチコア搭載の速いマシンでのみリアルタイムでの使用が可能となります。<br /></li>
+<li><strong>アルゴリズムD</strong>には音楽的なノイズに対するグローバルなスムーシングやノイズに埋没した信号の詳細の復元などが追加されます。アルゴリズムDの処理速度はアルゴリズムCとほぼ同等です。<br /></li>
+</ul></li>
+<li><strong>ARTIFACT CONTROL（人口音コントロール）:</strong> スペクトラルな削減か広帯域のゲートか、よりどちらの方法に基づいたノイズ除去を行うかを設定します。<br />
+
+<ul>
+<li>ここの値が低いとノイズ除去はスペクトラルな削減に基づいて行われ、ノイズと非ノイズ信号の分離がより正確に行われる反面、音楽的な人工音ノイズをもたらすことがあり、重度の処理は不自然な音像に繋がる事があります。<br /></li>
+<li>ここの数値が高いとノイズ除去は広帯域のゲートに基づいて行われ、音楽的な人工音ノイズの量は抑えられる反面、幅広い帯域にゲートが施されたような感じになるため、信号がスレッシュホルドを下回った直後にノイズのバーストが発生する事があります。<br /></li>
+</ul></li>
+<li><strong>NOISE SPECTRUM DISPLAY（ノイズ成分画面）:</strong> ノイズ成分画面には、再生中にノイズ除去が提供されている際に有益な情報が表示されます。<br /></li>
+<li><strong>SMOOTHING（スムーシング）:</strong> 削減曲線が有効の場合、スムーシングにより削減曲線の編集点の間の補間量を調節し、編集曲線の形状を整えます。<br /></li>
+<li><strong>ノイズスペクトラムの色の凡例:</strong><br />
+
+<ul>
+<li><strong>入力（グレー）:</strong> スペクトラムの入力信号を表します。<br /></li>
+<li><strong>出力（白）:</strong>ノイズ除去後のオーディオの出力信号を表します。<br /></li>
+<li><strong>ノイズプロフィール（オレンジ）:</strong> 検知されたノイズプロフィールとスレッシュホルドの高低調節を表します。<br /></li>
+<li><strong>残余ノイズ（黄）:</strong> Reduction及びResidual whiteningにより調節可能なノイズ除去後の然るべきノイズフロアー。<br /></li>
+<li><strong>削減曲線（青）:</strong> スペクトラム上のノイズ除去の数値曲線 。<br /></li>
+</ul></li>
+<li><strong>REDUCTION CURVE（削減曲線）:</strong> この機能は、26個の編集ポイントがノイズ抑制の包絡線の微細な調整を可能とします。これにより、各周波数帯に対するノイズ除去の分量をカスタマイズする事ができます。<br />
+
+<ul>
+<li>編集点の値が高いと、関連する周波数帯でのノイズリダクションが軽減します。<br /></li>
+<li>編集点の値が低いと、関連する周波数帯でのノイズリダクションが強化されます。<br /></li>
+<li>例えば低いHVACノイズを削減する場合、高周波数域のレベルは保ちつつ、一番左のポイントを僅かに下げ、5kHz周辺にポイントを作成しこれを僅かに持ち上げると好ましい結果に繋がります。<br />
+<div class="admonition note">
+<p class="admonition-title">削減曲線の編集点の増減</p>
+<p><ul>
+<li><strong>編集点の追加:</strong> 左クリックで包絡線状にグレーのボックスで表示される編集点を追加します。<br /></li>
+<li><strong>編集点の削除:</strong> 右クリックで編集点を画面外へドラッグします。<br />
+Shiftキーを押さえながらポイントをドラッグすると、除去曲線のポイントを軸に固定でき、Control/Commandキーを押しながらドラッグすると微調整が可能となります。<br /></li>
+</ul>
+</p>
+</div><br /></li>
+</ul></li>
+<li><strong>リセット:</strong> ノイズ削減曲線のデフォルト設定が0dBに。<br />
+<br /></li>
+</ul>
+
+<h2 id="操作項目-advanced-settings-詳細設定">操作項目：Advanced Settings（詳細設定）</h2>
+
+<p><img src="../img/34-spectral-de-noise-advanced-settings.png" alt="Advanced Settings Panel" /></p>
+
+<h3 id="algorithm-behavior-アルゴリズム挙動-advanced-settings"><strong>ALGORITHM BEHAVIOR（アルゴリズム挙動） (Advanced Settings)</strong></h3>
+
+<ul>
+<li><strong>SMOOTHING（スムーシング）:</strong> 過度のノイズ除去で発生し得る音楽性ノイズの減退を操作します。<br />
+<div class="admonition note">
+<p class="admonition-title">音楽性ノイズとは？</p>
+<p><ul>
+<li>音楽性ノイズは、ランダムなサブバンドゲートのトリガーを誘発するノイズスペクトラムのランダムな統計上のバリエーションにより発生します。この人口音は、時として、“小鳥のさえずり的”、あるいは“水中音的”と表現され、ノイズリダクションの過程で発生します。<br /></li>
+</ul>
+</p>
+</div><br /></li>
+<li><strong>ALGORITHM（アルゴリズム）:</strong> スペクトログラムでオーディオ処理を行う際に発生するランダムな波紋ノイズの除去に対するアルゴリズムを選択します。これは音楽的ノイズと呼ばれる事があり、水中音と表現される事もあります。Smoothingスライダーによりスムーシングの度合いを操作します。<br />
+
+<ul>
+<li><strong>SIMPLEアルゴリズム:</strong> FFTチャンネルの全ての周波数に個別のノイズゲートを適用します。サブバンドゲートのリリース時間はReleaseにより操作します。レーテンシーの少ない速いアルゴリズムですのでリアルタイムの操作に適しています。<br /></li>
+<li><strong>ADVANCED &amp; EXTREMEアルゴリズム:</strong> オーディオ信号に対し時間と周波数の両面から分析しますので、音楽的ノイズの少ない高い品質のノイズ除去が実現します。これらのアルゴリズムはレーテンシーが高く、より複雑な計算が為されます。<br /></li>
+</ul></li>
+<li><strong>FFT SIZE（FFTサイズ） (ms):</strong> 処理の時間及び周波数解像度を選択します。<br />
+
+<ul>
+<li>FFTサイズが高いとそれぞれのハーモニクスの間にあるノイズを除去する為の周波数帯が広がるほか、隣接する信号に影響を加える事なく一定のノイズのハーモニクスを除去する事ができます。<br /></li>
+<li>FFTの数値が低いと信号の変化に対する反応が速まり、信号内のトランジエント付近でのエコーノイズを軽減します。<br />
+<div class="admonition note">
+<p class="admonition-title">FFTサイズ変更後はノイズプロフィールを再分析してください</p>
+<p><br>FFTサイズを変更した際は、ノイズ除去にノイズ情報を再検知さ競る事をお勧めします。それ以前のノイズ情報は別のFFTサイズを基に検知されたものであり、ノイズ除去をする際の精度が落ちます。</p>
+</div><br /></li>
+</ul></li>
+<li><strong>MULTI-RES（マルチ解像度）:</strong> 選択されたアルゴリズムタイプに対し、マルチ解像度を有効化します。<br />
+
+<ul>
+<li>&ldquo;Multi-res&rdquo;のチェックノックスを選択すると、信号はリアルタイムで分析され、その信号に合ったFFTサイズが選択されます。これによりトランジエントに対するスミアリングが最小限になるほか、高周波数帯の解像度が必要に応じて高まります。<br />
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><br>FFTサイズの操作はマルチ解像度モードではFFT解像度が自動的に選択されるため影響しません。マルチ解像度を使用する際は、ノイズ情報を再検知する必要はありません。</p>
+</div><br />
+<div class="admonition note">
+<p class="admonition-title">FFTとは何を意味するのか？</p>
+<p><br><strong>Fast Fourier Transform:</strong>FFTとはFast Fourier Transformの略で、信号の周波数スペクトラムを計算する手順のことです。FFTが高いほど周波数の解像度は高まりますが、処理方法の性質上、時間に対する解像度はシャープさを欠くことになります。</p>
+</div><br />
+<br /></li>
+</ul></li>
+</ul>
+
+<h3 id="noise-floor-ノイズフロアー-advanced-settings">Noise Floor（ノイズフロアー） (Advanced Settings)</h3>
+
+<ul>
+<li><strong>SYNTHESIS（合成）:</strong> ノイズ除去後に高周波数素材を合成します。<br />
+
+<ul>
+<li>Synthesisの値が0以上に設定されているとノイズ除去後に信号のハーモニクスが合成されます。合成されたハーモニクスはノイズフロアーと同等のレベレで処理により損なわれた高周波数域の欠損を穴埋めします。<br /></li>
+<li>Synthesisの増加は音像の生命感と空気感を増加させますが、この設定が高すぎると顕著なディストーションを引き起こす場合がありますのでご注意ください。<br /></li>
+</ul></li>
+<li><strong>ENHANCEMENT（強調機能）:</strong> ノイズフロアーに隠れたハーモニクスを強調する機能です。<br />
+
+<ul>
+<li>Enhancementは信号のハーモニクス構造を予測し、ノイズに埋没している可能性のあるハーモニクスの削減を抑制します。これにはノイズに埋没した、あるいはモジュールに検知されなかった高周波数域のハーモニクスを維持する狙いがあります。<br /></li>
+<li>Enhancement機能により音像に明るさや自然さがもたらされますが、この設定が高すぎると、信号により高周波数ノイズが変調される事があります。<br /></li>
+</ul></li>
+
+<li><p><strong>MASKING（マスキング）:</strong> ノイズが不可聴である場合、ノイズ除去の深度を減少します。</p>
+
+<ul>
+<li>ノイズが不可聴である場合の抑制量を抑えるなど、流動的な操作を可能とする心理音響モデルを有効化します。特定のリージョンに存在するノイズが不可聴であると計算されると、この機能はそのリージョンに対する信号処理を阻止します。これにより不必要な処理が減り、信号の整合性が保ちやすくなります。スライダーの位置により、抑制レベルに対する心理音響モデルの影響を操作します。<br /></li>
+<li>不可聴域の高周波数ノイズを削除する場合は0にセットします。それ以外のケースでは10にセットしてください。<br />
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><br>このスライダーが0に位置していると、この機能は停止状態となり、ノイズ抑制量はスペクトラム・アナライザー内の黄色い曲線に統合されます（より正確に表現すると、黄色とオレンジの曲線の差異がそれを表します）。</p>
+</div><br />
+<br /></li>
+</ul></li>
+
+<li><p><strong>WHITENING（ホワイトノイズ機能）:</strong> 処理後のノイズフロアーの形状をホワイトノイズに近づけます。Whitening機能は異なる周波数帯に態起用されたノイズ削減（黄線で表示）の分量をモディファイし、残余ノイズのスペクトラムを整形します。</p>
+
+<ul>
+<li>ここがゼロに設定されていると全ての周波数に対して均一の抑制が働き、Reduction (音色/広帯域)スライダーで操作される為、オリジナルのノイズと抑制されたノイズの形状は類似します。<br /></li>
+<li>こが最大に設定されていると、抑制されるべきノイズの形状はホワイトノイズに近付く為、抑制されるノイズは中立的になります。<br />
+<div class="admonition note">
+<p class="admonition-title">ホワイトノイズ機能の操作による効果を理解する</p>
+<p><br>Whitening機能を使用してノイズフロアーのバランスを調整すると、オーバープロセスによる欠損を補完する事ができます。しかし、不自然なホワイトノイズの付与は別の編集作業やミックス作業に際してノイズ変調の原因となる可能性がありますのでご注意ください。</p>
+</div><br />
+<br /></li>
+</ul></li>
+</ul>
+
+<h3 id="dynamics-ダイナミクス-advanced-settings"><strong>Dynamics（ダイナミクス） (Advanced Settings)</strong></h3>
+
+<ul>
+<li><strong>KNEE（膝値）:</strong> 正常な信号とノイズの分離する際のアルゴリズムの正確性を設定します。このスライダーはノイズ除去の処理に於ける正確性を操作します。<br />
+
+<ul>
+<li>この設定値が高いと、ノイズ除去は極端に反応し、信号内でのノイズ検知にエラーが生じるか事があります。<br /></li>
+<li>鋭敏さが緩まるとノイズ除去は寛容に動作し、スレッシュホルドのすぐ下の信号に対しては減衰の幅を押しとどめます。これによりノイズ除去は最小限に抑えられますが、それにより生じる人工音は減ります。<br /></li>
+</ul></li>
+<li><strong>RELEASE（リリース） [ms]:</strong> ミリ秒単位でサブバンドノイズゲートのリリース時間を設定します。リリース時間をより長めに設定すると、音楽的ノイズは減少しますが、同時にトランジエント冒頭部分やリバーブの残響音なども減衰させます。<br />
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><br>ReleaseはMNSアルゴリズムが&rsquo;Simple&rsquo;に設定されている状況のみ操作することができます。</p>
+</div><br />
+<br /></li>
+</ul>
+
+<h2 id="更なる情報">更なる情報</h2>
+
+<h3 id="手動でノイズプロフィールの分析を行う際に最高の結果を得るためのヒント">手動でノイズプロフィールの分析を行う際に最高の結果を得るためのヒント</h3>
+
+<ul>
+<li>ノイズプロフィールを分析する際は、ノイズのみの箇所で最も長い部分（数秒間が理想的）を範囲選択してください。<br /></li>
+<li>より良い結果を得るには、残しておきたい本来的なオーディオのないノイズのみの部分を範囲選択してください（ノイズと見做していないオーディオは選択範囲に含めないでください）。<br /></li>
+<li>通常、そういった箇所はオーデォファイルの冒頭または終端、あるいは話しの合間などに潜んでいます。<br />
+<br /></li>
+</ul>
+
+<h3 id="複数の選択範囲からノイズプロフィールを分析する">複数の選択範囲からノイズプロフィールを分析する</h3>
+
+<p>スタンドアローンで使用する際のRXアプリケーションでは、複数の選択範囲からノイズプロフィールを分析する事ができます。これは分析するのに範囲や内容が十分でないオーディオなどがある際に有効です。</p>
+
+<p>例えば、人の話し声にノイズが乗っている場合、人の声がしないノイズ部分を何箇所か投げ縄ツールかブラシツールを使用の上で選択し、分析を行うとより精度の高いノイズ除去が実現します。複数の範囲選択は、Shiftキーを押しながら範囲選択をすることにより可能です。</p>
+
+<p>より多くのノイズ箇所を範囲選択し、より精度の高いノイズプロフィールを作成してください。</p>
+
+<p>この機能は、RXのスペクトラル範囲選択と複雑な計算が必要となる為、スタンドアローンのアプリケーションとしてRXを使用する際のみ使用可能です。</p>
+
+<p>複数の選択範囲から完全なノイズプロフィールが作成できない場合、RXは既存のプロフィールを元に合理的なノイズプロフィールを構築する事ができます。もし完全なノイズプロフィールの作成に至らない場合、RXは補完的なプロフィール作成を促します。</p>
+
+<p>例えば、100 Hz以下の低周波数ノイズしか検知できなかった場合、RXは200 Hzから5000 Hzにかけての広帯域ノイズや8000 Hz以上の高周波数ノイズの部分を補完します。</p>
+
+<p>複数の選択範囲からプロフィールを構築すると柔軟性が生まれ、拾い切れなかったノイズをRXが予測します。</p>
+
+
+
+    </div>
+  </article>
+
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../33-mouth-de-click/index.html" title="Mouth De-click （マウスクリック除去） [STD &amp; ADV]">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Mouth De-click （マウスクリック除去） [STD &amp; ADV]
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../35-spectral-repair/index.html" title="Spectral Repair（スペクトラル修復）[STD &amp; ADV]">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Spectral Repair（スペクトラル修復）[STD &amp; ADV]
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="copyright">
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  RX6オーディオエディター 取扱説明書
+</div>
+
+  
+  </footer>
+
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+
+
+        <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-12', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+    </main>
+  </body>
+</html>

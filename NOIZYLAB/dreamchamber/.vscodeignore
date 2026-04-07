@@ -1,0 +1,11 @@
+src/**
+python/**
+.vscode/**
+node_modules/**
+**/*.ts
+**/*.map
+tsconfig.json
+.eslintrc*
+.prettierrc*
+*.md
+!README.md

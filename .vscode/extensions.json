@@ -1,0 +1,40 @@
+{
+  "recommendations": [
+    // ─── AI Toolchain ─────────────────────────────────────────────────────────
+    "github.copilot",
+    "github.copilot-chat",
+
+    // ─── Core dev ────────────────────────────────────────────────────────────
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "christian-kohler.path-intellisense",
+    "formulahendry.auto-rename-tag",
+
+    // ─── Node / JS ───────────────────────────────────────────────────────────
+    "waderyan.nodejs-extension-pack",
+    "orta.vscode-jest",
+
+    // ─── Git ─────────────────────────────────────────────────────────────────
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+
+    // ─── Files / Formats ─────────────────────────────────────────────────────
+    "tamasfe.even-better-toml",
+    "mikestead.dotenv",
+    "redhat.vscode-yaml",
+
+    // ─── Docker / Infra ───────────────────────────────────────────────────────
+    "ms-azuretools.vscode-docker",
+
+    // ─── REST / API testing ───────────────────────────────────────────────────
+    "humao.rest-client",
+
+    // ─── Productivity ─────────────────────────────────────────────────────────
+    "wayou.vscode-todo-highlight",
+    "gruntfuggly.todo-tree",
+    "streetsidesoftware.code-spell-checker",
+
+    // ─── Theme / UI ───────────────────────────────────────────────────────────
+    "PKief.material-icon-theme"
+  ]
+}

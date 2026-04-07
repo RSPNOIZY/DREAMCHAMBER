@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+
+  
+  
+  
+  
+   <html class="no-js">   
+
+
+<head lang="ja">
+
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>De-bleed（ブリード除去） [STD &amp; ADV] - RX6オーディオエディター 取扱説明書</title>
+    <meta name="generator" content="Hugo 0.32.3" />
+
+    
+    <meta name="description" content="RX 6 Help Documentation">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.rx6helpdocs.com/ja/20-de-bleed/">
+    <meta property="og:title" content="RX6オーディオエディター 取扱説明書">
+    
+    <meta name="apple-mobile-web-app-title" content="RX6オーディオエディター 取扱説明書">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+
+</head>
+
+<body class="palette-primary-blue palette-accent-blue">
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../img/izotope-rx6.png"> De-bleed（ブリード除去） [STD &amp; ADV]</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="はじめに" href="../01-introduction/index.html">
+	
+	はじめに
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RX 6の概要" href="../02-rx6-comparison/index.html">
+	
+	RX 6の概要
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーソリゼーション" href="../03-authorization/index.html">
+	
+	オーソリゼーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ファイルの作業" href="../04-working-with-files/index.html">
+	
+	ファイルの作業
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="録音" href="../05-recording/index.html">
+	
+	録音
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トランスポート機能" href="../06-transport-controls/index.html">
+	
+	トランスポート機能
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="スペクトログラム/波形画面" href="../07-spectrogram-waveform-display/index.html">
+	
+	スペクトログラム/波形画面
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="各種ツール" href="../08-interactive-tools/index.html">
+	
+	各種ツール
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="取り消し履歴" href="../10-undo-history/index.html">
+	
+	取り消し履歴
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="アプリケーションメニュー" href="../11-application-menus/index.html">
+	
+	アプリケーションメニュー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="の環境設定メニュ" href="../12-preferences/index.html">
+	
+	の環境設定メニュ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Composite View（コンポジット表示）" href="../13-composite-view/index.html">
+	
+	Composite View（コンポジット表示）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Batch Processing（一括処理)" href="../38-batch-processing/index.html">
+	
+	Batch Processing（一括処理)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="一般的なRXモジュールの操作項目" href="../14-module-controls/index.html">
+	
+	一般的なRXモジュールの操作項目
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="モジュールリスト" href="../15-module-list/index.html">
+	
+	モジュールリスト
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Module Chain（モジュールチェーン）" href="../16-module-chain/index.html">
+	
+	Module Chain（モジュールチェーン）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambience Match（アンビエンスマッチ)" href="../17-ambience-match/index.html">
+	
+	Ambience Match（アンビエンスマッチ)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Breath Control（ブレス音調整）" href="../18-breath-control/index.html">
+	
+	Breath Control（ブレス音調整）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Center Extract（センター抽出）" href="../19-center-extract/index.html">
+	
+	Center Extract（センター抽出）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="De-bleed（ブリード除去）" href="index.html">
+	
+	De-bleed（ブリード除去）
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-click（クリック除去）" href="../21-de-click/index.html">
+	
+	De-click（クリック除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-clip（クリップ除去）" href="../22-de-clip/index.html">
+	
+	De-clip（クリップ除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-crackle（クラックル除去）" href="../23-de-crackle/index.html">
+	
+	De-crackle（クラックル除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-ess（歯擦音除去）" href="../24-de-ess/index.html">
+	
+	De-ess（歯擦音除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-hum（ハム除去）" href="../25-de-hum/index.html">
+	
+	De-hum（ハム除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-plosive（破裂音除去）" href="../26-de-plosive/index.html">
+	
+	De-plosive（破裂音除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-reverb（リバーブ除去）" href="../27-de-reverb/index.html">
+	
+	De-reverb（リバーブ除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-rustle（布擦れ音除去）" href="../28-de-rustle/index.html">
+	
+	De-rustle（布擦れ音除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-wind（風除去）" href="../29-de-wind/index.html">
+	
+	De-wind（風除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Deconstruct（解体）" href="../30-deconstruct/index.html">
+	
+	Deconstruct（解体）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dialogue Isolate（ダイアログ分離）" href="../31-dialogue-isolate/index.html">
+	
+	Dialogue Isolate（ダイアログ分離）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Interpolate（補間）" href="../32-interpolate/index.html">
+	
+	Interpolate（補間）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Mouth De-click（マウスクリック除去）" href="../33-mouth-de-click/index.html">
+	
+	Mouth De-click（マウスクリック除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectral De-noise（スペクトラルノイズ除去）" href="../34-spectral-de-noise/index.html">
+	
+	Spectral De-noise（スペクトラルノイズ除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectral Repair（スペクトラル修復）" href="../35-spectral-repair/index.html">
+	
+	Spectral Repair（スペクトラル修復）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Voice De-noise（声音ノイズ除去）" href="../36-voice-de-noise/index.html">
+	
+	Voice De-noise（声音ノイズ除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Azimuth（アジマス）" href="../37-azimuth/index.html">
+	
+	Azimuth（アジマス）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dither（ディザー）" href="../39-dither/index.html">
+	
+	Dither（ディザー）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EQ" href="../40-eq/index.html">
+	
+	EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EQ Match（EQマッチ）" href="../41-eq-match/index.html">
+	
+	EQ Match（EQマッチ）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Fade（フェード）" href="../42-fade/index.html">
+	
+	Fade（フェード）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Gain（ゲイン）" href="../44-gain/index.html">
+	
+	Gain（ゲイン）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Leveler（レベラー）" href="../45-leveler/index.html">
+	
+	Leveler（レベラー）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Loudness（ラウドネス）" href="../46-loudness/index.html">
+	
+	Loudness（ラウドネス）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Mixing（ミキシング）" href="../47-mixing/index.html">
+	
+	Mixing（ミキシング）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Normalize（ノーマライズ）" href="../48-normalize/index.html">
+	
+	Normalize（ノーマライズ）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Phase（位相）" href="../49-phase/index.html">
+	
+	Phase（位相）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pitch Contour（ピッチ等高線）" href="../50-pitch-contour/index.html">
+	
+	Pitch Contour（ピッチ等高線）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plug-in Hosting（プラグインホスト機能）" href="../51-plug-in-hosting/index.html">
+	
+	Plug-in Hosting（プラグインホスト機能）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Resample（再サンプル）" href="../52-resample/index.html">
+	
+	Resample（再サンプル）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Signal Generator（シグナルジェネレーター）" href="../53-signal-generator/index.html">
+	
+	Signal Generator（シグナルジェネレーター）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Time &amp; Pitch（時間とピッチ）" href="../54-time-and-pitch/index.html">
+	
+	Time &amp; Pitch（時間とピッチ）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Find Similar（類似イベント検出）" href="../43-find-similar/index.html">
+	
+	Find Similar（類似イベント検出）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Markers &amp; Regions（マーカーとリージョン）" href="../55-markers-and-regions/index.html">
+	
+	Markers &amp; Regions（マーカーとリージョン）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectrum Analyzer（スペクトラム・アナライザー）" href="../56-spectrum-analyzer/index.html">
+	
+	Spectrum Analyzer（スペクトラム・アナライザー）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Waveform Statistics（波形の数値）" href="../57-waveform-stats/index.html">
+	
+	Waveform Statistics（波形の数値）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RXプラグイン" href="../58-rx-plug-ins/index.html">
+	
+	RXプラグイン
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RX Monitor（RXモニター）" href="../59-rx-monitor/index.html">
+	
+	RX Monitor（RXモニター）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RX Connect（RXコネクト）" href="../60-rx-connect/index.html">
+	
+	RX Connect（RXコネクト）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="キーボードショートカットガイド" href="../63-keyboard-shortcut-guide/index.html">
+	
+	キーボードショートカットガイド
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーディオの問題の識別" href="../68-audio-problems/index.html">
+	
+	オーディオの問題の識別
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotopeカスタマーケアー" href="../69-izotope-customer-care/index.html">
+	
+	iZotopeカスタマーケアー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="エンドユーザー向け使用許諾契約" href="../70-eula/index.html">
+	
+	エンドユーザー向け使用許諾契約
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ライセンス情報" href="../71-license-information/index.html">
+	
+	ライセンス情報
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+
+        
+    
+          
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../en/20-de-bleed/index.html"><i class="icon icon-eye"></i> 翻訳されたページを見る</a>
+          </li>
+        </ul></div></div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+       
+    
+    
+
+	<h1>De-bleed（ブリード除去） [STD &amp; ADV] </h1>
+
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">言語:</span>
+<br />
+    
+
+       
+       <a href="../../en/20-de-bleed/index.html"><button class="lang-btn-clickable">英語</button></a>
+        
+        <a href="../../en/20-de-bleed/index.html"><button class="lang-btn-active">日本語</button></a>
+       
+    
+</div>
+ 
+
+
+    
+
+    
+
+
+
+
+    
+
+	
+
+<h2 id="概要">概要</h2>
+
+<p>ブリード除去は、ボーカルがギターのマイクにブリードした場合、あるいはヘッドホンへ送られたクリックトラックがオープンマイクにブリードした場合など、ある信号が意図せずに別のトラックに漏れ出たリーケッジの問題を解消します。</p>
+
+<p>ブリード除去モジュールは、2トラック間のブリードの関係性を分析します。それらの2トラックは、このモジュールでは次のように表現されます：</p>
+
+<ul>
+<li><strong>BLEED SOURCE TRACK（ブリードソーストラック）:</strong> このトラックにはブリードの音源のみがあります。<br /></li>
+<li><strong>ACTIVE TRACK（アクティブトラック）:</strong> このトラックには、残しておきたいオーディオと、ソーストラックのオーディオ（ブリード）が入り交じっています。<br />
+<br /></li>
+</ul>
+
+<p>ブリード除去は、正常に動作し、最高の結果を提供する上で、アクティブトラックとブリードソーストラックの関係性に依存します。アクティブトラックとブリードソーストラックの関係性を正しく確立するには、以下の項目が満たされている必要があります：</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>ブリード除去の処理には2トラックが必要</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ブリード除去の使用には、RXオーディオエディターに2トラック（アクティブトラックとブリードソーストラック）開かれている必要があります。</strong></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th><strong>アクティブトラックとブリードソーストラックのサンプルレートが一致している</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>ブリード除去で処理をするには、アクティブトラックとブリードソーストラックのサンプルレートが一致している必要があります。</strong></td>
+</tr>
+
+<tr>
+<td><strong>サンプルレートに違いがあると、トラックに関係性が認められない場合があります。</strong></td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">ヒント: サンプルレートが異なる場合の解決策</p>
+<p>ブリード除去モジュールを使用する際に、アクティブトラックとブリードソーストラックの素材のサンプルレートが異なる場合は、RXオーディオエディターの再サンプルモジュールを使用してサンプルレートを整合させてください。</p>
+</div>
+
+<table>
+<thead>
+<tr>
+<th><strong>アクティブトラックとブリードソーストラックは時間アラインメントが重要</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>アクティブトラックとブリードソーストラックはお互いが数ミリ秒の誤差の範囲内で、時間的なアラインメントが揃っている必要があります。</strong></td>
+</tr>
+
+<tr>
+<td><strong>“時間的にアライメントが揃っている”とは、2つのファイルを同時に再生した時、音の同期が取れていることを意味します。従いまして、アクティブトラックとブリードソーストラックのオーディオイベントがタイムライン上で一致している場合は、その2トラックは時間的なアラインメントが揃っていると言えます。</strong></td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">ヒント: 時間的なアラインメントを揃えるには</p>
+<p>RXオーディオエディターでは、以下の何れかの方法で、長さを調節するか、ファイルのタイミングを合わせます：</p>
+
+<ul>
+<li>Command+X (Mac)またはCtrl+X (Windows)でカット編集を実行し、不要な部分を切り取ってください。<br /></li>
+<li>シグナルジェネレーターモジュールで無音を挿入してファイルの長さを調整してください。<br /></li>
+</ul>
+</p>
+</div>
+
+<h2 id="ワークフロー">ワークフロー</h2>
+
+<ol>
+<li>RXオーディオエディターにブリードの元となるファイル（ブリードソーストラック）と、ブリードを除去したいファイル（アクティブトラック）をインポートします。上記を参照の上、ファイルが同期していることを確認してください。<br /></li>
+<li>ブリード除去モジュールを開きます。<br /></li>
+<li>ブリード除去モジュールの“Active Track”の名称が、処理を施したいファイルであることを確認してください。<br /></li>
+<li>ブリード除去モジュールにて、“Bleed Source Track”のドロップダウンメニューよりソーストラックを選択します。<br /></li>
+<li>アクティブタブ（アクティブトラック）にて、ブリードが最も顕著な箇所を範囲選択してください。<br /></li>
+<li>ブリード除去モジュールにてLearnボタンをクリックします（これにより、モジュールがブリードソースとアクティブトラックの全般的な関係性を分析します）。<br /></li>
+<li>分析パス終了後、アクティブトラックの一部、または全てを選択し、Processをクリックしてください。<br />
+<br /></li>
+</ol>
+
+<h2 id="操作項目">操作項目</h2>
+
+<p><img src="../img/20-de-bleed.png" alt="De-bleed User Interface" /></p>
+
+<ul>
+<li><strong>BLEED SOURCE TRACK SELECTION MENU（ブリードソーストラック選択メニュー）:</strong> このドロップダウンよりブリードソーストラックを選択します。<br /></li>
+<li><strong>ACTIVE TRACK（アクティブトラック）:</strong> 表示されているトラックの名称です。<br /></li>
+<li><strong>LEARN（分析）:</strong> 2トラックの関係性を分析します。<br /></li>
+
+<li><p><strong>BLEED PROFILE DISPLAY（ブリードプロフィール画面）:</strong>  ブリードプロフィール分析後、この画面にキャプチャされた2トラックの関係性の一部が表示されます。ブリードソースとアクティブトラックをトグルし、ブリードソーストラックに存在するブリードと、アクティブトラックにあるブリードが一致していることを確認します。<br />
+<strong>Bleed source display （ブリードソース画面）:</strong><br />
+<img src="../img/20-de-bleed-source-display.png" alt="Bleed Source display" /><br />
+<strong>Active track display（アクティブトラック画面）:</strong><br />
+<img src="../img/20-de-bleed-active-display.png" alt="Bleed Source display" /></p></li>
+
+<li><p><strong>STRENGTH（強さ）:</strong> 処理時に適用されるブリード除去の分量を決定します。この数値が高いと、必要なオーディオも削除される可能性があります。低い数値からスタートし、必要に応じて望み通りの結果が得られるまで値を上げる使い方が推奨されます。</p></li>
+
+<li><p><strong>ARTIFACT SMOOTHING（人口音スムース処理）:</strong> FFTベースの処理に特有の“音楽性ノイズ”を除去、あるいは削減します。音楽性ノイズは水中音と表現することもできます。出力音が水中で鳴っているような感じに聞こえる場合は、ここの値を増加させ、スムース処理が行き過ぎ、音がぼんやりとする場合は、ここを減少させてください。</p></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">FFTとは何を意味するのか？</p>
+<p><ul>
+<li><strong>Fast Fourier Transform:</strong> FFTとはFast Fourier Transformの略で、信号の周波数スペクトラムを計算する手順のことです。FFTが高いほど周波数の解像度は高まりますが、処理方法の性質上、時間に対する解像度はシャープさを欠くことになります。<br /></li>
+</ul>
+</p>
+</div>
+
+
+
+    </div>
+  </article>
+
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../19-center-extract/index.html" title="Center Extract（センター抽出）[ADV]">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Center Extract（センター抽出）[ADV]
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../21-de-click/index.html" title="De-click（クリック除去）">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              De-click（クリック除去）
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="copyright">
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  RX6オーディオエディター 取扱説明書
+</div>
+
+  
+  </footer>
+
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+
+
+        <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-12', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,1277 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="ja">
+  <head lang="ja">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>モジュールの標準的な操作項目 - Ozone8ユーザーズマニュアル</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/ja/common-module-controls/">
+    <meta property="og:title" content="Ozone8ユーザーズマニュアル">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone8ユーザーズマニュアル">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | モジュールの標準的な操作項目</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="はじめに" href="../index.html">
+	
+	はじめに
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8の概要" href="../ozone-overview/index.html">
+	
+	Ozone 8の概要
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone応用" href="../ozone-app-overview/index.html">
+	
+	Ozone応用
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プリセットシステム" href="../preset-system/index.html">
+	
+	プリセットシステム
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="全般的な機能" href="../general-functions/index.html">
+	
+	全般的な機能
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="モジュールの標準的な操作項目" href="index.html">
+	
+	モジュールの標準的な操作項目
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミクス" href="../dynamics/index.html">
+	
+	ダイナミクス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ダイナミックEQ" href="../dynamic-eq/index.html">
+	
+	ダイナミックEQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イコライザー" href="../equalizer/index.html">
+	
+	イコライザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="エキサイター" href="../exciter/index.html">
+	
+	エキサイター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="イメージャー" href="../imager/index.html">
+	
+	イメージャー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マキシマイザー" href="../maximizer/index.html">
+	
+	マキシマイザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="スペクトラル成形" href="../spectral-shaper/index.html">
+	
+	スペクトラル成形
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージコンプレッサー" href="../vintage-compressor/index.html">
+	
+	ビンテージコンプレッサー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージEQ " href="../vintage-eq/index.html">
+	
+	ビンテージEQ 
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージリミッター" href="../vintage-limiter/index.html">
+	
+	ビンテージリミッター
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ビンテージテープ" href="../vintage-tape/index.html">
+	
+	ビンテージテープ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="コーデックプレビュー" href="../codec-preview/index.html">
+	
+	コーデックプレビュー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ディザー" href="../dither/index.html">
+	
+	ディザー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="マスターアシスタント" href="../master-assistant/index.html">
+	
+	マスターアシスタント
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トラックリファレンス" href="../track-referencing/index.html">
+	
+	トラックリファレンス
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トーナルバランスコントロール" href="../tonal-balance-control/index.html">
+	
+	トーナルバランスコントロール
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オプション" href="../options/index.html">
+	
+	オプション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="プラグインオートメーション" href="../plug-in-automation/index.html">
+	
+	プラグインオートメーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ヒントと用例" href="../tips-and-examples/index.html">
+	
+	ヒントと用例
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーソリゼーション" href="../authorization/index.html">
+	
+	オーソリゼーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotopeカスタマーケアー" href="../customer-care/index.html">
+	
+	iZotopeカスタマーケアー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information (ライセンス情報)" href="../license-information/index.html">
+	
+	License Information (ライセンス情報)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA (エンドユーザー向け使用許諾契約)" href="../eula/index.html">
+	
+	EULA (エンドユーザー向け使用許諾契約)
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../en/common-module-controls/index.html"><i class="icon icon-eye"></i> View in English</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>モジュールの標準的な操作項目 </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">言語:</span>
+<br />
+    
+
+       
+       <a href="../../en/common-module-controls/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+        <a href="../../en/common-module-controls/index.html"><button class="lang-btn-active">日本語</button></a>
+       
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+    
+
+	
+
+<h2 id="概要">概要</h2>
+
+<p>Ozoneの各モジュールは多くの操作項目やワークフローを共有しています。この章では、モジュールが共有する標準的な操作項目とワークフローに対する説明をします。</p>
+
+<h2 id="モジュールチェーン">モジュールチェーン</h2>
+
+<p><img src="../images/common-module-controls/module-chain.png" alt="module chain" /></p>
+
+<p>Ozoneの信号処理チェーンでは、同時に最大6モジュールを使用することができます。モジュールチェーンをコンポーネントプラグインで使用することはできません。
+以下の表はモジュールチェーンのオプションに関する概要です:</p>
+
+<table>
+<thead>
+<tr>
+<th>アイコン</th>
+<th>名称</th>
+<th>説明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><img src="../images/common-module-controls/add.png" alt="add" /></td>
+<td>Add（追加）</td>
+<td>モジュールスロットに空きがある場合は、このスペースをクリックすることでモジュールを追加できます。モジュール選択画面より使用可能なモジュールをクリックすると、モジュールチェーンに追加されます。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/xbtn.png" alt="remove" /></td>
+<td>Remove（削除）</td>
+<td>該当するモジュールをモジュールチェーンより削除します。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/modulepresetbtn.png" alt="module preset" /></td>
+<td>Module Preset（モジュールプリセット）</td>
+<td>モジュールプリセット画面を表示します。詳細は<a href="../preset-system/index.html#module-preset-system">モジュールプリセット</a>の項にてご確認ください。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/solobtn.png" alt="solo" /></td>
+<td>Solo（ソロ）</td>
+<td>そのモジュールの処理のみを試聴します。ソロボタンをクリックすると、表示されているモジュール以外のモジュールはバイパスされます。モジュールがソロ状態になっていても、グローバル操作（I/Oゲインと試聴操作項目）は出力に影響を及ぼします。ソロは単一のモジュールに対してのみ実行できます。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/powerbtn.png" alt="bypass" /></td>
+<td>Bypass（バイパス）</td>
+<td>バイパスボタンをクリックすると、表示されているモジュールの処理が切られます。複数のモジュールを同時にバイパスすることも可能です。モジュールがバイパスされていると、モジュールのアイコンと名称はグレーアウトします。</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="マルチバンドモジュール">マルチバンドモジュール</h2>
+
+<p>Ozoneでは以下のモジュールでマルチバンド処理を実行することができます:</p>
+
+<ul>
+<li><a href="../dynamics/index.html">ダイナミクス</a></li>
+<li><a href="../exciter/index.html">エキサイター</a></li>
+<li><a href="../imager/index.html">イメージャー</a></li>
+</ul>
+
+<p>マルチバンドモジュールでは周波数に特化した処理を行うことができます。最大4帯域を個別に操作することができ、クロスオーバーはミニスペクトラル画面のハンドルにて調整します。</p>
+
+<h2 id="クロスオーバー">クロスオーバー</h2>
+
+<p>マルチバンドモジュールでは、クロスオーバーのミニスペクトラムメーター画面にて、クロスオーバーの周波数帯の調整や試聴などを操作することができます。</p>
+
+<p><img src="../images/common-module-controls/crossover.png" alt="crossover view" /></p>
+
+<h3 id="クロスオーバーカットオフの調整">クロスオーバーカットオフの調整</h3>
+
+<p>マルチバンドのクロスオーバー点は、クロスオーバーのミニスペクトラム画面にて手動で調整することができます。クロスオーバーのカットオフ点は、以下の方法で手動調節できます:</p>
+
+<ul>
+<li><strong>カットオフハンドルをクリックしてドラッグ:</strong> クロスオーバーカットオフは、白いクロスオーバーハンドルをクリックし、任意の場所へドラッグすることで調整可能です。カーソルが調整可能なクロスオーバーカットオフ用ハンドル上にあると、左右の矢印アイコンに表示が変わります。</li>
+<li><strong>テキスト入力:</strong> クロスオーバーカットオフの数値（カットオフハンドル直上の白いテキスト）をダブルクリックすると、インラインの編集フィールドが表示されます。クロスオーバーのカットオフに定めたい周波数を入力し、EnterかReturnキーを押すと、数値が更新されます。</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><ul>
+<li>クロスオーバーカットオフ点は、マルチバンドモジュール間で共有されません。特定のモジュールで行ったクロスオーバー点の調整は、別のマルチバンドモジュールには影響を及ぼしません。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="クロスオーバー画面の操作項目">クロスオーバー画面の操作項目</h3>
+
+<p>以下は、マルチバンドクロスオーバー画面の標準的な操作項目の一覧です。</p>
+
+<table>
+<thead>
+<tr>
+<th>アイコン</th>
+<th>名称</th>
+<th>説明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><img src="../images/common-module-controls/b1byp.png" alt="bypb1" /> <img src="../images/common-module-controls/b2byp.png" alt="bypb2" /> <img src="../images/common-module-controls/b3byp.png" alt="bypb3" /> <img src="../images/common-module-controls/b4byp.png" alt="bypb4" /></td>
+<td>Band Power（バンド電源）</td>
+<td>関係するバンドの処理のオン/オフをトグルします。複数のバンドを同時にバイパスすることが可能です。バンドがバイパスされると、その電源ボタンはグレーアウトします。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/b1solo.png" alt="sb1" /> <img src="../images/common-module-controls/b2solo.png" alt="sb2" /> <img src="../images/common-module-controls/b3solo.png" alt="sb3" /> <img src="../images/common-module-controls/b4solo.png" alt="sb4" /></td>
+<td>Band Solo（バンドソロ）</td>
+<td>そのバンドの出力のみを試聴します。複数のバンドを同時にソロにすることが可能です。ソロがアクティブでないと、そのバンドのソロボタンはグレーアウトします。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/minusbtn.png" alt="Remove" /></td>
+<td>Remove Band（バンド削除）</td>
+<td>xボタンをクリックすると、そのバンドを削除します。注: バンドは右から左へ削除されます。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/plusbtn.png" alt="Add" /></td>
+<td>Add Band（バンド追加）</td>
+<td>+ボタンをクリックすると、新しいバンドが挿入されます。マルチバンドモジュールは最大4バンドの処理をサポートします。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/crossoverlearn.png" alt="Learn" /></td>
+<td>Learn（分析）</td>
+<td>有効になっていると、クロスオーバー点は入力信号に応じて自動的に調整されます。詳細はクロスオーバー分析の項をご覧ください。</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">ヒント: バンドのソロについて</p>
+<p><ul>
+<li>周波数バンドに対し、バイパスとソロを同時に行うと、そのバンドのドライの信号（処理前の信号）をソロにすることができます。これは、各バンド処理の影響を個別に試聴する際に便利です。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="クロスオーバー分析機能">クロスオーバー分析機能</h3>
+
+<p>Ozoneのマルチバンドモジュールには、クロスオーバー点を判断する革新的な分析機能が搭載されました。ここが有効の場合、クロスオーバー分析機能は、入力信号の周波数スペクトラムの最小値など、幾つかの基準を使い、自然なクロスオーバー点を割り出します。
+分析機能がアクティブになっていると、ボタンは青で表示されます。理想的なクロスオーバーカットオフの値が判別されると、機能は自動的にオフになります。分析機能がアクティブな状態で再度分析ボタンをクリックすると、手動でこの機能を切ることができます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">クロスオーバー分析に関する注</p>
+<p><ul>
+<li>クロスオーバー分析機能が正常に動作するには、分析が作動しているときにモジュールがオーディオ入力を受け取っている必要があります。</li>
+<li>クロスオーバー分析ボタンは、マルチバンドモジュールのクロスオーバーミニスペクトラム画面にてのみ操作できます。</li>
+<li>マルチバンドモジュールであっても、単一のバンドのみ有効の場合、分析ボタンはクロスオーバーミニスペクトラム画面に表示されません。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="クロスオーバー関連メニューのオプション">クロスオーバー関連メニューのオプション</h3>
+
+<p>マルチバンドモジュールのクロスオーバースペクトラム画面を右クリック（またはOption+左クリック）すると、関連メニューに以下のオプションが表示されます:</p>
+
+<p><img src="../images/common-module-controls/context.png" alt="context menu" /></p>
+
+<ul>
+<li><strong>INSERT BAND（周波数帯を挿入）:</strong> マルチバンドモジュールに新規周波数帯を追加します。各マルチバンドモジュールは最大4帯域まで追加することができます。
+
+<ul>
+<li>関連メニューの‘Insert Band’オプションから帯域を追加すると、クロスオーバー点はスペクトラムで右クリックした点に設定されます。</li>
+<li><strong>注:</strong> 右クリックした場所に既にクロスオーバー点が存在する場合、新規クロスオーバーカットオフは既存のカットオフの右側に設定されます。</li>
+</ul></li>
+<li><strong>REMOVE BAND（周波数帯を消去）:</strong> 使用中のマルチバンドモジュールから既存の周波数帯を消去します。
+
+<ul>
+<li>関連メニューの‘Remove Band’オプションから帯域を追加すると、右クリックしたポイントの右側にある最初のクロスオーバー点が消去されます。</li>
+</ul></li>
+<li><strong>COPY（コピー）:</strong> 右クリックした周波数帯の設定項目がクリップボードにコピーされます。</li>
+<li><strong>PASTE（ペースト）:</strong> クリップボードにコピーされた周波数帯の設定が、右クリックをした周波数帯に適用されます。
+
+<ul>
+<li><strong>注:</strong> 同じマルチバンドモジュールでコピーした設定のみペーストすることができます。</li>
+</ul></li>
+<li><strong>SPECTRUM OPTIONS（スペクトラムオプション）:</strong> Ozoneのスペクトラムのオプションタブへとナビゲートします。</li>
+<li><strong>CROSSOVER OPTIONS（クロスオーバーオプション）:</strong> 使用中のモジュールのクロスオーバーオプションタブへとナビゲートします。クロスオーバーの種類に関する詳細は、次項をご覧ください。</li>
+</ul>
+
+<h3 id="クロスオーバーの種類">クロスオーバーの種類</h3>
+
+<p>各マルチバンドモジュールは、それぞれ個別のクロスオーバーの種類を構成することができます。クロスオーバーの種類はオプションメニューにて変更可能です。
+各マルチバンドモジュールで使用可能なクロスオーバーの種類は以下の通りです:</p>
+
+<ul>
+<li><strong>ANALOG（アナログ）:</strong> アナログクロスオーバーオプションは、アナログ機器のフィルター曲線のような自然なキャラクターを付加します。</li>
+<li><strong>HYBRID（ハイブリッド）:</strong> この完璧に再現されたIIR（無限インパルスレスポンス）アナログクロスオーバーは、精緻なクロスオーバーポイントとアナログクロスオーバーの温かみを維持しつつ、他のアナログ変換機に見られる位相や周波数の歪みの軽減を実現します。</li>
+<li><strong>DIGITAL（デジタル）:</strong> Ozone 3で初めて搭載されたデジタルリニア位相のクロスオーバーです。このオプションはサウンドに正確さと平明さを付加します。</li>
+</ul>
+
+<h4 id="デジタルクロスオーバーのオプション">デジタルクロスオーバーのオプション</h4>
+
+<p>デジタルクロスオーバーが選択されると、以下のオプションが使用可能となります:</p>
+
+<ul>
+<li><strong>CROSSOVER BUFFER SIZE（クロスオーバーのバッファサイズ）:</strong> デジタルクロスオーバーのバッファサイズの設定が可能です。詳細はバッファサイズの項をご参照ください。</li>
+<li><strong>CROSSOVER Q（クロスオーバーのQ）:</strong> この操作項目では、クロスオーバーフィルターの周波数帯、またはQを調節することが可能です。高いQ設定はタイトなクロスオーバーに、低いQ設定はバンド間の緩やかなトランジションに結びつきます。この操作項目が使えるのはデジタルクロスオーバーのみとなります。
+<br /></li>
+</ul>
+
+<h2 id="モジュールチャンネルの処理モード">モジュールチャンネルの処理モード</h2>
+
+<p>Ozoneのモジュールには、どのように処理が適用されるのかを決定する複数のモードが用意されています。モジュールが複数のチャンネル処理モードをサポートする場合、モジュール操作エリアの左側に処理モードのオプションが表示されます。
+以下のOzoneモジュールには異なるチャンネル処理オプションが用意されています:</p>
+
+<table>
+<thead>
+<tr>
+<th>モジュール</th>
+<th>ステレオ</th>
+<th>M/S</th>
+<th>L/R</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="../dynamics/index.html">ダイナミクス</a></td>
+<td>可</td>
+<td>可</td>
+<td>不可</td>
+</tr>
+
+<tr>
+<td><a href="../dynamic-eq/index.html">ダイナミックEQ</a></td>
+<td>可</td>
+<td>可</td>
+<td>可</td>
+</tr>
+
+<tr>
+<td><a href="../equalizer/index.html">EQ</a></td>
+<td>可</td>
+<td>可</td>
+<td>可</td>
+</tr>
+
+<tr>
+<td><a href="../exciter/index.html">エキサイター</a></td>
+<td>可</td>
+<td>可</td>
+<td>不可</td>
+</tr>
+
+<tr>
+<td><a href="../spectral-shaper/index.html">スペクトラル成形</a></td>
+<td>可</td>
+<td>可</td>
+<td>不可</td>
+</tr>
+
+<tr>
+<td><a href="../vintage-compressor/index.html">ビンテージコンプレッサー</a></td>
+<td>可</td>
+<td>可</td>
+<td>不可</td>
+</tr>
+
+<tr>
+<td><a href="../vintage-eq/index.html">ビンテージEQ</a></td>
+<td>可</td>
+<td>可</td>
+<td>可</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="ステレオモード">ステレオモード</h2>
+
+<p>ステレオモード（入力オーディオが単一チャンネルの場合は“モノ”モード）は全モジュールにとってデフォルトの処理モードとなります。これは、Mid/SideやLeft/Right処理モードのないモジュールにも当てはまります。</p>
+
+<p><img src="../images/common-module-controls/stereo-selected.png" alt="Processing modes Stereo selected" /></p>
+
+<p>ステレオモードが選択されている場合、選択されたモジュールでは処理を行う上でワンセットの操作項目が使用可能となります。</p>
+
+<h2 id="mid-side-m-s-モード">Mid/Side (M/S)モード</h2>
+
+<p>モジュール操作エリアの左側にあるM-Sマークを選択することによりMid/Sideプロセッシングに切り替えることができます。</p>
+
+<p><img src="../images/common-module-controls/m-s-controls.png" alt="Processing modes MS selected" /></p>
+
+<div class="admonition note">
+<p class="admonition-title">Mid/Side処理の例</p>
+<p>Mid/Side処理の具体的な用例につきましては、<a href="../tips-and-examples/index.html#mid-side-processing-examples">ヒントと用例</a>の章をご覧ください。</p>
+</div>
+
+<h3 id="mid-sideのエンコードとデコード">Mid/Sideのエンコードとデコード</h3>
+
+<p>Mid/Sideモードが有効の場合、モジュールへの入力信号はMid/Side構成にエンコードされます。Mid/Sideモードで処理を行った後、信号はモジュールの出力にてMid/Sideからステレオにデコードされます。</p>
+
+<ul>
+<li><strong>Mid Channel Encoding（Midチャンネルのエンコード）:</strong> エンコードされたMidチャンネルの信号は、左右のスピーカーの間のファントム画像、または入力オーディオの中央チャンネルを示します。</li>
+<li><strong>Side Channel Encoding（Sideチャンネルのエンコード）:</strong> エンコードされたSideチャンネルの信号は、入力のサイド（または端）を示します。</li>
+</ul>
+
+<h3 id="midとsideの独立した操作機能">MidとSideの独立した操作機能</h3>
+
+<p>Mid/Sideモードを選択すると、処理のための2つの固有のパラメーターが表示されます。ひとつのパラメーターのセットはエンコードされたMidチャンネルの処理のためのものであり、もうひとつのセットはエンコードされたSideチャンネルの処理のためのパラメーターとなります。</p>
+
+<h4 id="midチャンネルの操作項目">Midチャンネルの操作項目</h4>
+
+<ul>
+<li><strong>Midチャンネルの操作項目を閲覧及び調整：</strong> “Mid”ボタンを選択すると、アクティブなモジュールのMidチャンネルの処理に特化したパラメーターを閲覧し、調整することができます。</li>
+<li><strong>Midチャンネル処理をバイパス：</strong> Midチャンネルセレクター上部の電源ボタンをオフにするとMidチャンネルの処理がバイパスされます。</li>
+<li><strong>Midチャンネル処理をソロ：</strong> Midチャンネルセレクター上部の’S’ボタンを選択すると、モジュールのMidチャンネル処理がソロになります。</li>
+</ul>
+
+<h4 id="sideチャンネルの操作項目">Sideチャンネルの操作項目</h4>
+
+<ul>
+<li><strong>Sideチャンネルの操作項目を閲覧及び調整：</strong> “Side”ボタンを選択すると、アクティブなモジュールのSideチャンネルの処理に特化したパラメーターを閲覧し、調整することができます。</li>
+<li><strong>Sideチャンネル処理をバイパス：</strong> Sideチャンネルセレクター上部の電源ボタンをオフにするとSideチャンネルの処理がバイパスされます。</li>
+<li><strong>Sideチャンネル処理をソロ：</strong> Sideチャンネルセレクター上部の’S’ボタンを選択すると、モジュールのSideチャンネル処理がソロになります。</li>
+</ul>
+
+<h3 id="リンクされたmid-side操作の調整">リンクされたMid/Side操作の調整</h3>
+
+<p>MidとSideの操作項目はMidとSideの選択ボタンの間にある‘Link’ボタンを有効にすることで簡単にリンクさせることができます。リンクされている状態では、Midチャンネルのパラメーターを調整すると、リンクされたSideチャンネルのパラメーターも呼応し、その逆もまた然りです。</p>
+
+<div class="admonition note">
+<p class="admonition-title">追加情報: 相対リンク作業</p>
+<p>Ozoneのパラメーターのリンクに関する追加情報は<a href="../tips-and-examples/index.html#relative-parameter-linking">ヒントと用例</a>の章でご覧頂けます。</p>
+</div>
+
+<h2 id="mid-sideのメーター">Mid/Sideのメーター</h2>
+
+<p>デフォルトではI/Oメーターにはオーディオのステレオミックスが表示されます。しかしながら、Mid/Sideプロセッシングで作業する場合、MidとSideの全体的なレベルを個別に表示できるメーターがあると非常に便利です。I/OメーターのソースをMid/Sideに変更すると、マスターのメーター情報をMid/Sideの情報に切り替えることができます。</p>
+
+<p><img src="../images/common-module-controls/mid-side.png" alt="Mid/Side Source Meter" /></p>
+
+<p>I/OメーターがMid/Sideモードになると、信号のディスプレイはステレオの左右に準じたものではなくなります。メーター中央にはMidチャンネル全体のレベルが表示され、左右のメーターにはSideチャンネル全体のレベルが表示されます。左右のゲインスライダーは引き続き、信号の左右のゲインを調整します。Mid/SideメーターのタイプとスケールはI/Oオプションのメニューの設定に従います。</p>
+
+<h2 id="left-right-l-r-モード">Left/Right (L/R) モード</h2>
+
+<p>モジュール操作エリアの左側にあるL-Rボタンを選択することによりLet/Rightプロセッシングに切り替えることができます。</p>
+
+<p><img src="../images/common-module-controls/l-r-selected.png" alt="Processing modes LR selected" /></p>
+
+<p>ここが有効化されると、モジュールへの入力信号はLeft及びRightの処理チャンネルに分離します。信号は出力にて、ステレオ信号に“合算”されます。</p>
+
+<h3 id="leftとrightの独立した操作機能">LeftとRightの独立した操作機能</h3>
+
+<p>Left/Rightモードを選択すると、処理のための2つの固有のパラメーターが表示されます。ひとつのパラメーターのセットはLeftチャンネルの処理のためのものであり、もうひとつのセットはRightチャンネルの処理のためのパラメーターとなります。</p>
+
+<h4 id="leftチャンネルの操作項目">Leftチャンネルの操作項目</h4>
+
+<ul>
+<li><strong>Leftチャンネルの操作項目を閲覧及び調整：</strong> “Left”ボタンを選択すると、アクティブなモジュールのLeftチャンネルの処理に特化したパラメーターを閲覧し、調整することができます。</li>
+<li><strong>Leftチャンネル処理をバイパス：</strong> Leftチャンネルセレクター上部の電源ボタンをオフにするとLeftチャンネルの処理がバイパスされます。</li>
+<li><strong>Leftチャンネル処理をソロ：</strong> Leftチャンネルセレクター上部の’S’ボタンを選択すると、モジュールのLeftチャンネル処理がソロになります。</li>
+</ul>
+
+<h4 id="rightチャンネルの操作項目">Rightチャンネルの操作項目</h4>
+
+<ul>
+<li><strong>Rightチャンネルの操作項目を閲覧及び調整：</strong> “Right”ボタンを選択すると、アクティブなモジュールのRightチャンネルの処理に特化したパラメーターを閲覧し、調整することができます。</li>
+<li><strong>Rightチャンネル処理をバイパス：</strong> Rightチャンネルセレクター上部の電源ボタンをオフにするとRightチャンネルの処理がバイパスされます。</li>
+<li><strong>Rightチャンネル処理をソロ：</strong> Rightチャンネルセレクター上部の’S’ボタンを選択すると、モジュールのRightチャンネル処理がソロになります。</li>
+</ul>
+
+<h3 id="リンクされたleft-right操作の調整">リンクされたLeft/Right操作の調整</h3>
+
+<p>LeftとRightの操作項目はLeftとRightの選択ボタンの間にある‘Link’ボタンを有効にすることで簡単にリンクさせることができます。
+リンクされている状態では、左チャンネルのパラメーターを調整すると、リンクされた右チャンネルのパラメーターも呼応し、その逆もまた然りです。</p>
+
+<div class="admonition note">
+<p class="admonition-title">More information: 追加情報: 相対リンク作業</p>
+<p>Ozoneのパラメーターのリンクに関する追加情報は<a href="../tips-and-examples/index.html#relative-parameter-linking">ヒントと用例</a>の章でご覧頂けます。</p>
+</div>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../general-functions/index.html" title="全般的な機能">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              全般的な機能
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../dynamics/index.html" title="ダイナミクス">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              ダイナミクス
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../en/common-module-controls/index.html"><i class="icon icon-eye"></i> View in English</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8ヘルプドキュメント 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

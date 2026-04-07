@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Real-time_plugins</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="Real-time_plugins" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer122" class="Basic-Text-Frame">
+			<p id="_idParaDest-66" class="heading-1"><a id="_idTextAnchor068"></a>Working with RX realtime plug-ins</p>
+			<p id="_idParaDest-67" class="heading-2"><a id="_idTextAnchor069"></a>Presets</p>
+			<p class="Normal">From the Preset Manager, you can select from default presets and presets you have saved.</p>
+			<p class="Inline-Art"><img src="image/image_D7XHCREZQHAZHQPFIOVZFLVPW4BFCWZF" alt="" /></p>
+			<p class="Normal">To browse presets, press the Presets button and click the name of any preset. If you like what you hear, press the Presets button again to hide the window.</p>
+			<p class="heading-3">Add</p>
+			<p class="Normal">Clicking this button adds the current settings as a new preset. You can type a name and optionally add comments for the preset. Note that a few keys such as * or / cannot be used as preset names. If you try to type these characters in the name they will be ignored.</p>
+			<p class="Normal">Note: this is because presets are stored as .XML files for easy backup and transferring. Their filenames are the same as the names you give the presets (for easy reference) and therefore characters that are not allowed in Windows file names are not allowed in preset names.</p>
+			<p class="heading-3">Remove</p>
+			<p class="Normal">To permanently delete a preset, select the preset from the list and click the Remove button.</p>
+			<p class="heading-3">Update</p>
+			<p class="Normal">When you click the Update button your current settings before you opened the preset window are assigned to the selected preset (highlighted). This is useful for selecting a preset, tweaking it, and saving your changes to the existing preset.</p>
+			<p class="heading-3">Import</p>
+			<p class="Normal">Imports a preset into the preset folder.</p>
+			<p class="heading-3">Folder</p>
+			<p class="Normal">Opens a dialog that shows your current preset folder. You can also select a new preset folder from this dialog.</p>
+			<p class="heading-3">Renaming Presets</p>
+			<p class="Normal">You can double click on the name of a preset to enter the edit mode and then type a new name for that preset.</p>
+			<p class="heading-3">Cancel</p>
+			<p class="Normal">Press Escape to close the preset system dialog and revert to the settings when you opened the preset manager.</p>
+			<p id="_idParaDest-68" class="heading-2"><a id="_idTextAnchor070"></a>History</p>
+			<p class="Inline-Art"><img src="image/image_NYEEYS6IZ24A2UWVVDVMZEE4BYJT5DLD" alt="" /></p>
+			<p class="Normal">Pressing the History button opens the History window. This view gives you a list of all of the actions you&apos;ve performed inside the plug-in, allowing you to step back to previous settings and undo changes.</p>
+			<p class="heading-3">Clear</p>
+			<p class="Normal">Resets the History list.</p>
+			<p id="_idParaDest-69" class="heading-2"><a id="_idTextAnchor071"></a>Input/Output</p>
+			<p class="Inline-Art"><img src="image/image_TGW2RGSIEQEHZIEVEPVO3AKD4YV73ASR" alt="" /></p>
+			<p class="Normal">Each plug-in features an input and output gain control and input and output metering.</p>
+			<p class="Normal">In stereo plug-ins, the gain controls are linked stereo gains.</p>
+			<p id="_idParaDest-70" class="heading-2"><a id="_idTextAnchor072"></a>Options</p>
+			<p class="Inline-Art"><img src="image/image_KXZF5ZYCAJT3SIAP6OLQIR72P6D7SGOD" alt="" /></p>
+			<p class="Normal">Tools for managing your authorization and troubleshooting DAW/plug-in issues live here.</p>
+			<p class="heading-3">Authorization &amp; Updates</p>
+			<p class="Normal">This will allow you to perform any of the authorization steps outlined in Chapter "<a target="mainFrame" href="Authorization.html#_idTextAnchor003"><span class="Hyperlink">Authorization</span></a>."</p>
+			<p class="heading-3">Latency</p>
+			<p class="Normal">Some of the processing modes in the RX plug-ins are very CPU intensive and result in a delay of the signal. That is, RX needs some time to &quot;work on&quot; the audio before it can send it back to the host application. That time represents a delay when listening or mixing down. </p>
+			<p class="Normal">Most modern DAWs and NLEs provide delay compensation — a means for RX plug-ins to tell the application it has delayed the signal, and the host application should "undo" the delay on the track (usually by adding compensating delays to other tracks in realtime processing, or by adjusting the rendered file after processing in offline processing).</p>
+			<p class="Normal">When Enable Delay Compensation is enabled in the Latency menu, we will report our latency to the host application.</p>
+			<p class="Normal">If your application doesn&apos;t support it, or skips/stutters with this option on, you can always manually correct the delay offset in the host application (manually edit out the short delay of silence). To help you perform manual correction, the delay RX introduces is shown below as Total System Delay in both samples and milliseconds.</p>
+			<p class="Normal">Disabling delay compensation can help prevent this delay when processing offline in some older applications.</p>
+			<p class="Normal">Freezing our reported latency value may help with delay compensation problems during realtime processing in some older applications.</p>
+			<p class="heading-3">View Buffers</p>
+			<p class="Normal">Shows buffer information from the host&apos;s track. This is useful for diagnosing problems like audio dropouts or rare problems caused by inconsistent buffer sizes.</p>
+			<p class="heading-3">Host Sync</p>
+			<p class="Normal">Shows information reported from the host program about playback location, loop and transport state, tempo, etc. (when applicable). This is useful for diagnosing some rare timeline-related problems in specific DAWs.</p>
+			<p class="heading-3">Enable Multicore</p>
+			<p class="Normal">This option is available in the De-noise plug-in. Enabling this option lets RX process De-noise Quality Modes C and D more efficiently by spreading its processing across multiple computer cores.</p>
+			<p class="heading-3">I/O (Input/Output Meters)</p>
+			<p class="Inline-Art"><img src="image/image_HZ6F5IDIHZQFCMP7UAIBEC2KHIFDNKIV" alt="" /></p>
+			<p class="Normal">The RX I/O meter displays a lower bar representing the average level (RMS) and a higher bar representing peak level. There is also a moving line above the bar representing the most recent peak level or peak hold.</p>
+			<p class="heading-3">Peak hold time</p>
+			<p class="Normal">If peak hold is on, you can choose different peak hold times. The choices are 250 ms, 500 ms, 1000 ms, 5000 ms and Infinite. If set to infinite, the peak value will be held until you click on the current peak display.</p>
+			<p class="heading-3">Integration time</p>
+			<p class="Normal">Specifies the integration time for RMS calculation. In most RMS meters, the integration time is set to around 300 ms, which makes the RMS meter similar in ballistics to VU meters.</p>
+			<p class="heading-3">Readout</p>
+			<p class="Normal">Allows you to control what level value is displayed on top of the meters: peak or actual (real time). If set to Max Peak, the display will show the highest peak level. If set to Current, the display will reflect the meter&apos;s current value.</p>
+			<p class="heading-3">Enable I/O meters</p>
+			<p class="Normal">Turns the level meters on or off.</p>
+			<p class="heading-3">Show peak hold</p>
+			<p class="Normal">Turns the peak hold display for the level meters on or off.</p>
+		</div>
+	</body>
+</html>

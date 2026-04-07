@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="ja"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="ja"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="ja"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head lang="ja">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+  <title>イコライザー - Neutron 2 Help Documentation</title>
+  <meta name="generator" content="Hugo 0.40.3" />
+  <meta name="description" content="Neutron 2 User Manual">
+  <link rel="canonical" href="index.html">
+  <meta name="author" content="iZotope">
+  <meta property="og:url" content="http://www.neutron2helpdocs.com/ja/equalizer/index.html">
+  <meta property="og:title" content="Neutron 2 Help Documentation">
+  
+  <meta name="apple-mobile-web-app-title" content="Neutron 2 Help Documentation">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <style>
+    @font-face {
+      font-family: 'icon';
+      src: url('../fonts/icon.eot');
+      src: url('../fonts/icon.eot')
+             format('embedded-opentype'),
+           url('../fonts/icon.woff')
+             format('woff'),
+           url('../fonts/icon.ttf')
+             format('truetype'),
+           url('../fonts/icon.svg')
+             format('svg');
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+  <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+  <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    }
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+  
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  
+  <script src="../javascripts/modernizr.js"></script>
+  
+<script>
+  (function(i,s,o,g,r,a,m){
+    i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+    []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+    m.parentNode.insertBefore(a,m)
+  })(window, document,
+    'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+   
+  ga('create', 'UA-63445037-15', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+
+<script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+
+</head>
+<body class="palette-primary-docs palette-accent-docs">
+	
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	
+
+  <div class="backdrop">
+    <div class="backdrop-paper"></div>
+  </div>
+  <input class="toggle" type="checkbox" id="toggle-drawer">
+  <input class="toggle" type="checkbox" id="toggle-search">
+  <label class="toggle-button overlay" for="toggle-drawer"></label>
+  <header class="header">    <nav aria-label="Header">
+      <div class="bar default">
+        <div class="button button-menu" role="button" aria-label="Menu">
+          <label class="toggle-button icon icon-menu" for="toggle-drawer">
+            <span></span>
+          </label>
+        </div>
+        <div class="stretch">
+          <div class="title">
+            <a href="../index.html" >
+            <img src="../images/header-intro-site/site-header.png">    イコライザー</a>
+          </div>
+        </div>
+            
+      </div>
+      <div class="bar search">
+        <div class="button button-close" role="button" aria-label="Close">
+          <label class="toggle-button icon icon-back" for="toggle-search"></label>
+        </div>
+        <div class="stretch">
+          <div class="field">
+            <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+          </div>
+        </div>
+        <div class="button button-reset" role="button" aria-label="Search">
+          <button class="toggle-button icon icon-close" id="reset-search"></button>
+        </div>
+      </div>
+    </nav></header>
+  <main class="main">    <div class="drawer">
+      <nav aria-label="Navigation">
+        <form action="../search/index.html">
+           <div class="group">      
+              <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+              <span class="highlight"></span>
+              <span class="underline"></span>
+              <label>サーチ</label>
+              <div style="clear: both;"></div>
+           </div>
+        </form>
+      </nav>
+      
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="toc">
+          
+            <ul>
+
+
+<li>
+  
+    <a  title="はじめに" href="../index.html">はじめに</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Neutron 2の概要" href="../neutron-overview/index.html">Neutron 2の概要</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="コンプレッサー" href="../compressor/index.html">コンプレッサー</a>
+  
+</li>
+
+
+<li>
+  
+    <a class="current" title="イコライザー" href="index.html">イコライザー</a><ul id="scrollspy">
+</ul>
+  
+</li>
+
+
+<li>
+  
+    <a  title="エキサイター" href="../exciter/index.html">エキサイター</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ゲート" href="../gate/index.html">ゲート</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トランジエント成形" href="../transient-shaper/index.html">トランジエント成形</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トラックアシスタント" href="../track-assistant/index.html">トラックアシスタント</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="マスキングメーター" href="../masking-meter/index.html">マスキングメーター</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="I/Oセクション" href="../io-section/index.html">I/Oセクション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ミックスタップ" href="../mix-tap/index.html">ミックスタップ</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ビジュアルミキサー" href="../visual-mixer/index.html">ビジュアルミキサー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="トーナルバランスコントロ" href="../tonal-balance-control/index.html">トーナルバランスコントロ</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="プリセットシステム" href="../preset-system/index.html">プリセットシステム</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="オプション" href="../options/index.html">オプション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="取り消し履歴" href="../undo-history/index.html">取り消し履歴</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ヒントと使用例" href="../tips-and-examples/index.html">ヒントと使用例</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="オーソリゼーション" href="../authorization/index.html">オーソリゼーション</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="カスタマーケアー" href="../customer-care/index.html">カスタマーケアー</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="ライセンス情報" href="../license-information/index.html">ライセンス情報</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="EULA" href="../eula/index.html">EULA</a>
+  
+</li>
+
+
+</ul>
+          
+          
+                  <hr />
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+    
+          
+          
+            <ul>
+            
+              <li><a href="../../en/equalizer/index.html"><i class="icon icon-eye"></i> View page in English</a></li>
+            
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </div><article class="article">
+      <div class="wrapper">
+	<h1>イコライザー </h1>
+    
+      
+              <div class="lang-buttons-box">
+      <span class="lang-header">言語:</span>
+      <br />
+        
+      
+        <a href="../../en/equalizer/index.html"><button class="lang-btn-clickable">English</button></a>
+        
+            <a href="../../en/equalizer/index.html"><button class="lang-btn-active">日本語</button></a>
+            
+          
+      </div>
+      
+    
+    
+    
+
+    
+    
+    
+	
+
+<h2 id="概要">概要</h2>
+
+<p>NeutronのEQは、トランスペアレントなデジタル処理とアナログイコライザーのカラフルな音的品質が融合したEQです。豊かな視覚的フィードバック、ダイナミック操作点によるトリガー、そしてフレキシブルなサイドチェーンオプションの備わったことにより、ミックス内の全てのトラックに対して完璧なEQとなりました。</p>
+
+<p><img src="../images/equalizer/eq-softsaturation-module.png" alt="eq" /></p>
+
+<h2 id="グローバル操作">グローバル操作</h2>
+
+<h3 id="lfe-bypass-lfeバイパス-adv">LFE Bypass（LFEバイパス） [ADV]</h3>
+
+<p>このボタンは、Neutronが5.1または7.1サラウンド構成で起動している時のみ表示されます。サラウンドサウンドの構成下では、Neutronは全チャンネルを均等に処理します。これが有効になっていると、LFEチャンネルのオーディオは、レーテンシーが正しく補正された状態でバイパスされます。</p>
+
+<h3 id="マスキングメーター">マスキングメーター</h3>
+
+<p>このボタンでEQをマスキングメーターモードに切り替えます。マスキングメーターモードにすると、近隣のオーディオトラックからオーディオメーターデータをインテリジェントに分析し、キックドラムとベースギターがスペクトラム上の同じスペースで衝突を起こし、籠ったような音、あるいは精度を欠いた音になっていないかといった具合に、マスキングの問題が発生していないかどうか確認します。マスキングメーターに関する詳細は、<a href="../masking-meter/index.html">マスキングメーターの章</a>をご参照ください。</p>
+
+<h3 id="learn-分析">Learn（分析）</h3>
+
+<p>NeutronのEQ分析機能は、オーディオ信号をインテリジェントに分析し、歯擦音、共鳴、ランブルなど、特定の問題に対処する上で有効な操作点の配置を行います。これは、音的重要度の高いエリアを迅速に特定できる非常に便利な機能です。
+これは、作業の開始点、芸術的な調整を行う上での推奨ガイド、あるいは、正しいEQ点を見つけるのに苦労している際のお助け機能として使用すると良いでしょう。これは有効化されている操作点にのみ適用され、有効化や無効化は行いません（これとは対照的に、トラックアシスタントはそうした作業を行うこともあります）。また、ゲインやQにも影響を及ぼしませんので、操作点が配置された後は、Shiftキーを押しながら周波数の位置を定め、その上でゲインの上げ下げを行って音質の変化を確認すると良いでしょう。</p>
+
+<h3 id="reset-リセット">Reset（リセット）</h3>
+
+<p>これはEQ全体をデフォルト値に戻します。このボタンをクリック後に、リセットしたことを後悔しても問題ありません。取り消し履歴を使えば、リセットする前の設定に戻すことができます。</p>
+
+<h3 id="mix-ミックス">Mix（ミックス）</h3>
+
+<p>ミックススライダーはパラレルEQを可能とする便利な機能です。100%に設定されていると、EQにより処理されたオーディオのみ再生されますが、50%に設定されていると、EQ処理のかかったオーディオと未処理のオーディオが半々にブレンドされます。多くの場合、極度のEQ設定（特にシェルフEQ）にEQ処理のない信号をブレンドすると、単に緩やかなEQをかけるよりも心地良く優しい音になります。パラレルEQは隠し味として使用されることが多々ありますが、こうして種明かしをしましたので、存分にご活用ください。</p>
+
+<h3 id="soft-saturation-軽度サチュレーション">Soft Saturation（軽度サチュレーション）</h3>
+
+<p>軽度サチュレーションは英国式インダクタEQに触発されて搭載されたモードであり、イコライザーの入力でノンリニアのハーモニックサチュレーションが導入されるよう設計されています。</p>
+
+<h2 id="バンド毎の操作">バンド毎の操作</h2>
+
+<p>8つのEQ帯域は、全て円形のEQ操作点で表示されます。EQ帯域は、各操作点をクリックし、ドラッグすることで調整できます:</p>
+
+<ul>
+<li>水平方向に動かすと帯域の周波数が変わります。</li>
+<li>垂直方向に動かすと帯域のゲインが変わります。</li>
+</ul>
+
+<p>各帯域のサイドにあるハンドルを使うと、EQバンドの帯域幅（Q）を調整することができます。また、マウスやトラックパッドのスクロール機能でも選択された帯域の幅を変えることができます。操作点を調整すると、複数のEQ曲線が表示されます。白い曲線は全EQバンドの合算であり、各バンドの曲線はそれぞれの色で細く表示されます。</p>
+
+<h3 id="フォルターの種類">フォルターの種類</h3>
+
+<p>NeutronのEQには、調整可能な12バンドの多様なフィルタータイプが搭載されます。</p>
+
+<table>
+<thead>
+<tr>
+<th>フィルター名</th>
+<th></th>
+<th>帯域</th>
+<th>説明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>フラットHPF</strong></td>
+<td><img src="../images/equalizer/bandshapes/highpass_flat.png" alt="HP Flat" /></td>
+<td>ハイパスバンド</td>
+<td>バターワースフィルターと呼ばれるこのフィルターは、パスバンドやストップバンドにリップルや共鳴を発生させずに最高の平面性を実現するための最適化が施されています。このフィルターはとても実用的であり、ランブルやヒスをカットしてヘッドルームを稼ぐことができます。</td>
+</tr>
+
+<tr>
+<td><strong>レゾナントHPF</strong></td>
+<td><img src="../images/equalizer/bandshapes/highpass_resonant.png" alt="HP Resonant" /></td>
+<td>ハイパスバンド</td>
+<td>このフィルターには、正方向の共鳴でカットオフ周波数を強調する（例: キックドラムの基音を強調しつつランブル音をカット、あるいは、ボーカルの基音を中心にその低域を円滑に強調）、あるいは負方向の共鳴でカットオフ周波数周辺の曲線を平滑化することで、曲線を修正する共鳴コントロールが備わっています。</td>
+</tr>
+
+<tr>
+<td><strong>アナログ</strong></td>
+<td><img src="../images/equalizer/bandshapes/lowshelf_analog.png" alt="LS Analog" /></td>
+<td>ローシェルフバンド</td>
+<td>Neutronのアナログシェルフは、最もCPU効率が高く、単純な周波数の持ち上げやカットには最適です。</td>
+</tr>
+
+<tr>
+<td><strong>バクサンドール</strong></td>
+<td><img src="../images/equalizer/bandshapes/lowshelf_baxandall.png" alt="LS BAX" /></td>
+<td>ローシェルフバンド</td>
+<td>可変中央周波数コントロールのなかったオリジナルのバクサンドールEQの設計とは異なり、Neutronでは完全に周波数特性を調整することができます。ただし、ダイナミックモード下のNeutronで使えるフィルターでは、最もCPUの負荷が高いことにご留意ください。</td>
+</tr>
+
+<tr>
+<td><strong>ビンテージローシェルフ</strong></td>
+<td><img src="../images/equalizer/bandshapes/lowshelf_pultec.png" alt="LS pultec" /></td>
+<td>ローシェルフバンド</td>
+<td>Eこのフィルターは、有名なプルテックイコライザーを基にしており、ブースト時（あるいはカット時）に周波数帯に窪みをつけます。単一の操作点で複雑なスロープを作り出すところに、プルテック設計の優れた音質の秘密があります。低域（例えば40-100 Hz）をブーストすると、曲線上の700 Hzから1.5 kHzの間に窪みができますが、通常、この辺りには耳障りな共鳴が発生しますので、一石二鳥を実現しているわけです。</td>
+</tr>
+
+<tr>
+<td><strong>バンドシェルフ</strong></td>
+<td><img src="../images/equalizer/bandshapes/bell_bandshelf.png" alt="bell band shelf" /></td>
+<td>帯域1-8</td>
+<td>これはベル型フィルターですが、トップはフラットな形状になっていまので、特定の周波数帯に対し、幅広くフラットなEQ調整を施すことができます。これは、500-900 Hz辺りの不快なビルドアップや、3-7 kHz辺りのボーカル/ダイアログ成分をブーストするなど、一塊の周波数帯のコントロールに適しています。</td>
+</tr>
+
+<tr>
+<td><strong>プロポーショナルQ</strong></td>
+<td><img src="../images/equalizer/bandshapes/bell_propq.png" alt="bell prop q" /></td>
+<td>帯域1-8</td>
+<td>この革新的なフィルター形状は、カットやブーストの量に比例して変わり、美学的見地から見てとても有益であるため、非常に便利です。これは、極端なゲイン調整をする際に、トランスペアレントさが際立ちます。カットやブーストが中央から遠ざかるほど増す場合、形状は精度を高めるためタイトになりますので、共鳴やハム抑制や、その他の狭い帯域のカットを行う際に至便です。これは、自由に調整できる通常のQとは異なります。</td>
+</tr>
+
+<tr>
+<td><strong>アナログ</strong></td>
+<td><img src="../images/equalizer/bandshapes/highshelf_analog.png" alt="HS analog" /></td>
+<td>ハイシェルフバンド</td>
+<td>Neutronのアナログシェルフは、最もCPU効率が高く、単純な周波数の持ち上げやカットには最適です。</td>
+</tr>
+
+<tr>
+<td><strong>バクサンドール</strong></td>
+<td><img src="../images/equalizer/bandshapes/highshelf_baxandall.png" alt="HS BAX" /></td>
+<td>ハイシェルフバンド</td>
+<td>可変中央周波数コントロールのなかったオリジナルのバクサンドールEQの設計とは異なり、Neutronでは完全に周波数特性を調整することができます。ただし、ダイナミックモード下のNeutronで使えるフィルターでは、最もCPUの負荷が高いことにご留意ください。</td>
+</tr>
+
+<tr>
+<td><strong>ビンテージハイシェルフ</strong></td>
+<td><img src="../images/equalizer/bandshapes/highshelf_pultec.png" alt="HS pultec" /></td>
+<td>ハイシェルフバンド</td>
+<td>このフィルターは、有名なプルテックイコライザーを基にしており、ブースト時（あるいはカット時）に周波数帯に窪みをつけます。単一の操作点で複雑なスロープを作り出すところに、プルテック設計の優れた音質の秘密があります。低域（例えば40-100 Hz）をブーストすると、曲線上の700 Hzから1.5 kHzの間に窪みができますが、通常、この辺りには耳障りな共鳴が発生しますので、一石二鳥を実現しているわけです。</td>
+</tr>
+
+<tr>
+<td><strong>フラットLPF</strong></td>
+<td><img src="../images/equalizer/bandshapes/lowpass_flat.png" alt="LP FLAT" /></td>
+<td>ローパスバンド</td>
+<td>バターワースフィルターと呼ばれるこのフィルターは、パスバンドやストップバンドにリップルや共鳴を発生させずに最高の平面性を実現するための最適化が施されています。このフィルターはとても実用的であり、ランブルやヒスをカットしてヘッドルームを稼ぐことができます。</td>
+</tr>
+
+<tr>
+<td><strong>レゾナントLPF</strong></td>
+<td><img src="../images/equalizer/bandshapes/lowpass_resonant.png" alt="LP RESONANT" /></td>
+<td>ローパスバンド</td>
+<td>このフィルターには、正方向の共鳴でカットオフ周波数を強調する（例: キックドラムの基音を強調しつつランブル音をカット、あるいは、ボーカルの基音を中心にその低域を円滑に強調）、あるいは負方向の共鳴でカットオフ周波数周辺の曲線を平滑化することで、曲線を修正する共鳴コントロールが備わっています。</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="frequency-gain-q-周波数-ゲイン-q">Frequency / Gain / Q（周波数/ゲイン/Q）</h3>
+
+<p>選択された帯域の周波数、ゲイン及び帯域幅は、2通りの方法で調整することができます。これは、スペクトラム表示で画像的に操作するか、あるは、EQ詳細パネルのスライダーをクリックしてドラッグすることにより可能です。</p>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><ul>
+<li>フィルタータイプによってはゲインやQは調整できず、無効、あるいは非表示になっております。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="dynamic-mode-ダイナミックモード">Dynamic Mode（ダイナミックモード）</h2>
+
+<p>アナログ、バクサンドール、バンドシェルフ、そしてプロポーショナルQは、モードを固定とダイナミックに切り替えることができます。固定モードではEQ調整はコンスタントにオーディオに適用され、ダイナミックモードでは、EQ曲線は入力信号に対し視覚的かつ聴覚的に反応します。固定モードでは、操作点は円形で表示され、ダイナミックモードに関連したボタンやメーターは無効になります。</p>
+
+<p>固定EQと自動圧縮の併用などが行えるところに、NeutronのEQの万能性があります。ダイナミックモードでは、周波数帯に合わせて圧縮のスレッシュホルドを設定することができます。
+これにより、EQ調整は入力信号に応じて動きを変えることができ、大きな爆発音、突発的な発砲音、ダイアログのサ行抑制など、色々なシナリオに対応します。ユーザーにより定義できるスレッシュホルドで、ダイナミック機能が作動するポイントを設定します。EQ操作点周辺からのみオーディオ入力を取り込み、スレッシュホルドの上下から遠ざかるほど、調整の度合いは大きくなります。
+ダイナミック機能の動作の軌道を決めるためのアタックとリリース時間は、操作点の周波数に影響され、歯擦音のあるダイアログと、低域のLFEバーストに対しては異なった反応を示します。
+このインテリジェントな動作は、必要な状況でのみトランスペアレントなEQを施すことができますので、敏感でプログラム依存のミックス、敷いては更に重要なトランスペアレントなミックスの実現に繋がります。</p>
+
+<h3 id="up-アップ">Up（アップ）</h3>
+
+<p>信号がスレッシュホルドを超過すると、フィルターは上方に移動します。固定ゲインの値がプラスの場合、アップトリガーを使用すると、フィルターはセンターラインから固定操作点へ向けて移動します（トリガー時はブースト）。固定ゲインの値がマイナスの場合、アップトリガーを使用すると、トリガーされるまでマイナスのゲインを適用し、トリガーされるとセンターラインへ向け移動します。</p>
+
+<h3 id="down-ダウン">Down（ダウン）</h3>
+
+<p>信号がスレッシュホルドを超過すると、フィルターは下方に移動します。固定ゲインの値がプラスの場合、ダウントリガーを使用すると、フィルターは固定ブースト値からセンターラインへ向けて移動します（トリガー時はカット）。固定ゲインの値がマイナスの場合、ダウントリガーを使用すると、フィルターはセンターラインから固定マイナスゲイン値へむけて移動します。</p>
+
+<h3 id="threshold-スレッシュホルド">Threshold（スレッシュホルド）</h3>
+
+<p>スレッシュホルドでダイナミック処理の始まるポイントを設定します。</p>
+
+<h3 id="sidechain-source-サイドチェーン源">Sidechain Source（サイドチェーン源）</h3>
+
+<p>NeutronのダイナミックEQはパワフルかつきめ細かいサイドチェーンをサポートしますので、操作点のダイナミックな動作を幅広い入力信号で検知することができます。この機能は、例えばダイアログのステムに対し、音楽のステムの特定の周波数帯を自動的に引っ込めたいときや、キックドラムに対しベースギターの特定の周波数帯を一時的に引っ込めたいときなどに便利です。これは、全体的なボリュームを維持しながら、ミックス内の要素がお互いに作用し合うことのできる機能です。内部のオーディオにも外部からのオーディオにも対応しています。</p>
+
+<p>デフォルトでは、ダイナミック操作点は、それ自身のオーディオ入力によりトリガーされます（つまり、デフォルトでは、操作点5は、内部バンド5に対しサイドチェーンします）。しかし、EQ内の他のどのバンドにも、内部バンド（内部ハイパス=ハイパス、内部ローパス=ローシェルフ、など）を選択することができます。従って、ギターの温かみのある中域で（例えばここでは操作点3としますが）、耳障りな高域をカバーする操作点7をトリガーして、流動的にレベルを上下させることができます。これは、信号のバランスを内部的に完結する上で、飛び抜けて便利なツールです。操作点を特定せず、オーディオ信号の全帯域に対しトリガーする、フルを選択することもできます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">重要な注意点</p>
+<p>重要な注意点: 操作点が無効になっていても、有効になっている帯域同様、周波数とQなど他の操作点のセットに対するサイドチェーンとして使用することができます。</p>
+</div>
+
+<p>DAWの外部バスルーティング機能を使用する場合は、他のトラックやバスからオーディオを取り込んで、それをNeutronにてサイドチェーン/キー入力として使用できます。ダイナミックEQ操作点に対し、外部オーディオの信号全体をサイドチェーンとして使用する場合は、サイドチェーンのドロップダウンより、External Full（外部フル）を選択してください。これとは反対に、特定の外部バンド（外部ハイパス、外部ローシェルフ、外部バンド1など）を選択し、意図的に外部信号にフィルターを適用することもできます。</p>
+
+<h2 id="ユーティリティ機能">ユーティリティ機能</h2>
+
+<h3 id="altキー-ソロ">ALTキー+ソロ</h3>
+
+<p>Altキーを押しながらスペクトラム上をクリックすると、一時的なオーディオ拡大鏡として機能し、実際のEQ設定に影響を与えることなく、マウスカーソルの当たった周波数帯のみを試聴することができます。これは、実際のEQ帯域を変更することなく特定の周波数の箇所をピンポイントで探し出す際に便利です。このフィルターのQは、Options画面で調整可能です。</p>
+
+<h3 id="操作点ソロ">操作点ソロ</h3>
+
+<p>Altキーを押しながらソロにしたい操作点をクリックすると、そのEQ帯域をソロにすることができます。これにより、選択された操作点のフィルターに影響されるオーディオに対するバンドパスフィルターがエンゲージされます。</p>
+
+<h3 id="可調周波数スケール">可調周波数スケール</h3>
+
+<p>EQの対象によって、適した周波数尺度は異なる場合があります。NeutronのEQでは、以下のスケールを選択することができます:</p>
+
+<ul>
+<li><strong>LINEAR（リニア）：</strong> 全周波数を通して均等な表示となります。これは、重要でない情報のありがちな高周波数帯を過度に強調することがありますが、“エアー”バンドの調整や、EQで明るさを出す際には便利です。</li>
+<li><strong>MEL（メル）：</strong>人間のピッチに対する聴覚的な感じ方に応じた尺度です。以下は、メル尺度とヘルツ尺度の関係性を分かり易く示したグラフです:
+<img src="../images/equalizer/krishna-vedala-mel-hz-plot.png" alt="EQ Mel Scale Chart" />
+<strong>“ヘルツ尺度に対するメル尺度のピッチ相関図” by クリシュナ・ベダラ</strong>, <a href="https://en.wikipedia.org/wiki/Mel_scale#/media/File:Mel-Hz_plot.svg">Wikipedia</a>, CC BY-SA 3.0より使用許可を取得。<a href="https://en.wikipedia.org/wiki/Gnuplot">gnuplot</a>にて作成。</li>
+<li><strong>Logarithmic</strong>, <strong>Flat Logarithmic</strong>, and <strong>Extended Logarithmic</strong> （ログ、フラットログ、拡張ログ）： これは低域と中域のディテールが強調されるノンリニアのスケールであり、最も広範なEQ作業に対応していますので、Neutronでは拡張ログがデフォルトとなります。</li>
+<li><strong>Piano Roll（ピアノロール）</strong></li>
+</ul>
+
+<h2 id="更なる情報">更なる情報</h2>
+
+<p>オーディオ信号の観点から述べると、イコライゼーションとは、リニアーフィルターを使用してスペクトラム上の周波数のバランスを整えるプロセスになります。イコライザー、あるいはEQは、周波数に特化した振幅調整を促進する道具のことを指します。EQは表と裏を理解することが重要であり、これまでどのようにして使われ、今日的な制作においてEQがどのような地位を占めているのかを知ることが大切です。</p>
+
+<p>今日のオーディオ技術の多くは、元々オーディオ録音やオーディオ制作向けに設計されたものではありませんでした。iZotope製VocalSynthのマニュアルにもある通り、前時代に軍用やコミュニケーション技術として発達したテクノロジーが、今日のポップカルチャーのサウンドを彩っています。EQは、そうした歴史的流れからすると、平和的な出自を持つ例外のひとつであり、元来、初期の再生媒体（電話、セラック、レコード盤など）をサポートする矯正ツールとして産声を上げました。当時は、録音に対する技術的な制限を克服し、オーディオを安定して何かしらの再生媒体へコミットする新たな胸躍る方法を発見することに躍起になっていました。</p>
+
+<p>例えば、初期の蓄音機用レコードでは、低周波数の信号を再生するにあたり、針により大きな動きが必要とされ、それに伴い、レコードの表面により多くの物理的なスペースが必要となったことで、再生可能時間が制限され、また、針の感受性が高まったことで、クリック音やポップノイズといった形で高周波数干渉が発生していました。</p>
+
+<p>これに対し、1920年代に開発された解決策が、録音時は低域の振幅を減少させながら、同時に高域をブーストして再生時間を確保し、再生時は逆の“イコライゼーション”を施し、ノイズを減らして音の再現性を高めるというものでした。このタイプのEQは固定型であり、可変ではありませんでした。</p>
+
+<p><img src="../images/equalizer/riaa-curve.png" alt="RIAA CURVE" /></p>
+
+<p><em>Fig. X: 上図は、レコード盤型再生媒体で最も標準化されたEQのプリエンファシス/ディエンファシス曲線を示したRIAA曲線です。これは1960年代に米国で開発され、1980年代に全世界的な標準となりました。</em></p>
+
+<p>ジョン・ヴォルクマンは、最初に可変スタンドアローン型EQを設計した人物として知られています。1930年代に彼の開発したEQには、ユーザーにより選択可能な所定の周波数に対する増加と減衰機能が付いていました。このEQは映画産業で重宝され、しばしば声音の増強に使用されたほか、シネマでのオーディオ再生の向上に一役買いました。この他にも、初期の可変EQとして、有名なランジュバンモデルEQ-251Aやシネマエンジニアリング・タイプ7080（最初のグラフィックイコライザー）が知られており、1970年代に入ると、認知されている最初のパラメトリック（センター周波数、ゲイン、Qの調整が可能）EQがダニエル・フリッキンガーにより発明され、その直後の1972年にはジョージ・マッセンバーグのEQが誕生しました。</p>
+
+<p>初期EQの多くは、必ずしも歓迎されなかった予測不能な音的特性を持っておりました。デジタル信号処理により、新しいタイプのイコライゼーション技術が生まれましたが、最大限の音的フレキシビリティを獲得すべく、多くのデジタルイコライゼーに、その新しい方法に加え、オーセンティックなビンテージフィルターのエミュレーションが搭載されているのは、興味深い事実です。こうした歴史的文脈から生まれたNeutronのEQは、好都合ながら当然の流れとして、アナログとデジタル、両方の世界の最高の要素を併せ持っています。</p>
+
+<h3 id="バクサンドールeq">バクサンドールEQ</h3>
+
+<p>1950年代にピーター・バクサンドールにより設計された、トレブルとベースのノブ2つが備わったビンテージイコライザーを基に作られたEQフィルターであり、穏やかで音的に心地良いスロープが特徴です。気の毒なことに、ピーターは彼の設計から余りロイヤリティを取得することができませんでしたので、このタイプのフィルターはあらゆる場所で見かけることができます。</p>
+
+<p>バクサンドールフィルターの複雑な計算は、多くのアナログシェルビングEQで散見される位相ディレイを最小限に抑えます。位相変位は常に悪というわけではありません。Neutronのビンテージフィルターは位相配色を使用しますが、そうした人工音を最小限に抑えることで、バクサンドールフィルターは全体的な音の特性をドラスティックに変えることなく、周波数スペクトラムを大幅に変化させることができます。こうした繊細さは、ボーカルやギターに空気感を与える上で、抜群の効果を発揮し、シンセ、ベース、そしてドラムに対し、耳障りなエッジを加えることなく質感を強調することも可能にします。</p>
+
+</div>
+    </article>
+    <footer class="footer">
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../compressor/index.html" title="コンプレッサー">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              コンプレッサー
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  <div class="next">
+  
+      <a href="../exciter/index.html" title="エキサイター">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              エキサイター
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+<div class="copyright">
+
+  
+  
+  <a href="../../en/equalizer/index.html"><i class="icon icon-eye"></i> View page in English</a>
+  
+
+  <br />
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Neutron 2ヘルプドキュメント 
+
+</div></footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>  <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </main>
+  </body>
+</html>

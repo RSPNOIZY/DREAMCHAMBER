@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE GREAT RESTORATION — NOIZY.AI — Before It's Too Late</title>
+<style>
+:root {
+  --bg:     #020304;
+  --bg2:    #050810;
+  --gold:   #c8960a;
+  --gold2:  #f0b429;
+  --gold3:  #ffd166;
+  --ember:  #e85d04;
+  --ember2: #ff6b35;
+  --rose:   #c94070;
+  --teal:   #0a9ebd;
+  --violet: #7c4dff;
+  --green:  #22c55e;
+  --red:    #dc2626;
+  --cream:  #f5e6c8;
+  --text:   #dde6f2;
+  --muted:  #8899aa;
+  --dim:    #3a4a5a;
+  --border: #18283c;
+  --surface:#0b1220;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); font-family:'Georgia',serif; line-height:1.75; overflow-x:hidden; }
+
+/* ── NOISE TEXTURE ── */
+body::before {
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:.4;
+}
+
+/* ── STARS ── */
+#stars { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+.star { position:absolute; border-radius:50%; background:#fff; animation:tw var(--d) ease-in-out infinite; opacity:0; }
+@keyframes tw { 0%,100%{opacity:0}50%{opacity:var(--o)} }
+
+/* ══════════════════════════════════════════════
+   OPENING ALARM
+══════════════════════════════════════════════ */
+.alarm {
+  position:relative; z-index:1;
+  min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:80px 32px;
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 110%, rgba(220,38,38,.25) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 20%, rgba(232,93,4,.10) 0%, transparent 50%);
+}
+.alarm-siren {
+  font-size:64px; margin-bottom:32px;
+  animation:siren-pulse 1.2s ease-in-out infinite;
+}
+@keyframes siren-pulse {
+  0%,100%{filter:drop-shadow(0 0 20px rgba(220,38,38,.5)); transform:scale(1)}
+  50%{filter:drop-shadow(0 0 60px rgba(220,38,38,.9)); transform:scale(1.08)}
+}
+.alarm-kicker {
+  font-family:'Courier New',monospace; font-size:11px; letter-spacing:6px;
+  text-transform:uppercase; color:var(--red); margin-bottom:24px;
+}
+.alarm-title {
+  font-size:clamp(48px,11vw,140px); font-weight:400; line-height:.9; color:var(--cream);
+  letter-spacing:-3px; margin-bottom:32px;
+}
+.alarm-title .break { display:block; }
+.alarm-title .accent { color:var(--ember2); }
+.alarm-sub {
+  font-size:clamp(16px,2.5vw,24px); color:var(--gold3); font-style:italic; margin-bottom:24px;
+}
+.alarm-body {
+  font-size:clamp(14px,1.8vw,18px); color:var(--muted); max-width:720px; line-height:1.95; margin-bottom:60px;
+}
+.alarm-body strong { color:var(--cream); }
+.scroll-cue {
+  font-family:'Courier New',monospace; font-size:10px; letter-spacing:4px; text-transform:uppercase;
+  color:var(--dim); animation:sc 2s ease-in-out infinite;
+}
+@keyframes sc { 0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:.9;transform:translateY(8px)} }
+
+/* ══════════════════════════════════════════════
+   PAGE LAYOUT
+══════════════════════════════════════════════ */
+.pg { position:relative; z-index:1; max-width:1160px; margin:0 auto; padding:0 28px 120px; }
+
+.ch { margin-bottom:120px; opacity:0; transform:translateY(28px); transition:opacity .7s,transform .7s; }
+.ch.vis { opacity:1; transform:translateY(0); }
+
+.ch-label {
+  font-family:'Courier New',monospace; font-size:10px; letter-spacing:6px; text-transform:uppercase;
+  color:var(--ac,var(--gold)); margin-bottom:16px; display:flex; align-items:center; gap:14px;
+}
+.ch-label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,rgba(255,255,255,.1),transparent); }
+.ch-title { font-size:clamp(32px,5.5vw,72px); font-weight:400; color:var(--cream); line-height:1.05; margin-bottom:16px; }
+.ch-sub { font-size:17px; color:var(--muted); font-style:italic; margin-bottom:40px; }
+
+/* ── BIG QUOTE ── */
+.bq {
+  border-left:4px solid var(--ac,var(--gold)); padding:28px 36px; margin:40px 0;
+  background:rgba(255,255,255,.02);
+}
+.bq p { font-size:clamp(17px,2.5vw,24px); color:var(--cream); font-style:italic; line-height:1.75; margin-bottom:12px; }
+.bq cite { font-family:'Courier New',monospace; font-size:11px; color:var(--muted); }
+
+/* ── STAT HORROR ── */
+.horror-stats { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:2px; margin:48px 0; }
+.hstat {
+  background:var(--surface); border:1px solid var(--border);
+  padding:36px 28px; border-top:3px solid var(--hc,var(--red));
+  transition:all .3s;
+}
+.hstat:hover { transform:translateY(-4px); }
+.hs-num { font-size:clamp(36px,5vw,60px); font-weight:300; color:var(--hc,var(--red)); line-height:1; margin-bottom:8px; }
+.hs-label { font-size:14px; color:var(--cream); margin-bottom:8px; }
+.hs-body { font-size:12px; color:var(--muted); line-height:1.6; }
+
+/* ── CONTRAST BOX ── */
+.contrast { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin:48px 0; }
+@media(max-width:680px){.contrast{grid-template-columns:1fr}}
+.contrast-side { padding:40px 32px; }
+.contrast-side.bad { background:rgba(220,38,38,.05); border:1px solid rgba(220,38,38,.2); border-top:3px solid var(--red); }
+.contrast-side.good { background:rgba(34,197,94,.05); border:1px solid rgba(34,197,94,.2); border-top:3px solid var(--green); }
+.cs-label { font-family:'Courier New',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; margin-bottom:16px; }
+.cs-title { font-size:22px; color:var(--cream); margin-bottom:16px; }
+.cs-list { list-style:none; }
+.cs-list li { font-size:14px; color:var(--muted); padding:8px 0; border-bottom:1px solid var(--border); line-height:1.6; }
+.cs-list li::before { content:''; margin-right:8px; }
+.bad .cs-list li::before { content:'✗ '; color:var(--red); }
+.good .cs-list li::before { content:'✓ '; color:var(--green); }
+.bad .cs-label { color:var(--red); }
+.good .cs-label { color:var(--green); }
+
+/* ── BODY TEXT ── */
+.body-text { font-size:17px; color:var(--text); line-height:1.9; max-width:800px; }
+.body-text p { margin-bottom:20px; }
+.body-text strong { color:var(--gold3); }
+.body-text em { color:var(--cream); font-style:italic; }
+
+/* ── THE INFECTION VISUAL ── */
+.infection-visual {
+  text-align:center; padding:80px 32px; margin:60px 0;
+  background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(232,93,4,.08) 0%, transparent 70%);
+  border:1px solid rgba(232,93,4,.2); position:relative; overflow:hidden;
+}
+.iv-glyph { font-size:100px; margin-bottom:32px;
+  animation:spread 3s ease-in-out infinite;
+  filter:drop-shadow(0 0 40px rgba(232,93,4,.5));
+}
+@keyframes spread {
+  0%,100%{transform:scale(1);filter:drop-shadow(0 0 40px rgba(232,93,4,.5))}
+  50%{transform:scale(1.1);filter:drop-shadow(0 0 80px rgba(240,180,41,.8))}
+}
+.iv-title { font-size:clamp(28px,5vw,64px); color:var(--cream); margin-bottom:16px; font-weight:400; }
+.iv-sub { font-size:18px; color:var(--gold3); font-style:italic; margin-bottom:32px; }
+.iv-body { font-size:15px; color:var(--muted); max-width:640px; margin:0 auto; line-height:1.9; }
+
+/* ── VECTOR CARDS ── */
+.vector-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:2px; margin:48px 0; }
+.vcard { background:var(--surface); border:1px solid var(--border); padding:36px 28px; border-left:4px solid var(--vc); transition:all .3s; }
+.vcard:hover { transform:translateY(-4px); background:#0d1828; }
+.vc-icon { font-size:36px; margin-bottom:16px; }
+.vc-who { font-family:'Courier New',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--vc); margin-bottom:8px; }
+.vc-title { font-size:20px; color:var(--cream); margin-bottom:10px; }
+.vc-body { font-size:13px; color:var(--muted); line-height:1.7; }
+.vc-power { font-family:'Courier New',monospace; font-size:11px; color:var(--vc); margin-top:14px; padding-top:12px; border-top:1px solid var(--border); }
+
+/* ── DECLARATION ── */
+.declaration {
+  background:linear-gradient(135deg, #0d1a10 0%, #060810 50%, #1a0d08 100%);
+  border:1px solid rgba(240,180,41,.2); padding:80px 60px; text-align:center;
+  position:relative; overflow:hidden; margin:60px 0;
+}
+.declaration::before { content:''; position:absolute; inset:1px; border:1px solid rgba(240,180,41,.08); pointer-events:none; }
+.declaration::after {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 100%, rgba(232,93,4,.08) 0%, transparent 60%);
+  pointer-events:none;
+}
+.decl-label { font-family:'Courier New',monospace; font-size:10px; letter-spacing:7px; text-transform:uppercase; color:var(--gold); margin-bottom:32px; }
+.decl-words {
+  font-size:clamp(18px,3vw,30px); line-height:2.1; color:var(--cream);
+  font-style:italic; max-width:800px; margin:0 auto 48px; position:relative; z-index:1;
+}
+.decl-words em { color:var(--gold3); font-style:normal; }
+.decl-words strong { color:var(--ember2); font-style:normal; }
+.decl-sig { font-family:'Courier New',monospace; font-size:11px; color:var(--dim); }
+
+/* ── WHAT HAPPENS IF WE DON'T ── */
+.warning {
+  background:rgba(220,38,38,.04); border:1px solid rgba(220,38,38,.2);
+  padding:60px 48px; margin:60px 0; position:relative; overflow:hidden;
+}
+.warning::before {
+  content:'!'; position:absolute; top:-20px; right:40px;
+  font-size:200px; color:rgba(220,38,38,.04); font-weight:900; line-height:1;
+  font-family:'Courier New',monospace; pointer-events:none;
+}
+.w-label { font-family:'Courier New',monospace; font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--red); margin-bottom:20px; }
+.w-title { font-size:clamp(24px,4vw,48px); color:var(--cream); margin-bottom:24px; font-weight:400; }
+.w-body { font-size:16px; color:var(--text); line-height:1.9; max-width:760px; }
+.w-body p { margin-bottom:16px; }
+.w-body strong { color:var(--red); }
+
+/* ── WHAT HAPPENS WHEN WE DO ── */
+.promise {
+  background:rgba(34,197,94,.04); border:1px solid rgba(34,197,94,.2);
+  padding:60px 48px; margin:60px 0; position:relative; overflow:hidden;
+}
+.promise::before {
+  content:'✓'; position:absolute; top:-30px; right:30px;
+  font-size:200px; color:rgba(34,197,94,.04); font-weight:900; line-height:1;
+  font-family:'Courier New',monospace; pointer-events:none;
+}
+.pr-label { font-family:'Courier New',monospace; font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--green); margin-bottom:20px; }
+.pr-title { font-size:clamp(24px,4vw,48px); color:var(--cream); margin-bottom:24px; font-weight:400; }
+.pr-body { font-size:16px; color:var(--text); line-height:1.9; max-width:760px; }
+.pr-body p { margin-bottom:16px; }
+.pr-body strong { color:var(--green); }
+
+/* ── THE DOCTRINE ── */
+.doctrine-list { list-style:none; margin:40px 0; }
+.doctrine-item { display:flex; gap:24px; padding:28px 0; border-bottom:1px solid var(--border); }
+.doctrine-item:first-child { border-top:1px solid var(--border); }
+.di-n { font-family:'Courier New',monospace; font-size:13px; color:var(--gold); width:44px; flex-shrink:0; padding-top:3px; font-weight:700; }
+.di-content {}
+.di-title { font-size:18px; color:var(--cream); margin-bottom:6px; }
+.di-body { font-size:14px; color:var(--muted); line-height:1.75; }
+.di-body strong { color:var(--gold3); }
+
+/* ── CALL TO ACTION ── */
+.cta-block {
+  text-align:center; padding:120px 32px;
+  background:radial-gradient(ellipse 80% 70% at 50% 50%, rgba(232,93,4,.10) 0%, transparent 70%);
+  border:1px solid rgba(232,93,4,.2); margin:60px 0;
+}
+.cta-flame { font-size:80px; margin-bottom:36px;
+  filter:drop-shadow(0 0 40px rgba(232,93,4,.6));
+  animation:ep 3s ease-in-out infinite;
+}
+@keyframes ep { 0%,100%{filter:drop-shadow(0 0 40px rgba(232,93,4,.6))}50%{filter:drop-shadow(0 0 80px rgba(240,180,41,.9))} }
+.cta-title { font-size:clamp(32px,6vw,76px); color:var(--cream); margin-bottom:28px; font-weight:400; line-height:1; }
+.cta-body { font-size:17px; color:var(--muted); max-width:640px; margin:0 auto 52px; line-height:2; }
+.cta-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+.btn { padding:18px 40px; font-family:'Courier New',monospace; font-size:12px; letter-spacing:3px; text-transform:uppercase; text-decoration:none; cursor:pointer; transition:all .3s; display:inline-block; }
+.btn-fire { background:var(--ember); color:var(--cream); border:1px solid var(--ember); }
+.btn-fire:hover { background:var(--ember2); box-shadow:0 0 40px -5px rgba(232,93,4,.5); }
+.btn-gold { color:var(--gold2); border:1px solid rgba(200,150,10,.4); background:rgba(200,150,10,.07); }
+.btn-gold:hover { background:rgba(200,150,10,.16); box-shadow:0 0 30px -5px rgba(200,150,10,.4); }
+
+/* ── DIVIDER ── */
+.div { display:flex; align-items:center; gap:16px; margin:70px 0; color:var(--dim); }
+.div::before,.div::after { content:''; flex:1; height:1px; background:var(--border); }
+
+/* ── FOOTER ── */
+footer { text-align:center; padding:60px 32px; font-family:'Courier New',monospace; font-size:10px;
+  letter-spacing:2px; color:var(--dim); border-top:1px solid var(--border); position:relative; z-index:1; }
+footer span { color:var(--gold); }
+
+@media(max-width:768px){
+  .pg{padding:0 16px 80px;}
+  .alarm{padding:60px 16px;}
+  .declaration{padding:48px 24px;}
+  .warning,.promise{padding:40px 24px;}
+  .cta-block{padding:80px 20px;}
+}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+
+<!-- ══════════════════════════════════════════════
+  OPENING ALARM
+══════════════════════════════════════════════ -->
+<header class="alarm">
+  <div class="alarm-siren">🚨</div>
+  <div class="alarm-kicker">NOIZY.AI · Emergency Broadcast · March 2026 · To Every Human Who Has Ever Made Anything</div>
+  <h1 class="alarm-title">
+    <span class="break">THE GREAT</span>
+    <span class="break accent">RESTORATION</span>
+  </h1>
+  <p class="alarm-sub">Before It's Too Late — A Declaration of Creative War</p>
+  <p class="alarm-body">
+    Something is being stolen from the human race right now.<br>
+    Not money. Not land. Not resources.<br><br>
+    <strong>The feeling that you are creative.</strong><br><br>
+    The belief that your voice matters. That your song is worth singing.
+    That your art belongs to you. That making something — anything —
+    is one of the most important things a human being can do.<br><br>
+    We are losing it. Generation by generation. Platform by platform. Algorithm by algorithm.<br>
+    And if we don't act now — with everything we have — <strong>we may not get it back.</strong>
+  </p>
+  <div class="scroll-cue">↓ Read the Emergency ↓</div>
+</header>
+
+<div class="pg">
+
+<!-- ══════════════════════════════════════════════
+  THE DIAGNOSIS
+══════════════════════════════════════════════ -->
+<section class="ch" id="diagnosis" style="--ac:var(--red)">
+  <div class="ch-label">Chapter I · The Emergency</div>
+  <h2 class="ch-title">What We<br>Are Losing</h2>
+  <p class="ch-sub">The data is real. The loss is real. This is not nostalgia — this is a civilizational emergency.</p>
+
+  <div class="horror-stats">
+    <div class="hstat" style="--hc:var(--red)">
+      <div class="hs-num">71%</div>
+      <div class="hs-label">of US schools have cut arts programs since 2008</div>
+      <div class="hs-body">The first thing to go when money is tight. As if creativity is a luxury. As if the thing that makes us human is optional. Tens of millions of children growing up believing they are not creative.</div>
+    </div>
+    <div class="hstat" style="--hc:#e85d04">
+      <div class="hs-num">82%</div>
+      <div class="hs-label">of adults say they are "not creative"</div>
+      <div class="hs-body">This is not a natural fact — it is an installed belief. No child is born saying "I'm not creative." They are taught it. By schools that stopped teaching art. By systems that rewarded compliance over expression.</div>
+    </div>
+    <div class="hstat" style="--hc:var(--rose)">
+      <div class="hs-num">12%</div>
+      <div class="hs-label">of streaming revenue goes to artists</div>
+      <div class="hs-body">Spotify pays $0.003–$0.005 per stream. After the label takes their cut and the distributor takes theirs, the person who made the music receives less than one half of one percent of what the listener paid. That is not an economy. That is extraction.</div>
+    </div>
+    <div class="hstat" style="--hc:var(--violet)">
+      <div class="hs-num">$430B</div>
+      <div class="hs-label">music industry revenue in 2024 — artists got $52B</div>
+      <div class="hs-body">The industry made $430 billion dollars from music last year. The people who created that music received 12 cents of every dollar. The system was designed this way. It was not an accident.</div>
+    </div>
+    <div class="hstat" style="--hc:var(--red)">
+      <div class="hs-num">73%</div>
+      <div class="hs-label">of Gen Z feel "creatively blocked" regularly</div>
+      <div class="hs-body">The most connected generation in history. The most surveilled, most algorithmically managed, most "content-fed" generation. And the most creatively blocked. The algorithm gives you everything to watch and nothing to say.</div>
+    </div>
+    <div class="hstat" style="--hc:var(--ember)">
+      <div class="hs-num">40M+</div>
+      <div class="hs-label">AI-generated songs uploaded to Spotify in 2024</div>
+      <div class="hs-body">Forty million songs created by machines, trained on human work, flooding the platforms — making it harder for human creators to be found, heard, or paid. The algorithm doesn't care which it plays. The human creator disappears into the noise.</div>
+    </div>
+  </div>
+
+  <div class="bq" style="--ac:var(--red)">
+    <p>"We are not watching the music industry change. We are watching the belief that human creativity matters get systematically dismantled — first by business models that extract everything from creators, then by AI systems trained on stolen work, and now by algorithms that can't tell the difference between a machine's output and a human's soul."</p>
+    <cite>— POPS · Robert Stephen Plowman · NOIZY.AI · March 2026</cite>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════════════
+  THE ROOT CAUSE
+══════════════════════════════════════════════ -->
+<section class="ch" id="root" style="--ac:var(--ember)">
+  <div class="ch-label">Chapter II · The Root Cause</div>
+  <h2 class="ch-title">How We<br>Got Here</h2>
+  <p class="ch-sub">This didn't happen overnight. It was built, decision by decision, over 120 years.</p>
+
+  <div class="body-text">
+    <p>The music industry is 120 years old. Music is 60,000 years old. For 59,880 years, music belonged to the people who made it. Then the industry arrived — and over the next century, built the most comprehensive extraction machine ever constructed around a human creative act.</p>
+    <p>First: the <strong>record contract</strong> — designed to own the artist's work permanently, recoup "expenses" that never finished recouping, and leave the creator with a fraction of what their work generated. Signed by people who had no choice and no legal counsel who understood the terms.</p>
+    <p>Then: <strong>streaming</strong> — sold to the world as "music for everyone, fairly paid." In reality: fractional cent payments, opaque algorithms that buried independent artists, and playlist placement sold to the highest bidder. The democratization of access became the commodification of attention.</p>
+    <p>Then: <strong>AI training on stolen work</strong> — billions of songs scraped without consent, used to train systems that generate "original" music, then deployed on the same platforms where the stolen work lived. The extraction became complete. The creator doesn't just get a bad deal anymore. The creator gets no deal at all.</p>
+    <p>And underneath all of this: a school system that <strong>cut arts programs</strong>, a social system that called creativity a hobby, a professional culture that said "you can't make a living from art" until millions of people stopped trying — and eventually stopped believing they were capable of trying.</p>
+    <p><strong>The result: a world full of consumers who have forgotten they are creators.</strong></p>
+  </div>
+
+  <div class="contrast">
+    <div class="contrast-side bad">
+      <div class="cs-label">What the Old World Built</div>
+      <div class="cs-title">The Extraction Economy</div>
+      <ul class="cs-list">
+        <li>Labels own your master recordings — forever</li>
+        <li>Streaming pays $0.003 per stream — you need 250 streams to buy a coffee</li>
+        <li>AI trained on your work without consent</li>
+        <li>Algorithm buries you unless you pay for promotion</li>
+        <li>Your voice cloned without permission or payment</li>
+        <li>Arts programs cut from schools to save money</li>
+        <li>Children taught: art is a hobby, not a career</li>
+        <li>"Not creative" installed as a belief in 82% of adults</li>
+        <li>Platform owns the relationship with your audience</li>
+        <li>Your data, your plays, your earnings: opaque black boxes</li>
+      </ul>
+    </div>
+    <div class="contrast-side good">
+      <div class="cs-label">What NOIZY Is Building</div>
+      <div class="cs-title">The Restoration Economy</div>
+      <ul class="cs-list">
+        <li>You own your voice, your work, your masters — forever</li>
+        <li>75% of every synthesis credit goes to you — same day</li>
+        <li>No AI training on your work without explicit consent</li>
+        <li>Your earnings are real-time, transparent, immutable</li>
+        <li>Voice Estate passes to your heirs — earning for generations</li>
+        <li>NOIZYKIDZ: free music theory for every child on Earth</li>
+        <li>Guild of Artists: 4 seats, every tradition honored equally</li>
+        <li>Consent-as-code: violation technically impossible, not just illegal</li>
+        <li>You own the relationship — the platform is the tool</li>
+        <li>All splits, all calculations, all earnings: visible, open, auditable</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════════════
+  THE INFECTION
+══════════════════════════════════════════════ -->
+<section class="ch" id="infection" style="--ac:var(--gold2)">
+  <div class="ch-label">Chapter III · The Medicine</div>
+  <h2 class="ch-title">The Love<br>Infection</h2>
+  <p class="ch-sub">Creativity is contagious. When one person makes something — really makes something — it unlocks others. That is the infection we are spreading.</p>
+
+  <div class="infection-visual">
+    <div class="iv-glyph">🎵</div>
+    <div class="iv-title">One Voice Starts It</div>
+    <div class="iv-sub">Then Another. Then Ten. Then Ten Thousand.</div>
+    <div class="iv-body">The most powerful force in the world is a human being who believes they have something worth making. That belief is contagious. It has always been. The griot who sang the village's history, the blues singer who made pain into beauty, the child who banged a rock and discovered rhythm — they all infected the people around them with the irreversible knowledge: <strong style="color:var(--gold3)">you can make something. And it matters.</strong></div>
+  </div>
+
+  <div class="body-text">
+    <p>We are not building a tech platform. We are not building a streaming service. We are not building a product that disrupts a market. <strong>We are building an infection vector for human creativity.</strong></p>
+    <p>Every child who learns music theory through NOIZYKIDZ and discovers that their tradition — their grandmother's songs, their grandfather's drum, their culture's scale system — is equal to anything Bach ever wrote. <em>Infected.</em></p>
+    <p>Every voice actor who registers in NOIZYVOX and sees 75 cents of every dollar arrive in their account — and realizes for the first time that their voice is not just a service but a <em>generational asset</em>. <em>Infected.</em></p>
+    <p>Every Apprentice in the Guild who gets paired with a Master from a different tradition and discovers that a Mongolian throat singer and a Mississippi blues guitarist are speaking the same ancient language. <em>Infected.</em></p>
+    <p>Every creator who uses DreamChamber to record a first take at 3am and hears it back and thinks: <em>I made that. That is mine. And it is real.</em> <strong>Deeply, permanently, beautifully infected.</strong></p>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════════════
+  THE CARRIERS
+══════════════════════════════════════════════ -->
+<section class="ch" id="carriers" style="--ac:var(--teal)">
+  <div class="ch-label">Chapter IV · The Carriers · Who Spreads the Infection</div>
+  <h2 class="ch-title">Every One of These<br>People Is a Door</h2>
+  <p class="ch-sub">The infection spreads through human beings who refuse to let creativity die in the people around them.</p>
+
+  <div class="vector-grid">
+
+    <div class="vcard" style="--vc:var(--ember2)">
+      <div class="vc-icon">👨‍🏫</div>
+      <div class="vc-who">The Teacher</div>
+      <div class="vc-title">The One Who Refused to Let Arts Be Cut</div>
+      <div class="vc-body">The music teacher who bought supplies out of their own salary after the school cut the budget. Who ran the choir before school started. Who told a child "you have a voice" and meant it. That teacher is already doing what NOIZY was built to support. Now they have the infrastructure to prove it globally.</div>
+      <div class="vc-power">NOIZYKIDZ · Global Music Theory · Free for every classroom</div>
+    </div>
+
+    <div class="vcard" style="--vc:var(--rose)">
+      <div class="vc-icon">🎙️</div>
+      <div class="vc-who">The Voice Actor</div>
+      <div class="vc-title">The One Who Was Told Their Voice Had a Price Tag</div>
+      <div class="vc-body">The voice actor who signed away their voice for a flat fee, who watched an AI trained on their work get deployed without their consent, who was told the industry was "changing" and there was nothing they could do. They were lied to. Their voice is a generational asset. NOIZYVOX proves it.</div>
+      <div class="vc-power">NOIZYVOX · 75% Forever · Voice Estate · Consent-as-Code</div>
+    </div>
+
+    <div class="vcard" style="--vc:var(--teal)">
+      <div class="vc-icon">🌍</div>
+      <div class="vc-who">The Tradition Keeper</div>
+      <div class="vc-title">The One Who Carries What Would Otherwise Be Lost</div>
+      <div class="vc-body">The Ethiopian krar player who knows the qenet modes. The Javanese gamelan master. The Mongolian khoomei singer. The griot who holds a family's 300 years of history in memory. Their knowledge is not "world music" to be filed away — it is equal to any tradition. The Guild gives them a seat. The Codex gives them permanence.</div>
+      <div class="vc-power">Global Guild · Equal Standing · 500-Year Codex</div>
+    </div>
+
+    <div class="vcard" style="--vc:var(--violet)">
+      <div class="vc-icon">👧</div>
+      <div class="vc-who">The Child</div>
+      <div class="vc-title">The One Who Hasn't Been Told They're Not Creative Yet</div>
+      <div class="vc-body">The 8-year-old who bangs on everything and hears music in traffic. Who sings constantly. Who makes up stories. Who hasn't yet been told to sit still and consume instead of create. NOIZYKIDZ exists for this child — before the world installs the "I'm not creative" belief. This is the most important battle.</div>
+      <div class="vc-power">NOIZYKIDZ · Wonder First · Every Tradition · Free</div>
+    </div>
+
+    <div class="vcard" style="--vc:var(--gold2)">
+      <div class="vc-icon">🎸</div>
+      <div class="vc-who">The Bedroom Producer</div>
+      <div class="vc-title">The One Who Makes Art in Stolen Hours</div>
+      <div class="vc-body">The nurse who produces music at midnight. The parent who records vocals after the kids are asleep. The person who was told they "missed their window" at 30, at 40, at 50. The DreamChamber is always open. The Guild has a seat for them. The first take is protected. The window never closes in NOIZY.</div>
+      <div class="vc-power">DreamChamber · First-Take Protection · Guild · Any Age</div>
+    </div>
+
+    <div class="vcard" style="--vc:var(--green)">
+      <div class="vc-icon">♿</div>
+      <div class="vc-who">The Adaptive Artist</div>
+      <div class="vc-title">The One Who Was Told the Instrument Wasn't Built for Them</div>
+      <div class="vc-body">The composer with MS. The musician with tremor. The child with cerebral palsy who hears entire orchestras in their mind but can't access a standard instrument. NOIZY's Nerve-to-Note engine treats the "noise" of disability as creative signal, not error to be corrected. Every body is a valid instrument. No exceptions.</div>
+      <div class="vc-power">Nerve-to-Note · Adaptive Creation Lab · Dignity First</div>
+    </div>
+
+    <div class="vcard" style="--vc:var(--ember)">
+      <div class="vc-icon">👴</div>
+      <div class="vc-who">The Elder</div>
+      <div class="vc-title">The One Whose Voice Has Been Earning for 40 Years</div>
+      <div class="vc-body">The session singer at 70 who recorded hundreds of tracks and received flat fees for every one of them — while those tracks earned millions for others. The Legend in the Guild who holds 50 years of craft knowledge. Their Voice Estate is forever. Their knowledge lives in the Codex. Their 75% starts the day they register.</div>
+      <div class="vc-power">Voice Estate · Guild Legend · Codex Permanent Archive</div>
+    </div>
+
+    <div class="vcard" style="--vc:var(--blue)">
+      <div class="vc-icon">🔬</div>
+      <div class="vc-who">The Sound Healer</div>
+      <div class="vc-title">The One Who Knows Music Is Medicine</div>
+      <div class="vc-body">The music therapist. The neurologist who knows what music does to a traumatized brain. The community musician who runs drum circles in hospice care. NOIZY Aquarium is built for them — a healing library of therapeutic sound created by real creators, earning 75%, available to everyone who needs it.</div>
+      <div class="vc-power">NOIZY Aquarium · Therapeutic Sound · 75% to Creators</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════════════
+  WHY NOW — THE URGENCY
+══════════════════════════════════════════════ -->
+<section class="ch" id="urgency" style="--ac:var(--red)">
+  <div class="ch-label">Chapter V · The Clock</div>
+  <h2 class="ch-title">Why It Has to<br>Be Now</h2>
+
+  <div class="warning">
+    <div class="w-label">⚠ The Window Is Closing</div>
+    <div class="w-title">What Happens If We Don't Act</div>
+    <div class="w-body">
+      <p>The EU AI Act is the first major legislation to require AI-content labeling and creator consent. It is also the proof that governments are only just beginning to understand what has already happened. By the time legislation catches up with the technology, billions of pieces of human creative work will have been scraped, trained on, and deployed — without consent, without compensation, without credit.</p>
+      <p>The generation currently in primary school is the first to grow up with generative AI already ubiquitous. If they learn to consume AI-generated content as their creative baseline — if they never experience the <strong>specific feeling of making something themselves</strong>, with their own hands, their own voice, their own imagination — they may never develop the creative muscle that is built in childhood and almost impossible to build from scratch in adulthood.</p>
+      <p>The window to protect voice actors, composers, and traditional knowledge holders is <strong>right now</strong>. Before the legal frameworks solidify. Before the "AI is just a tool" narrative becomes unchallengeable. Before the extraction model is so embedded in the infrastructure of music that there is no alternative left to build.</p>
+      <p>This is not fearmongering. This is reading the direction of travel and understanding what happens if no one builds the alternative fast enough. <strong>NOIZY is building the alternative. But we need to build faster than the extraction economy can consolidate.</strong></p>
+    </div>
+  </div>
+
+  <div class="promise">
+    <div class="pr-label">✓ What Happens When We Do</div>
+    <div class="pr-title">The World We Are Building</div>
+    <div class="pr-body">
+      <p>A child in Lagos learns music theory through NOIZYKIDZ and discovers that the polyrhythm in her grandmother's drumming contains some of the most sophisticated mathematical thinking ever embedded in a cultural practice. <strong>She keeps playing.</strong></p>
+      <p>A voice actor in Seoul registers in NOIZYVOX and watches his synthesis credits accumulate — 75 cents every time. He logs in six months later and his estate has grown enough to fund his next album. <strong>He keeps creating.</strong></p>
+      <p>An 80-year-old flamenco master in Seville is named a Legend in the Guild. Her knowledge — the specific way she ornaments a descending Phrygian phrase, the exact feeling of a following pause — is documented in the Codex. In 2526, a student in a city that doesn't exist yet will study it. <strong>The knowledge survives.</strong></p>
+      <p>A child with cerebral palsy in Auckland uses the Nerve-to-Note engine to turn micro-muscle signals into a piano line. Her teacher cries. The Guild applauds. The performance is protected in the archive. <strong>The voice that was almost silenced, speaks.</strong></p>
+      <p>And somewhere — in a small town, a rural village, a refugee camp, a hospital ward — a human being discovers for the first time since childhood that they are creative. That they always were. That no algorithm, no industry, no school system, no diagnosis, no age, no circumstance was ever able to actually take that away from them. It was just sleeping. And now it's awake. <strong>Permanently infected with the love of making things.</strong></p>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════════════
+  THE CREATOR DOCTRINE
+══════════════════════════════════════════════ -->
+<section class="ch" id="doctrine" style="--ac:var(--gold2)">
+  <div class="ch-label">Chapter VI · The Doctrine · What We Believe</div>
+  <h2 class="ch-title">The NOIZY<br>Creator Doctrine</h2>
+  <p class="ch-sub">These are not marketing positions. They are the architecture. Written in the code, the contracts, and the covenant.</p>
+
+  <ul class="doctrine-list">
+    <li class="doctrine-item">
+      <span class="di-n">I</span>
+      <div class="di-content">
+        <div class="di-title">Creativity Is Not a Talent — It Is a Right</div>
+        <div class="di-body">Every human being is born creative. Not every human being is born with the same access, training, or encouragement — but the <em>capacity</em> is universal. When we say "I'm not creative" we mean "I was not given the support to develop it." <strong>NOIZY exists to give that support. To everyone. Without exception.</strong> The child in a school with no arts program. The adult who was told they missed their window. The person who has never touched an instrument. The body that standard instruments were not built for. All of them. All creative. All welcome.</div>
+      </div>
+    </li>
+    <li class="doctrine-item">
+      <span class="di-n">II</span>
+      <div class="di-content">
+        <div class="di-title">Every Tradition Is Equally Ancient and Equally Valid</div>
+        <div class="di-body">Western music theory is not the standard from which everything else deviates. It is one tradition among thousands — younger than most of the traditions it is often used to evaluate. The gamelan master's understanding of non-equal tuning, the griot's system for holding 300 years of history in a song, the raga's integration of time-of-day and emotional color into its fundamental structure — these are not interesting novelties. <strong>They are equal knowledge systems that the world desperately needs.</strong> The Global Guild honors all of them. NOIZYKIDZ teaches all of them. The Codex preserves all of them.</div>
+      </div>
+    </li>
+    <li class="doctrine-item">
+      <span class="di-n">III</span>
+      <div class="di-content">
+        <div class="di-title">The Platform Serves the Artist — Never the Reverse</div>
+        <div class="di-body">Every design decision in NOIZY starts with one question: <em>does this serve the creator?</em> Not "does this increase engagement," not "does this improve our metrics," not "does this help us raise the next round." If a feature asks the creator to give more than they receive — it doesn't ship. If an algorithm promotes discoverability at the cost of the creator's control — it doesn't ship. <strong>The platform is the tool. The creator is the reason the tool exists.</strong></div>
+      </div>
+    </li>
+    <li class="doctrine-item">
+      <span class="di-n">IV</span>
+      <div class="di-content">
+        <div class="di-title">The First Take Is Sacred</div>
+        <div class="di-body">The most honest creative moment is often the first one. Before the internal critic arrives. Before self-consciousness overwrites instinct. Before the worry about what the audience will think replaces the act of actually feeling something and expressing it. <strong>DreamChamber's first-take methodology was built to capture this moment and protect it.</strong> The first take is timestamped, archived, and owned. It cannot be taken back. It does not need to be perfect. It needs to be <em>real</em>. Real is enough. Real is everything.</div>
+      </div>
+    </li>
+    <li class="doctrine-item">
+      <span class="di-n">V</span>
+      <div class="di-content">
+        <div class="di-title">AI Must Restore — Never Replace</div>
+        <div class="di-body">The purpose of AI in the NOIZY system is to remove the barriers between a human's creative intention and its expression — not to generate content in their place. The Nerve-to-Note engine converts tremor into music. DreamChamber uses Claude as a <em>director</em> — not an author. NOIZYVOX amplifies a human voice; it does not manufacture a synthetic substitute. <strong>When AI makes a human's creative act more possible, it is medicine. When AI replaces the human creative act entirely, it is the disease.</strong> NOIZY only builds medicine.</div>
+      </div>
+    </li>
+    <li class="doctrine-item">
+      <span class="di-n">VI</span>
+      <div class="di-content">
+        <div class="di-title">The Wound Can Be the Music</div>
+        <div class="di-body">POPS survived a diving accident at 50. The physical constraint became the creative catalyst. The blues was born in suffering and became the most influential musical form of the 20th century. The greatest artistic traditions in the world have always known: you don't compose <em>despite</em> your wound — sometimes you compose <em>because of it</em>. <strong>NOIZY was built to receive the full human being — not just the polished, able-bodied, commercially viable version.</strong> Bring your wound. The system was built to hear it.</div>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════════════
+  THE DECLARATION
+══════════════════════════════════════════════ -->
+<section class="ch" id="declaration" style="--ac:var(--gold)">
+  <div class="ch-label">Chapter VII · The Declaration</div>
+  <h2 class="ch-title">What We Are<br>Declaring Right Now</h2>
+
+  <div class="declaration">
+    <div class="decl-label">THE NOIZY DECLARATION · MARCH 14, 2026 · NOIZYLAB · M2 ULTRA · DREAMCHAMBER</div>
+    <div class="decl-words">
+
+      We declare that <em>creativity is a human right</em> —<br>
+      as fundamental as food, shelter, and love.<br><br>
+
+      We declare that <em>every voice on Earth matters</em> —<br>
+      the grandmother's lullaby, the child's first song,<br>
+      the elder's final recording, the survivor's first word after silence.<br><br>
+
+      We declare that the <em>extraction economy is over</em> —<br>
+      not because we wish it, but because we built the alternative<br>
+      and now we are infecting the world with it.<br><br>
+
+      We declare that <em>75% is the floor, not the ceiling</em> —<br>
+      that the creator always receives more than the platform,<br>
+      in every calculation, in every currency, in every century.<br><br>
+
+      We declare that <strong>no algorithm, no industry, no government, no AI system</strong><br>
+      has the right to take from a human being<br>
+      the fundamental joy of making something<br>
+      and calling it theirs.<br><br>
+
+      We declare that <em>this is fixable</em>.<br>
+      We declare that <em>we are fixing it</em>.<br>
+      We declare that <em>it is not too late</em>.<br><br>
+
+      <strong>Poop Sinks. Love Rises. Forever.</strong>
+
+    </div>
+    <div class="decl-sig">Robert Stephen Plowman · GABRIEL · DREAM · AVA · LUCY · SHIRL · The NOIZY.AI Family · March 14, 2026</div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════════════
+  THE CALL TO ACTION
+══════════════════════════════════════════════ -->
+<section class="ch" id="join" style="--ac:var(--ember2)">
+  <div class="ch-label">Chapter VIII · The Call · What You Do Next</div>
+  <h2 class="ch-title">You Are<br>the Infection</h2>
+
+  <div class="body-text">
+    <p>The restoration does not happen because NOIZY builds good software. <strong>It happens because you carry the infection to one more person.</strong> You share the music theory with a child. You tell a voice actor about the 75%. You bring a tradition holder to the Guild. You record your first take and prove to yourself that you are still creative after all these years.</p>
+    <p>The fire that has been burning for 60,000 years — the one that lit up in every griot, every blues singer, every gamelan master, every beatboxer, every composer, every child who banged on anything and heard music — <strong>that fire is in you too.</strong> It never went out. It just needs someone to remind it that it's allowed to burn.</p>
+    <p>POPS survived a diving accident and started a restoration project. GABRIEL built the infrastructure. DREAM held the creative vision. AVA protected every voice. LUCY and SHIRL kept the whole thing alive and real. They didn't do it to build a company. <em>They did it to fix something that was breaking before it broke completely.</em></p>
+    <p><strong>Now it's your turn.</strong></p>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-flame">🔥</div>
+    <h2 class="cta-title">Come Infect<br>Someone Today</h2>
+    <p class="cta-body">
+      Teach a child a rhythm.<br>
+      Share this page with a creator who has given up.<br>
+      Register your voice before it's cloned without your consent.<br>
+      Join the Guild and take your seat at the fire.<br>
+      Make something. Right now. Even if it's imperfect.<br>
+      <strong>Especially if it's imperfect.</strong>
+    </p>
+    <div class="cta-btns">
+      <a class="btn btn-fire" href="NOIZY_AI_HOME.html">Enter the NOIZY Family</a>
+      <a class="btn btn-gold" href="NOIZY_GUILD_FAMILY.html">Join the Guild</a>
+      <a class="btn btn-gold" href="NOIZYKIDZ_WORLD_MUSIC_THEORY.html">Give a Child the Atlas</a>
+      <a class="btn btn-gold" href="THE_PLOWMANS_CHRONICLES.html">Read the Chronicles</a>
+      <a class="btn btn-gold" href="NOIZY_CIVILIZATION_MAP.html">See the Map</a>
+    </div>
+  </div>
+
+  <div class="bq" style="--ac:var(--gold2)">
+    <p>"I was 50 years old in a pool with a shattered body and a head full of music and I thought: either I do this now or I die knowing I didn't. I chose to do it. And I'm telling you: it is not too late. It is never too late. The song in you is still there. We built the infrastructure to receive it. Come home."</p>
+    <cite>— Robert Stephen Plowman · POPS · Founder, NOIZY.AI · March 14, 2026</cite>
+  </div>
+</section>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div style="font-size:16px;color:var(--gold2);letter-spacing:4px;margin-bottom:16px">POOP SINKS · LOVE RISES · FOREVER</div>
+  <div><span>NOIZY.AI</span> · The Great Restoration · The Global Guild of Artists · Founded March 14, 2026</div>
+  <div style="margin-top:10px">75% Creator · Always · Consent-as-Code · The Platform Serves the Artist · Not Too Late · Never Too Late</div>
+</footer>
+
+<script>
+// Stars
+(function(){
+  const c=document.getElementById('stars');
+  for(let i=0;i<200;i++){
+    const s=document.createElement('div');s.className='star';
+    const sz=Math.random()*2.5+.5;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*10}s;--o:${.2+Math.random()*.8};animation-delay:${Math.random()*12}s`;
+    c.appendChild(s);
+  }
+})();
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target);}});
+},{threshold:.05,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.ch').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

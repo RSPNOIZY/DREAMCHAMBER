@@ -1,0 +1,15 @@
+{
+  "turboConsoleLog.logMessagePrefix": "🔥 NOIZY",
+  "turboConsoleLog.addSemicolonInTheEnd": true,
+  "turboConsoleLog.insertEnclosingClass": true,
+  "turboConsoleLog.insertEnclosingFunction": true,
+  "turboConsoleLog.quote": "'",
+  "turboConsoleLog.delimiterInsideMessage": "~",
+  "turboConsoleLog.includeFileNameAndLineNum": true,
+  "turboConsoleLog.logType": "log",
+  "turboConsoleLog.logFunction": "console",
+  "turboConsoleLog.wrapLogMessage": false,
+  "turboConsoleLog.insertEmptyLineBeforeLogMessage": true,
+  "turboConsoleLog.insertEmptyLineAfterLogMessage": false,
+  "turboConsoleLog.highlightedLogGuideLineColor": "#6e40ff"
+}

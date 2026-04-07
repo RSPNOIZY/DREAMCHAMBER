@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]> 
+<!--><html class="no-js" lang="en"><!--<![endif]-->
+<head lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+  <title>Track Assistant - Neutron 2 User Manual</title>
+  <meta name="generator" content="Hugo 0.40.3" />
+  <meta name="description" content="Neutron 2 User Manual">
+  <link rel="canonical" href="index.html">
+  <meta name="author" content="iZotope">
+  <meta property="og:url" content="http://www.neutron2helpdocs.com/en/track-assistant/index.html">
+  <meta property="og:title" content="Neutron 2 User Manual">
+  
+  <meta name="apple-mobile-web-app-title" content="Neutron 2 User Manual">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+  <style>@font-face {
+      font-family: 'icon';
+      src: url('../fonts/icon.eot');
+      src: url('../fonts/icon.eot')
+             format('embedded-opentype'),
+           url('../fonts/icon.woff')
+             format('woff'),
+           url('../fonts/icon.ttf')
+             format('truetype'),
+           url('../fonts/icon.svg')
+             format('svg');
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+  <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+  <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+  <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    }
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+  
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  
+  <script src="../javascripts/modernizr.js"></script>
+  
+<script>
+  (function(i,s,o,g,r,a,m){
+    i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+    []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+    m.parentNode.insertBefore(a,m)
+  })(window, document,
+    'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+   
+  ga('create', 'UA-63445037-15', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+
+<script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+
+</head>
+<body class="palette-primary-docs palette-accent-docs">
+	
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	
+
+  <div class="backdrop">
+    <div class="backdrop-paper"></div>
+  </div>
+  <input class="toggle" type="checkbox" id="toggle-drawer">
+  <input class="toggle" type="checkbox" id="toggle-search">
+  <label class="toggle-button overlay" for="toggle-drawer"></label>
+  <header class="header">    <nav aria-label="Header">
+      <div class="bar default">
+        <div class="button button-menu" role="button" aria-label="Menu">
+          <label class="toggle-button icon icon-menu" for="toggle-drawer">
+            <span></span>
+          </label>
+        </div>
+        <div class="stretch">
+          <div class="title">
+            <a href="../index.html" >
+            <img src="../images/header-intro-site/site-header.png">    Track Assistant</a>
+          </div>
+        </div>
+            
+      </div>
+      <div class="bar search">
+        <div class="button button-close" role="button" aria-label="Close">
+          <label class="toggle-button icon icon-back" for="toggle-search"></label>
+        </div>
+        <div class="stretch">
+          <div class="field">
+            <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+          </div>
+        </div>
+        <div class="button button-reset" role="button" aria-label="Search">
+          <button class="toggle-button icon icon-close" id="reset-search"></button>
+        </div>
+      </div>
+    </nav></header>
+  <main class="main">    <div class="drawer">
+      <nav aria-label="Navigation">
+        <form action="../search/index.html">
+           <div class="group">      
+              <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+              <span class="highlight"></span>
+              <span class="underline"></span>
+              <label>Search</label>
+              <div style="clear: both;"></div>
+           </div>
+        </form>
+      </nav>
+      
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="toc">
+          
+            <ul>
+
+
+<li>
+  
+    <a  title="Introduction" href="../index.html">Introduction</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Overview" href="../neutron-overview/index.html">Overview</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Compressor" href="../compressor/index.html">Compressor</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Equalizer" href="../equalizer/index.html">Equalizer</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Exciter" href="../exciter/index.html">Exciter</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Gate" href="../gate/index.html">Gate</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Transient Shaper" href="../transient-shaper/index.html">Transient Shaper</a>
+  
+</li>
+
+
+<li>
+  
+    <a class="current" title="Track Assistant" href="index.html">Track Assistant</a><ul id="scrollspy">
+</ul>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Masking Meter" href="../masking-meter/index.html">Masking Meter</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="I/O Section" href="../io-section/index.html">I/O Section</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Mix Tap" href="../mix-tap/index.html">Mix Tap</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Visual Mixer" href="../visual-mixer/index.html">Visual Mixer</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Tonal Balance Control" href="../tonal-balance-control/index.html">Tonal Balance Control</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Preset System" href="../preset-system/index.html">Preset System</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Options" href="../options/index.html">Options</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Undo History" href="../undo-history/index.html">Undo History</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Tips &amp; Examples" href="../tips-and-examples/index.html">Tips &amp; Examples</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Authorization" href="../authorization/index.html">Authorization</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="Customer Care" href="../customer-care/index.html">Customer Care</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="License Information" href="../license-information/index.html">License Information</a>
+  
+</li>
+
+
+<li>
+  
+    <a  title="EULA" href="../eula/index.html">EULA</a>
+  
+</li>
+
+
+</ul>
+          
+          
+                  <hr />
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a></li>
+        </ul>
+        <hr />
+
+    
+          
+          
+            <ul>
+            
+              <li><a href="../../ja/track-assistant/index.html"><i class="icon icon-eye"></i> 日本語での表示ページ</a></li>
+            
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </div><article class="article">
+      <div class="wrapper">
+	<h1>Track Assistant </h1>
+    
+      
+              <div class="lang-buttons-box">
+      <span class="lang-header">Languages:</span>
+      <br />
+        
+      
+        
+             <a href="../../ja/track-assistant/index.html"><button class="lang-btn-active">English</button></a>
+             
+        <a href="../../ja/track-assistant/index.html"><button class="lang-btn-clickable">日本語</button></a>
+          
+      </div>
+      
+    
+    
+    
+
+
+
+
+
+
+<nav>
+  
+  <h4>Table of Contents</h4>
+  <ul>
+    
+      
+      
+
+      
+      
+      <li>
+        <a href="index.html#overview">Overview</a>
+      
+  
+      
+      
+
+      
+      
+        
+        
+          
+      
+          
+          </li>
+          
+          <li>
+            <a href="index.html#analysis">Analysis</a>
+      
+      
+  
+      
+      
+
+      
+      
+        
+        
+          
+      
+          
+          </li>
+          
+          <li>
+            <a href="index.html#accept-or-cancel-changes">Accept or Cancel Changes</a>
+      
+        
+          
+      
+  
+  
+  
+      
+    </ul>
+  </nav>
+  
+  
+    
+    
+    
+	
+
+<h2 id="overview">Overview</h2>
+
+<p>Track Assistant is the latest innovation in machine learning and intelligent audio processing that provides you with a starting point for your mix. Track Assistant has been updated with a refined user experience to give you more control over the suggestions it provides for your audio. With smarter controls, new instrument classification, and a new interface, Track Assistant proves to be the most advanced version of this technology yet. When Track Assistant is enabled, it requires anywhere between four to 10 seconds of audio playback and analysis before it settles on some settings.</p>
+
+<p>Since you may prefer heavier or lighter starting settings, you have some level of control over the smart suggestions. You can decide if you’d prefer your Track Assistant to be Subtle, Medium, or Aggressive, in addition to a second, more subjective instructional direction, which could be Broadband Clarity, Warm and Open, or Upfront Midrange. These choices affect the amount of processing (less vs. more processing), number of bands, and compression ratios, among other parameters. You can also choose to let the machine learning algorithm auto-detect your instrument class or select the instrument type for it to use manually. To access these options click on the Track Assistant button to the left of the Preset display bar in the main Neutron interface.</p>
+
+<p><img src="../images/track-assistant/track-assistant-guitar-step-1.png" alt="open t.a." /></p>
+
+<p>The nine different Style/Intensity combinations influence the starting points that Track Assistant will provide. Each of these nine Style/Intensity combinations has six presets—one per audio ID type, explained below. This means there’s a total of 54 unique and varied initial approaches. Note that Track Assistant requires a learning state, during which Neutron is inaccessible. (It will display an Accept/Cancel screen when it is finished processing, but in case of error or impatience, you may cancel the analysis by clicking the &lsquo;Cancel&rsquo; button.)</p>
+
+<h2 id="analysis">Analysis</h2>
+
+<p><img src="../images/track-assistant/track-assistant-working-step-2.png" alt="open t.a." /></p>
+
+<p>Here’s what’s going on under the hood:</p>
+
+<ol>
+<li>The machine learning algorithm identifies your audio as belonging to one of the following categories:
+
+<ul>
+<li>Vocals/Dialogue</li>
+<li>Guitar/related Instrument</li>
+<li>Bass</li>
+<li>Drums/Percussive</li>
+<li>Piano</li>
+<li>None of the above (e.g. Synths, Didgeridoo, Vuvuzela)</li>
+</ul></li>
+<li>The ‘Neutrino mode’ spectral shaping algorithm for that category is selected and enabled. Note: If the audio is identified as ‘none of the above,’ it will select a ‘Clean’ Neutrino mode, which bypasses Neutrino.</li>
+<li>Using the audio identification information, it references the Track Assistant presets to determine an appropriate signal flow. Signal flows are predefined by some of the esteemed mix engineers in our beta program, and may vary in module order, or in modules enabled/disabled.</li>
+<li>Once signal flow is established, the Track Assistant presets determine how many bands each discrete multiband-capable module should have (minimum of one, maximum of three).</li>
+<li>For each enabled multiband module, band crossover points are intelligently placed. The most transparent crossover points are determined using a few criteria, including minima in the spectrum. You may see and hear these bands moving during this crossover learning period.</li>
+<li>In the EQ module, a basic starting curve is determined, by enabling some filter nodes and intelligently placing those nodes throughout the audio spectrum on areas of interest (resonances, sibilance&hellip;all specific and unique to your audio). Depending on where these EQ nodes land, they may exhibit small boosts, cuts, static or dynamic behavior, or bell or shelving filter choices.
+
+<ul>
+<li>More information on this auto-node placement behavior is available in the <a href="../equalizer/index.html">EQ chapter</a>. It is important to note that Track Assistant does not analyze the audio in order to meet some sort of pre-defined outcome (e.g. if the audio has no low end, it’s not going to engage a huge low end boost for the sake of making it more like pink noise); rather, it places nodes at areas of interest already present in the signal.</li>
+</ul></li>
+<li>If the Exciter is enabled, the Track Assistant presets are used to set per-band Exciter parameters such as, algorithm (on the Tube/Tape/Warm/Retro X/Y pad), and Dry/Wet Blend. The Drive amount is also set tailored to the content of your incoming audio.</li>
+<li>For each enabled Compressor band, as well as each enabled dynamic EQ band, thresholds are dynamically chosen, based on an LKFS signal level analysis and an additional calculation. (This means less time searching for the sweet spot, and more time slightly tweaking the sweet spot if you feel it could be slightly sweeter, or aesthetically wish to go in another direction.)</li>
+<li>If either or both of the Compressors are enabled, the Track Assistant presets determine stylistically whether it should engage Vintage- or Digital-flavored compression modes and Dry/Wet settings.  The incoming signal is analyzed and the Attack time, Release time, and compression Ratio are all adjusted to the signal for more musical and transparent compression.</li>
+</ol>
+
+<p>Once Track Assistant has finished running, you have your starting preset: signal flow, EQ curve with placed nodes, Compressor, Exciter, and Neutrino settings.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Important things to note:</p>
+<p><ul>
+<li>If your audio is not classified by the machine learning algorithm as falling into one of the Instrument classes and tagged as ‘Clean’ by the Neutrino mode, Neutron will still create a preset. Much of the intelligence can operate agnostic of audio type, and even the Track Assistant presets have some genericized best-practice approaches built in for this purpose.</li>
+<li>The Transient Shaper and Gate modules are not adjusted by Track Assistant at this time. Both modules will be disabled after running Track Assistant, but we encourage you to enable them and experiment!</li>
+<li>If Track Assistant misidentifies your audio file, please send it to iZotope via the Customer Care team (<a href="https://support.izotope.com/">https://support.izotope.com/</a>), who will be happy to pass it on, helping us improve the algorithms for you. (Of course, that goes for any feedback, at any time!)</li>
+</ul>
+</p>
+</div>
+
+<h2 id="accept-or-cancel-changes">Accept or Cancel Changes</h2>
+
+<p><img src="../images/track-assistant/track-assistant-step-3.png" alt=" t.a. accept cancel " /></p>
+
+<p>You can accept the changes made by Track Assistant by clicking the Accept button in the last screen.</p>
+
+<ul>
+<li>If you’re unsatisfied with Track Assistant, it’s very simple to step back in time…simply open Undo History, and click back to the prior step in the Undo History stack.</li>
+</ul>
+
+<p>If you aren&rsquo;t happy with the results and want to revert to the previous state, click the Cancel button to exit Track Assistant.</p>
+
+</div>
+    </article>
+    <footer class="footer">
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../transient-shaper/index.html" title="Transient Shaper">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Transient Shaper
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  <div class="next">
+  
+      <a href="../masking-meter/index.html" title="Masking Meter">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Masking Meter
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+<div class="copyright">
+
+  
+  
+  <a href="../../ja/track-assistant/index.html"><i class="icon icon-eye"></i> 日本語での表示ページ</a>
+  
+
+  <br />
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Neutron 2 Help Documentation 
+
+</div></footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>  <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </main>
+  </body>
+</html>

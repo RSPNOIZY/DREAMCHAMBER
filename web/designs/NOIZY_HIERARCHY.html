@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY.AI — Complete Empire Hierarchy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface-2: #1a1a26;
+    --border: #2a2a3a;
+    --text: #e8e8f0;
+    --text-dim: #8888a0;
+    --oxygen: #00d4ff;
+    --noizy: #ff6b35;
+    --noizyvox: #a855f7;
+    --noizyfish: #06b6d4;
+    --noizykidz: #f59e0b;
+    --noizylab: #22c55e;
+    --lifeluv: #ec4899;
+    --fishmusic: #6366f1;
+    --gold: #fbbf24;
+    --schema-echo: #34d399;
+    --schema-receipt: #fbbf24;
+    --schema-manifest: #818cf8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Oxygen breathing animation */
+  @keyframes breathe {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.02); }
+  }
+
+  @keyframes pulse-ring {
+    0% { transform: scale(0.95); opacity: 0.5; }
+    50% { transform: scale(1.05); opacity: 0.2; }
+    100% { transform: scale(0.95); opacity: 0.5; }
+  }
+
+  @keyframes flow {
+    0% { stroke-dashoffset: 20; }
+    100% { stroke-dashoffset: 0; }
+  }
+
+  .oxygen-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(0,212,255,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(255,107,53,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(168,85,247,0.04) 0%, transparent 50%);
+    animation: breathe 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .oxygen-mark {
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--oxygen);
+    opacity: 0.7;
+    margin-bottom: 8px;
+  }
+
+  .header h1 {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--noizy), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+
+  .header .subtitle {
+    font-size: 16px;
+    color: var(--text-dim);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .version-badge {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 4px 14px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+
+  /* Oxygen Meta-Layer */
+  .oxygen-layer {
+    position: relative;
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 24px;
+    padding: 40px 32px 32px;
+    margin-bottom: 40px;
+    background: linear-gradient(180deg, rgba(0,212,255,0.03) 0%, transparent 100%);
+  }
+
+  .oxygen-layer::before {
+    content: 'OXYGEN — META-LAYER';
+    position: absolute;
+    top: -10px;
+    left: 32px;
+    background: var(--bg);
+    padding: 0 12px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--oxygen);
+    font-weight: 600;
+  }
+
+  .oxygen-description {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    max-width: 800px;
+    margin-bottom: 32px;
+    font-style: italic;
+  }
+
+  /* Schema Spine */
+  .schema-spine {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .schema-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.3s;
+    cursor: pointer;
+  }
+
+  .schema-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .schema-card.echo { border-top: 3px solid var(--schema-echo); }
+  .schema-card.echo:hover { border-color: var(--schema-echo); }
+  .schema-card.receipt { border-top: 3px solid var(--schema-receipt); }
+  .schema-card.receipt:hover { border-color: var(--schema-receipt); }
+  .schema-card.manifest { border-top: 3px solid var(--schema-manifest); }
+  .schema-card.manifest:hover { border-color: var(--schema-manifest); }
+
+  .schema-card .icon { font-size: 24px; margin-bottom: 8px; }
+  .schema-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .schema-card .role { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+  .schema-card .version { position: absolute; top: 16px; right: 16px; font-size: 10px; color: var(--text-dim); opacity: 0.6; }
+
+  .spine-label {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    opacity: 0.7;
+  }
+
+  /* NOIZY.AI Hub */
+  .noizy-hub {
+    background: var(--surface);
+    border: 2px solid var(--noizy);
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .noizy-hub h2 {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--noizy);
+    margin-bottom: 4px;
+  }
+
+  .noizy-hub .role-text {
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+
+  .connector-line {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--noizy), var(--border));
+    margin: 0 auto;
+    margin-bottom: 0;
+  }
+
+  /* Brand Grid */
+  .brands-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .brand-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.2s, border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .brand-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+
+  .brand-card .brand-icon { font-size: 28px; margin-bottom: 12px; }
+  .brand-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+  .brand-card .brand-type { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .brand-card .brand-desc { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-bottom: 12px; }
+
+  .brand-card .status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .status-live { background: rgba(34,197,94,0.15); color: #22c55e; }
+  .status-building { background: rgba(255,107,53,0.15); color: #ff6b35; }
+  .status-planned { background: rgba(136,136,160,0.15); color: #8888a0; }
+  .status-active { background: rgba(6,182,212,0.15); color: #06b6d4; }
+  .status-foundation { background: rgba(99,102,241,0.15); color: #6366f1; }
+
+  .brand-card.vox { border-left: 3px solid var(--noizyvox); }
+  .brand-card.vox:hover { border-color: var(--noizyvox); }
+  .brand-card.vox h3 { color: var(--noizyvox); }
+
+  .brand-card.fish { border-left: 3px solid var(--noizyfish); }
+  .brand-card.fish:hover { border-color: var(--noizyfish); }
+  .brand-card.fish h3 { color: var(--noizyfish); }
+
+  .brand-card.kidz { border-left: 3px solid var(--noizykidz); }
+  .brand-card.kidz:hover { border-color: var(--noizykidz); }
+  .brand-card.kidz h3 { color: var(--noizykidz); }
+
+  .brand-card.lab { border-left: 3px solid var(--noizylab); }
+  .brand-card.lab:hover { border-color: var(--noizylab); }
+  .brand-card.lab h3 { color: var(--noizylab); }
+
+  .brand-card.luv { border-left: 3px solid var(--lifeluv); }
+  .brand-card.luv:hover { border-color: var(--lifeluv); }
+  .brand-card.luv h3 { color: var(--lifeluv); }
+
+  .brand-card.fmi { border-left: 3px solid var(--fishmusic); }
+  .brand-card.fmi:hover { border-color: var(--fishmusic); }
+  .brand-card.fmi h3 { color: var(--fishmusic); }
+
+  /* Infrastructure Layer */
+  .infra-section {
+    margin-top: 48px;
+  }
+
+  .section-title {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .infra-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .infra-item {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 12px;
+  }
+
+  .infra-item .label {
+    color: var(--text-dim);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .infra-item .value {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  /* Covenant Badge */
+  .covenant-bar {
+    margin-top: 48px;
+    padding: 20px 28px;
+    background: linear-gradient(135deg, rgba(255,107,53,0.05), rgba(251,191,36,0.05));
+    border: 1px solid rgba(251,191,36,0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .covenant-bar .shield { font-size: 28px; }
+  .covenant-bar .text h4 { font-size: 14px; font-weight: 700; color: var(--gold); margin-bottom: 2px; }
+  .covenant-bar .text p { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+
+  /* Footer */
+  .footer {
+    margin-top: 60px;
+    text-align: center;
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer p {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .schema-spine { grid-template-columns: 1fr; }
+    .brands-grid { grid-template-columns: 1fr; }
+    .infra-grid { grid-template-columns: repeat(2, 1fr); }
+    .header h1 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="oxygen-bg"></div>
+
+<div class="container">
+
+  <div class="header">
+    <div class="oxygen-mark">Oxygen — The Air That Makes It Live</div>
+    <h1>NOIZY.AI</h1>
+    <p class="subtitle">
+      A consent-first creative infrastructure where artists own their voice,
+      their economics, and their legacy. Technology that serves humanity.
+    </p>
+    <span class="version-badge">HIERARCHY v1.0 · 2026-03-28 · ROBERT STEPHEN PLOWMAN</span>
+  </div>
+
+  <!-- Oxygen Meta-Layer -->
+  <div class="oxygen-layer">
+    <p class="oxygen-description">
+      Oxygen is not a brand. It is the invisible meta-layer that breathes life into everything below.
+      Where the industry suffocates — stealing breath, identity, and agency — Oxygen gives it back.
+      Every brand in this empire lives inside Oxygen the way lungs live inside air.
+    </p>
+
+    <div class="spine-label">Three-Schema Spine — Flows Through Every Brand</div>
+
+    <div class="schema-spine">
+      <div class="schema-card echo">
+        <span class="version">v1.0.0</span>
+        <div class="icon">💠</div>
+        <h3>EchoMoment</h3>
+        <div class="role">Captures the human moment worth preserving. Origins, memories, lessons, techniques, rituals. The soul layer — non-legal, non-technical. Pure narrative.</div>
+      </div>
+      <div class="schema-card receipt">
+        <span class="version">v1.0.0</span>
+        <div class="icon">⚖️</div>
+        <h3>HybridReceipt 75/25</h3>
+        <div class="role">Makes artist-caring economics enforceable at the event level. 75% artist pool, 25% platform. Every contributor tracked. Every payout provable. Protocol law, not policy.</div>
+      </div>
+      <div class="schema-card manifest">
+        <span class="version">v1.0.0</span>
+        <div class="icon">🔐</div>
+        <h3>ProvenanceManifest</h3>
+        <div class="role">C2PA-like cryptographic envelope binding identity, consent, contributions, receipt, and lineage into one signed, tamper-evident proof chain. The trust layer.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOIZY.AI Hub -->
+  <div class="noizy-hub">
+    <h2>NOIZY.AI</h2>
+    <div class="role-text">CONSENT INFRASTRUCTURE · PLATFORM · PROTOCOL</div>
+  </div>
+
+  <div class="connector-line"></div>
+
+  <!-- Brand Grid -->
+  <div style="height: 40px;"></div>
+  <div class="brands-grid">
+
+    <div class="brand-card vox">
+      <div class="brand-icon">🎤</div>
+      <h3>NOIZYVOX</h3>
+      <div class="brand-type" style="color: var(--noizyvox);">Voice Sovereignty</div>
+      <div class="brand-desc">Voice estates, hybrid synthesis, voiceprint protection, language libraries. Where a voice lives forever — on the artist's terms. DreamChamber is the engine.</div>
+      <span class="status-badge status-building">BUILDING</span>
+    </div>
+
+    <div class="brand-card fish">
+      <div class="brand-icon">🐟</div>
+      <h3>NOIZYFISH</h3>
+      <div class="brand-type" style="color: var(--noizyfish);">Music Publishing</div>
+      <div class="brand-desc">Legacy catalog protection, music rights management, publishing administration. Some days you need to build. Some days you need to protect.</div>
+      <span class="status-badge status-active">ACTIVE</span>
+    </div>
+
+    <div class="brand-card kidz">
+      <div class="brand-icon">🌱</div>
+      <h3>NOIZYKIDZ</h3>
+      <div class="brand-type" style="color: var(--noizykidz);">Youth Education</div>
+      <div class="brand-desc">Next-generation creative empowerment. Teaching young people to own their voice, understand consent, and build with dignity. The future needs to share its voice forever.</div>
+      <span class="status-badge status-planned">PLANNED</span>
+    </div>
+
+    <div class="brand-card lab">
+      <div class="brand-icon">🔬</div>
+      <h3>NOIZYLAB</h3>
+      <div class="brand-type" style="color: var(--noizylab);">Developer Platform</div>
+      <div class="brand-desc">Beast IDE, schemas, tools, APIs, Workers. The engineering arm where everything gets built, tested, and deployed. Gabriel lives here.</div>
+      <span class="status-badge status-live">LIVE</span>
+    </div>
+
+    <div class="brand-card luv">
+      <div class="brand-icon">💜</div>
+      <h3>LIFELUV</h3>
+      <div class="brand-type" style="color: var(--lifeluv);">Community</div>
+      <div class="brand-desc">Human connection, restorative culture, community fabric. Not a social network — a social covenant. Where genuine elevation of others is the primary wealth driver.</div>
+      <span class="status-badge status-planned">PLANNED</span>
+    </div>
+
+    <div class="brand-card fmi">
+      <div class="brand-icon">🎵</div>
+      <h3>FISH MUSIC INC.</h3>
+      <div class="brand-type" style="color: var(--fishmusic);">40-Year Foundation</div>
+      <div class="brand-desc">Rob's original music business. Four decades of real-world music industry experience. The soil everything else grows from. Still the Stripe entity (being rebranded).</div>
+      <span class="status-badge status-foundation">FOUNDATION</span>
+    </div>
+
+  </div>
+
+  <!-- Infrastructure Layer -->
+  <div class="infra-section">
+    <div class="section-title">Infrastructure — What Powers It All</div>
+    <div class="infra-grid">
+      <div class="infra-item">
+        <div class="label">Runtime</div>
+        <div class="value">GOD.local</div>
+        <div style="font-size:11px; color: var(--text-dim); margin-top:4px;">M2 Ultra · 192GB · GABRIEL.local</div>
+      </div>
+      <div class="infra-item">
+        <div class="label">Edge</div>
+        <div class="value">Cloudflare</div>
+        <div style="font-size:11px; color: var(--text-dim); margin-top:4px;">Workers · D1 · KV · R2</div>
+      </div>
+      <div class="infra-item">
+        <div class="label">AI Layer</div>
+        <div class="value">DreamChamber</div>
+        <div style="font-size:11px; color: var(--text-dim); margin-top:4px;">Ollama · Gemma3 · Anthropic API</div>
+      </div>
+      <div class="infra-item">
+        <div class="label">Economics</div>
+        <div class="value">Stripe</div>
+        <div style="font-size:11px; color: var(--text-dim); margin-top:4px;">75/25 Protocol · acct_1S7kf5…</div>
+      </div>
+      <div class="infra-item">
+        <div class="label">Voice Pipeline</div>
+        <div class="value">NOIZYVOX Engine</div>
+        <div style="font-size:11px; color: var(--text-dim); margin-top:4px;">Whisper · XTTS · Piper · Bridge :8080</div>
+      </div>
+      <div class="infra-item">
+        <div class="label">IDE</div>
+        <div class="value">NOIZYBEAST</div>
+        <div style="font-size:11px; color: var(--text-dim); margin-top:4px;">8 packages · VS Code Insiders ext</div>
+      </div>
+      <div class="infra-item">
+        <div class="label">Source</div>
+        <div class="value">GitHub Enterprise</div>
+        <div style="font-size:11px; color: var(--text-dim); margin-top:4px;">noizyai org · NOIZYEMPIRE · NOIZYLAB</div>
+      </div>
+      <div class="infra-item">
+        <div class="label">Domains</div>
+        <div class="value">noizy.ai</div>
+        <div style="font-size:11px; color: var(--text-dim); margin-top:4px;">Cloudflare DNS · HEAVEN worker</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Covenant Bar -->
+  <div class="covenant-bar">
+    <div class="shield">🛡️</div>
+    <div class="text">
+      <h4>NOIZY COVENANT — Machine-Enforceable Ethics</h4>
+      <p>Consent must be explicit and enforceable. Restoration over punishment. Drift structurally prevented. Every artifact, every receipt, every manifest — checked against the Covenant before it exists in the world.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>NOIZY.AI · ROBERT STEPHEN PLOWMAN · CLEAN BUILD PACK v1.0 · MARCH 2026</p>
+  </div>
+
+</div>
+
+</body>
+</html>

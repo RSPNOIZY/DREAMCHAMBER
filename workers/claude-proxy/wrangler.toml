@@ -1,0 +1,35 @@
+name = "noizy-claude-proxy"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+account_id = "5ba03939f87a498d0bbed185ee123946"
+# Migrated 2026-04-02 from Account 2 (5ba03939...)
+# See: docs/CLOUDFLARE_AUDIT_AND_MIGRATION.md
+
+# Secrets — set with wrangler secret put:
+# ANTHROPIC_API_KEY
+# NOIZY_SECRET
+
+[observability]
+enabled = true
+
+[vars]
+ENVIRONMENT = "production"
+OLLAMA_URL = "http://localhost:11434"
+
+[[d1_databases]]
+binding = "NOIZY_DB"
+database_name = "gabriel_db"
+database_id = "fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa"
+
+# R2: DISABLED until R2 is enabled on Account 1
+# When R2 is activated, create bucket "noizy-voice-archive" and uncomment:
+# [[r2_buckets]]
+# binding = "VOICE_BUCKET"
+# bucket_name = "noizy-voice-archive"
+
+[[kv_namespaces]]
+binding = "NOIZY_KV"
+id = "6fe434a8020147c7bc4788e7057b843a"
+# CORRECTED 2026-04-03: 68710a32 does NOT exist on this account
+# 6fe434a8 = GABRIEL_KV on NOIZY.ai account (5ba03939)

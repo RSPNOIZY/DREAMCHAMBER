@@ -1,0 +1,988 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="en">
+  <head lang="en">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Preset System - Ozone Elements Help Documentation</title>
+    <meta name="generator" content="Hugo 0.33" />
+
+    
+    <meta name="description" content="Ozone Elements Help">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.izotopeozoneelementsdocs.com/en/preset-system/">
+    <meta property="og:title" content="Ozone Elements Help Documentation">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone Elements Help Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg.html')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-18', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-18');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | Preset System</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Introduction" href="../index.html">
+	
+	Introduction
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone Elements Overview" href="../ozone-overview/index.html">
+	
+	Ozone Elements Overview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Equalizer" href="../equalizer/index.html">
+	
+	Equalizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Imager" href="../imager/index.html">
+	
+	Imager
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Maximizer" href="../maximizer/index.html">
+	
+	Maximizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Master Assistant" href="../master-assistant/index.html">
+	
+	Master Assistant
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Preset System" href="index.html">
+	
+	Preset System
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="General Functions" href="../general-functions/index.html">
+	
+	General Functions
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Common Module Controls" href="../common-module-controls/index.html">
+	
+	Common Module Controls
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Options" href="../options/index.html">
+	
+	Options
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plug-in Automation" href="../plug-in-automation/index.html">
+	
+	Plug-in Automation
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tips &amp; Examples" href="../tips-and-examples/index.html">
+	
+	Tips &amp; Examples
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Authorization" href="../authorization/index.html">
+	
+	Authorization
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotope Customer Care" href="../customer-care/index.html">
+	
+	iZotope Customer Care
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA" href="../eula/index.html">
+	
+	EULA
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information" href="../license-information/index.html">
+	
+	License Information
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../ja/preset-system/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>Preset System </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">Languages:</span>
+<br />
+    
+
+       
+       <a href="../../ja/preset-system/index.html"><button class="lang-btn-active">English</button></a>
+       
+        
+       <a href="../../ja/preset-system/index.html"><button class="lang-btn-clickable">日本語</button></a>
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+
+
+
+<nav>
+  
+  <h4>Table of Contents</h4>
+  <ul>
+    
+      
+      
+
+      
+
+      
+      
+      <li>
+        <a href="index.html#overview">Overview</a>
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#factory-content">Factory Content</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#general-functions">General Functions</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#controls">Controls</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#custom-default">Custom Default</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#module-preset-system">Module Preset System</a>
+
+          
+            
+          
+      
+    
+
+    
+    
+    
+
+  </ul>
+</nav>
+
+
+
+
+    
+
+	
+
+<h2 id="overview">Overview</h2>
+
+<p>Ozone Elements features a preset manager that allows you to quickly and easily work with presets.</p>
+
+<h2 id="factory-content">Factory Content</h2>
+
+<p>Ozone&rsquo;s global Factory presets are organized into the following folders:</p>
+
+<ul>
+<li><strong>ALL PURPOSE MASTERING</strong></li>
+<li><strong>GENRE-SPECIFIC MASTERING</strong></li>
+<li><strong>INSTRUMENTS AND BUSSES</strong></li>
+</ul>
+
+<h2 id="general-functions">General Functions</h2>
+
+<h3 id="loading-presets">Loading Presets</h3>
+
+<p>You can select and audition any preset by simply clicking on the name in the list. This will activate the relevant selected Ozone modules, and you will hear the effect of the preset when you play back your audio. You can easily compare several different presets just by picking a different name on the list.</p>
+
+<h3 id="renaming-presets">Renaming Presets</h3>
+
+<p>In the Preset Manager you can double click on a preset to edit its name.</p>
+
+<h3 id="show-at-startup">Show at Startup</h3>
+
+<p>This allows you to set whether or not the preset manager will open automatically when starting Ozone.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Preset Manager: Show at startup</p>
+<p>By default the preset manager will open automatically at startup. If you do not wish for this to occur, uncheck the “show at startup” box at the bottom of the presets window.</p>
+</div>
+
+<h3 id="default-state">Default State</h3>
+
+<p>Loads the Factory default state or your custom default preset.</p>
+
+<h3 id="working-settings">Working Settings</h3>
+
+<p>If you modify a preset’s settings, then these modified settings become your “Working Settings.” Your Working Settings will always be at the top of the preset list within the preset manager. This allows you to freely preview and compare different preset options. When you are done, you can return to your Working Settings by selecting the item at the top of the Preset Manager labeled &ldquo;<Working Settings>&rdquo;.</p>
+
+<h2 id="controls">Controls</h2>
+
+<h3 id="add">Add</h3>
+
+<p>Clicking this button adds the current Ozone settings as a new preset. You can type a name and optionally add comments for the preset.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Special characters in Preset Names</p>
+<p><ul>
+<li>Some characters such as * or / cannot be used as preset names. If you try to type these characters in the name they will be ignored.</li>
+<li>This is because presets are stored as xml  les (for easy backup and transferring). Their file names are the same as the name you give the preset (for easy reference) and therefore characters that are not allowed in Windows file names are not allowed in preset names.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="delete">Delete</h3>
+
+<p>To permanently delete a preset, select the preset from the list and click the Delete button.</p>
+
+<h3 id="new">New</h3>
+
+<p>Click this button to create a new folder. The New Folder option allows you to easily add custom named folders to the Ozone preset manager.</p>
+
+<h3 id="change">Change</h3>
+
+<p>Click this button to change the location of where the presets are stored on your computer. See next section for details.</p>
+
+<h3 id="save">Save</h3>
+
+<p>When you click the Save button, your current settings are assigned to the selected (highlighted) preset.</p>
+
+<p>This is useful for selecting a preset, tweaking it, then coming back to the preset system and clicking “Save” to save your changes to the existing preset.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Save &amp; preset dirty state flag ( * )</p>
+<p><ul>
+<li>The save function will only appear after a preset is adjusted, and the asterisk ( * ) flag appears in the preset title. The save button will overwrite this preset with the new settings.</li>
+<li>When you change any of the original settings within a preset you will see an asterisk ( * ) added to the beginning of the preset’s name. This means that the preset has been altered.</li>
+<li>If you want to keep these settings you need to “Add” a new preset or “Save” the existing preset in the Preset Manager.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="close">Close</h3>
+
+<p>The Close button simply closes the Preset Manager window. Note: You cannot “Cancel” an update of a preset. That is, adding, removing, and updating presets are done “in place” and are not reverted when you close the preset system dialog.</p>
+
+<h3 id="change-folder">Change Folder</h3>
+
+<p>It is not necessary to store all of your presets in the default folder(s). You can create custom folders of presets for di erent projects, archive presets, etc. To change the folder that Ozone looks to for presets, click the Change button in the Preset Manager, then browse to the folder that contains the presets you want to use.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Where are Ozone presets saved to on disk?</p>
+<p><ul>
+<li>By default, the data files for the presets are stored in a folder located at the following locations:
+
+<ul>
+<li><strong>Windows:</strong> C:\Users\userName\Documents\iZotope\Ozone 8 Elements\Presets<br /></li>
+<li><strong>Mac:</strong> Users/userName/Documents/iZotope/Ozone 8 Elements/Presets/</li>
+</ul></li>
+</ul>
+</p>
+</div>
+
+<h2 id="custom-default">Custom Default</h2>
+
+<p>You can set your current settings as the default state by right-clicking on and selecting “Set current state as”. If you have an existing preset that you would like to use as the default state, you can right-click on that preset’s name and select “Set ‘Preset Name’ as”. To revert the default state to factory settings, right-click on any preset and select “Reset to factory default”. The application and plug-ins all have unique custom default settings and need to be set individually.</p>
+
+<h2 id="module-preset-system">Module Preset System</h2>
+
+<p>The module preset system works in a similar way to the global preset system but with a simplified interface that is more tailored to working with individual modules.</p>
+
+<p>Module presets allow you to easily save and load settings in individual modules without affecting the settings in other modules in the signal chain.</p>
+
+<h3 id="opening-the-module-preset-system">Opening the Module Preset System</h3>
+
+<p>The Module Preset system is easily accessible from the Ozone signal chain. Clicking on the button directly above a module’s Solo button will open the Module Preset window.</p>
+
+<h3 id="loading-module-presets">Loading Module Presets</h3>
+
+<p>Selecting a preset in the list will load their settings and related comments will be displayed in the bottom of the module preset window.</p>
+
+<h3 id="saving-module-presets">Saving Module Presets</h3>
+
+<p>To add a new module preset that includes a module’s current settings, click the “Add” button. After clicking “Add” you will be prompted to name the preset, once you are happy with the name, hit Enter or Return to save the name.</p>
+
+<p>You can modify a preset comment by clicking on the text in the comment area, typing in the comment and hitting Return or Enter to save the new comment.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Updating Module Presets</p>
+<p>The Module Preset system does not include the update functionality that the global preset manager has. In order to save changes to a module preset, you will need to add a new preset rather than simply updating an existing one.</p>
+</div>
+
+<h3 id="deleting-module-presets">Deleting Module Presets</h3>
+
+<p>To delete existing module preset files, select them in the module preset window and click on the “Delete” button. You will be prompted after attempting to delete a preset, select ‘Yes’ to delete and ‘No’ to cancel. Note that using the Delete button in the preset manager will remove that preset from your preset folder on disk and move it to the Trash/Recycle Bin for permanent deletion.</p>
+
+<h3 id="changing-the-module-presets-folder">Changing the Module Presets Folder</h3>
+
+<p>Like the Global Preset System, the Module Preset system allows you to specify where module presets are stored on your hard disk. Simply open the Module Preset menu and click the Change Folder button. A file window will open in which you may specify the location of module preset files.</p>
+
+<p>By default, each module’s presets are stored in a folder located at the following locations:</p>
+
+<ul>
+<li>Windows Module Preset file paths:
+
+<ul>
+<li>C:\Users\userName\Documents\iZotope\Ozone 8 Elements\Presets\EQ Presets</li>
+<li>C:\Users\userName\Documents\iZotope\Ozone 8 Elements\Presets\Imager Presets</li>
+<li>C:\Users\userName\Documents\iZotope\Ozone 8 Elements\Presets\Maximizer Presets</li>
+</ul></li>
+<li>OS X Module Preset file paths:
+
+<ul>
+<li>Users/userName/Documents/iZotope/Ozone 8 Elements/Presets/EQ Presets</li>
+<li>Users/userName/Documents/iZotope/Ozone 8 Elements/Presets/Imager Presets</li>
+<li>Users/userName/Documents/iZotope/Ozone 8 Elements/Presets/Maximizer Presets</li>
+</ul></li>
+</ul>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../master-assistant/index.html" title="Master Assistant">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Master Assistant
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../general-functions/index.html" title="General Functions">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              General Functions
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../ja/preset-system/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone Elements Help Documentation 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

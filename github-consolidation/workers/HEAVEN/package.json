@@ -1,0 +1,20 @@
+{
+  "name": "heaven-router",
+  "version": "1.0.0",
+  "description": "HEAVEN - The Master Router for NOIZYEMPIRE",
+  "main": "src/index.js",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.19.0"
+  },
+  "keywords": ["cloudflare", "worker", "router", "noizyempire"],
+  "author": "NOIZYEMPIRE",
+  "license": "MIT"
+}

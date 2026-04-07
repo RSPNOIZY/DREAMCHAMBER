@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NOIZY Aquarium - Knowledge Ocean</title>
+  <style>
+    :root {
+      --ocean-950: #041a2d;
+      --ocean-900: #082740;
+      --ocean-800: #0f395a;
+      --teal-500: #1de9b6;
+      --cyan-500: #00e5ff;
+      --ice-100: #e3f7ff;
+      --line: rgba(188, 236, 247, 0.24);
+      --glass: rgba(5, 28, 46, 0.58);
+      --glass-strong: rgba(4, 24, 39, 0.76);
+      --shadow: 0 18px 55px rgba(1, 16, 27, 0.52);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      color: var(--ice-100);
+      font-family: "Avenir Next", "Space Grotesk", "Sora", sans-serif;
+      background: radial-gradient(1200px 900px at 50% -20%, #1e587e 0%, var(--ocean-800) 25%, var(--ocean-900) 50%, var(--ocean-950) 100%);
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      isolation: isolate;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.34;
+      filter: saturate(1.2) contrast(1.05) brightness(0.82);
+      z-index: -3;
+    }
+
+    .hero-fallback {
+      position: absolute;
+      inset: 0;
+      z-index: -4;
+      background:
+        radial-gradient(600px 380px at 70% 0%, rgba(0, 229, 255, 0.2), transparent 70%),
+        radial-gradient(900px 520px at 20% 80%, rgba(29, 233, 182, 0.14), transparent 75%),
+        linear-gradient(180deg, #134f72 0%, #0b3352 35%, #08253b 60%, #041a2d 100%);
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: linear-gradient(180deg, rgba(4, 26, 45, 0.18) 0%, rgba(4, 26, 45, 0.48) 40%, rgba(4, 26, 45, 0.88) 100%);
+    }
+
+    .particles {
+      position: absolute;
+      inset: -20%;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 15% 70%, rgba(220, 252, 255, 0.2) 0 2px, transparent 3px),
+        radial-gradient(circle at 30% 84%, rgba(188, 236, 247, 0.12) 0 1.8px, transparent 3px),
+        radial-gradient(circle at 55% 65%, rgba(188, 236, 247, 0.16) 0 2.2px, transparent 3px),
+        radial-gradient(circle at 73% 78%, rgba(220, 252, 255, 0.14) 0 1.8px, transparent 3px),
+        radial-gradient(circle at 88% 72%, rgba(188, 236, 247, 0.2) 0 2px, transparent 3px);
+      animation: drift 18s linear infinite;
+    }
+
+    @keyframes drift {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-120px);
+      }
+    }
+
+    .hero-content {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 28px 20px 42px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 24px;
+      min-height: 100svh;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: 14px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(6, 36, 58, 0.44);
+      backdrop-filter: blur(4px);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(6, 36, 58, 0.36);
+      font-size: 12px;
+      color: #c8f3ff;
+    }
+
+    .portal {
+      display: grid;
+      gap: 14px;
+      max-width: 860px;
+      align-content: center;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #a5ebf3;
+      margin: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 7vw, 86px);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-wrap: balance;
+    }
+
+    .tagline {
+      margin: 0;
+      font-size: clamp(17px, 2.2vw, 25px);
+      color: #d2f9ff;
+      text-wrap: balance;
+      max-width: 760px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      background: var(--glass);
+      color: #ecfeff;
+      box-shadow: var(--shadow);
+    }
+
+    .btn.primary {
+      background: linear-gradient(120deg, rgba(0, 229, 255, 0.25), rgba(29, 233, 182, 0.3));
+      border-color: rgba(176, 245, 255, 0.45);
+    }
+
+    .hero-feed {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px;
+    }
+
+    .feed-item {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--glass);
+      padding: 10px 12px;
+      font-size: 13px;
+      color: #d6f3ff;
+      backdrop-filter: blur(5px);
+    }
+
+    .feed-item strong {
+      display: block;
+      color: #9ef3ff;
+      margin-bottom: 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    main {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px 20px 56px;
+      display: grid;
+      gap: 18px;
+    }
+
+    section.block {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--glass-strong);
+      box-shadow: var(--shadow);
+      padding: 22px 20px;
+    }
+
+    .block h2 {
+      margin: 0 0 8px;
+      font-size: clamp(20px, 2.7vw, 34px);
+      letter-spacing: 0.02em;
+    }
+
+    .block p {
+      margin: 0;
+      color: #c9e9f8;
+      line-height: 1.5;
+    }
+
+    .grid-5 {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(5, 31, 49, 0.55);
+      font-size: 13px;
+      color: #d8f0fd;
+    }
+
+    .ecosystem {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(4, 30, 48, 0.52);
+      padding: 14px;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .panel:hover {
+      transform: translateY(-2px);
+      border-color: rgba(170, 238, 255, 0.5);
+    }
+
+    .panel h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: #b7f8ff;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .panel p {
+      font-size: 13px;
+      color: #d2e9f7;
+      margin: 0 0 10px;
+    }
+
+    .panel .cmd {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 6px 8px;
+      margin: 3px 4px 0 0;
+      font-size: 12px;
+      color: #d8f6ff;
+      background: rgba(7, 35, 55, 0.6);
+    }
+
+    .cta {
+      text-align: center;
+      padding: 28px 20px;
+    }
+
+    .cta p {
+      margin: 0 0 14px;
+      color: #d4f4ff;
+      font-size: 17px;
+    }
+
+    .portal-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      background:
+        radial-gradient(circle at center, rgba(0, 229, 255, 0.3) 0 10%, transparent 48%),
+        radial-gradient(circle at center, rgba(29, 233, 182, 0.2) 0 8%, transparent 55%),
+        rgba(1, 9, 16, 0.84);
+      transition: opacity 420ms ease;
+      z-index: 100;
+    }
+
+    body.portal-active .portal-overlay {
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .particles,
+      .panel {
+        animation: none !important;
+        transition: none !important;
+      }
+      .hero-video {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-fallback"></div>
+    <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
+      <source src="assets/aquarium-loop.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-vignette"></div>
+    <div class="particles" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <nav class="top-nav">
+        <div class="brand">NOIZY.AI - Aquarium</div>
+        <div class="nav-links">
+          <a href="#aquarium">The Aquarium</a>
+          <a href="#ecosystem">Ecosystem</a>
+          <a href="#council">Composer Council</a>
+          <a href="#kidz">NOIZYKIDZ</a>
+        </div>
+      </nav>
+
+      <section class="portal">
+        <p class="eyebrow">Knowledge Ocean Interface</p>
+        <h1>NOIZY Aquarium</h1>
+        <p class="tagline">Where creativity evolves into intelligence. Media, composers, AVAs, and lessons are absorbed, structured, and converted into build-ready code systems.</p>
+        <div class="hero-buttons">
+          <button class="btn primary" id="enter-dreamchamber" type="button">Enter DreamChamber</button>
+          <a class="btn" href="#aquarium">Explore the Aquarium</a>
+          <a class="btn" href="#council">Meet Composer Council</a>
+          <a class="btn" href="#kidz">NOIZYKIDZ Universe</a>
+        </div>
+      </section>
+
+      <section class="hero-feed" aria-label="Live intelligence feed">
+        <article class="feed-item"><strong>Live Feed</strong>New composition pattern absorbed from Composer Council session.</article>
+        <article class="feed-item"><strong>Live Feed</strong>NOIZYKIDZ lesson graph updated with fresh rhythm game outcomes.</article>
+        <article class="feed-item"><strong>Live Feed</strong>AIVA model improved from approved actor emotional voice samples.</article>
+      </section>
+    </div>
+  </header>
+
+  <main>
+    <section class="block" id="aquarium">
+      <h2>The Aquarium Is the Creative Assimilation Engine</h2>
+      <p>All media enters one ocean: music, voice, film, scripts, lessons. The engine deconstructs each stream into tempo, emotion, structure, and semantics, then stores it as reusable intelligence for generation and teaching.</p>
+      <div class="grid-5">
+        <article class="chip">Music -> rhythm, harmony, arrangement embeddings</article>
+        <article class="chip">Voice -> phoneme, emotion, timing profiles</article>
+        <article class="chip">Video -> scene pacing and narrative patterns</article>
+        <article class="chip">Text -> semantic vectors and style signatures</article>
+        <article class="chip">Output -> generation-ready models and lesson packs</article>
+      </div>
+    </section>
+
+    <section class="block" id="ecosystem">
+      <h2>One Living World: Aquarium -> DreamChamber -> Creators -> Kids -> AI Brain</h2>
+      <div class="ecosystem">
+        <article class="panel">
+          <h3>DreamChamber</h3>
+          <p>Voice-first creator cockpit for prototyping tracks, voices, scenes, and decks.</p>
+          <span class="cmd">activate dream chamber</span>
+          <span class="cmd">switch to creation mode</span>
+        </article>
+        <article class="panel" id="council">
+          <h3>Composer Council</h3>
+          <p>Composers who see the future join the guild, contribute methods, and train the system.</p>
+          <span class="cmd">join as composer &lt;name&gt;</span>
+          <span class="cmd">list composer guild</span>
+        </article>
+        <article class="panel" id="kidz">
+          <h3>NOIZYKIDZ Universe</h3>
+          <p>Council knowledge becomes practical game-based AI music teaching from age 2 onward.</p>
+          <span class="cmd">promote to noizykidz teacher &lt;name&gt;</span>
+          <span class="cmd">list noizykidz teachers</span>
+          <span class="cmd">show actor journey map</span>
+          <span class="cmd">show actor launch journey</span>
+          <span class="cmd">show audio to persona roadmap</span>
+          <span class="cmd">open community starter pack</span>
+        </article>
+        <article class="panel">
+          <h3>Aquarium State</h3>
+          <p>Idea lifecycle is explicit: seed -> coral -> reef, with retrieval and versioning.</p>
+          <span class="cmd">seed idea &lt;text&gt;</span>
+          <span class="cmd">grow concept &lt;text&gt;</span>
+          <span class="cmd">retrieve idea &lt;text&gt;</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="block cta">
+      <h2>Dive Into the Creative OS</h2>
+      <p>Enter the DreamChamber and convert ideas into code, prototypes, and teachable intelligence.</p>
+      <div class="hero-buttons" style="justify-content:center">
+        <button class="btn primary" id="enter-dreamchamber-cta" type="button">Launch Creator Workstation</button>
+        <a class="btn" href="cockpit.html">Open Cockpit Directly</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="portal-overlay" aria-hidden="true"></div>
+
+  <script>
+    function enterDreamChamber() {
+      document.body.classList.add("portal-active");
+      window.setTimeout(function () {
+        window.location.href = "cockpit.html";
+      }, 860);
+    }
+
+    document.getElementById("enter-dreamchamber").addEventListener("click", enterDreamChamber);
+    document.getElementById("enter-dreamchamber-cta").addEventListener("click", enterDreamChamber);
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Ambience_match</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="Ambience_match" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer185" class="Basic-Text-Frame">
+			<p id="_idParaDest-166" class="heading-1"><a id="_idTextAnchor168"></a>Ambience Match <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Inline-Art"><img src="image/image_TRPCRORXVYMQXXSWTNRXOYNOVGPODU6D" alt="" /></p>
+			<p class="Normal">The Ambience Match module lets you match the noise floor of one recording to another recording. For example, you can recreate the ambience of a live set on your ADR tracks. The module analyzes the noise floor in your recording and creates a snapshot of it, similar to the noise print in the De-noise module. Then you can use this noise print to synthesize similar noise in another recording.</p>
+			<p class="Normal">The Ambience Match algorithm analyzes an audio selection, rejects silence, and then finds the lowest common denominator (the noise that is common across the audio file) and treats that as the ambient profile.</p>
+			<p class="Normal">To train Ambience Match, provide it with a selection of raw noise. If there is no single fragment of raw noise, or you want to save time, speech can be used. The algorithm will intelligently discard speech and only leave noisy parts in the noise print.</p>
+			<p class="Normal">To match the ambience between selections:</p>
+			<ol>
+				<li class="Numbered-List" value="1">Open the Ambience Match module (Process &gt; Ambience Match, or by clicking Ambience Match in the modules list on the right side of RX).</li>
+				<li class="Numbered-List">Make a selection in a file.</li>
+				<li class="Numbered-List">Click Learn.</li>
+				<li class="Numbered-List">Make another selection.</li>
+				<li class="Numbered-List">Adjust the Trim level as desired. The Trim control adjusts the level of synthesized ambience.</li>
+				<li class="Numbered-List">Select Output Ambience Only if you want the selection replaced with only the ambience from the first selection.</li>
+				<li class="Numbered-List">Click Process.</li>
+			</ol>
+			<p class="Normal">Note: The Ambience Match module cannot reduce the amount of ambience that already exists in the selection, it can only increase it. To reduce the ambience, use the <a target="mainFrame" href="de-noise_spectral.html#_idTextAnchor099"><span class="Hyperlink">De-noise </span><span class="Hyperlink">module</span></a>.</p>
+			<p class="Normal">To create an Ambience Match preset:</p>
+			<ol>
+				<li class="Numbered-List" value="1">In Ambience Match, click the gear icon to the right of the preset drop-down menu.</li>
+				<li class="Numbered-List">Select Add Preset.</li>
+				<li class="Numbered-List">Enter the name for the new preset.</li>
+				<li class="Numbered-List">Press Enter.</li>
+			</ol>
+			<p id="_idParaDest-167" class="heading-2"><a id="_idTextAnchor169"></a>Using Ambience Match as an AudioSuite Plug-In</p>
+			<p class="Normal">In addition to applying Ambience Match inside of the RX Audio Editor, it can also be used as an AudioSuite plug-in inside of Avid’s Pro Tools or Media Composer.  </p>
+			<p class="Normal">When using Ambience Match inside of Pro Tools or Media Composer, we recommend not learning from audio that contains fades within the selection or the handles. As Ambience Match establishes an ambient profile using the lowest common denominator, learning from audio that’s being faded in may result in inconsistent detection of the noise floor. Handles can be preserved by using Ambience Match in clip-by-clip mode.</p>
+			<p class="Normal">When using Pro Tools, you may see an inconsistent result as a result of Pro Tools adding dithering to fades, which varies based on the session&apos;s bit depth. Since this dithering noise almost certainly doesn&apos;t match the material&apos;s noise profile, this will throw off Ambience Match. If you’re running a session in 16 bits, the dither added by a fade will be sufficient enough to affect the detection algorithm. The problem is less pronounced in 24 or 32 bits. To adjust the bit depth of your session, go to <span class="Body-Text-Italic">Setup</span> &gt; <span class="Body-Text-Italic">Session</span> in Pro Tools.</p>
+			<p class="Inline-Art"><img src="image/image_6FTD62RTX753DIWQH2XH4I4DV4ULK4VM" alt="" /></p>
+		</div>
+	</body>
+</html>

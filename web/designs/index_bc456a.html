@@ -1,0 +1,2440 @@
+
+  <!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]> 
+<!--><html class="no-js" lang="en"><!--<![endif]-->
+<head lang="en">
+
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Neutron 2 Help Documentation - Neutron 2 User Manual</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+    <meta name="description" content="Neutron 2 User Manual">
+    <link rel="canonical" href="index.html">
+    <meta name="author" content="iZotope">
+    <meta property="og:url" content="http://www.neutron2helpdocs.com/en/print/index.html">
+    <meta property="og:title" content="Neutron 2 User Manual">
+    
+    <meta name="apple-mobile-web-app-title" content="Neutron 2 User Manual">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+    
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    <link rel="stylesheet" href="../stylesheets/palettes.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+    
+    
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css"><link rel="stylesheet" href="../stylesheets/ie7.css">
+    <script src="../javascripts/modernizr.js"></script>
+    
+  
+<script>
+  (function(i,s,o,g,r,a,m){
+    i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+    []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+    m.parentNode.insertBefore(a,m)
+  })(window, document,
+    'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+   
+  ga('create', 'UA-63445037-15', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+  
+
+<script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+
+
+</head>
+<body class="palette-primary-print palette-accent-print">
+  
+	
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	
+
+
+  <div class="backdrop">
+    <div class="backdrop-paper"></div>
+  </div>
+  <input class="toggle" type="checkbox" id="toggle-drawer">
+  <input class="toggle" type="checkbox" id="toggle-search">
+  <label class="toggle-button overlay" for="toggle-drawer"></label>
+  <header class="header">    <nav aria-label="Header">
+      <div class="bar default">
+        <div class="button button-menu" role="button" aria-label="Menu">
+          <label class="toggle-button icon icon-menu" for="toggle-drawer">
+            <span></span>
+          </label>
+        </div>
+        <div class="stretch">
+          <div class="title">
+            <a href="../index.html" >
+            <img src="../images/header-intro-site/site-header.png">    Neutron 2 Help Documentation</a>
+          </div>
+        </div>
+            
+      </div>
+      <div class="bar search">
+        <div class="button button-close" role="button" aria-label="Close">
+          <label class="toggle-button icon icon-back" for="toggle-search"></label>
+        </div>
+        <div class="stretch">
+          <div class="field">
+            <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+          </div>
+        </div>
+        <div class="button button-reset" role="button" aria-label="Search">
+          <button class="toggle-button icon icon-close" id="reset-search"></button>
+        </div>
+      </div>
+    </nav></header>
+  <main class="main">
+  
+<article class="article">
+      <div class="wrapper">
+  <img src="../images/header-intro-site/site-header-print.png" alt="iZotope Neutron 2">
+  <h1>Neutron 2 User Manual</h1>
+  
+  
+  <hr />
+  
+  <h1><span class="icon icon-bookmark"></span>  Neutron 2 Overview</h1>
+  
+
+<h2 id="what-is-neutron-2">What is Neutron 2?</h2>
+
+<p>Welcome to Neutron 2, the next generation of iZotope’s powerful mixing plug-in. Neutron 2 uses the latest technological advancements in audio analysis and machine learning to provide you with a powerful mixing plug-in for starting and finishing your music with confidence.</p>
+
+<p><img src="../images/Neutron-mothership-compressor-on-screen.png" alt="neutron 2" /></p>
+
+<h2 id="the-design-of-neutron-2">The Design of Neutron 2</h2>
+
+<p>Our products start with an idea. That idea sparks conversations that echo throughout the hallways of iZotope’s HQ. If you overheard these discussions you might hear questions like, “Does this enable customers to be creative? Does this inspire users to achieve their goals?” iZotopians entangle in these talks because of their hunger for crafting new and innovative audio experiences for you, the individuals who rely on these tools for creativity.</p>
+
+<p>With Neutron 2 we spared no expense to deliver a set of new features that give you the ability to be more creative, visualize your music in new ways, and assist you with better sound. Features like the Tonal Balance Control, Visual Mixer, and Masking Meter adhere to those philosophies and break us out of the typical mixing paradigms that so many of us have followed for decades.</p>
+
+<p>Neutron 2 is the contemporary approach to the age old practice of audio mixing. Our hope is that this product helps you overcome insurmountable sonic barriers and ignites your creative ambitions.</p>
+
+<h2 id="inter-plugin-communication-with-ozone-8">Inter-plugin Communication with Ozone 8</h2>
+
+<p>While concepting Neutron 2 and Ozone 8, we noticed that the entire process for most creatives takes place in a single workflow. Mixing, mastering, and audio production all occur at the same time with the same hands. iZotope recognizes that the landscape of mixing and mastering in-the-box is starting to change. With Neutron 2, we give you the ability to connect to Ozone 8 through Tonal Balance Control, which begs the question, “Do these two worlds collide?” Our answer is yes, most definitely.</p>
+
+<p>Cross-connectivity between our products began with the innovation of the Masking Meter in Neutron’s EQ. Neutron 2 is the next chapter of this technology, incorporating communication and control through the Visual Mixer, Tonal Balance Control, and Mix Tap.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Compressor</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>A compressor allows you to reduce the dynamic range of an audio signal. Dynamic range can be thought of as the difference between the quietest and loudest levels of a signal. Compressors can reduce the dynamic range of a signal by decreasing the level of sounds that exceed a certain threshold level (referred to as &ldquo;downward&rdquo; compression) or by increasing the level of signals that fall below a certain threshold level (referred to as &ldquo;upward&rdquo; compression). Neutron features two Compressor modules capable of multiband compression, flexible sidechaining options and useful visual feedback.</p>
+
+<p><img src="../images/compressor/compressor.png" alt="Compressor module" /></p>
+
+<h2 id="global-controls">Global Controls</h2>
+
+<p><img src="../images/compressor/global.png" alt="global bar" /></p>
+
+<h3 id="digital-vintage-mode">Digital/Vintage mode</h3>
+
+<p>Neutron’s Compressor is capable of two very different styles of compression, Digital and Vintage mode. You can set the mode used by the compressor by toggling the &ldquo;Vintage Mode&rdquo; button.</p>
+
+<h4 id="digital-mode">Digital Mode</h4>
+
+<p>When Digital Mode is selected, a <a href="index.html#gain-reduction-trace">gain reduction trace meter</a> displays gain reduction for the currently selected band.</p>
+
+<p><img src="../images/compressor/digital.png" alt="digital mode selected" /></p>
+
+<p>Where Digital is a more transparent, surgical compressor, Vintage is more colorful, emulating a number of sonic behaviors from a variety of beloved older analog compressors.</p>
+
+<h4 id="vintage-mode">Vintage Mode</h4>
+
+<p>When Vintage Mode is selected, VU meters display the gain reduction for each active band.</p>
+
+<p><img src="../images/compressor/vintage.png" alt="vintage mode selected" /></p>
+
+<p>In Vintage mode, the Attack reacts much more quickly (indeed, an UREI 1176 is capable of very low Attack times) but then begins to ease in, which sounds punchier, but less transparent than the Digital mode. Knee is not adjustable in Vintage mode, as it scales with the Threshold control.</p>
+
+<h3 id="output-gain">Output Gain</h3>
+
+<p>Allows you to adjust the amount of gain applied to the signal after compression, to make up for any loss or increase in level caused by dynamics processing. This is also useful for managing the signal level as it passes to the input of the next module in the signal chain.  When using Compressor 1 and Compressor 2 in series, adjusting the output gain of Compressor 1 allows you to manage the signal level going into Compressor 2, allowing for greater control over how Compressor 2 affects your sound.</p>
+
+<h3 id="lfe-bypass-surround-only">LFE Bypass (Surround Only)</h3>
+
+<p><img src="../images/compressor/lfe.png" alt="LFE Channel enabled" /></p>
+
+<div class="admonition note">
+<p class="admonition-title">Surround processing &amp; LFE Bypass</p>
+<p><ul>
+<li>The LFE Bypass button only appears when Neutron is instantiated on a surround sound track that includes an LFE channel (5.1 or 7.1, for example).</li>
+<li>Neutron processes all input channels equally when used on surround tracks.</li>
+</ul>
+</p>
+</div>
+
+<p>When LFE Bypass is enabled, all audio information in the LFE channel will pass through the associated module unprocessed. Latency compensation is applied to the unprocessed LFE channel (if the module introduces latency), to ensure all channels remain time aligned after processing. You can read more about LFE Bypass and Surround processing in the <a href="../io-section/index.html#lfe-bypass">I/O chapter</a>.</p>
+
+<h3 id="level-detection-mode">Level Detection Mode</h3>
+
+<p><img src="../images/compressor/detection-modes.png" alt="Level Detection Modes" /></p>
+
+<p>Sets the level detection mode used by all bands in the Compressor module. This allows you to inform how the compressor calculates levels coming into the detection filter. The following level detection modes are available:</p>
+
+<ul>
+<li><strong>RMS (Root Mean Square):</strong> Enables Neutron to look at the average level of the incoming signal. RMS detection is useful when you are trying to increase the overall volume level without changing the character of the sound.</li>
+<li><strong>PEAK:</strong> Enables Neutron’s detection circuit to look at peak levels of the incoming signal. In general, this setting is useful when you are trying to even out sudden transients in your music.</li>
+<li><strong>TRUE:</strong> Behaves much like RMS mode, but with some key advantages. Unlike RMS, True mode produces even levels across all frequencies. Additionally, True mode will not produce the aliasing or artifacts that RMS detection can cause (a signal-dependent behavior that is true of any RMS-based compressor, not just Neutron).</li>
+</ul>
+
+<h3 id="learn">Learn</h3>
+
+<p><img src="../images/compressor/learn.png" alt="Learn Active" /></p>
+
+<p>When enabled, the Crossover Learn function will search for natural crossover cutoff points for multiband processing using a few criteria, including identifying minima in the frequency spectrum of the incoming audio. When the Learn function is active the button will turn orange. When it has determined and set the ideal values for the crossover cutoffs, it will turn itself off automatically. You can also manually disable learning when it is active by clicking the Learn button again.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Crossover Learn Notes</p>
+<p><ul>
+<li>For crossover learning to behave as expected, the module must be receiving audio input while Learn is engaged.</li>
+<li>The Learn button will be disabled if only one band is enabled in a multiband capable module.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="reset">Reset</h3>
+
+<p><img src="../images/compressor/reset.png" alt="Reset Active" /></p>
+
+<p>Returns all controls in the Compressor module to their factory default values. If you wish to return to settings you were using before clicking the Reset button, you can use the Undo History window to revert to the settings before the Reset event.</p>
+
+<h3 id="auto-gain">Auto Gain</h3>
+
+<p><img src="../images/compressor/auto-gain.png" alt="Auto Gain" /></p>
+
+<p>When enabled, the Compressor will calculate the level difference between the input (uncompressed signal) and output (compressed signal) and automatically apply gain to match the output level to the input level.</p>
+
+<h3 id="auto-release">Auto Release</h3>
+
+<p><img src="../images/compressor/auto-rel.png" alt="Auto Release" /></p>
+
+<p>When enabled, the Release time of the Compressor is automatically adjusted based on an analysis of the input signal. If a transient signal is detected, the Release time is scaled to be shorter for less pumping. If a sustained note is detected, the Release time is scaled to be longer for lower distortion.</p>
+
+<p>The Auto Release amount scales in relation to the set Release time values. For example, if you are using the Compressor with the Release time set to 100 ms, the Release time will be automatically adjusted to a value within a range of 20 ms to 200 ms, depending on the type of signal that is being processed.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Auto Release is always enabled when Vintage Mode is selected.</p>
+</div>
+
+<h3 id="global-mix">Global Mix</h3>
+
+<p><img src="../images/compressor/mix-module-chain.png" alt="Compressor Module Tile" /></p>
+
+<p>The Mix slider in the module chain is a highly useful feature, allowing you to perform parallel compression. At 100%, you’re hearing only the audio processed by the Compressor, whereas at 50% you’re hearing an even blend between unprocessed and processed audio. Often times, blending in more extreme compression settings (as in&hellip;majorly crushed) with completely unprocessed signal (typically around 50 - 80% dry, 50 - 30% wet) gives you a much smoother, more polished sound without eliminating the musicality that peaks and dynamic range have to offer. Note that this a global setting, where unprocessed means audio input to the Compressor, and processed means audio output from the Compressor. Audio output from the Compressor may contain some dry audio, depending on the per-band <a href="index.html#mix">Mix</a> control settings.</p>
+
+<h2 id="meters">Meters</h2>
+
+<h3 id="gain-reduction-trace">Gain Reduction Trace</h3>
+
+<p><img src="../images/compressor/gr-trace.png" alt="Gain Reduction Trace" /></p>
+
+<p>This view offers a scrolling meter that displays the incoming signal’s waveform with a superimposed curve that illustrates the amount of gain reduction taking place in real time. It uses a rectified waveform to better illustrate the compression behavior. The Gain Reduction Trace can help you to set attack and release controls appropriately and monitor the envelope of gain reduction.</p>
+
+<h3 id="vu-meters">VU Meters</h3>
+
+<p><img src="../images/compressor/vu-meters.png" alt="VU Meters" /></p>
+
+<p>In Vintage mode, the gain reduction meters use a VU meter, one per band. There is something magical about the audio/visual connection between the gain reduction that’s occurring and the way the ballistics of the VU meter give you a sense of what’s going on.</p>
+
+<h3 id="crossover-mini-spectrum">Crossover Mini-Spectrum</h3>
+
+<p>Multiband modules offer controls for adjusting and auditioning the crossover frequency bands in the crossover mini-spectrum metering view.</p>
+
+<p><img src="../images/compressor/crossover.png" alt="Crossover meter" /></p>
+
+<h3 id="adjusting-crossover-cutoffs">Adjusting Crossover Cutoffs</h3>
+
+<p>The multiband crossover points can be manually adjusted in the crossover mini-spectrum view. Crossover cutoff points can be manually adjusted using the following methods:</p>
+
+<ul>
+<li><strong>CLICK &amp; DRAG CUTOFF HANDLES:</strong> Crossover cutoffs can be adjusted by hovering over the white crossover handle, left-clicking and dragging the handle to the desired position. The cursor will change to display a left/right arrow icon when hovering over the adjustable crossover cutoff handle.</li>
+<li><strong>TEXT INPUT:</strong> Double-clicking on a crossover cutoffs value readout (white text directly below the cutoff handle) will open an inline edit field. Type the desired frequency value for the crossover cutoff into this field and hit the Enter or Return key to update the value.</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><ul>
+<li>Crossover cutoff points are <em>not</em> shared across multiband modules. Adjusting a crossover point in one module will not affect the crossover points in other multiband modules.</li>
+</ul>
+</p>
+</div>
+
+<h2 id="detection-filter">Detection Filter</h2>
+
+<p>Adjusts the frequency response of the Compressor&rsquo;s detection circuit. The detection filter is enabled by clicking the detection filter button located below the crossover mini-spectrum meter.</p>
+
+<p><img src="../images/compressor/det-filter-enabled.png" alt="Detection Filter Enabled" /></p>
+
+<p>When the detection filter is active, adjustable high-pass and low-pass filter nodes will be displayed on top of the crossover mini-spectrum meter. You can adjust the gain of the filter nodes by dragging them up or down and adjust the center frequency of the filter nodes by dragging them left or right.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Tip: Using the detection filter</p>
+<p><ul>
+<li>Adjusting the detection filter allows you to tailor how sensitive the Compressor is to different frequencies. You can use this to great effect when using the Compressor in single band mode.</li>
+<li><strong>For example:</strong> if you want the compressor to react more to sibilant or harsh frequencies than low frequency content, you can filter out low frequencies using the high-pass filter and boost sibilant frequencies using the resonant low-pass filter to adjust the signal that the Compressor treats as the input signal.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="detection-filter-solo">Detection Filter Solo</h3>
+
+<p><img src="../images/compressor/det-filter-solo.png" alt="Detection Filter Solo Enabled" /></p>
+
+<p>When enabled, allows you to audition the output of the detection filter. This can be useful to enable when adjusting the detection filter nodes.</p>
+
+<h2 id="per-band-controls">Per-band Controls</h2>
+
+<h3 id="threshold">Threshold</h3>
+
+<p>Threshold sets the point at which the dynamics processing begins to take place. With positive ratios (downward compression), signals that exceed the Threshold will trigger processing. With negative ratios (upward compression), signals that fall below the threshold will trigger processing.</p>
+
+<h3 id="ratio">Ratio</h3>
+
+<p>Ratio allows you to adjust the amount of level adjustment the compressor will apply from any given input signal. A ratio of 3:1 means the for every 3 dB a signal overshoots the Threshold, only 1 dB of gain increase will occur.</p>
+
+<p>Neutron’s Compressor is capable of both upwards compression (with a negative ratio) and downwards compression (with a positive ratio). Additionally, the Compressor supports positive ratios high enough to be considered a Limiter, which when combined with the multiband-capable processing, is particularly useful for processing electronic sounds, or working in genres typified by high RMS values. For acoustic material, we recommend lower ratios and more gentle compression. Only you can prevent over-compression.</p>
+
+<h3 id="knee">Knee</h3>
+
+<p>This variable knee allows you to adjust this control to set the desired character of the compression. Since “character” is arguably one of audio’s most overused words, here’s what we mean here: Higher settings result in a “soft knee” setting with a subtler, natural-sounding compression, whereas lower settings result in a “hard knee” setting with a more aggressive-sounding compression, often used as an intended effect on individual tracks such as kick and snare drum(s).</p>
+
+<h3 id="attack-and-release">Attack and Release</h3>
+
+<p>Adjust the attack and release controls to set how quickly the Compressor module reacts to audio that crosses the threshold.</p>
+
+<h3 id="mix">Mix</h3>
+
+<p>Adjust this slider to control the dry/wet mix of the direct, unprocessed signal to the processed signal for the associated band.</p>
+
+<h3 id="gain">Gain</h3>
+
+<p>This behavior is identical to the Output Gain parameter described above, but is specific to whichever band you have selected.</p>
+
+<h3 id="sidechain">Sidechain</h3>
+
+<p>Neutron’s Compressor has powerful and detailed sidechain support, meaning you can have a band’s dynamic behavior dictated by a wide variety of other input signals.</p>
+
+<ul>
+<li><strong>INTERNAL SIDECHAIN SOURCE:</strong> By default, a band is triggered by its own audio input but you can use the Internal function to choose any other band of the Compressor. You might like the warm midrange of a guitar (say, band 2) to actually trigger the boomy, muddy low end (say, band 1) dynamically up or down. It’s a phenomenally powerful way to balance a signal within itself. You can also select Internal Full, which will take the full bandwidth of the audio signal, and not anything node specific.</li>
+<li><strong>EXTERNAL SIDECHAIN SOURCE:</strong> You can also set the sidechain source to External, which will use the host application&rsquo;s sidechain input. You can choose between full bandwidth external sidechain or split the external sidechain into bands that match the Compressor&rsquo;s current crossover settings.</li>
+</ul>
+
+<h3 id="bypass">Bypass</h3>
+
+<p>Bypass the processing for the associated band by clicking the &lsquo;B&rsquo; button.</p>
+
+<h3 id="solo">Solo</h3>
+
+<p>Solo the associated band by clicking the &rsquo;S&rsquo; button.</p>
+
+<h3 id="add-remove-bands">Add/Remove Bands</h3>
+
+<p>Add/remove the associated band by clicking on the power button (next to S and B buttons).</p>
+
+<h2 id="more-information">More Information</h2>
+
+<p>Limiters/Compressors were originally invented to prevent overmodulation in a radio broadcast signal. As decades passed, and engineers realized more of the practical and aesthetic use cases, compressors have become one of the most used audio processing techniques in modern recording, mixing, and mastering. They can help improve intelligibility in vocals, tame an overly aggressive snare drum, and restrict dynamic range across a mix so that the listener does not have to keep adjusting the volume on their playback system.</p>
+
+<p>Compression is one of the effects we hear most but, if done correctly, the listener will not even be aware that it’s there. While many mix engineers favor compressors that color their audio, when it comes to mixing, transparency is key. One of the challenges mixing engineers face is that different parts of the frequency spectrum will require different compression settings to effectively reduce dynamic range. Individually tuning the attack time, or the length of time before the compressor begins reducing gain, is key.</p>
+
+<p>If a recording of a bright guitar and a bass drum is sent through a compressor with a short attack time, the transients of the guitar will be tamed, but the bass drum will lose its punch and feel choked. With the short attack time, the low frequency transient information in the bass drum does not have enough time to make it through before the compressor kicks in. If the attack time is set longer, the bass drum may have the desired punch before the compressor kicks in but the guitar will sound harsh. Its high frequency transients take a far shorter time to get through—and as a result, the compressor will not compress the guitar much at all.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Equalizer</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Neutron&rsquo;s EQ combines transparent digital processing with the colorful sonic qualities of analog equalizers. It provides rich visual feedback, dynamic node triggering and flexible sidechaining options, making it the perfect EQ for every track in your mix.</p>
+
+<p><img src="../images/equalizer/eq-softsaturation-module.png" alt="eq" /></p>
+
+<h2 id="global-controls">Global Controls</h2>
+
+<h3 id="lfe-bypass-adv">LFE Bypass [ADV]</h3>
+
+<p>This button only appears when Neutron is loaded in either a 5.1 or 7.1 surround sound configuration. When in surround sound configurations, Neutron processes all channels equally. When enabled, the LFE Bypass will ensure that any audio information in the LFE channel is passed through unprocessed, but with the correct latency compensation.</p>
+
+<h3 id="masking-meter">Masking Meter</h3>
+
+<p>This button switches the EQ into the Masking Meter mode, in which it can intelligently analyze the audio metering data from neighboring audio tracks and inform you of any perceptual frequency collisions that may cause masking or inaudibility issues, such as a kick drum and bass guitar competing for the same space in the spectrum, sounding muddy, and/or lacking definition. See the <a href="../masking-meter/index.html">Masking Meter chapter</a> for more detailed information about the Masking Meter.</p>
+
+<h3 id="learn">Learn</h3>
+
+<p>Neutron’s EQ Learn intelligently analyzes the audio signal, placing any enabled nodes on areas of interest it identifies, such as sibilance, resonance, rumble, and so on. It’s an incredibly useful feature, enabling you to quickly locate areas of sonic importance.</p>
+
+<p>Think of it as a starting point, a suggested guide you may wish to tweak artistically, or even something you can switch on in a moment of frustration if you’re searching for the right EQ sweet spots. It’s only applied to nodes that are enabled, and won’t enable or disable any (in contrast to Track Assistant, which may). It also won’t affect Gain or Q, and so once nodes are placed, you may hold the Shift key to preserve the frequency placement, and move the gain up or down to determine if your track sounds better with that specific area of interest boosted or cut.</p>
+
+<h3 id="reset">Reset</h3>
+
+<p>This will reset the entire EQ to default values if you wish to start over. If you click this button and experience instant remorse, never fear…you can open the Undo History and revert the change to go back to the settings you had prior to reset.</p>
+
+<h3 id="mix">Mix</h3>
+
+<p>The Mix slider in the signal flow is a highly useful feature, allowing you to do parallel EQ. At 100%, you’re hearing only the audio processed by EQ, whereas at 50% you’re hearing an even blend between unprocessed and EQ’d audio. Often times, blending in more extreme EQ settings (particularly shelves) has a much more pleasant, sweeter sound, than simply dialing in a gentler EQ curve. Parallel EQ is often one of the hidden tricks that simple sweetening plug-ins tend to pull, but here it’s exposed for you to control directly.</p>
+
+<h3 id="soft-saturation">Soft Saturation</h3>
+
+<p>The Soft Saturation mode is inspired by a British-style inductor EQ and is designed to introduce non-linear harmonic saturation at the input of the Equalizer.</p>
+
+<h2 id="per-band-controls">Per-Band Controls</h2>
+
+<p>The node circles on the EQ display mark each of the eight EQ bands. You can adjust an EQ band by clicking on a node and dragging the crosshairs:</p>
+
+<ul>
+<li>Horizontally to change the frequency of the band.</li>
+<li>Vertically to change the gain of the band.</li>
+</ul>
+
+<p>Move the mouse over the handles on each side of the band to adjust the bandwidth (Q) of the EQ band, by dragging with the mouse and widening the band. You may also use your mouse or track-pad’s scroll action to widen/narrow a selected band. As you adjust the nodes you will see multiple EQ curves. The white curve is the composite of all EQ bands while the selected band shows as a thin line in the band’s specific color.</p>
+
+<h3 id="filter-types">Filter Types</h3>
+
+<p>Neutron’s EQ offers 12 adjustable bands with a variety of filter types.</p>
+
+<table>
+<thead>
+<tr>
+<th>Filter Name</th>
+<th></th>
+<th>Band</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>FLAT HPF</strong></td>
+<td><img src="../images/equalizer/bandshapes/highpass_flat.png" alt="HP Flat" /></td>
+<td>High-Pass Band</td>
+<td>Butterworth filter optimized for maximum flatness without ripple or resonance in the passband or stopband. A very utilitarian filter that can be used to cut rumble, which may increase headroom.</td>
+</tr>
+
+<tr>
+<td><strong>RESONANT HPF</strong></td>
+<td><img src="../images/equalizer/bandshapes/highpass_resonant.png" alt="HP Resonant" /></td>
+<td>High-Pass Band</td>
+<td>This filter is equipped with a resonance control, which can modify the curve to either emphasize the cutoff frequency with positive resonance (e.g. add “oomph” to a kick drum fundamental while also cutting rumble, or smoothly enhancing the bottom end of a vocal centered around its fundamental) or smooth the curve around the cutoff frequency, with negative resonance.</td>
+</tr>
+
+<tr>
+<td><strong>ANALOG</strong></td>
+<td><img src="../images/equalizer/bandshapes/lowshelf_analog.png" alt="LS Analog" /></td>
+<td>Low Shelf Band</td>
+<td>The Analog shelves in Neutron are the most CPU-efficient, work-horse shelves for simple frequency lifts or cuts.</td>
+</tr>
+
+<tr>
+<td><strong>BAXANDALL</strong></td>
+<td><img src="../images/equalizer/bandshapes/lowshelf_baxandall.png" alt="LS BAX" /></td>
+<td>Low Shelf Band</td>
+<td>Unlike the original Baxandall EQ design which had no variable center frequency control, Neutron allows fully adjustable frequency response. Note that, in Dynamic Mode, this is the most CPU-intensive filter offered by Neutron.</td>
+</tr>
+
+<tr>
+<td><strong>VINTAGE LOW SHELF</strong></td>
+<td><img src="../images/equalizer/bandshapes/lowshelf_pultec.png" alt="LS pultec" /></td>
+<td>Low Shelf Band</td>
+<td>Exhibits a complimentary frequency dip when boosting (vice versa when cutting) modeled after the renowned Pultec equalizer. Creating a complex slope with one node is one of the secrets behind why subjectively, the Pultec design sounds so good. As you boost in the low end (say, between 40-100 Hz), you’ll notice the complimentary dip in the curve is between 700 Hz to 1.5 kHz, which tends to be where nasty, nasal-sounding resonances occur, thus killing two birds with one stone.</td>
+</tr>
+
+<tr>
+<td><strong>BAND SHELF</strong></td>
+<td><img src="../images/equalizer/bandshapes/bell_bandshelf.png" alt="bell band shelf" /></td>
+<td>Band 1-8</td>
+<td>Though this is a bell filter, this filter’s shape has a flat top, allowing the user to perform wider, flatter EQ adjustments in a particular frequency area. This is useful for attenuating a block of boxy frequencies, like unpleasant buildup in the 500-900 Hz range or boosting vocal/dialogue presence in the 3-7 kHz range.</td>
+</tr>
+
+<tr>
+<td><strong>PROPORTIONAL Q</strong></td>
+<td><img src="../images/equalizer/bandshapes/bell_propq.png" alt="bell prop q" /></td>
+<td>Band 1-8</td>
+<td>This innovative filter’s shape varies in proportion to the amount of cut or boost, which is as highly useful as it is aesthetically beneficial. It’s more transparent when making more extreme gain adjustments. As the cut or boost is increased further away from center, the shape tightens for more precision, which is particularly useful for suppressing resonances, hums, or other narrow frequency bands that need to be removed. This behavior is distinct from the Q, which you’re still able to freely adjust.</td>
+</tr>
+
+<tr>
+<td><strong>ANALOG</strong></td>
+<td><img src="../images/equalizer/bandshapes/highshelf_analog.png" alt="HS analog" /></td>
+<td>High Shelf Band</td>
+<td>The Analog shelves in Neutron are the most CPU-efficient, work-horse shelves for simple frequency lifts or cuts.</td>
+</tr>
+
+<tr>
+<td><strong>BAXANDALL</strong></td>
+<td><img src="../images/equalizer/bandshapes/highshelf_baxandall.png" alt="HS BAX" /></td>
+<td>High Shelf Band</td>
+<td>Unlike the original Baxandall EQ design which had no variable center frequency control, Neutron allows fully adjustable frequency response. Note that, in Dynamic Mode, this is the most CPU-intensive filter offered by Neutron.</td>
+</tr>
+
+<tr>
+<td><strong>VINTAGE HIGH SHELF</strong></td>
+<td><img src="../images/equalizer/bandshapes/highshelf_pultec.png" alt="HS pultec" /></td>
+<td>High Shelf Band</td>
+<td>Exhibits a complimentary frequency dip when boosting (vice versa when cutting) modeled after the renowned Pultec equalizer. Creating a complex slope with one node is one of the secrets behind why subjectively, the Pultec design sounds so good. As you boost in the low end (say, between 40-100 Hz), you’ll notice the complimentary dip in the curve is between 700 Hz to 1.5 kHz, which tends to be where nasty, nasal-sounding resonances occur, thus killing two birds with one stone.</td>
+</tr>
+
+<tr>
+<td><strong>FLAT LPF</strong></td>
+<td><img src="../images/equalizer/bandshapes/lowpass_flat.png" alt="LP FLAT" /></td>
+<td>Low-Pass Band</td>
+<td>Butterworth filter optimized for maximum flatness without ripple or resonance in the passband or stopband. A very utilitarian filter that can be used to cut hiss, which may increase headroom.</td>
+</tr>
+
+<tr>
+<td><strong>RESONANT LPF</strong></td>
+<td><img src="../images/equalizer/bandshapes/lowpass_resonant.png" alt="LP RESONANT" /></td>
+<td>Low-Pass Band</td>
+<td>This filter is equipped with a resonance control, which can modify the curve to either emphasize the cutoff frequency with positive resonance (e.g. add “oomph” to a kick drum fundamental while also cutting rumble, or smoothly enhancing the bottom end of a vocal centered around its fundamental) or smooth the curve around the cutoff frequency, with negative resonance.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="frequency-gain-q">Frequency / Gain / Q</h3>
+
+<p>You may adjust the frequency, gain, and bandwidth for the currently selected band in two ways: graphically, over the Spectrum View, or by clicking and dragging on the sliders in the EQ detail panel.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><ul>
+<li>Some filter shapes don&rsquo;t allow for adjustment of Gain or Q, and will be disabled or hidden depending on your filter selection.</li>
+</ul>
+</p>
+</div>
+
+<h2 id="dynamic-mode">Dynamic Mode</h2>
+
+<p>The Analog, Baxandall, Band shelf, and Proportional Q filters can be toggled between a static and dynamic behavior. In static mode an EQ adjustment will be consistently applied to the audio, whereas in Dynamic mode, the behavior of the EQ curve visually and audibly reacts to an input signal. A node’s visual shape is circular when that band is in static mode, and the Dynamic-mode-related buttons and meters become disabled.</p>
+
+<p>Working like a combination of static EQ and adaptive compression, this is one of the features that makes Neutron’s EQ so versatile. Dynamic mode allows you to set a threshold level that will trigger the dynamic filter behavior.</p>
+
+<p>This allows an EQ adjustment to behave differently depending on the input sound, such as a large explosion, a sudden gunshot, a dialogue “ess” reduction and any other scenario. A user-definable threshold sets the point at which the dynamic ballistics begin to kick in. Taking an audio input from only the area surrounding the EQ node, the further it falls above or below the threshold, the greater the adjustment will be.</p>
+
+<p>The attack and release times for the trajectory of this dynamic behavior are affected by the node’s frequency, and will react differently on a sibilant dialogue area, to say, a low-frequency LFE burst for example.</p>
+
+<p>This intelligent behavior results in reactive, program-dependent, and most importantly, more transparent mix results, which allows you to perform much more transparent EQ adjustments that affect your audio only when you’d actually like them to.</p>
+
+<h3 id="up">Up</h3>
+
+<p>When a signal exceeds the threshold, the filter will move upwards. If the static gain value is positive: using the Up trigger mode will move the filter from the center line toward the static node (boost when triggered). If the static gain value is negative: using the Up trigger mode will apply the full negative gain until it is triggered&ndash;when triggered it will move toward the center line.</p>
+
+<h3 id="down">Down</h3>
+
+<p>When a signal exceeds the threshold, the filter will move downwards. If the static gain value is positive: using the Down trigger mode will move the filter from the static boost value toward the center line (cut when triggered). If the static gain value is negative: using the Down trigger mode will move the filter from the center line toward the static negative gain value.</p>
+
+<h3 id="threshold">Threshold</h3>
+
+<p>Threshold sets the point at which the dynamics processing begins to take place.</p>
+
+<h3 id="sidechain-source">Sidechain Source</h3>
+
+<p>Neutron’s Dynamic EQ has powerful and detailed sidechain support, meaning you can have a node’s dynamic behavior dictated by a wide variety of other input signals. This is highly useful if you’d like a dialogue stem to automatically duck certain frequencies in the music stem for instance, or perhaps a kick drum momentarily duck certain frequencies in the bass guitar. It preserves overall volume while allowing elements of the mix to interact and work together. It works with both internal and external audio.</p>
+
+<p>By default, a Dynamic node is triggered by its own audio input (so node 5 would default to a sidechain of Internal Band 5), but you can use the Internal band choices (Int. HP = high pass, Int. LS = low shelf, etc.) to choose any other band of the EQ. You might like the warm midrange of a guitar, say node 3, to actually trigger the harsh high end, say node 7, dynamically up or down. It’s a phenomenally powerful way to balance a signal within itself. You can also select Internal Full, which will take the full bandwidth of the audio signal, and not anything node specific.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Super user note</p>
+<p>Super-user note: Even if a node is disabled, it can be used as a sidechain to any other node—set its frequency and Q as you would for any enabled band.</p>
+</div>
+
+<p>If you’re using the DAW’s external bus routing functionality, you can take audio from another track or bus, and use that as the sidechain/key input into Neutron. To use the full external audio signal as a sidechain for your dynamic EQ node, choose External Full in the sidechain dropdown. Alternatively, the external audio source can be filtered through any of the bands in your EQ by choosing any of the External bands (Ext. HP, Ext. LS, Ext. Band 1, etc).</p>
+
+<h2 id="utility-functions">Utility Functions</h2>
+
+<h3 id="alt-solo">Alt+solo</h3>
+
+<p>If you hold down the Alt key and click on the spectrum, you have a temporary “audio magnifying glass” that lets you hear only the frequencies that are under the mouse cursor, without affecting your actual EQ settings. This is useful for pinpointing the location of a particular frequency in the mix without changing your actual EQ bands. Releasing the mouse button returns the sound to the actual EQ. The Q of this filter can be adjusted in the Options window.</p>
+
+<h3 id="node-solo">Node Solo</h3>
+
+<p>To solo a specific EQ band, hold Alt and then click on the node you wish to solo. This engages a band pass filter for the audio affected only by that particular node’s filter.</p>
+
+<h3 id="adjustable-frequency-scales">Adjustable Frequency Scales</h3>
+
+<p>Depending on what it is you’re EQ’ing, different frequency scales are useful. Neutron’s EQ allows a number of EQ scales:</p>
+
+<ul>
+<li><strong>LINEAR</strong> by nature offers an even view across all frequencies. This does overemphasize the higher frequencies where there may not be as much useful information, but can be useful for dialing in ‘air’ bands or EQ brightness.</li>
+<li><strong>MEL</strong> uses a scale that reflects a perceptual scale of pitches that humans judge to be an equal distance apart. Here’s a useful graph that shows how a Mel scale relates to a Hz scale:
+<img src="../images/equalizer/krishna-vedala-mel-hz-plot.png" alt="EQ Mel Scale Chart" />
+<strong>“Plots of pitch mel scale versus Hertz scale” by Krishna Vedala</strong>, <a href="https://en.wikipedia.org/wiki/Mel_scale#/media/File:Mel-Hz_plot.svg">Wikipedia</a>, licensed under CC BY-SA 3.0. Created with <a href="https://en.wikipedia.org/wiki/Gnuplot">gnuplot</a></li>
+<li><strong>Logarithmic</strong>, <strong>Flat Logarithmic</strong>, and <strong>Extended Logarithmic</strong> are non-linear scales that offer much more detail on the low end and midrange, useful for the vast majority of EQ tasks, which is why Neutron defaults to Extended Log.</li>
+<li><strong>Piano Roll</strong></li>
+</ul>
+
+<h2 id="more-information">More information</h2>
+
+<p>In terms of an audio signal, equalization is the process of adjusting balance between frequencies on the spectrum using linear filters. Equalizer, or EQ, refers to the equipment that facilitates frequency-specific amplitude adjustment. It’s important to understand the ins and outs of EQ, how it came to be, and how this influenced the role EQ plays in a modern-day production.</p>
+
+<p>So many of today’s audio technologies were not designed specifically for audio recording/production. Indeed, see iZotope’s VocalSynth manual for the history of how the military and communications technologies of yesterday became the pop culture sound of today. A pacifist exception to such historical convention is the EQ which began life as a corrective tool in support of early playback mediums (such as telephone, shellac, or vinyl), at a time when recording was as much about art as it was about overcoming technical limitations and discovering new, exciting ways to reliably commit audio to some form of playback medium.</p>
+
+<p>On early gramophone records for example, the stylus required far wider movements to reproduce low frequency signals, taking up physical space on a record’s surface, which limited playing time, and also increased the stylus’s  susceptibility to higher frequency interference in the forms of clicks and pops.</p>
+
+<p>One solution, developed in the 1920s,  was to reduce the amplitude of low frequencies during recording while simultaneously boosting high frequencies, which increased playing time, and applying the inverse ‘equalization’ curve upon playback, which reduced noise and ensured a more faithful reproduction of the sound as we knew it to sound. These types of EQ were fixed, non-variable changes.</p>
+
+<p><img src="../images/equalizer/riaa-curve.png" alt="RIAA CURVE" /></p>
+
+<p><em>Fig. X: Shown above is the RIAA curve, the most standardized EQ pre/de-emphasis curve of the vinyl playback medium. It was developed in the USA during the 1960s and become a worldwide standard by the 1980s.</em></p>
+
+<p>John Volkman is usually credited with the first variable standalone EQ design. His EQ, developed in the 1930s, featured a predefined number of user-selectable frequencies with boosts or attenuation. This EQ found a home in the film industry, where it was used often on speech enhancement in post production, and to improve audio reproduction in cinemas. Other early variable EQs include the famed Langevin Model EQ-251A, the Cinema Engineering type 7080 (the first graphic equalizer), and by the 1970s, courtesy of Daniel Flickinger, the first recognizable parametric (allowing free adjustment of center frequency, Gain, and Q) equalizer, which was quickly followed by George Massenberg’s EQ in 1972.</p>
+
+<p>Many of these early EQs had quirky sonic characteristics that weren’t always celebrated. With digital signal processing allowing new types of equalization technologies, it’s interesting to note that for maximum sonic flexibility, many digital equalizers also offer authentic vintage filter emulations alongside any new methods.</p>
+
+<h3 id="baxandall-eq">Baxandall EQ</h3>
+
+<p>Based on a two-knob treble and bass vintage equalizer designed by Peter Baxandall in the early 1950s, these filters offer gentle, sonically pleasing slopes. Regrettably, Peter never received much in the way of royalties for his design, which is among the most ubiquitous. (It’s behind those treble and bass adjustments in millions of hi-fi and car stereo systems.)</p>
+
+<p>The Baxandall filter’s complex math minimizes the phase delay often found in many analog/shelving EQs. Phase displacement isn’t always bad. Neutron’s Vintage filter uses phase coloration, but minimizing such artifacts is what allows a Baxandall filter to make significant changes to a frequency spectrum without drastically changing the overall sonic character. These subtleties are phenomenal at enhancing air in a vocal or guitars, or giving greater emphasis to synths, basses, and drums without adding a harsh edge.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Exciter</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>An exciter adds harmonic distortion to an audio signal. It accentuates and enhances audio already present, and can provide a simple perceptual boost in presence, or a completely overdriven sound saturated with loud additional harmonics.</p>
+
+<p><img src="../images/exciter/exciter-module.png" alt="exciter" /></p>
+
+<h2 id="global-controls">Global Controls</h2>
+
+<h3 id="lfe-bypass">LFE Bypass</h3>
+
+<p>This button only appears when Neutron is loaded in either a 5.1 or 7.1 surround-sound configuration. When in surround-sound configurations, Neutron processes all channels equally. When enabled, the LFE Bypass will ensure that any audio information in the LFE channel is passed through unprocessed, but with the correct latency compensation.</p>
+
+<h3 id="pre-emphasis-modes">Pre-Emphasis Modes</h3>
+
+<p>These modes allow you to weight the saturation in or away from different areas of the frequency spectrum.</p>
+
+<ul>
+<li><strong>FULL</strong> Offers a gentle, low-mid frequency bump.</li>
+<li><strong>DEFINED</strong> offers a gentle, high-mid frequency bump.</li>
+<li><strong>CLEAR</strong> offers a gentle, low-mid frequency attenuation.</li>
+</ul>
+
+<h3 id="post-filter">Post Filter</h3>
+
+<p>The high shelf icon overlaid on the multiband spectrum view is a gentle shelving filter capable only of attenuation, to a maximum of -12 dB within a range of 1 kHz to 20 kHz. Drag the filter node to adjust the frequency and gain of the filter, which will be applied to the entire Wet signal, allowing you to further adjust any high frequencies that have been generated by the Exciter module.</p>
+
+<h3 id="learn">Learn</h3>
+
+<p>In multiband mode, this searches for natural crossover cutoff points using a few criteria, including minima in the spectrum. Once Neutron has found a stable and transparent place for the cutoffs, the Learn function will disable automatically.</p>
+
+<h3 id="reset">Reset</h3>
+
+<p>This will reset the entire Exciter to default values if you wish to start over. If you click this button only to realize how literally unexciting it is, never fear…you can open the Undo History and revert the change to go back to the settings you had prior to reset.</p>
+
+<h2 id="per-band-controls">Per-band Controls</h2>
+
+<h3 id="drive">Drive</h3>
+
+<p>This controls the amount of excitation. Increasing Drive will subtly decrease peak levels for some program material (as would driving a guitar amp hard), but shouldn’t reduce perceptual loudness. It’s that “rounding off’ effect you often hear when overdriving a signal.</p>
+
+<h3 id="x-y">X/Y</h3>
+
+<p>This allows you to blend between different harmonic profiles, creating unique and as-yet-unheard algorithms. Carefully curated, dynamic constants accurately preserve the non-linearities of the various algorithms while ensuring a seamless transition as you mix between different behaviors in four directions.</p>
+
+<p>Many audio engineers move seamlessly between their various senses, talking in synesthetic terms when describing audio. Subjective mix terms like warm, bright, soft, harsh, red, and blue mean something different to everyone. This X/Y pad helps you dial in exactly what any such term means for you. The four algorithms to mix between are:</p>
+
+<ul>
+<li><strong>TUBE:</strong> Characterized by a clear tonal excitation that emphasizes dynamics and transient attacks and tends to sound less harsh than Tape or Retro.</li>
+<li><strong>WARM:</strong> Similar but less aggressive than Tube, as it only generates quickly decaying even harmonics. You may find this gives an intangible life to a sterile-sounding track, particularly a vocal track.</li>
+<li><strong>TAPE:</strong> Brighter-sounding array of odd harmonics typical of the saturation imparted by tape machines, but without the crosstalk, hiss, wow, and flutter that might ruin your mix.</li>
+<li><strong>RETRO:</strong> Edgier, more biting algorithm inspired by transistor characteristics, including a slowly decaying row of odd harmonics. If you like the transistor-based fuzz behind the signature sound of The Black Keys, and a great many records by The Beatles, you’ll dig this option.</li>
+</ul>
+
+<h3 id="blend">Blend</h3>
+
+<p>This adjusts the balance between the dry/unprocessed and the wet/processed signal. Oftentimes, pleasing results can be obtained by pushing Drive, but reducing Blend to ensure some clean, clear signal still remains.</p>
+
+<h3 id="bypass">Bypass</h3>
+
+<p>Bypass the processing for the associated band by clicking the &lsquo;B&rsquo; button.</p>
+
+<h3 id="solo">Solo</h3>
+
+<p>Solo the associated band by clicking the &rsquo;S&rsquo; button.</p>
+
+<h3 id="add-remove">Add/Remove</h3>
+
+<p>Add/remove the associated band by clicking on the power button (next to S and B buttons).</p>
+
+<h3 id="mix">Mix</h3>
+
+<p>The Mix slider in the signal flow is a highly useful feature, allowing you to do parallel compression. At 100%, you’re hearing only the audio processed by Exciter whereas at 50% you’re hearing an even blend between unprocessed and processed audio. Note that this a global setting, where unprocessed means audio input to the Exciter, and processed means audio output from the Exciter. Audio output from the Exciter may contain some dry audio, due to the per band Blend control.</p>
+
+<h2 id="more-information">More Information</h2>
+
+<p>When discussing the supposedly magical qualities of any audio tool that adds harmonic distortion, philosophy and experience often give way to conjecture. Harmonic distortion is, to be fair, one of the most enjoyable tools in the arsenal. It’s important to understand and respect that although harmonic distortion was once bemoaned as an artifact of the tape/tube recording mediums of the time, it is now celebrated as a sonic benefit—when used judiciously.</p>
+
+<p>Perhaps one of the more compelling examples is that of tape saturation. Technically speaking, a reel of magnetized tape can hold only so much magnetism. Attempting to add excess magnetism, by driving a signal too loudly into the tape, will cause the oxide particles to saturate, creating typically odd harmonics not previously present. Now of course, such an artifact does not sound good 100% of the time, yet we’ll remember and/or appreciate that there was a time where you really didn’t have a choice, and had to carefully monitor input levels while you recorded to the only medium available: magnetic tape. Nowadays, we’re blessed with the choice of when to and when not to use tape saturation.</p>
+
+<p>Though early digital adopters celebrated the sonic transparency, flexibility, and the unfettered possibilities offered by digital algorithms, this frontier spirit soon missed the sound of ‘home.’ Thus we have for years explored ways to model, replicate, and enhance the wonderful and creative non-linearities of harmonic distortion. Ultimately, products like Neutron offer the best of both worlds: analog-style and digital distortions, from Tape to Tube to Warm and Retro sounds, that take advantage of the digital domain to try some new things not possible in the Analog domain.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Gate</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>The Gate is a welcomed addition to Neutron’s next-generation channel strip workflow. It features all of the controls of a traditional Gate in addition to brand new Hysteresis and Hold DSP - all built from the ground up. With multiband functionality, you can apply frequency dependant Gate control, or creatively duck any part of the spectrum using the expansive sidechain controls featured in every band.</p>
+
+<p><img src="../images/gate/gate-module.png" alt="Gate module" /></p>
+
+<h2 id="controls">Controls</h2>
+
+<h3 id="threshold">Threshold</h3>
+
+<p>Determines the level that will trigger the gate to open or close. Signals that fall below the threshold will trigger the gate to close, signals exceeding the threshold will trigger the gate to open.</p>
+
+<h3 id="hysteresis">Hysteresis</h3>
+
+<p>Functions as a second threshold for gating. The Hysteresis threshold can be thought of as the &ldquo;close&rdquo; threshold, in that signals that fall below this value will close the gate. Signals that exceed the Hysteresis threshold will not open the gate until they exceed the Threshold value.</p>
+
+<p>The Hysteresis control has a range of 0dB to 30dB. Setting Hysteresis to 30 will place the second threshold 30 dB lower than the current Threshold setting. Setting Hysteresis to 0 will effectively disable Hysteresis, as it will equal the Threshold value.</p>
+
+<p>Set the threshold so that it gates all unwanted signals, then turn up the Hysteresis value to reduce unwanted gating.</p>
+
+<h3 id="hold">Hold</h3>
+
+<p>Sets the amount of time the gate will stay fully open after a signal falls below the threshold. The hold length will vary when the release period begins.</p>
+
+<h3 id="ratio">Ratio</h3>
+
+<p>Determines the amount of gain reduction applied to signals that fall below the Threshold.</p>
+
+<h3 id="attack">Attack</h3>
+
+<p>Determines the length of time it takes for the gate to transition from closed (silenced) to open (no gating) when a signal exceeds the threshold.</p>
+
+<h3 id="release">Release</h3>
+
+<p>Determines the length of time it takes for the gate to transition from open (no gating) to closed (silenced) when a signal falls below the threshold.</p>
+
+<h3 id="add-remove-band">Add/Remove band</h3>
+
+<p>Adds or remove the associated band.</p>
+
+<h3 id="bypass">Bypass</h3>
+
+<p>Bypasses processing for the associated band.</p>
+
+<h3 id="solo">Solo</h3>
+
+<p>Solos the output of the associated band.</p>
+
+<h3 id="sidechain-enable-disable">Sidechain Enable/Disable</h3>
+
+<p>Enables/disables sidechain input for the current band.</p>
+
+<h3 id="sidechain-source">Sidechain Source</h3>
+
+<p>Allows you to select the sidechain source for the associated band. You can choose between internal or external bands.</p>
+
+<h2 id="component-plug-in">Component Plug-in</h2>
+
+<p>The Gate is available as a component plug-in with Neutron 2 Advanced.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Transient Shaper</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>A Transient Shaper uses a dynamics processor that allows you to alter characteristics of a sound’s Attack (the initial hit of the sound in your ear) or Sustain (used here to refer to everything not Attack). It is especially useful for shaping percussive sounds.</p>
+
+<p>For example, it can be used to emphasize the stick attack of a snare drum sound, while de-emphasizing its body or room sound. Careful use of the Transient Shaper module can help a wide range of material sit differently in a mix, making it a powerful sound-shaping tool for any style of music.</p>
+
+<p><img src="../images/transient-shaper.png" alt="transient shaper" /></p>
+
+<h2 id="global-controls">Global Controls</h2>
+
+<h3 id="lfe-bypass">LFE Bypass</h3>
+
+<p>This button only appears when Neutron is loaded in either a 5.1 or 7.1 surround-sound configuration. When in surround-sound configurations, Neutron processes all channels equally. When enabled, the LFE Bypass will ensure that any audio information in the LFE channel is passed through unprocessed, but with the correct latency compensation.</p>
+
+<h3 id="global-envelope-modes">Global envelope modes</h3>
+
+<p>These global modes allow you to choose between three different Transient Shaping algorithms.</p>
+
+<ul>
+<li><strong>PRECISE</strong>: Fastest recovery time to the next transient. Most accurate and responsive when adding or removing attack to a signal.</li>
+<li><strong>BALANCED</strong>: Middle ground of the three modes. Fairly quick attack and medium release time when recovering from one transient to the next.</li>
+<li><strong>LOOSE</strong>: Slowest transient recovery time for all types of material. Best mode for adding large amounts of sustain.</li>
+</ul>
+
+<h3 id="learn">Learn</h3>
+
+<p>In multiband mode, this searches for natural crossover cutoff points using a few criteria, including minima in the spectrum. Once Neutron has found a stable and transparent place for the cutoffs, the Learn function will disable automatically.</p>
+
+<h3 id="reset">Reset</h3>
+
+<p>This will reset the entire Transient Shaper to default values if you wish to start over. If you click this button and experience instant remorse, never fear…you can open the Undo History and revert the change to go back to the settings you had prior to reset.</p>
+
+<h3 id="mix">Mix</h3>
+
+<p>The Mix slider in the signal flow is a highly useful feature, allowing you to do parallel Transient Shaping. At 100%, you’re hearing only the audio processed by Transient Shaper, whereas at 50% you’re hearing an even blend between unprocessed and processed audio.</p>
+
+<h3 id="gain-reduction-trace">Gain Reduction Trace</h3>
+
+<p>This view offers a scrolling meter that displays the incoming signal’s waveform with a superimposed curve that illustrates the amount of gain adjustment taking place in real time.</p>
+
+<p>When using multiband processing, the current selected band’s gain reduction and waveform are drawn in this meter. The Gain Adjustment Trace can help you to set attack and release controls appropriately and monitor the envelope of gain reduction.</p>
+
+<p>Paying close attention to the trace juxtaposed over the waveform, and how it illustrates the effect changing envelope modes can have on allowing audio to return to 0 dB of gain before the next transient, is an important tool when seeking to achieve maximum transparency. <em>Note:</em> the scale can be adjusted on the left-hand side.</p>
+
+<h2 id="per-band-controls">Per-band Controls</h2>
+
+<h3 id="attack">Attack</h3>
+
+<p>Positive values will emphasize the attack of transients while negative values will decrease the attack. This parameter is a useful way of having an element cut through or sit back in the mix without adjusting overall volume or EQ&hellip;try it!</p>
+
+<h3 id="sustain">Sustain</h3>
+
+<p>Positive values will increase the sustain portions of the track,while negative values will decrease the sustain. Increasing Sustain can inflate a weak kick drum for the better.</p>
+
+<h3 id="contour">Contour</h3>
+
+<p>The Contour control allows the user to tweak the per-band response of the Transient Shaper, a powerful new feature for addressing the response across a multiband spectrum, where you may wish to have different behaviors on the low end (read: kick drum) vs. a vocal.</p>
+
+<ul>
+<li><strong>SHARP:</strong> The fastest and tightest release time and works best on short and staccato material such as drums.</li>
+<li><strong>MEDIUM:</strong> Offers a transparent and linear release envelope. This mode tends to work well on a majority of material.</li>
+<li><strong>SMOOTH:</strong> The slowest envelope of all the modes. Smooth works best on sustained instruments and signals and allows more of the initial transient through, affecting Sustain in a gentle, unobtrusive way.</li>
+</ul>
+
+<h3 id="bypass">Bypass</h3>
+
+<p>Bypass the processing for the associated band by clicking the &lsquo;B&rsquo; button.</p>
+
+<h3 id="solo">Solo</h3>
+
+<p>Solo the associated band by clicking the &rsquo;S&rsquo; button.</p>
+
+<h3 id="add-remove">Add/Remove</h3>
+
+<p>Add/remove the associated band by clicking on the power button (next to S and B buttons).</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Track Assistant</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Track Assistant is the latest innovation in machine learning and intelligent audio processing that provides you with a starting point for your mix. Track Assistant has been updated with a refined user experience to give you more control over the suggestions it provides for your audio. With smarter controls, new instrument classification, and a new interface, Track Assistant proves to be the most advanced version of this technology yet. When Track Assistant is enabled, it requires anywhere between four to 10 seconds of audio playback and analysis before it settles on some settings.</p>
+
+<p>Since you may prefer heavier or lighter starting settings, you have some level of control over the smart suggestions. You can decide if you’d prefer your Track Assistant to be Subtle, Medium, or Aggressive, in addition to a second, more subjective instructional direction, which could be Broadband Clarity, Warm and Open, or Upfront Midrange. These choices affect the amount of processing (less vs. more processing), number of bands, and compression ratios, among other parameters. You can also choose to let the machine learning algorithm auto-detect your instrument class or select the instrument type for it to use manually. To access these options click on the Track Assistant button to the left of the Preset display bar in the main Neutron interface.</p>
+
+<p><img src="../images/track-assistant/track-assistant-guitar-step-1.png" alt="open t.a." /></p>
+
+<p>The nine different Style/Intensity combinations influence the starting points that Track Assistant will provide. Each of these nine Style/Intensity combinations has six presets—one per audio ID type, explained below. This means there’s a total of 54 unique and varied initial approaches. Note that Track Assistant requires a learning state, during which Neutron is inaccessible. (It will display an Accept/Cancel screen when it is finished processing, but in case of error or impatience, you may cancel the analysis by clicking the &lsquo;Cancel&rsquo; button.)</p>
+
+<h2 id="analysis">Analysis</h2>
+
+<p><img src="../images/track-assistant/track-assistant-working-step-2.png" alt="open t.a." /></p>
+
+<p>Here’s what’s going on under the hood:</p>
+
+<ol>
+<li>The machine learning algorithm identifies your audio as belonging to one of the following categories:
+
+<ul>
+<li>Vocals/Dialogue</li>
+<li>Guitar/related Instrument</li>
+<li>Bass</li>
+<li>Drums/Percussive</li>
+<li>Piano</li>
+<li>None of the above (e.g. Synths, Didgeridoo, Vuvuzela)</li>
+</ul></li>
+<li>The ‘Neutrino mode’ spectral shaping algorithm for that category is selected and enabled. Note: If the audio is identified as ‘none of the above,’ it will select a ‘Clean’ Neutrino mode, which bypasses Neutrino.</li>
+<li>Using the audio identification information, it references the Track Assistant presets to determine an appropriate signal flow. Signal flows are predefined by some of the esteemed mix engineers in our beta program, and may vary in module order, or in modules enabled/disabled.</li>
+<li>Once signal flow is established, the Track Assistant presets determine how many bands each discrete multiband-capable module should have (minimum of one, maximum of three).</li>
+<li>For each enabled multiband module, band crossover points are intelligently placed. The most transparent crossover points are determined using a few criteria, including minima in the spectrum. You may see and hear these bands moving during this crossover learning period.</li>
+<li>In the EQ module, a basic starting curve is determined, by enabling some filter nodes and intelligently placing those nodes throughout the audio spectrum on areas of interest (resonances, sibilance&hellip;all specific and unique to your audio). Depending on where these EQ nodes land, they may exhibit small boosts, cuts, static or dynamic behavior, or bell or shelving filter choices.
+
+<ul>
+<li>More information on this auto-node placement behavior is available in the <a href="../equalizer/index.html">EQ chapter</a>. It is important to note that Track Assistant does not analyze the audio in order to meet some sort of pre-defined outcome (e.g. if the audio has no low end, it’s not going to engage a huge low end boost for the sake of making it more like pink noise); rather, it places nodes at areas of interest already present in the signal.</li>
+</ul></li>
+<li>If the Exciter is enabled, the Track Assistant presets are used to set per-band Exciter parameters such as, algorithm (on the Tube/Tape/Warm/Retro X/Y pad), and Dry/Wet Blend. The Drive amount is also set tailored to the content of your incoming audio.</li>
+<li>For each enabled Compressor band, as well as each enabled dynamic EQ band, thresholds are dynamically chosen, based on an LKFS signal level analysis and an additional calculation. (This means less time searching for the sweet spot, and more time slightly tweaking the sweet spot if you feel it could be slightly sweeter, or aesthetically wish to go in another direction.)</li>
+<li>If either or both of the Compressors are enabled, the Track Assistant presets determine stylistically whether it should engage Vintage- or Digital-flavored compression modes and Dry/Wet settings.  The incoming signal is analyzed and the Attack time, Release time, and compression Ratio are all adjusted to the signal for more musical and transparent compression.</li>
+</ol>
+
+<p>Once Track Assistant has finished running, you have your starting preset: signal flow, EQ curve with placed nodes, Compressor, Exciter, and Neutrino settings.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Important things to note:</p>
+<p><ul>
+<li>If your audio is not classified by the machine learning algorithm as falling into one of the Instrument classes and tagged as ‘Clean’ by the Neutrino mode, Neutron will still create a preset. Much of the intelligence can operate agnostic of audio type, and even the Track Assistant presets have some genericized best-practice approaches built in for this purpose.</li>
+<li>The Transient Shaper and Gate modules are not adjusted by Track Assistant at this time. Both modules will be disabled after running Track Assistant, but we encourage you to enable them and experiment!</li>
+<li>If Track Assistant misidentifies your audio file, please send it to iZotope via the Customer Care team (<a href="https://support.izotope.com/">https://support.izotope.com/</a>), who will be happy to pass it on, helping us improve the algorithms for you. (Of course, that goes for any feedback, at any time!)</li>
+</ul>
+</p>
+</div>
+
+<h2 id="accept-or-cancel-changes">Accept or Cancel Changes</h2>
+
+<p><img src="../images/track-assistant/track-assistant-step-3.png" alt=" t.a. accept cancel " /></p>
+
+<p>You can accept the changes made by Track Assistant by clicking the Accept button in the last screen.</p>
+
+<ul>
+<li>If you’re unsatisfied with Track Assistant, it’s very simple to step back in time…simply open Undo History, and click back to the prior step in the Undo History stack.</li>
+</ul>
+
+<p>If you aren&rsquo;t happy with the results and want to revert to the previous state, click the Cancel button to exit Track Assistant.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Masking Meter</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Neutron’s Masking Meter is designed to allow you to quickly and easily see where any tracks in your mix may be competing with one another, potentially contributing to a lack of headroom, a muddy sound, or other subjective (and often negative!) terms that ultimately boil down to one word…masking.</p>
+
+<h2 id="what-is-masking">What is Masking?</h2>
+
+<p>Masking is a psychoacoustic phenomenon that occurs when clear perception of a sound source is rendered harder to discern by another sound source with overlapping temporal and/or spectral components. You may well have experienced this when attempting to balance a kick drum and a bass guitar together, or perhaps a vocal with a rhythm guitar…and finding it hard to carve out the right sonic space for each element to sound impactful and discernable without becoming inaudible.</p>
+
+<p>In general, masking is not necessarily a bad thing: any time two sources “blend” there is likely some overlap in frequency range, and therefore some amount of masking taking place. For instance, we’d be willing to bet the famous wall-of-sound technique pioneered during the 1960s demonstrated all sorts of “good” masking. That said, problematic masking is the bane of mix engineers everywhere, as they try and listen, analyze, and understand where tracks compete across an entire mix.</p>
+
+<p>The reduction of auditory masking is a crucial objective when mixing multitrack audio, and often what separates a good mix from a bad mix. We know this pain, but the answer is not always gain…indeed, it is typically achieved through manipulation of gain, equalization, and/or panning for each stem in a mix.</p>
+
+<p>For instance, it’s good practice to start a mix in mono, and establish a good healthy volume and spectral balance between tracks before subsequently panning tracks around the stereo/surround image. In this scenario, you would use a Masking Meter and EQ prior to panning, but be aware that it’s also possible to resolve audible masking issues by panning one source one direction, and another source the other direction.</p>
+
+<p>In order to establish an idea of what problematic masking might be, and subsequently how to visualize potential problem areas for you to consider when EQ’ing, Neutron uses a proprietary psychoacoustic masking hypothesis and approach developed by some dedicated iZotopians. This hypothesis was accepted as a convention research paper by the Audio Engineering Society in September of 2016 (AES 141, Paper 53). Our meter shows you, in real time, areas of the frequency spectrum where masking is occurring (the Masking Meter) and where masking amounts are particularly high (the Masking Histogram), alerting you to frequency regions that are potentially worthy of attention.</p>
+
+<h3 id="how-does-neutron-measure-problematic-masking">How does Neutron measure problematic Masking?</h3>
+
+<p>There are more extensive details in the AES paper, but in essence, Neutron bases its analysis on a measure called loudness loss: the difference between how loud a track sounds when solo’d (“perceived loudness”) and how loud it sounds in the presence of another track (“perceived partial loudness”). Simply put, Neutron takes two audio inputs—a source (the plug-in) and an external input “masker” (the plug-in selected in the Masking Meter drop-down menu)—and uses a model of the outer/middle ear to calculate perceptual loudness of each, as well as their loudness relative to one another. The source’s loudness loss due to the masker is then calculated as:</p>
+
+<p><strong>Loudness Loss = Perceived loudness [phons] - Perceived partial loudness [phons]</strong></p>
+
+<p>The units used in this calculation are phons, a decibel-like unit of perceived loudness: The measure of any given sound in phons correlates to the dB SPL of a pure tone at 1 kHz that sounds equally as loud to the listener. As such, this loudness loss measurement is frequency specific in order to compensate for the effect of frequency on the perceived loudness of tones, a behavior which changes throughout the spectrum due to the intricacies of human hearing.</p>
+
+<h3 id="masking-meter-vs-masking-histogram">Masking Meter vs Masking Histogram</h3>
+
+<p>The Masking Meter displays momentary indications of masking—loudness loss—as vertical white lines over the current track’s spectrum and EQ curve. These lines indicate that there was some amount of loudness loss at that frequency at that moment: the brighter the line, the greater the masking amount.</p>
+
+<p>The Masking Histogram is the gradiated meter above the source EQ. It counts the number of frequency collisions in each critical band. When the loudness loss in a particular frequency band is over a quantitatively determined threshold * , we consider it extreme masking and flag it as a “collision.”</p>
+
+<p>In this way, the Masking Histogram acts as a sort of clip indicator—for each frequency band, it shows whether or not extreme masking has occurred. (Unlike a clip indicator, however, the Masking Histogram counts the number of collisions rather than just showing that at least one instance of clipping has occurred.) The more collisions that have occurred in a band, the higher its histogram bar. By default, the total number of collisions are measured over a moving window of three seconds, but that window can be adjusted in the Options Menu.</p>
+
+<p>We can’t overstate that masking is not necessarily bad. For example, a snare that quickly cuts through a mix can be an audibly desirable masking event rather than a problem, as can masking between two vocalists harmonizing. These tools merely show where masking is occurring—it is up to the engineers (and their ears!) to determine when this masking is problematic and worthy of reaction.</p>
+
+<p>These thresholds are specific to each frequency band; the way they were determined is discussed in our AES paper. They can be scaled with the Masking Sensitivity slider, discussed below.</p>
+
+<h2 id="masking-meter-controls">Masking Meter Controls</h2>
+
+<p><img src="../images/equalizer/eq-softsaturation-masking-module.png" alt="masking" /></p>
+
+<h3 id="masking-on-off">Masking On/Off</h3>
+
+<p>This button allows you to toggle Masking Meter on or off. When on, the drop-down menu becomes accessible.</p>
+
+<h3 id="masking-drop-down">Masking Drop-down</h3>
+
+<p>This drop-down menu shows you all other instances of Neutron present in your mix. (If you’re using many Neutrons, you may find this drop-down menu easier to navigate if you name each plug-in instance, which you can do in the top-left corner of any plug-in.) When you select one of these instances, the amount that that instance masks your current track will be shown in the Masking Meter and Masking Histogram.</p>
+
+<p>Let’s say hypothetically that you’ve got Neutron on all tracks in your session. From the Neutron session on your Kick Drum track, if you turn on the Masking Meter and then select another Neutron instance (say, the one on your Bass track) from this drop-down list, you’ll automatically be connected to that other instance. The two meters will show how much your Bass track (your source) is masking your Kick track (your target). (To see how much the Kick track masks your Bass track, you’ll need to open up the Neutron instance on your Bass track and then select “Kick” from the drop-down).</p>
+
+<p>Additionally, you’ll see two EQ curves: the Kick Drum EQ on at the top, in color, and the Bass EQ on the bottom, in gray-scale, and you’ll now be able to make changes to the EQs on both tracks. (Note that if your incoming, selected instance is a component plugin without an EQ—e.g., Transient Shaper, Exciter, or Compressor component plug-ins—you won’t see this split view, because there’s no additional EQ to control! You’ll still see accurate masking calculations based on that instance’s signal, however.) Note that when making changes to the target EQ, it’s actually sending those changes to the other plug-in. For this reason, adjustments to this second EQ may behave unpredictably with automation. That’s why we recommend not writing automation on a remote EQ instance.</p>
+
+<h3 id="masking-histogram">Masking Histogram</h3>
+
+<p>When using the Masking Meter, you’ll notice a momentary indication of frequency collisions displayed as vertical white lines. This simply indicates that there was loudness loss at that frequency at that moment.</p>
+
+<p>The Histogram is the gradiated meter above the source EQ. It counts the number of
+frequency collisions in each critical band. When the loudness loss in a particular frequency band goes over a quantitatively measured threshold * , we consider it extreme masking and flag it as a “collision.”</p>
+
+<p>In this way, the Masking Histogram acts as a sort of clip indicator—for each frequency band, it shows whether or not extreme masking has occurred. (Unlike a clip indicator, however, the Masking Histogram counts the number of collisions rather than just showing that at least one instance of clipping has occurred.) The more collisions that have occurred in a band, the higher its bar grows, thus drawing your attention to problem areas. By default, it’s measuring collisions over a moving window of three seconds, but that can be tweaked in the Options Menu.</p>
+
+<p>Collisions in a single band of the Masking Histogram can be cleared by clicking on the band once, as in a clip indicator. All events in the Histogram can be cleared by clicking on the “!” indicator to the left.</p>
+
+<h3 id="masking-sensitivity">Masking Sensitivity</h3>
+
+<p>The Masking Sensitivity scales the threshold used to determine whether loudness loss is extreme enough to count as a collision (and therefore show up in the Masking Histogram). At high sensitivity, smaller amounts of loudness loss count as collisions and it will therefore appear that more [extreme] masking is occurring, as the Masking Histogram will fill up more quickly. Conversely, at low sensitivity, fewer collisions will appear on the masking histogram as the loudness loss thresholds will be much higher. The range of loudness loss displayed in the Masking Meter is similarly affected by this Sensitivity control, so that at higher sensitivity a lower amount of loudness loss appears on the meter and at lower sensitivity a larger loudness loss is required to show high amounts of masking (brighter white lines).</p>
+
+<p>It is important to note that adjustments to Masking Sensitivity will not make any adjustments to audio processing. Even though it may seem that masking has decreased when the masking sensitivity is turned down, it is merely that the sensitivity of the meter has been adjusted. As in any meter, it’s up to the mix engineer to dial in the meter sensitivity most useful for the source material. If you’re seeing a ton of activity, it’s likely a combination of good and bad masking, and you probably can’t parse that information in a useful manner. In that scenario, the sensitivity may be too high; turning down the sensitivity will help show you only the most extreme amounts of masking between your two tracks. Conversely, if you’re seeing no masking but hearing muddiness, it could help to turn the sensitivity up until you see some activity in these meters.</p>
+
+<p>It’s much like you’d adjust the integration time of an RMS level meter, or the peak hold time of a Peak meter…you decide just how much information is useful to you.</p>
+
+<h3 id="inverse-link">Inverse Link</h3>
+
+<p>Inverse Link makes separation much easier. When on, each node’s Gain and Frequency are linked to the same-numbered node in the other EQ. For example, If you add a 3 dB boost in node 4 of the source EQ, you’ll cut 3 dB in node 4 of the target EQ below it. Rather than making big, sweeping changes to one track, the goal is to achieve optimal separation with subtle changes to each individual track, such as boosting and cutting each by 1.5 dB rather than boosting or cutting just one by 3 dB. Inverse Link can be toggled on and off to suit any workflow.</p>
+
+<p>Note: Inverse Link controls Gain and Frequency, but not any other aspects of that particular node (e.g. Q, Filter type, Dynamic / Static). This is because though you may wish to share cuts, boosts and frequency positions, it’s rare that you’d also want to use identical Q and filter shape values in both tracks. It’s more common best practice to cut with narrower Qs and boost with broader, more gentle shapers, to avoid resonance.</p>
+
+<h3 id="bypass-eqs">Bypass EQs</h3>
+
+<p>This is a momentary state that allows you to bypass both the source and the target EQ modules. When doing any equalization, particularly across multiple tracks, it’s especially important to always A/B the After/Before to make sure the changes you’re making are good changes.</p>
+
+<p>It can also be a useful ear training tool: if you Bypass both EQs and it sounds better, that’s OK… it happens to the best of us, and it’s through listening, trial and error that we get better. Reset the EQ, and start over! Conversely, if every EQ change you ever make is magical and perfect, please get in touch… that would be a rare talent!</p>
+
+<h3 id="collision-histogram-peak-hold-time">Collision Histogram Peak Hold Time</h3>
+
+<p>The Histogram described above is a real-time meter; the peak hold times (in the Options menu) adjust the calculation window between three values of 400 ms, 3,000 ms (default), and infinite.</p>
+
+<p>3,000 ms is the default and most useful setting, and calculates events across a moving window of three seconds.</p>
+
+<p>Infinite can be useful if you want to see all masking that occurs over the entire duration of an audio segment. It won’t allow frequency collisions to drop from its memory, displaying them long after they’ve been problematic, but it will result in a visualization of all areas that cause conflict from start to end. (To clear the histogram, just click the “!” button on the right.)</p>
+
+<h3 id="gain-offset">Gain Offset</h3>
+
+<p>Masking calculations are extremely sensitive to the levels of each track. This makes sense when you think of masking in terms of loudness and partial loudness—if you want a track to sound louder, either in isolation or relative to another track, either significantly boosting its gain or significantly cutting the gain of the other track is extremely effective, if potentially naive!</p>
+
+<p>In the case where a DAW applies its plug-ins pre-fader, Neutron has no way to know that this gain has been applied, and therefore that masking has been reduced (or even potentially increased) by changes to the DAW’s track volume faders. In such a case, Neutron may show lots of masking but your ears may tell you that none is happening. Since we’re transferring incredibly detailed masking information between plug-ins that are hosted pre-fader, it’s possible that two audio sources are far enough apart in level for the masking to no longer be problematic and for Neutron not to know, and still report where those sources might be conflicting if they were closer in level.</p>
+
+<p>To get the best, most accurate masking calculations, we highly recommend setting each Neutron instance’s Gain Offset amount to the same value as the DAW’s track volume fader. It will not in any way affect the audible gain of Neutron, simply the levels at which masking is calculated.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  I/O Section</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>The Global I/O (input/output) section of Neutron allows you to monitor levels and adjust gain, stereo width and pan, limiter settings, channel operations and Neutrino modes.</p>
+
+<p><img src="../images/io-section/io-section.png" alt="io" /></p>
+
+<h2 id="controls">Controls</h2>
+
+<h3 id="bypass">Bypass</h3>
+
+<p>Bypasses Neutron 2 processing.</p>
+
+<h3 id="zero-latency">Zero Latency</h3>
+
+<p>Enables Zero Latency processing. When enabled, some processing options will be unavailable (for instance: IRC Limiter modes or Transparent (Hybrid) crossover types).</p>
+
+<h3 id="gain-input-output">Gain (Input/Output)</h3>
+
+<p>Adjusts the input or output gain. Output gain level comes before the Limiter in the signal flow.</p>
+
+<h3 id="width">Width</h3>
+
+<p>Adjusts the amount of stereo widening. Decreasing this control results in a narrowing effect (-100% is equivalent to mono), increasing this control widens the apparent stereo field. <em>Only functional in stereo instances of Neutron.</em></p>
+
+<h3 id="pan">Pan</h3>
+
+<p>Pans the output signal to the left or right channel.</p>
+
+<h3 id="sum-to-mono">Sum to Mono</h3>
+
+<p><img src="../images/mix-tap/sum-to-mono.png" alt="mix-tap" /></p>
+
+<p>When enabled, sums the left and right channels into a mono output signal.</p>
+
+<h3 id="invert-phase">Invert Phase</h3>
+
+<p><img src="../images/mix-tap/phase-flip.png" alt="phase" /></p>
+
+<p>When enabled, Inverts the polarity of the signal.</p>
+
+<h3 id="swap-channels">Swap Channels</h3>
+
+<p><img src="../images/mix-tap/swap.png" alt="swap" /></p>
+
+<p>When enabled, the left and right output channels of Neutron wil be swapped. The left channel will be routed to the right channel output and the right channel will be routed to the left channel output.</p>
+
+<h2 id="neutrino-modes">Neutrino Modes</h2>
+
+<p><img src="../images/io-section/neutrino-modes.png" alt="Neutrino Modes" /></p>
+
+<p>The Neutrino spectral shaping algorithm, available in both the free Neutrino plug-in and as a part of Neutron’s I/O panel, is designed to improve the overall spectral balance of an entire mix by making subtle changes to each individual track on which it’s used. Built for the discerning audio engineer, Neutrino seeks to be one of your secret weapons. Much like you’d extol the virtues of incrementally better A/D converters or other such subtle improvements, Neutrino hopes to aid you in your quest for a better-sounding mix.</p>
+
+<p>Though (as with any effect) it can be pushed too far, the spectral shaping is less concerned with making indulgent, audibly dramatic, or simply louder changes to an individual track (which would ironically unbalance the mix). Indeed, its greatest and most transformative strength is in the smooth sonic sheen that results when it’s used on each track within the mix. Similar to the methodology behind analog summing, the subtle benefits are increasingly noticeable the more audio tracks are run through the processing and ultimately summed together. Those with good ears will be able to hear the difference, and judge for themselves when and where it’s useful to use across many tracks.</p>
+
+<h3 id="what-is-spectral-shaping">What is Spectral Shaping?</h3>
+
+<p>Spectral shaping refers to real-time, dynamic adjustment of the frequency spectrum, falling somewhere between a Dynamic EQ and a multiband compressor. Neutrino has dozens of psychoacoustically spaced frequency bands, each with an adaptive threshold based on the audio signal’s RMS. The more a signal exceeds its adaptive threshold, the more frequency-specific attenuation is applied. Neutrino therefore dynamically adjusts the frequencies that contribute most to excess peaks, with modes that allow you to tailor its behavior for a variety of sources.</p>
+
+<p>Spectral shaping can help bring balance to the sound of instruments and voices in a way that traditional compressors and equalizers have not been able to in the past. In the same way that transient shaping applies focused dynamics processing to just the transient portion of a waveform in the time-domain, spectral shaping applies focused dynamics processing to just certain areas within the frequency spectrum. It is a form of subtle, low-ratio compression that is employed individually across dozens of frequency bands as necessary, with unique time constants and automatic adjustment of thresholds based on the incoming audio signal.</p>
+
+<p>When compared to other frequency-dependent dynamics tools like multiband compression, spectral shaping can offer far more resolution across the spectrum. By analyzing the signal across 32 mel-spaced frequency bands, each band is processed uniquely and without applying crossovers. You could imagine spectral shaping as a 32-band dynamic equalizer, with individual band shelf filters for every band, each automatically setting thresholds, time constants, and reduction amounts based on tuned models for each sound source. The result is a more transparent form of dynamic control that is constantly aware of the frequency content present in the incoming signal, and adjusts its processing accordingly.</p>
+
+<h3 id="modes">Modes</h3>
+
+<p>As engineers, we’ve grown accustomed to using a single processor on a variety of sources, like an 1176 for compressing vocals, drums, bass, and guitars. However, if you think about how each of these instruments sound, they are really quite unique. With an algorithm like spectral shaping, it’s possible to customize the behavior and performance of the processing to each type of audio source. Therefore, Neutrino offers five modes.</p>
+
+<p>Because the modes are subtly focused on different areas within the frequency spectrum, you’ll likely notice that Neutrino subtly changes the timbral balance of the audio depending on which mode you have selected. You may find that for a particular guitar track, the Bass Mode works well. No problem! Use your ears and enjoy what works best for your music. If you’re happy with the sound then we have no business telling you what to do.</p>
+
+<h3 id="detail">Detail</h3>
+
+<p>Adjusts the granularity of processing across the frequency spectrum. Because Neutrino is constantly listening and adjusting to the incoming signal, we suggest that you make a small adjustment, pause, then listen to the effect it’s had on your signal.</p>
+
+<p>It’s important to note that despite the analogies, Neutrino is not designed to impart its own particular “sonic character” to your audio in the way analog summing, transformers, or tape might. These analog devices often contribute some unique saturation characteristics. Neutrino is designed specifically to not add any distortion, preserving the original signal as transparently as possible.</p>
+
+<h3 id="amount">Amount</h3>
+
+<p>Adjusts how much of Neutrino’s dynamic processing is applied.</p>
+
+<h2 id="limiter">Limiter</h2>
+
+<p>The surround-sound, BS.1770-2/3-compliant True Peak Limiter in Neutron provides intelligent digital loudness maximization of the signal, while ensuring there are no True Peak overflows, across all of your mono, stereo, and surround channels.</p>
+
+<p>The intelligent digital loudness processor is designed for neutral or transparent limiting. It does so by analyzing the incoming source material and leveraging a psychoacoustically pleasing algorithm, reacting quickly to transients and reacting more slowly to steady, lower frequency tones. In doing so, it is optimized to preserve transients which makes them sharper and more clearly present in the output signal, even when aggressive limiting is taking place. This award-winning technology is what’s behind iZotope’s legendary IRC limiting algorithms.</p>
+
+<p>Neutron’s Limiter lives in the I/O section, overlaid on the output meters, which are capable of both Peak+RMS and Peak+Short-term loudness metering. When the Limiter is actively limiting audio, you will see the amount of gain reduction shown in orange from the top of the meter.</p>
+
+<h3 id="limiter-on-off">Limiter On/Off</h3>
+
+<p>The button aptly labeled Limiter enables you to turn the Limiter on or off. If you’re not making extensive use of the Limiter, we recommend you have it disabled so as not to unintentionally limit your audio.</p>
+
+<h3 id="output-gain">Output Gain</h3>
+
+<p>The Output Gain slider is penultimate to the Limiter in the signal flow, so it acts as Limiter input gain when the Limiter is enabled. It allows you to increase the loudness of your audio without affecting the True Peak level. It provides up to 10 dB of additional input gain into the Limiter.</p>
+
+<h3 id="ceiling">Ceiling</h3>
+
+<p>This determines the maximum output level of your audio - all peaks above this point will be limited. You can set the Ceiling of the Limiter via the Ceiling slider overlaid on the output meter, within a range of 0 to -20 dB.</p>
+
+<h3 id="limiter-algorithm">Limiter algorithm</h3>
+
+<p>There are three limiting algorithms in Neutron, each with a different sonic quality and latency requirement. Low latency is important to avoid lag or loss of sync when mixing to picture, dealing with limited latency compensation, or a control surface that needs to remain responsive. You may choose to optimize the limiter in different ways using the following algorithms:</p>
+
+<ul>
+<li><strong>IRC II:</strong> - Transparency. This algorithm uses higher latency (3772 samples at 48 kHz) to ensure maximum transparency when hitting the limiter hard, particularly with low frequencies that you’d like to remain loud, without crunch or distortion.</li>
+<li><strong>IRC LL:</strong> - Low Latency. This algorithm significantly lowers latency (as low as 120 samples at 48 kHz) to ensure efficient performance, yet still maintains a high level of sound quality and broadcast-standard True Peak performance. You may not notice a difference in sound quality unless you’re driving the limiter quite hard. The difference is most noticeable on low frequencies, and you may choose to use this algorithm to add a certain unique sonic character to certain low frequencies.</li>
+<li><strong>Hard:</strong> Brickwall and Zero Latency. The hard limiter uses the Ceiling as an absolute guide, and the final output level will not exceed this point. It’s the most CPU- and latency-efficient algorithm in Neutron, but it is not True Peak compliant, as it is extremely difficult to achieve adequate True Peak compliance with zero latency.</li>
+</ul>
+
+<h3 id="limiter-mode">Limiter mode</h3>
+
+<p>Three user-definable character options allow for more direct control over the adaptive, transparent nature of the limiting algorithm:</p>
+
+<ul>
+<li><strong>Mode 1:</strong> Clear. The Limiter will respond more quickly in order to better present fast-moving transient material in the mix.</li>
+<li><strong>Mode 2:</strong> Smooth. Smooth is the most common, best-sounding middle ground between Clear and Thick. It’s the most appropriate algorithm for the majority of program material, including most vocals and dialogue.</li>
+<li><strong>Mode 3:</strong> Thick. The Limiter will respond to audio more slowly, useful for louder, slower-moving sounds like a big explosion sound effect, or a bass/low-frequency swell, where you wouldn’t want an aggressive limiter to break the sound up.</li>
+</ul>
+
+<h3 id="limiter-lfe-bypass-adv">Limiter LFE Bypass [ADV]</h3>
+
+<p>The LFE (Low Frequency Effects) Bypass button only appears when Neutron is loaded on 5.1 or 7.1 surround tracks. When in surround-sound configurations, the Limiter is linked across all channels, meaning that gain reduction is applied equally to preserve the positioning of the surround image and avoid steering. When enabled, the LFE Bypass will ensure that any audio information in the LFE channel is passed through unprocessed, but with the correct latency compensation.</p>
+
+<h2 id="surround-sound-adv">Surround Sound [ADV]</h2>
+
+<p>Neutron supports the following surround-sound formats in the following hosts. Neutron processes all channels equally, unless LFE processing is bypassed in any particular module.</p>
+
+<h3 id="pro-tools">PRO TOOLS</h3>
+
+<ul>
+<li><strong>Surround Format:</strong> Film<br /></li>
+<li><strong>Channel Configurations:</strong> 1.0, 2.0, 3.0 (LCR), 4.0 (Quad), 5.0, 5.1, 7.0, 7.1</li>
+</ul>
+
+<h3 id="logic-pro">LOGIC PRO</h3>
+
+<ul>
+<li><strong>Surround Format(s):</strong> DTS, ITU/SMPTE, SDDS<br /></li>
+<li><strong>Channel Configurations:</strong> 1.0, 2.0, 4.0 (Quad), 4.0 (LCRS), 5.1 (ITU/SMPTE)</li>
+</ul>
+
+<h3 id="cubase">CUBASE</h3>
+
+<ul>
+<li><strong>Surround Format(s):</strong> ITU/SMPTE<br /></li>
+<li><strong>Channel Configurations:</strong> 1.0, 2.0, 3.0 (LRC), 3.0 (LRS), 4.0 (Quad), 4.0 (LCRS), 5.0, 5.1</li>
+</ul>
+
+<h3 id="nuendo">NUENDO</h3>
+
+<ul>
+<li><strong>Surround Format(s):</strong> DTS, ITU/SMPTE, SDDS<br /></li>
+<li><strong>Channel Configurations:</strong> 1.0, 2.0, 4.0 (Quad), 4.0 (LRCS), 5.0, 5.1, 7.0 (cine), 7.0 (music), 7.1 (cine), 7.1 (music)</li>
+</ul>
+
+<h3 id="lfe-rolloff-filter">LFE Rolloff Filter</h3>
+
+<p>If you happen to be mixing to a surround-sound spec that requires a band-limited LFE signal, the 24 db/octave LFE rolloff filter helps you achieve this. Access this filter in the Options Menu/Metering, where you’ll be able to enable the filter and select the cutoff value.</p>
+
+<div class="admonition note">
+<p class="admonition-title">LFE Rolloff filter</p>
+<p><ul>
+<li>This option only appears when Neutron is instantiated on a 5.1 or 7.1 surround track.</li>
+</ul>
+</p>
+</div>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Mix Tap [ADV]</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>The Mix Tap is a utility plug-in that connects you to all the inter-plugin communication compatible features in both Neutron 2 and Ozone 8. Use it as a “masker” in the award-winning Masking Meter, control tracks that do not need the power of Neutron 2 using the Visual Mixer, and tap into any track’s audio using the Tonal Balance Control. With Time Delay, Channel Ops, HPF EQ, Polarity Invert, Stereo Width, Panning, and Gain Adjustment, the Mix Tap is the perfect lightweight addition to Neutron 2.</p>
+
+<h2 id="controls">Controls</h2>
+
+<p><img src="../images/mix-tap/mix-tap.png" alt="mix-tap" /></p>
+
+<h3 id="plug-in-name-display">Plug-in name display</h3>
+
+<p>Displays the name of the current instance. This name is used for inter-plugin communication with Neutron 2 EQ (Masking Meter), Neutron 2 Visual Mixer and Tonal Balance Control.</p>
+
+<h3 id="bypass">Bypass</h3>
+
+<p>Bypasses Mix Tap processing.</p>
+
+<h3 id="gain">Gain</h3>
+
+<p>Adjusts the output gain of the Mix Tap.</p>
+
+<h3 id="width">Width</h3>
+
+<p>Adjusts the amount of stereo widening. Decreasing this control results in a narrowing effect (-100% is equivalent to mono), increasing this control widens the apparent stereo field. <em>Only functional in stereo instances of Mix Tap.</em></p>
+
+<h3 id="pan">Pan</h3>
+
+<p>Pans the output signal to the left or right channel. <em>Only functional in stereo instances of Mix Tap.</em></p>
+
+<h3 id="sum-to-mono">Sum to Mono</h3>
+
+<p><img src="../images/mix-tap/sum-to-mono.png" alt="mix-tap" /></p>
+
+<p>When enabled, sums the left and right channels to a mono output signal.</p>
+
+<h3 id="invert-phase">Invert Phase</h3>
+
+<p><img src="../images/mix-tap/phase-flip.png" alt="phase" /></p>
+
+<p>When enabled, inverts the polarity of the signal.</p>
+
+<h3 id="swap-channels">Swap Channels</h3>
+
+<p><img src="../images/mix-tap/swap.png" alt="swap" /></p>
+
+<p>When enabled, swaps left and right channels.</p>
+
+<h3 id="time-delay">Time Delay</h3>
+
+<p><img src="../images/mix-tap/time-delay.png" alt="time delay" /></p>
+
+<p>Click on the Time Delay button to access left and right channel delay controls. Left and right channel delay amounts (in milliseconds) can be linked or adjusted independently.</p>
+
+<h3 id="high-pass-filter">High Pass Filter</h3>
+
+<p><img src="../images/mix-tap/eq-controls.png" alt="time delay" /></p>
+
+<p>When enabled, you can choose the slope of the high-pass filter from the dropdown menu. The center frequency of the high-pass filter is set by adjusting the Freq slider to the right of the slope selection menu.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Visual Mixer</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>The Visual Mixer is a new paradigm for mixing-in-the-box and a step towards the future of node-based mixing. By connecting you to every Neutron 2 plug-in loaded in your session, you can visually place your music in a virtual space. Using iZotope&rsquo;s inter-plugin communication technology, you can adjust the pan, volume, and stereo width of any Neutron 2 instance in your session.</p>
+
+<p><img src="../images/visual-mixer/visual-mixer-active.png" alt="VM interface" /></p>
+
+<h2 id="x-y-pad">X/Y Pad</h2>
+
+<p>Move nodes within the X/Y pad interface to control different elements of your mix remotely.</p>
+
+<h3 id="panning">Panning</h3>
+
+<p>Adjust the stereo pan control of any Neutron 2 plug-in by dragging nodes left or right in the X/Y pad.</p>
+
+<h3 id="volume">Volume</h3>
+
+<p>Adjust the output gain of any Neutron 2 plug-in in your session by dragging nodes up and down in the X/Y pad.</p>
+
+<h3 id="width">Width</h3>
+
+<p>Adjust the Width amount of any stereo Neutron 2 plug-in in your session by clicking on a node and adjusting the handles that appear on the left and right edges of the node.</p>
+
+<div class="admonition note">
+<p class="admonition-title">note about Mono instances</p>
+<p>Panning and Width can&rsquo;t be adjusted from the Visual Mixer for mono instances of Neutron 2 plug-ins.</p>
+</div>
+
+<h2 id="plug-in-list">Plug-in List</h2>
+
+<p>The list on the right side of the Visual Mixer interface displays the names of all Neutron 2 plug-ins in your session.</p>
+
+<p>Clicking on the eye button to the left of the instance name will hide or show that instance in the X/Y pad.</p>
+
+<p><img src="../images/visual-mixer/list.png" alt="list" /></p>
+
+<p>You can double-click on an instance name to rename it from the Visual Mixer.</p>
+
+<h2 id="mix-snapshots">Mix Snapshots</h2>
+
+<p>Save Mix Snapshots to compare different configurations or hide/show states for the nodes in the Visual Mixer.</p>
+
+<p><img src="../images/visual-mixer/snapshots.png" alt="snapshot" /></p>
+
+<h3 id="set">Set</h3>
+
+<p>Save a snapshot by clicking on the &ldquo;Set&rdquo; button above the A/B/C buttons</p>
+
+<h3 id="a-b-c">A/B/C</h3>
+
+<p>Toggles the view to display the Mix Snapshot you set for a given button. These are greyed out until a snapshot is set.</p>
+
+<h2 id="activity-metering">Activity Metering</h2>
+
+<p>Nodes display activity metering to indicate if audio is passing through the associated plug-in.</p>
+
+<p>When red is displayed in the activity meter for a given node, it is indicating the associated Neutron 2 plug-in output is clipping.</p>
+
+<p><img src="../images/visual-mixer/clip.png" alt="clipping" /></p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Tonal Balance Control [ADV]</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Select Neutron 2 instances from the plug-in selection menu in Tonal Balance Control to modify EQ parameters remotely or view the spectrum metering of any Neutron 2 plug-in.</p>
+
+<p><img src="../images/tbc-n2/n2-eq-display.png" alt="Neutron 2 instance selected" /></p>
+
+<p>The following table outlines the controls and displays available when the associated Neutron 2 plug-in is selected as the incoming instance in Tonal Balance Control.</p>
+
+<table>
+<thead>
+<tr>
+<th>Plug-in Name</th>
+<th>EQ Controls</th>
+<th>Spectrum Display</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Neutron 2</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 EQ</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 Compressor</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 Gate</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 Exciter</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 Transient Shaper</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 Mix Tap</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Neutron 2 Visual Mixer</td>
+<td>No</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+
+<p>Neutron 2 plug-ins with no EQ controls will look like this when selected in Tonal Balance Control:
+<img src="../images/tbc-n2/n2-plugin-no-eq-controls.png" alt="No EQ Controls" /></p>
+
+<p>Neutron 2 plug-ins with compatible EQ controls will look like this when selected in Tonal Balance Control:
+<img src="../images/tbc-n2/n2-eq-params-close.png" alt="EQ Controls" /></p>
+
+<h2 id="global-eq-controls">Global EQ Controls</h2>
+
+<p><img src="../images/tbc-n2/n2-global-bar.png" alt="global control bar" /></p>
+
+<ul>
+<li><strong>PLUG-IN SELECTION MENU:</strong> Allows you to select the instance to display/control from within the Tonal Balance Control interface.</li>
+<li><strong>SOFT SATURATION:</strong> Enables/disables Soft Saturation in the selected Neutron 2 EQ. When enabled, this button will be colored orange.</li>
+<li><strong>BYPASS:</strong> Momentarily bypasses EQ processing in the selected Neutron 2 plug-in. This bypass control is useful for quick A/B comparisons.
+<div class="admonition note">
+<p class="admonition-title">Note about EQ Bypass state</p>
+<p><ul>
+<li>If the selected EQ is bypassed in the plug-in, the controls will appear dimmed in Tonal Balance Control. To enable the EQ in the selected plug-in, you will need to open the plug-in window and unbypass the EQ. EQ bypass state of a selected plug-in can&rsquo;t be changed from the Tonal Balance Control interface.</li>
+</ul>
+</p>
+</div></li>
+<li><strong>SHOW/HIDE SELECTED PLUG-IN DISPLAY:</strong> Toggles the incoming instance display panel open or closed.</li>
+</ul>
+
+<h2 id="metering-navigation">Metering &amp; Navigation</h2>
+
+<p><img src="../images/tbc-n2/n2-spectrum-close-up.png" alt="Spectrum and EQ curve" /></p>
+
+<ul>
+<li><strong>SPECTRUM METERING:</strong> Displays spectrum metering for the selected instance. Neutron 2 plug-ins will display their spectrum metering in orange.</li>
+<li><strong>EQ CURVE:</strong> If the selected Neutron 2 instance supports EQ control, the EQ curve controls will be displayed in the spectrum meter area.
+<div class="admonition note">
+<p class="admonition-title">Tips for working with EQ nodes</p>
+<p><ul>
+<li><strong>Change filter shapes:</strong> You can change filter shapes of any visible node by right-clicking on the node and selecting the filter shape from the context menu that appears.</li>
+<li><strong>Reset node to default:</strong> Double-click on a node to reset it to default values.</li>
+<li><strong>Enable bands with double-click:</strong> Double-click in an empty spot in the spectrum display to enable a band at that frequency.</li>
+</ul>
+</p>
+</div></li>
+<li><strong>BAND SELECTION &amp; ENABLE/DISABLE CONTROLS:</strong>
+<img src="../images/tbc-n2/n2-band-selection-enable-disable-bar.png" alt="Band select and enable bar" />
+
+<ul>
+<li>EQ bands can be enabled or disabled by clicking on the power button to the left of the band number/shape.</li>
+<li>Click on the band number/shape icon directly to view the controls associated with that band.</li>
+</ul></li>
+</ul>
+
+<h2 id="static-eq-controls">Static EQ Controls</h2>
+
+<p>Static EQ controls for the selected Neutron 2 EQ are located on the left side of the bottom bar in the Tonal Balance Control interface.</p>
+
+<p><img src="../images/tbc-n2/n2-static-band-controls.png" alt="Static EQ Controls" /></p>
+
+<ul>
+<li><strong>BAND SHAPE:</strong> Selects the filter shape used by the selected band.</li>
+<li><strong>FREQUENCY:</strong> Sets the center frequency for the selected filter.</li>
+<li><strong>GAIN:</strong> Sets the positive/negative gain applied to the selected filter.</li>
+<li><strong>Q:</strong> Sets the bandwidth of current filter.</li>
+</ul>
+
+<h2 id="dynamic-mode-controls">Dynamic Mode Controls</h2>
+
+<p>Dynamic mode controls are accessible to the right of the static controls and can be enabled for each band individually.</p>
+
+<p><img src="../images/tbc-n2/n2-dynamic-filter-controls.png" alt="Dyn EQ Controls" /></p>
+
+<ul>
+<li><strong>DYNAMIC MODE ENABLE/DISABLE:</strong> Enables Dynamic mode operation for the selected band.</li>
+<li><strong>DYNAMIC TRIGGER DIRECTION:</strong> Determines the direction of the dynamic filter for the selected band.</li>
+<li><strong>THRESHOLD:</strong> Determines the dynamic trigger threshold level for the selected band. When signals exceed the Threshold level the filter will be triggered.</li>
+<li><strong>SIDECHAIN:</strong> Enables or disables the use of a Sidechain input source for the Dynamic triggering of the currently selected band.</li>
+<li><strong>SIDECHAIN SOURCE SELECTION:</strong> When Sidechain is enabled, sets the Sidechain input source for the currently selected band.</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">Dynamic Mode Indicators</p>
+<p><ul>
+<li>When Dynamic mode is enabled for an EQ band, a directional arrow will be displayed above or below the applicable node in the EQ curve display. The arrow icon direction reflects the selected Dynamic Trigger Direction.</li>
+</ul>
+</p>
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">Note about HP/LP Bands</p>
+<p><ul>
+<li>The HP and LP bands (first &amp; last bands) in Neutron 2 do not support Dynamic Mode operation.</li>
+</ul>
+</p>
+</div>
+
+<h2 id="general-notes">General Notes</h2>
+
+<h3 id="control-availability">Control Availability</h3>
+
+<p>The following controls are accessible in the Neutron 2 EQ module and component plug-in, but cannot be accessed from the Tonal Balance Control interface:</p>
+
+<ul>
+<li>EQ module/plug-in Bypass</li>
+<li>EQ Node Learn</li>
+<li>Masking Meter controls</li>
+<li>EQ module reset</li>
+<li>I/O or Channel Ops controls</li>
+</ul>
+
+<h2 id="options">Options</h2>
+
+<p>You can access the Options menu by clicking the gear button in the upper right hand corner of the Tonal Balance Control interface.</p>
+
+<p><img src="../images/tbc-options/tonal-balance-control-options.png" alt="Options Window" /></p>
+
+<ul>
+<li><strong>VERSION STRING:</strong> The current Tonal Balance Control version and build number are listed in a string located in the upper right hand corner of the Options window.</li>
+<li><strong>RESET:</strong> Resets all Tonal Balance Control options to their factory default values.</li>
+<li><strong>CANCEL:</strong> Exits the Options window without saving any changes made since last opening the Options window.</li>
+<li><strong>OK:</strong> Exits the Options window and saves any changes made since last opening the Options window.</li>
+</ul>
+
+<h3 id="general">General</h3>
+
+<ul>
+<li><strong>ENABLE ANALYTICS:</strong> When checked, <strong>anonymous</strong> usage data will be sent to help iZotope improve future products.</li>
+<li><strong>ENABLE TOOLTIPS:</strong> When checked, tooltips with information about a control will appear when hovering the cursor over most controls in the Tonal Balance Control interface.</li>
+</ul>
+
+<h3 id="spectrum">Spectrum</h3>
+
+<ul>
+<li><strong>AVERAGE TIME:</strong> Averages the spectrum according to this setting. Higher average times can be useful for viewing the overall tonal balance of a mix, while shorter average times provide a more real-time display.</li>
+<li><strong>FREQUENCY SCALE:</strong> Sets the frequency scale used by the Tonal Balance Control meter. Choices include:
+
+<ul>
+<li><strong>FLAT LOG</strong></li>
+<li><strong>EXTENDED LOG</strong></li>
+<li><strong>PIANO ROLL</strong></li>
+</ul></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can access and change the frequency scale option without opening the options window by right-clicking on the frequency ruler in the Tonal Balance Control interface.</p>
+</div>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Preset System</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>Neutron ships with hundreds of presets, covering both common and creative use cases for all manner of music and post-production scenarios. Clicking the Preset Manager button or clicking the text displaying “Presets” brings up the Preset Manager window. Clicking on any preset in the list will apply the associated parameters to all of the controllers in the Neutron plug-in.</p>
+
+<h3 id="working-settings">Working Settings</h3>
+
+<p>If you decide not to use a preset and would like to apply the last settings used that were not associated with a preset, you can select “Working Settings.”</p>
+
+<h3 id="default">Default</h3>
+
+<p>Select “Default” to reset all parameters to their initial state when first instantiating the Neutron plug-in.</p>
+
+<h3 id="preset-comments">Preset Comments</h3>
+
+<p>Below the list of presets in the Preset Manager, you can find some text detailing the parameter settings associated with the selected preset.</p>
+
+<p>If you select a preset and change any parameters in the plug-in, the preset name in the Preset Manager’s list will have an asterisk before it. This simply indicates that your current settings differ from those associated with the preset as it was last saved. Simply click the preset name in the Preset Manager list once to return your plug-in parameters to the saved state of the associated preset.</p>
+
+<h3 id="adding-and-removing-presets">Adding and Removing Presets</h3>
+
+<p>The Preset Manager includes methods for creating new presets, creating new folders, and deleting presets.</p>
+
+<p>To create a new preset:</p>
+
+<ol>
+<li>Set the parameters in Neutron to the values you wish to save and open the Preset Manager (as described above). You can click “Working Settings” in the Preset Manager to confirm that the settings of the plug-in are set to match your expectations of what should be saved in the preset.</li>
+<li>Click the “New Preset” button in the Preset Manager. You will be prompted with an edit box to enter a name for this new preset. This will create a new preset with the parameters saved from the “Working Settings,” and will save to the same location as all Neutron presets (see “Preset storage location” below).</li>
+<li>If you are in a subfolder or have a subfolder selected in the Preset Manager, your new preset will be created within that subfolder, rather than at the top level of the preset directory. This preset can then be used in your workflow as you would any other preset. If you so choose, you can give your preset a custom comment by clicking the text that says “Click here to comment.”</li>
+<li>For better organization, the Preset Manager also allows you to create a new folder in which to place any preset. To do this, click the “New Folder” button in the Preset Manager. You will be prompted to give the folder a name. To move any preset or even any folder into another folder in the Preset Manager, click and drag the preset or folder you want to move, place it in the expanded folder, and release the mouse.</li>
+</ol>
+
+<p>To rename any item in the Preset Manager, click twice on the preset name or folder to bring up an edit box.</p>
+
+<p>To delete any item in the Preset Manager, select the item and click the “Delete” button. A dialog box will appear to confirm your choice.</p>
+
+<h2 id="preset-storage-location">Preset Storage Location</h2>
+
+<p>The presets used in Neutron are stored on disk:</p>
+
+<ul>
+<li>Windows: C:\Users\username\Documents\iZotope\Neutron 2\Presets\Global Presets</li>
+<li>Mac: /Users/username/Documents/iZotope/Neutron 2/Presets/Global Presets</li>
+</ul>
+
+<p>This folder contains the presets included with the installation and any custom presets you have added via the Preset Manager. Keep in mind that factory defaults can be restored by deleting the Presets folder and reinstalling the Neutron plug-in.</p>
+
+<h2 id="distributing-presets">Distributing Presets</h2>
+
+<p>As these presets are saved as .xml files on your hard drive, you may create and save presets, then distribute them across an entire organization or facility that may benefit from using the same settings.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Options</h1>
+  
+
+<h2 id="general">General</h2>
+
+<h3 id="enable-tooltips">Enable Tooltips</h3>
+
+<p>This allows you to toggle off tooltips should you find them distracting, or enable them should you desire the guidance and information on any parameter you mouse over.</p>
+
+<h3 id="auto-gain">Auto Gain</h3>
+
+<p>When enabled, gain will be applied to the output of Neutron <strong>when it is bypassed.</strong> Gain is applied to the bypassed output signal to match the level of the processed output signal. This allows you to compare the processed output against the bypassed output without significant changes in level.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><ul>
+<li>The Auto Gain option only affects the bypassed output of Neutron.</li>
+<li>True Bypass and Auto Gain cannot be enabled at the same time.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="true-bypass">True Bypass</h3>
+
+<p>Click this box to allow Neutron to disengage a module’s latency when that module is bypassed. This results in a click as the audio transitions, but avoids unnecessary latency compensation and CPU usage.</p>
+
+<h3 id="enable-analytics">Enable Analytics</h3>
+
+<p>Click this box to allow Neutron to occasionally upload data on your usage patterns of the plug-in to iZotope’s servers. This info is completely anonymous, and allows us to better understand how users use Neutron in order to provide the best updates possible in the future.</p>
+
+<h3 id="channel-delay">Channel Delay</h3>
+
+<p>Left and right channel delay amounts (in milliseconds) can be linked or adjusted independently.</p>
+
+<h3 id="updates">Updates</h3>
+
+<p>Neutron allows you to check for updates from iZotope with recurring frequency. Check Now is an instant check, but you can also define periodic, automatic checks.</p>
+
+<p>These options are:</p>
+
+<ul>
+<li>Never</li>
+<li>Daily</li>
+<li>Weekly</li>
+<li>Monthly</li>
+</ul>
+
+<h3 id="authorization">Authorization</h3>
+
+<p>This section allows you to authorize and deauthorize Neutron. Clicking on “Authorize” will open the authorization window. Clicking on “Remove Authorization” will remove the authorization from your machine. Clicking on “More information…” will take you to the authorization help section of iZotope’s website.</p>
+
+<p>Visit the <a href="../authorization/index.html">Authorization</a> chapter for more information on authorizing Neutron.</p>
+
+<h2 id="metering">Metering</h2>
+
+<h3 id="i-o">I/O</h3>
+
+<h4 id="meter-type">Meter type</h4>
+
+<p>This allows you to switch Neutron’s metering between a Peak+RMS combo meter and a Peak+Short-term loudness combo meter.</p>
+
+<p>The combined Peak+RMS meter displays a lower bright bar representing the average level (RMS) and a higher dimmer bar representing peak level. There is also a moving line above the bar representing the most recent peak level or peak hold.</p>
+
+<p>Short-term loudness is a level measurement typically used in audio post production, but can be useful for music production as well. Short-term loudness offers a more perceptually accurate measurement than RMS. It is a calculation of loudness over the course of a moving window of three seconds. This measurement is useful in monitoring immediate trends of loudness in your audio.</p>
+
+<h4 id="detect-true-peaks">Detect True Peaks</h4>
+
+<p>By default the Input/Output meters will only indicate clipping which occurs within the digital domain. To accurately measure the signal that will result from digital to analog conversion, select “Detect True Peaks.”</p>
+
+<h3 id="spectrum">Spectrum</h3>
+
+<h4 id="spectrum-type">Spectrum Type</h4>
+
+<p>This feature lets you select between four types of spectrums:</p>
+
+<ul>
+<li><strong>Linear</strong>: A continuous line connecting the calculated points of the spectrum.</li>
+<li><strong>1/3 Octave</strong>: Splits the spectrum into bars with a width of 1/3 of an octave. Although the spectrum is split into discrete bands, this option can provide excellent resolution at lower frequencies.</li>
+<li><strong>Critical</strong>: Splits the spectrum into bands that correspond to how we hear, or more specifically how we differentiate between sounds of different frequencies. Each band represents sounds that are considered “similar” in frequency.</li>
+<li><strong>Full Octave</strong>: Splits the spectrum into bars with a width of one full octave.</li>
+</ul>
+
+<h4 id="average-time">Average Time</h4>
+
+<p>This feature averages the spectrum according to this setting. Higher average times can be useful for viewing the overall tonal balance of a mix, while shorter average times provide a more real-time display.</p>
+
+<h4 id="show-peak-hold">Show Peak Hold</h4>
+
+<p>This option toggles the peak hold display on or off in the spectrum meters.</p>
+
+<h4 id="peak-hold-time">Peak Hold Time</h4>
+
+<p>Peak hold time determines how long peaks are displayed after they are detected.</p>
+
+<p>Choices include:</p>
+
+<ul>
+<li>5 ms</li>
+<li>250 ms</li>
+<li>500 ms</li>
+<li>1,000 ms</li>
+<li>5,000 ms</li>
+<li>Infinite</li>
+</ul>
+
+<h2 id="social">Social</h2>
+
+<p>This tab links you to iZotope’s social media networks, as well as a few other online areas that contain useful educational content.</p>
+
+<h2 id="equalizer">Equalizer</h2>
+
+<h3 id="show-spectrum">Show Spectrum</h3>
+
+<p>Check this box to display a real-time spectrum analyzer signal underneath the Equalizer curve. This can be very useful in showing the frequency balance of your mix and how it is changed as you apply equalization.</p>
+
+<h3 id="show-musical-units">Show Musical Units</h3>
+
+<p>When this setting is checked, it allows you to display frequency labels as notes (for example, A4) in addition to the conventional EQ measurement of Hz.</p>
+
+<h3 id="spectrum-frequency-scale">Spectrum Frequency Scale</h3>
+
+<p>Allows you to adjust the scale of the EQ frequency spectrum.</p>
+
+<h3 id="alt-solo-q">Alt-Solo Q</h3>
+
+<p>Sets the bandwidth (Q) of the Alt-Solo Feature, which allows you to solo bands and sweep through the spectrum when holding Alt and left-clicking.</p>
+
+<h3 id="masking-meter-collison-historgram-peak-time">Masking Meter Collison Historgram Peak Time</h3>
+
+<p>This control adjusts the calculation window of peaks displayed in the Masking Meter Collison Histogram.</p>
+
+<h3 id="gain-offset">Gain Offset</h3>
+
+<p>This control allows you to offset the input level for the Masking Meter to match the fader level of your current track.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Masking Meter options</p>
+<p><ul>
+<li>For more information about the Masking Meter options, visit the <a href="../masking-meter/index.html">Masking Meter</a> chapter.</li>
+</ul>
+</p>
+</div>
+
+<h2 id="crossovers">Crossovers</h2>
+
+<p>The Compress, Transient, Exciter and Gate tabs contain crossover options for multiband processing. The crossover options include:</p>
+
+<ul>
+<li><strong>ZERO LATENCY (ANALOG)</strong>: This option provides a natural analog character at the expense of some phase distortion.</li>
+<li><strong>TRANSPARENT (HYBRID)</strong>: This option provides an IIR (Infinite Impulse Response) analog crossover designed to reduce the phase and frequency distortion commonly found in other analog crossovers without sacrificing efficiency and warmth.</li>
+</ul>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Undo History</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>The Undo History window is a unique and powerful feature for comparing settings in Neutron. To access the History list, click on the “History” button in the top menu bar of the plug-in. As you tweak controls, each movement is captured and displayed in the History list.</p>
+
+<p>To go back and hear a previous setting, simply click on the list at the point you want to audition. The changes that you’ve undone will show up in a lighter color.</p>
+
+<h3 id="clear-button">Clear button</h3>
+
+<p>Click the “Clear” button to clear the history list at any time.</p>
+
+<h3 id="close-button">Close button</h3>
+
+<p>Click the “Close” button to close the History window. Processing resumes from the point you had last selected, so you can continue building on the History list from an earlier point.</p>
+
+<h3 id="a-b-c-and-d-buttons">A, B, C, and D Buttons</h3>
+
+<p>You can assign up to four points in the History list to A, B, C, and D buttons. This is useful for A/B’ing many different settings all at once. To do so:</p>
+
+<ul>
+<li>Select the point in the list you want to capture</li>
+<li>Click on the “Set” button below the A, B, C, or D button.</li>
+<li>Clicking on the appropriate button will then recall the setting assigned to that button.</li>
+</ul>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Tips &amp; Examples</h1>
+  <p>As part of our look into Neutron’s General Functions, here are a few humble words of advice to consider as you mix:</p>
+
+<ul>
+<li>To avoid over-processing, use the module Mix sliders in the module chain to blend in some dry, unprocessed signal.</li>
+<li>Remember that Track Assistant results are not final settings, treat them as a starting point for your mix.</li>
+<li>When using the Compressor modules, try starting with one band and add more bands as needed.</li>
+<li>Use two EQ nodes in Dynamic Mode to control the sibilant areas of your track.</li>
+<li>Analysis can be great — but it has to sound good too, so don’t forget to A/B.</li>
+<li>Try blending the Exciter modes, such as: Tube/Tape on vocals or Tape/Retro on electric guitars.</li>
+<li>Unmask a mix by comparing all other tracks against the lead vocal.</li>
+<li>Compression Ratios are important. High ratios may suck the life out of a mix.</li>
+<li>Well defined kick drum and bass relationships are the bedrock of any groove.</li>
+<li>Use the EQ&rsquo;s Learn function to help identify problem areas in your track.</li>
+</ul>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Authorization</h1>
+  
+
+<h2 id="overview">Overview</h2>
+
+<p>The first time you open a Neutron 2 plug-in, the Authorization window will appear.</p>
+
+<p>The Authorization window allows you to:</p>
+
+<ul>
+<li><strong>TRIAL:</strong> Start or continue a Trial period evaluation prior to purchasing</li>
+<li><strong>DEMO:</strong> Continue evaluating the product with Demo limitations (<em>after the 10 day Trial period has been exceeded</em>)</li>
+<li><strong>AUTHORIZE:</strong> Authorize the product with a serial number</li>
+</ul>
+
+<h2 id="trial-demo-modes">Trial &amp; Demo Modes</h2>
+
+<p>A 10 day trial period will start when you first open a Neutron 2 plug-ins. After the 10 day trial period has expired, Neutron 2 will enter demo mode. To disable Trial or Demo mode, you must authorize the product with a valid serial number.</p>
+
+<h3 id="trial-mode">Trial Mode</h3>
+
+<p>Trial mode begins when a Neutron 2 plug-in is first instantiated in a DAW/NLE. The authorization wizard window will display the number of days remaining in your trial period.</p>
+
+<p>Clicking on the &ldquo;Continue&rdquo; button will dismiss the Authorization window and allow you to continue evaluating Neutron 2 in trial mode.</p>
+
+<h3 id="demo-mode">Demo Mode</h3>
+
+<p>After 10 days, Neutron 2 will operate in Demo mode. Neutron 2 plug-ins will periodically output silence when operating in demo mode. If you would like to continue evaluating Neutron 2 in demo mode, click the &ldquo;Demo&rdquo; button.</p>
+
+<h2 id="authorizing-neutron-2">Authorizing Neutron 2</h2>
+
+<p>We offer three main methods for authorizing Neutron 2:</p>
+
+<ul>
+<li><strong>Online Authorization:</strong> Use this method to authorize Neutron 2 on a machine that is connected to the internet.</li>
+<li><strong>Offline Authorization:</strong> Use this method to authorize Neutron 2 on a machine that is not connected to the internet.</li>
+<li><strong>iLok Authorization:</strong> Use this method to authorize Neutron 2 using an iLok.</li>
+</ul>
+
+<h2 id="more-information">More Information</h2>
+
+<p>For information on authorization, please visit the iZotope website: <a href="https://www.izotope.com/authorization">https://www.izotope.com/authorization</a></p>
+
+<h3 id="for-additional-help-with-authorizing-neutron-2">For additional help with authorizing Neutron 2:</h3>
+
+<ul>
+<li>Check out the Customer Care pages on the iZotope website: <a href="http://www.izotope.com/support">http://www.izotope.com/support</a></li>
+<li>Contact our Customer Care department at <a href="mailto:support@izotope.com">support@izotope.com</a>
+<br /></li>
+</ul>
+
+<p>More information on iZotope’s Customer Care department and policies can be found in the <a href="../customer-care/index.html">iZotope Customer Care</a>chapter.</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  Customer Care</h1>
+  
+
+<h2 id="purchasing-neutron-2">Purchasing Neutron 2</h2>
+
+<p>If you are using the demo version of Neutron 2 and would like the full version, you can purchase Neutron 2 direct from the iZotope online store: <a href="https://www.izotope.com/store">www.izotope.com/store</a></p>
+
+<p>Once your purchase is complete, you will be sent an email confirmation and a full version serial number that can be used to fully authorize your current installation of Neutron 2.</p>
+
+<h2 id="izotope-customer-care-policy">iZotope Customer Care policy</h2>
+
+<p>iZotope is happy to provide professional technical Customer Care to all registered users absolutely free of charge.
+<a href="https://www.izotope.com/support/contact/index.php">www.izotope.com/support/contact/index.php</a></p>
+
+<p>We also offer valuable pre-sales technical Customer Care to customers who may be interested in purchasing an iZotope product. Before contacting iZotope Customer Care, you can search our <a href="https://www.izotope.com/support/kb/index.php/kb/browse/32-iZotope_Knowledgebase">Product Knowledgebase</a> to see if the solution to your problem has already been published.</p>
+
+<p><strong>How long does iZotope provide customer support for purchased products?</strong></p>
+
+<p>You can email us with any question for 12 months after you buy any iZotope product. Past 12 months, we’ll still help you with your account and authorization but will not provide technical support for in-depth product questions. If you need more detailed help on how to use the product, please check out our FAQs and Tutorials.</p>
+
+<p><strong>How long does iZotope support its products?</strong></p>
+
+<p>Although we can’t guarantee it, we do our best to keep our products up to date with the operating systems and plug-in hosts that we support. Sometimes, other companies make changes that we’re not able to support, but we actively work with other companies to avoid these sorts of compatibility problems. We also do our best to address bug fixes within the product itself to ensure our products operate in accordance with our specifications.</p>
+
+<p>We will provide software updates for 12 months from product release. After 12 months, no software updates will be provided.</p>
+
+<p>For details on what operating systems and plug-in host software are officially supported for a product, please check that product&rsquo;s Specs page.</p>
+
+<h2 id="contacting-izotope-customer-care">Contacting iZotope Customer Care</h2>
+
+<p>For additional help with Neutron 2:</p>
+
+<ul>
+<li>Check out the Customer Care pages on our website at <a href="https://www.izotope.com/support">www.izotope.com/support</a></li>
+<li>Contact our Customer Care department at <a href="mailto:support@izotope.com">support@izotope.com</a></li>
+</ul>
+
+<p>iZotope’s highly trained Customer Care team is committed to responding to all requests within one (1) business day and frequently respond faster. Please try to explain your problem with as much detail and clarity as possible. This will ensure our ability to solve your problem accurately, the first time around. Please include all system specs and the build/version of Neutron 2 that you are using.</p>
+
+<p>Once your Customer Care request is submitted, you will receive a confirmation email from iZotope Customer Care. If you do not receive this email within a few minutes, please check your spam folder and make sure our responses are not getting blocked. To prevent this from happening please add <a href="mailto:support@izotope.com">support@izotope.com</a> to your list of allowed email addresses.</p>
+
+<h2 id="international-distribution">International Distribution</h2>
+
+<p>Customer Care is also available from our international distributors worldwide for any customers who purchased their iZotope products through a certified iZotope distributor.</p>
+
+<p>Check with your local distributor for availability. If you would like help locating your local distributor please contact iZotope Customer Care.</p>
+
+<p>Thanks for using Neutron 2!</p>
+
+<p>-The iZotope Team</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  License Information</h1>
+  
+
+<h2 id="anti-grain-geometry">Anti-Grain Geometry</h2>
+
+<p>Version 2.4</p>
+
+<p>Copyright &copy; 2002-2005 Maxim Shemanarev (McSeem).</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the
+ distribution.</p></li>
+
+<li><p>The name of the author may not be used to endorse or promote
+ products derived from this software without specific prior written
+ permission.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS&rdquo; AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="better-enums">Better Enums</h2>
+
+<p>Version 0.11.1</p>
+
+<p>Copyright &copy; 2012-2016, Anton Bachin.  All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="box2d">Box2D</h2>
+
+<p>Copyright &copy; 2006-2017 Erin Catto.</p>
+
+<p><a href="http://www.box2d.org">http://www.box2d.org</a></p>
+
+<p>This software is provided &lsquo;as-is&rsquo;, without any express or implied
+warranty. In no event will the authors be held liable for any damages
+arising from the use of this software.</p>
+
+<p>Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:</p>
+
+<ol>
+<li><p>The origin of this software must not be misrepresented; you must not
+claim that you wrote the original software. If you use this software
+in a product, an acknowledgment in the product documentation would be
+appreciated but is not required.</p></li>
+
+<li><p>Altered source versions must be plainly marked as such, and must not be
+misrepresented as being the original software.</p></li>
+
+<li><p>This notice may not be removed or altered from any source distribution.</p></li>
+</ol>
+
+<h2 id="fmt">fmt</h2>
+
+<p>Version 4.0.0</p>
+
+<p>Copyright &copy; 2012 - 2016, Victor Zverovich</p>
+
+<p>All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="freetype">FreeType</h2>
+
+<p>FreeType is licensed under the FreeType Project LICENSE.</p>
+
+<p>Portions of this software are copyright © 1996-2002, 2006 The FreeType
+Project (www.freetype.org).  All rights reserved.</p>
+
+<h2 id="gsl">gsl</h2>
+
+<p>Copyright &copy; 2015 Microsoft Corporation. All rights reserved.</p>
+
+<p>This code is licensed under the MIT License (MIT).</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</p>
+
+<h2 id="jsoncpp">JsonCpp</h2>
+
+<p>Version 1.2.1</p>
+
+<p>Copyright &copy; 2007-2010 Baptiste Lepilleur and The JsonCpp Authors</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h2 id="libxml2">LibXML2</h2>
+
+<p>Version 2.7.8</p>
+
+<p>Except where otherwise noted in the source code (e.g. the files hash.c,
+list.c and the trio files, which are covered by a similar licence but
+with different Copyright notices) all the files are:</p>
+
+<p>Copyright &copy; 1998-2003 Daniel Veillard.  All Rights Reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is fur-
+nished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FIT-
+NESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+DANIEL VEILLARD BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CON-
+NECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<p>Except as contained in this notice, the name of Daniel Veillard shall not
+be used in advertising or otherwise to promote the sale, use or other deal-
+ings in this Software without prior written authorization from him.</p>
+
+<h2 id="material-docs-theme">Material Docs Theme</h2>
+
+<p>Copyright &copy; 2016 Digitalcraftsman <a href="mailto:digitalcraftsman@protonmail.com">digitalcraftsman@protonmail.com</a><br/>
+Copyright &copy; 2016 Martin Donath <a href="mailto:martin.donath@squidfunk.com">martin.donath@squidfunk.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to
+deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.</p>
+
+<h2 id="nanomsg">nanomsg</h2>
+
+<p>Version 0.5-beta</p>
+
+<p>Copyright &copy; 2012-2013 Martin Sustrik  All rights reserved.
+Copyright &copy; 2013 GoPivotal, Inc.  All rights reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &ldquo;Software&rdquo;),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom
+the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.</p>
+
+<p>&ldquo;nanomsg&rdquo; is a trademark of Martin Sustrik</p>
+
+<h2 id="taglib">TagLib</h2>
+
+<p>Version 1.9.1</p>
+
+<p>Copyright &copy; 1995-2015 Scott Wheeler, Lukas Lalinsky, Ismael Orenstein,
+Allan Sandfeld Jensen, Teemu Tervo, Mathias Panzenböck, and Tsuda Kageyu.</p>
+
+<p>Distributed under the <a href="https://www.mozilla.org/en-US/MPL/1.1/">Mozilla Public License v1.1 (MPLv1.1)</a>.</p>
+
+<p>Full text of the license is available here:
+<a href="https://www.gnu.org/licenses/lgpl-3.0.txt">https://www.gnu.org/licenses/lgpl-3.0.txt</a></p>
+
+<p>To receive a copy of the source code for the ZeroMQ library
+distributed with this product under the under the terms of the MPLv1.1
+please contact <a href="mailto:devsupport@izotope.com">devsupport@izotope.com</a>.</p>
+
+<h2 id="tinyxml">TinyXML</h2>
+
+<p>Copyright &copy; 2000-2002 Lee Thomason (www.grinninglizard.com)</p>
+
+<p>This software is provided &lsquo;as-is&rsquo;, without any express or implied
+warranty. In no event will the authors be held liable for any
+damages arising from the use of this software.</p>
+
+<p>Permission is granted to anyone to use this software for any
+purpose, including commercial applications, and to alter it and
+redistribute it freely, subject to the following restrictions:</p>
+
+<ol>
+<li><p>The origin of this software must not be misrepresented; you must
+not claim that you wrote the original software. If you use this
+software in a product, an acknowledgment in the product documentation
+would be appreciated but is not required.</p></li>
+
+<li><p>Altered source versions must be plainly marked as such, and
+must not be misrepresented as being the original software.</p></li>
+
+<li><p>This notice may not be removed or altered from any source
+distribution.</p></li>
+</ol>
+
+<h2 id="tipue-search">Tipue Search</h2>
+
+<p>Copyright &copy; 2017 Tipue</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h2 id="vectorize">vectorize</h2>
+
+<p>Copyright &copy; 2012 Aaron Wishnick.  All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:</p>
+
+<ul>
+<li><p>Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.</p></li>
+
+<li><p>Neither the name of the <organization> nor the
+names of its contributors may be used to endorse or promote products
+derived from this software without specific prior written permission.</p></li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS IS&rdquo; AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="zlib">zlib</h2>
+
+<p>Copyright &copy; 1995-2004 Jean-loup Gailly and Mark Adler.</p>
+
+<p>This software is provided &lsquo;as-is&rsquo;, without any express or implied
+warranty.  In no event will the authors be held liable for any damages
+arising from the use of this software.</p>
+
+<p>Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:</p>
+
+<ol>
+<li><p>The origin of this software must not be misrepresented; you must not
+ claim that you wrote the original software. If you use this software
+ in a product, an acknowledgment in the product documentation would be
+ appreciated but is not required.</p></li>
+
+<li><p>Altered source versions must be plainly marked as such, and must not be
+ misrepresented as being the original software.</p></li>
+
+<li><p>This notice may not be removed or altered from any source distribution.</p></li>
+</ol>
+
+<p>Jean-loup Gailly jloup@gzip.org</p>
+
+<p>Mark Adler madler@alumni.caltech.edu</p>
+
+<hr />
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div>
+  <h1><span class="icon icon-bookmark"></span>  EULA</h1>
+  <p><strong>END USER LICENSE AGREEMENT</strong></p>
+
+<p>READ CAREFULLY THE TERMS AND CONDITIONS OF THIS AGREEMENT (“AGREEMENT”) BEFORE YOU CLICK ON THE “ACCEPT” BUTTON OR OTHERWISE USE THE PRODUCT. CLICKING ON THE “ACCEPT” BUTTON OR OTHERWISE DOWNLOADING, INSTALLING AND/OR USING THE LICENSED SOFTWARE OR ANY TECHNOLOGY, IDEA, DATA AND DATABASES, ALGORITHM OR INFORMATION CONTAINED THEREIN OR PROVIDED THEREWITH (COLLECTIVELY, THE “SOFTWARE”), ESTABLISHES A BINDING AGREEMENT BETWEEN YOU AS THE PERSON LICENSING THE SOFTWARE, EITHER ON BEHALF OF YOURSELF OR ANY THIRD PARTY ENTITY (“YOU” OR &ldquo;LICENSEE&rdquo;) AND IZOTOPE, INC. (“IZOTOPE”), YOU (WHETHER AN INDIVIDUAL OR FORMAL LEGAL ENTITY) (HEREINAFTER REFERRED TO AS “YOU”), AGREE TO BE BOUND BY THE TERMS AND CONDITIONS OF THIS AGREEMENT WITH RESPECT TO YOUR USE OF THE SOFTWARE.</p>
+
+<p>BY INSTALLING AND/OR BY USING THE SOFTWARE, YOU REPRESENT AND WARRANT THAT YOU HAVE THE LEGAL CAPACITY AND AUTHORITY TO ENTER INTO A BINDING AGREEMENT TO ADHERE TO THE TERMS AND CONDITIONS SET FORTH HEREIN, AND THAT THE SOFTWARE WILL BE USED ONLY IN ACCORDANCE WITH THESE TERMS AND CONDITIONS AND WITH ALL APPLICABLE LAWS. IF AN INDIVIDUAL IS REGISTERING OR USING THE SOFTWARE ON BEHALF OF AN ENTITY OR ORGANIZATION, THAT INDIVIDUAL WARRANTS, REPRESENTS, AND COVENANTS TO IZOTOPE THAT SUCH INDIVIDUAL IS DULY AUTHORIZED TO AGREE TO THESE TERMS AND CONDITIONS ON BEHALF OF THE ORGANIZATION AND TO BIND THE ORGANIZATION TO THEM.</p>
+
+<p><strong>LICENSE.</strong> Subject to all the terms and conditions of this Agreement, iZotope hereby grants to Licensee a license to use the Software accompanying this Agreement, as well as any presets and documentation provided, whether in printed, &ldquo;online&rdquo; or electronic form, either on a stand-alone computer or on a network, on any one computer at any one time. If more than one user will be using the Software at any one time, you must obtain from iZotope additional license(s) for each additional concurrent user of the Software. The Software is &ldquo;in use&rdquo; on a computer when loaded into memory (RAM). You may make one copy of the Software solely for backup or archival purposes if all copyright and other notices are reproduced on that copy, or you may copy the Software to a single hard disk provided you keep the original solely for backup or archival purposes. If the Software is an upgrade, you must have a license for the Software from which it is upgraded. If you receive the Software in more than one media, that does not affect the number of licenses you are receiving or any other term of this Agreement.</p>
+
+<p><strong>OWNERSHIP.</strong> The copyrights, patents, trade secrets, trademarks, and all other intellectual property rights in the Software and documentation (including any images, photographs, animations, video, audio, music and text incorporated in them) are owned by iZotope or its suppliers and are protected by the copyright, patent and other laws of the United States and other countries and by international treaty provisions. iZotope retains all rights not expressly granted in this Agreement. You shall not remove any product identification, trademark, copyright or other notices contained in or on the Software.</p>
+
+<p><strong>OTHER RESTRICTIONS.</strong> You may not modify, adapt, decompile, disassemble or otherwise reverse engineer the Software, except to the extent this restriction is expressly prohibited by applicable law, nor may you create derivative works based upon the Software, or to permit third parties to do so. You may not loan, rent, lease, or license the Software, or use the Software as a service bureau, as an application service provider, to perform consulting or training services for a third party or in any commercial time share arrangement, but you may permanently transfer your rights under this Agreement provided you transfer this Agreement, the Software, and all accompanying printed materials and retain no copies, and the recipient agrees to the terms of this Agreement. Any such transfer must include the most recent update and all prior versions.</p>
+
+<p><strong>LIMITED WARRANTY.</strong> iZotope warrants that, for a period of thirty (30) days from the date the Software is made available to you for download, the Software will substantially conform to the applicable user documentation provided with the Software.  Any implied warranties which may exist despite the disclaimer herein will be limited to thirty (30) days (“Warranty Period”). This limited warranty is void if you buy from an unauthorized reseller, you violate the terms of this Agreement, or if the failure of the Software is due to accident, abuse or misapplication. Some states/jurisdictions do not allow limitations on duration of an implied warranty, so this limitation may not apply to you.</p>
+
+<p><strong>YOUR REMEDIES.</strong> iZotope&rsquo;s sole obligation and your exclusive remedy for any breach of warranty will be, at iZotope&rsquo;s sole option, either the return of the purchase price you paid or the repair or replacement of the Software, media and documentation, provided you in all instances return the Software, together with all media and documentation and a copy of your receipt, to the location where you obtained it during the Warranty Period.  Outside the United States, neither these remedies nor any support services are available without proof of purchase from an authorized non-U.S. source.</p>
+
+<p><strong>SUPPORT.</strong> Subject to the limited warranty stated above, and further subject to you not being in violation of any term of this Agreement, iZotope will provide email support for the Software to the original purchaser, for a period of 12 months from the original purchase date.</p>
+
+<p><strong>REGISTRATION INFORMATION.</strong> When you activate the Software, iZotope may collect your name and email address and other contact information you choose to provide.  iZotope may use this information to contact you regarding upgrades and new products.  iZotope does not collect or retain any financial information (such as credit card information).</p>
+
+<p><strong>USAGE INFORMATION.</strong>  When you activate and/or use the Software, iZotope may collect certain information about your computer and your interaction with the Software via the internet (“Usage Information”).  Usage Information is information on how you interact with the Software, and is then utilized by iZotope for statistical analysis for improving the Software, and to provide you with a more relevant user experience.  No direct personal information or audio files/samples are collected as part of this Usage Information. Usage Information is generally collected in the aggregate form, without identifying any user individually, although IP addresses, computer and session ids in relation to purchases and downloads/installations of the Software may be tracked as part of iZotope&rsquo;s customer order review, statistical analysis, and fraud and piracy prevention efforts.  This Usage Information may be sent to an iZotope web or third-party cloud server for storage or further processing by iZotope and/or its partners, subsidiaries or affiliates, including, but not limited to, Google Analytics. The Software includes an opt-out provision if you do not wish to provide iZotope with such Usage Information.</p>
+
+<p><strong>DISCLAIMER.</strong> THE SOFTWARE IS PROVIDED “AS IS.”  TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, EXCEPT FOR THE EXPRESS WARRANTY SET FORTH HEREIN, IZOTOPE DISCLAIMS ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. IZOTOPE DOES NOT WARRANT THAT THE SOFTWARE WILL MEET YOUR REQUIREMENTS OR THAT THE SOFTWARE WILL OPERATE UNINTERRUPTED OR ERROR-FREE. THE WARRANTY AND REMEDIES SET FORTH HEREIN ARE EXCLUSIVE AND IN LIEU OF ALL OTHERS, ORAL OR WRITTEN, EXPRESS OR IMPLIED. No dealer, distributor, agent or employee of iZotope is authorized to change or add to the warranty and remedies set forth herein. Any other software furnished with or accompanying the Software is not warranted by iZotope.</p>
+
+<p><strong>LIMITATION OF LIABILITY.</strong> TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL IZOTOPE BE LIABLE FOR ANY AMOUNTS EXCEEDING THE AMOUNTS RECEIVED FROM YOU FOR YOUR LICENSE OF THE SOFTWARE, REGARDLESS OF THE FORM OF ACTION, AND WHETHER ARISING OUT OF THE USE OF OR INABILITY TO USE THE SOFTWARE (INCLUDING, WITHOUT LIMITATION, DAMAGES OR COSTS FOR LOSS OF PROFITS, BUSINESS, GOODWILL, DATA OR OTHER ASSETS, OR COMPUTER PROGRAMS) EVEN IF IZOTOPE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. Some jurisdictions do not allow exclusion or limitation of liability for consequential or incidental damages, so this limitation may not apply to you.</p>
+
+<p><strong>TERMINATION.</strong> The Agreement will terminate automatically if you fail to comply with any of its terms. On termination, you must immediately cease using and destroy all copies of the Software.</p>
+
+<p><strong>LICENSES TO U.S. GOVERNMENT.</strong> This paragraph applies to all acquisitions of the Software by or for the federal government, or by any prime contractor or subcontractor (at any tier) under any contract, grant, cooperative agreement or other activity with the United States government (collectively, the “Government”). By clicking “I ACCEPT”, you are agreeing on behalf of the Government that the Software and any documentation related thereto are respectively “commercial computer software” and “commercial computer software documentation” within the meaning of the acquisition regulation(s) applicable to this procurement. These terms and conditions alone will govern the Government’s use of the Software and will supersede any conflicting contractual terms or conditions. If the license granted by these terms and conditions fails to meet the Government’s needs or is inconsistent in any respect with Federal law, the Government must return the Software unused to iZotope. Contractor/Manufacturer is iZotope, Inc., 60 Hampshire Street, Cambridge, MA 02139.</p>
+
+<p><strong>GENERAL.</strong> The export of the Software from the United States and re-export from any other country is governed by the U.S. Department of Commerce under the export control laws and regulations of the United States and by any applicable law of such other country, and the Software may not be exported or re-exported in violation of any such laws or regulations. This Agreement is the complete and exclusive statement of the agreement between you and iZotope and supersedes any proposal or prior agreement, oral or written, and any other communications relating to the subject matter of this Agreement. This Agreement will be governed by and interpreted under the laws of the Commonwealth of Massachusetts, United States of America, without regard to conflicts of law provisions. The application of the United Nations Convention of Contracts for the International Sale of Goods is expressly excluded. This Agreement is in the English language only, which language will be controlling in all respects, and all versions of this Agreement in any other language will be for accommodation only.</p>
+
+<p>IN ADDITION, ANY SUCH LEGAL PROCEEDING SHALL NOT BE HEARD BEFORE A JURY. EACH PARTY GIVES UP ANY RIGHT TO A JURY TRIAL. To the extent permitted by law, you agree that you will not bring any class action lawsuit against iZotope or be a representative plaintiff or plaintiff class member in any such lawsuit.</p>
+
+<p>Should you have any questions about this Agreement or iZotope&rsquo;s software use policies, or if you desire to contact iZotope for any other reason, in the U.S., please email sales@izotope.com; outside the U.S., please contact the iZotope representative or affiliate serving your country or, if you are unsure whom to contact, iZotope at the above location.
+Please indicate that you understand and accept these terms by clicking the “Accept” option. If you do not accept these terms, installation will terminate.</p>
+
+<hr />
+
+<p>January 2018</p>
+
+  <br /><hr /><br />
+  <div class="printpagebreak"></div></div>
+    </article>
+    <footer class="footer">
+
+</footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>  <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </main>
+  </body>
+</html>

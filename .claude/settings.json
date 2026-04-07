@@ -1,0 +1,70 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx wrangler*)",
+      "Bash(npm *)",
+      "Bash(node *)",
+      "Bash(curl *)",
+      "Bash(bash smoke_test.sh)",
+      "Bash(bash deploy.sh)",
+      "Bash(bash talespin-finder.sh)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(git *)",
+      "Bash(jq *)",
+      "Bash(python *)",
+      "Bash(pip *)",
+      "Bash(npx prettier*)",
+      "Bash(npx eslint*)",
+      "Bash(black *)",
+      "Bash(isort *)",
+      "Bash(chmod *)",
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "mcp__gabriel*",
+      "mcp__heaven*",
+      "mcp__lucy*",
+      "mcp__dreamchamber_audio*",
+      "mcp__filesystem*",
+      "mcp__memory*",
+      "mcp__cloudflare*"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(*DROP TABLE*)",
+      "Bash(*DELETE FROM noizy_ledger*)",
+      "Bash(*cat .env*)",
+      "Bash(*echo $NOIZY_API_KEY*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/format-and-lint.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/session-start.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

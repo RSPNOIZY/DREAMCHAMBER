@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY — The Living Breathing Time Capsule</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap');
+:root {
+  --void: #010306;
+  --gold: #f5c842;
+  --amber: #e8a020;
+  --cyan: #00e5ff;
+  --violet: #c044d0;
+  --emerald: #2ecc71;
+  --blue: #3d8ef8;
+  --rose: #ff6b9d;
+  --text: #e8e4d8;
+  --dim: rgba(232,228,216,0.35);
+  --mono: 'IBM Plex Mono', monospace;
+  --serif: 'Cormorant Garamond', serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--void); color: var(--text); font-family: var(--mono); overflow-x: hidden; }
+::-webkit-scrollbar { width: 2px; } ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); }
+
+/* ── ENTRY ── */
+#entry {
+  position: fixed; inset: 0; z-index: 900;
+  background: #000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: opacity 2s ease;
+}
+#entry.out { opacity: 0; pointer-events: none; }
+#entry canvas { position: absolute; inset: 0; }
+.entry-content { position: relative; z-index: 2; text-align: center; }
+.entry-rings {
+  position: relative; width: 180px; height: 180px;
+  margin: 0 auto 40px;
+}
+.entry-ring {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 1px solid;
+  animation: ring-breathe 4s ease-in-out infinite;
+}
+.ring-1 { border-color: rgba(245,200,66,0.6); animation-delay: 0s; }
+.ring-2 { inset: 20px; border-color: rgba(245,200,66,0.3); animation-delay: 0.5s; }
+.ring-3 { inset: 40px; border-color: rgba(245,200,66,0.15); animation-delay: 1s; }
+.ring-4 { inset: 60px; border-color: rgba(245,200,66,0.08); animation-delay: 1.5s; }
+.entry-core {
+  position: absolute; inset: 72px;
+  background: radial-gradient(circle, rgba(245,200,66,0.3), rgba(245,200,66,0.05));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  animation: core-pulse 3s ease-in-out infinite;
+}
+@keyframes ring-breathe {
+  0%,100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+@keyframes core-pulse {
+  0%,100% { box-shadow: 0 0 20px rgba(245,200,66,0.3); }
+  50% { box-shadow: 0 0 60px rgba(245,200,66,0.6); }
+}
+.entry-wordmark {
+  font-family: var(--serif);
+  font-size: clamp(32px, 6vw, 64px);
+  font-weight: 300;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.entry-sub {
+  font-size: 10px; letter-spacing: 5px;
+  color: var(--dim); text-transform: uppercase;
+  margin-bottom: 48px;
+}
+.entry-desc {
+  font-family: var(--serif); font-size: 18px;
+  font-style: italic; color: rgba(232,228,216,0.5);
+  margin-bottom: 60px; line-height: 1.8;
+}
+.entry-cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 9px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); border: 1px solid rgba(245,200,66,0.3);
+  padding: 14px 32px; border-radius: 1px;
+  animation: cta-breathe 2.5s ease-in-out infinite;
+}
+@keyframes cta-breathe {
+  0%,100% { border-color: rgba(245,200,66,0.3); box-shadow: 0 0 0 transparent; }
+  50% { border-color: rgba(245,200,66,0.7); box-shadow: 0 0 20px rgba(245,200,66,0.15); }
+}
+
+/* ── MAIN ── */
+#main { opacity: 0; transition: opacity 2s ease; }
+#main.in { opacity: 1; }
+
+/* ── CANVAS LAYER ── */
+#wave-canvas {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+}
+
+/* ── HEADER ── */
+.hdr {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(1,3,6,0.97), transparent);
+}
+.hdr-logo { font-family: var(--serif); font-size: 16px; letter-spacing: 6px; text-transform: uppercase; }
+.hdr-logo em { font-style: normal; color: var(--gold); }
+.hdr-right { font-size: 8px; letter-spacing: 3px; color: var(--dim); text-transform: uppercase; text-align: right; line-height: 2; }
+
+/* ── CAPSULE COUNTER ── */
+.capsule-counter {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex; gap: 32px;
+  background: rgba(1,3,6,0.85);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 12px 32px;
+  backdrop-filter: blur(10px);
+}
+.counter-cell { text-align: center; }
+.counter-num {
+  font-size: 18px; font-weight: 600;
+  color: var(--gold);
+  font-feature-settings: 'tnum';
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.counter-label { font-size: 7px; letter-spacing: 2px; color: var(--dim); text-transform: uppercase; }
+
+/* ── HERO ── */
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 120px 40px 160px;
+}
+.hero-eyebrow { font-size: 8px; letter-spacing: 5px; color: var(--dim); text-transform: uppercase; margin-bottom: 28px; }
+.hero-h1 {
+  font-family: var(--serif);
+  font-size: clamp(52px, 9vw, 130px);
+  font-weight: 300; line-height: 1.0;
+  letter-spacing: 2px; margin-bottom: 16px;
+}
+.hero-h1 em { font-style: italic; color: var(--gold); display: block; }
+.hero-h1 span { display: block; font-size: 0.45em; letter-spacing: 8px; text-transform: uppercase; color: var(--dim); font-family: var(--mono); font-weight: 300; margin-top: 12px; }
+.hero-quote {
+  font-family: var(--serif); font-size: clamp(16px, 2.5vw, 26px);
+  font-style: italic; font-weight: 300;
+  color: rgba(232,228,216,0.55); max-width: 700px;
+  line-height: 1.8; margin: 40px auto 60px;
+}
+.hero-scroll { font-size: 8px; letter-spacing: 4px; color: var(--dim); text-transform: uppercase; animation: scroll-hint 2s ease-in-out infinite; }
+@keyframes scroll-hint { 0%,100% { opacity: 0.3; transform: translateY(0); } 50% { opacity: 0.8; transform: translateY(6px); } }
+
+/* ── STATEMENT BAND ── */
+.statement {
+  position: relative; z-index: 1;
+  padding: 80px 80px;
+  text-align: center;
+  border-top: 1px solid rgba(245,200,66,0.1);
+  border-bottom: 1px solid rgba(245,200,66,0.1);
+  background: linear-gradient(to right, transparent, rgba(245,200,66,0.03), transparent);
+}
+.statement-text {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3.5vw, 46px);
+  font-weight: 300; line-height: 1.5;
+  max-width: 1000px; margin: 0 auto;
+}
+.statement-text strong { color: var(--gold); font-weight: 600; }
+
+/* ── ROOMS JOURNEY ── */
+.journey { position: relative; z-index: 1; padding: 0; }
+
+.room-section {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  position: relative; overflow: hidden;
+  cursor: pointer;
+  transition: all 0.6s ease;
+}
+.room-section:nth-child(even) { direction: rtl; }
+.room-section:nth-child(even) > * { direction: ltr; }
+
+.room-visual {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.room-aura {
+  position: absolute; inset: 0;
+  opacity: 0.08;
+  transition: opacity 0.8s ease;
+}
+.room-section:hover .room-aura { opacity: 0.18; }
+
+.room-rings-wrap {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.rr { /* room ring */
+  position: absolute; border-radius: 50%; border: 1px solid;
+  animation: rr-spin 20s linear infinite;
+}
+.rr:nth-child(2) { animation-duration: 30s; animation-direction: reverse; }
+.rr:nth-child(3) { animation-duration: 15s; }
+@keyframes rr-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.room-num-bg {
+  font-family: var(--serif);
+  font-size: 200px; font-weight: 300;
+  opacity: 0.04; line-height: 1;
+  position: absolute; user-select: none;
+  transition: opacity 0.5s ease;
+}
+.room-section:hover .room-num-bg { opacity: 0.08; }
+.room-glyph-big {
+  font-size: 72px; position: relative; z-index: 2;
+  transition: transform 0.5s ease;
+  filter: drop-shadow(0 0 30px currentColor);
+}
+.room-section:hover .room-glyph-big { transform: scale(1.12); }
+
+.room-content {
+  display: flex; flex-direction: column;
+  justify-content: center; padding: 80px 64px;
+}
+.room-tag-line {
+  font-size: 7px; letter-spacing: 4px;
+  text-transform: uppercase; margin-bottom: 16px;
+  transition: color 0.3s;
+}
+.room-title-big {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 300; line-height: 1.1;
+  margin-bottom: 8px;
+  transition: color 0.3s;
+}
+.room-title-italic {
+  font-family: var(--serif);
+  font-size: clamp(16px, 2vw, 24px);
+  font-style: italic; font-weight: 300;
+  color: var(--dim); margin-bottom: 32px;
+}
+.room-body {
+  font-size: 13px; line-height: 1.9;
+  color: rgba(232,228,216,0.65);
+  max-width: 480px; margin-bottom: 32px;
+}
+.room-pillars {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-bottom: 32px;
+}
+.pillar {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 11px; line-height: 1.6; color: var(--dim);
+}
+.pillar-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  flex-shrink: 0; margin-top: 7px;
+}
+.room-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 8px; letter-spacing: 3px;
+  text-transform: uppercase; padding: 10px 20px;
+  border: 1px solid; border-radius: 1px;
+  transition: all 0.3s;
+}
+.free-badge {
+  font-size: 8px; letter-spacing: 3px; text-transform: uppercase;
+  padding: 6px 16px; border: 1px solid var(--cyan);
+  color: var(--cyan); display: inline-block; margin-top: 8px;
+}
+
+/* ── MANIFESTO ── */
+.manifesto-section {
+  position: relative; z-index: 1;
+  padding: 120px 80px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 50%, rgba(245,200,66,0.04), transparent 70%);
+}
+.manifesto-h {
+  font-size: 8px; letter-spacing: 5px; color: var(--dim);
+  text-transform: uppercase; margin-bottom: 48px;
+}
+.manifesto-big {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 72px);
+  font-weight: 300; font-style: italic;
+  line-height: 1.3; max-width: 1100px;
+  margin: 0 auto 24px;
+}
+.manifesto-big em { color: var(--gold); font-style: italic; }
+.manifesto-attr { font-size: 9px; letter-spacing: 4px; color: var(--dim); text-transform: uppercase; margin-bottom: 80px; }
+
+.three-laws {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; max-width: 1200px; margin: 0 auto;
+}
+.law {
+  padding: 40px 32px; text-align: left;
+  border: 1px solid rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.012);
+  transition: background 0.3s;
+}
+.law:hover { background: rgba(255,255,255,0.025); }
+.law-num { font-size: 48px; font-weight: 300; opacity: 0.12; font-family: var(--serif); line-height: 1; margin-bottom: 16px; }
+.law-title { font-family: var(--serif); font-size: 22px; font-style: italic; margin-bottom: 12px; }
+.law-text { font-size: 12px; line-height: 1.8; color: var(--dim); }
+
+/* ── TIME CAPSULE SECTION ── */
+.capsule-section {
+  position: relative; z-index: 1;
+  padding: 120px 80px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  max-width: 1400px; margin: 0 auto;
+}
+.capsule-h {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 300; margin-bottom: 16px; line-height: 1.1;
+}
+.capsule-h em { color: var(--gold); font-style: italic; }
+.capsule-sub {
+  font-size: 13px; line-height: 1.9;
+  color: var(--dim); max-width: 660px;
+  margin-bottom: 60px;
+}
+.capsule-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 2px; margin-bottom: 60px;
+}
+.cap-cell {
+  padding: 28px 24px;
+  border: 1px solid rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.012);
+  transition: all 0.3s;
+}
+.cap-cell:hover { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1); }
+.cap-cell-num {
+  font-size: 32px; font-weight: 600;
+  line-height: 1; margin-bottom: 6px;
+  font-feature-settings: 'tnum';
+}
+.cap-cell-label { font-size: 9px; letter-spacing: 2px; color: var(--dim); text-transform: uppercase; margin-bottom: 8px; }
+.cap-cell-desc { font-size: 10px; line-height: 1.6; color: rgba(232,228,216,0.4); }
+
+/* ── FOOTER ── */
+.footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 60px 80px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  align-items: end; gap: 40px;
+}
+.footer-mark { font-family: var(--serif); font-size: 40px; font-style: italic; color: var(--gold); letter-spacing: 3px; }
+.footer-honors { text-align: center; font-size: 10px; letter-spacing: 4px; color: var(--dim); text-transform: uppercase; line-height: 2.5; }
+.footer-info { text-align: right; font-size: 9px; letter-spacing: 2px; color: var(--dim); line-height: 2.2; text-transform: uppercase; }
+
+/* ── BATH MODE ── */
+#bath-mode {
+  display: none; position: fixed; inset: 0; z-index: 800;
+  align-items: center; justify-content: center;
+  flex-direction: column; text-align: center; padding: 40px;
+  cursor: pointer;
+  transition: opacity 0.8s ease;
+}
+#bath-mode.open { display: flex; }
+#bath-mode canvas { position: absolute; inset: 0; }
+.bath-content { position: relative; z-index: 2; }
+.bath-glyph { font-size: 64px; margin-bottom: 24px; animation: bath-glyph-float 3s ease-in-out infinite; }
+@keyframes bath-glyph-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.bath-room-name { font-family: var(--serif); font-size: clamp(36px,6vw,80px); font-weight: 300; line-height: 1.1; margin-bottom: 12px; }
+.bath-room-italic { font-family: var(--serif); font-size: clamp(16px,2.5vw,28px); font-style: italic; color: rgba(232,228,216,0.5); margin-bottom: 40px; }
+.bath-body { font-size: 14px; line-height: 1.9; color: rgba(232,228,216,0.7); max-width: 600px; margin: 0 auto 40px; }
+.bath-close { font-size: 8px; letter-spacing: 4px; text-transform: uppercase; color: rgba(232,228,216,0.3); border: 1px solid rgba(255,255,255,0.1); padding: 10px 24px; transition: all 0.2s; }
+.bath-close:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<!-- ENTRY -->
+<div id="entry" onclick="enterMuseum()">
+  <canvas id="entry-canvas"></canvas>
+  <div class="entry-content">
+    <div class="entry-rings">
+      <div class="entry-ring ring-1"></div>
+      <div class="entry-ring ring-2"></div>
+      <div class="entry-ring ring-3"></div>
+      <div class="entry-ring ring-4"></div>
+      <div class="entry-core">♪</div>
+    </div>
+    <div class="entry-wordmark">NOIZY</div>
+    <div class="entry-sub">The Music World & Museum · MC96ECO Universe</div>
+    <div class="entry-desc">A living breathing time capsule.<br>The record of human creativity at the moment it chose to survive.</div>
+    <div class="entry-cta">Enter the World ✦</div>
+  </div>
+</div>
+
+<!-- BATH MODE -->
+<div id="bath-mode">
+  <canvas id="bath-canvas"></canvas>
+  <div class="bath-content">
+    <div class="bath-glyph" id="bath-glyph"></div>
+    <div class="bath-room-name" id="bath-name"></div>
+    <div class="bath-room-italic" id="bath-italic"></div>
+    <div class="bath-body" id="bath-body"></div>
+    <div class="bath-close" onclick="closeBath(event)">← Return to the World</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+  <canvas id="wave-canvas"></canvas>
+
+  <div class="hdr">
+    <div class="hdr-logo">NOIZY<em>.</em>ai · The Music World</div>
+    <div class="hdr-right">Living Breathing Time Capsule<br>Est. 2026 · Ottawa · Guild Member #001</div>
+  </div>
+
+  <!-- CAPSULE COUNTER -->
+  <div class="capsule-counter">
+    <div class="counter-cell"><div class="counter-num" id="cnt-voices">0</div><div class="counter-label">Voices Sealed</div></div>
+    <div class="counter-cell"><div class="counter-num" id="cnt-cultures">0</div><div class="counter-label">Cultures Preserved</div></div>
+    <div class="counter-cell"><div class="counter-num" id="cnt-royalties">$0</div><div class="counter-label">Paid Today</div></div>
+    <div class="counter-cell"><div class="counter-num" id="cnt-children">0</div><div class="counter-label">Children Reached</div></div>
+    <div class="counter-cell"><div class="counter-num">500</div><div class="counter-label">Year Vision</div></div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">DreamChamber · Filed 2026-03-14 · RSP_001</div>
+    <h1 class="hero-h1">
+      The Music World
+      <em>&amp; Museum</em>
+      <span>A Place to Bathe in Art · Music · Sound</span>
+    </h1>
+    <p class="hero-quote">"Not a streaming platform. Not a playlist. Not an algorithm.<br>A world you enter, inhabit, and carry with you when you leave."</p>
+    <div class="hero-scroll">Scroll to enter the rooms ↓</div>
+  </div>
+
+  <!-- STATEMENT -->
+  <div class="statement">
+    <div class="statement-text">
+      While the cannibal platform turns art into wallpaper,<br>
+      <strong>the NOIZY Music World turns the world into art.</strong><br>
+      Every sound consented. Every artist paid. Every voice remembered. <strong>Free to enter. Forever.</strong>
+    </div>
+  </div>
+
+  <!-- ROOMS JOURNEY -->
+  <div class="journey">
+
+    <!-- ROOM 1 -->
+    <div class="room-section" onclick="bathMode('voice-hall')" style="background:linear-gradient(135deg, rgba(245,200,66,0.03) 0%, transparent 60%)">
+      <div class="room-visual">
+        <div class="room-aura" style="background:radial-gradient(circle, rgba(245,200,66,0.4), transparent 70%)"></div>
+        <div class="room-num-bg" style="color:var(--gold)">I</div>
+        <div class="room-rings-wrap">
+          <div class="rr" style="width:260px;height:260px;border-color:rgba(245,200,66,0.15)"></div>
+          <div class="rr" style="width:190px;height:190px;border-color:rgba(245,200,66,0.25)"></div>
+          <div class="rr" style="width:120px;height:120px;border-color:rgba(245,200,66,0.4)"></div>
+          <div class="room-glyph-big" style="color:var(--gold)">🎙</div>
+        </div>
+      </div>
+      <div class="room-content">
+        <div class="room-tag-line" style="color:var(--gold)">Room One · HVS™ Certified</div>
+        <div class="room-title-big">The Voice Hall</div>
+        <div class="room-title-italic">Where every voice is a civilization</div>
+        <div class="room-body">Every Guild artist has a world here. Not a profile. Not a playlist. A room within the room — their voice, their story, their culture, their consent woven into the architecture. You are not a listener. You are a guest in someone's home.</div>
+        <div class="room-pillars">
+          <div class="pillar"><div class="pillar-dot" style="background:var(--gold)"></div><span>Every HVS™ certified voice sealed with Consent Key + C2PA + AudioSeal</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--gold)"></div><span>Seven Never Clauses on every wall — the artist's declaration of self</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--gold)"></div><span>Royalty fires the moment you enter · 75/25 · Same day · Direct</span></div>
+        </div>
+        <div class="room-badge" style="border-color:rgba(245,200,66,0.4);color:var(--gold)">Enter the Hall →</div>
+      </div>
+    </div>
+
+    <!-- ROOM 2 -->
+    <div class="room-section" onclick="bathMode('cultural-archive')" style="background:linear-gradient(135deg, rgba(46,204,113,0.03) 0%, transparent 60%)">
+      <div class="room-visual">
+        <div class="room-aura" style="background:radial-gradient(circle, rgba(46,204,113,0.4), transparent 70%)"></div>
+        <div class="room-num-bg" style="color:var(--emerald)">II</div>
+        <div class="room-rings-wrap">
+          <div class="rr" style="width:260px;height:260px;border-color:rgba(46,204,113,0.15)"></div>
+          <div class="rr" style="width:190px;height:190px;border-color:rgba(46,204,113,0.25)"></div>
+          <div class="rr" style="width:120px;height:120px;border-color:rgba(46,204,113,0.4)"></div>
+          <div class="room-glyph-big" style="color:var(--emerald)">🌍</div>
+        </div>
+      </div>
+      <div class="room-content">
+        <div class="room-tag-line" style="color:var(--emerald)">Room Two · Sacred · Community Governed</div>
+        <div class="room-title-big">The Cultural Archive</div>
+        <div class="room-title-italic">Where endangered civilizations live</div>
+        <div class="room-body">Every tradition almost lost. Every language with twelve remaining speakers. Every oral history that exists nowhere except in the memory of one living elder. The Cultural Resurrection Engine preserved them here — with full community consent. This room is not a museum of dead things. It is alive.</div>
+        <div class="room-pillars">
+          <div class="pillar"><div class="pillar-dot" style="background:var(--emerald)"></div><span>Aboriginal Songlines · West African Griot · Tibetan Overtone · Amazonian Icaros</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--emerald)"></div><span>Community holds the key — not individuals, not NOIZY</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--emerald)"></div><span>Royalties flow to source community in trust</span></div>
+        </div>
+        <div class="room-badge" style="border-color:rgba(46,204,113,0.4);color:var(--emerald)">Enter the Archive →</div>
+      </div>
+    </div>
+
+    <!-- ROOM 3 -->
+    <div class="room-section" onclick="bathMode('living-score')" style="background:linear-gradient(135deg, rgba(192,68,208,0.03) 0%, transparent 60%)">
+      <div class="room-visual">
+        <div class="room-aura" style="background:radial-gradient(circle, rgba(192,68,208,0.4), transparent 70%)"></div>
+        <div class="room-num-bg" style="color:var(--violet)">III</div>
+        <div class="room-rings-wrap">
+          <div class="rr" style="width:260px;height:260px;border-color:rgba(192,68,208,0.15)"></div>
+          <div class="rr" style="width:190px;height:190px;border-color:rgba(192,68,208,0.25)"></div>
+          <div class="rr" style="width:120px;height:120px;border-color:rgba(192,68,208,0.4)"></div>
+          <div class="room-glyph-big" style="color:var(--violet)">〰</div>
+        </div>
+      </div>
+      <div class="room-content">
+        <div class="room-tag-line" style="color:var(--violet)">Room Three · Adaptive · Real-Time</div>
+        <div class="room-title-big">The Living Score Chamber</div>
+        <div class="room-title-italic">Where music responds to you</div>
+        <div class="room-body">Not a composition. A responsive environment. GABRIEL reads your chosen state. The music surrounding you is built in real time from consented Guild voices — tuned to your nervous system. Not a playlist. A new composition, for you, right now. When you leave, every artist who contributed gets a royalty event.</div>
+        <div class="room-pillars">
+          <div class="pillar"><div class="pillar-dot" style="background:var(--violet)"></div><span>Polyvagal-tuned · Adaptive tempo · Adaptive key · Adaptive instrumentation</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--violet)"></div><span>Haptic delivery option · Bone conduction compatible</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--violet)"></div><span>Every session logged to Provenance Ledger · Every artist paid</span></div>
+        </div>
+        <div class="room-badge" style="border-color:rgba(192,68,208,0.4);color:var(--violet)">Enter the Chamber →</div>
+      </div>
+    </div>
+
+    <!-- ROOM 4 -->
+    <div class="room-section" onclick="bathMode('healing-pool')" style="background:linear-gradient(135deg, rgba(0,229,255,0.03) 0%, transparent 60%)">
+      <div class="room-visual">
+        <div class="room-aura" style="background:radial-gradient(circle, rgba(0,229,255,0.35), transparent 70%)"></div>
+        <div class="room-num-bg" style="color:var(--cyan)">IV</div>
+        <div class="room-rings-wrap">
+          <div class="rr" style="width:260px;height:260px;border-color:rgba(0,229,255,0.15)"></div>
+          <div class="rr" style="width:190px;height:190px;border-color:rgba(0,229,255,0.25)"></div>
+          <div class="rr" style="width:120px;height:120px;border-color:rgba(0,229,255,0.4)"></div>
+          <div class="room-glyph-big" style="color:var(--cyan)">◎</div>
+        </div>
+      </div>
+      <div class="room-content">
+        <div class="room-tag-line" style="color:var(--cyan)">Room Four · Free · Always · No Exceptions</div>
+        <div class="room-title-big">The Healing Pool</div>
+        <div class="room-title-italic">Where sound is medicine</div>
+        <div class="room-body">Built on peer-reviewed neuroacoustic science. Artist-created, consent-locked audio produces measurably different neurological responses than algorithmic generation. This room proves it. Anxiety. Grief. Overwhelm. Autism spectrum regulation. Trauma processing. You choose a state to move toward. The Pool surrounds you. What happens belongs to you.</div>
+        <div class="room-pillars">
+          <div class="pillar"><div class="pillar-dot" style="background:var(--cyan)"></div><span>NAI research — Dr. Brien Benoit, Ottawa Civic Hospital</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--cyan)"></div><span>No ads · No data extraction · No algorithm · No retention optimization</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--cyan)"></div><span>Funded by institutional licensing — free to families forever</span></div>
+        </div>
+        <div class="free-badge">Free. Always. No exceptions.</div>
+      </div>
+    </div>
+
+    <!-- ROOM 5 -->
+    <div class="room-section" onclick="bathMode('legacy-vault')" style="background:linear-gradient(135deg, rgba(232,160,32,0.03) 0%, transparent 60%)">
+      <div class="room-visual">
+        <div class="room-aura" style="background:radial-gradient(circle, rgba(232,160,32,0.4), transparent 70%)"></div>
+        <div class="room-num-bg" style="color:var(--amber)">V</div>
+        <div class="room-rings-wrap">
+          <div class="rr" style="width:260px;height:260px;border-color:rgba(232,160,32,0.15)"></div>
+          <div class="rr" style="width:190px;height:190px;border-color:rgba(232,160,32,0.25)"></div>
+          <div class="rr" style="width:120px;height:120px;border-color:rgba(232,160,32,0.4)"></div>
+          <div class="room-glyph-big" style="color:var(--amber)">🐟</div>
+        </div>
+      </div>
+      <div class="room-content">
+        <div class="room-tag-line" style="color:var(--amber)">Room Five · The Origin · THE_AQUARIUM</div>
+        <div class="room-title-big">The Legacy Vault</div>
+        <div class="room-title-italic">34TB · 40 Years · Fish Music Inc. Est. 1996</div>
+        <div class="room-body">Ed Edd n Eddy. Dragon Tales. Johnny Test. Transformers. Barbie films. 14 years as Audio Director at Fuel Industries. The Q107 Homegrown win. The sessions that became reference. The failures that became wisdom. Not a catalog. A life's work made permanently visible — with the real story behind every sound.</div>
+        <div class="room-pillars">
+          <div class="pillar"><div class="pillar-dot" style="background:var(--amber)"></div><span>Every piece has Rob's note — not press copy, the real story</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--amber)"></div><span>The proof that the NOIZY vision is earned, not imagined</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--amber)"></div><span>RSP_001 is Guild Member #001 because the proof required 40 years</span></div>
+        </div>
+        <div class="room-badge" style="border-color:rgba(232,160,32,0.4);color:var(--amber)">Enter the Vault →</div>
+      </div>
+    </div>
+
+    <!-- ROOM 6 -->
+    <div class="room-section" onclick="bathMode('dreamchamber')" style="background:linear-gradient(135deg, rgba(61,142,248,0.03) 0%, transparent 60%)">
+      <div class="room-visual">
+        <div class="room-aura" style="background:radial-gradient(circle, rgba(61,142,248,0.35), transparent 70%)"></div>
+        <div class="room-num-bg" style="color:var(--blue)">VI</div>
+        <div class="room-rings-wrap">
+          <div class="rr" style="width:260px;height:260px;border-color:rgba(61,142,248,0.15)"></div>
+          <div class="rr" style="width:190px;height:190px;border-color:rgba(61,142,248,0.25)"></div>
+          <div class="rr" style="width:120px;height:120px;border-color:rgba(61,142,248,0.4)"></div>
+          <div class="room-glyph-big" style="color:var(--blue)">◈</div>
+        </div>
+      </div>
+      <div class="room-content">
+        <div class="room-tag-line" style="color:var(--blue)">Room Six · Live Sessions · The Process Visible</div>
+        <div class="room-title-big">The DreamChamber</div>
+        <div class="room-title-italic">Where imagination becomes real — visibly</div>
+        <div class="room-body">Not a performance. Not a presentation. The actual creative work happening with nothing hidden. GABRIEL in action. 35% voice. 65% AI. The iteration. The surprise. The moment when something becomes something else. The creative process has always been invisible. Not here.</div>
+        <div class="room-pillars">
+          <div class="pillar"><div class="pillar-dot" style="background:var(--blue)"></div><span>Live sessions — the conversation between human and machine in real time</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--blue)"></div><span>GORUNFREE protocol visible: 1-click from imagination to reality</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--blue)"></div><span>The process is the exhibit</span></div>
+        </div>
+        <div class="room-badge" style="border-color:rgba(61,142,248,0.4);color:var(--blue)">Enter the Chamber →</div>
+      </div>
+    </div>
+
+    <!-- ROOM 7 -->
+    <div class="room-section" onclick="bathMode('childrens-garden')" style="background:linear-gradient(135deg, rgba(255,107,157,0.03) 0%, transparent 60%)">
+      <div class="room-visual">
+        <div class="room-aura" style="background:radial-gradient(circle, rgba(255,107,157,0.4), transparent 70%)"></div>
+        <div class="room-num-bg" style="color:var(--rose)">VII</div>
+        <div class="room-rings-wrap">
+          <div class="rr" style="width:260px;height:260px;border-color:rgba(255,107,157,0.15)"></div>
+          <div class="rr" style="width:190px;height:190px;border-color:rgba(255,107,157,0.25)"></div>
+          <div class="rr" style="width:120px;height:120px;border-color:rgba(255,107,157,0.4)"></div>
+          <div class="room-glyph-big" style="color:var(--rose)">✦</div>
+        </div>
+      </div>
+      <div class="room-content">
+        <div class="room-tag-line" style="color:var(--rose)">Room Seven · Soul Mission · Inspired by Nims</div>
+        <div class="room-title-big">The Children's Garden</div>
+        <div class="room-title-italic">Where every child can feel music</div>
+        <div class="room-body">No barriers. No subscription. Deaf children. Autism spectrum families. Haptic instruments. Visual sound rendered as color and movement. Frequency-to-vibration mapping. GABRIEL adapts to the child's responses — not their data, their engagement. No algorithm optimizing for retention. Just wonder.</div>
+        <div class="room-pillars">
+          <div class="pillar"><div class="pillar-dot" style="background:var(--rose)"></div><span>Haptic + bone conduction · Visual music · Tactile instruments</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--rose)"></div><span>Inspired by Nims — Mike Nemesvary, quadriplegic world champion</span></div>
+          <div class="pillar"><div class="pillar-dot" style="background:var(--rose)"></div><span>Free. No exceptions. Funded by those who love these children.</span></div>
+        </div>
+        <div class="room-badge" style="border-color:rgba(255,107,157,0.4);color:var(--rose)">Enter the Garden →</div>
+      </div>
+    </div>
+
+  </div><!-- /journey -->
+
+  <!-- MANIFESTO -->
+  <div class="manifesto-section">
+    <div class="manifesto-h">The Living Breathing Time Capsule · The Declaration</div>
+    <div class="manifesto-big">
+      "Poop sinks. <em>Love rises.</em><br>The humans were lifted."
+    </div>
+    <div class="manifesto-attr">RSP_001 · Ottawa · 2026 · GORUNFREE</div>
+
+    <div class="three-laws">
+      <div class="law">
+        <div class="law-num" style="color:var(--gold)">I</div>
+        <div class="law-title" style="color:var(--gold)">Not Consumption. Immersion.</div>
+        <div class="law-text">The cannibal gives you a skip button. The Music World gives you a door. Water doesn't ask your permission to surround you. Neither does this.</div>
+      </div>
+      <div class="law">
+        <div class="law-num" style="color:var(--emerald)">II</div>
+        <div class="law-title" style="color:var(--emerald)">Not Data. Memory.</div>
+        <div class="law-text">Every artist here is remembered. The creative process. The cultural origin. The consent. The story. The Music World has memory the cannibal ate and forgot.</div>
+      </div>
+      <div class="law">
+        <div class="law-num" style="color:var(--cyan)">III</div>
+        <div class="law-title" style="color:var(--cyan)">Not Free to Take. Free to Enter.</div>
+        <div class="law-text">Free to visit. The artists are paid every time you're here. Enterprise licensing funds free access. The economics of dignity, made to work.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIME CAPSULE -->
+  <div class="capsule-section">
+    <div class="capsule-h">A <em>Living Breathing</em><br>Time Capsule</div>
+    <div class="capsule-sub">The first time capsule you can live inside while it's being filled. Growing every day. Breathing in real time. Preserved forever. Open now.</div>
+    <div class="capsule-grid">
+      <div class="cap-cell">
+        <div class="cap-cell-num" style="color:var(--gold)" id="cap-voices">1</div>
+        <div class="cap-cell-label">Voices Sealed</div>
+        <div class="cap-cell-desc">Every HVS™ certified voice in the Guild — consented, watermarked, permanent</div>
+      </div>
+      <div class="cap-cell">
+        <div class="cap-cell-num" style="color:var(--emerald)">∞</div>
+        <div class="cap-cell-label">Years of Protection</div>
+        <div class="cap-cell-desc">70 years post-death per Voice Estate, then Cultural Archive. The covenant outlasts the person.</div>
+      </div>
+      <div class="cap-cell">
+        <div class="cap-cell-num" style="color:var(--violet)">34TB</div>
+        <div class="cap-cell-label">THE_AQUARIUM</div>
+        <div class="cap-cell-desc">The seed archive. 40 years of Rob Plowman's professional work. The proof of concept.</div>
+      </div>
+      <div class="cap-cell">
+        <div class="cap-cell-num" style="color:var(--cyan)">500</div>
+        <div class="cap-cell-label">Year Vision</div>
+        <div class="cap-cell-desc">Seven epochs. 2026 to 2526. The DreamChamber Codex maps all of it. We are in Epoch V.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-mark">GORUNFREE.</div>
+    <div class="footer-honors">
+      Honor · Respect · Gather · Nurture · Preserve<br>
+      <span style="font-size:8px;opacity:0.4">The Platform That Lifted the Humans</span>
+    </div>
+    <div class="footer-info">
+      RSP_001 · Fish Music Inc. Est. 1996<br>
+      NOIZY.ai · Ottawa · 2026<br>
+      Guild Member #001 · HVS™ Founding Artist
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+// ── ENTRY CANVAS ────────────────────────────────────────────────
+const ec = document.getElementById('entry-canvas');
+const ex = ec.getContext('2d');
+let ew = ec.width = window.innerWidth, eh = ec.height = window.innerHeight;
+
+function drawEntryBg() {
+  ex.fillStyle = 'rgba(0,0,0,0.06)';
+  ex.fillRect(0, 0, ew, eh);
+  const t = Date.now() * 0.001;
+  for (let i = 0; i < 3; i++) {
+    const r = 100 + i * 80 + Math.sin(t * 0.3 + i) * 20;
+    const grd = ex.createRadialGradient(ew/2, eh/2, r*0.3, ew/2, eh/2, r);
+    grd.addColorStop(0, `rgba(245,200,66,${0.04 - i*0.01})`);
+    grd.addColorStop(1, 'transparent');
+    ex.fillStyle = grd;
+    ex.beginPath();
+    ex.arc(ew/2, eh/2, r, 0, Math.PI*2);
+    ex.fill();
+  }
+  requestAnimationFrame(drawEntryBg);
+}
+drawEntryBg();
+
+// ── ENTER ───────────────────────────────────────────────────────
+function enterMuseum() {
+  document.getElementById('entry').classList.add('out');
+  document.getElementById('main').classList.add('in');
+  setTimeout(() => {
+    document.getElementById('entry').style.display = 'none';
+    initWaveCanvas();
+    animateCounters();
+  }, 1500);
+}
+
+// ── WAVE CANVAS ─────────────────────────────────────────────────
+let wc, wx, wW, wH, wParticles = [], wWaves = [];
+function initWaveCanvas() {
+  wc = document.getElementById('wave-canvas');
+  wx = wc.getContext('2d');
+  wW = wc.width = window.innerWidth;
+  wH = wc.height = window.innerHeight;
+  window.addEventListener('resize', () => { wW = wc.width = window.innerWidth; wH = wc.height = window.innerHeight; });
+  const cols = ['#f5c842','#2ecc71','#c044d0','#00e5ff','#3d8ef8','#ff6b9d','#e8a020'];
+  for (let i = 0; i < 100; i++) {
+    wParticles.push({ x: Math.random()*wW, y: Math.random()*wH, vx: (Math.random()-.5)*.15, vy: (Math.random()-.5)*.15, r: Math.random()*1.5+.3, color: cols[Math.floor(Math.random()*cols.length)], a: Math.random()*.3+.05, ph: Math.random()*Math.PI*2 });
+  }
+  for (let i = 0; i < 6; i++) {
+    wWaves.push({ y: .15+i*.13, amp: 15+Math.random()*35, freq: .002+Math.random()*.004, speed: .0002+Math.random()*.0003, ph: Math.random()*Math.PI*2, color: cols[i], op: .015+Math.random()*.02 });
+  }
+  drawWave();
+}
+
+function drawWave() {
+  wx.fillStyle = 'rgba(1,3,6,0.12)';
+  wx.fillRect(0, 0, wW, wH);
+  const t = Date.now() * .001;
+  wWaves.forEach(w => {
+    w.ph += w.speed;
+    wx.beginPath();
+    wx.moveTo(0, w.y*wH);
+    for (let x = 0; x <= wW; x += 3) {
+      wx.lineTo(x, w.y*wH + Math.sin(x*w.freq + w.ph)*w.amp + Math.sin(x*w.freq*.5 + w.ph*.7)*w.amp*.4);
+    }
+    wx.strokeStyle = w.color + Math.round(w.op*255).toString(16).padStart(2,'0');
+    wx.lineWidth = 1;
+    wx.stroke();
+  });
+  wParticles.forEach(p => {
+    p.x += p.vx; p.y += p.vy; p.ph += .015;
+    if (p.x < 0) p.x = wW; if (p.x > wW) p.x = 0;
+    if (p.y < 0) p.y = wH; if (p.y > wH) p.y = 0;
+    const a = p.a * (.6 + .4*Math.sin(p.ph));
+    wx.beginPath(); wx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+    wx.fillStyle = p.color + Math.round(a*255).toString(16).padStart(2,'0');
+    wx.fill();
+  });
+  requestAnimationFrame(drawWave);
+}
+
+// ── COUNTERS ────────────────────────────────────────────────────
+function animateCounters() {
+  const targets = { voices: 1, cultures: 247, royalties: 4821, children: 312 };
+  let start = null;
+  function step(ts) {
+    if (!start) start = ts;
+    const p = Math.min((ts-start)/2500, 1);
+    const e = 1 - Math.pow(1-p, 3);
+    document.getElementById('cnt-voices').textContent = Math.round(e * targets.voices);
+    document.getElementById('cnt-cultures').textContent = Math.round(e * targets.cultures);
+    document.getElementById('cnt-royalties').textContent = '$' + Math.round(e * targets.royalties).toLocaleString();
+    document.getElementById('cnt-children').textContent = Math.round(e * targets.children);
+    document.getElementById('cap-voices').textContent = Math.round(e * targets.voices);
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ── BATH MODE ───────────────────────────────────────────────────
+let bathCtx, bathCanvas;
+const bathData = {
+  'voice-hall': { glyph:'🎙', name:'The Voice Hall', italic:'Where every voice is a civilization', color:'#f5c842',
+    body:`You have entered a world where every sound was made by a living human being who chose to share it.<br><br>The Voice Hall is not organized by genre, by plays, by algorithm. It is organized by human beings. Each room within this room belongs to one artist — their voice, their story, their cultural origin, their consent, their Seven Never Clauses on the wall as declaration.<br><br>You are not a listener here. You are a guest in someone's home.<br><br>The artist is paid the moment you enter. 75/25. Same day. Direct. The architecture remembers what the cannibal forgot.`},
+  'cultural-archive': { glyph:'🌍', name:'The Cultural Archive', italic:'Where endangered civilizations live', color:'#2ecc71',
+    body:`Sixty-five thousand years of Aboriginal Songlines. The West African Griot tradition — oral history alive in performance. Tibetan Overtone Singing. Amazonian Icaros. Tuning systems suppressed by colonization. Languages with twelve remaining speakers.<br><br>The Cultural Resurrection Engine rebuilt what was almost lost — guided by the communities who hold the knowledge, never by NOIZY alone. Community holds the key. The royalties flow to the source community in trust. No individual can license what belongs to a people.<br><br>This is not a museum of dead things. Every recording here is still alive. Every tradition is still in practice. This room is proof that it can survive.`},
+  'living-score': { glyph:'〰', name:'The Living Score Chamber', italic:'Where music responds to you', color:'#c044d0',
+    body:`There is no track playing. There is no playlist queued.<br><br>GABRIEL is reading your chosen state — with your permission, with full transparency. From the Guild's consented voice and instrument library, a composition is assembling itself right now. For you. Only for you. It will never be assembled in exactly this way again.<br><br>The polyvagal frequencies are tuning. The tempo is finding your nervous system. The key is choosing itself based on your cultural familiarity.<br><br>When you leave, every artist whose sound contributed will receive a royalty event. You bathed in something real. The real people who made it were paid.`},
+  'healing-pool': { glyph:'◎', name:'The Healing Pool', italic:'Where sound is medicine', color:'#00e5ff',
+    body:`This room is free. It will always be free. No exceptions.<br><br>The neuroacoustic research — published simultaneously from Ottawa, Seoul, and Nairobi — proved that artist-created, consent-locked audio produces measurably different neurological responses than algorithmic generation. The human signature in sound is real. Detectable. Healing in a way its synthetic counterpart is not.<br><br>Choose a state you want to move toward. The Pool surrounds you in the appropriate sonic environment. Polyvagal tuning. Bone conduction optional. Haptic surface available.<br><br>You are never told what to feel. The sound creates conditions. What happens belongs to you.<br><br>Inspired by Nims — Mike Nemesvary — who showed the world what a human being can do with no limits.`},
+  'legacy-vault': { glyph:'🐟', name:'The Legacy Vault', italic:'THE_AQUARIUM · 34TB · 40 Years', color:'#e8a020',
+    body:`Fish Music Inc. Est. 1996. Ottawa.<br><br>Ed Edd n Eddy. Dragon Tales. Johnny Test. Transformers. Barbie films. Fourteen years as Audio Director at Fuel Industries — 150 people, major global clients — until the company went bankrupt.<br><br>In 2024, a C3 spinal injury with permanent nerve damage. Most people would stop. Rob built a new operating system for his mind. GORUNFREE. 35% voice. 65% AI. Zero friction between imagination and execution.<br><br>Every piece in this vault has Rob's note — not liner notes, not press copy. The real story. What was happening in his life. What the brief was. What it became. What he learned.<br><br>This is the proof the vision is not theoretical. It is earned.`},
+  'dreamchamber': { glyph:'◈', name:'The DreamChamber', italic:'Where imagination becomes real — visibly', color:'#3d8ef8',
+    body:`No limits. No boundaries. Then we land safely back on earth.<br><br>This is where the work happens. Not the finished work — the working. The actual creative process, live, with nothing hidden. GABRIEL and the human in conversation. The iteration. The wrong turn that became the right turn. The moment something becomes something else entirely.<br><br>The creative process has always been invisible. The finished piece presented as if it arrived whole, perfect, effortless. The DreamChamber reverses that. The process is the exhibit.<br><br>35% voice. 65% AI. 1-click execution. Zero friction between imagination and reality.<br><br>That is GORUNFREE. Watch it happen.`},
+  'childrens-garden': { glyph:'✦', name:"The Children's Garden", italic:'Where every child can feel music', color:'#ff6b9d',
+    body:`Every child deserves to feel music.<br><br>Not hear. Feel. Through the body. Through vibration. Through frequency mapped to haptic actuators. Through visual sound rendered as color and movement for children who are deaf or hard of hearing.<br><br>No algorithm optimizing for retention. No data extracted. No ad adjacent. No subscription. GABRIEL adapts to the child's responses — not their data, their engagement. What makes them lean in. What makes them settle. What makes their face change.<br><br>If you are a child: wonder.<br>If you are a parent: relief.<br>If you are a visitor watching: the clearest possible demonstration of what "technology that lifts humans" actually means.<br><br>Inspired by Nims. Built for every child he would have loved.`}
+};
+
+function bathMode(id) {
+  const d = bathData[id];
+  if (!d) return;
+  const bm = document.getElementById('bath-mode');
+  bm.style.background = 'rgba(1,3,6,0.96)';
+  document.getElementById('bath-glyph').textContent = d.glyph;
+  document.getElementById('bath-name').textContent = d.name;
+  document.getElementById('bath-name').style.color = d.color;
+  document.getElementById('bath-italic').textContent = d.italic;
+  document.getElementById('bath-body').innerHTML = d.body;
+  bm.classList.add('open');
+  initBathCanvas(d.color);
+}
+
+function initBathCanvas(color) {
+  if (!bathCanvas) {
+    bathCanvas = document.getElementById('bath-canvas');
+    bathCtx = bathCanvas.getContext('2d');
+  }
+  bathCanvas.width = window.innerWidth;
+  bathCanvas.height = window.innerHeight;
+  let bParticles = [];
+  const hex = color;
+  for (let i = 0; i < 80; i++) {
+    bParticles.push({ x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight, vx: (Math.random()-.5)*.3, vy: (Math.random()-.5)*.3, r: Math.random()*3+.5, a: Math.random()*.4+.05, ph: Math.random()*Math.PI*2 });
+  }
+  let bWaves = [];
+  for (let i = 0; i < 8; i++) {
+    bWaves.push({ y: .1+i*.1, amp: 20+Math.random()*60, freq: .001+Math.random()*.005, sp: .0001+Math.random()*.0004, ph: Math.random()*Math.PI*2 });
+  }
+  let animId;
+  function drawBath() {
+    if (!document.getElementById('bath-mode').classList.contains('open')) { cancelAnimationFrame(animId); return; }
+    bathCtx.fillStyle = 'rgba(1,3,6,0.08)';
+    bathCtx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+    bWaves.forEach(w => {
+      w.ph += w.sp;
+      bathCtx.beginPath();
+      bathCtx.moveTo(0, w.y*window.innerHeight);
+      for (let x = 0; x <= window.innerWidth; x += 4) {
+        bathCtx.lineTo(x, w.y*window.innerHeight + Math.sin(x*w.freq + w.ph)*w.amp);
+      }
+      bathCtx.strokeStyle = hex + '22';
+      bathCtx.lineWidth = 1.5;
+      bathCtx.stroke();
+    });
+    bParticles.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.ph += .02;
+      if (p.x<0) p.x=window.innerWidth; if (p.x>window.innerWidth) p.x=0;
+      if (p.y<0) p.y=window.innerHeight; if (p.y>window.innerHeight) p.y=0;
+      const a = p.a*(.5+.5*Math.sin(p.ph));
+      bathCtx.beginPath(); bathCtx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      bathCtx.fillStyle = hex + Math.round(a*255).toString(16).padStart(2,'0');
+      bathCtx.fill();
+    });
+    animId = requestAnimationFrame(drawBath);
+  }
+  cancelAnimationFrame(animId);
+  drawBath();
+}
+
+function closeBath(e) {
+  if (e) e.stopPropagation();
+  document.getElementById('bath-mode').classList.remove('open');
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBath(); });
+</script>
+</body>
+</html>

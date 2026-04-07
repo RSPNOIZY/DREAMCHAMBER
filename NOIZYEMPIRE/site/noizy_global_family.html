@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE GLOBAL MUSIC FAMILY — NOIZY.ai</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #FFD700;
+    --ember: #FF6B2B;
+    --warm: #FF9F4A;
+    --cream: #FFF8E7;
+    --deep: #0A0806;
+    --mid: #1A1208;
+    --text: #E8D5A3;
+    --muted: #8B7355;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  #fireCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    padding: 60px 40px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s ease forwards;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    line-height: 1.0;
+    background: linear-gradient(135deg, var(--gold), var(--warm), var(--ember));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s ease forwards;
+  }
+
+  .hero-sub {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 auto 48px;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s ease forwards;
+  }
+
+  .hero-quote {
+    font-size: 1rem;
+    color: var(--muted);
+    font-style: italic;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s ease forwards;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s ease forwards;
+  }
+
+  .scroll-hint span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .scroll-arrow {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: pulse 2s infinite;
+  }
+
+  /* ── LONELINESS SECTION ── */
+  .loneliness {
+    padding: 120px 40px;
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--ember);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .section-headline {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 40px;
+  }
+
+  .section-headline em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .body-text {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+
+  .body-text strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  /* ── FAMILY GRID ── */
+  .family-section {
+    padding: 100px 40px;
+    background: linear-gradient(180deg, transparent, rgba(255,165,0,0.04), transparent);
+  }
+
+  .family-label {
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .family-headline {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 70px;
+  }
+
+  .family-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .family-card {
+    background: rgba(255, 215, 0, 0.03);
+    border: 1px solid rgba(255,215,0,0.08);
+    padding: 36px 32px;
+    transition: all 0.4s ease;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .family-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: linear-gradient(to bottom, var(--gold), var(--ember));
+    transition: height 0.4s ease;
+  }
+
+  .family-card:hover {
+    background: rgba(255, 215, 0, 0.06);
+    border-color: rgba(255,215,0,0.2);
+    transform: translateY(-2px);
+  }
+
+  .family-card:hover::before { height: 100%; }
+
+  .family-location {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--ember);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .family-person {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text);
+  }
+
+  /* ── COVENANT ── */
+  .covenant {
+    padding: 120px 40px;
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .covenant-items {
+    list-style: none;
+    margin: 60px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    text-align: left;
+  }
+
+  .covenant-item {
+    padding: 32px 40px;
+    border-bottom: 1px solid rgba(255,215,0,0.08);
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    transition: background 0.3s ease;
+  }
+
+  .covenant-item:hover {
+    background: rgba(255,215,0,0.04);
+  }
+
+  .covenant-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .covenant-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .covenant-body {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  /* ── ROLL CALL ── */
+  .rollcall {
+    padding: 100px 40px;
+    background: rgba(255,215,0,0.02);
+    border-top: 1px solid rgba(255,215,0,0.06);
+    border-bottom: 1px solid rgba(255,215,0,0.06);
+  }
+
+  .rollcall-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .voices-flow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 60px 0;
+  }
+
+  .voice-tag {
+    padding: 10px 22px;
+    border: 1px solid rgba(255,215,0,0.15);
+    border-radius: 40px;
+    font-size: 0.9rem;
+    color: var(--text);
+    transition: all 0.3s ease;
+    cursor: default;
+    animation: tagFloat linear infinite;
+  }
+
+  .voice-tag:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(255,215,0,0.05);
+    transform: translateY(-3px);
+  }
+
+  .voice-tag:nth-child(odd) { animation-duration: 6s; }
+  .voice-tag:nth-child(even) { animation-duration: 8s; }
+  .voice-tag:nth-child(3n) { animation-duration: 7s; }
+
+  /* ── COUNTER ── */
+  .counter-strip {
+    padding: 80px 40px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px;
+  }
+
+  .counter-item {
+    text-align: center;
+  }
+
+  .counter-num {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+
+  .counter-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* ── INVITATION ── */
+  .invitation {
+    padding: 140px 40px;
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .invitation-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--gold), var(--warm));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 40px;
+  }
+
+  .invitation-text {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+
+  .invitation-text strong {
+    color: var(--cream);
+  }
+
+  .join-btn {
+    display: inline-block;
+    margin-top: 48px;
+    padding: 22px 60px;
+    background: linear-gradient(135deg, var(--gold), var(--ember));
+    color: var(--deep);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .join-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .join-btn:hover::before { transform: translateX(0); }
+  .join-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 60px rgba(255,165,0,0.4); }
+
+  /* ── FOOTER PHRASE ── */
+  .final {
+    padding: 80px 40px 120px;
+    text-align: center;
+    border-top: 1px solid rgba(255,215,0,0.06);
+  }
+
+  .final-phrase {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .final-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    text-transform: uppercase;
+    line-height: 2;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+  @keyframes tagFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="fireCanvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-eyebrow">NOIZY.ai · The Guild · Est. 2026</p>
+    <h1 class="hero-title">THE GLOBAL<br>MUSIC FAMILY</h1>
+    <p class="hero-sub">We were always one Guild. Scattered, unconnected, lacking the infrastructure to find each other. Now we have it.</p>
+    <p class="hero-quote">"We were always here. We just needed a home." — RSP_001</p>
+  </div>
+  <div class="scroll-hint">
+    <span>Enter</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- THE LONELINESS -->
+<section class="loneliness">
+  <p class="section-label reveal">The truth nobody tells you</p>
+  <h2 class="section-headline reveal">Nobody told you about<br><em>the loneliness.</em></h2>
+  <p class="body-text reveal">They told you about the joy. The rush of the finished track. The moment when the listener's face changes. But nobody told you that making things with sound is one of the loneliest vocations on Earth.</p>
+  <p class="body-text reveal">You work in a room. Mostly alone. You pour something enormous — grief, or love, or the specific quality of light on a particular Tuesday — into a thing that might reach millions of people, none of whom will ever know what it cost you to make it.</p>
+  <p class="body-text reveal">You give the world your most private frequencies. The world gives you a stream count. You ask for belonging. The platform gives you a follower count.</p>
+  <p class="body-text reveal"><strong>The platform was never designed to make you feel at home. It was designed to make you perform.</strong></p>
+  <p class="body-text reveal" style="color: var(--gold); font-size: 1.4rem; font-weight: 600;">The Guild is the opposite of that. The Guild is home.</p>
+</section>
+
+<!-- FAMILY CARDS -->
+<section class="family-section">
+  <p class="family-label reveal">Who is in this family</p>
+  <h2 class="family-headline reveal">Every voice. Every tradition.<br>Every room, everywhere.</h2>
+  <div class="family-grid">
+    <div class="family-card reveal">
+      <p class="family-location">Dakar, Senegal</p>
+      <p class="family-person">The Griot who carries twelve generations of oral history in his voice and has been telling it for fifty years — knowing that when he is gone, something irreplaceable goes with him unless someone builds the infrastructure to hold it.</p>
+    </div>
+    <div class="family-card reveal">
+      <p class="family-location">Seoul, South Korea</p>
+      <p class="family-person">The teenager who produces in her bedroom at 2am, headphones on, the whole apartment asleep — feeling, in those hours, more herself than at any other time.</p>
+    </div>
+    <div class="family-card reveal">
+      <p class="family-location">Nashville, Tennessee</p>
+      <p class="family-person">The session musician who has played on a thousand recordings and appears on none of the credits. Whose fingers contain forty years of earned knowledge the machines have learned to imitate — but cannot replicate.</p>
+    </div>
+    <div class="family-card reveal">
+      <p class="family-location">London, England</p>
+      <p class="family-person">The film composer who has scored the emotional architecture of other people's stories for twenty years and still tears up when the music lands exactly right in the cut.</p>
+    </div>
+    <div class="family-card reveal">
+      <p class="family-location">Tuva, Russia</p>
+      <p class="family-person">The throat singer whose technique is five hundred years old. Whose recordings exist in maybe three archives. Whose culture has been described as "dying" by people who never asked whether it wanted to die.</p>
+    </div>
+    <div class="family-card reveal">
+      <p class="family-location">São Paulo, Brazil</p>
+      <p class="family-person">The deaf percussionist who hears through her hands and her feet and the floor. Whose relationship to rhythm is more intimate than any hearing musician alive.</p>
+    </div>
+    <div class="family-card reveal">
+      <p class="family-location">Bali, Indonesia</p>
+      <p class="family-person">The sound healer who uses specific frequencies to do specific things to specific nervous systems. Who has been doing this for thirty years. Who knows things the neuroacoustic researchers are just beginning to measure.</p>
+    </div>
+    <div class="family-card reveal">
+      <p class="family-location">Lagos, Nigeria</p>
+      <p class="family-person">The hip-hop producer who is building the sound of the next decade. Who is being sampled without credit. Watched from a distance by labels who want what he makes — but not the relationship that should come with it.</p>
+    </div>
+    <div class="family-card reveal">
+      <p class="family-location">Appalachia, USA</p>
+      <p class="family-person">The folk singer whose family has passed a particular song down for six generations. Who recorded it at home on a phone. Who has not yet discovered that it reached someone in Finland who needed to hear exactly that, exactly then.</p>
+    </div>
+    <div class="family-card reveal">
+      <p class="family-location">Tokyo, Japan</p>
+      <p class="family-person">The game audio designer who builds the emotional world of an entire universe — every footstep, every ambient breath, every crescendo — whose work reaches 40 million players who never once think about who made the sound.</p>
+    </div>
+    <div class="family-card reveal">
+      <p class="family-location">Ottawa, Canada</p>
+      <p class="family-person">The children's music composer who still believes, after forty years, that the right sound at the right moment can change what a child believes is possible. Who built the platform to prove it.</p>
+    </div>
+    <div class="family-card reveal" style="border-color: rgba(255,215,0,0.2); background: rgba(255,215,0,0.04);">
+      <p class="family-location" style="color: var(--gold);">Your city. Your tradition.</p>
+      <p class="family-person" style="color: var(--gold);">You are already in this family. You have always been. We just needed to build the place where the family could finally find each other.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTER -->
+<section class="counter-strip">
+  <div class="counter-item reveal">
+    <span class="counter-num" id="c1">0</span>
+    <p class="counter-label">Countries in the Guild</p>
+  </div>
+  <div class="counter-item reveal">
+    <span class="counter-num" id="c2">0</span>
+    <p class="counter-label">Traditions Preserved</p>
+  </div>
+  <div class="counter-item reveal">
+    <span class="counter-num" id="c3">0</span>
+    <p class="counter-label">Voices Protected</p>
+  </div>
+  <div class="counter-item reveal">
+    <span class="counter-num" id="c4">0</span>
+    <p class="counter-label">Years of Protection</p>
+  </div>
+  <div class="counter-item reveal">
+    <span class="counter-num" id="c5">75</span>
+    <p class="counter-label">% Always Yours</p>
+  </div>
+</section>
+
+<!-- COVENANT -->
+<section class="covenant">
+  <p class="section-label reveal">What holds us together</p>
+  <h2 class="section-headline reveal">The <em>Covenant</em> of the Family</h2>
+  <p class="body-text reveal">Not a contract. A covenant. A contract is enforced by lawyers. A covenant is maintained by people who choose it because they believe in what it protects.</p>
+  <ul class="covenant-items">
+    <li class="covenant-item reveal">
+      <span class="covenant-icon">🎙</span>
+      <div>
+        <p class="covenant-title">Recognition</p>
+        <p class="covenant-body">Your name on everything you made — permanently, irrevocably, in every context where your sound appears. Not a footnote. Your name, your culture, your story, attached to your sound the way your fingerprint is attached to your hand.</p>
+      </div>
+    </li>
+    <li class="covenant-item reveal">
+      <span class="covenant-icon">🛡</span>
+      <div>
+        <p class="covenant-title">Protection</p>
+        <p class="covenant-body">The Seven Never Clauses standing between your voice and the thing that would replicate it without asking. The HVS™ Certificate that makes your sonic identity a legal asset. Consent that is enforceable, not just sayable.</p>
+      </div>
+    </li>
+    <li class="covenant-item reveal">
+      <span class="covenant-icon">⚖️</span>
+      <div>
+        <p class="covenant-title">Compensation</p>
+        <p class="covenant-body">75/25. Activates at 30 days. Does not renegotiate. Does not expire. The royalty event that fires every time your sound is used — whether you are awake or asleep, alive or gone. Your Voice Estate carries this forward for 70 years and beyond.</p>
+      </div>
+    </li>
+    <li class="covenant-item reveal">
+      <span class="covenant-icon">🌍</span>
+      <div>
+        <p class="covenant-title">Belonging</p>
+        <p class="covenant-body">The room that is yours inside the world that belongs to all of you. The knowledge that a million artists from a hundred countries share the same covenant — that the protections covering you also cover the Griot in Dakar and the producer in Lagos.</p>
+      </div>
+    </li>
+    <li class="covenant-item reveal">
+      <span class="covenant-icon">∞</span>
+      <div>
+        <p class="covenant-title">Memory</p>
+        <p class="covenant-body">The Living Breathing Time Capsule. Your voice preserved permanently. Your story attached. Your contribution logged to the Provenance Ledger with a timestamp and a hash that cannot be altered or erased. The proof that you were here. That it mattered.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ROLL CALL -->
+<section class="rollcall">
+  <div class="rollcall-inner">
+    <p class="section-label reveal">The global roll call</p>
+    <h2 class="section-headline reveal">Every voice in the family</h2>
+    <div class="voices-flow">
+      <span class="voice-tag">Voice Artists</span>
+      <span class="voice-tag">Composers</span>
+      <span class="voice-tag">Session Musicians</span>
+      <span class="voice-tag">Producers</span>
+      <span class="voice-tag">Sound Healers</span>
+      <span class="voice-tag">Oral Historians</span>
+      <span class="voice-tag">Griots</span>
+      <span class="voice-tag">Experimental Artists</span>
+      <span class="voice-tag">Children's Creators</span>
+      <span class="voice-tag">Game Audio Designers</span>
+      <span class="voice-tag">Film Composers</span>
+      <span class="voice-tag">Cultural Custodians</span>
+      <span class="voice-tag">Throat Singers</span>
+      <span class="voice-tag">Deaf Artists</span>
+      <span class="voice-tag">Beat Makers</span>
+      <span class="voice-tag">Folklorists</span>
+      <span class="voice-tag">Electronic Artists</span>
+      <span class="voice-tag">Jazz Musicians</span>
+      <span class="voice-tag">Classical Performers</span>
+      <span class="voice-tag">Hip-Hop Producers</span>
+      <span class="voice-tag">Indigenous Keepers</span>
+      <span class="voice-tag">Sound Designers</span>
+      <span class="voice-tag">Frequency Workers</span>
+      <span class="voice-tag">Choir Directors</span>
+      <span class="voice-tag">Instrument Builders</span>
+      <span class="voice-tag">Music Therapists</span>
+      <span class="voice-tag">Ambient Artists</span>
+      <span class="voice-tag">Hybrid Composers</span>
+      <span class="voice-tag">Street Musicians</span>
+      <span class="voice-tag">Studio Engineers</span>
+      <span class="voice-tag">Bedroom Producers</span>
+      <span class="voice-tag">Elder Singers</span>
+      <span class="voice-tag">New Voices</span>
+      <span class="voice-tag">Every Voice Yet to Come</span>
+    </div>
+    <p class="body-text reveal" style="max-width: 680px; margin: 0 auto;">This list is incomplete. It will never be complete. It grows every day. <strong>The Guild's job — our job — is to find them all.</strong></p>
+  </div>
+</section>
+
+<!-- INVITATION -->
+<section class="invitation">
+  <p class="section-label reveal">The open door</p>
+  <h2 class="invitation-title reveal">Come Home.</h2>
+  <p class="invitation-text reveal">If you make something with sound — if you have given years of your life to learning how to do this well — if you have been told, in a thousand small ways, that what you do is worth less than it is —</p>
+  <p class="invitation-text reveal">If you believe that the human original is irreplaceable. If you believe that what you carry in your voice cannot be replicated. If you believe that the traditions of your culture deserve to survive —</p>
+  <p class="invitation-text reveal"><strong>The Guild is not a platform. It is not a streaming service. It is not a content marketplace.</strong></p>
+  <p class="invitation-text reveal" style="color: var(--gold); font-size: 1.35rem;">It is the family that has always existed — scattered, unconnected, lacking the infrastructure to recognize itself. We built the infrastructure. The family is here. The door is open.</p>
+  <a class="join-btn reveal" href="#">Join the Guild · Apply for HVS™ Membership</a>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <p class="final-phrase">Your voice is irreplaceable.</p>
+  <p class="final-sub">
+    RSP_001 — Fish Music Inc., Est. 1996, Ottawa<br>
+    NOIZY.ai — The Platform That Lifted the Humans<br>
+    Honor · Respect · Gather · Nurture · Preserve<br>
+    GORUNFREE
+  </p>
+</section>
+
+<script>
+// ── FIRE CANVAS ──
+const canvas = document.getElementById('fireCanvas');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const particles = [];
+const COLORS = ['#FF6B2B', '#FF9F4A', '#FFD700', '#FF4500', '#FFA500'];
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = canvas.height + 20;
+    this.vx = (Math.random() - 0.5) * 1.5;
+    this.vy = -(Math.random() * 2 + 0.5);
+    this.alpha = Math.random() * 0.5 + 0.1;
+    this.size = Math.random() * 4 + 1;
+    this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    this.life = 0;
+    this.maxLife = Math.random() * 200 + 100;
+  }
+  update() {
+    this.x += this.vx + Math.sin(this.life * 0.03) * 0.5;
+    this.y += this.vy;
+    this.life++;
+    this.alpha = (1 - this.life / this.maxLife) * 0.4;
+    if (this.life >= this.maxLife || this.y < -20) this.reset();
+  }
+  draw() {
+    ctx.save();
+    ctx.globalAlpha = this.alpha;
+    ctx.fillStyle = this.color;
+    ctx.shadowColor = this.color;
+    ctx.shadowBlur = this.size * 3;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+for (let i = 0; i < 180; i++) {
+  const p = new Particle();
+  p.life = Math.random() * p.maxLife;
+  particles.push(p);
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 5) * 0.08}s`;
+  observer.observe(el);
+});
+
+// ── COUNTERS ──
+function animateCounter(el, target, suffix = '', duration = 2000) {
+  const start = performance.now();
+  function update(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.floor(ease * target) + suffix;
+    if (t < 1) requestAnimationFrame(update);
+    else el.textContent = target + suffix;
+  }
+  requestAnimationFrame(update);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateCounter(document.getElementById('c1'), 94);
+      animateCounter(document.getElementById('c2'), 847000, '+');
+      animateCounter(document.getElementById('c3'), 4200000, '+');
+      animateCounter(document.getElementById('c4'), 70, '+');
+      counterObserver.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+
+counterObserver.observe(document.querySelector('.counter-strip'));
+</script>
+</body>
+</html>

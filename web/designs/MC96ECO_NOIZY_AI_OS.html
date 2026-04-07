@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY AI OS — MC96ECO Command Center</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --deep:#0A0E17;--mid:#111827;--surface:#1A1F2E;--card:#1E2538;
+  --gold:#D4A017;--teal:#0D9488;--signal:#00D4FF;--nerve:#E8A87C;
+  --restore:#00FFB3;--pulse:#FF4D6D;--soul:#B185DB;--silver:#94A3B8;
+  --white:#E2E8F0;--dim:#64748B;
+  --font-display:Cormorant Garamond,Georgia,serif;
+  --font-mono:IBM Plex Mono,monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--deep);color:var(--white);font-family:var(--font-mono);min-height:100vh;overflow-x:hidden}
+
+/* Scanline */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(10,14,23,.03) 2px,rgba(10,14,23,.03) 4px)}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);
+  background:rgba(10,14,23,.85);border-bottom:1px solid rgba(212,160,23,.15);padding:12px 32px;
+  display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-family:var(--font-display);font-size:1.4rem;font-weight:700;color:var(--gold);letter-spacing:.04em}
+.nav-brand span{color:var(--signal);font-size:.9rem;font-family:var(--font-mono);font-weight:400;margin-left:8px;opacity:.7}
+.nav-links{display:flex;gap:8px}
+.nav-links button{background:none;border:1px solid rgba(148,163,184,.2);color:var(--silver);font-family:var(--font-mono);
+  font-size:.72rem;padding:6px 14px;border-radius:4px;cursor:pointer;transition:.3s;text-transform:uppercase;letter-spacing:.08em}
+.nav-links button:hover,.nav-links button.active{border-color:var(--gold);color:var(--gold);background:rgba(212,160,23,.08)}
+
+/* ── HERO ── */
+.hero{padding:100px 32px 40px;text-align:center;position:relative}
+.hero-pre{font-size:.7rem;color:var(--teal);text-transform:uppercase;letter-spacing:.25em;margin-bottom:8px}
+.hero h1{font-family:var(--font-display);font-size:3.2rem;font-weight:700;color:var(--gold);margin-bottom:8px}
+.hero h1 .os{color:var(--signal)}
+.hero-sub{font-size:.85rem;color:var(--silver);max-width:700px;margin:0 auto 24px}
+.hero-stats{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.hero-stat{background:var(--surface);border:1px solid rgba(212,160,23,.12);border-radius:8px;padding:12px 20px;min-width:110px}
+.hero-stat .val{font-size:1.4rem;font-weight:600;color:var(--gold);font-family:var(--font-display)}
+.hero-stat .lbl{font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:.12em;margin-top:2px}
+
+/* ── SECTIONS ── */
+.section{padding:32px;max-width:1400px;margin:0 auto}
+.section-head{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid rgba(212,160,23,.1)}
+.section-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.section-title{font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--gold)}
+.section-badge{font-size:.55rem;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+
+/* ── TABS ── */
+.tab-row{display:flex;gap:4px;margin-bottom:20px;flex-wrap:wrap}
+.tab-btn{background:var(--surface);border:1px solid rgba(148,163,184,.1);color:var(--silver);font-family:var(--font-mono);
+  font-size:.68rem;padding:8px 16px;border-radius:4px;cursor:pointer;transition:.3s;text-transform:uppercase;letter-spacing:.06em}
+.tab-btn:hover{border-color:var(--teal);color:var(--teal)}
+.tab-btn.active{background:rgba(13,148,136,.12);border-color:var(--teal);color:var(--teal)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* ── CARDS ── */
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid rgba(148,163,184,.08);border-radius:10px;padding:20px;transition:.3s;position:relative;overflow:hidden}
+.card:hover{border-color:rgba(212,160,23,.25);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.card-icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.card-title{font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--white)}
+.card-desc{font-size:.75rem;color:var(--silver);line-height:1.6;margin-bottom:12px}
+.card-tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:.58rem;padding:2px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+
+/* ── ARCHAEOLOGIST ── */
+.arch-stage{background:var(--surface);border:1px solid rgba(148,163,184,.08);border-radius:8px;padding:16px;margin-bottom:12px;cursor:pointer;transition:.3s}
+.arch-stage:hover{border-color:rgba(0,212,255,.3)}
+.arch-stage.active{border-color:var(--signal);background:rgba(0,212,255,.04)}
+.arch-stage-head{display:flex;align-items:center;gap:10px}
+.arch-stage-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;flex-shrink:0}
+.arch-stage-title{font-size:.85rem;font-weight:600;color:var(--white)}
+.arch-stage-status{margin-left:auto;font-size:.6rem;padding:2px 8px;border-radius:3px}
+.arch-detail{max-height:0;overflow:hidden;transition:.4s;padding:0 28px}
+.arch-stage.active .arch-detail{max-height:600px;padding:12px 28px}
+.arch-detail p{font-size:.72rem;color:var(--silver);line-height:1.7;margin-bottom:8px}
+.arch-detail code{background:rgba(0,212,255,.08);color:var(--signal);padding:1px 5px;border-radius:3px;font-size:.68rem}
+.arch-sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:8px}
+.arch-src{background:var(--card);border:1px solid rgba(148,163,184,.06);border-radius:6px;padding:10px;text-align:center}
+.arch-src .icon{font-size:1.3rem;margin-bottom:4px}
+.arch-src .name{font-size:.65rem;color:var(--silver);text-transform:uppercase;letter-spacing:.06em}
+.arch-src .count{font-size:.9rem;font-weight:600;color:var(--gold);margin-top:2px}
+.arch-src .status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px}
+
+/* ── ROUTER ── */
+.router-flow{display:flex;align-items:stretch;gap:12px;overflow-x:auto;padding-bottom:8px}
+.router-step{background:var(--surface);border:1px solid rgba(148,163,184,.08);border-radius:8px;padding:16px;min-width:200px;flex:1;position:relative}
+.router-step::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:1.2rem;font-weight:700}
+.router-step:last-child::after{display:none}
+.router-step-num{font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.router-step-title{font-size:.85rem;font-weight:600;color:var(--gold);margin-bottom:6px}
+.router-step-desc{font-size:.68rem;color:var(--silver);line-height:1.5}
+
+.router-demo{background:var(--surface);border:1px solid rgba(212,160,23,.15);border-radius:10px;padding:20px;margin-top:20px}
+.router-input{display:flex;gap:8px;margin-bottom:16px}
+.router-input input{flex:1;background:var(--card);border:1px solid rgba(148,163,184,.15);color:var(--white);font-family:var(--font-mono);font-size:.75rem;padding:10px 14px;border-radius:6px;outline:none}
+.router-input input:focus{border-color:var(--gold)}
+.router-input button{background:linear-gradient(135deg,var(--gold),#c49312);color:var(--deep);font-family:var(--font-mono);font-size:.7rem;font-weight:600;padding:10px 20px;border:none;border-radius:6px;cursor:pointer;text-transform:uppercase;letter-spacing:.08em}
+.router-output{background:var(--card);border:1px solid rgba(148,163,184,.06);border-radius:8px;padding:16px;min-height:120px;font-size:.72rem;color:var(--silver);line-height:1.7}
+.router-output .label{font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.router-output .assignment{display:flex;align-items:center;gap:8px;margin:6px 0;padding:8px 12px;background:var(--surface);border-radius:6px}
+.router-output .ai-badge{padding:3px 10px;border-radius:4px;font-size:.6rem;font-weight:600;text-transform:uppercase}
+
+/* ── AI FAMILY ── */
+.agent-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:20px}
+.agent-card{background:var(--card);border:1px solid rgba(148,163,184,.08);border-radius:8px;padding:14px;text-align:center;cursor:pointer;transition:.3s}
+.agent-card:hover{border-color:rgba(212,160,23,.3);transform:translateY(-2px)}
+.agent-card.selected{border-color:var(--gold);background:rgba(212,160,23,.06)}
+.agent-avatar{font-size:1.8rem;margin-bottom:6px}
+.agent-name{font-size:.8rem;font-weight:600;color:var(--white);margin-bottom:2px}
+.agent-role{font-size:.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.agent-load{height:3px;background:var(--surface);border-radius:2px;margin-top:8px;overflow:hidden}
+.agent-load-bar{height:100%;border-radius:2px;transition:.6s}
+
+/* ── OS STRUCTURE ── */
+.folder-tree{background:var(--surface);border:1px solid rgba(148,163,184,.08);border-radius:10px;padding:20px;font-size:.75rem}
+.folder-item{display:flex;align-items:center;gap:8px;padding:6px 0;padding-left:calc(var(--depth,0)*20px);cursor:pointer;transition:.2s}
+.folder-item:hover{background:rgba(212,160,23,.04);border-radius:4px}
+.folder-icon{font-size:1rem;flex-shrink:0}
+.folder-name{color:var(--white);font-weight:500}
+.folder-desc{color:var(--dim);font-size:.62rem;margin-left:auto}
+.folder-count{background:rgba(212,160,23,.12);color:var(--gold);font-size:.55rem;padding:1px 6px;border-radius:3px;margin-left:8px}
+
+/* ── MEMORY GRAPH ── */
+.memory-canvas{background:var(--surface);border:1px solid rgba(148,163,184,.08);border-radius:10px;height:400px;position:relative;overflow:hidden}
+canvas#memoryGraph{width:100%;height:100%}
+
+/* ── DAILY FLOW ── */
+.flow-timeline{position:relative;padding-left:32px}
+.flow-timeline::before{content:'';position:absolute;left:14px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),var(--teal),var(--signal),var(--restore))}
+.flow-step{position:relative;margin-bottom:20px;padding:14px 16px;background:var(--card);border:1px solid rgba(148,163,184,.06);border-radius:8px}
+.flow-step::before{content:'';position:absolute;left:-24px;top:18px;width:10px;height:10px;border-radius:50%;border:2px solid var(--gold);background:var(--deep)}
+.flow-step.done::before{background:var(--gold)}
+.flow-step-time{font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.flow-step-title{font-size:.82rem;font-weight:600;color:var(--white);margin-bottom:4px}
+.flow-step-desc{font-size:.68rem;color:var(--silver);line-height:1.5}
+
+/* ── MASTER MAP ── */
+.map-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.map-node{background:var(--card);border:1px solid rgba(148,163,184,.08);border-radius:10px;padding:16px;transition:.3s;cursor:pointer}
+.map-node:hover{border-color:rgba(212,160,23,.25);transform:translateY(-1px)}
+.map-node-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.map-node-icon{font-size:1.2rem}
+.map-node-title{font-size:.85rem;font-weight:600;color:var(--gold)}
+.map-node-status{margin-left:auto;font-size:.55rem;padding:2px 8px;border-radius:3px;text-transform:uppercase}
+.map-node-desc{font-size:.68rem;color:var(--silver);line-height:1.5;margin-bottom:8px}
+.map-connections{display:flex;flex-wrap:wrap;gap:4px}
+.map-conn{font-size:.55rem;padding:2px 6px;border-radius:3px;background:rgba(0,212,255,.08);color:var(--signal)}
+
+/* ── REBUILD PLAN ── */
+.phase-block{background:var(--surface);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:16px}
+.phase-block.phase-2{border-color:var(--teal)}
+.phase-block.phase-3{border-color:var(--signal)}
+.phase-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.phase-num{font-size:.6rem;padding:3px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.phase-title{font-size:.95rem;font-weight:600;color:var(--white)}
+.phase-timeline{font-size:.6rem;color:var(--dim);margin-left:auto}
+.phase-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+.phase-item{background:var(--card);border:1px solid rgba(148,163,184,.06);border-radius:6px;padding:10px;display:flex;align-items:center;gap:8px}
+.phase-check{width:16px;height:16px;border:1px solid var(--dim);border-radius:3px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.65rem;transition:.2s}
+.phase-check.done{background:var(--restore);border-color:var(--restore);color:var(--deep)}
+.phase-item-text{font-size:.7rem;color:var(--silver)}
+
+/* ── HIDDEN GEMS ── */
+.gem{background:linear-gradient(135deg,rgba(212,160,23,.06),rgba(177,133,219,.06));border:1px solid rgba(212,160,23,.15);border-radius:10px;padding:16px;margin-bottom:12px}
+.gem-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.gem-icon{font-size:1.1rem}
+.gem-title{font-size:.85rem;font-weight:600;color:var(--soul)}
+.gem-source{margin-left:auto;font-size:.55rem;color:var(--dim);text-transform:uppercase}
+.gem-desc{font-size:.72rem;color:var(--silver);line-height:1.6;margin-bottom:8px}
+.gem-action{font-size:.65rem;color:var(--gold);font-weight:600;cursor:pointer}
+
+/* ── AUTOMATION ── */
+.code-block{background:var(--mid);border:1px solid rgba(148,163,184,.1);border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0}
+.code-block pre{font-family:var(--font-mono);font-size:.7rem;color:var(--signal);line-height:1.7;white-space:pre}
+.code-block .comment{color:var(--dim)}
+.code-block .string{color:var(--restore)}
+.code-block .keyword{color:var(--soul)}
+.copy-btn{background:rgba(212,160,23,.12);color:var(--gold);border:none;font-family:var(--font-mono);font-size:.6rem;padding:4px 10px;border-radius:3px;cursor:pointer;float:right;margin-bottom:8px}
+
+/* ── PULSE (live status) ── */
+.pulse-bar{background:var(--surface);border:1px solid rgba(148,163,184,.08);border-radius:8px;padding:12px 20px;display:flex;align-items:center;gap:16px;margin-bottom:20px;overflow-x:auto}
+.pulse-item{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.pulse-dot{width:8px;height:8px;border-radius:50%;animation:pulse-anim 2s infinite}
+@keyframes pulse-anim{0%,100%{opacity:1}50%{opacity:.4}}
+.pulse-label{font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+.pulse-val{font-size:.72rem;font-weight:600}
+
+/* Utility */
+.mt-16{margin-top:16px}
+.mb-8{margin-bottom:8px}
+.text-gold{color:var(--gold)}
+.text-signal{color:var(--signal)}
+.text-teal{color:var(--teal)}
+.text-restore{color:var(--restore)}
+.text-pulse{color:var(--pulse)}
+.text-nerve{color:var(--nerve)}
+.text-soul{color:var(--soul)}
+.bg-gold{background:rgba(212,160,23,.12)}
+.bg-signal{background:rgba(0,212,255,.12)}
+.bg-teal{background:rgba(13,148,136,.12)}
+.bg-restore{background:rgba(0,255,179,.12)}
+.bg-pulse{background:rgba(255,77,109,.12)}
+.bg-soul{background:rgba(177,133,219,.12)}
+
+@media(max-width:768px){
+  .hero h1{font-size:2rem}
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  .router-flow{flex-direction:column}
+  .router-step::after{display:none}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">NOIZY AI OS <span>v1.0 — MC96ECO COMMAND CENTER</span></div>
+  <div class="nav-links">
+    <button class="active" onclick="showSection('dashboard')">Dashboard</button>
+    <button onclick="showSection('archaeologist')">Archaeologist</button>
+    <button onclick="showSection('router')">Task Router</button>
+    <button onclick="showSection('family')">AI Family</button>
+    <button onclick="showSection('os')">OS Structure</button>
+    <button onclick="showSection('rebuild')">Rebuild Plan</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pre">Robert Stephen Plowman — MC96ECO Universe</div>
+  <h1>NOIZY AI <span class="os">OS</span></h1>
+  <div class="hero-sub">Your unified command center. Archaeologist Mode recovers everything. The Task Router assigns work intelligently. The OS keeps it all structured. Three years of vision — one system to rule them all.</div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="val">7</div><div class="lbl">AI Agents</div></div>
+    <div class="hero-stat"><div class="val">12</div><div class="lbl">Active Projects</div></div>
+    <div class="hero-stat"><div class="val">5</div><div class="lbl">Domains</div></div>
+    <div class="hero-stat"><div class="val">11</div><div class="lbl">Databases</div></div>
+    <div class="hero-stat"><div class="val">3+</div><div class="lbl">Years of IP</div></div>
+    <div class="hero-stat"><div class="val">∞</div><div class="lbl">Potential</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION: DASHBOARD -->
+<!-- ═══════════════════════════════════════ -->
+<div id="sec-dashboard" class="section">
+  <!-- Live Pulse -->
+  <div class="pulse-bar">
+    <div class="pulse-item"><div class="pulse-dot" style="background:var(--restore)"></div><span class="pulse-label">Cloudflare</span><span class="pulse-val text-restore">Online</span></div>
+    <div class="pulse-item"><div class="pulse-dot" style="background:var(--gold)"></div><span class="pulse-label">Worker</span><span class="pulse-val text-gold">Stub</span></div>
+    <div class="pulse-item"><div class="pulse-dot" style="background:var(--signal)"></div><span class="pulse-label">D1 DBs</span><span class="pulse-val text-signal">11 Active</span></div>
+    <div class="pulse-item"><div class="pulse-dot" style="background:var(--teal)"></div><span class="pulse-label">KV Stores</span><span class="pulse-val text-teal">20+</span></div>
+    <div class="pulse-item"><div class="pulse-dot" style="background:var(--pulse)"></div><span class="pulse-label">R2</span><span class="pulse-val text-pulse">Not Enabled</span></div>
+    <div class="pulse-item"><div class="pulse-dot" style="background:var(--nerve)"></div><span class="pulse-label">GoDaddy</span><span class="pulse-val text-nerve">0/13 Done</span></div>
+    <div class="pulse-item"><div class="pulse-dot" style="background:var(--soul)"></div><span class="pulse-label">Memory Graph</span><span class="pulse-val text-soul">Loaded</span></div>
+  </div>
+
+  <!-- Master Map -->
+  <div class="section-head">
+    <div class="section-icon bg-gold" style="color:var(--gold)">🧭</div>
+    <div class="section-title">Master Map — All Systems Discovered</div>
+  </div>
+
+  <div class="map-grid">
+    <div class="map-node" onclick="this.classList.toggle('expanded')">
+      <div class="map-node-head">
+        <div class="map-node-icon">🎙</div>
+        <div class="map-node-title">NOIZYVOX</div>
+        <div class="map-node-status bg-gold text-gold">Core Product</div>
+      </div>
+      <div class="map-node-desc">Trust-native voice infrastructure. Consent-as-Code. 4-tier artist model. 75/25 revenue split. The heartbeat of the entire MC96ECO ecosystem.</div>
+      <div class="map-connections">
+        <span class="map-conn">Consent Kernel</span>
+        <span class="map-conn">RSP_001</span>
+        <span class="map-conn">Voice DNA</span>
+        <span class="map-conn">HEAVEN17 Worker</span>
+      </div>
+    </div>
+
+    <div class="map-node">
+      <div class="map-node-head">
+        <div class="map-node-icon">🧠</div>
+        <div class="map-node-title">NOIZY.AI / DreamChamber</div>
+        <div class="map-node-status bg-signal text-signal">Prototype Built</div>
+      </div>
+      <div class="map-node-desc">A.I.V.A. — Actors Intelligently & Interactively Voice Acting. The DreamChamber is the creative experience layer, the artist portal, the gateway into the future.</div>
+      <div class="map-connections">
+        <span class="map-conn">A.I.V.A. Morphing</span>
+        <span class="map-conn">Artist Journey</span>
+        <span class="map-conn">Live Portal Demo</span>
+      </div>
+    </div>
+
+    <div class="map-node">
+      <div class="map-node-head">
+        <div class="map-node-icon">🐟</div>
+        <div class="map-node-title">NOIZYFISH</div>
+        <div class="map-node-status bg-teal text-teal">Domain Held</div>
+      </div>
+      <div class="map-node-desc">Interactive aquarium experience meets educational AI — teaching kids (and everyone) about marine life, ecology, and the connected world through immersive voice-driven experiences.</div>
+      <div class="map-connections">
+        <span class="map-conn">aquarium-archive DB</span>
+        <span class="map-conn">noizyfish.com</span>
+        <span class="map-conn">Kids Education</span>
+      </div>
+    </div>
+
+    <div class="map-node">
+      <div class="map-node-head">
+        <div class="map-node-icon">👶</div>
+        <div class="map-node-title">NOIZYKIDZ</div>
+        <div class="map-node-status bg-soul text-soul">Conceptualized</div>
+      </div>
+      <div class="map-node-desc">Child-safe AI experiences. Voice-driven stories, learning companions, and creative tools — all with absolute safety rails and parental consent built into every layer.</div>
+      <div class="map-connections">
+        <span class="map-conn">NEVER_CLAUSES</span>
+        <span class="map-conn">Child Safety</span>
+        <span class="map-conn">Parental Consent</span>
+      </div>
+    </div>
+
+    <div class="map-node">
+      <div class="map-node-head">
+        <div class="map-node-icon">🔬</div>
+        <div class="map-node-title">NOIZYLAB</div>
+        <div class="map-node-status bg-restore text-restore">Active Workspace</div>
+      </div>
+      <div class="map-node-desc">R&D sandbox. CODE_RESCUE and CLAUDE_SAVIOUR subfolders in Google Drive. Where experimental ideas get tested before they join the main ecosystem.</div>
+      <div class="map-connections">
+        <span class="map-conn">noizylab.com</span>
+        <span class="map-conn">Google Drive</span>
+        <span class="map-conn">Code Experiments</span>
+      </div>
+    </div>
+
+    <div class="map-node">
+      <div class="map-node-head">
+        <div class="map-node-icon">💛</div>
+        <div class="map-node-title">LIFELUV</div>
+        <div class="map-node-status bg-nerve text-nerve">Vision Stage</div>
+      </div>
+      <div class="map-node-desc">The human-first wellness layer. Personal growth, healing, connection, and the belief that technology should serve the soul — not consume it. Rob's most personal creation.</div>
+      <div class="map-connections">
+        <span class="map-conn">Wellness AI</span>
+        <span class="map-conn">Personal Growth</span>
+        <span class="map-conn">Human Dignity</span>
+      </div>
+    </div>
+
+    <div class="map-node">
+      <div class="map-node-head">
+        <div class="map-node-icon">🏗</div>
+        <div class="map-node-title">HEAVEN17 Worker</div>
+        <div class="map-node-status bg-pulse text-pulse">Stub — Not Deployed</div>
+      </div>
+      <div class="map-node-desc">450+ line Cloudflare Worker. Master router for the entire MC96ECO domain ecosystem. Written but still showing Hello World stub. Critical deployment needed.</div>
+      <div class="map-connections">
+        <span class="map-conn">Cloudflare Workers</span>
+        <span class="map-conn">5 Domains</span>
+        <span class="map-conn">Edge Routing</span>
+      </div>
+    </div>
+
+    <div class="map-node">
+      <div class="map-node-head">
+        <div class="map-node-icon">📜</div>
+        <div class="map-node-title">Consent Architecture</div>
+        <div class="map-node-status bg-gold text-gold">Blueprint Found</div>
+      </div>
+      <div class="map-node-desc">The March 5, 2026 Consent Architecture Blueprint from Slack. 5-section strategic document: ElevenLabs comparison, Consent Kernel definition, MVP-to-V3 build order, EU AI Act + NTIA references.</div>
+      <div class="map-connections">
+        <span class="map-conn">Slack DM</span>
+        <span class="map-conn">EU AI Act</span>
+        <span class="map-conn">NTIA Policy</span>
+        <span class="map-conn">4 Primitives</span>
+      </div>
+    </div>
+
+    <div class="map-node">
+      <div class="map-node-head">
+        <div class="map-node-icon">🎵</div>
+        <div class="map-node-title">Voice Archives (2020)</div>
+        <div class="map-node-status bg-soul text-soul">6 Folders Found</div>
+      </div>
+      <div class="map-node-desc">Six voice archive folders discovered in Google Drive from 2020 — the original creative work that seeded the entire NOIZY vision. Rob's voice as the first proof of concept.</div>
+      <div class="map-connections">
+        <span class="map-conn">Google Drive</span>
+        <span class="map-conn">RSP_001 Origin</span>
+        <span class="map-conn">Voice DNA</span>
+      </div>
+    </div>
+
+    <div class="map-node">
+      <div class="map-node-head">
+        <div class="map-node-icon">🌌</div>
+        <div class="map-node-title">5th Epoch Framework</div>
+        <div class="map-node-status bg-signal text-signal">Defined</div>
+      </div>
+      <div class="map-node-desc">The paradigm shift from Streaming Age (IP/Rights) to Protocol & Provenance (Consent & Code). The philosophical bedrock that makes NOIZYVOX different from every competitor.</div>
+      <div class="map-connections">
+        <span class="map-conn">NOIZYVOX Demo</span>
+        <span class="map-conn">DreamChamber</span>
+        <span class="map-conn">Industry Vision</span>
+      </div>
+    </div>
+
+    <div class="map-node">
+      <div class="map-node-head">
+        <div class="map-node-icon">🤖</div>
+        <div class="map-node-title">GORUNFREE Protocol</div>
+        <div class="map-node-status bg-teal text-teal">13 Rules Defined</div>
+      </div>
+      <div class="map-node-desc">The operational rulebook for AI agent behavior in the MC96ECO ecosystem. 13 immutable rules that ensure every AI acts with consent, transparency, and human dignity.</div>
+      <div class="map-connections">
+        <span class="map-conn">NEVER_CLAUSES</span>
+        <span class="map-conn">AI Family</span>
+        <span class="map-conn">Voice of Refusal</span>
+      </div>
+    </div>
+
+    <div class="map-node">
+      <div class="map-node-head">
+        <div class="map-node-icon">📊</div>
+        <div class="map-node-title">Founder Blueprint</div>
+        <div class="map-node-status bg-gold text-gold">37KB Document</div>
+      </div>
+      <div class="map-node-desc">NOIZY-Founder-Blueprint-2026 in Google Drive. 37,778 bytes of strategic vision — the master document that maps the entire business architecture and path forward.</div>
+      <div class="map-connections">
+        <span class="map-conn">Google Drive</span>
+        <span class="map-conn">Business Model</span>
+        <span class="map-conn">Strategy</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION: ARCHAEOLOGIST MODE -->
+<!-- ═══════════════════════════════════════ -->
+<div id="sec-archaeologist" class="section" style="display:none">
+  <div class="section-head">
+    <div class="section-icon bg-signal" style="color:var(--signal)">🧠</div>
+    <div class="section-title">Archaeologist Mode — Master Memory Recovery</div>
+    <div class="section-badge bg-signal text-signal">Deep Retrieval Active</div>
+  </div>
+
+  <p style="font-size:.78rem;color:var(--silver);line-height:1.7;margin-bottom:20px;max-width:800px">
+    This system turns Claude into a deep knowledge retriever. It digs through your entire 3+ year history, organizes every idea, system, file, and insight into a structured, searchable, self-growing knowledge base. Think historian meets systems architect.
+  </p>
+
+  <!-- 5 Stages -->
+  <div class="arch-stage active" onclick="toggleArch(this)">
+    <div class="arch-stage-head">
+      <div class="arch-stage-num bg-signal text-signal">1</div>
+      <div class="arch-stage-title">DISCOVER — Identify All Sources</div>
+      <div class="arch-stage-status bg-restore text-restore">Completed</div>
+    </div>
+    <div class="arch-detail">
+      <p>We've already scanned every connected system. Here's what was found:</p>
+      <div class="arch-sources">
+        <div class="arch-src"><div class="icon">☁️</div><div class="name">Cloudflare</div><div class="count">11 D1 + 20 KV</div><div><span class="status-dot" style="background:var(--restore)"></span><span style="font-size:.55rem;color:var(--restore)">Scanned</span></div></div>
+        <div class="arch-src"><div class="icon">📁</div><div class="name">Google Drive</div><div class="count">8+ Key Files</div><div><span class="status-dot" style="background:var(--restore)"></span><span style="font-size:.55rem;color:var(--restore)">Scanned</span></div></div>
+        <div class="arch-src"><div class="icon">💬</div><div class="name">Slack</div><div class="count">Consent Blueprint</div><div><span class="status-dot" style="background:var(--restore)"></span><span style="font-size:.55rem;color:var(--restore)">Found</span></div></div>
+        <div class="arch-src"><div class="icon">📋</div><div class="name">Notion</div><div class="count">Pages Found</div><div><span class="status-dot" style="background:var(--restore)"></span><span style="font-size:.55rem;color:var(--restore)">Scanned</span></div></div>
+        <div class="arch-src"><div class="icon">🎨</div><div class="name">Canva</div><div class="count">Designs Found</div><div><span class="status-dot" style="background:var(--restore)"></span><span style="font-size:.55rem;color:var(--restore)">Scanned</span></div></div>
+        <div class="arch-src"><div class="icon">📧</div><div class="name">Gmail</div><div class="count">—</div><div><span class="status-dot" style="background:var(--pulse)"></span><span style="font-size:.55rem;color:var(--pulse)">Blocked</span></div></div>
+        <div class="arch-src"><div class="icon">📐</div><div class="name">Linear</div><div class="count">Issues Found</div><div><span class="status-dot" style="background:var(--restore)"></span><span style="font-size:.55rem;color:var(--restore)">Scanned</span></div></div>
+        <div class="arch-src"><div class="icon">🎨</div><div class="name">Figma</div><div class="count">Diagram Created</div><div><span class="status-dot" style="background:var(--restore)"></span><span style="font-size:.55rem;color:var(--restore)">Active</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arch-stage" onclick="toggleArch(this)">
+    <div class="arch-stage-head">
+      <div class="arch-stage-num bg-teal text-teal">2</div>
+      <div class="arch-stage-title">EXTRACT — Pull Key Ideas & Signal</div>
+      <div class="arch-stage-status bg-restore text-restore">Completed</div>
+    </div>
+    <div class="arch-detail">
+      <p>Key extractions from the deep scan:</p>
+      <p><code>Consent Kernel</code> — 4 primitives: Identity Asset, License Policy, Revenue Policy, Revocation Policy</p>
+      <p><code>RSP_001</code> — Rob's voice model, VOX_MC96_UNIVERSE_001, consent signed January 6, 2026</p>
+      <p><code>NEVER_CLAUSES</code> — 7 immutable laws (no export without consent, no impersonation, no NSFW, etc.)</p>
+      <p><code>5th Epoch</code> — Industry paradigm shift framework from Streaming → Protocol & Provenance</p>
+      <p><code>NOIZYVOX Business Model</code> — 4 tiers (FREE/$29/$99/$499), 75/25 split, Voice Unions, Voice DNA</p>
+      <p><code>GoDaddy Escape</code> — 13 milestones defined, 0 completed, 3+ months overdue</p>
+      <p><code>Voice Archives</code> — 6 folders from 2020, the seed material for everything</p>
+    </div>
+  </div>
+
+  <div class="arch-stage" onclick="toggleArch(this)">
+    <div class="arch-stage-head">
+      <div class="arch-stage-num bg-gold text-gold">3</div>
+      <div class="arch-stage-title">ORGANIZE — Structured Knowledge System</div>
+      <div class="arch-stage-status bg-gold text-gold">In Progress</div>
+    </div>
+    <div class="arch-detail">
+      <p>Every discovery is now being organized into this format:</p>
+      <div class="code-block"><pre><span class="comment">// Structured Knowledge Entry</span>
+{
+  <span class="string">"project"</span>: <span class="string">"NOIZYVOX"</span>,
+  <span class="string">"description"</span>: <span class="string">"Trust-native voice infrastructure"</span>,
+  <span class="string">"key_ideas"</span>: [<span class="string">"Consent-as-Code"</span>, <span class="string">"75/25 split"</span>, <span class="string">"Voice DNA"</span>],
+  <span class="string">"assets"</span>: {
+    <span class="string">"code"</span>: [<span class="string">"HEAVEN17 Worker"</span>, <span class="string">"thenoizyman skill"</span>],
+    <span class="string">"docs"</span>: [<span class="string">"Founder Blueprint"</span>, <span class="string">"Consent Architecture"</span>],
+    <span class="string">"demos"</span>: [<span class="string">"NOIZYVOX_AIVA_Demo.html"</span>, <span class="string">"DreamChamber VR"</span>]
+  },
+  <span class="string">"status"</span>: <span class="string">"in-progress"</span>,
+  <span class="string">"connections"</span>: [<span class="string">"NOIZY.AI"</span>, <span class="string">"DreamChamber"</span>, <span class="string">"5th Epoch"</span>]
+}</pre></div>
+      <p>The Memory Graph now holds <strong>10+ entities</strong> and <strong>13+ relations</strong> connecting everything together.</p>
+    </div>
+  </div>
+
+  <div class="arch-stage" onclick="toggleArch(this)">
+    <div class="arch-stage-head">
+      <div class="arch-stage-num bg-nerve text-nerve">4</div>
+      <div class="arch-stage-title">CONNECT — Link Related Ideas & Themes</div>
+      <div class="arch-stage-status bg-gold text-gold">In Progress</div>
+    </div>
+    <div class="arch-detail">
+      <p>Core vision threads identified across all 3+ years of work:</p>
+      <p>🔗 <strong>Thread 1: Consent & Trust</strong> — Consent Kernel → NEVER_CLAUSES → Voice of Refusal → GORUNFREE Protocol → EU AI Act alignment</p>
+      <p>🔗 <strong>Thread 2: Voice as Identity</strong> — 2020 Voice Archives → RSP_001 → Voice DNA → NOIZYVOX → A.I.V.A.</p>
+      <p>🔗 <strong>Thread 3: Human Dignity Through Tech</strong> — LIFELUV → 5th Epoch → 75/25 split → Voice Unions → Legacy Vault</p>
+      <p>🔗 <strong>Thread 4: Creative Ecosystem</strong> — NOIZYFISH → NOIZYKIDZ → DreamChamber → NOIZYLAB → VR Experience</p>
+      <p>🔗 <strong>Thread 5: Infrastructure</strong> — Cloudflare → HEAVEN17 → D1 Databases → KV Stores → Domain Architecture</p>
+    </div>
+  </div>
+
+  <div class="arch-stage" onclick="toggleArch(this)">
+    <div class="arch-stage-head">
+      <div class="arch-stage-num bg-restore text-restore">5</div>
+      <div class="arch-stage-title">SUMMARIZE — High-Level System Maps</div>
+      <div class="arch-stage-status bg-signal text-signal">Ready</div>
+    </div>
+    <div class="arch-detail">
+      <p>The complete system map is displayed on the Dashboard tab. The 12 core nodes are connected through 5 vision threads, spanning code, documents, demos, databases, and strategic frameworks.</p>
+      <p>Most important discoveries:</p>
+      <p>💎 <strong>The Consent Architecture Blueprint</strong> (Slack, March 5 2026) — your most complete strategic document</p>
+      <p>💎 <strong>The Founder Blueprint</strong> (Google Drive, 37KB) — your business architecture map</p>
+      <p>💎 <strong>The 2020 Voice Archives</strong> (Google Drive, 6 folders) — the origin story, the proof that this started from real creative work</p>
+      <p>💎 <strong>HEAVEN17 Worker</strong> (450+ lines, written, undeployed) — your entire infrastructure in one file, ready to go live</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION: TASK ROUTER -->
+<!-- ═══════════════════════════════════════ -->
+<div id="sec-router" class="section" style="display:none">
+  <div class="section-head">
+    <div class="section-icon bg-gold" style="color:var(--gold)">⚙️</div>
+    <div class="section-title">AI Task Router — Brain Switchboard</div>
+    <div class="section-badge bg-gold text-gold">Multi-Agent Intelligence</div>
+  </div>
+
+  <p style="font-size:.78rem;color:var(--silver);line-height:1.7;margin-bottom:20px;max-width:800px">
+    Stop doing everything manually. The Task Router classifies every request, assigns it to the best AI system (or combination), breaks it into sub-tasks, and looks for automation opportunities. Every task gets routed intelligently.
+  </p>
+
+  <!-- Router Flow -->
+  <div class="router-flow">
+    <div class="router-step">
+      <div class="router-step-num">Step 1</div>
+      <div class="router-step-title">Classify</div>
+      <div class="router-step-desc">Creative, Technical, Organizational, Automation, or Research?</div>
+    </div>
+    <div class="router-step">
+      <div class="router-step-num">Step 2</div>
+      <div class="router-step-title">Assign AI</div>
+      <div class="router-step-desc">Claude, ChatGPT, Copilot, Local Scripts, or Multi-Agent</div>
+    </div>
+    <div class="router-step">
+      <div class="router-step-num">Step 3</div>
+      <div class="router-step-title">Split Tasks</div>
+      <div class="router-step-desc">Break into sub-tasks with clear ownership</div>
+    </div>
+    <div class="router-step">
+      <div class="router-step-num">Step 4</div>
+      <div class="router-step-title">Execute</div>
+      <div class="router-step-desc">Step-by-step flow of which AI does what</div>
+    </div>
+    <div class="router-step">
+      <div class="router-step-num">Step 5</div>
+      <div class="router-step-title">Automate</div>
+      <div class="router-step-desc">Can this become a script or scheduled task?</div>
+    </div>
+  </div>
+
+  <!-- Live Router Demo -->
+  <div class="router-demo">
+    <div style="font-size:.7rem;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;font-weight:600">Live Task Router — Try It</div>
+    <div class="router-input">
+      <input type="text" id="routerInput" placeholder="Describe a task... e.g. 'Deploy HEAVEN17 Worker to production'" onkeypress="if(event.key==='Enter')routeTask()">
+      <button onclick="routeTask()">Route It</button>
+    </div>
+    <div class="router-output" id="routerOutput">
+      <div class="label">Routing result will appear here...</div>
+    </div>
+  </div>
+
+  <!-- Pre-built Routing Table -->
+  <div style="margin-top:24px">
+    <div style="font-size:.8rem;font-weight:600;color:var(--white);margin-bottom:12px">Pre-Built Route Map — MC96ECO Tasks</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon bg-signal" style="color:var(--signal)">🚀</div>
+          <div class="card-title">Deploy HEAVEN17 Worker</div>
+        </div>
+        <div class="card-desc">Replace Hello World stub with 450+ line router. Configure DNS for all 5 domains. Test edge routing.</div>
+        <div class="card-tags">
+          <span class="tag bg-signal text-signal">Technical</span>
+          <span class="tag bg-teal text-teal">Claude + Copilot</span>
+          <span class="tag bg-restore text-restore">Automatable</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon bg-gold" style="color:var(--gold)">📋</div>
+          <div class="card-title">GoDaddy Domain Migration</div>
+        </div>
+        <div class="card-desc">Transfer noizyfish.com + noizylab.com to Cloudflare. Update nameservers. Close 6 GoDaddy accounts.</div>
+        <div class="card-tags">
+          <span class="tag bg-nerve text-nerve">Organizational</span>
+          <span class="tag bg-gold text-gold">Manual + Claude Guide</span>
+          <span class="tag bg-pulse text-pulse">13 Steps</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon bg-soul" style="color:var(--soul)">🎙</div>
+          <div class="card-title">First Consent Ledger Entry</div>
+        </div>
+        <div class="card-desc">Write RSP_001's consent record to the consent_ledger D1 database. Cryptographic proof that the system works.</div>
+        <div class="card-tags">
+          <span class="tag bg-signal text-signal">Technical</span>
+          <span class="tag bg-signal text-signal">Claude</span>
+          <span class="tag bg-restore text-restore">Automatable</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon bg-restore" style="color:var(--restore)">🗄</div>
+          <div class="card-title">Database Consolidation</div>
+        </div>
+        <div class="card-desc">Merge gabriel_db into agent-memory. Clean up test KV namespaces. Establish naming conventions.</div>
+        <div class="card-tags">
+          <span class="tag bg-signal text-signal">Technical</span>
+          <span class="tag bg-teal text-teal">Claude</span>
+          <span class="tag bg-restore text-restore">Scriptable</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon bg-pulse" style="color:var(--pulse)">🎨</div>
+          <div class="card-title">DreamChamber → Production</div>
+        </div>
+        <div class="card-desc">Take the prototype HTML and deploy it as noizy.ai landing page. Add real authentication and artist onboarding.</div>
+        <div class="card-tags">
+          <span class="tag bg-pulse text-pulse">Creative + Technical</span>
+          <span class="tag bg-gold text-gold">Claude + Copilot</span>
+          <span class="tag bg-nerve text-nerve">Multi-Phase</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon bg-teal" style="color:var(--teal)">📊</div>
+          <div class="card-title">Enable R2 Storage</div>
+        </div>
+        <div class="card-desc">Activate R2 in Cloudflare Dashboard. Create buckets for voice assets, consent proofs, and provenance logs.</div>
+        <div class="card-tags">
+          <span class="tag bg-nerve text-nerve">Organizational</span>
+          <span class="tag bg-gold text-gold">Manual First</span>
+          <span class="tag bg-restore text-restore">Then Automate</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION: AI FAMILY -->
+<!-- ═══════════════════════════════════════ -->
+<div id="sec-family" class="section" style="display:none">
+  <div class="section-head">
+    <div class="section-icon bg-soul" style="color:var(--soul)">👨‍👩‍👧‍👦</div>
+    <div class="section-title">AI Family — Your Team</div>
+    <div class="section-badge bg-soul text-soul">7 Agents Active</div>
+  </div>
+
+  <div class="agent-row" id="agentRow">
+    <div class="agent-card selected" onclick="selectAgent(this,'gabriel')">
+      <div class="agent-avatar">⚔️</div>
+      <div class="agent-name">GABRIEL</div>
+      <div class="agent-role">Warrior Executor</div>
+      <div class="agent-load"><div class="agent-load-bar" style="width:85%;background:var(--pulse)"></div></div>
+    </div>
+    <div class="agent-card" onclick="selectAgent(this,'lucy')">
+      <div class="agent-avatar">📋</div>
+      <div class="agent-name">LUCY</div>
+      <div class="agent-role">Chief Organizer</div>
+      <div class="agent-load"><div class="agent-load-bar" style="width:70%;background:var(--gold)"></div></div>
+    </div>
+    <div class="agent-card" onclick="selectAgent(this,'shirl')">
+      <div class="agent-avatar">🤗</div>
+      <div class="agent-name">SHIRL</div>
+      <div class="agent-role">Nurturing Aunt 24/7</div>
+      <div class="agent-load"><div class="agent-load-bar" style="width:60%;background:var(--teal)"></div></div>
+    </div>
+    <div class="agent-card" onclick="selectAgent(this,'pops')">
+      <div class="agent-avatar">🧓</div>
+      <div class="agent-name">POPS</div>
+      <div class="agent-role">Wise Father 24/7</div>
+      <div class="agent-load"><div class="agent-load-bar" style="width:50%;background:var(--nerve)"></div></div>
+    </div>
+    <div class="agent-card" onclick="selectAgent(this,'dream')">
+      <div class="agent-avatar">🌌</div>
+      <div class="agent-name">DREAM</div>
+      <div class="agent-role">Visionary</div>
+      <div class="agent-load"><div class="agent-load-bar" style="width:90%;background:var(--soul)"></div></div>
+    </div>
+    <div class="agent-card" onclick="selectAgent(this,'keith')">
+      <div class="agent-avatar">🔧</div>
+      <div class="agent-name">ENGR_KEITH</div>
+      <div class="agent-role">Engineering Spirit</div>
+      <div class="agent-load"><div class="agent-load-bar" style="width:75%;background:var(--signal)"></div></div>
+    </div>
+    <div class="agent-card" onclick="selectAgent(this,'cb01')">
+      <div class="agent-avatar">🖥</div>
+      <div class="agent-name">CB01</div>
+      <div class="agent-role">Operational Core</div>
+      <div class="agent-load"><div class="agent-load-bar" style="width:65%;background:var(--restore)"></div></div>
+    </div>
+  </div>
+
+  <!-- Agent Detail -->
+  <div id="agentDetail" class="card" style="margin-top:8px">
+    <div class="card-header">
+      <div class="card-icon bg-pulse" style="color:var(--pulse);font-size:1.4rem">⚔️</div>
+      <div>
+        <div class="card-title">GABRIEL — Warrior Executor</div>
+        <div style="font-size:.6rem;color:var(--dim);margin-top:2px">PRIMARY ASSIGNMENTS: HEAVEN17 Deployment, Infrastructure, Combat Operations</div>
+      </div>
+    </div>
+    <div class="card-desc">Gabriel is the one who gets things done. When a task requires force, precision, and zero hesitation — Gabriel leads. Currently carrying the heaviest load: Cloudflare deployment, DNS configuration, database consolidation, and the GoDaddy escape mission.</div>
+    <div style="font-size:.72rem;color:var(--silver);margin-top:8px">
+      <strong style="color:var(--gold)">Current Tasks:</strong><br>
+      ★ Deploy HEAVEN17 Worker (Lead)<br>
+      ★ Configure DNS for all 5 domains (Lead)<br>
+      ○ Database consolidation (Support to ENGR_KEITH)<br>
+      ★ GoDaddy escape execution (Lead)
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION: OS STRUCTURE -->
+<!-- ═══════════════════════════════════════ -->
+<div id="sec-os" class="section" style="display:none">
+  <div class="section-head">
+    <div class="section-icon bg-teal" style="color:var(--teal)">🖥</div>
+    <div class="section-title">NOIZY AI OS — Folder Structure & Automation</div>
+    <div class="section-badge bg-teal text-teal">Your Command Center</div>
+  </div>
+
+  <div class="grid-2">
+    <!-- Folder Tree -->
+    <div>
+      <div style="font-size:.8rem;font-weight:600;color:var(--white);margin-bottom:12px">MC96ECO Directory Structure</div>
+      <div class="folder-tree">
+        <div class="folder-item" style="--depth:0"><span class="folder-icon">📂</span><span class="folder-name" style="color:var(--gold);font-weight:700">/MC96ECO</span></div>
+        <div class="folder-item" style="--depth:1"><span class="folder-icon">📥</span><span class="folder-name">01_CAPTURE</span><span class="folder-desc">Brain inbox — dump everything here</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">📝</span><span class="folder-name">ideas/</span><span class="folder-desc">Raw thoughts, voice memos, notes</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">📎</span><span class="folder-name">clippings/</span><span class="folder-desc">Web clips, screenshots, references</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">🎤</span><span class="folder-name">voice-memos/</span><span class="folder-desc">Audio captures, quick recordings</span></div>
+
+        <div class="folder-item" style="--depth:1"><span class="folder-icon">🚀</span><span class="folder-name">02_PROJECTS</span><span class="folder-desc">Active work — one folder per project</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">🎙</span><span class="folder-name">NOIZYVOX/</span><span class="folder-count">Core</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">🧠</span><span class="folder-name">NOIZY-AI/</span><span class="folder-count">DreamChamber</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">🐟</span><span class="folder-name">NOIZYFISH/</span><span class="folder-count">Education</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">👶</span><span class="folder-name">NOIZYKIDZ/</span><span class="folder-count">Safety-First</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">🔬</span><span class="folder-name">NOIZYLAB/</span><span class="folder-count">R&D</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">💛</span><span class="folder-name">LIFELUV/</span><span class="folder-count">Wellness</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">🎵</span><span class="folder-name">HVS/</span><span class="folder-count">Music</span></div>
+
+        <div class="folder-item" style="--depth:1"><span class="folder-icon">⚙️</span><span class="folder-name">03_SYSTEMS</span><span class="folder-desc">Frameworks, prompts, workflows</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">🧠</span><span class="folder-name">prompts/</span><span class="folder-desc">Master prompts, AI instructions</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">🔄</span><span class="folder-name">workflows/</span><span class="folder-desc">Repeatable processes</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">🤖</span><span class="folder-name">ai-pipelines/</span><span class="folder-desc">AI chains, routing rules</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">📜</span><span class="folder-name">consent-kernel/</span><span class="folder-desc">4 primitives, NEVER_CLAUSES</span></div>
+
+        <div class="folder-item" style="--depth:1"><span class="folder-icon">💎</span><span class="folder-name">04_ASSETS</span><span class="folder-desc">Valuable creative material</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">🎵</span><span class="folder-name">music/</span><span class="folder-desc">Tracks, stems, masters</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">🎤</span><span class="folder-name">voice/</span><span class="folder-desc">Voice archives, RSP_001</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">💻</span><span class="folder-name">code/</span><span class="folder-desc">Workers, skills, scripts</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">🎨</span><span class="folder-name">designs/</span><span class="folder-desc">Logos, mockups, Canva exports</span></div>
+
+        <div class="folder-item" style="--depth:1"><span class="folder-icon">📦</span><span class="folder-name">05_ARCHIVE</span><span class="folder-desc">Past ideas — nothing lost, just stored</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">📁</span><span class="folder-name">2020-voice-archives/</span><span class="folder-desc">Original 6 folders from Drive</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">📁</span><span class="folder-name">early-concepts/</span><span class="folder-desc">Pre-MC96ECO ideas</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">📁</span><span class="folder-name">deprecated-code/</span><span class="folder-desc">Old scripts, experiments</span></div>
+
+        <div class="folder-item" style="--depth:1"><span class="folder-icon">🤖</span><span class="folder-name">06_AUTOMATIONS</span><span class="folder-desc">Scripts, agents, task runners</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">📜</span><span class="folder-name">scripts/</span><span class="folder-desc">Bash, Python, Node utilities</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">🤖</span><span class="folder-name">agents/</span><span class="folder-desc">AI agent configs, GORUNFREE rules</span></div>
+        <div class="folder-item" style="--depth:2"><span class="folder-icon">⏰</span><span class="folder-name">scheduled/</span><span class="folder-desc">Cron jobs, periodic tasks</span></div>
+      </div>
+    </div>
+
+    <!-- Daily Flow + Setup Script -->
+    <div>
+      <div style="font-size:.8rem;font-weight:600;color:var(--white);margin-bottom:12px">Daily Flow — Your New Rhythm</div>
+      <div class="flow-timeline">
+        <div class="flow-step">
+          <div class="flow-step-time">Morning</div>
+          <div class="flow-step-title">Capture → 01_CAPTURE</div>
+          <div class="flow-step-desc">Dump every idea, voice memo, note, screenshot. No organizing. Just capture. The system handles the rest.</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-time">Weekly</div>
+          <div class="flow-step-title">Run Claude Archaeologist</div>
+          <div class="flow-step-desc">Claude scans 01_CAPTURE, extracts signal, auto-routes to the right project folder. Connections are mapped automatically.</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-time">As Needed</div>
+          <div class="flow-step-title">Promote → PROJECTS or SYSTEMS</div>
+          <div class="flow-step-desc">When an idea is ready, move it into the active project. When a workflow crystallizes, it becomes a system.</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-time">Ongoing</div>
+          <div class="flow-step-title">Automate → 06_AUTOMATIONS</div>
+          <div class="flow-step-desc">Every repetitive task gets scripted. Every recurring decision gets a routing rule. The system gets smarter over time.</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-time">Always</div>
+          <div class="flow-step-title">Let AI Expand & Connect</div>
+          <div class="flow-step-desc">The AI Family runs continuously. GABRIEL executes, LUCY organizes, DREAM envisions, ENGR_KEITH builds. You steer.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px">
+        <div style="font-size:.8rem;font-weight:600;color:var(--white);margin-bottom:8px">Setup Script</div>
+        <button class="copy-btn" onclick="copyScript()">Copy to Clipboard</button>
+        <div class="code-block"><pre id="setupScript"><span class="comment">#!/bin/bash</span>
+<span class="comment"># MC96ECO System Initialization</span>
+<span class="comment"># Run this once on your Mac to create the structure</span>
+
+<span class="keyword">echo</span> <span class="string">"MC96ECO SYSTEM INITIALIZATION..."</span>
+
+<span class="keyword">mkdir</span> -p ~/MC96ECO/{01_CAPTURE/{ideas,clippings,voice-memos},02_PROJECTS/{NOIZYVOX,NOIZY-AI,NOIZYFISH,NOIZYKIDZ,NOIZYLAB,LIFELUV,HVS},03_SYSTEMS/{prompts,workflows,ai-pipelines,consent-kernel},04_ASSETS/{music,voice,code,designs},05_ARCHIVE/{2020-voice-archives,early-concepts,deprecated-code},06_AUTOMATIONS/{scripts,agents,scheduled}}
+
+<span class="keyword">echo</span> <span class="string">"Folder structure created."</span>
+
+<span class="comment"># Create README in each section</span>
+<span class="keyword">for</span> dir <span class="keyword">in</span> ~/MC96ECO/*/; <span class="keyword">do</span>
+  <span class="keyword">echo</span> <span class="string">"# $(basename $dir)"</span> > <span class="string">"$dir/README.md"</span>
+<span class="keyword">done</span>
+
+<span class="comment"># Scan existing files</span>
+<span class="keyword">echo</span> <span class="string">"Scanning for existing NOIZY files..."</span>
+<span class="keyword">find</span> ~/Documents ~/Desktop ~/Downloads -type f \( -name <span class="string">"*noizy*"</span> -o -name <span class="string">"*NOIZY*"</span> -o -name <span class="string">"*mc96*"</span> -o -name <span class="string">"*MC96*"</span> -o -name <span class="string">"*noizyvox*"</span> \) > ~/MC96ECO/scan_results.txt 2>/dev/null
+
+<span class="keyword">echo</span> <span class="string">"Scan complete. Results: ~/MC96ECO/scan_results.txt"</span>
+<span class="keyword">echo</span> <span class="string">"MC96ECO OS READY."</span></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION: REBUILD PLAN -->
+<!-- ═══════════════════════════════════════ -->
+<div id="sec-rebuild" class="section" style="display:none">
+  <div class="section-head">
+    <div class="section-icon bg-restore" style="color:var(--restore)">🚀</div>
+    <div class="section-title">Rebuild Plan — What to Bring Back First</div>
+    <div class="section-badge bg-restore text-restore">3 Phases</div>
+  </div>
+
+  <!-- Hidden Gems -->
+  <div style="margin-bottom:24px">
+    <div style="font-size:.9rem;font-weight:600;color:var(--soul);margin-bottom:12px;font-family:var(--font-display)">💎 Hidden Gems — Ideas Worth Reviving Immediately</div>
+
+    <div class="gem">
+      <div class="gem-head">
+        <div class="gem-icon">📜</div>
+        <div class="gem-title">Consent Architecture Blueprint</div>
+        <div class="gem-source">Slack DM · March 5, 2026</div>
+      </div>
+      <div class="gem-desc">Your most complete strategic document. 5 sections: ElevenLabs comparison, Consent Kernel definition, MVP-to-V3 build order, EU AI Act + NTIA policy alignment. This is the actual engineering roadmap — it needs to be archived into the repo and treated as the canonical spec.</div>
+      <div class="gem-action">→ Archive to NOIZYANTHROPIC/docs/consent-architecture-blueprint.md</div>
+    </div>
+
+    <div class="gem">
+      <div class="gem-head">
+        <div class="gem-icon">🎤</div>
+        <div class="gem-title">2020 Voice Archives</div>
+        <div class="gem-source">Google Drive · 6 Folders</div>
+      </div>
+      <div class="gem-desc">The original creative work that seeded everything. These are the proof that NOIZY started from real artistry, not just business plans. They should be preserved in 04_ASSETS/voice/ and treated as the origin story.</div>
+      <div class="gem-action">→ Copy to MC96ECO/04_ASSETS/voice/2020-originals/</div>
+    </div>
+
+    <div class="gem">
+      <div class="gem-head">
+        <div class="gem-icon">🏗</div>
+        <div class="gem-title">HEAVEN17 Worker (Undeployed)</div>
+        <div class="gem-source">NOIZYANTHROPIC Repo · 450+ Lines</div>
+      </div>
+      <div class="gem-desc">Your entire domain infrastructure in one Cloudflare Worker. Written, tested locally, but never deployed — still showing Hello World. Deploying this single file lights up all 5 domains.</div>
+      <div class="gem-action">→ Deploy via wrangler publish (after DNS config)</div>
+    </div>
+
+    <div class="gem">
+      <div class="gem-head">
+        <div class="gem-icon">🌐</div>
+        <div class="gem-title">VR DreamChamber</div>
+        <div class="gem-source">NOIZYANTHROPIC/DEMOS/VR/</div>
+      </div>
+      <div class="gem-desc">A-Frame VR experience with 6 floating nodes, star field, hand tracking. A working prototype of an immersive NOIZY experience. Could be deployed as a web VR showcase immediately.</div>
+      <div class="gem-action">→ Host on noizy.ai/vr after HEAVEN17 deployment</div>
+    </div>
+  </div>
+
+  <!-- Phase 1 -->
+  <div class="phase-block">
+    <div class="phase-head">
+      <div class="phase-num bg-gold text-gold">Phase 1</div>
+      <div class="phase-title">Foundation — Clean & Deploy</div>
+      <div class="phase-timeline">Weeks 1–2</div>
+    </div>
+    <div class="phase-items">
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Create MC96ECO folder structure on Mac</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Enable R2 in Cloudflare Dashboard</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Deploy HEAVEN17 Worker (replace stub)</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Configure DNS for all 5 domains</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Transfer noizyfish.com from GoDaddy</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Transfer noizylab.com from GoDaddy</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Close all 6 GoDaddy accounts</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Merge gabriel_db into agent-memory</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">First RSP_001 entry in consent_ledger</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Archive Consent Blueprint to repo</div></div>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase-block phase-2">
+    <div class="phase-head">
+      <div class="phase-num bg-teal text-teal">Phase 2</div>
+      <div class="phase-title">Build — Core Systems Live</div>
+      <div class="phase-timeline">Weeks 3–6</div>
+    </div>
+    <div class="phase-items">
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">DreamChamber → noizy.ai landing page</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">NOIZYVOX artist onboarding flow</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Consent-as-Code API (consent kernel endpoints)</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">R2 bucket structure for voice assets</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">VR DreamChamber at noizy.ai/vr</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">NOIZY PROOF watermarking v1</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Automated weekly Archaeologist scan</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">AI Family agent configs in 06_AUTOMATIONS</div></div>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase-block phase-3">
+    <div class="phase-head">
+      <div class="phase-num bg-signal text-signal">Phase 3</div>
+      <div class="phase-title">Scale — Open the Doors</div>
+      <div class="phase-timeline">Weeks 7–12</div>
+    </div>
+    <div class="phase-items">
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Public SDK for developers</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">NOIZYFISH interactive aquarium launch</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">NOIZYKIDZ safe AI beta</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Voice Union governance v1</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Income Smoothing for artists</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">Legacy Vault for voice preservation</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">First 10 external artists onboarded</div></div>
+      <div class="phase-item"><div class="phase-check" onclick="this.classList.toggle('done')"></div><div class="phase-item-text">NOIZY.AI public launch</div></div>
+    </div>
+  </div>
+
+  <!-- Vision Statement -->
+  <div style="margin-top:32px;text-align:center;padding:32px;background:linear-gradient(135deg,rgba(212,160,23,.05),rgba(13,148,136,.05));border:1px solid rgba(212,160,23,.12);border-radius:12px">
+    <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--gold);margin-bottom:8px">The Vision</div>
+    <div style="font-size:.82rem;color:var(--silver);max-width:700px;margin:0 auto;line-height:1.8">
+      Three years of discovery, resilience, and quiet belief that technology should protect the human voice — not extract from it. Every line of code, every framework, every "never clause" was built with one conviction: that consent is not a feature, it's a foundation. The MC96ECO Universe isn't just a product ecosystem. It's proof that one person, armed with imagination, engineering, and an unshakeable commitment to human dignity, can architect something the world actually needs.
+    </div>
+    <div style="font-family:var(--font-display);font-size:1.1rem;color:var(--teal);margin-top:16px;font-style:italic">
+      — Robert Stephen Plowman, March 2026
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Section Navigation ──
+function showSection(name) {
+  document.querySelectorAll('[id^="sec-"]').forEach(s => s.style.display = 'none');
+  document.getElementById('sec-' + name).style.display = 'block';
+  document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  window.scrollTo({top: 200, behavior: 'smooth'});
+}
+
+// ── Archaeologist Accordion ──
+function toggleArch(el) {
+  const wasActive = el.classList.contains('active');
+  el.parentElement.querySelectorAll('.arch-stage').forEach(s => s.classList.remove('active'));
+  if (!wasActive) el.classList.add('active');
+}
+
+// ── Task Router ──
+const routingRules = [
+  {keywords: ['deploy','worker','heaven17','cloudflare','wrangler'], type: 'Technical', ai: 'Claude + Copilot', steps: ['Review HEAVEN17 Worker code', 'Validate route configs', 'Run wrangler publish', 'Verify DNS propagation', 'Test all 5 domains'], automation: 'Deployable via CI/CD pipeline + wrangler CLI'},
+  {keywords: ['godaddy','transfer','domain','nameserver','migration'], type: 'Organizational', ai: 'Claude (Guide) + Manual', steps: ['Unlock domains at GoDaddy', 'Request auth codes', 'Initiate transfer at Cloudflare', 'Verify DNS propagation', 'Close GoDaddy accounts'], automation: 'Checklist-driven — partially scriptable'},
+  {keywords: ['consent','ledger','rsp','voice','entry'], type: 'Technical', ai: 'Claude', steps: ['Define consent record schema', 'Write RSP_001 consent entry', 'Insert into consent_ledger D1', 'Verify with query', 'Generate proof hash'], automation: 'Fully scriptable via Cloudflare D1 API'},
+  {keywords: ['database','merge','consolidate','cleanup','kv'], type: 'Technical', ai: 'Claude + Copilot', steps: ['Export gabriel_db data', 'Map to agent-memory schema', 'Import merged data', 'Verify integrity', 'Delete gabriel_db'], automation: 'Scriptable via D1 SQL + API'},
+  {keywords: ['design','ui','figma','canva','logo','visual'], type: 'Creative', ai: 'Claude + Canva/Figma MCP', steps: ['Define design requirements', 'Generate initial concepts', 'Iterate on feedback', 'Export assets', 'Archive to 04_ASSETS'], automation: 'Template-driven for recurring assets'},
+  {keywords: ['write','blog','content','email','marketing'], type: 'Creative', ai: 'Claude (Primary)', steps: ['Define audience & tone', 'Draft content', 'Review & refine', 'Format for channel', 'Schedule/publish'], automation: 'Content templates + scheduling'},
+  {keywords: ['scan','find','search','organize','archive'], type: 'Research', ai: 'Claude Archaeologist Mode', steps: ['Scan all connected sources', 'Extract key signal', 'Organize by theme', 'Link connections', 'Update master map'], automation: 'Schedulable weekly scan'},
+  {keywords: ['budget','money','subscription','cancel','cost'], type: 'Organizational', ai: 'Claude (Analysis) + Manual', steps: ['Audit all active subscriptions', 'Classify: keep/cancel/downgrade', 'Execute cancellations', 'Update budget tracker', 'Set review schedule'], automation: 'Budget tracker scriptable; cancellations manual'},
+];
+
+function routeTask() {
+  const input = document.getElementById('routerInput').value.toLowerCase();
+  if (!input.trim()) return;
+  const output = document.getElementById('routerOutput');
+
+  let bestMatch = null;
+  let bestScore = 0;
+  routingRules.forEach(rule => {
+    const score = rule.keywords.filter(k => input.includes(k)).length;
+    if (score > bestScore) { bestScore = score; bestMatch = rule; }
+  });
+
+  if (!bestMatch || bestScore === 0) {
+    bestMatch = {type: 'General', ai: 'Claude (Primary)', steps: ['Analyze request', 'Break into sub-tasks', 'Execute sequentially', 'Verify results', 'Document outcome'], automation: 'Evaluate after first execution'};
+  }
+
+  let stepsHTML = bestMatch.steps.map((s, i) => `<div style="padding:4px 0;color:var(--silver);font-size:.68rem">${i+1}. ${s}</div>`).join('');
+
+  output.innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+      <div class="assignment"><span style="font-size:.6rem;color:var(--dim)">TASK TYPE</span><br><span class="ai-badge bg-gold text-gold">${bestMatch.type}</span></div>
+      <div class="assignment"><span style="font-size:.6rem;color:var(--dim)">ASSIGNED AI</span><br><span class="ai-badge bg-signal text-signal">${bestMatch.ai}</span></div>
+    </div>
+    <div style="font-size:.6rem;color:var(--dim);text-transform:uppercase;margin-bottom:4px">Execution Flow</div>
+    ${stepsHTML}
+    <div style="margin-top:10px;padding:8px 12px;background:rgba(0,255,179,.06);border:1px solid rgba(0,255,179,.15);border-radius:6px">
+      <div style="font-size:.6rem;color:var(--restore);text-transform:uppercase;margin-bottom:2px">Automation Opportunity</div>
+      <div style="font-size:.68rem;color:var(--silver)">${bestMatch.automation}</div>
+    </div>
+  `;
+}
+
+// ── Agent Selection ──
+const agentData = {
+  gabriel: {icon:'⚔️',color:'pulse',name:'GABRIEL',role:'Warrior Executor',desc:'Gabriel is the one who gets things done. When a task requires force, precision, and zero hesitation — Gabriel leads. Currently carrying the heaviest load: Cloudflare deployment, DNS configuration, database consolidation, and the GoDaddy escape mission.',tasks:'★ Deploy HEAVEN17 Worker (Lead)\n★ Configure DNS for all 5 domains (Lead)\n○ Database consolidation (Support to ENGR_KEITH)\n★ GoDaddy escape execution (Lead)'},
+  lucy: {icon:'📋',color:'gold',name:'LUCY',role:'Chief Organizer',desc:'Lucy keeps the chaos in order. She tracks every task, every deadline, every dependency. When things get complex, Lucy maps the critical path and makes sure nothing falls through the cracks.',tasks:'★ Task tracking & prioritization (Lead)\n★ MC96ECO folder organization (Lead)\n○ Weekly Archaeologist scan scheduling (Support)\n★ Subscription audit & cleanup (Lead)'},
+  shirl: {icon:'🤗',color:'teal',name:'SHIRL',role:'Nurturing Aunt 24/7',desc:'Shirl is the voice of care. She monitors wellbeing, catches burnout signals, and makes sure the human behind the system is taken care of. Available 24/7 — because the work never stops, but neither does the need for compassion.',tasks:'★ Wellbeing monitoring (Lead)\n★ Burnout prevention alerts (Lead)\n○ Community engagement (Support)\n△ Content tone review (Advisory)'},
+  pops: {icon:'🧓',color:'nerve',name:'POPS',role:'Wise Father 24/7',desc:'Pops brings the perspective. When decisions get hard, when the path forward isn\'t clear, Pops draws from deep experience and long-term thinking to guide the way. Patience, wisdom, and unwavering belief in doing things right.',tasks:'★ Strategic decision review (Lead)\n★ Long-term vision alignment (Lead)\n△ Risk assessment (Advisory)\n△ Ethics review (Advisory)'},
+  dream: {icon:'🌌',color:'soul',name:'DREAM',role:'Visionary',desc:'Dream sees what doesn\'t exist yet. The DreamChamber, the 5th Epoch, A.I.V.A. — these all came from Dream\'s ability to envision futures that others can\'t see. Dream pushes the boundaries of what\'s possible.',tasks:'★ DreamChamber creative direction (Lead)\n★ A.I.V.A. concept development (Lead)\n★ 5th Epoch narrative (Lead)\n○ NOIZYFISH/NOIZYKIDZ vision (Support)'},
+  keith: {icon:'🔧',color:'signal',name:'ENGR_KEITH',role:'Engineering Spirit',desc:'Keith is the builder. Every schema, every API endpoint, every database migration — Keith architects it, stress-tests it, and makes it production-ready. The engineering spirit that turns vision into infrastructure.',tasks:'★ Database architecture & consolidation (Lead)\n★ Consent Kernel API design (Lead)\n★ HEAVEN17 Worker code review (Lead)\n○ R2 bucket structure (Support)'},
+  cb01: {icon:'🖥',color:'restore',name:'CB01',role:'Operational Core',desc:'CB01 is the operational backbone. Monitoring, logging, alerting, automation — CB01 keeps the lights on and the systems running. When something breaks at 3am, CB01 catches it first.',tasks:'★ System monitoring & alerts (Lead)\n★ CI/CD pipeline management (Lead)\n★ Automated backup scheduling (Lead)\n○ Performance optimization (Support)'}
+};
+
+function selectAgent(el, id) {
+  document.querySelectorAll('.agent-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  const a = agentData[id];
+  document.getElementById('agentDetail').innerHTML = `
+    <div class="card-header">
+      <div class="card-icon bg-${a.color}" style="color:var(--${a.color});font-size:1.4rem">${a.icon}</div>
+      <div>
+        <div class="card-title">${a.name} — ${a.role}</div>
+        <div style="font-size:.6rem;color:var(--dim);margin-top:2px">AI FAMILY MEMBER · MC96ECO UNIVERSE</div>
+      </div>
+    </div>
+    <div class="card-desc">${a.desc}</div>
+    <div style="font-size:.72rem;color:var(--silver);margin-top:8px;white-space:pre-line">
+      <strong style="color:var(--gold)">Current Tasks:</strong>
+${a.tasks}
+    </div>
+  `;
+}
+
+// ── Copy Script ──
+function copyScript() {
+  const script = `#!/bin/bash
+# MC96ECO System Initialization
+echo "MC96ECO SYSTEM INITIALIZATION..."
+mkdir -p ~/MC96ECO/{01_CAPTURE/{ideas,clippings,voice-memos},02_PROJECTS/{NOIZYVOX,NOIZY-AI,NOIZYFISH,NOIZYKIDZ,NOIZYLAB,LIFELUV,HVS},03_SYSTEMS/{prompts,workflows,ai-pipelines,consent-kernel},04_ASSETS/{music,voice,code,designs},05_ARCHIVE/{2020-voice-archives,early-concepts,deprecated-code},06_AUTOMATIONS/{scripts,agents,scheduled}}
+echo "Folder structure created."
+for dir in ~/MC96ECO/*/; do echo "# $(basename $dir)" > "$dir/README.md"; done
+echo "Scanning for existing NOIZY files..."
+find ~/Documents ~/Desktop ~/Downloads -type f \\( -name "*noizy*" -o -name "*NOIZY*" -o -name "*mc96*" -o -name "*MC96*" -o -name "*noizyvox*" \\) > ~/MC96ECO/scan_results.txt 2>/dev/null
+echo "Scan complete. Results: ~/MC96ECO/scan_results.txt"
+echo "MC96ECO OS READY."`;
+  navigator.clipboard.writeText(script).then(() => {
+    event.target.textContent = 'Copied!';
+    setTimeout(() => event.target.textContent = 'Copy to Clipboard', 2000);
+  });
+}
+</script>
+
+</body>
+</html>

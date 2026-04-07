@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GABRIEL DJ DECK // TURBO</title>
+    <link href="nexus.css" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff0055;
+            --neon-blue: #00ccff;
+            --neon-purple: #9900ff;
+            --bg-dark: #09090b;
+            --panel-bg: rgba(20, 20, 25, 0.7);
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+        }
+
+        /* HEADER */
+        .deck-header {
+            height: 60px;
+            border-bottom: 2px solid var(--neon-purple);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            justify-content: space-between;
+            background: rgba(0,0,0,0.8);
+        }
+
+        .brand { font-size: 24px; font-weight: bold; color: var(--neon-purple); letter-spacing: 4px; }
+        .status { font-size: 12px; color: #666; }
+
+        /* MAIN LAYOUT */
+        .container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            height: calc(100vh - 60px);
+        }
+
+        /* SIDEBAR (CRATES) */
+        .sidebar {
+            border-right: 1px solid #333;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+        }
+        .sidebar h3 { color: #888; font-size: 12px; uppercase; margin-bottom: 10px; }
+        .crate-item { 
+            padding: 10px; 
+            cursor: pointer; 
+            border-left: 2px solid transparent; 
+            transition: all 0.2s;
+        }
+        .crate-item:hover { background: #111; border-left-color: var(--neon-blue); color: var(--neon-blue); }
+
+        /* MAIN DECK */
+        .main-deck {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* SEARCH */
+        .search-bar {
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+        }
+        input#search-input {
+            width: 100%;
+            background: #111;
+            border: 1px solid #333;
+            color: var(--neon-blue);
+            padding: 15px;
+            font-size: 18px;
+            font-family: inherit;
+            outline: none;
+        }
+        input#search-input:focus { border-color: var(--neon-blue); }
+
+        /* RESULTS (GRID) */
+        .results-grid {
+            padding: 20px;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .track-card {
+            background: var(--panel-bg);
+            border: 1px solid #333;
+            padding: 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .track-card:hover { transform: scale(1.02); border-color: #fff; }
+        .track-title { font-weight: bold; font-size: 14px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .track-meta { font-size: 10px; color: #666; }
+
+        /* PLAYER (BOTTOM) */
+        .player-bar {
+            height: 100px;
+            background: #000;
+            border-top: 1px solid #333;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            justify-content: space-between;
+        }
+        
+        .visualizer {
+            flex-grow: 1;
+            height: 60px;
+            margin: 0 20px;
+            background: #050505;
+            position: relative;
+        }
+        canvas { width: 100%; height: 100%; }
+
+        .controls button {
+            background: none;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .controls button:hover { background: #fff; color: #000; }
+        
+        .active-track-info { width: 200px; }
+        .now-playing { color: var(--neon-pink); font-size: 12px; }
+        .track-name-display { font-size: 16px; font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+    <div class="deck-header">
+        <div class="brand">GABRIEL // <span style="color:#fff">DJ DECK</span></div>
+        <div class="status" id="connection-status">CONNECTING...</div>
+    </div>
+
+    <div class="container">
+        <!-- CRATES -->
+        <div class="sidebar">
+            <h3>SMART CRATES</h3>
+            <div class="crate-item" onclick="search('Kick')">🥁 Kicks</div>
+            <div class="crate-item" onclick="search('Snare')">💥 Snares</div>
+            <div class="crate-item" onclick="search('Bass')">🎸 Bass</div>
+            <div class="crate-item" onclick="search('Synth')">🎹 Synths</div>
+            <div class="crate-item" onclick="search('FX')">✨ FX</div>
+            <div class="crate-item" onclick="search('Vocal')">🎤 Vocals</div>
+            <br>
+            <h3>AI GENERATED</h3>
+            <div class="crate-item" onclick="search('ElevenLabs')">🗣️ Speech</div>
+            <div class="crate-item" onclick="search('Stability')">🎵 Music</div>
+        </div>
+
+        <!-- MAIN AREA -->
+        <div class="main-deck">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="SEARCH THE UNIVERSE (6TB)..." autocomplete="off">
+            </div>
+
+            <div class="results-grid" id="results-grid">
+                <!-- Results injected here -->
+                <div style="color:#444; padding:20px;">Waiting for input...</div>
+            </div>
+
+            <!-- PLAYER -->
+            <div class="player-bar">
+                <div class="active-track-info">
+                    <div class="now-playing">NOW PLAYING</div>
+                    <div class="track-name-display" id="track-display">--</div>
+                </div>
+
+                <div class="visualizer">
+                    <canvas id="viz-canvas"></canvas>
+                </div>
+
+                <div class="controls">
+                    <button id="play-btn">▶ PLAY</button>
+                    <button id="auto-dj-btn" style="border-color:var(--neon-purple)">🤖 AUTO DJ: OFF</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="gabriel-core.js"></script>
+    <script src="audio-engine.js"></script>
+    <script>
+        // UI LOGIC
+        const grid = document.getElementById('results-grid');
+        const searchInput = document.getElementById('search-input');
+        const trackDisplay = document.getElementById('track-display');
+        const autoDjButton = document.getElementById('auto-dj-btn');
+        let autoDjEnabled = false;
+
+        // Init
+        document.addEventListener('DOMContentLoaded', async () => {
+            const connected = await Gabriel.connect();
+            document.getElementById('connection-status').innerText = connected ? "ONLINE" : "OFFLINE";
+            
+            // Start Visualizer
+            requestAnimationFrame(drawViz);
+        });
+
+        // Search Handler
+        async function search(query) {
+            if(!query) query = searchInput.value;
+            grid.innerHTML = '<div style="color:#666">Scanning...</div>';
+            
+            const results = await Gabriel.search(query);
+            renderResults(results);
+        }
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') search();
+        });
+
+        function renderResults(files) {
+            grid.innerHTML = '';
+            files.forEach(file => {
+                const el = document.createElement('div');
+                el.className = 'track-card';
+                el.innerHTML = `
+                    <div class="track-title">${file.name}</div>
+                    <div class="track-meta">${file.tags || 'No Tags'}</div>
+                    <div class="track-meta">${file.size || 0} bytes</div>
+                `;
+                el.onclick = () => playTrack(file);
+                grid.appendChild(el);
+            });
+            
+            if(files.length === 0) grid.innerHTML = '<div style="color:#444">No Audio Found.</div>';
+        }
+
+        function playTrack(file) {
+            trackDisplay.innerText = file.name;
+            // Note: In a real server setup, we need a route to serve the file content
+            // Assuming turbo_server logic can serve from /files/ or similar
+            // For now, we assume the path is relative or accessible
+            // The python server in turbo_server.py is SimpleHTTPRequestHandler, so it serves relative to CWD.
+            // Files are likely deep in subfolders.
+            
+            // FIX: We need the server to map the absolute path to a URL. 
+            // For this demo, let's assume we can hit the path if it's under the server root.
+            
+            // If the server root is infinite-omega, and files are in Audio_Unitor, etc.
+            // We might just pass the relative path.
+            
+            // STREAMING FIX: Use The Forge's Stream API
+            const streamUrl = `/api/stream?path=${encodeURIComponent(file.path)}`;
+            console.log("Requesting Stream:", streamUrl);
+            AudioEngine.play(streamUrl); 
+        }
+
+        // Auto DJ Logic
+        autoDjButton.onclick = () => {
+            autoDjEnabled = !autoDjEnabled;
+            autoDjButton.innerHTML = autoDjEnabled ? "🤖 AUTO DJ: ON" : "🤖 AUTO DJ: OFF";
+            autoDjButton.style.background = autoDjEnabled ? "var(--neon-purple)" : "transparent";
+            
+            if (autoDjEnabled && !AudioEngine.isPlaying) {
+                // Pick a random track from current results?
+                // Or ask Gabriel?
+                pickRandomResult();
+            }
+        };
+
+        window.addEventListener('track-ended', () => {
+            if (autoDjEnabled) {
+                console.log("GABRIEL: Mixing next track...");
+                setTimeout(pickRandomResult, 100); // Instant mix
+            }
+        });
+
+        function pickRandomResult() {
+            // Simple logic: pick random from grid
+            // Note: Ideally Gabriel.js should hold the state of results
+            const cards = document.querySelectorAll('.track-card');
+            if (cards.length > 0) {
+                const idx = Math.floor(Math.random() * cards.length);
+                cards[idx].click();
+            }
+        }
+
+        // Visualizer Loop
+        const canvas = document.getElementById('viz-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        function drawViz() {
+            requestAnimationFrame(drawViz);
+            
+            const data = AudioEngine.getVisualData();
+            const w = canvas.width;
+            const h = canvas.height;
+            
+            ctx.fillStyle = '#050505';
+            ctx.fillRect(0, 0, w, h);
+            
+            const barWidth = (w / data.length) * 2.5;
+            let x = 0;
+            
+            for(let i = 0; i < data.length; i++) {
+                const v = data[i] / 2; // scale
+                const r = v + 25 * (i/data.length); 
+                const g = 250 * (i/data.length);
+                const b = 50;
+
+                ctx.fillStyle = `rgb(${r},${g},${b})`;
+                ctx.fillRect(x, h - v, barWidth, v);
+                x += barWidth + 1;
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Post a Need - HealTheWorld</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    h1 {
+      color: #667eea;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+      color: #718096;
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 5px;
+      color: #2d3748;
+      font-weight: 500;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .required { color: #e53e3e; }
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    button, .btn {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+      text-decoration: none;
+      text-align: center;
+    }
+    button:hover, .btn:hover {
+      transform: translateY(-2px);
+    }
+    button {
+      background: #667eea;
+      color: white;
+    }
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #2d3748;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🆘 Post a Need</h1>
+    <p class="subtitle">Tell us what help you need. The community is here for you.</p>
+
+    <form method="post" action="/need">
+      <label>Your Name <span class="required">*</span></label>
+      <input type="text" name="name" required placeholder="John Doe">
+
+      <label>Email (optional)</label>
+      <input type="email" name="email" placeholder="john@example.com">
+
+      <label>Phone (optional)</label>
+      <input type="tel" name="phone" placeholder="(555) 123-4567">
+
+      <label>City <span class="required">*</span></label>
+      <input type="text" name="city" required placeholder="San Francisco">
+
+      <label>Category <span class="required">*</span></label>
+      <select name="category" required>
+        <option value="">-- Select --</option>
+        <option value="Food">🍽️ Food</option>
+        <option value="Housing">🏠 Housing</option>
+        <option value="Medical">⚕️ Medical</option>
+        <option value="Transportation">🚗 Transportation</option>
+        <option value="Childcare">👶 Childcare</option>
+        <option value="Education">📚 Education</option>
+        <option value="Employment">💼 Employment</option>
+        <option value="Other">🤝 Other</option>
+      </select>
+
+      <label>Description <span class="required">*</span></label>
+      <textarea name="description" required placeholder="Please describe what you need help with..."></textarea>
+
+      <div class="btn-group">
+        <a href="/" class="btn btn-secondary">Cancel</a>
+        <button type="submit">Post Need</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

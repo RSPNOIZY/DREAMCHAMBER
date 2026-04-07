@@ -1,0 +1,211 @@
+{
+	"folders": [
+		{
+			"name": "⬛ NOIZYLAB",
+			"path": "."
+		},
+		{
+			"name": "🔥 HOTROD-ULTRA (WORKSPACES)",
+			"path": "/Volumes/4TBSG/_2026_DOCS/NOIZYLAB_WORKSPACES"
+		},
+		{
+			"name": "🐟 NOIZYFISH AQUARIUM",
+			"path": "/Volumes/4TBSG/_NOIZYFISH - THE AQUARIUM"
+		},
+		{
+			"name": "🗄 ARCHIVES (6TB)",
+			"path": "/Volumes/6TB/NOIZYLAB_ARCHIVES"
+		},
+		{
+			"name": "☁ GDRIVE (rsplowman)",
+			"path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com/My Drive"
+		}
+	],
+	"settings": {
+		"window.title": "NOIZYLAB — DREAMCHAMBER ${activeEditorShort}",
+		"editor.accessibilitySupport": "on",
+		"editor.fontSize": 16,
+		"editor.lineHeight": 1.65,
+		"editor.cursorWidth": 3,
+		"editor.cursorBlinking": "smooth",
+		"editor.cursorSurroundingLines": 6,
+		"editor.wordWrap": "on",
+		"editor.wrappingIndent": "indent",
+		"editor.minimap.enabled": false,
+		"editor.stickyScroll.enabled": true,
+		"editor.stickyScroll.maxLineCount": 5,
+		"editor.smoothScrolling": true,
+		"workbench.list.smoothScrolling": true,
+		"editor.renderLineHighlight": "all",
+		"editor.occurrencesHighlight": "multiFile",
+		"terminal.integrated.fontSize": 14,
+		"terminal.integrated.lineHeight": 1.3,
+		"terminal.integrated.scrollback": 20000,
+		"terminal.integrated.persistentSessionReviveProcess": "always",
+		"terminal.integrated.enablePersistentSessions": true,
+		"terminal.integrated.tabs.title": "${process}",
+		"editor.formatOnSave": true,
+		"editor.bracketPairColorization.enabled": true,
+		"editor.guides.bracketPairs": "active",
+		"editor.inlayHints.enabled": "on",
+		"editor.suggest.preview": true,
+		"editor.linkedEditing": true,
+		"editor.multiCursorModifier": "ctrlCmd",
+		"files.insertFinalNewline": true,
+		"files.trimTrailingWhitespace": true,
+		"diffEditor.ignoreTrimWhitespace": false,
+		"workbench.editor.labelFormat": "short",
+		"workbench.sideBar.location": "right",
+		"workbench.panel.defaultLocation": "bottom",
+		"workbench.editor.enablePreview": false,
+		"workbench.startupEditor": "none",
+		"workbench.editor.showTabs": "multiple",
+		"workbench.activityBar.location": "top",
+		"explorer.fileNesting.enabled": true,
+		"explorer.fileNesting.expand": false,
+		"explorer.fileNesting.patterns": {
+			"*.talon": "${capture}.py",
+			"*.md": "${capture}.json",
+			"package.json": "package-lock.json, .npmrc, .nvmrc",
+			".env.example": ".env",
+			"*.py": "__pycache__"
+		},
+		"explorer.sortOrder": "type",
+		"explorer.confirmDelete": true,
+		"python.defaultInterpreterPath": "python3",
+		"python.analysis.autoImportCompletions": true,
+		"python.analysis.inlayHints.functionReturnTypes": true,
+		"python.analysis.inlayHints.variableTypes": false,
+		"[python]": {
+			"editor.defaultFormatter": "ms-python.black-formatter",
+			"editor.formatOnSave": true,
+			"editor.codeActionsOnSave": {
+				"source.organizeImports": "explicit"
+			}
+		},
+		"markdown.preview.scrollEditorWithPreview": true,
+		"markdown.preview.scrollPreviewWithEditor": true,
+		"markdown.preview.fontSize": 15,
+		"[markdown]": {
+			"editor.formatOnSave": false,
+			"editor.wordWrap": "on",
+			"editor.quickSuggestions": {
+				"other": "on",
+				"comments": "off",
+				"strings": "off"
+			},
+			"editor.rulers": []
+		},
+		"marp.exportType": "pptx",
+		"marp.enableHtml": true,
+		"git.autofetch": true,
+		"git.confirmSync": false,
+		"gitlens.currentLine.enabled": true,
+		"gitlens.hovers.currentLine.over": "line",
+		"todo-tree.general.tags": [
+			"NOIZY",
+			"INTAKE",
+			"GABRIEL",
+			"VAULT",
+			"NERVE",
+			"RSP001",
+			"LIFELUV",
+			"TODO",
+			"FIXME",
+			"HACK",
+			"NOTE"
+		],
+		"todo-tree.highlights.defaultHighlight": {
+			"type": "tag",
+			"gutterIcon": true
+		},
+		"todo-tree.highlights.customHighlight": {
+			"NOIZY": {
+				"foreground": "#00ffcc",
+				"background": "#00ffcc22",
+				"iconColour": "#00ffcc",
+				"type": "text-and-comment"
+			},
+			"INTAKE": {
+				"foreground": "#ff6b35",
+				"background": "#ff6b3522",
+				"iconColour": "#ff6b35",
+				"type": "text-and-comment"
+			},
+			"GABRIEL": {
+				"foreground": "#9b59b6",
+				"background": "#9b59b622",
+				"iconColour": "#9b59b6",
+				"type": "text-and-comment"
+			},
+			"VAULT": {
+				"foreground": "#f39c12",
+				"background": "#f39c1222",
+				"iconColour": "#f39c12",
+				"type": "text-and-comment"
+			},
+			"NERVE": {
+				"foreground": "#e74c3c",
+				"background": "#e74c3c22",
+				"iconColour": "#e74c3c",
+				"type": "text-and-comment"
+			},
+			"RSP001": {
+				"foreground": "#3498db",
+				"iconColour": "#3498db",
+				"type": "text-and-comment"
+			},
+			"LIFELUV": {
+				"foreground": "#e91e8c",
+				"iconColour": "#e91e8c",
+				"type": "text-and-comment"
+			},
+			"TODO": {
+				"foreground": "#ffffff",
+				"background": "#ffffff22",
+				"type": "tag"
+			},
+			"FIXME": {
+				"foreground": "#ff0000",
+				"background": "#ff000022",
+				"type": "tag"
+			}
+		},
+		"todo-tree.tree.showCountsInTree": true,
+		"todo-tree.general.revealBehaviour": "start of todo",
+		"errorLens.enabledDiagnosticLevels": [
+			"error",
+			"warning",
+			"info"
+		],
+		"errorLens.messageMaxChars": 100,
+		"rest-client.environmentVariables": {
+			"$shared": {
+				"PLATFORM_URL": "http://localhost:8090",
+				"ROB_AVA_URL": "http://localhost:8091",
+				"GABRIEL_URL": "http://localhost:3000"
+			}
+		},
+		"mcp": {
+			"servers": {
+				"microsoft/playwright-mcp": {
+					"type": "stdio",
+					"command": "npx",
+					"args": [
+						"@playwright/mcp@latest"
+					],
+					"gallery": "https://api.mcp.github.com",
+					"version": "0.0.1-seed"
+				}
+			},
+			"inputs": []
+		}
+	},
+	"launch": {
+		"configurations": [],
+		"compounds": []
+	},
+	"extensions": {
+		"recommendations": []
+	}
+}

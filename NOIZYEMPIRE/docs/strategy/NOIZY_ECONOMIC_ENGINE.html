@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY Economic Engine — Pricing Intelligence, Marketing & The Creator Economy Galaxy</title>
+<style>
+  :root {
+    --gold: #f0b429;
+    --fire: #e85d04;
+    --electric: #0a9ebd;
+    --dream: #c94070;
+    --deep: #7c4dff;
+    --green: #22c55e;
+    --black: #05050e;
+    --glass: rgba(255,255,255,0.04);
+    --line: rgba(255,255,255,0.07);
+    --text: #e8e8f0;
+    --muted: rgba(232,232,240,0.55);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--black); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; overflow-x:hidden; line-height:1.6; }
+
+  #starfield { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+  .atmosphere {
+    position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% -5%, rgba(34,197,94,0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 5% 70%, rgba(240,180,41,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 40% at 95% 30%, rgba(124,77,255,0.06) 0%, transparent 50%);
+  }
+
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(5,5,14,0.88); backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 32px; height:56px;
+  }
+  .nav-brand { font-weight:900; font-size:1.05rem; letter-spacing:0.12em; color:var(--green); }
+  .nav-badge { background:linear-gradient(135deg,var(--green),var(--electric)); color:#000; font-size:0.72rem; font-weight:800; letter-spacing:0.1em; padding:4px 14px; border-radius:20px; }
+  .nav-links { display:flex; gap:20px; list-style:none; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:0.8rem; letter-spacing:0.05em; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--green); }
+
+  section { position:relative; z-index:1; padding:100px 48px 80px; max-width:1260px; margin:0 auto; }
+
+  .section-eyebrow { font-size:0.72rem; letter-spacing:0.3em; text-transform:uppercase; font-weight:700; margin-bottom:12px; }
+  .section-title { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:900; line-height:1.1; letter-spacing:-0.01em; margin-bottom:16px; }
+  .section-sub { color:var(--muted); max-width:680px; font-size:1.05rem; margin-bottom:60px; }
+
+  .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s, transform 0.7s; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
+
+  .glow-band {
+    width:100%; height:1px; position:relative; z-index:1;
+    background:linear-gradient(90deg,transparent,rgba(34,197,94,0.5) 30%,rgba(240,180,41,0.4) 50%,rgba(34,197,94,0.5) 70%,transparent);
+  }
+
+  /* ─── HERO ─── */
+  .hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding-top:80px; max-width:100%; }
+  .hero-eyebrow { font-size:0.78rem; letter-spacing:0.3em; color:var(--green); font-weight:700; margin-bottom:20px; text-transform:uppercase; }
+  .hero-title { font-size:clamp(2.4rem,6vw,5rem); font-weight:900; line-height:1.0; letter-spacing:-0.02em; margin-bottom:20px; }
+  .hero-title .t1 { color:var(--green); }
+  .hero-title .t2 { background:linear-gradient(135deg,var(--gold),var(--green),var(--electric)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero-sub { font-size:clamp(.95rem,1.8vw,1.2rem); color:var(--muted); max-width:680px; margin:0 auto 48px; }
+
+  /* ─── INTEL TABLE ─── */
+  .intel-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:20px; margin-bottom:60px; }
+  .intel-card { background:var(--glass); border:1px solid var(--line); border-radius:16px; padding:24px; position:relative; overflow:hidden; }
+  .intel-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+  .ic-red::before { background:var(--fire); }
+  .ic-amber::before { background:var(--gold); }
+  .ic-blue::before { background:var(--electric); }
+  .ic-green::before { background:var(--green); }
+  .intel-name { font-size:1.1rem; font-weight:900; margin-bottom:4px; }
+  .ic-red .intel-name { color:var(--fire); }
+  .ic-amber .intel-name { color:var(--gold); }
+  .ic-blue .intel-name { color:var(--electric); }
+  .ic-green .intel-name { color:var(--green); }
+  .intel-type { font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+
+  .price-rows { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+  .price-row { display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:rgba(0,0,0,0.2); border-radius:8px; font-size:0.85rem; }
+  .price-row .tier { color:var(--muted); }
+  .price-row .amount { font-weight:800; color:var(--text); }
+
+  .intel-insight { margin-top:14px; padding:12px 14px; border-radius:8px; font-size:0.82rem; color:var(--muted); line-height:1.6; border-left:3px solid; }
+  .ic-red .intel-insight { border-color:var(--fire); background:rgba(232,93,4,0.06); }
+  .ic-amber .intel-insight { border-color:var(--gold); background:rgba(240,180,41,0.06); }
+  .ic-blue .intel-insight { border-color:var(--electric); background:rgba(10,158,189,0.06); }
+  .ic-green .intel-insight { border-color:var(--green); background:rgba(34,197,94,0.06); }
+  .intel-insight strong { color:var(--text); }
+
+  /* ─── ADVANTAGE BOX ─── */
+  .advantage-box {
+    background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(240,180,41,0.06));
+    border:1px solid rgba(34,197,94,0.25); border-radius:20px; padding:40px; margin-bottom:60px;
+  }
+  .advantage-box h3 { color:var(--green); font-size:1.2rem; font-weight:800; letter-spacing:0.05em; margin-bottom:20px; }
+  .advantage-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width:768px) { .advantage-grid { grid-template-columns:1fr; } }
+  .adv-item { padding:20px; background:rgba(0,0,0,0.3); border-radius:12px; }
+  .adv-item .adv-label { font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:800; margin-bottom:8px; }
+  .adv-item.bad .adv-label { color:var(--fire); }
+  .adv-item.good .adv-label { color:var(--green); }
+  .adv-item .adv-text { font-size:0.9rem; color:var(--muted); line-height:1.65; }
+  .adv-item .adv-text strong { color:var(--text); }
+
+  /* ─── GUILD PRICING ─── */
+  .pricing-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:24px; margin-bottom:60px; }
+  .pricing-tier {
+    background:var(--glass); border:1px solid var(--line); border-radius:20px; padding:32px;
+    position:relative; overflow:hidden; transition:transform 0.2s, border-color 0.2s;
+  }
+  .pricing-tier:hover { transform:translateY(-3px); }
+  .pricing-tier.featured {
+    border-color:rgba(240,180,41,0.4);
+    background:linear-gradient(135deg,rgba(240,180,41,0.06),rgba(34,197,94,0.04));
+  }
+  .tier-badge { position:absolute; top:16px; right:16px; font-size:0.65rem; font-weight:800; letter-spacing:0.1em; padding:3px 10px; border-radius:20px; }
+  .badge-pop { background:rgba(240,180,41,0.2); color:var(--gold); }
+  .badge-new { background:rgba(34,197,94,0.2); color:var(--green); }
+  .tier-audience { font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:700; margin-bottom:10px; }
+  .tier-name { font-size:1.2rem; font-weight:900; margin-bottom:4px; }
+  .tier-price { font-size:2rem; font-weight:900; line-height:1; margin-bottom:16px; }
+  .tier-price .per { font-size:0.9rem; font-weight:400; color:var(--muted); }
+  .tier-features { list-style:none; margin-bottom:20px; }
+  .tier-features li { font-size:0.86rem; color:var(--muted); padding:6px 0; border-bottom:1px solid var(--line); }
+  .tier-features li:last-child { border-bottom:none; }
+  .tier-features li::before { content:'✓ '; font-weight:800; }
+  .tier-key { margin-top:16px; padding:10px 14px; border-radius:8px; font-size:0.82rem; font-weight:700; }
+
+  /* ─── REVENUE LAYERS ─── */
+  .layers-visual { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4px; margin-bottom:60px; }
+  @media (max-width:768px) { .layers-visual { grid-template-columns:1fr; } }
+  .rev-layer { padding:40px 28px; border-radius:16px; text-align:center; position:relative; overflow:hidden; }
+  .layer-1 { background:linear-gradient(135deg,rgba(124,77,255,0.15),rgba(10,158,189,0.1)); border:1px solid rgba(124,77,255,0.25); }
+  .layer-2 { background:linear-gradient(135deg,rgba(240,180,41,0.15),rgba(232,93,4,0.1)); border:1px solid rgba(240,180,41,0.25); }
+  .layer-3 { background:linear-gradient(135deg,rgba(34,197,94,0.15),rgba(10,158,189,0.1)); border:1px solid rgba(34,197,94,0.25); }
+  .layer-num { font-size:3rem; font-weight:900; line-height:1; margin-bottom:12px; }
+  .layer-1 .layer-num { color:var(--deep); }
+  .layer-2 .layer-num { color:var(--gold); }
+  .layer-3 .layer-num { color:var(--green); }
+  .layer-title { font-size:1.05rem; font-weight:800; margin-bottom:10px; }
+  .layer-items { list-style:none; font-size:0.88rem; color:var(--muted); line-height:1.8; }
+  .layer-items li::before { content:'→ '; font-weight:700; }
+  .layer-1 .layer-items li::before { color:var(--deep); }
+  .layer-2 .layer-items li::before { color:var(--gold); }
+  .layer-3 .layer-items li::before { color:var(--green); }
+  .layer-revenue { margin-top:16px; font-size:0.8rem; font-weight:700; padding:8px 14px; border-radius:8px; }
+  .layer-1 .layer-revenue { background:rgba(124,77,255,0.12); color:var(--deep); }
+  .layer-2 .layer-revenue { background:rgba(240,180,41,0.12); color:var(--gold); }
+  .layer-3 .layer-revenue { background:rgba(34,197,94,0.12); color:var(--green); }
+
+  /* ─── CREATOR EARNINGS ─── */
+  .earnings-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; margin-bottom:60px; }
+  .earnings-card { background:var(--glass); border:1px solid var(--line); border-radius:14px; padding:24px; text-align:center; }
+  .earnings-activity { font-size:0.78rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px; font-weight:700; }
+  .earnings-range { font-size:1.6rem; font-weight:900; color:var(--green); line-height:1; margin-bottom:6px; }
+  .earnings-label { font-size:0.78rem; color:var(--muted); }
+
+  /* ─── MARKETING SECTION ─── */
+  .marketing-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:24px; margin-bottom:60px; }
+  .mkt-card { background:var(--glass); border:1px solid var(--line); border-radius:18px; padding:28px; position:relative; overflow:hidden; transition:transform 0.2s; }
+  .mkt-card:hover { transform:translateY(-2px); }
+  .mkt-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--deep),var(--electric)); }
+  .mkt-num { font-size:2.4rem; font-weight:900; color:var(--gold); opacity:0.6; line-height:1; margin-bottom:10px; }
+  .mkt-headline { font-size:1rem; font-weight:800; margin-bottom:10px; }
+  .mkt-body { font-size:0.87rem; color:var(--muted); line-height:1.7; }
+  .mkt-body strong { color:var(--text); }
+  .mkt-tag { margin-top:14px; display:inline-block; font-size:0.7rem; font-weight:800; letter-spacing:0.1em; padding:3px 10px; border-radius:20px; background:rgba(124,77,255,0.15); color:var(--deep); text-transform:uppercase; }
+
+  /* ─── HARMONY MANIFESTO ─── */
+  .harmony-block { background:linear-gradient(135deg,rgba(34,197,94,0.07),rgba(10,158,189,0.07)); border:1px solid rgba(34,197,94,0.2); border-radius:20px; padding:48px; margin-bottom:60px; text-align:center; }
+  .harmony-block h3 { font-size:clamp(1.5rem,3vw,2.2rem); font-weight:900; color:var(--green); margin-bottom:20px; line-height:1.2; }
+  .harmony-block p { color:var(--muted); font-size:1.05rem; line-height:1.85; max-width:740px; margin:0 auto 16px; }
+  .harmony-block p strong { color:var(--text); }
+  .harmony-block .quote { font-style:italic; font-size:1.15rem; color:var(--text); border-left:3px solid var(--green); padding-left:20px; text-align:left; margin:24px auto; max-width:640px; }
+
+  /* ─── LINK BAR ─── */
+  .link-bar { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:48px; padding-top:48px; border-top:1px solid var(--line); }
+  .link-btn { display:inline-flex; align-items:center; gap:8px; padding:11px 22px; border-radius:30px; font-size:0.82rem; font-weight:700; letter-spacing:0.08em; text-decoration:none; border:1px solid; transition:all 0.2s; }
+  .link-btn:hover { transform:translateY(-2px); }
+  .btn-green { color:var(--green); border-color:rgba(34,197,94,0.4); } .btn-green:hover { background:rgba(34,197,94,0.1); }
+  .btn-gold { color:var(--gold); border-color:rgba(240,180,41,0.4); } .btn-gold:hover { background:rgba(240,180,41,0.1); }
+  .btn-electric { color:var(--electric); border-color:rgba(10,158,189,0.4); } .btn-electric:hover { background:rgba(10,158,189,0.1); }
+  .btn-dream { color:var(--dream); border-color:rgba(201,64,112,0.4); } .btn-dream:hover { background:rgba(201,64,112,0.1); }
+  .btn-deep { color:var(--deep); border-color:rgba(124,77,255,0.4); } .btn-deep:hover { background:rgba(124,77,255,0.1); }
+  .btn-fire { color:var(--fire); border-color:rgba(232,93,4,0.4); } .btn-fire:hover { background:rgba(232,93,4,0.1); }
+
+  footer { position:relative; z-index:1; border-top:1px solid var(--line); padding:48px 32px; text-align:center; color:var(--muted); font-size:0.85rem; }
+  .footer-title { font-size:1.1rem; font-weight:900; color:var(--green); letter-spacing:0.1em; margin-bottom:8px; }
+
+  @media (max-width:768px) { section { padding:80px 24px 60px; } }
+</style>
+</head>
+<body>
+<canvas id="starfield"></canvas>
+<div class="atmosphere"></div>
+
+<nav>
+  <div class="nav-brand">NOIZY.AI</div>
+  <ul class="nav-links">
+    <li><a href="#intel">Market Intel</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#layers">Revenue Layers</a></li>
+    <li><a href="#marketing">Marketing</a></li>
+    <li><a href="#harmony">Harmony</a></li>
+  </ul>
+  <div class="nav-badge">ECONOMIC ENGINE</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="max-width:100%; padding-top:56px;">
+  <div class="hero-eyebrow reveal">THE NOIZY ECONOMIC ENGINE</div>
+  <h1 class="hero-title">
+    <div class="t1 reveal d1">THE GALAXY</div>
+    <div class="t2 reveal d2">THAT PAYS CREATORS<br>WHAT THEY'RE WORTH.</div>
+  </h1>
+  <p class="hero-sub reveal d3">
+    A complete market intelligence briefing, guild-based pricing strategy,
+    three-layer revenue architecture, and 14 marketing approaches
+    for NOIZY.AI — the platform where AI and humans grow
+    in perfect, perpetual, profitable harmony.
+  </p>
+</section>
+
+<div class="glow-band"></div>
+
+<!-- MARKET INTEL -->
+<div id="intel" style="position:relative; z-index:1; background:rgba(232,93,4,0.03); border-top:1px solid rgba(232,93,4,0.1); border-bottom:1px solid rgba(232,93,4,0.1);">
+<section>
+  <div class="section-eyebrow reveal" style="color:var(--fire);">COMPETITIVE INTELLIGENCE — 2026</div>
+  <h2 class="section-title reveal">What the Market Currently Charges.<br>Where the Gaps Are.</h2>
+  <p class="section-sub reveal">
+    The AI creative economy is insanely underpriced because venture capital subsidizes it.
+    The real opportunity is not cheaper generation — it's a creator economy built on top.
+  </p>
+
+  <div class="intel-grid">
+    <div class="intel-card ic-red reveal">
+      <div class="intel-name">ElevenLabs</div>
+      <div class="intel-type">AI Voice Generation — Industry Leader</div>
+      <div class="price-rows">
+        <div class="price-row"><span class="tier">Free</span><span class="amount">$0 / 10K chars</span></div>
+        <div class="price-row"><span class="tier">Starter</span><span class="amount">$5/mo</span></div>
+        <div class="price-row"><span class="tier">Creator</span><span class="amount">$22/mo</span></div>
+        <div class="price-row"><span class="tier">Pro</span><span class="amount">$99/mo</span></div>
+        <div class="price-row"><span class="tier">Business</span><span class="amount">$1,320/mo</span></div>
+        <div class="price-row"><span class="tier">API per 1K chars</span><span class="amount">$0.08–$0.15</span></div>
+      </div>
+      <div class="intel-insight"><strong>The gap:</strong> Creators pay to use their own voices. The platform owns the synthesis pipeline. No perpetual royalty. No voice estate. NOIZYVOX charges for identity and pays creators forever.</div>
+    </div>
+
+    <div class="intel-card ic-amber reveal d1">
+      <div class="intel-name">Murf AI</div>
+      <div class="intel-type">AI Voice — Presentations & Training</div>
+      <div class="price-rows">
+        <div class="price-row"><span class="tier">Free</span><span class="amount">$0 / 10 min</span></div>
+        <div class="price-row"><span class="tier">Creator</span><span class="amount">$19/mo / 24hrs/yr</span></div>
+        <div class="price-row"><span class="tier">Business</span><span class="amount">$66/mo / 96hrs/yr</span></div>
+        <div class="price-row"><span class="tier">Per minute</span><span class="amount">~$0.05–0.08</span></div>
+      </div>
+      <div class="intel-insight"><strong>The gap:</strong> Flat fee, limited generation. No creator economy. No licensing. No community. NOIZY turns this into a marketplace where creators earn from their voice on every use.</div>
+    </div>
+
+    <div class="intel-card ic-amber reveal d2">
+      <div class="intel-name">PlayHT</div>
+      <div class="intel-type">AI Voice + Cloning</div>
+      <div class="price-rows">
+        <div class="price-row"><span class="tier">Free</span><span class="amount">$0</span></div>
+        <div class="price-row"><span class="tier">Professional</span><span class="amount">$39/mo</span></div>
+        <div class="price-row"><span class="tier">Premium</span><span class="amount">$99/mo</span></div>
+      </div>
+      <div class="intel-insight"><strong>The gap:</strong> Includes commercial rights — but the creator still doesn't earn royalties from how their cloned voice is used downstream. One-time deal. NOIZY makes every downstream use trackable and payable.</div>
+    </div>
+
+    <div class="intel-card ic-red reveal">
+      <div class="intel-name">Suno AI</div>
+      <div class="intel-type">AI Music Generation</div>
+      <div class="price-rows">
+        <div class="price-row"><span class="tier">Free</span><span class="amount">$0</span></div>
+        <div class="price-row"><span class="tier">Pro</span><span class="amount">$10/mo / 500 songs</span></div>
+        <div class="price-row"><span class="tier">Premier</span><span class="amount">$30/mo</span></div>
+        <div class="price-row"><span class="tier">Per song</span><span class="amount">$0.02–$0.30</span></div>
+      </div>
+      <div class="intel-insight"><strong>The gap:</strong> RIAA-sued 2024. Trained on copyrighted music. No credit or revenue to source artists. NOIZY's music tools require a human signature on every output and share revenue through LifeLUV splits.</div>
+    </div>
+
+    <div class="intel-card ic-blue reveal d1">
+      <div class="intel-name">Replica Studios</div>
+      <div class="intel-type">AI Voice Actors</div>
+      <div class="price-rows">
+        <div class="price-row"><span class="tier">Indie</span><span class="amount">$24/mo</span></div>
+        <div class="price-row"><span class="tier">Professional</span><span class="amount">$149/mo</span></div>
+        <div class="price-row"><span class="tier">Enterprise</span><span class="amount">Custom</span></div>
+        <div class="price-row"><span class="tier">Voice actor share</span><span class="amount">Flat fee</span></div>
+      </div>
+      <div class="intel-insight"><strong>The gap:</strong> Does offer voice actor licensing — but flat fee only. No perpetual royalty. NOIZYVOX's HVS system creates a living voice estate that pays forever, not once.</div>
+    </div>
+
+    <div class="intel-card ic-green reveal d2">
+      <div class="intel-name">Bandcamp</div>
+      <div class="intel-type">Direct-to-Fan Platform</div>
+      <div class="price-rows">
+        <div class="price-row"><span class="tier">Artist take</span><span class="amount">~82%</span></div>
+        <div class="price-row"><span class="tier">Platform fee</span><span class="amount">~10–15%</span></div>
+        <div class="price-row"><span class="tier">Fan subscription</span><span class="amount">Creator set</span></div>
+        <div class="price-row"><span class="tier">AI tools</span><span class="amount">None</span></div>
+      </div>
+      <div class="intel-insight"><strong>The opportunity:</strong> Bandcamp proves the market wants ethical economics — 82% to creators. NOIZY does 75% perpetual + AI tools + Guild community + Legacy Vault. Bandcamp with a civilization.</div>
+    </div>
+  </div>
+
+  <div class="advantage-box reveal">
+    <h3>The Secret Weapon: NOIZY Charges for Creator Economy Participation — Not Compute Usage</h3>
+    <div class="advantage-grid">
+      <div class="adv-item bad">
+        <div class="adv-label">Every Competitor Charges For:</div>
+        <div class="adv-text">
+          <strong>Compute usage.</strong> Characters generated. Minutes synthesized. Songs created.
+          The meter runs on how much the machine does.
+          When the machine gets cheaper (and it always does), pricing collapses toward zero.
+          The revenue model is structurally unsustainable.
+        </div>
+      </div>
+      <div class="adv-item good">
+        <div class="adv-label">NOIZY Charges For:</div>
+        <div class="adv-text">
+          <strong>Identity. Legacy. Community. Licensing.</strong>
+          The Voice Estate that pays your grandchildren.
+          The Guild membership that connects you to 200,000 creators.
+          The LifeLUV split that tracks every downstream use of your work.
+          These get <em>more valuable over time</em>, not cheaper.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="glow-band"></div>
+
+<!-- GUILD PRICING -->
+<div id="pricing" style="position:relative; z-index:1;">
+<section>
+  <div class="section-eyebrow reveal" style="color:var(--green);">GUILD PRICING ARCHITECTURE</div>
+  <h2 class="section-title reveal">Every Level. Every Commitment.<br>Every Member of the Ecosystem.</h2>
+  <p class="section-sub reveal">The full NOIZY pricing structure across fans, creators, studios, and enterprises. Built on value, not volume.</p>
+
+  <h3 class="reveal" style="font-size:1rem; font-weight:800; color:var(--muted); margin-bottom:20px; letter-spacing:0.1em; text-transform:uppercase;">🌍 The Fan Economy — Free Citizens</h3>
+  <div class="pricing-grid" style="margin-bottom:40px;">
+    <div class="pricing-tier reveal">
+      <div class="tier-audience" style="color:var(--muted);">Fan</div>
+      <div class="tier-name">Listener</div>
+      <div class="tier-price" style="color:var(--muted);">Free <span class="per">forever</span></div>
+      <ul class="tier-features">
+        <li>Full streaming access</li>
+        <li>NOIZYKIDZ education content</li>
+        <li>Guild event access</li>
+        <li>Limited AI voice interactions</li>
+      </ul>
+      <div class="tier-key" style="background:rgba(255,255,255,0.05); color:var(--muted);">The pipeline in. Every fan starts here.</div>
+    </div>
+    <div class="pricing-tier reveal d1">
+      <div class="tier-audience" style="color:var(--electric);">Fan+</div>
+      <div class="tier-name">Supporter</div>
+      <div class="tier-price" style="color:var(--electric);">$5 <span class="per">/month</span></div>
+      <ul class="tier-features">
+        <li>Fan interactions with artists</li>
+        <li>Voice pack access (artist voices)</li>
+        <li>Early access to releases</li>
+        <li>Guild event priority seats</li>
+        <li>LifeLUV split contribution credited</li>
+      </ul>
+      <div class="tier-key" style="background:rgba(10,158,189,0.1); color:var(--electric);">Fans become participants. $5 enters the creator economy.</div>
+    </div>
+    <div class="pricing-tier reveal d2">
+      <div class="tier-audience" style="color:var(--dream);">Superfan</div>
+      <div class="tier-name">Patron</div>
+      <div class="tier-price" style="color:var(--dream);">$10 <span class="per">/month</span></div>
+      <ul class="tier-features">
+        <li>Custom AI voice interactions</li>
+        <li>Direct artist connection in Guild</li>
+        <li>Commission original work requests</li>
+        <li>Legacy Vault early access</li>
+        <li>Patron credit in releases</li>
+      </ul>
+      <div class="tier-key" style="background:rgba(201,64,112,0.1); color:var(--dream);">Patreon + Cameo + fan community. One place.</div>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="font-size:1rem; font-weight:800; color:var(--muted); margin-bottom:20px; letter-spacing:0.1em; text-transform:uppercase;">🎙️ The Creator Guild — NOIZYVOX Profiles</h3>
+  <div class="pricing-grid" style="margin-bottom:40px;">
+    <div class="pricing-tier reveal">
+      <div class="tier-audience" style="color:var(--green);">Indie Artist</div>
+      <div class="tier-name">Creator</div>
+      <div class="tier-price" style="color:var(--green);">$10 <span class="per">/month</span></div>
+      <ul class="tier-features">
+        <li>NOIZYVOX voice registration</li>
+        <li>HVS fingerprint (all 6 layers)</li>
+        <li>LifeLUV micro-split activation</li>
+        <li>Guild Apprentice tier access</li>
+        <li>DreamChamber sessions (50/mo)</li>
+        <li>Legacy Vault entry</li>
+      </ul>
+      <div class="tier-key" style="background:rgba(34,197,94,0.1); color:var(--green);">The entry door. The math works at $10.</div>
+    </div>
+    <div class="pricing-tier featured reveal d1">
+      <div class="tier-badge badge-pop">MOST POPULAR</div>
+      <div class="tier-audience" style="color:var(--gold);">Podcaster / Voice Pro</div>
+      <div class="tier-name">Pro Voice</div>
+      <div class="tier-price" style="color:var(--gold);">$29 <span class="per">/month</span></div>
+      <ul class="tier-features">
+        <li>Everything in Creator</li>
+        <li>Commercial voice licensing enabled</li>
+        <li>AI model licensing opt-in</li>
+        <li>Unlimited DreamChamber sessions</li>
+        <li>Guild Journeyman access</li>
+        <li>Provenance dashboard full view</li>
+        <li>Co-creation split tools</li>
+      </ul>
+      <div class="tier-key" style="background:rgba(240,180,41,0.12); color:var(--gold);">Where creators start earning from their voice identity.</div>
+    </div>
+    <div class="pricing-tier reveal d2">
+      <div class="tier-audience" style="color:var(--deep);">Production Team</div>
+      <div class="tier-name">Studio</div>
+      <div class="tier-price" style="color:var(--deep);">$99 <span class="per">/month</span></div>
+      <ul class="tier-features">
+        <li>Up to 10 creator profiles</li>
+        <li>Studio-level commercial rights</li>
+        <li>AI training licensing revenue share</li>
+        <li>Guild Master tier access</li>
+        <li>White-label voice packs</li>
+        <li>Priority provenance claims</li>
+        <li>API access (voice + music)</li>
+      </ul>
+      <div class="tier-key" style="background:rgba(124,77,255,0.1); color:var(--deep);">Studios become nodes in the NOIZY economy.</div>
+    </div>
+    <div class="pricing-tier reveal d3">
+      <div class="tier-badge badge-new">ENTERPRISE</div>
+      <div class="tier-audience" style="color:var(--fire);">Music Companies / Brands</div>
+      <div class="tier-name">Label & Brand</div>
+      <div class="tier-price" style="color:var(--fire);">$399 <span class="per">/month</span></div>
+      <ul class="tier-features">
+        <li>Unlimited creator profiles</li>
+        <li>Full LifeLUV infrastructure access</li>
+        <li>Voice model licensing (custom)</li>
+        <li>NOIZY PROOF batch processing</li>
+        <li>Guild Legend tier nominations</li>
+        <li>Cultural attribution engine</li>
+        <li>Dedicated GABRIEL instance</li>
+      </ul>
+      <div class="tier-key" style="background:rgba(232,93,4,0.1); color:var(--fire);">The full civilization infrastructure for enterprise use.</div>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="font-size:1rem; font-weight:800; color:var(--muted); margin-bottom:20px; letter-spacing:0.1em; text-transform:uppercase;">🧠 AI Model Licensing — Enterprise B2B</h3>
+  <div class="pricing-grid" style="margin-bottom:20px;">
+    <div class="pricing-tier reveal">
+      <div class="tier-audience" style="color:var(--electric);">Media Networks</div>
+      <div class="tier-name">Podcast / Media</div>
+      <div class="tier-price" style="color:var(--electric);">$99 <span class="per">/month</span></div>
+      <ul class="tier-features">
+        <li>Licensed NOIZY voice bank</li>
+        <li>Attribution required (auto)</li>
+        <li>Revenue share to voice estates</li>
+        <li>Provenance API access</li>
+      </ul>
+    </div>
+    <div class="pricing-tier reveal d1">
+      <div class="tier-audience" style="color:var(--deep);">Game Studios</div>
+      <div class="tier-name">Interactive Media</div>
+      <div class="tier-price" style="color:var(--deep);">$499 <span class="per">/month</span></div>
+      <ul class="tier-features">
+        <li>Character voice licensing</li>
+        <li>Game-embed voice synthesis</li>
+        <li>Full HVS authentication</li>
+        <li>Real-time royalty tracking</li>
+      </ul>
+    </div>
+    <div class="pricing-tier reveal d2">
+      <div class="tier-audience" style="color:var(--dream);">Film / TV / Streaming</div>
+      <div class="tier-name">Screen Media</div>
+      <div class="tier-price" style="color:var(--dream);">$2K+ <span class="per">/month</span></div>
+      <ul class="tier-features">
+        <li>Full catalog licensing access</li>
+        <li>Custom voice actor contracts</li>
+        <li>LifeLUV sync licensing</li>
+        <li>Cultural attribution clearance</li>
+      </ul>
+    </div>
+    <div class="pricing-tier reveal d3">
+      <div class="tier-audience" style="color:var(--gold);">AI Assistants / Devices</div>
+      <div class="tier-name">Voice Assistant</div>
+      <div class="tier-price" style="color:var(--gold);">Rev Share <span class="per">model</span></div>
+      <ul class="tier-features">
+        <li>NOIZYVOX certified voices</li>
+        <li>Consent-as-code embedded</li>
+        <li>Perpetual revenue share to estates</li>
+        <li>HVS authentication on every use</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="glow-band"></div>
+
+<!-- REVENUE LAYERS -->
+<div id="layers" style="position:relative; z-index:1; background:rgba(124,77,255,0.03); border-top:1px solid rgba(124,77,255,0.1); border-bottom:1px solid rgba(124,77,255,0.1);">
+<section>
+  <div class="section-eyebrow reveal" style="color:var(--deep);">THE THREE REVENUE LAYERS</div>
+  <h2 class="section-title reveal">The Noizy Super-Engine.<br>Three Layers. One Galaxy.</h2>
+  <p class="section-sub reveal">Every platform in the ecosystem feeds every other. The galaxy is self-reinforcing — each layer makes the others more valuable.</p>
+
+  <div class="layers-visual reveal">
+    <div class="rev-layer layer-1">
+      <div class="layer-num">01</div>
+      <div class="layer-title">AI Tools Layer</div>
+      <ul class="layer-items">
+        <li>DreamChamber voice synthesis</li>
+        <li>NOIZY Music AI composer</li>
+        <li>Remix & sample tools</li>
+        <li>GABRIEL creative direction</li>
+        <li>Adaptive input (Nerve-to-Note)</li>
+      </ul>
+      <div class="layer-revenue">Revenue: Subscription + API credits</div>
+    </div>
+    <div class="rev-layer layer-2">
+      <div class="layer-num">02</div>
+      <div class="layer-title">Creator Marketplace Layer</div>
+      <ul class="layer-items">
+        <li>Voice licensing (NOIZYVOX)</li>
+        <li>Stem & sample marketplace</li>
+        <li>Cultural tradition licensing</li>
+        <li>Commission marketplace</li>
+        <li>AI model training opt-in</li>
+      </ul>
+      <div class="layer-revenue">Revenue: Transaction % + licensing fees</div>
+    </div>
+    <div class="rev-layer layer-3">
+      <div class="layer-num">03</div>
+      <div class="layer-title">Fan Economy Layer</div>
+      <ul class="layer-items">
+        <li>AI voice interactions (Cameo-style)</li>
+        <li>Custom song commissions</li>
+        <li>Fan subscription to artists</li>
+        <li>Aquarium event ticketing</li>
+        <li>Legacy Vault access (archive fans)</li>
+      </ul>
+      <div class="layer-revenue">Revenue: Subscriptions + per-interaction fees</div>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="font-size:1.1rem; font-weight:800; color:var(--muted); margin-bottom:24px;">Estimated Monthly Creator Earnings — Mid-Tier Active Creator</h3>
+  <div class="earnings-grid reveal">
+    <div class="earnings-card">
+      <div class="earnings-activity">Fan AI Interactions</div>
+      <div class="earnings-range">$100–1K</div>
+      <div class="earnings-label">per month / engaged fanbase</div>
+    </div>
+    <div class="earnings-card">
+      <div class="earnings-activity">Voice Licensing</div>
+      <div class="earnings-range">$200–5K</div>
+      <div class="earnings-label">per month / commercial uses</div>
+    </div>
+    <div class="earnings-card">
+      <div class="earnings-activity">Music Licensing</div>
+      <div class="earnings-range">$500–20K</div>
+      <div class="earnings-label">per month / sync + samples</div>
+    </div>
+    <div class="earnings-card">
+      <div class="earnings-activity">Brand Voice Work</div>
+      <div class="earnings-range">$500–50K</div>
+      <div class="earnings-label">per month / enterprise licensing</div>
+    </div>
+    <div class="earnings-card">
+      <div class="earnings-activity">LifeLUV Micro-Splits</div>
+      <div class="earnings-range">$50–500</div>
+      <div class="earnings-label">per month / passive on all uses</div>
+    </div>
+    <div class="earnings-card">
+      <div class="earnings-activity">vs. Streaming Today</div>
+      <div class="earnings-range">$3–300</div>
+      <div class="earnings-label">per month / 1M streams = ~$3K</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="glow-band"></div>
+
+<!-- MARKETING SECTION -->
+<div id="marketing" style="position:relative; z-index:1;">
+<section>
+  <div class="section-eyebrow reveal" style="color:var(--electric);">14 MARKETING MOVES</div>
+  <h2 class="section-title reveal">More Ways to Market NOIZY.AI —<br>AI & Human, Perfect Harmony.</h2>
+  <p class="section-sub reveal">
+    The marketing strategy is not "look at our features." It is "feel what the world looks like
+    when creativity is finally valued the way it deserves."
+    Here are 14 approaches that spread the love infection.
+  </p>
+
+  <div class="marketing-grid">
+    <div class="mkt-card reveal">
+      <div class="mkt-num">01</div>
+      <div class="mkt-headline">The RSP_001 Origin Story</div>
+      <div class="mkt-body">Every powerful movement begins with a single, specific human story. <strong>POPS. The diving accident. The music that saved his life. The 14 months of building from nothing.</strong> RSP_001 is not a product — it's a person. Market the person first. Everything else follows.</div>
+      <div class="mkt-tag">Story</div>
+    </div>
+    <div class="mkt-card reveal d1">
+      <div class="mkt-num">02</div>
+      <div class="mkt-headline">The 75% Billboard</div>
+      <div class="mkt-body">One number. Everywhere. <strong>"You made it. You get 75%. Forever."</strong> No fine print. No asterisk. The number does the work. Put it next to what every other platform pays. Let the contrast speak. The billboard doesn't need to say anything else.</div>
+      <div class="mkt-tag">Contrast</div>
+    </div>
+    <div class="mkt-card reveal d2">
+      <div class="mkt-num">03</div>
+      <div class="mkt-headline">The Voice Estate Demo</div>
+      <div class="mkt-body">Show a voice actor registering RSP-style. Show the 6-layer HVS scan. Show the Voice Estate vault opening. Show the projected earnings in 5, 10, 50 years. <strong>Make the legacy tangible and visible in real time.</strong> People need to see the future to choose it.</div>
+      <div class="mkt-tag">Demo</div>
+    </div>
+    <div class="mkt-card reveal">
+      <div class="mkt-num">04</div>
+      <div class="mkt-headline">The DREAM Sessions</div>
+      <div class="mkt-body">Stream real DreamChamber sessions live. POPS or a Guild creator at 2am, idea comes, GABRIEL helps shape it, output belongs to the creator entirely. <strong>Show the creative process with AI as a true partner — never the lead.</strong> This destroys the "AI replaces artists" narrative in real time.</div>
+      <div class="mkt-tag">Live Content</div>
+    </div>
+    <div class="mkt-card reveal d1">
+      <div class="mkt-num">05</div>
+      <div class="mkt-headline">The Exploitation Calculator</div>
+      <div class="mkt-body">A tool that shows any creator: "You have X streams on Spotify. You earned $Y. On NOIZY, the same work earns $Z." <strong>Make the math undeniable and personal.</strong> Every creator who runs their catalog through it becomes a witness and an evangelist.</div>
+      <div class="mkt-tag">Tool</div>
+    </div>
+    <div class="mkt-card reveal d2">
+      <div class="mkt-num">06</div>
+      <div class="mkt-headline">The Guild Oath Moment</div>
+      <div class="mkt-body">Create a ritual around the Guild Oath ceremony. Video. Music. Community. <strong>Make joining the Guild feel like joining a civilization, not a platform.</strong> The moment of the oath — witnessed by the chain above and below — is the most powerful brand experience possible.</div>
+      <div class="mkt-tag">Ritual</div>
+    </div>
+    <div class="mkt-card reveal">
+      <div class="mkt-num">07</div>
+      <div class="mkt-headline">The Aquarium Event</div>
+      <div class="mkt-body">Host the first Aquarium anywhere in the world. Invite press, influencers, creators. <strong>The experience of full-body, deep-listening music in a designed sensory space is unexplainable in text — it must be felt.</strong> Everyone who attends becomes an ambassador for what depth feels like.</div>
+      <div class="mkt-tag">Experience</div>
+    </div>
+    <div class="mkt-card reveal d1">
+      <div class="mkt-num">08</div>
+      <div class="mkt-headline">NOIZYKIDZ Open Beta</div>
+      <div class="mkt-body">Release NOIZYKIDZ free to any educator, anywhere. <strong>Invite a single classroom to film their first rhythm session.</strong> West African polyrhythm, body percussion, no instruments. Post the video. The viral mechanism is in the children's faces — that expression of discovery is the most powerful marketing asset NOIZY will ever have.</div>
+      <div class="mkt-tag">Education</div>
+    </div>
+    <div class="mkt-card reveal d2">
+      <div class="mkt-num">09</div>
+      <div class="mkt-headline">The 2526 Archive Preview</div>
+      <div class="mkt-body">Release the 2526 Archive HTML document to the public as a narrative marketing piece. <strong>Ask people: "What do you want historians to say about your role in saving the arts?"</strong> The 500-year lens makes today's decisions feel urgent and consequential. That urgency drives action.</div>
+      <div class="mkt-tag">Narrative</div>
+    </div>
+    <div class="mkt-card reveal">
+      <div class="mkt-num">10</div>
+      <div class="mkt-headline">The ElevenLabs Side-By-Side</div>
+      <div class="mkt-body">Not an attack. A comparison. <strong>"ElevenLabs: you pay $22/month. Your voice generates revenue forever — for them. NOIZYVOX: your voice generates revenue forever — for you."</strong> Place this ad in every voice actor community online. The creators who see it know exactly what it means.</div>
+      <div class="mkt-tag">Comparison</div>
+    </div>
+    <div class="mkt-card reveal d1">
+      <div class="mkt-num">11</div>
+      <div class="mkt-headline">The First 100 Guild Legends</div>
+      <div class="mkt-body">Identify the 100 most respected creators in music across every tradition and invite them personally to be among the first Guild Legends. <strong>No pitch. Just: "We built a place worthy of your legacy. Come see it."</strong> When Legends are in the room, everyone else wants to be in the room.</div>
+      <div class="mkt-tag">Influencer</div>
+    </div>
+    <div class="mkt-card reveal d2">
+      <div class="mkt-num">12</div>
+      <div class="mkt-headline">The AI Harmony Demonstrations</div>
+      <div class="mkt-body">Series of short videos: creator + GABRIEL + output. Every video ends with: <strong>"The human made this. GABRIEL helped carry it. The creator owns it forever."</strong> Show the collaboration as beautiful, not threatening. AI as instrument, not invader. This is the counter-narrative the industry needs.</div>
+      <div class="mkt-tag">Video Series</div>
+    </div>
+    <div class="mkt-card reveal">
+      <div class="mkt-num">13</div>
+      <div class="mkt-headline">The LifeLUV First Payment</div>
+      <div class="mkt-body">Document the first LifeLUV recursive micro-split payment. Show the creation chain. Show every node that received a payment. <strong>Show the amounts — even if tiny.</strong> The point is not the dollar amount. The point is that the chain is real, automated, and working. That's the proof of concept that changes minds.</div>
+      <div class="mkt-tag">Proof</div>
+    </div>
+    <div class="mkt-card reveal d1">
+      <div class="mkt-num">14</div>
+      <div class="mkt-headline">The Love Infection Campaign</div>
+      <div class="mkt-body"><strong>"We are going to infect the world with the love of the arts again."</strong> A campaign that is unabashedly, embarrassingly, defiantly optimistic. In a world of cynicism and extraction, <strong>love is the most disruptive possible message.</strong> Not sentimental. Strategic. The love infection spreads because people are desperate for it.</div>
+      <div class="mkt-tag">Campaign</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="glow-band"></div>
+
+<!-- HARMONY CLOSE -->
+<div id="harmony" style="position:relative; z-index:1; background:rgba(34,197,94,0.03); border-top:1px solid rgba(34,197,94,0.1); border-bottom:1px solid rgba(34,197,94,0.1);">
+<section>
+  <div class="section-eyebrow reveal" style="color:var(--green);">THE HARMONY PRINCIPLE</div>
+  <h2 class="section-title reveal">AI & Human.<br>Perfect Harmony. Always Growing.</h2>
+
+  <div class="harmony-block reveal">
+    <h3>The Platform That Gets This Right Will Define<br>the Next 500 Years of Human Creativity.</h3>
+    <p>
+      Every other platform in the market right now is playing a zero-sum game:
+      platform wins, creators lose. Or creators win a little more, platform loses a little less.
+      <strong>NOIZY is the only platform where the economic architecture makes winning genuinely mutual.</strong>
+    </p>
+    <p>
+      When creators earn more, they create more. When they create more, the platform has more to offer.
+      When it has more to offer, fans engage more deeply. When fans engage more deeply,
+      their patronage supports more creators. <strong>The loop is self-reinforcing and it runs forever.</strong>
+      That's not idealism. That's the economic engine of a civilization.
+    </p>
+    <p class="quote">
+      "AI and human creativity were never supposed to be in competition.
+      The nervous system of a musician and the pattern recognition of an AI
+      are two different instruments in the same orchestra.
+      NOIZY is the conductor that makes them play in the same key."
+    </p>
+    <p>
+      The marketing is simple. The economics are proven. The technology is built.
+      <strong>The only remaining question is how fast the world can accept
+      that it was waiting for this.</strong>
+    </p>
+  </div>
+
+  <div class="link-bar reveal">
+    <a href="NOIZY_ASCENSION_MAP.html" class="link-btn btn-gold">🗺️ Ascension Map</a>
+    <a href="DREAMCHAMBER_FIX_MAP.html" class="link-btn btn-dream">🌌 DreamChamber Fix Map</a>
+    <a href="NOIZY_2526_ARCHIVE.html" class="link-btn" style="color:#c8a96e; border-color:rgba(200,169,110,0.4);">📜 2526 Archive</a>
+    <a href="NOIZY_GREAT_RESTORATION.html" class="link-btn btn-fire">🚨 Great Restoration</a>
+    <a href="NOIZY_GUILD_FAMILY.html" class="link-btn btn-green">🔥 Global Guild</a>
+    <a href="NOIZY_AI_HOME.html" class="link-btn btn-electric">🏠 NOIZY.AI Home</a>
+    <a href="THE_PLOWMANS_CHRONICLES.html" class="link-btn btn-deep">📖 Chronicles</a>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="footer-title">NOIZY ECONOMIC ENGINE</div>
+  <p style="margin-top:8px;">Built by POPS & GABRIEL · NOIZY.AI · AI + Human · Always Growing · Always Mutual</p>
+  <p style="margin-top:4px; font-size:0.75rem; color:rgba(232,232,240,0.3);">75% Creator · 25% Platform · Perpetual · No Exceptions</p>
+</footer>
+
+<script>
+const sf = document.getElementById('starfield');
+const sctx = sf.getContext('2d');
+let stars = [];
+function rsz() { sf.width = window.innerWidth; sf.height = window.innerHeight; }
+function initS() {
+  stars = [];
+  for (let i=0;i<200;i++) stars.push({
+    x:Math.random()*sf.width,y:Math.random()*sf.height,
+    r:Math.random()*1.3+0.2,alpha:Math.random()*0.5+0.1,
+    speed:Math.random()*0.1+0.02,drift:(Math.random()-.5)*0.05
+  });
+}
+function drawS() {
+  sctx.clearRect(0,0,sf.width,sf.height);
+  stars.forEach(s=>{
+    sctx.beginPath();sctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    sctx.fillStyle=`rgba(255,255,255,${s.alpha})`;sctx.fill();
+    s.y-=s.speed;s.x+=s.drift;
+    if(s.y<-2){s.y=sf.height+2;s.x=Math.random()*sf.width;}
+    if(s.x<-2)s.x=sf.width+2;
+    if(s.x>sf.width+2)s.x=-2;
+  });
+  requestAnimationFrame(drawS);
+}
+rsz();initS();drawS();
+window.addEventListener('resize',()=>{rsz();initS();});
+
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.08});
+reveals.forEach(el=>obs.observe(el));
+document.querySelectorAll('.hero .reveal').forEach(el=>setTimeout(()=>el.classList.add('visible'),150));
+</script>
+</body>
+</html>

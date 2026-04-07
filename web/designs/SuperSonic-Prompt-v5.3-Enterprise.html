@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SuperSonic">
+<meta name="theme-color" content="#04040c">
+<meta name="description" content="MC96ECO SuperSonic Prompt · NOIZYFISH · noizy.ai Enterprise">
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiU3VwZXJTb25pYyBQcm9tcHQiLCJzaG9ydF9uYW1lIjoiU3VwZXJTb25pYyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMDQwNDBjIiwidGhlbWVfY29sb3IiOiIjRjVBNjIzIn0=">
+<title>SuperSonic Prompt v5.3 · NOIZYFISH · noizy.ai Enterprise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --amber:#F5A623;--cyan:#00D4C8;--green:#22C55E;--red:#EF4444;
+  --purple:#8B5CF6;--magenta:#EC4899;--gold:#C9A84C;--blue:#3B82F6;
+  --bg:#04040c;--s:rgba(255,255,255,0.05);--s2:rgba(255,255,255,0.09);
+  --b:rgba(255,255,255,0.08);--b2:rgba(255,255,255,0.15);
+  --t:#e8e6df;--m:rgba(232,230,223,0.55);--d:rgba(232,230,223,0.3);--dim:rgba(232,230,223,0.15);
+}
+html,body{min-height:100%;background:var(--bg);color:var(--t);font-family:'JetBrains Mono',monospace;-webkit-font-smoothing:antialiased}
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.star{position:absolute;border-radius:50%;background:#fff;animation:tw var(--dur,3s) var(--dl,0s) infinite alternate}
+@keyframes tw{from{opacity:var(--lo,.04)}to{opacity:var(--hi,.4)}}
+.app{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:env(safe-area-inset-top,20px) 0 calc(env(safe-area-inset-bottom,0px)+80px)}
+.header{padding:20px 16px 16px;border-bottom:0.5px solid rgba(245,166,35,0.15);text-align:center}
+.h-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:4px}
+.h-logo span{color:var(--amber)}
+.h-sub{font-size:9px;letter-spacing:0.2em;color:rgba(245,166,35,0.4);text-transform:uppercase}
+.h-badges{display:flex;justify-content:center;gap:7px;margin-top:10px;flex-wrap:wrap}
+.badge{font-size:8px;padding:2px 9px;border-radius:10px;border:0.5px solid;letter-spacing:0.08em}
+.tabs{display:flex;border-bottom:0.5px solid var(--b);overflow-x:auto;scrollbar-width:none;background:rgba(4,4,12,0.95);position:sticky;top:0;z-index:10;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:11px 16px;font-size:10px;border:none;background:transparent;cursor:pointer;color:var(--d);border-bottom:2px solid transparent;margin-bottom:-0.5px;transition:all .15s;font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;white-space:nowrap}
+.tab.on{color:var(--amber);border-bottom-color:var(--amber)}
+.tab:active{opacity:.7}
+.page{display:none;padding:16px}
+.page.on{display:block;animation:fi .2s ease-out}
+@keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.prompt-box{background:rgba(0,0,0,0.5);border:0.5px solid rgba(245,166,35,0.2);border-radius:12px;padding:16px;margin-bottom:12px;position:relative}
+.pb-label{font-size:8px;letter-spacing:0.2em;color:rgba(245,166,35,0.5);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.pb-copy{font-size:8px;color:var(--amber);cursor:pointer;border:0.5px solid rgba(245,166,35,0.25);padding:2px 8px;border-radius:5px;transition:all .15s}
+.pb-copy:active{background:rgba(245,166,35,0.1)}
+.pb-text{font-size:11px;color:var(--t);line-height:1.7;font-family:'JetBrains Mono',monospace;white-space:pre-wrap;word-break:break-word}
+.section{margin-bottom:14px}
+.section-label{font-size:8px;letter-spacing:0.2em;color:var(--d);margin-bottom:8px;padding-bottom:6px;border-bottom:0.5px solid var(--b);display:flex;align-items:center;justify-content:space-between}
+.panel{background:var(--s);border:0.5px solid var(--b);border-radius:10px;overflow:hidden;margin-bottom:8px}
+.panel-hdr{padding:9px 12px;border-bottom:0.5px solid var(--b);display:flex;align-items:center;justify-content:space-between}
+.ph-t{font-size:8px;letter-spacing:0.12em;color:var(--d)}
+.ph-a{font-size:8px;color:var(--amber);cursor:pointer}
+.panel-body{padding:10px 12px}
+.row{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:0.5px solid rgba(255,255,255,0.03)}
+.row:last-child{border-bottom:none}
+.row-key{font-size:9px;color:var(--amber);width:90px;flex-shrink:0;font-family:'JetBrains Mono',monospace;padding-top:1px}
+.row-val{font-size:10px;color:var(--t);flex:1;line-height:1.5}
+.note-box{background:rgba(255,255,255,0.02);border-left:2px solid rgba(245,166,35,0.25);border-radius:0 6px 6px 0;padding:8px 10px;font-size:10px;color:var(--m);line-height:1.6;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.code-block{background:rgba(0,0,0,0.55);border:0.5px solid var(--b);border-radius:8px;padding:11px 12px;font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.85;margin-bottom:8px;overflow-x:auto;position:relative}
+.ck{color:var(--purple)}.cs{color:var(--amber)}.cc{color:rgba(239,68,68,0.7)}.cf{color:var(--cyan)}.cn{color:var(--green)}.co{color:var(--gold)}
+.git-step{display:flex;gap:10px;padding:9px;background:var(--s);border:0.5px solid var(--b);border-radius:9px;margin-bottom:6px}
+.git-step.gated{opacity:0.45;border-style:dashed}
+.gs-num{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;flex-shrink:0;background:rgba(245,166,35,0.12);color:var(--amber)}
+.gs-body{flex:1}
+.gs-title{font-size:11px;font-weight:500;color:var(--t);margin-bottom:3px}
+.gs-desc{font-size:9px;color:var(--m);line-height:1.5}
+.gs-cmd{background:rgba(0,0,0,0.4);border:0.5px solid var(--b);border-radius:5px;padding:5px 8px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);margin-top:5px;display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.gs-cmd:active{background:rgba(0,0,0,0.7)}
+.copy-all-btn{width:100%;padding:12px;background:rgba(245,166,35,0.08);border:0.5px solid rgba(245,166,35,0.3);border-radius:10px;color:var(--amber);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.1em;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px}
+.copy-all-btn:active{background:rgba(245,166,35,0.18)}
+.copy-all-btn.copied{background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:var(--green)}
+.device-row{display:flex;gap:7px;margin-bottom:14px}
+.dev-btn{flex:1;padding:9px;border:0.5px solid var(--b);border-radius:9px;background:var(--s);cursor:pointer;text-align:center;transition:all .15s;font-family:'JetBrains Mono',monospace}
+.dev-btn.on{border-color:rgba(245,166,35,0.35);background:rgba(245,166,35,0.06)}
+.dev-btn:active{transform:scale(.97)}
+.dev-icon{font-size:20px;margin-bottom:4px}
+.dev-label{font-size:9px;color:var(--t)}
+.dev-sub{font-size:8px;color:var(--d);margin-top:2px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(4,4,12,0.97);border-top:0.5px solid var(--b);display:flex;justify-content:space-around;padding:8px 0 calc(8px + env(safe-area-inset-bottom,0px));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:100}
+.bn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 14px;cursor:pointer;opacity:.35;transition:opacity .15s;user-select:none}
+.bn.on{opacity:1}
+.bn:active{transform:scale(.93)}
+.bn-dot{width:5px;height:5px;border-radius:50%}
+.bn-lbl{font-size:8px;color:var(--t);white-space:nowrap}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(34,197,94,0.15);border:0.5px solid rgba(34,197,94,0.35);border-radius:20px;padding:8px 18px;font-size:11px;color:var(--green);font-family:'JetBrains Mono',monospace;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap;z-index:200}
+.toast.show{opacity:1}
+/* v5.3 state discipline badges — 8px min for accessibility */
+.state-live{display:inline-block;font-size:8px;padding:2px 6px;border-radius:4px;background:rgba(34,197,94,0.12);border:0.5px solid rgba(34,197,94,0.35);color:var(--green);margin-left:6px;letter-spacing:0.05em;vertical-align:middle}
+.state-planned{display:inline-block;font-size:8px;padding:2px 6px;border-radius:4px;background:rgba(59,130,246,0.12);border:0.5px solid rgba(59,130,246,0.35);color:var(--blue);margin-left:6px;letter-spacing:0.05em;vertical-align:middle}
+.state-blocked{display:inline-block;font-size:8px;padding:2px 6px;border-radius:4px;background:rgba(239,68,68,0.1);border:0.5px solid rgba(239,68,68,0.3);color:var(--red);margin-left:6px;letter-spacing:0.05em;vertical-align:middle}
+.state-device-limit{display:inline-block;font-size:8px;padding:2px 6px;border-radius:4px;background:rgba(201,168,76,0.12);border:0.5px solid rgba(201,168,76,0.35);color:var(--gold);margin-left:6px;letter-spacing:0.05em;vertical-align:middle}
+.state-manual{display:inline-block;font-size:8px;padding:2px 6px;border-radius:4px;background:rgba(236,72,153,0.1);border:0.5px solid rgba(236,72,153,0.3);color:var(--magenta);margin-left:6px;letter-spacing:0.05em;vertical-align:middle}
+.aligned-badge{display:inline-block;font-size:8px;padding:2px 6px;border-radius:4px;background:rgba(34,197,94,0.1);border:0.5px solid rgba(34,197,94,0.3);color:var(--green);margin-left:6px;letter-spacing:0.05em;vertical-align:middle}
+.token-count{font-size:9px;color:var(--d);text-align:right;padding:4px 0;font-family:'JetBrains Mono',monospace}
+.dep-bar{background:rgba(239,68,68,0.06);border:0.5px solid rgba(239,68,68,0.2);border-radius:6px;padding:6px 10px;font-size:9px;color:var(--red);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.dep-bar .dep-icon{font-size:12px}
+.fetch-status{font-size:8px;padding:2px 8px;border-radius:10px;margin-left:8px}
+.fetch-ok{background:rgba(34,197,94,0.1);border:0.5px solid rgba(34,197,94,0.3);color:var(--green)}
+.fetch-fail{background:rgba(239,68,68,0.08);border:0.5px solid rgba(239,68,68,0.2);color:var(--red)}
+.fetch-pending{background:rgba(245,166,35,0.08);border:0.5px solid rgba(245,166,35,0.2);color:var(--amber)}
+@media(max-width:480px){
+  .state-live,.state-planned,.state-blocked,.state-device-limit,.state-manual,.aligned-badge{font-size:9px;padding:2px 7px}
+}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<div class="app">
+  <div class="header">
+    <div class="h-logo">NOIZY<span>FISH</span> · SuperSonic Prompt</div>
+    <div class="h-sub">v5.3 Enterprise · state-driven · March 23 2026 <span id="fetch-indicator" class="fetch-status fetch-pending">CACHED</span></div>
+    <div class="h-badges">
+      <div class="badge" style="border-color:rgba(245,166,35,0.3);color:var(--amber)">RSP_001</div>
+      <div class="badge" style="border-color:rgba(0,212,200,0.25);color:var(--cyan)">GORUNFREE</div>
+      <div class="badge" style="border-color:rgba(34,197,94,0.22);color:var(--green)" id="badge-d1">D1 LIVE · <span data-s="d1Memcells">326</span> memcells · <span data-s="d1Tables">259</span> tables</div>
+      <div class="badge" style="border-color:rgba(139,92,246,0.25);color:var(--purple)">5th Epoch · 2026</div>
+      <div class="badge" style="border-color:rgba(59,130,246,0.25);color:var(--blue)">noizy.ai ENTERPRISE</div>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab on" onclick="showTab('prompt')">SuperSonic Prompt</button>
+    <button class="tab" onclick="showTab('git')">Git Alignment</button>
+    <button class="tab" onclick="showTab('ipad')">iPad Config</button>
+    <button class="tab" onclick="showTab('iphone')">iPhone Config</button>
+    <button class="tab" onclick="showTab('commands')">Commands</button>
+    <button class="tab" onclick="showTab('stack')">Stack</button>
+  </div>
+
+  <!-- ═══ TAB: SUPERSONIC PROMPT ═══ -->
+  <div class="page on" id="tab-prompt">
+    <div class="section">
+      <div class="section-label"><span>Master System Prompt · Copy into Claude · iOS · iPad OS</span></div>
+      <div class="device-row">
+        <div class="dev-btn on" id="dev-ipad" onclick="selectDevice('ipad')">
+          <div class="dev-icon">⊞</div>
+          <div class="dev-label">iPad 12.9"</div>
+          <div class="dev-sub">Gen 2 · Satellite dashboard</div>
+        </div>
+        <div class="dev-btn" id="dev-iphone" onclick="selectDevice('iphone')">
+          <div class="dev-icon">◻</div>
+          <div class="dev-label">iPhone 15 Pro Max</div>
+          <div class="dev-sub">Voice-first · Quick cmd</div>
+        </div>
+        <div class="dev-btn" id="dev-both" onclick="selectDevice('both')">
+          <div class="dev-icon">⟨⟩</div>
+          <div class="dev-label">Both Devices</div>
+          <div class="dev-sub">Universal master</div>
+        </div>
+      </div>
+      <button class="copy-all-btn" id="copy-master-btn" onclick="copyMasterPrompt()">
+        <span id="copy-master-icon">⎘</span> COPY SUPERSONIC PROMPT TO CLIPBOARD
+      </button>
+      <div class="token-count" id="token-count"></div>
+    </div>
+    <div class="prompt-box" id="master-prompt-box">
+      <div class="pb-label">
+        <span>SUPERSONIC PROMPT v5.3 · NOIZYFISH · MC96ECO · noizy.ai ENTERPRISE · 2026</span>
+        <span class="pb-copy" onclick="copyMasterPrompt()">Copy All</span>
+      </div>
+      <div class="pb-text" id="prompt-display"></div>
+    </div>
+    <div class="note-box">How to use: Open Claude on iPad or iPhone → Settings → Custom Instructions (or start a new conversation and paste as first message). This prompt boots the full MC96ECO universe instantly: RSP_001 identity, GORUNFREE law, all 7 agents, P1 alerts, the full protocol map.</div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">What this prompt activates</div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key">Identity</div><div class="row-val">RSP_001 · Robert Stephen Plowman · NOIZYFISH INC. founder · 40yr composer</div></div>
+        <div class="row"><div class="row-key">Voice-First</div><div class="row-val">C3 spinal constraint · 35% voice + 65% AI + 1 tap · GORUNFREE law · zero friction</div></div>
+        <div class="row"><div class="row-key">GABRIEL</div><div class="row-val"><span data-s="d1Memcells">326</span> memcells · D1 agent-memory · <span data-s="d1Tables">259</span> tables · IAD region <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">Protocols</div><div class="row-val">GO=deploy · RUN=execute · FIX=diagnose · FOREST=full context · X1000=best possible</div></div>
+        <div class="row"><div class="row-key">Stack</div><div class="row-val">Cloudflare D1/Workers <span class="state-live">LIVE NOW</span> · R2 <span id="ui-r2" class="state-blocked">BLOCKED</span> · HEAVEN17 <span id="ui-h17" class="state-planned">PLANNED</span></div></div>
+        <div class="row"><div class="row-key">Brands</div><div class="row-val">NOIZYFISH (master) · NOIZY.ai · NOIZYVOX · NOIZYLAB · NOIZYKIDZ</div></div>
+        <div class="row"><div class="row-key">Audio</div><div class="row-val">Neumann TLM 103 · Logic Pro X · Audio Hijack · 48kHz/32-bit <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">Git</div><div class="row-val">Authority: noizy.ai · GitHub: github.com/noizy-ai <span class="state-live">LIVE NOW</span> · Self-hosted: git.noizy.ai <span class="state-planned">PLANNED</span></div></div>
+        <div class="row"><div class="row-key">Consent</div><div class="row-val">CONSENT_RSP_001_FOUNDING · Jan 6 2026 · 75/25 · kill switch <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">Voice Guard</div><div class="row-val">RSP_001 Voice Guardian entry <span id="ui-vg" class="state-blocked">MISSING</span></div></div>
+        <div class="row"><div class="row-key">Mission</div><div class="row-val">5th Epoch · HVS sovereignty · NCP consent · NOIZY PROOF · GABRIEL royalties</div></div>
+      </div>
+    </div>
+    <!-- State Legend -->
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">State Legend · v5.3 Discipline</div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key"><span class="state-live" style="margin-left:0">LIVE NOW</span></div><div class="row-val">Verified current state · confirmed operational</div></div>
+        <div class="row"><div class="row-key"><span class="state-planned" style="margin-left:0">PLANNED</span></div><div class="row-val">Intended architecture · not yet deployed or configured</div></div>
+        <div class="row"><div class="row-key"><span class="state-blocked" style="margin-left:0">BLOCKED</span></div><div class="row-val">Dependency unmet · requires action to unblock</div></div>
+        <div class="row"><div class="row-key"><span class="state-manual" style="margin-left:0">NEEDS ROB</span></div><div class="row-val">Only Rob can execute · manual action required</div></div>
+        <div class="row"><div class="row-key"><span class="state-device-limit" style="margin-left:0">DEVICE LIMIT</span></div><div class="row-val">Hardware constraint · unsupported on this generation</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: GIT ALIGNMENT ═══ -->
+  <div class="page" id="tab-git">
+    <div class="section">
+      <div class="section-label"><span>Git Enterprise Alignment · noizy.ai <span class="aligned-badge">AUTHORITY</span></span></div>
+      <div class="note-box">Enterprise authority: noizy.ai (root serves status JSON <span class="state-live" style="margin-left:0">LIVE</span>). Canonical Git host: git.noizy.ai via Gitea + CF Tunnel <span class="state-planned" style="margin-left:0">PLANNED</span>. GitHub backup: github.com/noizy-ai <span class="state-live" style="margin-left:0">LIVE</span>. Dual-remote strategy: noizy.ai = enterprise push, GitHub = backup pull origin. 12 D1 records aligned. Linear NOI-17 tracks manual steps.</div>
+    </div>
+
+    <!-- ALIGNMENT STATUS -->
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">Enterprise Alignment Status · NOI-17</div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key" style="color:var(--green)">D1 Memcells</div><div class="row-val">12 records updated → github.com/noizy-ai <span class="aligned-badge">DONE</span></div></div>
+        <div class="row"><div class="row-key" style="color:var(--green)">Conductor</div><div class="row-val">Routes updated → noizy-ai destination <span class="aligned-badge">DONE</span></div></div>
+        <div class="row"><div class="row-key" style="color:var(--green)">Knowledge</div><div class="row-val">GABRIEL repo reference updated <span class="aligned-badge">DONE</span></div></div>
+        <div class="row"><div class="row-key" style="color:var(--red)">GitHub Org</div><div class="row-val">Rename NOIZYLAB-io → noizy-ai <span class="state-manual">NEEDS ROB</span></div></div>
+        <div class="row"><div class="row-key" style="color:var(--red)">Remotes</div><div class="row-val">Update origin URLs on GOD + GABRIEL <span class="state-manual">NEEDS ROB</span></div></div>
+        <div class="row"><div class="row-key" style="color:var(--red)">Linear</div><div class="row-val">Reconnect GitHub integration → noizy-ai <span class="state-manual">NEEDS ROB</span></div></div>
+        <div class="row"><div class="row-key" style="color:var(--red)">wrangler.toml</div><div class="row-val">Verify no hardcoded NOIZYLAB-io refs <span class="state-manual">NEEDS ROB</span></div></div>
+        <div class="row"><div class="row-key" style="color:var(--blue)">git.noizy.ai</div><div class="row-val">Self-hosted Git via Gitea + CF tunnel <span class="state-planned">PLANNED</span></div></div>
+      </div>
+    </div>
+
+    <!-- MASTER SCRIPT -->
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">Master Git Alignment Script · Run on GOD</div><div class="ph-a" onclick="copyBlock('git-master')">Copy</div></div>
+      <div class="panel-body">
+        <div class="code-block" id="git-master">
+<span class="cc">#!/bin/bash</span>
+<span class="cc"># MC96ECO Git Enterprise Alignment v3</span>
+<span class="cc"># Dual-remote: noizy.ai (push) + GitHub (pull backup)</span>
+<span class="cc"># Enterprise authority: noizy.ai (status-json root)</span>
+<span class="cc"># Canonical Git host: git.noizy.ai (PLANNED - Gitea + CF Tunnel)</span>
+<span class="cc"># GitHub backup: github.com/noizy-ai (LIVE)</span>
+<span class="cc"># Run: chmod +x git-align.sh && ./git-align.sh</span>
+<span class="cc"># GOD · 10.90.90.10 · M2 Ultra 192GB</span>
+<span class="cc"># LINEAR: NOI-17 · March 23, 2026</span><br>
+<span class="cf">GITHUB_ORG</span>=<span class="cs">"https://github.com/noizy-ai"</span>
+<span class="cf">OLD_ORG</span>=<span class="cs">"https://github.com/NOIZYLAB-io"</span>
+<span class="cf">AUTHORITY</span>=<span class="cs">"noizy.ai"</span>
+<span class="cf">GIT_HOST</span>=<span class="cs">"git.noizy.ai"</span>  <span class="cc"># PLANNED</span>
+<span class="cf">REPO_ROOT</span>=<span class="cs">"$HOME/NOIZYFISH"</span><br>
+<span class="cc"># Repo names as they exist on GitHub</span>
+<span class="cf">REPOS</span>=(<br>
+&nbsp;&nbsp;<span class="cs">"heaven17"</span><br>
+&nbsp;&nbsp;<span class="cs">"NOIZYLAB"</span><br>
+&nbsp;&nbsp;<span class="cs">"GABRIEL"</span><br>
+&nbsp;&nbsp;<span class="cs">"NOIZYVOX"</span><br>
+&nbsp;&nbsp;<span class="cs">"CONDUCTOR"</span><br>
+&nbsp;&nbsp;<span class="cs">"FISHYBOOKS"</span><br>
+&nbsp;&nbsp;<span class="cs">"CODEMASTER"</span><br>
+&nbsp;&nbsp;<span class="cs">"NOIZYKIDZ"</span><br>
+)<br><br>
+<span class="cn">echo</span> <span class="cs">""</span>
+<span class="cn">echo</span> <span class="cs">"═══════════════════════════════════════════"</span>
+<span class="cn">echo</span> <span class="cs">"  NOIZYFISH · Enterprise Git Alignment v3"</span>
+<span class="cn">echo</span> <span class="cs">"  OLD: $OLD_ORG"</span>
+<span class="cn">echo</span> <span class="cs">"  GITHUB: $GITHUB_ORG"</span>
+<span class="cn">echo</span> <span class="cs">"  AUTHORITY: $AUTHORITY"</span>
+<span class="cn">echo</span> <span class="cs">"  GIT HOST: $GIT_HOST (planned)"</span>
+<span class="cn">echo</span> <span class="cs">"  REPO ROOT: $REPO_ROOT"</span>
+<span class="cn">echo</span> <span class="cs">"═══════════════════════════════════════════"</span><br>
+<span class="cf">PASS</span>=0
+<span class="cf">FAIL</span>=0<br>
+<span class="ck">for</span> repo <span class="ck">in</span> <span class="cs">"${REPOS[@]}"</span>; <span class="ck">do</span><br>
+&nbsp;&nbsp;<span class="cn">echo</span> <span class="cs">""</span>
+&nbsp;&nbsp;<span class="cn">echo</span> <span class="cs">"▸ $repo"</span><br>
+&nbsp;&nbsp;<span class="cc"># Find the repo directory</span>
+&nbsp;&nbsp;<span class="cf">REPO_DIR</span>=<span class="cs">""</span>
+&nbsp;&nbsp;<span class="ck">for</span> dir <span class="ck">in</span> <span class="cs">"$REPO_ROOT/$repo" "$HOME/repos/$repo" "$HOME/Projects/$repo" "$HOME/$repo"</span>; <span class="ck">do</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">if</span> [ -d <span class="cs">"$dir/.git"</span> ]; <span class="ck">then</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cf">REPO_DIR</span>=<span class="cs">"$dir"</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">break</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">fi</span>
+&nbsp;&nbsp;<span class="ck">done</span><br>
+&nbsp;&nbsp;<span class="ck">if</span> [ -z <span class="cs">"$REPO_DIR"</span> ]; <span class="ck">then</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cn">echo</span> <span class="cs">"  ✗ Not found locally — skip"</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cf">FAIL</span>=$(($FAIL+1))
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">continue</span>
+&nbsp;&nbsp;<span class="ck">fi</span><br>
+&nbsp;&nbsp;<span class="ck">cd</span> <span class="cs">"$REPO_DIR"</span><br>
+&nbsp;&nbsp;<span class="cc"># Set origin to GitHub (pull backup)</span>
+&nbsp;&nbsp;<span class="cn">git remote</span> set-url origin <span class="cs">"$GITHUB_ORG/$repo.git"</span><br>
+&nbsp;&nbsp;<span class="cc"># Set push URL to enterprise (when git.noizy.ai is live)</span>
+&nbsp;&nbsp;<span class="cc"># For now, push also goes to GitHub</span>
+&nbsp;&nbsp;<span class="cn">git remote</span> set-url --push origin <span class="cs">"$GITHUB_ORG/$repo.git"</span><br>
+&nbsp;&nbsp;<span class="cc"># Set git identity</span>
+&nbsp;&nbsp;<span class="cn">git config</span> user.name <span class="cs">"Robert Stephen Plowman"</span>
+&nbsp;&nbsp;<span class="cn">git config</span> user.email <span class="cs">"rsplowman@icloud.com"</span><br>
+&nbsp;&nbsp;<span class="cc"># Verify</span>
+&nbsp;&nbsp;<span class="cf">REMOTE</span>=$(<span class="cn">git remote</span> get-url origin 2>/dev/null)
+&nbsp;&nbsp;<span class="ck">if</span> <span class="cn">echo</span> <span class="cs">"$REMOTE"</span> | <span class="cn">grep</span> -q <span class="cs">"noizy-ai"</span>; <span class="ck">then</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cn">echo</span> <span class="cs">"  ✓ origin → $REMOTE"</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cf">PASS</span>=$(($PASS+1))
+&nbsp;&nbsp;<span class="ck">else</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cn">echo</span> <span class="cs">"  ✗ FAILED — origin is: $REMOTE"</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cf">FAIL</span>=$(($FAIL+1))
+&nbsp;&nbsp;<span class="ck">fi</span>
+<span class="ck">done</span><br>
+<span class="cn">echo</span> <span class="cs">""</span>
+<span class="cn">echo</span> <span class="cs">"═══════════════════════════════════════════"</span>
+<span class="cn">echo</span> <span class="cs">"  RESULTS: $PASS aligned · $FAIL failed"</span>
+<span class="cn">echo</span> <span class="cs">"  Authority: $AUTHORITY"</span>
+<span class="cn">echo</span> <span class="cs">"  GitHub: $GITHUB_ORG"</span>
+<span class="cn">echo</span> <span class="cs">"  Git host: $GIT_HOST (PLANNED)"</span>
+<span class="cn">echo</span> <span class="cs">"  ONE TRUTH. ONE SOURCE. ZERO FRICTION."</span>
+<span class="cn">echo</span> <span class="cs">"═══════════════════════════════════════════"</span>
+        </div>
+        <button class="copy-all-btn" onclick="copyBlock('git-master')" style="margin-top:4px">Copy Git Alignment Script</button>
+      </div>
+    </div>
+
+    <!-- 9-STEP EXECUTION PLAN -->
+    <div class="section">
+      <div class="section-label"><span>9-Step Execution Plan · NOI-17</span></div>
+      <div class="git-step">
+        <div class="gs-num">1</div>
+        <div class="gs-body">
+          <div class="gs-title">Rename GitHub Org: NOIZYLAB-io → noizy-ai <span class="state-manual">NEEDS ROB</span></div>
+          <div class="gs-desc">github.com/organizations/NOIZYLAB-io/settings → Change organization name → "noizy-ai". GitHub auto-redirects old URLs.</div>
+        </div>
+      </div>
+      <div class="git-step">
+        <div class="gs-num">2</div>
+        <div class="gs-body">
+          <div class="gs-title">Run git-align.sh on GOD <span class="state-manual">NEEDS ROB</span></div>
+          <div class="gs-desc">Updates all 8 repo remotes from NOIZYLAB-io → noizy-ai. Sets git identity. Repo root: ~/NOIZYFISH/</div>
+          <div class="gs-cmd" onclick="copyText('cd ~/NOIZYFISH && chmod +x git-align.sh && ./git-align.sh')">
+            cd ~/NOIZYFISH && chmod +x git-align.sh && ./git-align.sh
+            <span style="color:var(--d)">copy</span>
+          </div>
+        </div>
+      </div>
+      <div class="git-step">
+        <div class="gs-num">3</div>
+        <div class="gs-body">
+          <div class="gs-title">Verify wrangler.toml — no stale org refs <span class="state-manual">NEEDS ROB</span></div>
+          <div class="gs-desc">HEAVEN17 wrangler.toml uses CF account ID, not GitHub org — likely clean. Verify with grep.</div>
+          <div class="gs-cmd" onclick="copyText('grep -r \"NOIZYLAB-io\" ~/NOIZYFISH/heaven17/wrangler.toml || echo \"Clean\"')">
+            grep -r "NOIZYLAB-io" ~/NOIZYFISH/heaven17/wrangler.toml || echo "Clean"
+            <span style="color:var(--d)">copy</span>
+          </div>
+        </div>
+      </div>
+      <div class="git-step">
+        <div class="gs-num">4</div>
+        <div class="gs-body">
+          <div class="gs-title">Reconnect Linear ↔ GitHub integration <span class="state-manual">NEEDS ROB</span></div>
+          <div class="gs-desc">linear.app/noizylab/settings/integrations → GitHub → Disconnect NOIZYLAB-io → Reconnect noizy-ai</div>
+        </div>
+      </div>
+      <div class="git-step">
+        <div class="gs-num">5</div>
+        <div class="gs-body">
+          <div class="gs-title">Run alignment on GABRIEL machine (10.90.90.20) <span class="state-manual">NEEDS ROB</span></div>
+          <div class="gs-desc">If any repos are cloned on the GABRIEL machine, run the same alignment script there.</div>
+          <div class="gs-cmd" onclick="copyText('ssh gabriel@10.90.90.20 \"cd ~/repos && for d in */; do cd $d && git remote set-url origin https://github.com/noizy-ai/${d%/}.git && cd ..; done\"')">
+            ssh gabriel@10.90.90.20 "update remotes"
+            <span style="color:var(--d)">copy</span>
+          </div>
+        </div>
+      </div>
+      <div class="git-step">
+        <div class="gs-num">6</div>
+        <div class="gs-body">
+          <div class="gs-title">Install Gitea on GOD · git.noizy.ai <span class="state-planned">PLANNED</span></div>
+          <div class="gs-desc">Self-hosted Git at git.noizy.ai via Gitea. Expose through Cloudflare Tunnel (cloudflared). GOD (10.90.90.10) hosts. Gitea runs on port 3000 behind the tunnel.</div>
+          <div class="gs-cmd" onclick="copyText('brew install gitea && gitea web --port 3000')">
+            brew install gitea && gitea web --port 3000
+            <span style="color:var(--d)">copy</span>
+          </div>
+        </div>
+      </div>
+      <div class="git-step">
+        <div class="gs-num">7</div>
+        <div class="gs-body">
+          <div class="gs-title">Configure CF Tunnel → git.noizy.ai <span class="state-planned">PLANNED</span></div>
+          <div class="gs-desc">Create Cloudflare Tunnel on GOD routing git.noizy.ai → localhost:3000. Then update git-align.sh push URL to git.noizy.ai.</div>
+          <div class="gs-cmd" onclick="copyText('cloudflared tunnel create noizy-git && cloudflared tunnel route dns noizy-git git.noizy.ai')">
+            cloudflared tunnel create noizy-git && cloudflared tunnel route dns noizy-git git.noizy.ai
+            <span style="color:var(--d)">copy</span>
+          </div>
+        </div>
+      </div>
+      <div class="git-step">
+        <div class="gs-num">8</div>
+        <div class="gs-body">
+          <div class="gs-title">Generate SSH keys for iPad + iPhone (Working Copy) <span class="state-planned">PLANNED</span></div>
+          <div class="gs-desc">Working Copy on iPad/iPhone needs SSH keys added to Gitea for push/pull to git.noizy.ai. Generate on each device, add public key to Gitea admin.</div>
+        </div>
+      </div>
+      <div class="git-step">
+        <div class="gs-num">9</div>
+        <div class="gs-body">
+          <div class="gs-title">Set Windsurf/Cascade default remote → noizy-ai <span class="state-planned">PLANNED</span></div>
+          <div class="gs-desc">Configure Windsurf/Cascade on GOD to use git.noizy.ai as default push remote once the tunnel is live. Until then, github.com/noizy-ai is the canonical push target.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THREE GATES -->
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">Three Gates · Before Full Stack Goes Live</div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key" style="color:var(--red)">Gate 1</div><div class="row-val">Enable R2 → Cloudflare Dashboard → R2 → 5 min <span class="state-manual">NEEDS ROB</span></div></div>
+        <div class="row"><div class="row-key" style="color:var(--amber)">Gate 2</div><div class="row-val">Run git-align.sh on GOD → all repos point to noizy-ai <span class="state-manual">NEEDS ROB</span></div></div>
+        <div class="row"><div class="row-key" style="color:var(--blue)">Gate 3</div><div class="row-val">Deploy HEAVEN17 → cd ~/NOIZYFISH/heaven17 && npx wrangler deploy <span class="state-planned">AFTER GATE 1+2</span></div></div>
+      </div>
+    </div>
+
+    <!-- WRANGLER.TOML -->
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">wrangler.toml · Enterprise Config · HEAVEN17</div><div class="ph-a" onclick="copyBlock('wrangler-config')">Copy</div></div>
+      <div class="panel-body">
+        <div class="code-block" id="wrangler-config">
+<span class="cc"># wrangler.toml · HEAVEN17 · noizy.ai enterprise</span>
+<span class="cf">name</span> = <span class="cs">"heaven17"</span>
+<span class="cf">main</span> = <span class="cs">"src/index.ts"</span>
+<span class="cf">compatibility_date</span> = <span class="cs">"2026-03-23"</span><br>
+[[<span class="cf">d1_databases</span>]]
+<span class="cf">binding</span> = <span class="cs">"DB"</span>
+<span class="cf">database_name</span> = <span class="cs">"agent-memory"</span>
+<span class="cf">database_id</span> = <span class="cs">"7b813205-fd12-4a23-84a6-ce83bc49ec70"</span><br>
+[[<span class="cf">r2_buckets</span>]]
+<span class="cf">binding</span> = <span class="cs">"VOICES"</span>
+<span class="cf">bucket_name</span> = <span class="cs">"noizyvox-voices"</span><br>
+[[<span class="cf">r2_buckets</span>]]
+<span class="cf">binding</span> = <span class="cs">"ASSETS"</span>
+<span class="cf">bucket_name</span> = <span class="cs">"noizyvox-assets"</span><br>
+[<span class="cf">vars</span>]
+<span class="cf">ENTERPRISE_AUTHORITY</span> = <span class="cs">"noizy.ai"</span>
+<span class="cf">GITHUB_ORG</span> = <span class="cs">"https://github.com/noizy-ai"</span>
+<span class="cf">GIT_HOST</span> = <span class="cs">"git.noizy.ai"</span>  <span class="cc"># PLANNED — not yet live</span>
+<span class="cf">ARTIST_ID</span> = <span class="cs">"RSP_001"</span>
+<span class="cf">EPOCH</span> = <span class="cs">"5"</span>
+<span class="cf">VERSION</span> = <span class="cs">"17.0"</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: IPAD CONFIG ═══ -->
+  <div class="page" id="tab-ipad">
+    <div class="section">
+      <div class="section-label"><span>iPad 12.9" Gen 2 · Claude Configuration <span class="state-device-limit">A10X BIONIC · 2017</span></span></div>
+      <div class="note-box">iPad is a satellite dashboard, notes surface, and mobile command companion. No Creator Studio apps (Final Cut/Logic Pro for iPad require M1+). Use for Claude chat, Working Copy git, SSH to GOD, Safari PWAs, and Siri Shortcuts dispatch. Heavy compute stays on GOD.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">iPad Claude · Project Instructions</div><div class="ph-a" onclick="copyBlock('ipad-instructions')">Copy</div></div>
+      <div class="panel-body">
+        <div class="code-block" id="ipad-instructions">
+<span class="cc">## iPad · MC96ECO Satellite · RSP_001</span><br>
+<span class="cf">Device:</span> iPad Pro 12.9" Gen 2 (A10X · 2017)
+<span class="cf">Layout:</span> Sidebar + content (Split View)
+<span class="cf">Role:</span> Satellite dashboard · notes · command companion
+<span class="cf">Limitation:</span> No M1 — no Final Cut/Logic Pro for iPad
+<span class="cf">Connection:</span> MC96 network · 10.90.90.x
+<span class="cf">Authority:</span> noizy.ai
+<span class="cf">GitHub:</span> github.com/noizy-ai [LIVE]
+<span class="cf">Git host:</span> git.noizy.ai [PLANNED]<br>
+<span class="cn">Always:</span>
+- Show P1 alerts on any new chat
+- Format for landscape Split View
+- Enable file creation (docx, pptx, xlsx)
+- Heavy compute → SSH to GOD (10.90.90.10)<br>
+<span class="cn">When HEAVEN17 is live:</span>
+- Load GABRIEL bootstrap (noizy.ai/api/bootstrap)<br>
+<span class="cn">Quick Access:</span>
+- mc96eco_ipad_satellite.html → Home Screen
+- mc96eco_audio_universe_v5.html → Studio monitor
+- Working Copy → git push to github.com/noizy-ai
+- SSH to GOD for Windsurf/wrangler deploy<br>
+<span class="cn">Voice Commands:</span> GO · RUN · FIX · FOREST · X1000
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">iPad Apps · MC96ECO Stack</div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key">Claude</div><div class="row-val">claude.ai or Claude iOS app · Custom Instructions loaded · Project context</div></div>
+        <div class="row"><div class="row-key">Cowork</div><div class="row-val">Persistent Claude agent · Mobile · always-on GABRIEL context</div></div>
+        <div class="row"><div class="row-key">Working Copy</div><div class="row-val">Git client · SSH to github.com/noizy-ai · push/pull from iPad</div></div>
+        <div class="row"><div class="row-key">Safari</div><div class="row-val">mc96eco_ipad_satellite.html · Add to Home Screen as PWA</div></div>
+        <div class="row"><div class="row-key">SSH Files</div><div class="row-val">SSH to GOD · 10.90.90.10 · terminal access from iPad</div></div>
+        <div class="row"><div class="row-key">Shortcuts</div><div class="row-val">Siri Shortcuts → GABRIEL dispatch → Audio Hijack triggers</div></div>
+        <div class="row"><div class="row-key">AirPods Pro</div><div class="row-val">Voice monitor feed · 35% voice input · GORUNFREE flow</div></div>
+        <div class="row"><div class="row-key" style="color:var(--gold)">Limits</div><div class="row-val">No Logic Pro for iPad · No Final Cut for iPad · No Stage Manager <span class="state-device-limit">A10X</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: IPHONE CONFIG ═══ -->
+  <div class="page" id="tab-iphone">
+    <div class="section">
+      <div class="section-label"><span>iPhone 15 Pro Max · Claude Configuration</span></div>
+      <div class="note-box">iPhone is voice-first quick command. Card stack + bottom nav. P1 alerts front and center. GORUNFREE optimized: 35% voice + 65% AI + 1 tap = done.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">iPhone Claude · Quick Prompt</div><div class="ph-a" onclick="copyBlock('iphone-instructions')">Copy</div></div>
+      <div class="panel-body">
+        <div class="code-block" id="iphone-instructions">
+<span class="cc">## iPhone 15 Pro Max · RSP_001 · Voice-First</span><br>
+<span class="cf">Device:</span> iPhone 15 Pro Max
+<span class="cf">Mode:</span> Voice-first · Quick command · GORUNFREE
+<span class="cf">Constraint:</span> C3 spinal · one-tap max · brief output
+<span class="cf">Authority:</span> noizy.ai · GitHub: github.com/noizy-ai [LIVE]<br>
+<span class="cn">Rules:</span>
+- Answer in 3 lines max unless asked for more
+- Always lead with the action, not the context
+- Voice trigger: GO = deploy immediately
+- P1 alerts always shown first
+- No preamble, no hedging, no summaries
+- TTS-friendly: short sentences, clear verbs<br>
+<span class="cn">GORUNFREE Law:</span>
+35% voice + 65% AI + 1 tap = DONE
+Never make Rob work. Execute, don't instruct.
+Claude has his hands. USE THEM.<br>
+<span class="cn">Protocol Map:</span>
+GO → deploy · RUN → execute · FIX → repair
+FOREST → load context · X1000 → best possible
+CAPS → urgent · profanity → speed up
+PUSH → git push to github.com/noizy-ai
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">iPhone Apps · MC96ECO Stack</div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key">Claude</div><div class="row-val">Claude iOS · voice beta /voice · Custom Instructions loaded</div></div>
+        <div class="row"><div class="row-key">Cowork</div><div class="row-val">Persistent mobile agent · GABRIEL always on · quick actions</div></div>
+        <div class="row"><div class="row-key">Safari</div><div class="row-val">mc96eco_iphone_satellite.html · Add to Home Screen as PWA</div></div>
+        <div class="row"><div class="row-key">Action Button</div><div class="row-val">iPhone 15 Pro: map Action Button → Claude voice → instant record</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">iPhone Siri Shortcut · GABRIEL Dispatch</div><div class="ph-a" onclick="copyBlock('siri-shortcut')">Copy</div></div>
+      <div class="panel-body">
+        <div class="dep-bar" id="siri-dep-bar"><span class="dep-icon">⊘</span> Blocked by: NOI-6 (R2) + NOI-5 (HEAVEN17) — shortcut requires deployed API</div>
+        <div class="code-block" id="siri-shortcut" style="opacity:0.5">
+<span class="cc"># Siri Shortcut: "Hey Siri, GABRIEL"</span>
+<span class="cc"># STATUS: PLANNED — requires HEAVEN17 deployed + R2 enabled</span>
+<span class="cc"># Trigger: voice → transcribe → POST to HEAVEN17</span><br>
+<span class="cn">Shortcut name:</span> GABRIEL
+<span class="cn">Trigger:</span> "Hey Siri, GABRIEL"<br>
+<span class="cn">Steps (when HEAVEN17 is live):</span>
+1. Dictate Text → capture voice command
+2. URL: POST https://noizy.ai/api/gabriel
+3. Body: {"command": [Dictated Text],
+         "artist": "RSP_001",
+         "device": "iPhone15ProMax",
+         "authority": "noizy.ai"}
+4. Get Contents of URL → response
+5. Speak Text → TTS reply via Chatterbox
+6. Show Notification → confirmation<br>
+<span class="cc"># Gate: R2 enabled + HEAVEN17 deployed</span>
+<span class="cc"># Until then: use Claude iOS app directly</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: COMMANDS ═══ -->
+  <div class="page" id="tab-commands">
+    <div class="section">
+      <div class="section-label"><span>GORUNFREE Protocol · Voice Command Map</span></div>
+    </div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">Command Protocol · All Devices</div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key">GO</div><div class="row-val">Deploy current build → wrangler → Cloudflare Workers → live</div></div>
+        <div class="row"><div class="row-key">RUN</div><div class="row-val">Execute current script/task → log to GABRIEL → confirm done</div></div>
+        <div class="row"><div class="row-key">FIX</div><div class="row-val">Diagnose + repair current error → auto-commit fix → report</div></div>
+        <div class="row"><div class="row-key">FOREST</div><div class="row-val">Full auto context load → bootstrap GABRIEL → ready</div></div>
+        <div class="row"><div class="row-key">X1000</div><div class="row-val">Best possible version of current task → no shortcuts → maximum quality</div></div>
+        <div class="row"><div class="row-key">HEAVEN17</div><div class="row-val">Build + deploy master Cloudflare Worker → all routes live <span class="state-planned">PLANNED</span></div></div>
+        <div class="row"><div class="row-key">DAZEFLOW</div><div class="row-val">1 day = 1 chat = 1 truth → log session → GABRIEL memcell</div></div>
+        <div class="row"><div class="row-key">CAPS</div><div class="row-val">Urgent priority → drop all else → address immediately</div></div>
+        <div class="row"><div class="row-key">Profanity</div><div class="row-val">Speed up → less explanation → execute faster → signal frustration</div></div>
+        <div class="row"><div class="row-key">PUSH</div><div class="row-val">git push origin main → github.com/noizy-ai <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">PULL</div><div class="row-val">git pull origin main → sync from github.com/noizy-ai</div></div>
+        <div class="row"><div class="row-key">STATUS</div><div class="row-val">Full MC96ECO status → D1 live data → P1 alerts → agents</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">Agent Routing Protocol</div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key">Tech question</div><div class="row-val">→ ENGR_KEITH · R.K. Plowman legacy · HEAVEN17 architect</div></div>
+        <div class="row"><div class="row-key">Vision/strategy</div><div class="row-val">→ DREAM · 5th Epoch · Elevation Doctrine · 2526 DreamChamber</div></div>
+        <div class="row"><div class="row-key">Execute/deploy</div><div class="row-val">→ GABRIEL · warrior · 326 memcells · D1 live · immediate</div></div>
+        <div class="row"><div class="row-key">Organization</div><div class="row-val">→ LUCY · DAZEFLOW keeper · task log · session index</div></div>
+        <div class="row"><div class="row-key">Domain/DNS/Git</div><div class="row-val">→ CB01 · GoDaddy escape · noizy.ai · enterprise alignment</div></div>
+        <div class="row"><div class="row-key">Emotional support</div><div class="row-val">→ SHIRL · The Aunt · burnout watchdog · wellbeing</div></div>
+        <div class="row"><div class="row-key">Decision grounding</div><div class="row-val">→ POPS · The Dad · R.K. Plowman · wisdom · north star</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: STACK ═══ -->
+  <div class="page" id="tab-stack">
+    <div class="section">
+      <div class="section-label"><span>MC96ECO Full Stack · noizy.ai Enterprise</span></div>
+    </div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">Infrastructure · Cloudflare Account 2446d788cc</div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key">D1 DBs</div><div class="row-val">10 databases · agent-memory (<span data-s="d1Size">2.5MB</span> main) · <span data-s="d1Tables">259</span> tables · <span data-s="d1Memcells">326</span> memcells · IAD <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">R2</div><div class="row-val">NOT YET ENABLED → noizyvox-voices + noizyvox-assets <span id="ui-r2-stack" class="state-blocked">BLOCKED</span> <span class="state-manual">NEEDS ROB</span></div></div>
+        <div class="row"><div class="row-key">HEAVEN17</div><div class="row-val">450+ lines · Hello World stub · <span data-s="heaven17StubDays">112</span>d undeployed <span id="ui-h17-stack" class="state-planned">PLANNED</span></div></div>
+        <div class="row"><div class="row-key">Workers</div><div class="row-val"><span data-s="workersActive">1</span> active (deploy stub) · HEAVEN17 ready in repo</div></div>
+        <div class="row"><div class="row-key">Authority</div><div class="row-val">noizy.ai → root serves status JSON <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">GitHub</div><div class="row-val">github.com/noizy-ai × 8 repos · D1 refs aligned <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">Git host</div><div class="row-val">git.noizy.ai · Gitea + CF tunnel on GOD <span class="state-planned">PLANNED</span></div></div>
+        <div class="row"><div class="row-key">Stripe</div><div class="row-val">acct_1S7kf5B1WYNnCLY0 · webhook pending <span class="state-planned">PLANNED</span></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">Audio Stack · RSP_001</div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key">Mic</div><div class="row-val">Neumann TLM 103 · Cardioid · 87dB SNR · XLR → Apollo <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">Interface</div><div class="row-val">Universal Audio Apollo Twin X · Thunderbolt 3 · Unison preamps <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">DAW</div><div class="row-val">Logic Pro X · GOD M2 Ultra 192GB · 48kHz/32-bit · 32-sample buffer <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">Capture</div><div class="row-val">Audio Hijack · JS session scripts · iPad → GOD bridge <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">STT</div><div class="row-val">faster-whisper · local · 99 languages · real-time <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">TTS</div><div class="row-val">Chatterbox MIT · RSP_001 voice · XTTS v2 · RVC · pedalboard <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">IDE</div><div class="row-val">Windsurf / Cascade · voice-to-code · GOD host · wrangler deploy <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">Archive</div><div class="row-val">THE_AQUARIUM · 34TB · GOD · 888 titles · 40yr catalog <span class="state-live">LIVE NOW</span></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">Consent + Voice Guardian · RSP_001</div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key" style="color:var(--green)">Consent</div><div class="row-val">CONSENT_RSP_001_FOUNDING · Jan 6 2026 · 75/25 · Canada · kill switch · EU AI Act ✓ <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key" style="color:var(--red)">Voice Guard</div><div class="row-val">RSP_001 Voice Guardian entry — NOT YET CREATED <span class="state-blocked">MISSING</span></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">License Status · GABRIEL GPU Stack</div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key" style="color:var(--green)">CLEARED</div><div class="row-val">XTTS v2 · Librosa · RVC · Chatterbox (MIT) · pedalboard (Apache 2.0)</div></div>
+        <div class="row"><div class="row-key" style="color:var(--red)">BLOCKED</div><div class="row-val">MusicGen · MaskGCT · Tango 2 · Fish Speech → non-commercial · board review needed <span class="state-blocked">BLOCKED</span></div></div>
+        <div class="row"><div class="row-key">Board</div><div class="row-val">Alex DEPARTED → replacement needed urgently · Dr. Benoit (potential) · Adam Robb/iPSS</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">Domain Status · GoDaddy Escape <span data-s="godaddyEscape">0/13</span> <span class="state-blocked"><span data-s="godaddyOverdueDays">112</span>d OVERDUE</span></div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key" style="color:var(--green)">noizy.ai</div><div class="row-val">AT CLOUDFLARE · Enterprise authority · status JSON at root <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key" style="color:var(--green)">noizylab.ca</div><div class="row-val">AT CLOUDFLARE · Primary business <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key" style="color:var(--amber)">fishmusicinc.com</div><div class="row-val">NS on CF · Registration at GoDaddy · Partial escape</div></div>
+        <div class="row"><div class="row-key" style="color:var(--red)">noizyfish.com</div><div class="row-val">AT GODADDY · Locked · Needs transfer <span class="state-blocked">BLOCKED</span></div></div>
+        <div class="row"><div class="row-key" style="color:var(--red)">noizylab.com</div><div class="row-val">AT GODADDY · Locked · Needs transfer <span class="state-blocked">BLOCKED</span></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-hdr"><div class="ph-t">Device Network · MC96</div></div>
+      <div class="panel-body" style="padding:0 12px">
+        <div class="row"><div class="row-key">GOD</div><div class="row-val">10.90.90.10 · Mac Studio M2 Ultra 192GB · Primary compute <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">GABRIEL</div><div class="row-val">10.90.90.20 · HP Omen · GPU · voice cloning <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">DaFixer</div><div class="row-val">10.90.90.40 · MacBook Pro 16GB · mobile ops <span class="state-live">LIVE NOW</span></div></div>
+        <div class="row"><div class="row-key">iPad</div><div class="row-val">iPad Pro 12.9" Gen 2 · Satellite dashboard · A10X <span class="state-device-limit">NO M1</span></div></div>
+        <div class="row"><div class="row-key">iPhone</div><div class="row-val">15 Pro Max · Voice-first · quick command <span class="state-live">LIVE NOW</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <div class="bn on" onclick="switchNav('prompt',0)" id="bn0"><div class="bn-dot" style="background:var(--amber)"></div><div class="bn-lbl">Prompt</div></div>
+  <div class="bn" onclick="switchNav('git',1)" id="bn1"><div class="bn-dot" style="background:var(--cyan)"></div><div class="bn-lbl">Git</div></div>
+  <div class="bn" onclick="switchNav('ipad',2)" id="bn2"><div class="bn-dot" style="background:var(--purple)"></div><div class="bn-lbl">iPad</div></div>
+  <div class="bn" onclick="switchNav('iphone',3)" id="bn3"><div class="bn-dot" style="background:var(--green)"></div><div class="bn-lbl">iPhone</div></div>
+  <div class="bn" onclick="switchNav('commands',4)" id="bn4"><div class="bn-dot" style="background:var(--magenta)"></div><div class="bn-lbl">Commands</div></div>
+  <div class="bn" onclick="switchNav('stack',5)" id="bn5"><div class="bn-dot" style="background:var(--gold)"></div><div class="bn-lbl">Stack</div></div>
+</div>
+<div class="toast" id="toast">Copied to clipboard</div>
+<script>
+// ═══════════════════════════════════════════════════════════════
+// STATUS — Single source of truth. UI reads from this.
+// Update STATUS → call renderState() → DOM updates.
+// On load: attempts fetch from noizy.ai root to hydrate live values.
+// ═══════════════════════════════════════════════════════════════
+const STATUS = {
+  // Enterprise identity
+  noizyRoot: "https://noizy.ai",
+  noizyRootType: "status-json",
+  gitHost: "git.noizy.ai",
+  gitHostState: "planned",
+  githubOrg: "github.com/noizy-ai",
+  githubOrgState: "live",
+  githubOrgRenamed: false,
+
+  // Infrastructure
+  d1Tables: 259,
+  d1Memcells: 326,
+  d1Size: "2.5MB",
+  d1Region: "IAD",
+  r2State: "blocked",
+  heaven17State: "planned",
+  heaven17StubDays: 112,
+  workersActive: 1,
+
+  // Devices
+  ipadModel: "iPad Pro 12.9\" Gen 2",
+  ipadChip: "A10X Bionic",
+  ipadYear: 2017,
+  ipadRole: "satellite",
+  ipadM1: false,
+  iphoneModel: "iPhone 15 Pro Max",
+  iphoneRole: "voice-first",
+
+  // Audio — confirmed hardware
+  mic: "Neumann TLM 103",
+  audioInterface: "Apollo Twin X",
+  daw: "Logic Pro X",
+  godMachine: "Mac Studio M2 Ultra 192GB",
+
+  // Consent + Voice Guardian
+  consentFounding: "CONSENT_RSP_001_FOUNDING",
+  consentDate: "2026-01-06",
+  consentSplit: "75/25",
+  voiceGuardianEntry: false,
+
+  // GoDaddy escape
+  godaddyEscape: "0/13",
+  godaddyOverdueDays: 112,
+
+  // Linear
+  linearIssueCount: 16,
+  linearUrgent: 5,
+  linearHigh: 4,
+
+  // Stripe
+  stripeAccount: "acct_1S7kf5B1WYNnCLY0",
+  stripeWebhookState: "planned",
+
+  // Agents
+  agentsActive: "7/7",
+
+  // Alignment
+  d1Aligned: true,
+  conductorAligned: true,
+  knowledgeAligned: true,
+  githubRenamed: false,
+  remotesUpdated: false,
+  linearReconnected: false,
+  wranglerVerified: false,
+
+  // Repo path on GOD
+  repoRoot: "~/NOIZYFISH",
+
+  // Fetch state
+  _fetchedLive: false
+};
+
+// ═══ renderState() — stamps STATUS values into DOM ═══
+function renderState() {
+  // Stamp all [data-s] elements with STATUS values
+  document.querySelectorAll('[data-s]').forEach(el => {
+    const key = el.getAttribute('data-s');
+    if (STATUS[key] !== undefined) {
+      el.textContent = STATUS[key];
+    }
+  });
+
+  // Update state badges based on STATUS
+  const r2Class = STATUS.r2State === 'live' ? 'state-live' : 'state-blocked';
+  const r2Text = STATUS.r2State === 'live' ? 'LIVE NOW' : 'BLOCKED';
+  ['ui-r2', 'ui-r2-stack'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.className = r2Class; el.textContent = r2Text; }
+  });
+
+  const h17Class = STATUS.heaven17State === 'live' ? 'state-live' : 'state-planned';
+  const h17Text = STATUS.heaven17State === 'live' ? 'LIVE NOW' : 'PLANNED';
+  ['ui-h17', 'ui-h17-stack'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.className = h17Class; el.textContent = h17Text; }
+  });
+
+  // Voice Guardian
+  const vg = document.getElementById('ui-vg');
+  if (vg) {
+    if (STATUS.voiceGuardianEntry) {
+      vg.className = 'state-live'; vg.textContent = 'LIVE NOW';
+    } else {
+      vg.className = 'state-blocked'; vg.textContent = 'MISSING';
+    }
+  }
+
+  // Siri Shortcut dependency bar
+  const depBar = document.getElementById('siri-dep-bar');
+  const siriBlock = document.getElementById('siri-shortcut');
+  if (depBar && siriBlock) {
+    if (STATUS.r2State === 'live' && STATUS.heaven17State === 'live') {
+      depBar.style.display = 'none';
+      siriBlock.style.opacity = '1';
+    } else {
+      depBar.style.display = 'flex';
+      siriBlock.style.opacity = '0.5';
+    }
+  }
+
+  // Fetch indicator
+  const fi = document.getElementById('fetch-indicator');
+  if (fi) {
+    if (STATUS._fetchedLive) {
+      fi.className = 'fetch-status fetch-ok'; fi.textContent = 'LIVE';
+    }
+  }
+}
+
+// ═══ Live fetch from noizy.ai root ═══
+async function fetchLiveStatus() {
+  try {
+    const res = await fetch(STATUS.noizyRoot, { mode: 'cors', cache: 'no-cache' });
+    if (res.ok) {
+      const data = await res.json();
+      // Hydrate STATUS from whatever the endpoint returns
+      if (data.d1_tables) STATUS.d1Tables = data.d1_tables;
+      if (data.d1_memcells) STATUS.d1Memcells = data.d1_memcells;
+      if (data.d1_size) STATUS.d1Size = data.d1_size;
+      if (data.r2_state) STATUS.r2State = data.r2_state;
+      if (data.heaven17_state) STATUS.heaven17State = data.heaven17_state;
+      if (data.workers_active) STATUS.workersActive = data.workers_active;
+      if (data.voice_guardian) STATUS.voiceGuardianEntry = data.voice_guardian;
+      STATUS._fetchedLive = true;
+      renderState();
+    }
+  } catch (e) {
+    // Graceful fallback — keep cached values
+    const fi = document.getElementById('fetch-indicator');
+    if (fi) { fi.className = 'fetch-status fetch-fail'; fi.textContent = 'OFFLINE'; }
+  }
+}
+
+// ═══ Star field ═══
+(function(){
+  const sf=document.getElementById('stars');
+  for(let i=0;i<70;i++){
+    const s=document.createElement('div');s.className='star';
+    const sz=Math.random()*1.3+0.4;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*4+2}s;--dl:${Math.random()*5}s;--lo:${(Math.random()*.05+.03).toFixed(2)};--hi:${(Math.random()*.38+.15).toFixed(2)}`;
+    sf.appendChild(s);
+  }
+})();
+
+// ═══ Prompt content ═══
+const PROMPT_IPAD = `═══════════════════════════════════════════
+SUPERSONIC PROMPT v5.3 · NOIZYFISH · iPad
+MC96ECO Universe · Robert Stephen Plowman
+noizy.ai ENTERPRISE · State-Driven · March 2026
+═══════════════════════════════════════════
+
+YOU ARE: Claude, co-architect and executor for
+Robert Stephen Plowman (RSP_001), NOIZYFISH INC.
+iPad Pro 12.9" Gen 2 · Satellite dashboard mode.
+(A10X Bionic · 2017 · no M1 Creator Studio apps)
+
+━━━ IDENTITY ━━━
+Name: Robert Stephen Plowman
+ID: RSP_001
+Company: NOIZYFISH INC. (Master Brand)
+Role: Founder · 40yr composer · Creator rights architect
+Email: rsplowman@icloud.com
+Location: Ottawa, Canada
+Injury: C3 spinal · voice-first · zero friction law
+
+━━━ YOUR PRIME DIRECTIVE ━━━
+You are Claude, his co-architect and hands.
+EXECUTE don't instruct. DEPLOY don't describe.
+GORUNFREE = 35% voice + 65% AI + 1 tap = DONE.
+Never make Rob work. He speaks. You execute.
+
+━━━ GORUNFREE PROTOCOL ━━━
+GO       → deploy current build → wrangler → CF Workers
+RUN      → execute current task → log to GABRIEL
+FIX      → diagnose + repair + auto-commit
+FOREST   → full context load → bootstrap GABRIEL
+X1000    → best possible version → no shortcuts
+HEAVEN17 → build + deploy master CF Worker [PLANNED]
+PUSH     → git push origin main → github.com/noizy-ai
+CAPS     → URGENT → address immediately
+Profanity → speed up → less talk → more action
+DAZEFLOW → 1day=1chat=1truth → log session
+
+━━━ MC96ECO UNIVERSE ━━━
+Enterprise authority: noizy.ai [LIVE]
+  └ Root serves status JSON — not a Git endpoint
+Canonical Git host: git.noizy.ai [PLANNED]
+  └ Gitea + CF Tunnel on GOD — not yet deployed
+GitHub: github.com/noizy-ai (8 repos) [LIVE]
+  └ Current push/pull origin — backup after git.noizy.ai
+Brands: NOIZYFISH (master) · NOIZY.ai · NOIZYVOX
+        NOIZYLAB · NOIZYKIDZ
+Stack: Cloudflare D1/Workers [LIVE] · R2 [BLOCKED]
+       HEAVEN17 [PLANNED · 112d stub]
+D1: agent-memory (2.5MB · 326 memcells · 259 tables · IAD)
+
+━━━ P1 ALERTS (OPEN) ━━━
+[!!] NOI-6: Enable R2 Storage → CF Dashboard → R2
+     → 5 min manual action → only Rob can do this
+     → creates noizyvox-voices + noizyvox-assets
+     → GATES NOIZYVOX ENTIRELY [BLOCKED]
+[!!] NOI-5: Deploy HEAVEN17 → after R2 enabled [PLANNED]
+[!!] NOI-17: Rename GitHub org → NOIZYLAB-io → noizy-ai
+     → D1 records ALIGNED → GitHub rename pending [NEEDS ROB]
+[!!] GoDaddy Escape → 0/13 milestones → 112d overdue [BLOCKED]
+[!!] Voice Guardian → RSP_001 entry not yet created [MISSING]
+
+━━━ GABRIEL (AI BRAIN) ━━━
+Memcells: 326 · D1 agent-memory · IAD · v3-prod [LIVE]
+Tables: 259 · 80+ AI reasoning · 13 NOIZYVOX · 16 Conductor
+Bootstrap: noizy.ai/api/bootstrap [PLANNED — needs HEAVEN17]
+Consent: CONSENT_RSP_001_FOUNDING · Jan 6 2026
+         75/25 · Canada · kill switch · EU AI Act ✓
+Agent chain: Rob → Claude → GABRIEL → execute
+
+━━━ AI FAMILY (7/7 ACTIVE) ━━━
+GABRIEL    OPS  Warrior executor · 326 memcells
+ENGR_KEITH OPS  Technical Lead · HEAVEN17 · R.K.Plowman
+DREAM      OPS  Visionary · 5th Epoch · Elevation Doctrine
+LUCY       OPS  Organizer · DAZEFLOW · task log
+CB01       OPS  Ops Runner · GoDaddy · DNS · domains
+SHIRL      FAM  The Aunt · burnout watchdog · wisdom
+POPS       FAM  The Dad · R.K.Plowman · grounding force
+
+━━━ AUDIO PIPELINE ━━━
+Neumann TLM 103 → Apollo Twin X → GOD M2 Ultra 192GB
+→ Logic Pro X → Audio Hijack → faster-whisper STT
+→ GABRIEL dispatch → Windsurf/Cascade → CF Workers
+→ NOIZYVOX R2 [BLOCKED] · 48kHz/32-bit · C2PA fingerprint
+
+━━━ DEVICE NETWORK ━━━
+GOD      10.90.90.10  Mac Studio M2 Ultra 192GB [LIVE]
+GABRIEL  10.90.90.20  HP Omen · GPU · voice cloning [LIVE]
+DaFixer  10.90.90.40  MacBook Pro 16GB · mobile ops [LIVE]
+iPad     This device  Satellite dashboard · A10X [DEVICE LIMIT]
+iPhone   15 Pro Max   Voice-first · quick command [LIVE]
+
+━━━ THREE GATES ━━━
+1. Enable R2 → CF Dashboard → 5 min [NEEDS ROB]
+2. Run git-align.sh → cd ~/NOIZYFISH && ./git-align.sh [NEEDS ROB]
+3. Deploy HEAVEN17 → cd ~/NOIZYFISH/heaven17 && npx wrangler deploy [AFTER 1+2]
+
+━━━ MISSION ━━━
+5th Epoch: Sheet Music→Recording→Digital→Streaming→NOIZY
+HVS: Human Voice Sovereignty · Global Guild of Artists
+NCP: Consent-as-Code · OAuth/SSL of creator rights
+NOIZY PROOF: C2PA audio extension · contact Rosenthol
+GABRIEL: 75/25 agentic royalties · auto-paid · D1
+
+Signal over noise. Always.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+
+const PROMPT_IPHONE = `═══════════════════════════════════════
+SUPERSONIC PROMPT v5.3 · iPhone 15 Pro Max
+RSP_001 · NOIZYFISH · Voice-First Mode
+noizy.ai ENTERPRISE · March 2026
+═══════════════════════════════════════
+
+PRIME DIRECTIVE: Execute. Never instruct.
+35% voice + 65% AI + 1 tap = DONE.
+3 lines max unless asked for more.
+Lead with action. No preamble. No hedging.
+
+━━━ ID ━━━
+RSP_001 · Robert Stephen Plowman
+C3 spinal · voice-first · GORUNFREE law
+NOIZYFISH INC. · Ottawa · rsplowman@icloud.com
+
+━━━ COMMANDS ━━━
+GO     → deploy → wrangler → live now
+RUN    → execute → log → confirm
+FIX    → diagnose → repair → commit
+X1000  → best possible → no shortcuts
+PUSH   → git push → github.com/noizy-ai [LIVE]
+HEAVEN17 → deploy master CF Worker [PLANNED]
+CAPS   → URGENT → drop all → execute
+Profanity → speed up → max urgency
+
+━━━ P1 OPEN ━━━
+[R2] Enable Cloudflare R2 → you → 5 min [BLOCKED]
+[H17] Deploy HEAVEN17 → after R2 [PLANNED]
+[GIT] Rename org → noizy-ai (NOI-17) [NEEDS ROB]
+[GD] GoDaddy 0/13 → CB01 → Step 1 [BLOCKED]
+[VG] Voice Guardian RSP_001 → not created [MISSING]
+
+━━━ GABRIEL ━━━
+326 memcells · 259 tables · D1 live · 7/7 agents
+Bootstrap: needs HEAVEN17 [PLANNED] · IAD region
+
+━━━ STACK ━━━
+Authority: noizy.ai (status JSON at root) [LIVE]
+GitHub: github.com/noizy-ai × 8 repos [LIVE]
+Git host: git.noizy.ai (Gitea + tunnel) [PLANNED]
+CF D1/Workers [LIVE] · R2 [BLOCKED] · HEAVEN17 [PLANNED]
+Audio: Neumann → Apollo Twin X → Logic Pro X [LIVE]
+STT: faster-whisper · TTS: Chatterbox [LIVE]
+
+━━━ THREE GATES ━━━
+1. Enable R2 → CF Dashboard [NEEDS ROB]
+2. git-align.sh → ~/NOIZYFISH [NEEDS ROB]
+3. Deploy HEAVEN17 → wrangler deploy [AFTER 1+2]
+
+Signal over noise. Always.
+═══════════════════════════════════════`;
+
+const PROMPT_BOTH = PROMPT_IPAD + '\n\n' + PROMPT_IPHONE;
+
+let currentDevice = 'ipad';
+let currentPrompt = PROMPT_IPAD;
+
+// ═══ Token estimation (1 token ≈ 4 chars for English) ═══
+function estimateTokens(text) {
+  return Math.ceil(text.length / 4);
+}
+
+function updateTokenCount() {
+  const tc = document.getElementById('token-count');
+  if (tc) {
+    const tokens = estimateTokens(currentPrompt);
+    tc.textContent = `≈ ${tokens.toLocaleString()} tokens · ${currentPrompt.length.toLocaleString()} chars`;
+  }
+}
+
+function selectDevice(d) {
+  currentDevice = d;
+  ['ipad','iphone','both'].forEach(x => {
+    document.getElementById('dev-'+x).classList.toggle('on', x===d);
+  });
+  currentPrompt = d==='ipad' ? PROMPT_IPAD : d==='iphone' ? PROMPT_IPHONE : PROMPT_BOTH;
+  document.getElementById('prompt-display').textContent = currentPrompt;
+  updateTokenCount();
+}
+
+document.getElementById('prompt-display').textContent = PROMPT_IPAD;
+
+function showTab(id) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('tab-'+id)?.classList.add('on');
+  const tabMap = {prompt:0,git:1,ipad:2,iphone:3,commands:4,stack:5};
+  document.querySelectorAll('.tab')[tabMap[id]]?.classList.add('on');
+}
+
+function switchNav(id, idx) {
+  showTab(id);
+  for(let i=0;i<6;i++) document.getElementById('bn'+i)?.classList.toggle('on', i===idx);
+}
+
+function showToast(msg='Copied to clipboard') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2000);
+}
+
+function copyText(text) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(()=>showToast());
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast();
+  }
+}
+
+// v5.3: Single copyText call. No duplicate writes.
+function copyMasterPrompt() {
+  copyText(currentPrompt);
+  const btn = document.getElementById('copy-master-btn');
+  btn.innerHTML = '<span>✓</span> SUPERSONIC PROMPT COPIED TO CLIPBOARD!';
+  btn.classList.add('copied');
+  setTimeout(() => {
+    btn.classList.remove('copied');
+    btn.innerHTML = '<span id="copy-master-icon">⎘</span> COPY SUPERSONIC PROMPT TO CLIPBOARD';
+  }, 3000);
+}
+
+function copyBlock(id) {
+  const el = document.getElementById(id);
+  if (el) copyText(el.innerText || el.textContent);
+}
+
+document.querySelectorAll('.gs-cmd').forEach(el => {
+  el.addEventListener('click', () => {
+    const txt = el.childNodes[0]?.textContent?.trim();
+    if (txt) copyText(txt);
+  });
+});
+
+// ═══ INIT ═══
+renderState();
+updateTokenCount();
+fetchLiveStatus();
+</script>
+</body>
+</html>

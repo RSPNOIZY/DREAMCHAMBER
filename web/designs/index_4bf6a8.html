@@ -1,0 +1,1051 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="en">
+  <head lang="en">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Vintage Limiter - Ozone 8 Documentation</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/en/vintage-limiter/">
+    <meta property="og:title" content="Ozone 8 Documentation">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone 8 Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | Vintage Limiter</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Introduction" href="../index.html">
+	
+	Introduction
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8 Overview" href="../ozone-overview/index.html">
+	
+	Ozone 8 Overview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone Application" href="../ozone-app-overview/index.html">
+	
+	Ozone Application
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Preset System" href="../preset-system/index.html">
+	
+	Preset System
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="General Functions" href="../general-functions/index.html">
+	
+	General Functions
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Common Module Controls" href="../common-module-controls/index.html">
+	
+	Common Module Controls
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dynamics" href="../dynamics/index.html">
+	
+	Dynamics
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dynamic EQ" href="../dynamic-eq/index.html">
+	
+	Dynamic EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Equalizer" href="../equalizer/index.html">
+	
+	Equalizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Exciter" href="../exciter/index.html">
+	
+	Exciter
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Imager" href="../imager/index.html">
+	
+	Imager
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Maximizer" href="../maximizer/index.html">
+	
+	Maximizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectral Shaper" href="../spectral-shaper/index.html">
+	
+	Spectral Shaper
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Compressor" href="../vintage-compressor/index.html">
+	
+	Vintage Compressor
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage EQ" href="../vintage-eq/index.html">
+	
+	Vintage EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Vintage Limiter" href="index.html">
+	
+	Vintage Limiter
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Tape" href="../vintage-tape/index.html">
+	
+	Vintage Tape
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Codec Preview" href="../codec-preview/index.html">
+	
+	Codec Preview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dither" href="../dither/index.html">
+	
+	Dither
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Master Assistant" href="../master-assistant/index.html">
+	
+	Master Assistant
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Track Referencing" href="../track-referencing/index.html">
+	
+	Track Referencing
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tonal Balance Control" href="../tonal-balance-control/index.html">
+	
+	Tonal Balance Control
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Options" href="../options/index.html">
+	
+	Options
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plug-in Automation" href="../plug-in-automation/index.html">
+	
+	Plug-in Automation
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tips &amp; Examples" href="../tips-and-examples/index.html">
+	
+	Tips &amp; Examples
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Authorization" href="../authorization/index.html">
+	
+	Authorization
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotope Customer Care" href="../customer-care/index.html">
+	
+	iZotope Customer Care
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information" href="../license-information/index.html">
+	
+	License Information
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA" href="../eula/index.html">
+	
+	EULA
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../ja/vintage-limiter/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>Vintage Limiter </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">Languages:</span>
+<br />
+    
+
+       
+       <a href="../../ja/vintage-limiter/index.html"><button class="lang-btn-active">English</button></a>
+       
+        
+       <a href="../../ja/vintage-limiter/index.html"><button class="lang-btn-clickable">日本語</button></a>
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+
+
+
+<nav>
+  
+  <h4>Table of Contents</h4>
+  <ul>
+    
+      
+      
+
+      
+
+      
+      
+      <li>
+        <a href="index.html#overview">Overview</a>
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#controls">Controls</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#meters">Meters</a>
+
+          
+            
+          
+      
+    
+
+    
+    
+    
+
+  </ul>
+</nav>
+
+
+
+
+    
+
+	
+
+<h2 id="overview">Overview</h2>
+
+<p>The Vintage Limiter allows you to create a louder and fuller master by limiting the dynamic range and boosting the overall level of your mix. It is loosely modeled after the Fairchild 670, a feedback-based tube compressor/ limiter with a soft knee, with slightly different attack and release envelopes due to a differing feedback topology. An IRC I limiter is then applied after the tube processing to transparently prevent clipping. Like the Maximizer, the Vintage Limiter is applied to the entire bandwidth of the mix; it is not a multiband effect. The Vintage Limiter represents the best of both worlds by providing a warmer, more analog-sounding final-stage of limiting while retaining the ease and precision of digital maximizing.</p>
+
+<h2 id="controls">Controls</h2>
+
+<p><img src="../images/vlim.png" alt="vlim" /></p>
+
+<h3 id="modes">Modes</h3>
+
+<p>Three separate limiting modes are available, each with unique characteristics and sounds:</p>
+
+<ul>
+<li><strong>ANALOG:</strong> With a fast attack and variable release time, this mode provides a tight bass response with a “thick” limiting quality. This brings out the low-end transients while still providing the smoothness that is characteristic of analog circuitry.</li>
+<li><strong>TUBE:</strong> A more balanced limiter with variable attack and release times, this mode provides smooth feedback limiting with a wider range of sonic characteristics that vary depending on your incoming signal. Despite its non-linearity, it still allows for modern precision in preventing any clipping or peaks.</li>
+<li><strong>MODERN:</strong> A true hybrid of old and new, this mode blends thicker vintage characteristics and wide range of non-linearity with modern IRC limiting, variable release times, and transient reproduction.</li>
+</ul>
+
+<h3 id="threshold">Threshold</h3>
+
+<p>The Threshold control determines the level at which the Vintage Limiter will begin limiting. When the incoming signal level crosses above the threshold value, the limiter kicks in. This control also adds gain as the threshold value is lowered. Turning down the threshold limits more of the signal, which in turn creates an overall louder mix.</p>
+
+<p>In other words, when you turn down the threshold you limit the dynamic range of the mix, the Vintage Limiter will automatically add a proportional amount of gain to maximize the output level.</p>
+
+<h3 id="ceiling">Ceiling</h3>
+
+<p>The Ceiling control sets the maximum output level of the Vintage Limiter.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Recommendation</p>
+<p>It is generally recommended to use a setting of -0.3 dB when dithering, or a more dramatic setting (-0.6 dB to -0.8 dB) when converting to MP3 or AAC formats in order to prevent clipping during conversion. See the <a href="../codec-preview/index.html">Codec Preview</a> section for more details.</p>
+</div>
+
+<h3 id="link-threshold-ceiling">Link Threshold &amp; Ceiling</h3>
+
+<p>When enabled, Threshold and Ceiling controls will be linked. Adjusting either control in linked mode will adjust the other control by the same amount.</p>
+
+<h3 id="true-peak-limiting">True Peak Limiting</h3>
+
+<p>The True Peak Limiting control enables the limiter to take into account not only the levels of each digital sample but also the levels of the analog signal that will eventually be produced by D/A conversion. This is sometimes necessary, since an analog signal’s peak level can exceed its corresponding digital signal’s peak level by more than 3 dB.</p>
+
+<div class="admonition note">
+<p class="admonition-title">True Peak Limiting &amp; CPU Usage</p>
+<p>This option will result in a small increase in CPU usage, but if your mixes are running very hot you may want to enable it to ensure that absolutely no distortion is introduced when your audio is finally run through a D/A converter.</p>
+</div>
+
+<h3 id="character">Character</h3>
+
+<p>The Character control adjusts the attack and release times of the Vintage Limiter. It employs different attack and release times depending on the mode that is selected, but allows a continuous range from Fast (0.0) to Slow (10.0) in each mode.</p>
+
+<h2 id="meters">Meters</h2>
+
+<h3 id="threshold-meter"><strong>Threshold Meter</strong></h3>
+
+<p><img src="../images/vlim-threshold.png" alt="VLIM Threshold meter" /></p>
+
+<p>The Threshold meter displays the input level to the module alongside the gain reduction applied by the module&rsquo;s processing. The two meters on the far left and right of the threshold meter display the input audio level and the two meters that appear in between the input meters display the gain reduction being applied.</p>
+
+<h3 id="mini-meter-views"><strong>Mini-Meter Views</strong></h3>
+
+<h3 id="gain-reduction-trace">Gain Reduction Trace</h3>
+
+<p><img src="../images/vlim-trace.png" alt="trace" /></p>
+
+<p>This view offers a scrolling meter that displays the incoming signal’s waveform with a superimposed curve that illustrates the amount of gain reduction taking place in real time. The Gain Reduction Trace can help you to set attack and release controls appropriately and monitor the envelope of gain reduction.</p>
+
+<h3 id="spectrum-analyzer">Spectrum Analyzer</h3>
+
+<p><img src="../images/vlim-spectrum.png" alt="vlim spectrum" /></p>
+
+<p>Displays a real-time spectrum analyzer of the output of Ozone.</p>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../vintage-eq/index.html" title="Vintage EQ [ADV]">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Vintage EQ [ADV]
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../vintage-tape/index.html" title="Vintage Tape [ADV]">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Vintage Tape [ADV]
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../ja/vintage-limiter/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8 Help Documentation 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

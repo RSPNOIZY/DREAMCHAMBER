@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Visual Sentinel Mythic Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #181818; color: #eee; }
+        .container { max-width: 900px; margin: 40px auto; background: #222; padding: 32px; border-radius: 16px; }
+        h1 { color: #00eaff; }
+        .node { margin-bottom: 24px; padding: 16px; background: #292929; border-radius: 8px; }
+        .label { font-weight: bold; color: #ffb300; }
+        .value { color: #fff; }
+        .ritual { color: #00eaff; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Visual Sentinel Mythic Dashboard</h1>
+        {% for node, info in fleet.items() %}
+        <div class="node">
+            <span class="label">{{ node }}</span> — 
+            <span class="value">{{ info.status }}</span>
+            <span class="ritual">({{ info.ritual }})</span>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

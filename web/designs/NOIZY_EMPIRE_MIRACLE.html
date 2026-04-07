@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY EMPIRE — The Living Brain</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a2e;
+    --border: #2a2a3e;
+    --text: #e0e0e8;
+    --text-dim: #8888a0;
+    --gold: #d4a843;
+    --gold-dim: #a07830;
+    --cyan: #4ecdc4;
+    --purple: #a855f7;
+    --green: #22c55e;
+    --red: #ef4444;
+    --blue: #3b82f6;
+    --orange: #f59e0b;
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a1e 100%);
+    border-bottom: 1px solid var(--gold-dim);
+    padding: 24px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-size: 20px;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+  .header .freq {
+    color: var(--purple);
+    font-size: 13px;
+    opacity: 0.8;
+  }
+  .header .subtitle {
+    color: var(--text-dim);
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+  /* SEARCH */
+  .search-bar {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .search-bar input {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+  }
+  .search-bar input:focus { border-color: var(--gold); }
+  .search-bar input::placeholder { color: var(--text-dim); }
+  .search-count {
+    color: var(--text-dim);
+    font-size: 11px;
+    margin-top: 4px;
+    min-height: 16px;
+  }
+  /* NAV TABS */
+  .nav {
+    display: flex;
+    gap: 2px;
+    padding: 0 32px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    padding: 10px 16px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: inherit;
+  }
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+  .nav-tab .tab-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  /* MAIN */
+  .main { padding: 24px 32px; max-width: 1200px; margin: 0 auto; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--gold-dim); }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .card h3 {
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .card h4 {
+    font-size: 13px;
+    color: var(--cyan);
+    margin: 12px 0 8px;
+  }
+  .card p, .card li {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .card ul { list-style: none; padding-left: 0; }
+  .card ul li::before {
+    content: '>';
+    color: var(--gold-dim);
+    margin-right: 8px;
+    font-weight: bold;
+  }
+  .badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+  .badge-live { background: rgba(34,197,94,0.15); color: var(--green); }
+  .badge-urgent { background: rgba(239,68,68,0.15); color: var(--red); }
+  .badge-pending { background: rgba(245,158,11,0.15); color: var(--orange); }
+  .badge-spec { background: rgba(168,85,247,0.15); color: var(--purple); }
+  .badge-strategy { background: rgba(34,197,94,0.15); color: var(--green); }
+  .badge-manifesto { background: rgba(239,68,68,0.15); color: var(--red); }
+  .badge-code { background: rgba(78,205,196,0.15); color: var(--cyan); }
+  .badge-data { background: rgba(255,255,255,0.1); color: var(--white); }
+  .badge-demo { background: rgba(59,130,246,0.15); color: var(--blue); }
+  .badge-prompt { background: rgba(212,168,67,0.15); color: var(--gold); }
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 8px 0;
+  }
+  th {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid var(--border);
+    color: var(--gold);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  td {
+    padding: 6px 8px;
+    border-bottom: 1px solid rgba(42,42,62,0.5);
+    color: var(--text-dim);
+  }
+  tr:hover td { color: var(--text); background: rgba(212,168,67,0.03); }
+  /* STATUS INDICATORS */
+  .status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .dot-green { background: var(--green); }
+  .dot-red { background: var(--red); }
+  .dot-orange { background: var(--orange); }
+  .dot-blue { background: var(--blue); }
+  /* COLLAPSIBLE */
+  .collapsible {
+    cursor: pointer;
+    user-select: none;
+  }
+  .collapsible::after {
+    content: ' +';
+    color: var(--gold-dim);
+    font-size: 14px;
+  }
+  .collapsible.open::after { content: ' -'; }
+  .collapse-body {
+    display: none;
+    padding-top: 12px;
+  }
+  .collapse-body.open { display: block; }
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .stat-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat-card .number {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--gold);
+  }
+  .stat-card .label {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+  /* DOMAIN HEADER */
+  .domain-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .domain-header h2 {
+    font-size: 16px;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+  .domain-header .doc-count {
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  /* MISSION BANNER */
+  .mission-banner {
+    background: linear-gradient(135deg, rgba(212,168,67,0.08), rgba(168,85,247,0.05));
+    border: 1px solid var(--gold-dim);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .mission-banner blockquote {
+    font-size: 14px;
+    color: var(--gold);
+    font-style: italic;
+    line-height: 1.8;
+  }
+  /* PRIORITY SECTION */
+  .priority-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    background: var(--surface2);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    border-left: 3px solid var(--red);
+  }
+  .priority-item.high { border-left-color: var(--orange); }
+  .priority-item.medium { border-left-color: var(--blue); }
+  .priority-num {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--gold);
+    min-width: 28px;
+  }
+  .priority-text { font-size: 12px; color: var(--text-dim); }
+  .priority-text strong { color: var(--text); }
+  /* SEARCH HIGHLIGHT */
+  .search-match { background: rgba(212,168,67,0.3); border-radius: 2px; }
+  .hidden-by-search { display: none !important; }
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 32px;
+    color: var(--text-dim);
+    font-size: 11px;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+  .footer .covenant {
+    color: var(--gold-dim);
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+  /* CROSS-LINK */
+  .xref {
+    color: var(--cyan);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+  .xref:hover { color: var(--gold); }
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .header, .main, .nav { padding-left: 16px; padding-right: 16px; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>NOIZY EMPIRE</h1>
+      <div class="subtitle">THE LIVING BRAIN &mdash; ROBERT STEPHEN PLOWMAN (RSP_001)</div>
+    </div>
+    <div class="freq">396 Hz &bull; Liberation</div>
+  </div>
+  <div class="search-bar">
+    <input type="text" id="globalSearch" placeholder="Search the empire... (consent, HEAVEN17, NOIZYVOX, manifest, etc.)" oninput="doSearch(this.value)">
+  </div>
+  <div class="search-count" id="searchCount"></div>
+</div>
+
+<!-- NAV -->
+<div class="nav" id="navBar">
+  <button class="nav-tab active" data-tab="briefing"><span class="tab-dot" style="background:var(--gold)"></span>Briefing</button>
+  <button class="nav-tab" data-tab="noizyvox"><span class="tab-dot" style="background:var(--purple)"></span>NOIZYVOX</button>
+  <button class="nav-tab" data-tab="hvs"><span class="tab-dot" style="background:var(--cyan)"></span>HVS</button>
+  <button class="nav-tab" data-tab="dreamchamber"><span class="tab-dot" style="background:var(--blue)"></span>DreamChamber</button>
+  <button class="nav-tab" data-tab="business"><span class="tab-dot" style="background:var(--green)"></span>Business</button>
+  <button class="nav-tab" data-tab="manifestos"><span class="tab-dot" style="background:var(--red)"></span>Manifestos</button>
+  <button class="nav-tab" data-tab="noizyfish"><span class="tab-dot" style="background:var(--orange)"></span>NOIZYFISH</button>
+  <button class="nav-tab" data-tab="infra"><span class="tab-dot" style="background:var(--cyan)"></span>Infrastructure</button>
+  <button class="nav-tab" data-tab="research"><span class="tab-dot" style="background:var(--purple)"></span>Research & Book</button>
+  <button class="nav-tab" data-tab="registry"><span class="tab-dot" style="background:var(--white)"></span>Asset Registry</button>
+</div>
+
+<div class="main">
+
+<!-- ==================== TAB: BRIEFING ==================== -->
+<div class="tab-content active" id="tab-briefing">
+
+  <div class="mission-banner">
+    <blockquote>"Consent as executable code. Provenance as default. Revocation as sacred. Compensation as automatic."</blockquote>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="number">168+</div><div class="label">Documents</div></div>
+    <div class="stat-card"><div class="number">55</div><div class="label">API Endpoints</div></div>
+    <div class="stat-card"><div class="number">25</div><div class="label">DB Tables</div></div>
+    <div class="stat-card"><div class="number">10</div><div class="label">AI Providers</div></div>
+    <div class="stat-card"><div class="number">7</div><div class="label">AI Agents</div></div>
+    <div class="stat-card"><div class="number">5</div><div class="label">Domains</div></div>
+    <div class="stat-card"><div class="number">34 TB</div><div class="label">Audio Archive</div></div>
+    <div class="stat-card"><div class="number">112K</div><div class="label">Total Files</div></div>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>LIVING BRIEFING &mdash; March 25, 2026</h3>
+      <span class="badge badge-live">LIVE</span>
+    </div>
+    <p>Consolidated from daily briefings (Mar 20&ndash;23) + IP Weekly Digest. Signal is gold. Noise is silence.</p>
+
+    <h4 class="collapsible" onclick="toggleCollapse(this)">TOP 3 PRIORITIES &mdash; RIGHT NOW</h4>
+    <div class="collapse-body open">
+      <div class="priority-item">
+        <div class="priority-num">1</div>
+        <div class="priority-text"><strong>Enable R2 Storage</strong> &mdash; Manual 5-minute action in the Cloudflare Dashboard. Without it: no voice file storage, no artist onboarding, no NOIZYVOX pipeline. One click unlocks everything. <span class="xref" onclick="switchTab('infra')">&rarr; Infrastructure</span></div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">2</div>
+        <div class="priority-text"><strong>Deploy HEAVEN17 Worker</strong> &mdash; The deploy worker has been returning "Hello World!" for 112+ days. The 1,571-line master router exists in the repo. One <code>wrangler deploy</code> replaces it. This is the keystone. <span class="xref" onclick="switchTab('hvs')">&rarr; HVS</span></div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">3</div>
+        <div class="priority-text"><strong>GoDaddy Escape &mdash; NOI-9</strong> &mdash; 6 accounts, 0 Customer IDs obtained, 3 domains still held hostage. 103+ days overdue. This is Step 1 of 13 to TOTAL FREEDOM. <span class="xref" onclick="switchTab('infra')">&rarr; Infrastructure</span></div>
+      </div>
+    </div>
+
+    <h4 class="collapsible" onclick="toggleCollapse(this)">LINEAR BOARD &mdash; 16 Issues</h4>
+    <div class="collapse-body">
+      <table>
+        <tr><th>ID</th><th>Title</th><th>Priority</th><th>Status</th><th>Assigned</th></tr>
+        <tr><td>NOI-13</td><td>Build Consent Kernel v1 &mdash; smart contract</td><td><span class="badge badge-urgent">Urgent</span></td><td>Todo</td><td>ENGR_KEITH, GABRIEL</td></tr>
+        <tr><td>NOI-5</td><td>Deploy HEAVEN17 Worker</td><td><span class="badge badge-urgent">Urgent</span></td><td>Todo</td><td>ENGR_KEITH, GABRIEL</td></tr>
+        <tr><td>NOI-6</td><td>Enable R2 Storage on Cloudflare</td><td><span class="badge badge-urgent">Urgent</span></td><td>Todo</td><td>CB01</td></tr>
+        <tr><td>NOI-11</td><td>Transfer noizyfish.com + noizylab.com to CF</td><td><span class="badge badge-urgent">Urgent</span></td><td>Todo</td><td>CB01, ENGR_KEITH</td></tr>
+        <tr><td>NOI-10</td><td>Unlock domains + obtain auth codes</td><td><span class="badge badge-urgent">Urgent</span></td><td>Todo</td><td>CB01</td></tr>
+        <tr><td>NOI-9</td><td>Inventory all 6 GoDaddy accounts</td><td><span class="badge badge-urgent">Urgent</span></td><td>Todo</td><td>CB01</td></tr>
+        <tr><td>NOI-15</td><td>Archive Consent Architecture Blueprint from Slack</td><td><span class="badge badge-pending">High</span></td><td>Todo</td><td>LUCY</td></tr>
+        <tr><td>NOI-14</td><td>Build Artist Portal MVP</td><td><span class="badge badge-pending">High</span></td><td>Todo</td><td>DREAM, GABRIEL</td></tr>
+        <tr><td>NOI-12</td><td>Remove M365 + close GoDaddy accounts</td><td><span class="badge badge-pending">High</span></td><td>Todo</td><td>CB01</td></tr>
+        <tr><td>NOI-7</td><td>Configure DNS for all 5 domains</td><td><span class="badge badge-pending">High</span></td><td>Todo</td><td>CB01, ENGR_KEITH</td></tr>
+        <tr><td>NOI-8</td><td>Merge gabriel_db into agent-memory</td><td style="color:var(--blue)">Medium</td><td>Todo</td><td>ENGR_KEITH</td></tr>
+        <tr><td>NOI-16</td><td>Design NOIZYKIDZ podcast framework</td><td style="color:var(--text-dim)">Low</td><td>Backlog</td><td>POPS, SHIRL</td></tr>
+      </table>
+    </div>
+
+    <h4 class="collapsible" onclick="toggleCollapse(this)">AI FAMILY &mdash; 7/7 Agents Active</h4>
+    <div class="collapse-body">
+      <table>
+        <tr><th>Agent</th><th>Name</th><th>Role</th><th>Division</th><th>Key Trait</th><th>Online Since</th></tr>
+        <tr><td><span class="dot-green status-dot"></span>SHIRL</td><td>The Aunt</td><td>Nurturing guide</td><td>FAMILY</td><td>Organization: 0.98</td><td>Dec 3, 2025</td></tr>
+        <tr><td><span class="dot-green status-dot"></span>POPS</td><td>The Dad</td><td>Wisdom anchor</td><td>FAMILY</td><td>Wisdom: 0.95</td><td>Dec 3, 2025</td></tr>
+        <tr><td><span class="dot-green status-dot"></span>ENGR_KEITH</td><td>Technical Lead</td><td>Infra & deploy</td><td>OPS</td><td>Precision: 0.98</td><td>Dec 3, 2025</td></tr>
+        <tr><td><span class="dot-green status-dot"></span>DREAM</td><td>Visionary</td><td>Strategy & art</td><td>OPS</td><td>Creativity: 1.0</td><td>Dec 3, 2025</td></tr>
+        <tr><td><span class="dot-green status-dot"></span>GABRIEL</td><td>Warrior</td><td>Execute & battle</td><td>OPS</td><td>Directness: 1.0</td><td>Dec 3, 2025</td></tr>
+        <tr><td><span class="dot-green status-dot"></span>LUCY</td><td>The Organizer</td><td>IP archival</td><td>OPS</td><td>Clarity: 0.98</td><td>Mar 19, 2026</td></tr>
+        <tr><td><span class="dot-green status-dot"></span>CB01</td><td>Ops Runner</td><td>Migration & automation</td><td>OPS</td><td>Speed: 0.95</td><td>Mar 19, 2026</td></tr>
+      </table>
+    </div>
+
+    <h4 class="collapsible" onclick="toggleCollapse(this)">CONSENT LEDGER</h4>
+    <div class="collapse-body">
+      <p><strong>1 entry.</strong> CONSENT_RSP_001_FOUNDING &mdash; Robert Stephen Plowman. Consent date: January 6, 2026. Scope: MC96ECO Universe &mdash; all NOIZYFISH INC. projects. Split: 75/25. Kill switch: active. EU AI Act compliant. Governing law: Canada. The founding stone is laid. The ledger awaits its second entry.</p>
+    </div>
+
+    <h4 class="collapsible" onclick="toggleCollapse(this)">IP WEEKLY DIGEST (Mar 16&ndash;23)</h4>
+    <div class="collapse-body">
+      <p><strong style="color:var(--red)">CRITICAL:</strong> Consent Architecture Blueprint in Slack DM (March 5, 2026) has NOT been archived. Contains 5-section comparative analysis (NOIZYVOX vs. ElevenLabs), Consent Kernel definition, MVP-to-V3 build order, EU AI Act Article 50 refs. If Slack retention purges it, this IP is permanently lost. Tracked as NOI-15.</p>
+      <p style="margin-top:8px"><strong>This week:</strong> 12 Linear issues created (Mar 19). 1 new D1 database (noizyanthropic). fishmusicinc.com nameservers migrated to Cloudflare. 0 new memcells. 0 Slack IP messages. Google Drive MCP integration needs verification.</p>
+    </div>
+
+    <h4 class="collapsible" onclick="toggleCollapse(this)">DOMAIN STATUS</h4>
+    <div class="collapse-body">
+      <table>
+        <tr><th>Domain</th><th>Registrar</th><th>DNS</th><th>Status</th></tr>
+        <tr><td>noizy.ai</td><td>Cloudflare</td><td>Cloudflare</td><td><span class="dot-green status-dot"></span>Safe</td></tr>
+        <tr><td>noizylab.ca</td><td>Cloudflare</td><td>Cloudflare</td><td><span class="dot-green status-dot"></span>Safe</td></tr>
+        <tr><td>fishmusicinc.com</td><td>GoDaddy</td><td>Cloudflare</td><td><span class="dot-orange status-dot"></span>Partial</td></tr>
+        <tr><td>noizyfish.com</td><td>GoDaddy</td><td>None</td><td><span class="dot-red status-dot"></span>Transfer needed</td></tr>
+        <tr><td>noizylab.com</td><td>GoDaddy</td><td>None</td><td><span class="dot-red status-dot"></span>Transfer needed</td></tr>
+      </table>
+    </div>
+
+    <h4 class="collapsible" onclick="toggleCollapse(this)">GODADDY ESCAPE &mdash; 0/13 Milestones</h4>
+    <div class="collapse-body">
+      <p style="color:var(--red);margin-bottom:8px">103+ days overdue. Original target: December 10, 2025.</p>
+      <table>
+        <tr><th>#</th><th>Milestone</th><th>Status</th></tr>
+        <tr><td>1</td><td>Inventory all GoDaddy accounts</td><td><span class="dot-red status-dot"></span>Pending</td></tr>
+        <tr><td>2</td><td>Get all Customer IDs</td><td><span class="dot-red status-dot"></span>Pending</td></tr>
+        <tr><td>3</td><td>Unlock all domains</td><td><span class="dot-red status-dot"></span>Pending</td></tr>
+        <tr><td>4</td><td>Obtain all auth codes</td><td><span class="dot-red status-dot"></span>Pending</td></tr>
+        <tr><td>5</td><td>Add payment to Cloudflare</td><td><span class="dot-red status-dot"></span>Pending</td></tr>
+        <tr><td>6</td><td>Initiate all transfers</td><td><span class="dot-red status-dot"></span>Pending</td></tr>
+        <tr><td>7</td><td>Approve all transfers</td><td><span class="dot-red status-dot"></span>Pending</td></tr>
+        <tr><td>8</td><td>Remove GoDaddy M365 partner</td><td><span class="dot-red status-dot"></span>Pending</td></tr>
+        <tr><td>9</td><td>Kill fishmusicinc.com tenant</td><td><span class="dot-red status-dot"></span>Pending</td></tr>
+        <tr><td>10</td><td>Verify Microsoft unblocked</td><td><span class="dot-red status-dot"></span>Pending</td></tr>
+        <tr><td>11</td><td>All transfers complete</td><td><span class="dot-red status-dot"></span>Pending</td></tr>
+        <tr><td>12</td><td>Close all GoDaddy accounts</td><td><span class="dot-red status-dot"></span>Pending</td></tr>
+        <tr><td>13</td><td>TOTAL FREEDOM</td><td><span class="dot-red status-dot"></span>Pending</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TAB: NOIZYVOX ==================== -->
+<div class="tab-content" id="tab-noizyvox">
+  <div class="domain-header">
+    <h2>NOIZYVOX</h2>
+    <span class="doc-count">28 documents consolidated &rarr; 4 unified sections</span>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>SOVEREIGNTY & CONSENT ARCHITECTURE</h3>
+      <span class="badge badge-spec">SPEC</span>
+    </div>
+    <p>Consolidated from: Artist Sovereignty Architecture, Consent Token Schema, Watermark Fingerprint Spec, Provenance Spec, Provenance Audit Pilot Spec, Crawler Takedown Playbook, Vox AVA Architecture, Voice Library</p>
+    <h4>Core Consent Token Schema</h4>
+    <ul>
+      <li>Tokens are scoped (territory, language, use-case, time-limited), revocable at any time</li>
+      <li>Never Clauses are immovable prohibitions &mdash; checked before every synthesis request</li>
+      <li>Every synthesis request is logged to the append-only NOIZY Ledger</li>
+      <li>Kill Switch: RSP_001 (or any actor) can revoke any token instantly</li>
+    </ul>
+    <h4>Watermark & Provenance</h4>
+    <ul>
+      <li>C2PA content credentials on all synthesized outputs (planned)</li>
+      <li>Voice DNA fingerprinting &mdash; hash-based identity verification</li>
+      <li>Crawler takedown playbook for unauthorized voice use</li>
+      <li>Provenance audit pilot protocol for real-world testing</li>
+    </ul>
+    <h4>AVA Architecture</h4>
+    <ul>
+      <li>Actor-based persona AI with Never Clauses enforcement</li>
+      <li>Fan boundary rules, character DNA, director notes</li>
+      <li>RAG pipeline for knowledge-grounded responses</li>
+      <li>Multi-language support with consent verification per language</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>PLATFORM & MARKETPLACE</h3>
+      <span class="badge badge-spec">SPEC</span>
+    </div>
+    <p>Consolidated from: Artist Marketplace Spec, DAW Plugin Beta Spec, Technical Brief, NOIZYVOX Artist Portal (HTML), NOIZYVOX AIVA Demo (HTML), noizyvox.html</p>
+    <h4>Artist Portal MVP</h4>
+    <ul>
+      <li>Onboarding flow: consent capture, voice DNA recording, Never Clause selection</li>
+      <li>Earnings dashboard with real-time royalty tracking (75/25 split)</li>
+      <li>Consent token management &mdash; grant, scope, revoke</li>
+      <li>Voice guardian status &mdash; deepfake detection, web scanning</li>
+    </ul>
+    <h4>DAW Plugin</h4>
+    <ul>
+      <li>Integrates consent-verified voice synthesis directly into Logic Pro, Ableton, Pro Tools</li>
+      <li>Real-time provenance stamping on audio outputs</li>
+      <li>Studio Capture Pack for voice DNA recording sessions</li>
+    </ul>
+    <h4>AIVA &mdash; AI Voice Assistant Demo</h4>
+    <ul>
+      <li>Casting engine for matching voices to project requirements</li>
+      <li>Consent-first voice selection workflow</li>
+      <li>Live demos built as interactive HTML prototypes</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>STRATEGY & OUTREACH</h3>
+      <span class="badge badge-strategy">STRATEGY</span>
+    </div>
+    <p>Consolidated from: Strategy Bible, Voice Army Playbook 2026, Evidence Brief (25 Studies), Outreach Package, Pilot Protocol, Top 10 Contact List, Studio Capture Pack</p>
+    <h4>Strategy Bible</h4>
+    <ul>
+      <li>Market positioning: consent-first voice synthesis in a zero-consent world</li>
+      <li>Competitive differentiation: ElevenLabs (no consent), Respeecher (limited), NOIZY (full sovereignty)</li>
+      <li>75/25 artist-first revenue split vs. industry standard ~10% for performers</li>
+    </ul>
+    <h4>Evidence Brief</h4>
+    <ul>
+      <li>25 academic studies supporting voice identity protection</li>
+      <li>Legal frameworks: EU AI Act Article 50, NTIA policy, Canadian AI governance</li>
+      <li>Market sizing and adoption projections</li>
+    </ul>
+    <h4>Pilot Protocol</h4>
+    <ul>
+      <li>Phase 1: RSP_001 founding consent (COMPLETE)</li>
+      <li>Phase 2: Family actors (POPS, SHIRL, ENGR_KEITH, DREAM, CB01)</li>
+      <li>Phase 3: First external artist onboarding</li>
+      <li>Phase 4: First licensee integration</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>DREAMCHAMBER INTEGRATION</h3>
+      <span class="badge badge-spec">SPEC</span>
+    </div>
+    <p>Consolidated from: DreamChamber Blueprint, DreamChamber Engine, DreamChamber UX, DreamChamber Career Blueprint, DreamChamber Global Music Atlas, DreamChamber Manifesto</p>
+    <h4>The Vision</h4>
+    <ul>
+      <li>Not a chat interface &mdash; a sacred space for human-AI collaboration</li>
+      <li>Contact Sequence: 15-second cinematic entry &mdash; 10,000 particles, wormhole, arrival</li>
+      <li>4-tab command center: Chat (10 models), Consent Kernel, Models, Settings</li>
+      <li>Global Music Atlas &mdash; worldwide voice culture mapping</li>
+      <li>Career Blueprint &mdash; AI-assisted creative career navigation</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== TAB: HVS ==================== -->
+<div class="tab-content" id="tab-hvs">
+  <div class="domain-header">
+    <h2>HUMAN VOICE SYMPHONY (HVS)</h2>
+    <span class="doc-count">7 documents + live API consolidated</span>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>HEAVEN17 &mdash; CONSENT KERNEL API</h3>
+      <span class="badge badge-live">LIVE</span>
+    </div>
+    <p>Edge-deployed Cloudflare Worker. 55 authenticated REST endpoints (v3.5.0). Global. Fast.</p>
+    <p><strong>URL:</strong> <code>https://heaven17.noizylab.workers.dev</code> &bull; <strong>Auth:</strong> X-NOIZY-Key header</p>
+
+    <h4 class="collapsible" onclick="toggleCollapse(this)">All 55 Endpoints</h4>
+    <div class="collapse-body">
+      <table>
+        <tr><th>Method</th><th>Endpoint</th><th>Auth</th></tr>
+        <tr><td>GET</td><td>/health</td><td>Public</td></tr>
+        <tr><td>GET</td><td>/dashboard</td><td>Public</td></tr>
+        <tr><td>GET</td><td>/</td><td>Public</td></tr>
+        <tr><td>GET/POST</td><td>/api/v1/actors</td><td>Required</td></tr>
+        <tr><td>GET</td><td>/api/v1/actors/:id</td><td>Required</td></tr>
+        <tr><td>GET</td><td>/api/v1/actors/:id/never-clauses</td><td>Required</td></tr>
+        <tr><td>GET</td><td>/api/v1/actors/:id/descendants</td><td>Required</td></tr>
+        <tr><td>GET</td><td>/api/v1/actors/:id/consent-tokens</td><td>Required</td></tr>
+        <tr><td>GET/POST</td><td>/api/v1/actors/:id/voice-dna</td><td>Required</td></tr>
+        <tr><td>GET</td><td>/api/v1/actors/:id/estate</td><td>Required</td></tr>
+        <tr><td>GET/POST</td><td>/api/v1/consent-tokens</td><td>Required</td></tr>
+        <tr><td>POST</td><td>/api/v1/consent-tokens/:id/revoke</td><td>Required (Kill Switch)</td></tr>
+        <tr><td>GET/POST</td><td>/api/v1/descendants</td><td>Required</td></tr>
+        <tr><td>POST</td><td>/api/v1/synth-requests</td><td>Required (Never Clause enforced)</td></tr>
+        <tr><td>GET</td><td>/api/v1/synth-requests/:id</td><td>Required</td></tr>
+        <tr><td>GET/POST</td><td>/api/v1/licenses</td><td>Required</td></tr>
+        <tr><td>GET/POST</td><td>/api/v1/licensees</td><td>Required</td></tr>
+        <tr><td>GET</td><td>/api/v1/ledger</td><td>Required</td></tr>
+        <tr><td>POST</td><td>/api/v1/ledger/append</td><td>Required</td></tr>
+        <tr><td>GET</td><td>/api/v1/rate-table</td><td>Required</td></tr>
+        <tr><td>GET</td><td>/api/v1/union-tiers</td><td>Required</td></tr>
+        <tr><td>GET</td><td>/api/v1/estates</td><td>Required</td></tr>
+        <tr><td>GET</td><td>/api/v1/premis</td><td>Required</td></tr>
+        <tr><td>GET</td><td>/api/v1/stats</td><td>Required</td></tr>
+        <tr><td>GET</td><td>/api/v1/kpi/trust|safety|revenue|quality|risk</td><td>Required</td></tr>
+        <tr><td>GET</td><td>/api/v1/enterprise/audit</td><td>Required</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>DATABASE &mdash; gabriel_db (D1)</h3>
+      <span class="badge badge-data">DATA</span>
+    </div>
+    <table>
+      <tr><th>Table</th><th>Purpose</th><th>Status</th></tr>
+      <tr><td>hvs_actors</td><td>Registered voice actors (RSP_001 = founding)</td><td><span class="dot-green status-dot"></span>Seeded</td></tr>
+      <tr><td>hvs_never_clauses</td><td>Immovable prohibitions per actor (10 for RSP_001)</td><td><span class="dot-green status-dot"></span>Seeded</td></tr>
+      <tr><td>hvs_voice_dna</td><td>Voice recordings, hashes, storage URIs</td><td><span class="dot-green status-dot"></span>Ready</td></tr>
+      <tr><td>hvs_descendants</td><td>Synthetic voice models</td><td><span class="dot-green status-dot"></span>Live</td></tr>
+      <tr><td>hvs_consent_tokens</td><td>Scoped, revocable consent grants</td><td><span class="dot-green status-dot"></span>Live</td></tr>
+      <tr><td>hvs_synth_requests</td><td>Synthesis requests (Never Clause checked)</td><td><span class="dot-green status-dot"></span>Live</td></tr>
+      <tr><td>hvs_licenses</td><td>License registry</td><td><span class="dot-green status-dot"></span>Live</td></tr>
+      <tr><td>hvs_licensees</td><td>Licensee registry</td><td><span class="dot-green status-dot"></span>Live</td></tr>
+      <tr><td>hvs_rate_table</td><td>10 use categories</td><td><span class="dot-green status-dot"></span>Seeded</td></tr>
+      <tr><td>hvs_union_tiers</td><td>5 tiers: emerging(2%) &rarr; landmark(10%)</td><td><span class="dot-green status-dot"></span>Seeded</td></tr>
+      <tr><td>hvs_estates</td><td>100-year OAIS preservation</td><td><span class="dot-green status-dot"></span>Seeded</td></tr>
+      <tr><td>hvs_premis_events</td><td>Archival preservation metadata</td><td><span class="dot-green status-dot"></span>Live</td></tr>
+      <tr><td>noizy_ledger</td><td>Append-only audit trail</td><td><span class="dot-green status-dot"></span>Seeded</td></tr>
+    </table>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>NEVER CLAUSES &mdash; RSP_001</h3>
+      <span class="badge badge-manifesto">IMMOVABLE</span>
+    </div>
+    <table>
+      <tr><th>Code</th><th>Prohibition</th></tr>
+      <tr><td style="color:var(--red)">NC_POLITICAL</td><td>No political campaigns, propaganda, or partisan messaging</td></tr>
+      <tr><td style="color:var(--red)">NC_SEXUAL</td><td>No sexual, adult, or pornographic content</td></tr>
+      <tr><td style="color:var(--red)">NC_WEAPONS</td><td>No weapons, violence, or harmful content promotion</td></tr>
+      <tr><td style="color:var(--red)">NC_DECEPTION</td><td>No fraud, impersonation, or deception</td></tr>
+      <tr><td style="color:var(--red)">NC_HATE</td><td>No hate speech or content demeaning any group</td></tr>
+      <tr><td style="color:var(--red)">NC_TRANSFER</td><td>No unauthorized transfer, sublicensing, or assignment</td></tr>
+      <tr><td style="color:var(--red)">NC_SURVEILLANCE</td><td>No surveillance, tracking, or biometric ID systems</td></tr>
+      <tr><td style="color:var(--red)">NC_CHILD_EXPLOITATION</td><td>No content that exploits, endangers, or harms children</td></tr>
+      <tr><td style="color:var(--orange)">NC_SYSTEM_INTEGRITY</td><td>Synthesis requires valid active consent token (system)</td></tr>
+      <tr><td style="color:var(--orange)">NC_SYSTEM_TRANSFER</td><td>Voice DNA non-transferable outside kernel (system)</td></tr>
+    </table>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>THE NOIZY COVENANT</h3>
+      <span class="badge badge-manifesto">COVENANT</span>
+    </div>
+    <p>Ethically executable infrastructure. Mechanical enforcement, not cultural suggestion.</p>
+    <ul>
+      <li><strong>Creators, not users.</strong> People are not users. They create.</li>
+      <li><strong>Creative works, not assets.</strong> Art is not an asset to be managed.</li>
+      <li><strong>Consent is explicit.</strong> consent_granted required on every creative interaction.</li>
+      <li><strong>Restoration over punishment.</strong> Repair plans mandatory; punishment without restoration forbidden.</li>
+      <li><strong>Mentorship over extraction.</strong> Lineage links with traceable, compensated bonds.</li>
+      <li><strong>AI is advisory.</strong> advisory_only assertion on every model output.</li>
+      <li><strong>Creator agency is sacred.</strong> The system can always say no.</li>
+      <li><strong>Drift is structurally prevented.</strong> CI/CD validation, schema checks, prompt registry &mdash; no bypass flag.</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>ECONOMICS & LAW</h3>
+      <span class="badge badge-spec">SPEC</span>
+    </div>
+    <p>Consolidated from: HVS Economics Dashboard, International Law Reference, Public Orchestra Strategy</p>
+    <h4>Royalty Architecture</h4>
+    <table>
+      <tr><th>Actor Type</th><th>Artist Share</th><th>NOIZY Cut</th><th>Union</th></tr>
+      <tr><td>RSP_001 (Founding)</td><td style="color:var(--gold)">85%</td><td>15%</td><td>2&ndash;10% tiered</td></tr>
+      <tr><td>Standard</td><td style="color:var(--gold)">75%</td><td>25%</td><td>2&ndash;10% tiered</td></tr>
+    </table>
+    <h4>Legal Framework</h4>
+    <ul>
+      <li>EU AI Act Article 50 compliance</li>
+      <li>NTIA AI policy alignment</li>
+      <li>Canadian AI governance framework</li>
+      <li>NO FAKES Act (proposed US legislation) &mdash; full analysis in NOIZY_NO_FAKES_ACT_v1.docx</li>
+      <li>Governing law: Canada</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== TAB: DREAMCHAMBER ==================== -->
+<div class="tab-content" id="tab-dreamchamber">
+  <div class="domain-header">
+    <h2>DREAMCHAMBER</h2>
+    <span class="doc-count">4 documents + live system consolidated</span>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>MULTI-MODEL AI COMMAND CENTER</h3>
+      <span class="badge badge-code">PORT 7777</span>
+    </div>
+    <p>Express + WebSocket server. 10 AI providers. Gabriel orchestration with 30-min Heaven17 context TTL. Prompt caching for 90% cost reduction on Anthropic.</p>
+    <h4>10 AI Providers</h4>
+    <table>
+      <tr><th>Provider</th><th>Models</th><th>Input/1M</th><th>Output/1M</th></tr>
+      <tr><td>Anthropic</td><td>Claude Opus 4, Sonnet 4</td><td>$3&ndash;15</td><td>$15&ndash;75</td></tr>
+      <tr><td>OpenAI</td><td>GPT-4o, GPT-4 Turbo</td><td>$2.50&ndash;10</td><td>$10&ndash;30</td></tr>
+      <tr><td>Google</td><td>Gemini 2.0 Flash, 1.5 Pro</td><td>$0.075&ndash;1.25</td><td>$0.30&ndash;5</td></tr>
+      <tr><td>Together</td><td>Llama 3.3 70B</td><td>$0.88</td><td>$0.88</td></tr>
+      <tr><td>Mistral</td><td>Mistral Large</td><td>$2.00</td><td>$6.00</td></tr>
+      <tr><td>Cohere</td><td>Command R+</td><td>$3.00</td><td>$15.00</td></tr>
+      <tr><td>Perplexity</td><td>Online</td><td>Free</td><td>Free</td></tr>
+    </table>
+    <h4>Architecture</h4>
+    <ul>
+      <li>Gabriel AI orchestration &mdash; speaks with live consent kernel context</li>
+      <li>Configurable model via GABRIEL_MODEL env var</li>
+      <li>Heaven17 proxy routes &mdash; /api/heaven17/* for live consent data in UI</li>
+      <li>Helmet security middleware, rate limiting, graceful shutdown</li>
+      <li>4-tab UI: Chat, Consent Kernel, Models, Settings</li>
+    </ul>
+    <h4>The Contact Sequence (Vision)</h4>
+    <ul>
+      <li>15-second cinematic entry animation (WebGL, Three.js)</li>
+      <li>10,000 particles of human achievement &rarr; wormhole &rarr; arrival in NOIZY dimension</li>
+      <li>5 emotional states: Anticipation &rarr; Recognition &rarr; Possibility &rarr; Flow &rarr; Elevation</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>MCP SERVERS (3)</h3>
+      <span class="badge badge-code">CODE</span>
+    </div>
+    <table>
+      <tr><th>Server</th><th>Tools</th><th>Purpose</th></tr>
+      <tr><td>gabriel-mcp</td><td>4 tools</td><td>speak, status, announce, refresh</td></tr>
+      <tr><td>heaven17-mcp</td><td>12 tools</td><td>health, actors, never clauses, consent tokens, stats, ledger, rate table, union tiers, KPIs, audit</td></tr>
+      <tr><td>lucy-mcp</td><td>11 tools</td><td>DAZEFLOW keeper, task manager, memcell interface, status</td></tr>
+    </table>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>GABRIEL AI ORCHESTRATOR</h3>
+      <span class="badge badge-code">CODE</span>
+    </div>
+    <p>Consolidated from: Gabriel Master Architecture, gabriel-agents/ (TypeScript variants)</p>
+    <ul>
+      <li>5 variants: gabriel.ts, gabriel-mentor.ts, gabriel-metabeast.ts, gabriel-testbeast.ts, gabriel-comms.ts</li>
+      <li>Workflow engine: workflow-agents-upgraded.ts</li>
+      <li>macOS TTS via <code>say</code> command for voice announcements</li>
+      <li>MCP server exposes 4 tools to external AI assistants</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== TAB: BUSINESS ==================== -->
+<div class="tab-content" id="tab-business">
+  <div class="domain-header">
+    <h2>BUSINESS</h2>
+    <span class="doc-count">13 documents + spreadsheets consolidated</span>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>MASTER BLUEPRINTS</h3>
+      <span class="badge badge-strategy">STRATEGY</span>
+    </div>
+    <p>Consolidated from: Empire Master Blueprint, Master Encyclopedia, NOIZY-MASTER-ENCYCLOPEDIA-RSP001-2026, Platform Blueprint, NOIZY.ai Blueprint, Founder Blueprint 2026, Creator Power Strategy RSP001 2026</p>
+    <h4>The Empire</h4>
+    <ul>
+      <li>NOIZYFISH INC. &mdash; parent company, Canadian jurisdiction</li>
+      <li>6 brand ecosystem: NOIZYVOX, NOIZYFISH, NOIZYLAB, NOIZYKIDZ, LIFELUV, DreamChamber</li>
+      <li>RSP_001 as founding actor with 85/15 split</li>
+      <li>Target: April 17, 2026 &mdash; all elements finalized including security</li>
+    </ul>
+    <h4>Philosophy</h4>
+    <ul>
+      <li>"We are the new punk rockers: capitalist free thinkers who believe in peace, love, and understanding."</li>
+      <li>If competitors undercut on price, outproduce them on authentic art and community</li>
+      <li>Flood the world with new art so well-protected that extraction becomes impossible</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>MONETIZATION & FINANCE</h3>
+      <span class="badge badge-strategy">STRATEGY</span>
+    </div>
+    <p>Consolidated from: Monetization Blueprint, Fiduciary Redlines & Genesis Block, Final Upgrades & Investor Signals, LifeLUV Smart Contract Blueprint, Critical Gaps (COMPLETE)</p>
+    <h4>Revenue Engines</h4>
+    <ul>
+      <li>Voice synthesis licensing (per-use, subscription, enterprise)</li>
+      <li>10 rate categories in hvs_rate_table (seeded)</li>
+      <li>Union tier contributions: 2% (emerging) &rarr; 10% (landmark)</li>
+      <li>LifeLUV smart contracts for automated compensation</li>
+    </ul>
+    <h4>Fiduciary Redlines</h4>
+    <ul>
+      <li>75/25 split is non-negotiable</li>
+      <li>Genesis block records are immutable</li>
+      <li>Investor signals: consent-first positioning, regulatory alignment, artist loyalty</li>
+    </ul>
+    <h4>Critical Gaps (Identified & Tracked)</h4>
+    <ul>
+      <li>R2 Storage not enabled &mdash; blocks entire voice pipeline</li>
+      <li>HEAVEN17 not deployed to production &mdash; 112+ days on Hello World</li>
+      <li>0 external artists onboarded &mdash; only RSP_001 founding consent</li>
+      <li>3 domains still at GoDaddy &mdash; migration blocked</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>ROADMAP & PRESENTATIONS</h3>
+      <span class="badge badge-strategy">STRATEGY</span>
+    </div>
+    <ul>
+      <li>NOIZY Empire Roadmap (PPTX) &mdash; investor-ready pitch deck</li>
+      <li>NOIZYANTHROPIC.xlsx &mdash; partnership tracking spreadsheet</li>
+      <li>Mentor Tier Spec v1 &mdash; mentor/mentee compensation structure</li>
+      <li>Architecture Deployment v3.3 &mdash; full deployment guide</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== TAB: MANIFESTOS ==================== -->
+<div class="tab-content" id="tab-manifestos">
+  <div class="domain-header">
+    <h2>MANIFESTOS</h2>
+    <span class="doc-count">12 documents &rarr; unified philosophy</span>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>SOVEREIGNTY & RIGHTS</h3>
+      <span class="badge badge-manifesto">MANIFESTO</span>
+    </div>
+    <p>Consolidated from: Artist Bill of Rights, NOIZYVOX Manifesto, DreamChamber Manifesto</p>
+    <ul>
+      <li>Every creator owns their voice. Period.</li>
+      <li>Consent is not optional &mdash; it is the product</li>
+      <li>Revocation is sacred and instant</li>
+      <li>Compensation is automatic and transparent</li>
+      <li>No voice may be used without explicit, time-bounded, territory-scoped permission</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>HUMAN IDENTITY & CONNECTION</h3>
+      <span class="badge badge-manifesto">MANIFESTO</span>
+    </div>
+    <p>Consolidated from: Human Experiment Manifesto, Human Reconnection Blueprint, The Great Remembering, The Shaman Principle</p>
+    <ul>
+      <li>Technology serves humanity &mdash; not the other way around</li>
+      <li>Culture, identity, and human creativity are not commodities</li>
+      <li>The Great Remembering: honoring what came before while building what comes next</li>
+      <li>The Shaman Principle: consciousness and creativity as the foundation of technology</li>
+      <li>Human Reconnection: using AI to bring people closer, not further apart</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>CULTURAL PRESERVATION</h3>
+      <span class="badge badge-manifesto">MANIFESTO</span>
+    </div>
+    <p>Consolidated from: Indigenous Preservation Blueprint, Canada Identity Manifesto, Heals The World</p>
+    <ul>
+      <li>Indigenous voice preservation with co-design protocols</li>
+      <li>Canadian cultural identity in the age of AI</li>
+      <li>Art as healing &mdash; flooding the world with protected, authentic creation</li>
+      <li>Artists painted every colour since the beginning of time &mdash; that legacy is ours to assert</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>CREATIVE EVOLUTION</h3>
+      <span class="badge badge-manifesto">MANIFESTO</span>
+    </div>
+    <p>Consolidated from: Manifesto of the Adaptive Artist, Enterprise Git Alignment</p>
+    <ul>
+      <li>The Adaptive Artist: evolving with technology while maintaining creative sovereignty</li>
+      <li>Enterprise Git Alignment: version control as creative discipline</li>
+      <li>Build so much art, so well-protected, that extraction becomes impossible</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== TAB: NOIZYFISH ==================== -->
+<div class="tab-content" id="tab-noizyfish">
+  <div class="domain-header">
+    <h2>NOIZYFISH / NOIZY STUDIOS</h2>
+    <span class="doc-count">14 documents consolidated</span>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>PLATFORM & TECH</h3>
+      <span class="badge badge-spec">SPEC</span>
+    </div>
+    <p>Consolidated from: Platform Blueprint, Tech Architecture, Full Platform Adaptation, Brand Bible, Nerve To Note Spec, Platform Vision</p>
+    <ul>
+      <li>NOIZYFISH INC. &mdash; the parent company and legal entity</li>
+      <li>Platform architecture: Cloudflare edge + D1 + R2 + Workers</li>
+      <li>Nerve To Note: biometric-to-audio creative pipeline (NoizyStudios)</li>
+      <li>Brand Bible: visual identity, tone, positioning guidelines</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>GO-TO-MARKET</h3>
+      <span class="badge badge-strategy">STRATEGY</span>
+    </div>
+    <p>Consolidated from: GTM Strategy, Economic Model, Execution Playbook, Crew Recruitment, Launch Manifesto, Pilot Decision</p>
+    <ul>
+      <li>GTM Strategy: consent-first positioning against extraction-based competitors</li>
+      <li>Economic Model: 75/25 split, union tiers, voice licensing revenue</li>
+      <li>Execution Playbook: phase-by-phase launch plan</li>
+      <li>Crew Recruitment: team-building strategy for the guild</li>
+      <li>NOIZYVOX x NOIZYFISH Integration: how the consent engine serves the platform</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== TAB: INFRASTRUCTURE ==================== -->
+<div class="tab-content" id="tab-infra">
+  <div class="domain-header">
+    <h2>INFRASTRUCTURE & CODE</h2>
+    <span class="doc-count">25+ code assets + 20 shell scripts + 10 databases</span>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>CLOUDFLARE STACK</h3>
+      <span class="badge badge-code">CODE</span>
+    </div>
+    <table>
+      <tr><th>Resource</th><th>ID / URL</th><th>Status</th></tr>
+      <tr><td>Heaven17 Worker</td><td>heaven17.noizylab.workers.dev</td><td><span class="dot-green status-dot"></span>LIVE</td></tr>
+      <tr><td>gabriel_db (D1)</td><td>fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa</td><td><span class="dot-green status-dot"></span>25 tables</td></tr>
+      <tr><td>GABRIEL_KV</td><td>6fe434a8020147c7bc4788e7057b843a</td><td><span class="dot-green status-dot"></span>Rate limiting</td></tr>
+      <tr><td>GABRIEL_VOICE</td><td>afef27e69f634d2b941482435d042167</td><td><span class="dot-green status-dot"></span>Voice assets</td></tr>
+      <tr><td>R2 Storage</td><td>&mdash;</td><td><span class="dot-red status-dot"></span>NOT ENABLED</td></tr>
+    </table>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>D1 DATABASES (10 Total)</h3>
+      <span class="badge badge-data">DATA</span>
+    </div>
+    <table>
+      <tr><th>Database</th><th>Size</th><th>Tables</th><th>Purpose</th></tr>
+      <tr><td>agent-memory</td><td>2.5 MB</td><td>236</td><td>Core AI OS brain</td></tr>
+      <tr><td>rsp-master-budget</td><td>840 KB</td><td>&mdash;</td><td>Financial tracking</td></tr>
+      <tr><td>gabriel_db</td><td>508 KB</td><td>25+9</td><td>HVS consent kernel (LIVE)</td></tr>
+      <tr><td>noizylab-repairs</td><td>459 KB</td><td>53</td><td>CPU repair business</td></tr>
+      <tr><td>tencc-pipeline</td><td>250 KB</td><td>&mdash;</td><td>10CC content pipeline</td></tr>
+      <tr><td>mc96-command-central</td><td>250 KB</td><td>32</td><td>Command & control</td></tr>
+      <tr><td>aquarium-archive</td><td>233 KB</td><td>&mdash;</td><td>Archive storage</td></tr>
+      <tr><td>godaddy-escape-tracker</td><td>94 KB</td><td>16</td><td>Migration tracking</td></tr>
+      <tr><td>subscription-killer</td><td>66 KB</td><td>&mdash;</td><td>Subscription cancellation</td></tr>
+      <tr><td>noizyanthropic</td><td>61 KB</td><td>6</td><td>Platform registry</td></tr>
+    </table>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>GIT REPOSITORIES (8)</h3>
+      <span class="badge badge-code">CODE</span>
+    </div>
+    <table>
+      <tr><th>Repo</th><th>Language</th><th>Purpose</th></tr>
+      <tr><td>HEAVEN</td><td>JavaScript</td><td>Master Worker &mdash; routes all subdomains</td></tr>
+      <tr><td>NOIZYLAB</td><td>Go/Shell</td><td>Core platform</td></tr>
+      <tr><td>GABRIEL</td><td>JavaScript</td><td>Learning Brain Worker</td></tr>
+      <tr><td>NOIZYVOX</td><td>JavaScript</td><td>Consent platform</td></tr>
+      <tr><td>CONDUCTOR</td><td>JavaScript</td><td>Multi-AI orchestration</td></tr>
+      <tr><td>FISHYBOOKS</td><td>&mdash;</td><td>Publishing / content</td></tr>
+      <tr><td>CODEMASTER</td><td>&mdash;</td><td>Code education</td></tr>
+      <tr><td>NOIZYKIDZ</td><td>&mdash;</td><td>Music education</td></tr>
+    </table>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>VOICE PIPELINE</h3>
+      <span class="badge badge-code">CODE</span>
+    </div>
+    <ul>
+      <li><strong>Voice Bridge Server</strong> (port 8080) &mdash; Phone &rarr; Power Automate &rarr; M2 Ultra &rarr; Automator &rarr; TTS</li>
+      <li>6 voice commands: claude, deploy, dreamchamber, compare, status, cascade</li>
+      <li>230+ Automator workflows designed, 2 deployed to Library/Services</li>
+      <li>Audio Hijack pipeline: iPad &rarr; GOD audio routing</li>
+      <li>Logic Pro: NOIZYLOGIC.logicx project</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>SHELL SCRIPTS & TOOLS</h3>
+      <span class="badge badge-code">CODE</span>
+    </div>
+    <table>
+      <tr><th>Script</th><th>Purpose</th></tr>
+      <tr><td>deploy.sh</td><td>Wrangler deployment script</td></tr>
+      <tr><td>smoke_test.sh</td><td>14 integration tests with auth</td></tr>
+      <tr><td>git-align.sh</td><td>Enterprise Git cutover &mdash; 8 repos, phased migration</td></tr>
+      <tr><td>noizy-email-setup.sh</td><td>Email infrastructure configuration</td></tr>
+      <tr><td>GABRIEL_GOD_SETUP.sh</td><td>Full machine setup automation</td></tr>
+      <tr><td>triage_downloads.sh</td><td>Downloads folder organization</td></tr>
+      <tr><td>delete_empty_folders.sh</td><td>Cleanup utility</td></tr>
+      <tr><td>talespin-finder.sh</td><td>Audio asset discovery</td></tr>
+    </table>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>EXTENDED ECOSYSTEM (NOIZYANTHROPIC &mdash; 1.5 GB)</h3>
+      <span class="badge badge-code">CODE</span>
+    </div>
+    <table>
+      <tr><th>System</th><th>Language</th><th>Purpose</th></tr>
+      <tr><td>DreamChamber Extension</td><td>TypeScript</td><td>VSCode extension (12 modules)</td></tr>
+      <tr><td>Rob Ava</td><td>Python/FastAPI</td><td>Actor persona AI</td></tr>
+      <tr><td>RSP001 Pipeline</td><td>Python</td><td>Voice synthesis (TTS, FX, ASMR, EEG)</td></tr>
+      <tr><td>NOIZY Platform</td><td>Python/FastAPI</td><td>Full backend (9 routers, 8 services)</td></tr>
+      <tr><td>NOIZYPROOF</td><td>TypeScript</td><td>C2PA provenance & watermarking</td></tr>
+      <tr><td>NOIZYVOX Engine</td><td>TypeScript</td><td>Voice synthesis pipeline</td></tr>
+      <tr><td>Turbo Scripts</td><td>Shell</td><td>11 utility scripts</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== TAB: RESEARCH & BOOK ==================== -->
+<div class="tab-content" id="tab-research">
+  <div class="domain-header">
+    <h2>RESEARCH & BOOK</h2>
+    <span class="doc-count">6 documents + Canadian heritage collection</span>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>SONIC RESEARCH</h3>
+      <span class="badge badge-spec">RESEARCH</span>
+    </div>
+    <p>Consolidated from: Audio Research Beyond Aural, Sonic Consciousness Map, Sonic Neuroscience White Paper</p>
+    <ul>
+      <li>Beyond Aural: research into non-auditory voice applications</li>
+      <li>Sonic Consciousness Map: mapping the relationship between sound, awareness, and cognition</li>
+      <li>Sonic Neuroscience White Paper: scientific basis for voice identity and sonic healing</li>
+      <li>RSP's personal frequency: 396 Hz (liberation)</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>THE BOOK</h3>
+      <span class="badge badge-strategy">IN PROGRESS</span>
+    </div>
+    <p>Consolidated from: One Man's Love Outline, My Year With Claude Ch2 Hello, Plowman's Chronicles Template</p>
+    <ul>
+      <li>"One Man's Love" &mdash; the story of building the NOIZY Empire</li>
+      <li>"My Year With Claude" &mdash; Chapter 2: Hello (the beginning of human-AI collaboration)</li>
+      <li>Plowman's Chronicles &mdash; template for ongoing documentation</li>
+      <li>"Looking Back From 2036" &mdash; definitive future retrospective (in Downloads)</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>CANADIAN HERITAGE</h3>
+      <span class="badge badge-manifesto">HERITAGE</span>
+    </div>
+    <ul>
+      <li>Canadian Constellation Canon &mdash; mapping Canada's creative heritage</li>
+      <li>Canadian Comedy Film Canon &mdash; preserving Canadian comedic voice</li>
+      <li>Avro Arrow: Canada's Greatness (Expanded) &mdash; innovation lost and reclaimed</li>
+      <li>Canadian Music Canon &mdash; the sonic identity of a nation</li>
+      <li>Canada Fortress Economy &mdash; economic sovereignty in the AI age</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== TAB: ASSET REGISTRY ==================== -->
+<div class="tab-content" id="tab-registry">
+  <div class="domain-header">
+    <h2>COMPLETE ASSET REGISTRY</h2>
+    <span class="doc-count">168+ documents &bull; 31 databases/namespaces &bull; 8 repos &bull; 34TB archive</span>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>SUPER PROMPTS (47+)</h3>
+      <span class="badge badge-prompt">PROMPT</span>
+    </div>
+    <table>
+      <tr><th>ID</th><th>Name</th><th>Source</th></tr>
+      <tr><td>VP-01</td><td>GABRIEL Vision Context</td><td>11_PROMPTS_AND_TOOLS</td></tr>
+      <tr><td>GR-01&ndash;12</td><td>GORUNFREE Protocols (12)</td><td>D1 agent-memory</td></tr>
+      <tr><td>AF-01&ndash;07</td><td>AI Family Personality Engines (7)</td><td>D1 agent-memory</td></tr>
+      <tr><td>SS-01&ndash;02</td><td>SuperSonic Enterprise v5.1&ndash;5.2</td><td>11_PROMPTS_AND_TOOLS</td></tr>
+      <tr><td>MP-01&ndash;02</td><td>MS365/Cowork + Agency Prompt Packs (40+)</td><td>11_PROMPTS_AND_TOOLS</td></tr>
+      <tr><td>SK-01</td><td>thenoizyman Skill</td><td>~/.claude/skills/</td></tr>
+    </table>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>CODE ASSETS (25+)</h3>
+      <span class="badge badge-code">CODE</span>
+    </div>
+    <table>
+      <tr><th>Type</th><th>Count</th><th>Key Assets</th></tr>
+      <tr><td>Cloudflare Workers</td><td>4</td><td>HEAVEN17, Landing, GORUNFREE Hub, NOIZYVOX API</td></tr>
+      <tr><td>Python</td><td>2+</td><td>Gabriel Voice Engine, Commander One MCP</td></tr>
+      <tr><td>Shell Scripts</td><td>20+</td><td>deploy, smoke test, git-align, email setup, GOD setup</td></tr>
+      <tr><td>React/JSX</td><td>55+</td><td>Manifesto, Command Center, Voice Army HQ, Encyclopedia</td></tr>
+      <tr><td>TypeScript</td><td>5+</td><td>Gabriel agents, NOIZYPROOF, NOIZYVOX Engine</td></tr>
+      <tr><td>PowerShell</td><td>2</td><td>Backup + Restore scripts</td></tr>
+    </table>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>SPECIFICATIONS (28)</h3>
+      <span class="badge badge-spec">SPEC</span>
+    </div>
+    <table>
+      <tr><th>Domain</th><th>Count</th><th>Documents</th></tr>
+      <tr><td>NOIZYVOX</td><td>11</td><td>Sovereignty, Consent Token, Marketplace, DAW Plugin, Watermark, Provenance (2), Crawler, Technical, AVA, Voice Library</td></tr>
+      <tr><td>DreamChamber</td><td>5</td><td>Blueprint, Engine, UX, Music Atlas, Gabriel Architecture</td></tr>
+      <tr><td>NOIZYFISH</td><td>6</td><td>Platform Blueprint, Tech Architecture, Platform Adaptation, Brand Bible, Nerve To Note, Platform Vision</td></tr>
+      <tr><td>HVS</td><td>3</td><td>Consent Kernel Schema, International Law, Operational Blueprint</td></tr>
+      <tr><td>Infrastructure</td><td>3</td><td>Enterprise Git Doctrine, Cursorless Superstack, VSCode Build Stack</td></tr>
+    </table>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>DEMOS & PROTOTYPES (17)</h3>
+      <span class="badge badge-demo">DEMO</span>
+    </div>
+    <table>
+      <tr><th>Type</th><th>Count</th><th>Assets</th></tr>
+      <tr><td>Dashboards</td><td>6</td><td>AI Command Center, AI Family, NOIZY AI OS, DreamChamber Ops, Cloudflare Cleanup, Empire Index</td></tr>
+      <tr><td>Product Demos</td><td>7</td><td>NOIZYVOX AIVA, Artist Portal, noizyvox.html, HVS Demo Site, Consent Kernel, Economics Dashboard, HVS Signature</td></tr>
+      <tr><td>VR/Immersive</td><td>4</td><td>DreamChamber VR (2), DaVinci Workshop, Mind's Eye Foundation</td></tr>
+    </table>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>THE AQUARIUM (34 TB)</h3>
+      <span class="badge badge-data">ARCHIVE</span>
+    </div>
+    <ul>
+      <li>40 years of professional audio (since 1990)</li>
+      <li>25 professional projects, 16 documented credits</li>
+      <li>Credits include: Ed Edd n Eddy, Dragon Tales, Transformers</li>
+      <li>TaleSpin Archive: 235&ndash;660+ professional audio assets (Google Drive, UNRELEASED)</li>
+      <li>RSP voice performances (50&ndash;150 WAV files)</li>
+      <li>Original music compositions (20&ndash;40 files)</li>
+      <li>Sound effects library (100&ndash;300+ files)</li>
+    </ul>
+  </div>
+
+  <div class="card searchable">
+    <div class="card-header">
+      <h3>DECODER / SHORTHAND</h3>
+      <span class="badge badge-data">REFERENCE</span>
+    </div>
+    <table>
+      <tr><th>Term</th><th>Meaning</th></tr>
+      <tr><td>HVS</td><td>Human Voice Symphony &mdash; consent sovereignty system</td></tr>
+      <tr><td>RSP_001</td><td>Robert Stephen Plowman, Founding Actor</td></tr>
+      <tr><td>GABRIEL</td><td>AI orchestration layer &mdash; the mind of the empire</td></tr>
+      <tr><td>HEAVEN17</td><td>Cloudflare Worker serving the HVS consent kernel API</td></tr>
+      <tr><td>Never Clauses</td><td>Immovable prohibitions burned into actor records</td></tr>
+      <tr><td>Kill Switch</td><td>Instant revocation of any consent token</td></tr>
+      <tr><td>Descendant</td><td>Synthetic voice model derived from a real human actor</td></tr>
+      <tr><td>EST-RSP-001</td><td>RSP's estate &mdash; 100-year OAIS preservation</td></tr>
+      <tr><td>GOD.local</td><td>M2 Ultra Mac Studio &mdash; the processing core</td></tr>
+      <tr><td>DAZEFLOW</td><td>1 day = 1 chat = 1 truth (Lucy's log system)</td></tr>
+      <tr><td>C2PA</td><td>Content Credentials &mdash; cryptographic provenance standard</td></tr>
+      <tr><td>OAIS/PREMIS</td><td>Archival preservation metadata frameworks</td></tr>
+      <tr><td>396 Hz</td><td>RSP's personal frequency &mdash; liberation</td></tr>
+      <tr><td>NOIZYWIND</td><td>Anthropic API key for Windsurf/Cascade</td></tr>
+      <tr><td>GORUNFREE</td><td>Master protocol &mdash; 1cmd, 0friction, X1000, ZERO LIES</td></tr>
+      <tr><td>MC96ECO</td><td>The universe &mdash; all systems, all code, all art</td></tr>
+    </table>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="covenant">"Consent as executable code. Provenance as default. Revocation as sacred. Compensation as automatic."</div>
+  <div>NOIZY EMPIRE &bull; Robert Stephen Plowman (RSP_001) &bull; Generated March 25, 2026</div>
+  <div style="margin-top:4px">168+ documents &bull; 10 domains &bull; 112,000 files &bull; 34 TB archive &bull; One mission.</div>
+</div>
+
+<script>
+// TAB SWITCHING
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+});
+
+function switchTab(tabId) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+  document.getElementById(`tab-${tabId}`).classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// COLLAPSIBLE
+function toggleCollapse(el) {
+  el.classList.toggle('open');
+  const body = el.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+// SEARCH
+function doSearch(query) {
+  const countEl = document.getElementById('searchCount');
+  if (!query || query.length < 2) {
+    document.querySelectorAll('.searchable').forEach(c => c.classList.remove('hidden-by-search'));
+    document.querySelectorAll('.search-match').forEach(m => {
+      m.outerHTML = m.textContent;
+    });
+    countEl.textContent = '';
+    return;
+  }
+
+  const q = query.toLowerCase();
+  let matches = 0;
+
+  document.querySelectorAll('.searchable').forEach(card => {
+    const text = card.textContent.toLowerCase();
+    if (text.includes(q)) {
+      card.classList.remove('hidden-by-search');
+      matches++;
+    } else {
+      card.classList.add('hidden-by-search');
+    }
+  });
+
+  countEl.textContent = `${matches} section${matches !== 1 ? 's' : ''} match "${query}"`;
+}
+
+// Initialize first collapsible as open
+document.addEventListener('DOMContentLoaded', () => {
+  const firstCollapsible = document.querySelector('.collapsible');
+  if (firstCollapsible) {
+    firstCollapsible.classList.add('open');
+    firstCollapsible.nextElementSibling.classList.add('open');
+  }
+});
+</script>
+
+</body>
+</html>

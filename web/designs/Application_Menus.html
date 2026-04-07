@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Application_Menus</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="Application_Menus" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer103" class="Basic-Text-Frame">
+			<p id="_idParaDest-47" class="heading-1"><a id="_idTextAnchor049"></a>Understanding the Application Menus</p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_GSBXHMLVKGVRV77XG3LG6OUO6WXRM72A" alt="" /></p>
+			<p id="_idParaDest-48" class="heading-2"><a id="_idTextAnchor050"></a>File</p>
+			<p class="Normal">This menu provides access to the import, saving and export functions described in <a target="mainFrame" href="Working_with_Files.html#_idTextAnchor013"><span class="Hyperlink">Working with Files</span></a>.</p>
+			<p class="Inline-Art"><img src="image/image_TIGAWF5N5WXYNPCZIU2SMO6NOJ3P7JXS" alt="" /></p>
+			<p id="_idParaDest-49" class="heading-2"><a id="_idTextAnchor051"></a>Edit</p>
+			<p class="Inline-Art"><img src="image/image_EU5OFPEUVULY4CDNLWTYNGHX4LY5COMF" alt="" /></p>
+			<p class="heading-3">Undo [Ctrl/Cmd-Z]</p>
+			<p class="Normal">Reverses the last action taken.</p>
+			<p class="heading-3">Redo [Ctrl/Cmd-Shift-Z; Ctrl/Cmd-Y]</p>
+			<p class="Normal">Cancels the undo.</p>
+			<p class="Normal">Note: RX features an Undo History window, which logs a detailed list of all actions taken, and lets you navigate through them.</p>
+			<p class="heading-3">Cut [Ctrl/Cmd-X]</p>
+			<p class="Normal">Removes the currently selected audio and stores it temporarily on the Clipboard.</p>
+			<p class="heading-3">Copy [Ctrl/Cmd-C]</p>
+			<p class="Normal">Makes a copy of the currently selected audio and places it on the Clipboard.</p>
+			<p class="heading-3">Paste [Ctrl/Cmd-V]</p>
+			<p class="Normal">Places audio that has been copied or cut to the Clipboard at the current cursor point.</p>
+			<p class="heading-3">Paste Special</p>
+			<p class="Normal">Provides additional options for placing the Clipboard data</p>
+			<table id="table001-1" class="BasicTable">
+				<colgroup>
+					<col />
+					<col />
+				</colgroup>
+				<tbody>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Insert</span></p>
+							<p class="Normal"><span class="Bold">[Ctrl/Cmd-Alt/Opt-V]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Inserts the audio from the Clipboard and moves audio in the project [does not overwrite]</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Replace</span></p>
+							<p class="Normal"><span class="Bold">[Ctrl/Cmd-Alt/Opt-Shift-V]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Replaces audio in the project with audio from the Clipboard</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Mix</span></p>
+							<p class="Normal"><span class="Bold">[Shift-V]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Combines the audio from the Clipboard with audio in the project</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Invert and Mix</span></p>
+							<p class="Normal"><span class="Bold">[Alt/Opt-V]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Inverts the audio in the Clipboard and then mixes it with audio in the project. This is useful when you want to compute the difference between two signals.</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">To Selection</span></p>
+							<p class="Normal"><span class="Bold">[Alt/Opt-Shift-V]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Pastes audio from the clipboard only into the selected space, regardless of the copied audio&apos;s length. If the copied audio is longer than the new selection, the audio will be cropped to fit. If the new selection is longer than the copied audio, silence will be inserted to fill the remaining space.</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p class="heading-3">Deselect [Ctrl/Cmd-D]</p>
+			<p class="Normal">If audio is selected, deselects it and places the anchor sample at the start of the selection.</p>
+			<p class="heading-3">Reselect [Esc]</p>
+			<p class="Normal">Restores the last selection if you have no current selection.</p>
+			<p class="heading-3">Select All [Ctrl/Cmd-Shift-D]</p>
+			<p class="Normal">Selects the entire open file.</p>
+			<p class="heading-3">Invert Selection [Ctrl/Cmd-Shift-I]</p>
+			<p class="Normal">Selects everything that isn’t currently selected.</p>
+			<p class="heading-3">Invert Selection Frequencies [Ctrl/Cmd-I]</p>
+			<p class="Normal">Selects everything in the current time range that isn’t selected. This is useful for refining processing by first selecting what you don’t want to process, then inverting the selection frequency.</p>
+			<p class="heading-3">Select Harmonics [Ctrl/Cmd-Shift-H]</p>
+			<p class="Normal">Refines the current selection to include more harmonics. For this feature to work well, try it with a simple selection that includes only the fundamental harmonic of what you are trying to select.</p>
+			<p class="Normal">You can also use the Magic Wand tool to automatically refine a selection to include the appropriate harmonics.</p>
+			<p class="heading-3">Begin Selection at Playhead [</p>
+			<p class="Normal">[during playback only]</p>
+			<p class="Normal">If audio is currently selected, this will automatically adjust the selection to begin at the current playback position.</p>
+			<p class="heading-3">End Selection at Playhead ]</p>
+			<p class="Normal">[during playback only]</p>
+			<p class="Normal">Automatically create a selection between the current playhead position and the original anchor playhead position.</p>
+			<p class="heading-3">Delete Selection [Delete on a time selection]</p>
+			<p class="Normal">Deletes the selected audio and closes the space with audio from either side of the timeline.</p>
+			<p class="heading-3">Silence [Delete on a frequency, time-frequency, or freeform selection]</p>
+			<p class="Normal">Deletes selected audio and replaces it with silence.</p>
+			<p class="heading-3">Trim to Selection [Ctrl/Cmd-T]</p>
+			<p class="Normal">Deletes all audio except for the selected audio.</p>
+			<p class="heading-3">Find Similar Event [Ctrl/Cmd-F]</p>
+			<p class="Normal">The Find Similar Event tool lets you choose a selection in RX&apos;s Spectrogram Display and automatically finds similar events before or after that event.</p>
+			<p class="Normal">The following Ctrls are available:</p>
+			<table id="table002" class="BasicTable">
+				<colgroup>
+					<col />
+					<col />
+				</colgroup>
+				<tbody>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Similarity</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Lower values will find more events. The higher the value, the more similar an event must be to the original event for it to be detected.</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Search Duration</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">How many seconds along a file’s timeline the Find Similar Event tool will browse searching for events.</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Number of Bands</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">The number of frequency bands the tool uses to find events. In general, more bands allows the tool to be more precise in frequency, but less precise in time.</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Search using previous undo level</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Uses the audio under the selection from the previous undo level as the basis for comparison. If you are repairing a repeating sound with De-click, enable this option, repair the event in your selection, and then use Find Similar Event to find the next similar problem.</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">To Selection</span></p>
+							<p class="Normal"><span class="Bold">[Alt/Opt-Shift-V]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Pastes audio from the clipboard only into the selected space, regardless of the copied audio&apos;s length. If the copied audio is longer than the new selection, the audio will be cropped to fit. If the new selection is longer than the copied audio, silence will be inserted to fill the remaining space.</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p class="heading-3">Add Marker or Region [M]</p>
+			<p class="Normal">This will create a new marker point at the current location of the cursor/playhead or create a new region if any audio is selected.</p>
+			<p class="heading-3">Edit Cursor Mode</p>
+			<p class="Normal">Changes the behavior of the editor cursor to select by time and/or frequency, or to zoom. These modes can also be selected from the Cursor Mode buttons.</p>
+			<table id="table003" class="BasicTable">
+				<colgroup>
+					<col />
+					<col />
+				</colgroup>
+				<tbody>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Select Time [T]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Makes a time selection</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Select Time/Freq [R]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Makes a rectangular time-frequency selection</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Select Freq [F]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Makes a frequency selection for the duration of a file</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Lasso [L]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Selects everything in a freely defined area</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Selection Brush [B]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Selects everything in a predefined radius</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Selection Wand [W]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Intelligently selects material similar to whatever is under your cursor [magic wand]</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Zoom Time [Z]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Zooms in time</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Zoom Time/Freq [Shift-Z]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Zooms in time and frequency</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Zoom Freq [Alp/Opt-Z]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Zooms in frequency</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Grab Time [G]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Grabs and drags the view in time</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Grab Time/Freq [Shift-G]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Grabs and drags the view in time and frequency</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Grab Freq [Alt/Opt-G]</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Grabs and drags the view in frequency</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p class="heading-3">Snap [Ctrl/Cmd-Shift-;]</p>
+			<p class="Normal">This will cause selections to be snapped to the variables listed below in the Snap To list.</p>
+			<ul>
+				<li class="Unordered-List">Markers</li>
+				<li class="Unordered-List">Ruler [Coarse/Fine]</li>
+				<li class="Unordered-List">Zero Crossings</li>
+				<li class="Unordered-List">All</li>
+				<li class="Unordered-List">None</li>
+			</ul>
+			<p id="_idParaDest-50" class="heading-2"><a id="_idTextAnchor052"></a>View</p>
+			<p class="Inline-Art"><img src="image/image_NGSASU7AJ6J3GNPFE523ARDZC5R6D5HS" alt="" /></p>
+			<p class="heading-3">Collapse / Expand Module Panel</p>
+			<p class="Normal">Collapses the right side panel of RX into a row of icons. This can allow for a much larger portion of the screen given to the overall Spectrogram/Waveform display.</p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_DBWT6PWZLUIGZ75CR3FGTATIEIZM25VL" alt="" /></p>
+			<p class="Normal">Collapsing the module panel gives you more room to edit and analyze your file. You can quickly collapse the module panel by clicking on the triangle at the top right of the module panel.</p>
+			<p class="heading-3">Time Format</p>
+			<p class="Inline-Art"><img src="image/image_3DMNCOEZSWOS7A56VNF3GTV3OXV65PEA" alt="" /></p>
+			<p class="Normal">RX&apos;s time scale and playhead location counter can be set to show different time units. See more details in Time Scale Format section of Chapter "<a target="mainFrame" href="Navigation_Controls.html#_idTextAnchor023"><span class="Hyperlink">Understanding the Navigational Controls</span></a>."</p>
+			<p class="heading-3">Follow Playhead [Ctrl/Cmd+P]</p>
+			<p class="Normal">Toggles whether or not the current view follows the playhead position during playback.</p>
+			<p class="Normal">In Page mode, the view will follow the playhead one view length at a time. In Continuous mode, the view is centered on the playhead as it moves across the file.</p>
+			<p class="heading-3">Effect Overlays</p>
+			<p class="Normal">This allows you to turn special display features for the De-clip and Spectral Repair modules on and off. For an overlay to be visible, you need to have the option selected in the view menu, and the corresponding effect UI needs to be open.</p>
+			<p class="Normal">De-clip Threshold — When the waveform is visible, the threshold settings and Ctrls appear as white lines within the display. This display can be used to adjust the de-clip threshold settings.</p>
+			<p class="heading-3">Clip Gain</p>
+			<p class="Normal">The Clip Gain envelope allows you to adjust the gain of your clip over time.</p>
+			<p class="Normal">You can do the following with Clip Gain envelopes:</p>
+			<ul>
+				<li class="Unordered-List">Fade in/fade out</li>
+				<li class="Unordered-List">Add nodes</li>
+				<li class="Unordered-List">Adjust the gain of individual nodes</li>
+				<li class="Unordered-List">Adjust the gain of an envelope selection</li>
+			</ul>
+			<p class="Inline-Art"><img src="image/image_IQEIBPLS73L4UCTSVBI373NKRCINB7MZ" alt="" /></p>
+			<p class="Normal">To use the Clip Gain envelope:</p>
+			<ol>
+				<li class="Numbered-List" value="1">Select View &gt; Clip Gain from the RX menu.</li>
+				<li class="Numbered-List">The Clip Gain envelope appears with two nodes, one at the beginning of the clip, and one at the end of the clip.</li>
+				<li class="Numbered-List">Click and drag one of the two nodes to increase (by dragging the node up) or decrease (by dragging the node down) the gain of the clip.<p class="Inline-Art"><img src="image/image_A4RQU7MW5RT2OMOOM3USSR66PKW2JIA7" alt="" /></p></li>
+				<li class="Numbered-List">If necessary, add new nodes by pressing Cmd/Ctrl and clicking anywhere in the editor view, or by clicking on the Clip Gain envelope itself.</li>
+			</ol>
+			<p id="_idParaDest-51" class="heading-2"><a id="_idTextAnchor053"></a>Process</p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_YQGEILM4OPUOLYQB4RUKHJDK7TUZD5XO" alt="" /></p>
+			<p class="Normal">Choosing a module from this menu processes your current selection using that module, with its current settings. Several modules that require training have their Learn functionality available in the corresponding submenu.</p>
+			<p class="heading-3">Reverse</p>
+			<p class="Normal">Reverses the selected audio in time. Works only on rectangular selections, does not work on free-form selections.</p>
+			<p class="heading-3">Silence</p>
+			<p class="Normal">Replaces the selected audio signal with silence. Works on selections of arbitrary shape</p>
+			<p id="_idParaDest-52" class="heading-2"><a id="_idTextAnchor054"></a>Transport</p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_E2RS5ZZVHSA7F57XIKXZ4X7HX77ICFOA" alt="" /></p>
+			<p class="heading-3">Input Monitor [Alt/Option-I]</p>
+			<p class="Normal">Enables input monitoring. When input monitoring is enabled, the input signal of RX will be routed to the output signal of RX.</p>
+			<p class="heading-3">Arm for Recording / Record / Stop Recording [Alt/Option-Space]</p>
+			<p class="Normal">Runs the next possible step for recording.</p>
+			<p class="Normal">If you have not opened a new file, Arm for Recording will open the New File dialog for you.</p>
+			<p class="heading-3">Rewind [Return]</p>
+			<p class="Normal">Sets the playhead to the beginning of the file.</p>
+			<p class="heading-3">Play / Stop [Space]</p>
+			<p class="Normal">Starts or stops playback.</p>
+			<p class="Normal">If Input Monitoring is enabled, starting playback will temporarily suspend Input Monitoring.</p>
+			<p class="heading-3">Loop Playback [Control/Command-L]</p>
+			<p class="Normal">Toggles playback looping. If nothing in the file is selected, the end of the file will loop back to the beginning.</p>
+			<p class="heading-3">Playhead Returns on Stop [Control/Command-R]</p>
+			<p class="Normal">Toggles the behavior of the playhead on stop.</p>
+			<p class="Normal">If this is enabled, the playhead will return to the anchor sample (the position before playback began). This is useful for comparing processing.</p>
+			<p class="Normal">If this is disabled, the anchor sample will be set to the current playhead position. This is useful for moving through a file while listening for irregularities.</p>
+			<p id="_idParaDest-53" class="heading-2"><a id="_idTextAnchor055"></a>Window</p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_PJ4NYUYRKMPRWCAJM3GXEMZRBSZGWJNH" alt="" /></p>
+			<p class="Normal">This menu displays the available modules, some metering windows, markers and regions, and a list of your currently open files. Clicking on any of them will bring you to that file. </p>
+			<p class="heading-3">Batch Processing [Ctrl/Cmd+B]</p>
+			<p class="Normal">This gives you access to file based batch processing, as explained in Chapter "<a target="mainFrame" href="batch_processing.html#_idTextAnchor223"><span class="Hyperlink">Batch Processing</span></a>."</p>
+			<p class="heading-3">Waveform Statistics [Alt/Opt+D]</p>
+			<p class="Normal">This gives you access to informational readouts on a variety of amplitude measurements, as explained in Chapter "<a target="mainFrame" href="waveform_statistics.html#_idTextAnchor229"><span class="Hyperlink">Waveform Statistics</span></a>."</p>
+			<p class="heading-3">Spectrum Analyzer</p>
+			<p class="Normal">The spectrum analyzer shows an important analytical view of audio. </p>
+			<p class="Inline-Art"><img src="image/image_SU6NTPSX4R5HYWSL4QGIEQKXUB7ZHUMJ" alt="" /></p>
+			<p class="Normal">A spectrum analyzer uses a fast Fourier transform (FFT) to extract frequency information from a waveform. Depending on the size of the FFT, the signal energy of thousands of frequency bands can be visually represented on a graph.</p>
+			<p class="Normal">The RX Spectrum Analyzer will show the momentary spectrum of audio around the current playhead position, the average spectrum of a selected time and frequency range, or the realtime spectrum of the audio at the output of RX’s playback.</p>
+			<p class="Normal"><span class="Bold">Blue (Anchor Sample):</span> The momentary spectrum of the audio around the playhead.</p>
+			<p class="Normal"><span class="Bold">Yellow (Selection): </span>The time-averaged spectrum of the current selection. Use selection tools in the spectrogram window to select a time and frequency range and the spectrum analyzer will automatically zoom to follow the time and frequency range selected.</p>
+			<p class="Normal"><span class="Bold">Orange (Playback / Input): </span>The real-time spectrum of audio as it plays back. When Input Monitoring is enabled or RX is recording, the spectrum will show the input signal.</p>
+			<p class="Normal">The Peak Finding feature offers a precise view of peaking frequency information.</p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_U6IPF2W4EIQ6PVVSVFH46HRE3ANX6SZL" alt="" /></p>
+			<p class="Normal">The RX Spectrum Analyzer has a peak-finding feature the will automatically find peaks in the spectrum data. If you hover your mouse cursor near a peak in the spectrum, a readout will appear displaying the exact frequency of the peak, its amplitude, and the closest musical note. This peak-finding readout can provide much higher accuracy than simply inspecting the graph by zooming in on the display and/or increasing the FFT size in the settings window.</p>
+			<p class="Normal">The circle displays the exact amplitude and frequency of the spectral peak. It is usually slightly above the spectrum, because each spectral peak consists of several FFT bins, and their power is added together. This effect is known as spectral smearing (or frequency smearing) and is controlled by the choice of a weighting window.</p>
+			<p class="heading-3">Markers and Regions [Alt+M]</p>
+			<p class="Normal">Markers and regions will allow you to define and save particular points or selections in time for your particular audio file. All markers and regions that are created will be saved along with your audio file when exporting.</p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_FXNLF32P43DLDWLPUGE3V4N5RSZDG4EC" alt="" /></p>
+			<p class="Normal">You can add a marker or region at the current location of the playhead by pressing the M key or selecting Add Marker or Region from the Window menu. Markers and regions can also be created from the Markers and Regions window. If you have a large number of markers and regions, you may use the search box in the upper right to quickly locate the ones you’re looking for.</p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_FTJTQ5E7S5RBR426WHMOR5DBMLG3SA6F" alt="" /></p>
+			<p class="heading-4"> Checkboxes</p>
+			<ul>
+				<li class="Unordered-List">The checkboxes to the left of your Marker list designate your selection.</li>
+				<li class="Unordered-List">The checkbox at the top of the list toggles between selecting all and non.</li>
+			</ul>
+			<p class="heading-4">Play button</p>
+			<ul>
+				<li class="Unordered-List">Begins playback from the start point of your marker or region.</li>
+			</ul>
+			<p class="heading-4">Find button</p>
+			<ul>
+				<li class="Unordered-List">Moves the playhead to the exact position of your marker, but will not begin playback. For a region, Find will select the audio in the region.</li>
+			</ul>
+			<p class="heading-4">Add</p>
+			<ul>
+				<li class="Unordered-List">Creates a new marker point at the exact current position of the playhead.</li>
+			</ul>
+			<p class="heading-4">Remove selected</p>
+			<ul>
+				<li class="Unordered-List">Deletes the desired marker or region. Select all</li>
+				<li class="Unordered-List">Selects all markers and regions.</li>
+			</ul>
+			<p class="heading-4">Select none</p>
+			<ul>
+				<li class="Unordered-List">Deselects all markers and regions.</li>
+			</ul>
+			<p class="heading-4">Import Marker File</p>
+			<ul>
+				<li class="Unordered-List">Opens saved marker information from another file or RX session.</li>
+			</ul>
+			<p class="heading-4">Export Marker File</p>
+			<ul>
+				<li class="Unordered-List">Saves markers and regions in a tab-delimited text file that can be opened and used in another file or session of RX.</li>
+			</ul>
+			<p class="heading-3">File Info</p>
+			<p class="Normal">This gives you access to any metadata and other information about the audio file, as explained in Chapter "<a target="mainFrame" href="Working_with_Files.html#_idTextAnchor013"><span class="Hyperlink">Working with Files</span></a>."</p>
+			<p class="heading-3">Next File (Control-Tab)</p>
+			<p class="Normal">Changes RX’s current file tab to the next file in the window order.</p>
+			<p class="heading-3">Previous File (Control-Shift-Tab)</p>
+			<p class="Normal">Changes RX’s current file tab to the previous file in the window order.</p>
+			<p id="_idParaDest-54" class="heading-2"><a id="_idTextAnchor056"></a>Help</p>
+			<p class="Inline-Art"><img src="image/image_5OGICYZP43B2ZQEZTSPRXLME6SMDECPB" alt="" /></p>
+			<p class="Normal">This window gives you access to launching the help, instantly navigating to keyboard shortcuts, and also free online video tutorials.</p>
+		</div>
+	</body>
+</html>

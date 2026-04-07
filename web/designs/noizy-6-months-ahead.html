@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY — 6 Months Ahead of Everyone</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#020407;--deep:#04080F;--navy:#071018;--panel:#0A1622;--card:#0C1B2E;
+  --cyan:#00C8FF;--gold:#C9A84C;--green:#4CAF82;--red:#FF3B3B;--orange:#FF6B35;--purple:#9B72CF;--pink:#D4A0C0;
+  --white:#EEF3F8;--muted:rgba(238,243,248,.42);--dim:rgba(238,243,248,.2);--faint:rgba(238,243,248,.07);
+  --cl:rgba(0,200,255,.07);--gl:rgba(201,168,76,.07);
+  --border:rgba(0,200,255,.08);--gborder:rgba(201,168,76,.1);
+  --mono:'DM Mono',monospace;--dis:'Bebas Neue',sans-serif;--ser:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--mono);font-size:12px;min-height:100vh;overflow-x:hidden}
+
+/* STAR FIELD */
+.stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--d,3s) var(--del,0s) infinite alternate}
+@keyframes twinkle{0%{opacity:var(--oa,.1)}100%{opacity:var(--ob,.6)}}
+
+/* SCANLINE */
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.015) 2px,rgba(0,0,0,.015) 4px);pointer-events:none;z-index:1000}
+
+/* LAYOUT */
+.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 2rem}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative}
+.hero-eyebrow{font-size:.52rem;letter-spacing:.6em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s .3s forwards}
+.hero-title{font-family:var(--dis);font-size:clamp(4rem,12vw,10rem);line-height:.9;letter-spacing:.02em;margin-bottom:1rem;opacity:0;animation:fadeUp .8s .5s forwards}
+.hero-title .t1{color:var(--gold);display:block}
+.hero-title .t2{color:var(--cyan);display:block}
+.hero-title .t3{color:rgba(238,243,248,.15);display:block;font-size:.55em;letter-spacing:.15em}
+.hero-sub{font-family:var(--ser);font-style:italic;font-size:clamp(1rem,2.5vw,1.5rem);color:var(--muted);max-width:700px;line-height:1.6;margin-bottom:2.5rem;opacity:0;animation:fadeUp .8s .7s forwards}
+.hero-stat-row{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s forwards}
+.hstat{text-align:center}
+.hstat-val{font-family:var(--dis);font-size:3rem;line-height:1;color:var(--cyan);display:block}
+.hstat-lbl{font-size:.5rem;letter-spacing:.35em;text-transform:uppercase;color:var(--dim);margin-top:.2rem;display:block}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--dim);animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* ── SECTION HEADER ── */
+.section{padding:6rem 0}
+.sec-eyebrow{font-size:.5rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}
+.sec-title{font-family:var(--dis);font-size:clamp(2.5rem,6vw,5rem);letter-spacing:.04em;line-height:.95;margin-bottom:1rem}
+.sec-body{font-family:var(--ser);font-style:italic;font-size:1.05rem;color:var(--muted);max-width:680px;line-height:1.7;margin-bottom:3rem}
+
+/* ── FRONTIER GRID ── */
+.frontier-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--border)}
+
+/* CARD */
+.fc{background:var(--bg);padding:2.5rem;cursor:pointer;transition:background .2s;position:relative;overflow:hidden}
+.fc:hover{background:var(--navy)}
+.fc::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s}
+.fc:hover::before{opacity:1}
+.fc.span2{grid-column:1/-1}
+.fc-num{font-family:var(--dis);font-size:5rem;line-height:1;opacity:.06;position:absolute;top:.5rem;right:1rem;letter-spacing:-.02em;transition:opacity .3s}
+.fc:hover .fc-num{opacity:.12}
+.fc-tag{font-size:.46rem;letter-spacing:.4em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.fc-tag::before{content:'';width:20px;height:1px}
+.fc-name{font-family:var(--dis);font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:.04em;line-height:1;margin-bottom:.5rem}
+.fc-codename{font-size:.5rem;letter-spacing:.35em;text-transform:uppercase;margin-bottom:1rem;opacity:.5}
+.fc-desc{font-family:var(--ser);font-style:italic;font-size:.95rem;color:var(--muted);line-height:1.65;margin-bottom:1.5rem}
+.fc-pillars{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+.fc-pillar{display:flex;align-items:flex-start;gap:.6rem;font-size:.62rem;letter-spacing:.04em;color:var(--dim);line-height:1.5}
+.fc-pillar::before{content:'▸';flex-shrink:0;margin-top:.05rem}
+.fc-moat{border-top:1px solid var(--faint);padding-top:1rem;margin-top:1rem}
+.fc-moat-lbl{font-size:.44rem;letter-spacing:.4em;text-transform:uppercase;margin-bottom:.4rem}
+.fc-moat-val{font-size:.78rem;color:var(--white);line-height:1.55}
+.fc-timeline{position:absolute;bottom:1.5rem;right:1.5rem;font-size:.46rem;letter-spacing:.3em;text-transform:uppercase;opacity:.35}
+.fc-status{display:inline-flex;align-items:center;gap:.3rem;font-size:.46rem;letter-spacing:.25em;text-transform:uppercase;padding:.2rem .55rem;border:1px solid;border-radius:1px;margin-bottom:.6rem}
+.dot{width:5px;height:5px;border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+/* CARD COLOUR VARIANTS */
+.fc.cyan{border-top:2px solid var(--cyan)}
+.fc.cyan .fc-tag{color:var(--cyan)}.fc.cyan .fc-tag::before{background:var(--cyan)}
+.fc.cyan .fc-name{color:var(--cyan)}.fc.cyan .fc-num{color:var(--cyan)}
+.fc.cyan .fc-moat-lbl{color:var(--cyan)}.fc.cyan .fc-moat-val .hl{color:var(--cyan)}
+.fc.cyan .fc-status{color:var(--cyan);border-color:rgba(0,200,255,.25);background:var(--cl)}
+.fc.cyan .dot{background:var(--cyan)}
+
+.fc.gold{border-top:2px solid var(--gold)}
+.fc.gold .fc-tag{color:var(--gold)}.fc.gold .fc-tag::before{background:var(--gold)}
+.fc.gold .fc-name{color:var(--gold)}.fc.gold .fc-num{color:var(--gold)}
+.fc.gold .fc-moat-lbl{color:var(--gold)}.fc.gold .fc-moat-val .hl{color:var(--gold)}
+.fc.gold .fc-status{color:var(--gold);border-color:rgba(201,168,76,.25);background:var(--gl)}
+.fc.gold .dot{background:var(--gold)}
+
+.fc.green{border-top:2px solid var(--green)}
+.fc.green .fc-tag{color:var(--green)}.fc.green .fc-tag::before{background:var(--green)}
+.fc.green .fc-name{color:var(--green)}.fc.green .fc-num{color:var(--green)}
+.fc.green .fc-moat-lbl{color:var(--green)}.fc.green .fc-moat-val .hl{color:var(--green)}
+.fc.green .fc-status{color:var(--green);border-color:rgba(76,175,130,.25);background:rgba(76,175,130,.06)}
+.fc.green .dot{background:var(--green)}
+
+.fc.purple{border-top:2px solid var(--purple)}
+.fc.purple .fc-tag{color:var(--purple)}.fc.purple .fc-tag::before{background:var(--purple)}
+.fc.purple .fc-name{color:var(--purple)}.fc.purple .fc-num{color:var(--purple)}
+.fc.purple .fc-moat-lbl{color:var(--purple)}.fc.purple .fc-moat-val .hl{color:var(--purple)}
+.fc.purple .fc-status{color:var(--purple);border-color:rgba(155,114,207,.25);background:rgba(155,114,207,.06)}
+.fc.purple .dot{background:var(--purple)}
+
+.fc.orange{border-top:2px solid var(--orange)}
+.fc.orange .fc-tag{color:var(--orange)}.fc.orange .fc-tag::before{background:var(--orange)}
+.fc.orange .fc-name{color:var(--orange)}.fc.orange .fc-num{color:var(--orange)}
+.fc.orange .fc-moat-lbl{color:var(--orange)}.fc.orange .fc-moat-val .hl{color:var(--orange)}
+.fc.orange .fc-status{color:var(--orange);border-color:rgba(255,107,53,.25);background:rgba(255,107,53,.06)}
+.fc.orange .dot{background:var(--orange)}
+
+.fc.red{border-top:2px solid var(--red)}
+.fc.red .fc-tag{color:var(--red)}.fc.red .fc-tag::before{background:var(--red)}
+.fc.red .fc-name{color:var(--red)}.fc.red .fc-num{color:var(--red)}
+.fc.red .fc-moat-lbl{color:var(--red)}.fc.red .fc-moat-val .hl{color:var(--red)}
+.fc.red .fc-status{color:var(--red);border-color:rgba(255,59,59,.25);background:rgba(255,59,59,.06)}
+.fc.red .dot{background:var(--red)}
+
+/* ── TIMELINE ── */
+.timeline-section{padding:5rem 0}
+.tl-wrap{position:relative;padding-left:2rem}
+.tl-wrap::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--cyan),var(--gold),var(--green),transparent)}
+.tl-item{position:relative;padding:0 0 3rem 3rem}
+.tl-dot{position:absolute;left:-2rem;top:.25rem;width:12px;height:12px;border-radius:50%;border:2px solid;background:var(--bg);transform:translateX(-50%)}
+.tl-month{font-size:.46rem;letter-spacing:.45em;text-transform:uppercase;margin-bottom:.3rem;opacity:.5}
+.tl-title{font-family:var(--dis);font-size:1.6rem;letter-spacing:.05em;line-height:1;margin-bottom:.4rem}
+.tl-body{font-size:.72rem;color:var(--muted);line-height:1.6;max-width:700px}
+.tl-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.6rem}
+.tl-tag{font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;padding:.15rem .5rem;border:1px solid var(--faint);color:var(--dim)}
+
+/* ── QUOTE ── */
+.quote-section{padding:5rem 0;text-align:center}
+.big-quote{font-family:var(--ser);font-style:italic;font-size:clamp(1.3rem,3vw,2.2rem);color:var(--white);line-height:1.5;max-width:900px;margin:0 auto 1.5rem}
+.big-quote em{color:var(--gold);font-style:normal}
+.quote-attr{font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;color:var(--dim)}
+
+/* ── MOAT MATRIX ── */
+.matrix{width:100%;border-collapse:collapse;margin:2rem 0}
+.matrix th{font-size:.48rem;letter-spacing:.35em;text-transform:uppercase;color:var(--dim);padding:.6rem .8rem;text-align:left;border-bottom:1px solid var(--faint)}
+.matrix td{font-size:.68rem;padding:.65rem .8rem;border-bottom:1px solid rgba(255,255,255,.03);color:var(--muted);vertical-align:top}
+.matrix tr:hover td{background:var(--faint);color:var(--white)}
+.hl-cyan{color:var(--cyan);font-weight:bold}
+.hl-gold{color:var(--gold);font-weight:bold}
+.hl-green{color:var(--green);font-weight:bold}
+.check{color:var(--green);font-size:.85rem}
+.cross{color:rgba(255,255,255,.15);font-size:.85rem}
+
+/* ── CTA ── */
+.cta-section{padding:6rem 0;text-align:center;position:relative}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(0,200,255,.04),transparent)}
+.cta-title{font-family:var(--dis);font-size:clamp(3rem,8vw,7rem);letter-spacing:.04em;line-height:.95;margin-bottom:1.5rem}
+.cta-title .l1{color:var(--gold);display:block}
+.cta-title .l2{color:var(--cyan);display:block}
+.cta-sub{font-family:var(--ser);font-style:italic;font-size:1.1rem;color:var(--muted);margin-bottom:2.5rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{font-family:var(--dis);font-size:1rem;letter-spacing:.12em;padding:.7rem 2.2rem;cursor:pointer;transition:all .2s;border:none}
+.btn-primary{background:var(--gold);color:#020407}
+.btn-primary:hover{background:var(--cyan);color:#020407}
+.btn-secondary{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+.btn-secondary:hover{background:var(--cyan);color:#020407}
+
+/* DIVIDER */
+.div-line{height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);margin:0}
+
+/* SCROLL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .frontier-grid{grid-template-columns:1fr}
+  .fc.span2{grid-column:1}
+  .hero-stat-row{gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- STARS -->
+<div class="stars" id="stars"></div>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-eyebrow">NOIZYFISH Inc. · Strategic Vision · March 2026</div>
+  <div class="hero-title">
+    <span class="t1">6 MONTHS</span>
+    <span class="t2">AHEAD</span>
+    <span class="t3">of everyone else</span>
+  </div>
+  <div class="hero-sub">Seven things nobody has built. All technically possible with the SUPERSONIC stack already in place. All defensible moats. All pointing at the same north star — the artist owns everything.</div>
+  <div class="hero-stat-row">
+    <div class="hstat"><span class="hstat-val">7</span><span class="hstat-lbl">Frontier Plays</span></div>
+    <div class="hstat"><span class="hstat-val" style="color:var(--gold)">0</span><span class="hstat-lbl">Direct Competitors</span></div>
+    <div class="hstat"><span class="hstat-val" style="color:var(--green)">$1M+</span><span class="hstat-lbl">ARR Path</span></div>
+    <div class="hstat"><span class="hstat-val" style="color:var(--purple)">∞</span><span class="hstat-lbl">Compounding Moat</span></div>
+  </div>
+  <div class="scroll-hint">▼ &nbsp; scroll to explore</div>
+</div>
+
+<div class="div-line"></div>
+
+<!-- ══ FRONTIER CARDS ══ -->
+<div class="wrap">
+<div class="section">
+  <div class="sec-eyebrow reveal">What Nobody Else Is Building</div>
+  <div class="sec-title reveal" style="color:var(--white)">The Seven <span style="color:var(--cyan)">Frontier</span> Plays</div>
+  <div class="sec-body reveal">Each one sits exactly at the intersection of what NOIZY already has — 40 years of creative DNA, Dr. Benoit's neuroscience, the sovereign stack, consent-as-code — and what the rest of the industry hasn't thought to build yet.</div>
+</div>
+</div>
+
+<div class="frontier-grid">
+
+  <!-- ── CARD 1 ── -->
+  <div class="fc cyan reveal">
+    <div class="fc-num">01</div>
+    <div class="fc-status"><div class="dot"></div>BUILD NOW</div>
+    <div class="fc-tag">Protocol Layer</div>
+    <div class="fc-name">NOIZY<br>CONSENT<br>PROTOCOL</div>
+    <div class="fc-codename">NCP v1.0 — The OAuth of Voice</div>
+    <div class="fc-desc">NOIZY doesn't just USE consent-as-code — it BECOMES the industry standard that every other platform licenses. Like SSL certificates. Every AI voice platform needs it. NOIZY built it first. NOIZY owns the protocol.</div>
+    <div class="fc-pillars">
+      <div class="fc-pillar">Every voice synthesis output carries a cryptographic token tied to the artist's biometric voice ID. Unstealable. Unforgeable. Consent baked into the file itself — not the metadata, the file.</div>
+      <div class="fc-pillar">NCP is open-specced but NOIZY-certified. Music labels, broadcasters, courts, insurance companies all need certified outputs. They pay for certification.</div>
+      <div class="fc-pillar">60-second global revocation becomes a protocol primitive. Any platform implementing NCP gets kill-switch architecture for free. Artists trust the whole ecosystem.</div>
+      <div class="fc-pillar">ElevenLabs, Replica, Resemble — they'll need to implement NCP or be legally exposed. NOIZY wrote the standard. NOIZY certifies compliance.</div>
+    </div>
+    <div class="fc-moat">
+      <div class="fc-moat-lbl">The Moat</div>
+      <div class="fc-moat-val">First-mover on <span class="hl">the consent layer</span> means every competitor builds on NOIZY's foundation. You don't fight the market — <span class="hl">you become the rules of the market.</span></div>
+    </div>
+    <div class="fc-timeline">Q2 2026 · Spec first</div>
+  </div>
+
+  <!-- ── CARD 2 ── -->
+  <div class="fc gold reveal">
+    <div class="fc-num">02</div>
+    <div class="fc-status"><div class="dot"></div>UNIQUE ASSET</div>
+    <div class="fc-tag">Research Layer</div>
+    <div class="fc-name">NEURO<br>ACOUSTIC<br>INTELLIGENCE</div>
+    <div class="fc-codename">NAI — Dr. Benoit × Rob Plowman</div>
+    <div class="fc-desc">The world's only neurosurgeon-composer research collaboration. Map how specific frequencies, progressions, and timbres affect neurological states — clinically, not as wellness woo. Then build composition tools that deliberately target specific brain outcomes.</div>
+    <div class="fc-pillars">
+      <div class="fc-pillar">Dr. Benoit's 50 years of neural systems expertise meets 40 years of audio production. Nobody else on earth has this pairing.</div>
+      <div class="fc-pillar">Clinical-grade research: specific Hz ranges for focus, recall, emotional regulation. Not Spotify mood playlists — actual neuroscience with peer-reviewed backing.</div>
+      <div class="fc-pillar">NOIZY NAI Engine: a composition tool that takes a target brain state as input and outputs music tuned to achieve it. Built on the Music Farm, powered by the taste DNA pipeline.</div>
+      <div class="fc-pillar">Licensing path: hospitals, surgical training programs, PTSD treatment, learning applications, game studios wanting player immersion optimised neurologically.</div>
+    </div>
+    <div class="fc-moat">
+      <div class="fc-moat-lbl">The Moat</div>
+      <div class="fc-moat-val"><span class="hl">No one can replicate this collaboration.</span> Dr. Benoit + Rob Plowman is a singular combination. The research is the moat. The tool is the product.</div>
+    </div>
+    <div class="fc-timeline">Q3 2026 · Research phase</div>
+  </div>
+
+  <!-- ── CARD 3 ── -->
+  <div class="fc purple reveal">
+    <div class="fc-num">03</div>
+    <div class="fc-status"><div class="dot"></div>888 READY</div>
+    <div class="fc-tag">Game Audio Layer</div>
+    <div class="fc-name">THE<br>LIVING<br>SCORE</div>
+    <div class="fc-codename">Player-Adaptive Music Intelligence</div>
+    <div class="fc-desc">Music that doesn't just adapt to game state — it adapts to the individual player. Over hundreds of hours, The Living Score learns this specific person's emotional fingerprint and reshapes the audio landscape around them. Permanently.</div>
+    <div class="fc-pillars">
+      <div class="fc-pillar">Session 1: baseline emotional profiling via CLAP + biometric signal analysis. The system maps the player's audio-emotional response patterns.</div>
+      <div class="fc-pillar">Session 50: the music knows them. The brass swell that moves Player A might be a string motif for Player B. The Living Score figures this out silently and adapts.</div>
+      <div class="fc-pillar">888 title integration: AAA game studios pay premium for music that builds genuine emotional bonds between player and game world. Churn drops. Reviews improve. Franchises strengthen.</div>
+      <div class="fc-pillar">The player's profile is sovereign. It travels with them across titles in the franchise. The relationship compounds over the franchise lifespan — not just one game.</div>
+    </div>
+    <div class="fc-moat">
+      <div class="fc-moat-lbl">The Moat</div>
+      <div class="fc-moat-val">Every AAA studio with a franchise <span class="hl">needs this feature</span> once one competitor has it. NOIZY builds it first. <span class="hl">The player data is the moat</span> — it compounds with every session.</div>
+    </div>
+    <div class="fc-timeline">Q3 2026 · Prototype</div>
+  </div>
+
+  <!-- ── CARD 4 ── -->
+  <div class="fc green reveal">
+    <div class="fc-num">04</div>
+    <div class="fc-status"><div class="dot"></div>ZERO COMPETITION</div>
+    <div class="fc-tag">Legacy Layer</div>
+    <div class="fc-name">VOICE<br>ESTATE<br>ARCHITECTURE</div>
+    <div class="fc-codename">The Creative Will — Post-Career Sovereignty</div>
+    <div class="fc-desc">The legal and technical framework for what happens to an AI voice asset after an artist's retirement — or death. The Beatles estate problem, solved in advance. Nobody has built this. The estates of the most significant artists in the world will pay for it.</div>
+    <div class="fc-pillars">
+      <div class="fc-pillar">The Creative Will: a legally-binding document paired with a technical vault specification. The artist defines exactly who can use their voice, for what, at what rate, after they're gone.</div>
+      <div class="fc-pillar">Succession protocol: the voice estate transfers to designated beneficiaries with all consent locks, royalty splits, and usage restrictions intact — automatically, cryptographically.</div>
+      <div class="fc-pillar">Retirement mode: the artist's AVA continues earning while they live in quiet. Zero management required. The farm runs itself. The royalties continue.</div>
+      <div class="fc-pillar">Estate licensing: film studios and game companies can license a deceased artist's voice with full legal clarity, zero ambiguity, and provable consent from when the artist was alive.</div>
+    </div>
+    <div class="fc-moat">
+      <div class="fc-moat-lbl">The Moat</div>
+      <div class="fc-moat-val">Every voice actor, every composer, every artist <span class="hl">eventually needs this.</span> NOIZY is the only platform where the voice was consent-locked from day one. <span class="hl">The estate is only as clean as the original consent.</span></div>
+    </div>
+    <div class="fc-timeline">Q3–Q4 2026 · Legal + tech</div>
+  </div>
+
+  <!-- ── CARD 5 ── -->
+  <div class="fc red reveal">
+    <div class="fc-num">05</div>
+    <div class="fc-status"><div class="dot"></div>SELL THE KEY</div>
+    <div class="fc-tag">Security Layer</div>
+    <div class="fc-name">NOIZY<br>PROOF</div>
+    <div class="fc-codename">Deepfake Detection + Proof of Origin</div>
+    <div class="fc-desc">The watermarking engine is already in the sovereign stack. NOIZY PROOF is the commercial product built on top — the deepfake detection and proof-of-origin system that music labels, broadcasters, courts, and insurance companies pay subscription fees to access.</div>
+    <div class="fc-pillars">
+      <div class="fc-pillar">Every NOIZY output carries a cryptographic watermark. NOIZY PROOF is the verification service that proves authenticity — or exposes fraud — in any audio file.</div>
+      <div class="fc-pillar">Adam Robb builds the security architecture. NOIZY licenses the verification standard. Courts accept NOIZY PROOF certificates as legal evidence of audio provenance.</div>
+      <div class="fc-pillar">The business model: NOIZY sells the lock (DreamChamber consent vault) AND the key (NOIZY PROOF verification). Both products. One infrastructure.</div>
+      <div class="fc-pillar">Broadcasters need this for live content. Insurance companies need it for claims. Labels need it for copyright disputes. Governments need it for disinformation detection.</div>
+    </div>
+    <div class="fc-moat">
+      <div class="fc-moat-lbl">The Moat</div>
+      <div class="fc-moat-val">The deepfake problem gets <span class="hl">worse every 6 months.</span> The market for proof-of-origin verification scales with the threat. NOIZY is the <span class="hl">only platform that built the origination layer AND the verification layer.</span></div>
+    </div>
+    <div class="fc-timeline">Q2 2026 · Adam Robb</div>
+  </div>
+
+  <!-- ── CARD 6 ── -->
+  <div class="fc orange reveal">
+    <div class="fc-num">06</div>
+    <div class="fc-status"><div class="dot"></div>GLOBAL PLAY</div>
+    <div class="fc-tag">Cultural Intelligence Layer</div>
+    <div class="fc-name">CULTURAL<br>RESONANCE<br>ENGINE</div>
+    <div class="fc-codename">Emotional Translation Across Cultures</div>
+    <div class="fc-desc">Not language translation. Emotional translation. The same scene scored differently — not in a different language, but in a different emotional register — for different cultural markets. Japanese horror scoring vs American. Brazilian romantic vs Nordic. The music feels right to the audience, not just correct.</div>
+    <div class="fc-pillars">
+      <div class="fc-pillar">Cultural emotional fingerprinting: CLAP + all-MiniLM maps how music lands emotionally in different cultural contexts. Decades of ethnomusicology, compressed into a deployable engine.</div>
+      <div class="fc-pillar">Same scene, different score: a film sends one scene to the CRE and receives culturally-tuned versions for EN-CA, JP, BR, DE, KR, IN markets. Each version is emotionally correct for its audience.</div>
+      <div class="fc-pillar">A.I.V.A. cultural adaptation: RSP_001 doesn't just speak Japanese — it understands the emotional register expected of a character in that cultural context and performs accordingly.</div>
+      <div class="fc-pillar">Global gaming: Commander Ash feels like Commander Ash to every player in every territory — because the emotional performance is culturally calibrated, not just linguistically translated.</div>
+    </div>
+    <div class="fc-moat">
+      <div class="fc-moat-lbl">The Moat</div>
+      <div class="fc-moat-val">Global studios pay <span class="hl">significant money</span> for cultural authenticity in localisation. NOIZY is the first platform to approach this as <span class="hl">emotional intelligence rather than translation.</span></div>
+    </div>
+    <div class="fc-timeline">Q4 2026 · Research + build</div>
+  </div>
+
+  <!-- ── CARD 7 — FULL WIDTH ── -->
+  <div class="fc gold span2 reveal">
+    <div class="fc-num" style="font-size:8rem">07</div>
+    <div class="fc-status"><div class="dot"></div>OPERATION LIVE — NOW</div>
+    <div class="fc-tag">The Proof Layer</div>
+    <div class="fc-name">OPERATION<br>VOICE ARMY</div>
+    <div class="fc-codename">RSP_001 → Founding Cohort → Demand Signal → Cultural Authority</div>
+    <div class="fc-desc" style="max-width:800px">This is the play that makes everything else possible. RSP_001 is the proof of concept. Once it works — the technology is proven, the artist-first model is demonstrated, the quality gap is audible — everything else follows. Not because NOIZY marketed it. Because production studios heard RSP_001 and couldn't go back.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-bottom:1.5rem">
+      <div>
+        <div style="font-size:.44rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:1px solid rgba(201,168,76,.2)">PHASE 1 — NOW</div>
+        <div class="fc-pillar" style="font-size:.65rem">RSP_001: Rob's voice as the first A.I.V.A. Full pipeline. Full emotional range. Full language adaptation. The technology proved on the founder's own voice first.</div>
+        <div class="fc-pillar" style="font-size:.65rem">Target: 3–10 hours of recording across 5 emotional ranges, 3 character archetypes, phoneme coverage matrix. The most complete personal voice dataset ever assembled for one person.</div>
+      </div>
+      <div>
+        <div style="font-size:.44rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:1px solid rgba(201,168,76,.2)">PHASE 2 — Q3 2026</div>
+        <div class="fc-pillar" style="font-size:.65rem">Founding Cohort: 10–20 exceptional voices. Hand-selected. Rob's ear. Every one with a distinct character identity, emotional range, and cultural scope. No mediocrity enters the DreamChamber.</div>
+        <div class="fc-pillar" style="font-size:.65rem">Each founding artist gets the full DreamChamber protocol, consent vault, Language Adaptation Engine, and a personal dashboard. They are co-owners of what NOIZYVOX becomes.</div>
+      </div>
+      <div>
+        <div style="font-size:.44rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:1px solid rgba(201,168,76,.2)">PHASE 3 — Q4 2026</div>
+        <div class="fc-pillar" style="font-size:.65rem">The Demand Signal: production studios begin requesting specific AVAs by name. Detective Morrison for a crime podcast. Commander Ash for a game title. RSP_001 for a score.</div>
+        <div class="fc-pillar" style="font-size:.65rem">This is the demand-pull shift. Studios are no longer browsing a commodity library. They are competing for access to voices they can't get anywhere else. The rate floor becomes irrelevant.</div>
+      </div>
+    </div>
+    <div class="fc-moat">
+      <div class="fc-moat-lbl">The Ultimate Moat</div>
+      <div class="fc-moat-val" style="font-size:.9rem;max-width:900px">The Pat Boone records go to the back of the closet. Once a studio hears the difference between a living AVA with 40 years of craft behind it and a generic synthesis engine — <span class="hl">they cannot unhear it.</span> That's not a feature advantage. <span class="hl">That's a cultural shift.</span> NOIZY is the Beatles. Everyone else is Pat Boone.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ COMPETITIVE MATRIX ══ -->
+<div class="wrap">
+<div class="section reveal">
+  <div class="sec-eyebrow">Competitive Landscape</div>
+  <div class="sec-title" style="color:var(--white)">Where NOIZY <span style="color:var(--cyan)">Stands Alone</span></div>
+  <table class="matrix">
+    <thead>
+      <tr>
+        <th>CAPABILITY</th>
+        <th>ElevenLabs</th>
+        <th>Replica</th>
+        <th>Suno</th>
+        <th>NOIZY.ai</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Artist consent architecture</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check hl-cyan">✓ NCP</td></tr>
+      <tr><td>75% perpetual artist royalty</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check hl-gold">✓ Protocol</td></tr>
+      <tr><td>60-second global revocation</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check hl-cyan">✓ Live</td></tr>
+      <tr><td>Neuro-acoustic intelligence</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check hl-gold">✓ Dr. Benoit</td></tr>
+      <tr><td>Player-adaptive living score</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check hl-green">✓ Building</td></tr>
+      <tr><td>Voice estate architecture</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check hl-green">✓ Building</td></tr>
+      <tr><td>Deepfake proof-of-origin</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check hl-cyan">✓ Adam Robb</td></tr>
+      <tr><td>Cultural resonance engine</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check hl-gold">✓ Building</td></tr>
+      <tr><td>Founder as Voice #1</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check hl-gold">✓ RSP_001</td></tr>
+      <tr><td>Sovereign open-source stack</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check hl-cyan">✓ SUPERSONIC</td></tr>
+      <tr><td>Music Farm — personal repertoire</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">Partial</td><td class="check hl-gold">✓ Full</td></tr>
+      <tr><td>AAA game cultural adaptation</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check hl-green">✓ 888 Ready</td></tr>
+    </tbody>
+  </table>
+  <div style="font-size:.52rem;letter-spacing:.15em;color:var(--dim);text-align:right;margin-top:.5rem">Every ✗ in the NOIZY column is a moat. Every ✓ is a product.</div>
+</div>
+</div>
+
+<!-- ══ TIMELINE ══ -->
+<div class="wrap">
+<div class="timeline-section">
+  <div class="sec-eyebrow reveal">The Build Sequence</div>
+  <div class="sec-title reveal" style="color:var(--white)">6-Month <span style="color:var(--gold)">Countdown</span></div>
+  <div style="margin-top:3rem" class="reveal">
+  <div class="tl-wrap">
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:var(--cyan);color:var(--cyan)"></div>
+      <div class="tl-month" style="color:var(--cyan)">March — April 2026</div>
+      <div class="tl-title" style="color:var(--cyan)">RSP_001 + NCP Spec</div>
+      <div class="tl-body">Begin RSP_001 recording session. 48kHz/32-bit, phoneme matrix, 5 emotional ranges, 3 archetypes. Simultaneously: write the NOIZY Consent Protocol specification — the technical and legal standard that becomes NCP v1.0. Adam Robb engaged for watermarking security architecture.</div>
+      <div class="tl-tags"><span class="tl-tag">RSP_001</span><span class="tl-tag">NCP v1.0</span><span class="tl-tag">Adam Robb</span><span class="tl-tag">SUPERSONIC v2.0 live</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:var(--gold)"></div>
+      <div class="tl-month" style="color:var(--gold)">May 2026</div>
+      <div class="tl-title" style="color:var(--gold)">NOIZY PROOF Alpha + NAI Research Begins</div>
+      <div class="tl-body">NOIZY PROOF alpha — watermarking verification engine live and testable. First institutional conversations: music labels, broadcasters, legal. Neuro-Acoustic Intelligence research formally begins with Dr. Benoit — first mapping sessions, protocol designed.</div>
+      <div class="tl-tags"><span class="tl-tag">NOIZY PROOF</span><span class="tl-tag">NAI Research</span><span class="tl-tag">Dr. Benoit</span><span class="tl-tag">Institutional outreach</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:var(--green)"></div>
+      <div class="tl-month" style="color:var(--green)">June 2026</div>
+      <div class="tl-title" style="color:var(--green)">Founding Cohort Opens + Living Score Prototype</div>
+      <div class="tl-body">NOIZYVOX opens to founding cohort — 10 hand-selected artists. DreamChamber protocol live. Each artist goes through the full intake: biometric ID, consent vault, emotional profiling, language adaptation. Living Score prototype begins with one 888 game studio partner.</div>
+      <div class="tl-tags"><span class="tl-tag">Founding Cohort</span><span class="tl-tag">DreamChamber Live</span><span class="tl-tag">Living Score</span><span class="tl-tag">888 Partner</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:var(--purple)"></div>
+      <div class="tl-month" style="color:var(--purple)">July 2026</div>
+      <div class="tl-title" style="color:var(--purple)">Voice Estate Architecture v1 + Cultural Engine Research</div>
+      <div class="tl-body">Voice Estate Architecture legal framework drafted with counsel. Technical vault spec written. First artist signs a Creative Will — a historical milestone. Cultural Resonance Engine ethnomusicology research phase begins: Japanese, Brazilian, Korean, German, North American emotional mapping.</div>
+      <div class="tl-tags"><span class="tl-tag">Voice Estate</span><span class="tl-tag">Creative Will</span><span class="tl-tag">CRE Research</span><span class="tl-tag">Legal milestone</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:var(--orange)"></div>
+      <div class="tl-month" style="color:var(--orange)">August 2026</div>
+      <div class="tl-title" style="color:var(--orange)">The Demand Signal</div>
+      <div class="tl-body">Production studios begin requesting specific AVAs by name. The demand-pull shift begins. NOIZYVOX is no longer a platform people browse — it is a roster people compete to access. The rate floor becomes irrelevant. NCP v1.0 published as open standard. Industry outreach begins.</div>
+      <div class="tl-tags"><span class="tl-tag">Demand signal</span><span class="tl-tag">NCP v1.0 published</span><span class="tl-tag">Rate floor irrelevant</span><span class="tl-tag">Studios competing</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:var(--gold)"></div>
+      <div class="tl-month" style="color:var(--gold)">September 2026</div>
+      <div class="tl-title" style="color:var(--gold)">6 Months Ahead — Full Ecosystem Live</div>
+      <div class="tl-body">RSP_001 fully deployed. 10-20 founding AVAs active. NOIZY PROOF in institutional use. Living Score in beta with game studio. NAI first research paper ready. Voice Estate Architecture in production. Cultural Resonance Engine in development. NCP v1.0 being evaluated by industry bodies. NOIZY.ai public launch ready. Discord doors open.</div>
+      <div class="tl-tags"><span class="tl-tag">Full ecosystem</span><span class="tl-tag">Public launch</span><span class="tl-tag">Discord opens</span><span class="tl-tag">$1M+ ARR path visible</span></div>
+    </div>
+
+  </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ QUOTE ══ -->
+<div class="div-line"></div>
+<div class="quote-section reveal">
+  <div class="big-quote">"The fool's errand isn't convincing people that <em>quality matters.</em> The fool's errand is settling for anything less. Once someone hears the difference between a living AVA with 40 years of craft and a generic synthesis engine — <em>they cannot unhear it.</em> That's not a feature advantage. That's a <em>cultural shift.</em>"</div>
+  <div class="quote-attr">Rob Plowman · NOIZYFISH Inc. · March 2026</div>
+</div>
+<div class="div-line"></div>
+
+<!-- ══ CTA ══ -->
+<div class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="wrap">
+    <div class="cta-title"><span class="l1">ARTIST CREATOR</span><span class="l2">FIRST.</span></div>
+    <div class="cta-sub">Build for yourself. Then give it to the world. GORUNFREE.</div>
+    <div class="cta-btns">
+      <button class="btn btn-primary" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+      <button class="btn btn-secondary" onclick="alert('noizy.ai — Coming Q3 2026')">noizy.ai →</button>
+    </div>
+    <div style="margin-top:3rem;font-size:.48rem;letter-spacing:.35em;text-transform:uppercase;color:var(--dim)">
+      NOIZYFISH Inc. · Ottawa, Canada · rsp@noizyfish.com · © 2026
+    </div>
+  </div>
+</div>
+
+<script>
+// Stars
+(function(){
+  const s=document.getElementById('stars');
+  for(let i=0;i<200;i++){
+    const el=document.createElement('div');
+    const sz=Math.random()<.85?1:Math.random()<.7?1.5:2;
+    el.className='star';
+    el.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;--oa:${.05+Math.random()*.15};--ob:${.2+Math.random()*.6};--d:${2+Math.random()*4}s;--del:${Math.random()*5}s`;
+    s.appendChild(el);
+  }
+})();
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

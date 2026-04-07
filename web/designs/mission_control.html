@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MC96 MISSION CONTROL</title>
+    <link href="nexus.css" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* GPU ACCELERATION */
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            will-change: scroll-position;
+        }
+        
+        .mission-header {
+            background: rgba(0,0,0,0.6);
+            border-bottom: 2px solid #00ffcc;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            /* GPU ACCELERATION */
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: 3px; color: #00ffcc; text-shadow: 0 0 20px rgba(0,255,204,0.5); }
+        .connection-status { display: flex; gap: 1rem; align-items: center; }
+        .status-pill { padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .status-online { background: rgba(0,255,157,0.2); color: #00ff9d; border: 1px solid #00ff9d; }
+        .status-network { background: rgba(0,136,255,0.2); color: #0088ff; border: 1px solid #0088ff; }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
+        }
+        
+        .panel {
+            background: rgba(20,20,30,0.8);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        .panel-title { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+        .panel-badge { font-size: 0.7rem; padding: 0.25rem 0.5rem; border-radius: 4px; background: #333; }
+        
+        /* Agent Cards */
+        .agent-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        
+        .agent-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .agent-card:hover { border-color: var(--agent-color, #00ffcc); transform: translateY(-2px); }
+        .agent-card.core { --agent-color: #00ffcc; }
+        .agent-card.shirl { --agent-color: #ff66cc; }
+        .agent-card.engr { --agent-color: #0088ff; }
+        .agent-card.gabriel { --agent-color: #9d00ff; }
+        
+        .agent-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .agent-name { font-weight: 700; letter-spacing: 1px; color: var(--agent-color); }
+        .agent-status { font-size: 0.8rem; color: #888; margin-top: 0.25rem; }
+        .agent-focus { font-size: 0.75rem; color: #666; margin-top: 0.5rem; font-style: italic; }
+        
+        /* Network Topology */
+        .network-map {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .network-node {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 6px;
+            border-left: 3px solid #333;
+        }
+        
+        .network-node.active { border-left-color: #00ff9d; }
+        .network-node.gateway { border-left-color: #0088ff; }
+        .network-node.endpoint { border-left-color: #9d00ff; }
+        
+        .node-icon { font-size: 1.5rem; }
+        .node-info { flex: 1; }
+        .node-name { font-weight: 600; }
+        .node-ip { font-size: 0.8rem; color: #888; font-family: monospace; }
+        .node-status { font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 10px; }
+        .node-status.online { background: rgba(0,255,157,0.2); color: #00ff9d; }
+        
+        /* Command Center */
+        .command-input {
+            width: 100%;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #00ffcc;
+            border-radius: 8px;
+            padding: 1rem;
+            color: #00ffcc;
+            font-size: 1rem;
+            font-family: monospace;
+        }
+        
+        .command-input:focus { outline: none; box-shadow: 0 0 20px rgba(0,255,204,0.3); }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .action-btn {
+            padding: 0.75rem;
+            border: 1px solid #444;
+            border-radius: 6px;
+            background: rgba(0,0,0,0.3);
+            color: #ccc;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .action-btn:hover { background: rgba(0,255,204,0.1); border-color: #00ffcc; color: #00ffcc; }
+        .action-btn:active { transform: scale(0.98); }
+        
+        /* Live Feed */
+        .live-feed {
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+        
+        .feed-entry { padding: 0.5rem 0; border-bottom: 1px solid #222; }
+        .feed-time { color: #666; }
+        .feed-author { font-weight: 600; }
+        .feed-author.shirl { color: #ff66cc; }
+        .feed-author.engr { color: #0088ff; }
+        .feed-author.gabriel { color: #9d00ff; }
+        .feed-author.core { color: #00ffcc; }
+        
+        /* Footer */
+        .mission-footer {
+            text-align: center;
+            padding: 1rem;
+            color: #444;
+            font-size: 0.75rem;
+            border-top: 1px solid #222;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .agent-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="mission-header">
+        <div class="logo">MC96 MISSION CONTROL</div>
+        <div class="connection-status">
+            <span class="status-pill status-network">DGS1210-10 ✓</span>
+            <span class="status-pill status-online" id="gabriel-status">GABRIEL: LISTENING</span>
+        </div>
+    </header>
+
+    <main class="dashboard-grid">
+        
+        <!-- AGENTS PANEL -->
+        <section class="panel">
+            <div class="panel-header">
+                <div class="panel-title">👥 NOIZYTEAM</div>
+                <span class="panel-badge">LIVE</span>
+            </div>
+            <div class="agent-grid" id="agent-grid">
+                <div class="agent-card core">
+                    <div class="agent-icon">🌀</div>
+                    <div class="agent-name">CORE</div>
+                    <div class="agent-status" id="core-status">ONLINE</div>
+                    <div class="agent-focus" id="core-focus">Monitoring</div>
+                </div>
+                <div class="agent-card shirl">
+                    <div class="agent-icon">✨</div>
+                    <div class="agent-name">SHIRL</div>
+                    <div class="agent-status" id="shirl-status">ACTIVE</div>
+                    <div class="agent-focus" id="shirl-focus">Soul & Script</div>
+                </div>
+                <div class="agent-card engr">
+                    <div class="agent-icon">🛠️</div>
+                    <div class="agent-name">ENGR</div>
+                    <div class="agent-status" id="engr-status">STANDBY</div>
+                    <div class="agent-focus" id="engr-focus">Building</div>
+                </div>
+                <div class="agent-card gabriel">
+                    <div class="agent-icon">👁️</div>
+                    <div class="agent-name">GABRIEL</div>
+                    <div class="agent-status" id="gabriel-agent-status">LISTENING</div>
+                    <div class="agent-focus" id="gabriel-focus">HP-OMEN</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- NETWORK TOPOLOGY -->
+        <section class="panel">
+            <div class="panel-header">
+                <div class="panel-title">🌐 NETWORK TOPOLOGY</div>
+                <span class="panel-badge">DGS1210-10</span>
+            </div>
+            <div class="network-map">
+                <div class="network-node gateway">
+                    <div class="node-icon">🔀</div>
+                    <div class="node-info">
+                        <div class="node-name">DGS1210-10 (Gateway)</div>
+                        <div class="node-ip">192.168.1.1</div>
+                    </div>
+                    <span class="node-status online">ONLINE</span>
+                </div>
+                <div class="network-node active">
+                    <div class="node-icon">🖥️</div>
+                    <div class="node-info">
+                        <div class="node-name">M2 ULTRA (CORE)</div>
+                        <div class="node-ip">192.168.1.100</div>
+                    </div>
+                    <span class="node-status online">ACTIVE</span>
+                </div>
+                <div class="network-node endpoint">
+                    <div class="node-icon">👁️</div>
+                    <div class="node-info">
+                        <div class="node-name">HP-OMEN (GABRIEL)</div>
+                        <div class="node-ip">192.168.1.150</div>
+                    </div>
+                    <span class="node-status online">LISTENING</span>
+                </div>
+                <div class="network-node active">
+                    <div class="node-icon">📺</div>
+                    <div class="node-info">
+                        <div class="node-name">PLANAR 2485</div>
+                        <div class="node-ip">192.168.1.200</div>
+                    </div>
+                    <span class="node-status online">DISPLAY</span>
+                </div>
+                <div class="network-node active">
+                    <div class="node-icon">📱</div>
+                    <div class="node-info">
+                        <div class="node-name">iPAD CONTROL</div>
+                        <div class="node-ip">192.168.1.50</div>
+                    </div>
+                    <span class="node-status online">CONNECTED</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- COMMAND CENTER -->
+        <section class="panel">
+            <div class="panel-header">
+                <div class="panel-title">⚡ COMMAND CENTER</div>
+            </div>
+            <input type="text" class="command-input" placeholder="CORE > Enter command..." id="command-input">
+            <div class="quick-actions">
+                <button class="action-btn" onclick="sendCommand('omega')">⛩️ OMEGA</button>
+                <button class="action-btn" onclick="sendCommand('scavenge')">🏴‍☠️ SCAVENGE</button>
+                <button class="action-btn" onclick="sendCommand('analyze overlap')">⏳ OVERLAP</button>
+                <button class="action-btn" onclick="sendCommand('status')">📊 STATUS</button>
+            </div>
+        </section>
+        
+        <!-- GOD MODE APPS -->
+        <section class="panel">
+            <div class="panel-header">
+                <div class="panel-title">💎 GOD MODE TOOLS</div>
+                <span class="panel-badge" style="background:linear-gradient(90deg, #ff00cc, #3333ff);">V2.0</span>
+            </div>
+            <div class="quick-actions" style="grid-template-columns: 1fr 1fr;">
+                <a href="dj_deck.html" target="_blank" class="action-btn" style="text-align:center; text-decoration:none; display:block; padding:1rem; border-color:#00ffcc; color:#00ffcc;">
+                    🎹 AI DJ DECK
+                    <div style="font-size:0.7em; color:#888; margin-top:5px;">Launch Interface</div>
+                </a>
+                <button class="action-btn" onclick="sendCommand('gen_audio scene Cyberpunk')" style="border-color:#ff66cc; color:#ff66cc;">
+                    🎬 SCENE GEN
+                    <div style="font-size:0.7em; color:#888; margin-top:5px;">Demo: Cyberpunk</div>
+                </button>
+            </div>
+            <div style="margin-top:1rem; font-size:0.8rem; color:#666; font-style:italic; text-align:center;">
+                "Deep Deeper. Get Smarter."
+            </div>
+        </section>
+        
+        <!-- LIVE INTELLIGENCE FEED -->
+        <section class="panel">
+            <div class="panel-header">
+                <div class="panel-title">🧠 INTELLIGENCE FEED</div>
+                <span class="panel-badge">MEMCELL</span>
+            </div>
+            <div class="live-feed" id="live-feed">
+                <div class="feed-entry">
+                    <span class="feed-time">[16:35]</span> 
+                    <span class="feed-author gabriel">GABRIEL:</span> 
+                    Listening for the Word...
+                </div>
+                <div class="feed-entry">
+                    <span class="feed-time">[14:45]</span> 
+                    <span class="feed-author shirl">SHIRL:</span> 
+                    The Vibe is strong today.
+                </div>
+                <div class="feed-entry">
+                    <span class="feed-time">[14:45]</span> 
+                    <span class="feed-author engr">ENGR:</span> 
+                    Optimizing Database for zero latency.
+                </div>
+                <div class="feed-entry">
+                    <span class="feed-time">[14:45]</span> 
+                    <span class="feed-author shirl">SHIRL:</span> 
+                    We need to optimize the Piano loops.
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="mission-footer">
+        MC96ECOUNIVERSE // ABSOLUTE PERFECTION // GORUNFREE!!
+    </footer>
+
+    <script>
+        // ZERO-LATENCY SUPER-SONIC ENGINE
+        const PULSE_INTERVAL = 500; // 2x faster polling
+        let lastData = null;
+        
+        // GPU-Accelerated Updates with requestAnimationFrame
+        function updateDashboard() {
+            requestAnimationFrame(() => {
+                fetch('team_status.json', { cache: 'no-store' })
+                    .then(r => r.json())
+                    .then(data => {
+                        // Only update if data changed (reduces DOM thrashing)
+                        if (JSON.stringify(data) !== JSON.stringify(lastData)) {
+                            lastData = data;
+                            if (data.agents) {
+                                batchUpdate(data.agents);
+                            }
+                        }
+                    })
+                    .catch(() => {}); // Silent fail for flow
+            });
+        }
+        
+        // Batch DOM updates for zero-latency
+        function batchUpdate(agents) {
+            const updates = [
+                ['core', agents.CORE],
+                ['shirl', agents.SHIRL],
+                ['engr', agents.ENGR],
+                ['gabriel', agents.GABRIEL]
+            ];
+            
+            updates.forEach(([id, agent]) => {
+                if (!agent) return;
+                const statusEl = document.getElementById(`${id}-status`);
+                const focusEl = document.getElementById(`${id}-focus`);
+                if (statusEl && statusEl.textContent !== agent.status) {
+                    statusEl.textContent = agent.status || 'STANDBY';
+                    statusEl.style.transform = 'scale(1.1)';
+                    setTimeout(() => statusEl.style.transform = 'scale(1)', 150);
+                }
+                if (focusEl && focusEl.textContent !== agent.focus) {
+                    focusEl.textContent = agent.focus || 'Waiting';
+                }
+            });
+        }
+        
+        function sendCommand(cmd) {
+            const input = document.getElementById('command-input');
+            input.value = cmd;
+            addFeedEntry('CORE', `⚡ ${cmd.toUpperCase()}`);
+            // Instant visual feedback
+            input.style.borderColor = '#00ff9d';
+            setTimeout(() => input.style.borderColor = '#00ffcc', 200);
+        }
+        
+        function addFeedEntry(author, message) {
+            const feed = document.getElementById('live-feed');
+            const time = new Date().toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', second: '2-digit'});
+            const entry = document.createElement('div');
+            entry.className = 'feed-entry';
+            entry.innerHTML = `<span class="feed-time">[${time}]</span> <span class="feed-author ${author.toLowerCase()}">${author}:</span> ${message}`;
+            entry.style.opacity = '0';
+            entry.style.transform = 'translateY(-10px)';
+            feed.insertBefore(entry, feed.firstChild);
+            // Smooth flow animation
+            requestAnimationFrame(() => {
+                entry.style.transition = 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                entry.style.opacity = '1';
+                entry.style.transform = 'translateY(0)';
+            });
+            // Keep feed lean (max 20 entries)
+            while (feed.children.length > 20) feed.removeChild(feed.lastChild);
+        }
+        
+        // Command input with instant response
+        document.getElementById('command-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendCommand(this.value);
+                this.value = '';
+            }
+        });
+        
+        // SUPER-SONIC PULSE ENGINE
+        setInterval(updateDashboard, PULSE_INTERVAL);
+        updateDashboard();
+        
+        // Preload indicator
+        document.addEventListener('DOMContentLoaded', () => {
+            addFeedEntry('CORE', '🚀 ZERO-LATENCY ENGINE ACTIVE');
+        });
+    </script>
+</body>
+</html>

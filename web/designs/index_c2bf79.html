@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>Options - Ozone 9 Help Documentation</title>
+<meta name="generator" content="Hugo 0.63.2" />
+
+<meta name="description" content="Ozone 9 Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ozone 9 Help Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/en/options/index.html">
+<meta property="og:title" content="Ozone 9 Help Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+      <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  <link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/style-overrides.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-33', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+<body class="palette-primary-ozone9 palette-accent-ozone9">
+  <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html">
+          <img src="../images/o9-header.svg" alt="Ozone 9 docs header image"
+                 width="190px" height="50px"> Options</a>
+          </div>
+      </div>
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+<div class="drawer">
+  <nav aria-label="Navigation">
+<form action="../search/index.html"><div class="group">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+  </form>
+</nav>
+  <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+    <a title="Introduction" href="../index.html"><span class=""></span>  Introduction</a>
+</li>
+<li>
+    <a title="Getting Started" href="../getting-started/index.html"><span class=""></span>  Getting Started</a>
+</li>
+<li>
+    <a title="General Controls" href="../general-controls/index.html"><span class=""></span>  General Controls</a>
+</li>
+<li>
+    <a title="Views" href="../views/index.html"><span class=""></span>  Views</a>
+</li>
+<li>
+    <a title="Ozone Application" href="../ozone-app/index.html"><span class=""></span>  Ozone Application</a>
+</li>
+<li>
+    <a title="Master Assistant" href="../master-assistant/index.html"><span class=""></span>  Master Assistant</a>
+</li>
+<li>
+    <a title="Dynamics" href="../dynamics/index.html"><span class=""></span>  Dynamics</a>
+</li>
+<li>
+    <a title="Dynamic EQ" href="../dynamic-eq/index.html"><span class=""></span>  Dynamic EQ</a>
+</li>
+<li>
+    <a title="Equalizer" href="../equalizer/index.html"><span class=""></span>  Equalizer</a>
+</li>
+<li>
+    <a title="Exciter" href="../exciter/index.html"><span class=""></span>  Exciter</a>
+</li>
+<li>
+    <a title="Imager" href="../imager/index.html"><span class=""></span>  Imager</a>
+</li>
+<li>
+    <a title="Low End Focus" href="../low-end-focus/index.html"><span class=""></span>  Low End Focus</a>
+</li>
+<li>
+    <a title="Master Rebalance" href="../master-rebalance/index.html"><span class=""></span>  Master Rebalance</a>
+</li>
+<li>
+    <a title="Match EQ" href="../match-eq/index.html"><span class=""></span>  Match EQ</a>
+</li>
+<li>
+    <a title="Maximizer" href="../maximizer/index.html"><span class=""></span>  Maximizer</a>
+</li>
+<li>
+    <a title="Spectral Shaper" href="../spectral-shaper/index.html"><span class=""></span>  Spectral Shaper</a>
+</li>
+<li>
+    <a title="Vintage Compressor" href="../vintage-compressor/index.html"><span class=""></span>  Vintage Compressor</a>
+</li>
+<li>
+    <a title="Vintage EQ" href="../vintage-eq/index.html"><span class=""></span>  Vintage EQ</a>
+</li>
+<li>
+    <a title="Vintage Limiter" href="../vintage-limiter/index.html"><span class=""></span>  Vintage Limiter</a>
+</li>
+<li>
+    <a title="Vintage Tape" href="../vintage-tape/index.html"><span class=""></span>  Vintage Tape</a>
+</li>
+<li>
+    <a title="Codec Preview" href="../codec-preview/index.html"><span class=""></span>  Codec Preview</a>
+</li>
+<li>
+    <a title="Dither" href="../dither/index.html"><span class=""></span>  Dither</a>
+</li>
+<li>
+    <a title="Referencing" href="../referencing/index.html"><span class=""></span>  Referencing</a>
+</li>
+<li>
+    <a title="Presets" href="../presets/index.html"><span class=""></span>  Presets</a>
+</li>
+<li>
+    <a class="current"title="Options" href="index.html"><span class=""></span>  Options</a>
+<ul id="scrollspy">
+</ul>
+</li>
+<li>
+    <a title="Glossary" href="../glossary/index.html"><span class=""></span>  Glossary</a>
+</li>
+<li>
+    <a title="Customer Care" href="../customer-care/index.html"><span class=""></span>  Customer Care</a>
+</li>
+<li>
+    <a title="License Information" href="../license-information/index.html"><span class=""></span>  License Information</a>
+</li>
+<li>
+    <a title="EULA" href="../eula/index.html"><span class=""></span>  EULA</a>
+</li>
+</ul>
+      <hr />
+<span class="section">Connect with iZotope</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+<li>
+    <a href="https://www.izotope.com/en/products/ozone.html" target="_blank" title="iZotope Product Page"><span class="icon icon-sphere"></span>  iZotope.com</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a>
+  </li>
+</ul>
+<hr /></div>
+  </div>
+</div>
+</div>
+<article class="article">
+    <div class="wrapper">
+
+      
+
+<h1>Options </h1>
+
+<h2 id="overview">Overview</h2>
+<p>You can adjust global and module-specific settings in the Options window. You can access the Options window by
+clicking the gear button in the upper right hand corner of the Ozone interface.</p>
+<figure ><img src="../images/options/gear-button-highlight.png" alt="Options Menu Button" /></figure>
+<p>The Options window is divided into three main sections:</p>
+<figure ><img src="../images/options/options-labeled.png" alt="Labeled Options Window" /></figure>
+<ol>
+<li><strong>Option Tabs:</strong> Options are organized into several different tabs along the top of the Options window.
+Click on a tab to view and modify the associated options.</li>
+<li><strong>Options Panel:</strong> Displays the options available for the selected options tab.</li>
+<li><strong>Options Window Footer:</strong> Save, Reset, or Cancel changes to Options.</li>
+</ol>
+<hr>
+<h2 id="options-window-footer">Options Window Footer</h2>
+<p>The bottom of the options window includes the following global parameters:</p>
+<figure ><img src="../images/options/window-controls.png" alt="ozone options" /></figure>
+<ul>
+<li><strong>?</strong>: Opens the Ozone help documentation in your default web browser.</li>
+<li><strong>Reset</strong>: Resets all Options in the <strong>currently selected options tab</strong> to their factory default values.</li>
+<li><strong>Version information</strong>: Displays the current Ozone version and build number.</li>
+<li><strong>Cancel</strong>: Closes the Options window without saving changes.</li>
+<li><strong>Ok</strong>: Closes the Options window and saves changes.</li>
+</ul>
+<hr>
+<h2 id="general-tab">General Tab</h2>
+<p>The General Options tab allows you to adjust settings related to graphics, authorization, updates, usage
+tracking and undo history.</p>
+<figure ><img src="../images/options/general.png" alt="General Options Tab" /></figure>
+<h3 id="graphics">Graphics</h3>
+<p>The following options are included in the Graphics section of the General options tab:</p>
+<ul>
+<li><strong>Show Tooltips:</strong> Enables the display of a descriptive text box when hovering your cursor over a control.</li>
+<li><strong>Dim Controls When Bypassed:</strong> Enables an overlay that dims the appearance of controls in the module
+control panel when Ozone is bypassed.</li>
+</ul>
+<h3 id="authorization-updates">Authorization &amp; Updates</h3>
+<p>This section of the General options tab allows you to check for updates and manage your authorization.</p>
+<h4 id="check-for-updates">Check for Updates</h4>
+<p>The Check for Updates button has a few different possible states:</p>
+<ul>
+<li><strong>Download Product Portal:</strong> To stay up to date with new versions of Relay, download the iZotope Product
+Portal application.</li>
+<li><strong>Check for Updates:</strong> Manually check for available updates. Clicking this button will open the Product
+Portal application and check for updates.</li>
+<li><strong>Download Update:</strong> If an update is available, a small blue dot will appear. Clicking the Download Update
+button in the options window will launch the Product Portal application and display the Updates page.</li>
+</ul>
+<h4 id="authorization">Authorization</h4>
+<p>This section allows you to manage your Ozone authorization and displays information about your current
+authorization status.</p>
+<ul>
+<li><strong>Current Authorization Status Text:</strong> Displays the current Ozone authorization state.</li>
+<li><strong>Authorize:</strong> Opens the iZotope Authorization wizard.</li>
+<li><strong>Remove Authorization:</strong> Removes the current authorization.</li>
+</ul>
+<h3 id="other">Other</h3>
+<p>The Other section of the General options tab includes settings related to usage analysis and undo history
+depth.</p>
+<ul>
+<li><strong>Enable Analytics:</strong> Enables anonymous usage data to be sent to iZotope to help improve Ozone in the
+future.</li>
+<li><strong>History Depth:</strong> Determines the number of parameter change events to store in the Undo History list.</li>
+</ul>
+<hr>
+<h2 id="spectrum-tab">Spectrum Tab</h2>
+<p>The Spectrum options tab allows you to manage options related to the Spectrum view in all Ozone modules.</p>
+<figure ><img src="../images/options/spectrum-options.png" alt="spectrum" /></figure>
+<h3 id="spectrum-type">Spectrum Type</h3>
+<p>Selects the type of spectrum display used by spectrum analyzer views in all Ozone modules. The following
+options are available:</p>
+<ul>
+<li><strong>Linear</strong>: A continuous line connecting the calculated points of the spectrum.</li>
+<li><strong>1/3 Octave</strong>: Splits the spectrum into bars with a width of 1/3 of an octave. Although the spectrum is
+split into discrete bands, this option can provide excellent resolution at lower frequencies.</li>
+<li><strong>Critical</strong>: Splits the spectrum into bands that correspond to how we hear, or more specifically how we
+differentiate between sounds of different frequencies. Each band represents sounds that are considered
+&ldquo;similar&rdquo; in frequency.</li>
+<li><strong>Full Octave</strong>: Splits the spectrum into bars with a width of one full octave.</li>
+</ul>
+<h3 id="fill-spectrum">Fill Spectrum</h3>
+<p>Allows you to display the real-time spectrum as a solid graph as opposed to a line graph. This option can be
+used to differentiate the real-time spectrum from the peak hold spectrum.</p>
+<h3 id="peak-hold-time-ms">Peak Hold Time (ms)</h3>
+<p>Sets the length of time the peak hold display will hold before updating. You can choose between specific hold
+times (in milliseconds) or Infinite, where the peak display is held indefinitely.</p>
+<h3 id="show-peak-hold">Show Peak Hold</h3>
+<p>Toggles whether Ozone displays and holds the peaks of the spectrum.</p>
+<h3 id="window-type">Window Type</h3>
+<p>Sets the window type for the spectrum. In most cases the default window type will work well, but you can
+choose from a variety of window types. Each window type has different amplitude and frequency resolution
+characteristics.</p>
+<h3 id="window-size">Window Size</h3>
+<p>Set to controls the tradeoff between time and frequency resolution in the spectrum analyzer. Higher values
+offer greater frequency resolution.</p>
+<h3 id="average-time">Average Time</h3>
+<p>Averages the spectrum according to this setting. Higher average times can be useful for viewing the overall
+tonal balance of a mix, while shorter average times provide a more real-time display. Options include: <strong>Real
+Time, 1 sec, 3 sec, 5 sec, 10 sec, and Infinite.</strong></p>
+<h3 id="frequency-scale">Frequency Scale</h3>
+<p>Modifies the distribution of frequencies along the frequency axis of the spectrum analyzer. The default
+frequency scale is Extended Log.</p>
+<hr>
+<h2 id="eq-tab">EQ Tab</h2>
+<p>The EQ tab includes EQ Spectrum and Performance options. These options will apply to both Equalizer 1 and
+Equalizer 2 modules.</p>
+<figure ><img src="../images/options/eq.png" alt="EQ Options tab" /></figure>
+<h3 id="spectrum">Spectrum</h3>
+<p>The following options will affect the spectrum in the Equalizer 1 and 2 modules.</p>
+<h4 id="alt-solo-filter-q">Alt-Solo Filter Q</h4>
+<p>Sets the bandwidth (Q) of the Alt-Solo feature in the <a href="../equalizer/index.html">Equalizer</a> module(s).</p>
+<h4 id="show-extra-curves">Show Extra Curves</h4>
+<p>Toggles the display of Phase Delay, Phase Response, and Group Delay curves in the EQ spectrum.</p>
+<h3 id="performance">Performance</h3>
+<ul>
+<li><strong>Soft Saturation</strong>: Select to enable soft saturation to in the EQ module. When enabled, signals that clip
+as a result of being boosted by the EQ will saturate with an analog character, rather than harsh digital
+clipping.</li>
+<li><strong>Buffer Size</strong>: Select to adjusts the memory buffer size, measured in samples, when applying equalization
+to the signal.</li>
+<li><strong>Frequency Resolution</strong>: Select to set the minimum resolution, in Hz, the Equalizer can be adjusted by. You
+can choose from: 3 Hz, 6 Hz, 12 Hz, 24 Hz, and 48 Hz.</li>
+<li><strong>Filter Size</strong>: Displays the calculated steepness of the filter setting used in the EQ module.</li>
+</ul>
+<hr>
+<h2 id="dynamics-tab">Dynamics Tab</h2>
+<figure ><img src="../images/options/dynamics-options.png" alt="dyn options tab" /></figure>
+<h3 id="crossover-type">Crossover Type</h3>
+<p>Select from analog, digital or hybrid as the crossover type used for multiband processing in the Dynamics
+module.</p>
+<ul>
+<li><strong>Analog</strong>: Provides a natural analog character.</li>
+<li><strong>Digital</strong>: Provides a more transparent sounding crossover.</li>
+<li><strong>Hybrid</strong>: A perfect reconstruction IIR analog crossover designed to reduce phase distortion and frequency
+distortion found in other analog crossovers while maintaining precise crossover points and the warm
+characteristics of analog crossovers.</li>
+</ul>
+<h3 id="crossover-buffer-size">Crossover Buffer Size</h3>
+<p>Determines how large of a digital audio buffer is used in the Dynamics module crossovers.</p>
+<h3 id="crossover-q">Crossover Q</h3>
+<p>When using the Digital crossover type, you can manually set the bandwidth of the crossover points in the
+Dynamics module. A higher Q results in tighter crossovers, while a lower Q provides a more gradual transition
+from one band to the next.</p>
+<h3 id="look-ahead-ms">Look Ahead [ms]</h3>
+<p>Determines how far ahead the dynamics processor looks ahead, within the loaded digital audio file, in order to
+provide as transparent and effective dynamics controls as possible. The look ahead time ranges from 0 to 10
+ms.</p>
+<hr>
+<h2 id="imager-tab">Imager Tab</h2>
+<figure ><img src="../images/options/imager-options.png" alt="imager options tab" /></figure>
+<h3 id="prevent-antiphase">Prevent Antiphase</h3>
+<p>Select to automatically prevent any settings from being applied that would result in phase cancellation of the
+stereo signal, when summed to mono.</p>
+<h3 id="vectorscope-detection-method">Vectorscope Detection Method</h3>
+<p>Select to set which type of amplitude detection method is used by the Vectorscope.</p>
+<ul>
+<li><strong>Peak</strong>: When this option is enabled, Ozone’s detection circuit looks at peak levels of the incoming
+signal. In general this is useful when you’re trying to even out sudden peaks in your music.</li>
+<li><strong>RMS</strong>: When this option is enabled, Ozone looks at the average level of the incoming signal. RMS detection
+is useful when you’re trying to increase the overall volume level without changing the character of the
+sound.</li>
+<li><strong>Envelope</strong>: Envelope mode behaves much like RMS mode, but with some key advantages. Unlike RMS, True
+Envelope mode produces even levels across all frequencies.</li>
+</ul>
+<h3 id="crossover-type-1">Crossover Type</h3>
+<p>Select from analog, digital or hybrid as the crossover type used for multiband processing in the Imager
+module.</p>
+<ul>
+<li><strong>Analog</strong>: Provides a natural analog character.</li>
+<li><strong>Digital</strong>: Provides a more transparent sounding crossover.</li>
+<li><strong>Hybrid</strong>: A perfect reconstruction IIR analog crossover designed to reduce phase distortion and frequency
+distortion found in other analog crossovers while maintaining precise crossover points and the warm
+characteristics of analog crossovers.</li>
+</ul>
+<h3 id="crossover-buffer-size-1">Crossover Buffer Size</h3>
+<p>Determines how large of a digital audio buffer is used in the Imager module crossovers.</p>
+<h3 id="crossover-q-1">Crossover Q</h3>
+<p>Adjust to manually set the bandwidth of the crossover points in the Imager module, when using the Digital
+crossover type. A higher Q results in tighter crossovers, while a lower Q provides a more gradual transition
+from one band to the next.</p>
+<hr>
+<h2 id="dynamic-eq-tab">Dynamic EQ Tab</h2>
+<p>The Dynamic EQ options tab allows you to manage options related to general display options related to the
+Dynamic EQ module.</p>
+<figure ><img src="../images/options/dynamic-eq-options.png" alt="Dynamic EQ Options Tab" /></figure>
+<h3 id="show-musical-units">Show Musical Units</h3>
+<p>Select to display  frequency points as musical notes (for example, A4) instead of measured in Hz.</p>
+<h3 id="alt-solo-filter-q-1">Alt-Solo Filter Q</h3>
+<p>Adjust to set the bandwidth (Q) of the Alt-Solo feature in the <a href="../dynamic-eq/index.html">Dynamic EQ</a> module.
+This setting ranges from .2 to 12.</p>
+<hr>
+<h2 id="exciter-tab">Exciter Tab</h2>
+<figure ><img src="../images/options/exciter-options.png" alt="exciter options tab" /></figure>
+<h3 id="crossover-type-2">Crossover Type</h3>
+<p>Select from analog, digital or hybrid as the crossover type used for multiband processing in the Exciter
+module.</p>
+<ul>
+<li><strong>Analog</strong>: Provides a natural analog character.</li>
+<li><strong>Digital</strong>: Provides a more transparent sounding crossover.</li>
+<li><strong>Hybrid</strong>: A perfect reconstruction IIR analog crossover designed to reduce phase distortion and frequency
+distortion found in other analog crossovers while maintaining precise crossover points and the warm
+characteristics of analog crossovers.</li>
+</ul>
+<h3 id="crossover-buffer-size-2">Crossover Buffer Size</h3>
+<p>Determines how large of a digital audio buffer is used in the Exciter module crossovers.</p>
+<h3 id="crossover-q-2">Crossover Q</h3>
+<p>Adjust to manually set the bandwidth of the crossover points in the Exciter module, when using the Digital
+crossover type. A higher Q results in tighter crossovers, while a lower Q provides a more gradual transition
+from one band to the next.</p>
+<hr>
+<h2 id="i-o-tab">I/O Tab</h2>
+<figure ><img src="../images/options/io-options.png" alt="I/O Options Tab" /></figure>
+<h3 id="enable-i-o-meters">Enable I/O Meters</h3>
+<p>Select to enable/disable the meters in Ozone’s master I/O section.</p>
+<h3 id="detect-true-peaks">Detect True Peaks</h3>
+<p>Select Detect True Peaks to accurately measure the signal that will result from digital to analog conversion.
+By default the Input/Output meters will only indicate clipping which occurs within the digital domain.</p>
+<h3 id="enable-legacy-bypass-gain-match-behavior">Enable Legacy Bypass Gain Match Behavior</h3>
+<p>Select to enable legacy bypass processing on the Gain Match feature in the auditioning section.</p>
+<div class="admonition note">
+<p class="admonition-title">Behavior when Legacy Bypass Gain Match is Checked</p>
+<p class="admonition-body">When Ozone is on there are many
+modules such as the multiband dynamics and loudness maximizer that can affect the overall or perceived
+loudness of the mix. This makes it very hard to compare &ldquo;Ozone on&rdquo; to &ldquo;Ozone bypassed.&rdquo; The &ldquo;Automatically
+Match Effective Gain When Bypassed&rdquo; feature solves this problem. Ozone determines how much perceived gain is
+being added by all of the active Ozone modules and then automatically adds this amount of gain when Ozone is
+put into bypass mode. You can bypass Ozone, and the gain is automatically adjusted so that when you A/B Ozone
+on and off, the apparent volume is the same. This gain processing is the only processing that is applied when
+Ozone is bypassed, and it is of course only applied when Ozone is actually bypassed.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Behavior when Legacy Bypass Gain Match is Unchecked</p>
+<p class="admonition-body">Enabling Gain Match in the I/O
+section when this option is disabled will result in the output gain sliders auto-adjusting apparent output
+level to match the dry signal level. The output faders will turn blue when they are auto adjusting level. This
+is useful to A/B the effect of Ozone processing. Unlike the legacy auto gain behavior, we recommend turning
+Gain Match on and off as needed rather than keeping it enabled all the time. This behavior does affect the
+output of Ozone.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Legacy Bypass and Host Application</p>
+<p class="admonition-body">In the <strong>plug-in</strong> version of Ozone, Legacy Bypass
+Gain Match Behavior may not work if you use the host application to bypass Ozone. If the host application
+reports that it is bypassed, it will work and the Bypass button in Ozone will automatically depress
+accordingly. If the host does not report that it is bypassed, Ozone doesn’t know and therefore cannot apply
+the &ldquo;gain when bypassed.&rdquo;</p>
+</div>
+<h3 id="meter-type">Meter Type</h3>
+<p>Choose from one of the following options to set the meter type displayed in the I/O meters:</p>
+<ul>
+<li><strong>RMS</strong>: RMS (Root Mean Square) is a software-based implementation of an analog-style level meter. Using
+different integration times, you can model popular VU or PPM meters. The RMS meter displays the average
+level calculated over a short window of time. The RMS meter readout will typically be lower than an
+equivalent PPM meter (Digital/Analog), since it is averaging peaks into the overall loudness.</li>
+<li><strong>PEAK</strong>: The Peak meter is a fast meter that measures instantaneous maximum sample value or peak analog
+waveform values, depending on the &ldquo;detect inter-sample peaks&rdquo; checkbox. If you are tracking the peaks for
+possible clipping, the Peak meter is appropriate.</li>
+<li><strong>RMS + PEAK</strong>: This is a combined RMS and Peak meter. This meter displays a lower bright bar representing
+the average level (RMS) and a higher dimmer bar representing peak level. There is also a moving line above
+the bar representing the most recent peak level or peak hold.</li>
+<li><strong>K-SYSTEM</strong>: Ozone 9 supports Bob Katz’s K-System metering with simultaneous peak and RMS displays.</li>
+<li><strong>MOMENTARY</strong>: This measurement is a calculation of loudness over the course of 400ms.</li>
+<li><strong>SHORT TERM</strong>: This measurement is a calculation of loudness over the course of 3 seconds.</li>
+<li><strong>INTEGRATED</strong>: This measurement is a calculation of loudness over the course of an indefinite period of
+time.</li>
+</ul>
+<h3 id="meter-scale">Meter Scale</h3>
+<p>Choose from one of the following options to set the range and scale of the I/O Meters:</p>
+<ul>
+<li><strong>dB (Linear)</strong>: Decibel scale presented linearly from -60 dB to 0.</li>
+<li><strong>dB (Non-linear)</strong>: Full decibel scale (dBfs) presented non-linearly.</li>
+<li><strong>BS.1771</strong>: Loudness scale recommended by the ITU that spans from -45 LUFS to -14.0 LUFS.</li>
+<li><strong>EBU +9</strong>: Loudness scale recommended as a default by the EBU that spans from -41.0 LUFS to -14.0 LUFS.</li>
+<li><strong>EBU +18</strong>: Loudness scale recommended for material with a wide Loudness Range by the EBU that spans from
+-59.0 LUFS to -5.0 LUFS.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">LUFS Representation</p>
+<p class="admonition-body">LUFS is Loudness Units Full Scale and 1 LUFS = 1 dB.</p>
+</div>
+<h3 id="meter-source">Meter Source</h3>
+<p>The following meter source options are available: <strong>Stereo</strong> and <strong>Mid/Side</strong>. The I/O meters display
+<strong>Stereo</strong> information by default. When the I/O meters are in <strong>Mid/Side</strong> mode, the meter in the center
+represents the Mid channel level information and the meters on the left and right represents Side channel
+level information.</p>
+<figure class="align-image-center"><img src="../images/general-controls/mid-side-metering.png" alt="Mid/Side Source Metering" /></figure>
+<div class="admonition warning">
+<p class="admonition-title">Gain sliders control Left/Right gain in Mid/Side mode</p>
+<p class="admonition-body">The input and output gain sliders always control the left and right input/output gain, regardless
+of the Meter Source selection.</p>
+</div>
+<h3 id="peak-hold-time-ms-1">Peak Hold Time (ms)</h3>
+<p>Choose from the following options to set how many consecutive samples of audio must exceed 0 dBFS (full scale)
+before registering as a peak: <strong>5 ms, 250 ms, 500 ms, 1,000 ms, 5,000 ms, and Infinite.</strong></p>
+<h3 id="integration-time-ms">Integration time (ms)</h3>
+<p>Choose from the following options to specify the integration time for the RMS calculation: <strong>10 ms, 50 ms, 300
+ms (VU), 1,475 ms, 2,650 ms, 3,825 ms, and 5,000 ms.</strong> In most RMS meters, the integration time is set to
+around 300 ms.</p>
+<h3 id="readout">Readout</h3>
+<p>Selects whether the peak hold section of the meters displays the current peak status (current) or instead
+displays the highest peak that has occurred in the audio file (max peak).</p>
+<h3 id="show-peak-hold-1">Show Peak Hold</h3>
+<p>Displays peak hold bars in the I/O meters.</p>
+<h2 id="ozone-app-specific-options">Ozone App Specific Options</h2>
+<p>The Ozone application options menu includes tabs that are specific to the application. These tabs allow you to
+manage plug-in scanning and application specific behaviors.</p>
+<h2 id="plug-in-tab-app-only">Plug-in Tab (App Only)</h2>
+<figure ><img src="../images/options/app-plugin-options.png" alt="Mid/Side Source Meter" /></figure>
+<h3 id="enabled-plug-in-formats">Enabled Plug-in Formats</h3>
+<p>Allows you to individually select which plug-in formats (VST and AudioUnit) will be automatically loaded into
+Ozone’s &ldquo;Plug-ins&rdquo; section.</p>
+<h3 id="scan-plug-ins">Scan Plug-ins</h3>
+<p>Click this button to re-scan the selected plug-in locations and load in any newly installed plug-ins.</p>
+<h3 id="vst-plug-in-folders">VST Plug-in Folders</h3>
+<p>Displays the currently monitored folder path of where your VST plug-ins reside that are loaded into the
+&ldquo;Plug-ins&rdquo; section of Ozone. Use in conjunction with the &ldquo;Add VST Folder&rdquo; to add a new location, or the
+&ldquo;Delete VST Folder&rdquo; to delete a currently displayed folder path.</p>
+<h2 id="app-tab-app-only">App Tab (App Only)</h2>
+<figure ><img src="../images/options/app-options.png" alt="Mid/Side Source Meter" /></figure>
+<h3 id="enable-waveform-segments-overlay">Enable Waveform Segments Overlay</h3>
+<p>Click to enable the Waveform Segmentation overlay, which is the multicolored bar located just below the
+waveform. In Ozone 9, every imported audio file is scanned for matching &ldquo;segments,&rdquo; which are displayed as
+colored bars. This display acts as a helpful color coding of the sections of a song. A mastering engineer can
+use this display to quickly check every transition, or alternatively A/B the chorus of one song with the
+chorus of another. The corresponding audio can be selected by clicking on the colored segment, this allows you
+to easily select a loop region or quickly jump to different sections of a file.</p>
+<h3 id="playhead-follows-playback">Playhead Follows Playback</h3>
+<p>When this control is checked, the playhead will always stop at the location that the stop button is pressed,
+as opposed to returning to the start position.</p>
+
+
+    </div>
+  </article>
+<footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../presets/index.html" title="Preset System">
+        <span class="direction">Previous</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">Preset System</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../glossary/index.html" title="Glossary">
+        <span class="direction">Next</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">Glossary</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+&copy; 2020 iZotope, Inc. - Ozone 9.1.0
+  </div>
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </main>
+</body>
+</html>

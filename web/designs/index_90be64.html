@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+
+  
+  
+  
+  
+   <html class="no-js">   
+
+
+<head lang="ja">
+
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>オーディオの問題の識別 - RX6オーディオエディター 取扱説明書</title>
+    <meta name="generator" content="Hugo 0.32.3" />
+
+    
+    <meta name="description" content="RX 6 Help Documentation">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.rx6helpdocs.com/ja/68-audio-problems/">
+    <meta property="og:title" content="RX6オーディオエディター 取扱説明書">
+    
+    <meta name="apple-mobile-web-app-title" content="RX6オーディオエディター 取扱説明書">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+
+</head>
+
+<body class="palette-primary-blue palette-accent-blue">
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../img/izotope-rx6.png"> オーディオの問題の識別</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="はじめに" href="../01-introduction/index.html">
+	
+	はじめに
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RX 6の概要" href="../02-rx6-comparison/index.html">
+	
+	RX 6の概要
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="オーソリゼーション" href="../03-authorization/index.html">
+	
+	オーソリゼーション
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ファイルの作業" href="../04-working-with-files/index.html">
+	
+	ファイルの作業
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="録音" href="../05-recording/index.html">
+	
+	録音
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="トランスポート機能" href="../06-transport-controls/index.html">
+	
+	トランスポート機能
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="スペクトログラム/波形画面" href="../07-spectrogram-waveform-display/index.html">
+	
+	スペクトログラム/波形画面
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="各種ツール" href="../08-interactive-tools/index.html">
+	
+	各種ツール
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="取り消し履歴" href="../10-undo-history/index.html">
+	
+	取り消し履歴
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="アプリケーションメニュー" href="../11-application-menus/index.html">
+	
+	アプリケーションメニュー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="の環境設定メニュ" href="../12-preferences/index.html">
+	
+	の環境設定メニュ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Composite View（コンポジット表示）" href="../13-composite-view/index.html">
+	
+	Composite View（コンポジット表示）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Batch Processing（一括処理)" href="../38-batch-processing/index.html">
+	
+	Batch Processing（一括処理)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="一般的なRXモジュールの操作項目" href="../14-module-controls/index.html">
+	
+	一般的なRXモジュールの操作項目
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="モジュールリスト" href="../15-module-list/index.html">
+	
+	モジュールリスト
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Module Chain（モジュールチェーン）" href="../16-module-chain/index.html">
+	
+	Module Chain（モジュールチェーン）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambience Match（アンビエンスマッチ)" href="../17-ambience-match/index.html">
+	
+	Ambience Match（アンビエンスマッチ)
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Breath Control（ブレス音調整）" href="../18-breath-control/index.html">
+	
+	Breath Control（ブレス音調整）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Center Extract（センター抽出）" href="../19-center-extract/index.html">
+	
+	Center Extract（センター抽出）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-bleed（ブリード除去）" href="../20-de-bleed/index.html">
+	
+	De-bleed（ブリード除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-click（クリック除去）" href="../21-de-click/index.html">
+	
+	De-click（クリック除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-clip（クリップ除去）" href="../22-de-clip/index.html">
+	
+	De-clip（クリップ除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-crackle（クラックル除去）" href="../23-de-crackle/index.html">
+	
+	De-crackle（クラックル除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-ess（歯擦音除去）" href="../24-de-ess/index.html">
+	
+	De-ess（歯擦音除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-hum（ハム除去）" href="../25-de-hum/index.html">
+	
+	De-hum（ハム除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-plosive（破裂音除去）" href="../26-de-plosive/index.html">
+	
+	De-plosive（破裂音除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-reverb（リバーブ除去）" href="../27-de-reverb/index.html">
+	
+	De-reverb（リバーブ除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-rustle（布擦れ音除去）" href="../28-de-rustle/index.html">
+	
+	De-rustle（布擦れ音除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="De-wind（風除去）" href="../29-de-wind/index.html">
+	
+	De-wind（風除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Deconstruct（解体）" href="../30-deconstruct/index.html">
+	
+	Deconstruct（解体）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dialogue Isolate（ダイアログ分離）" href="../31-dialogue-isolate/index.html">
+	
+	Dialogue Isolate（ダイアログ分離）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Interpolate（補間）" href="../32-interpolate/index.html">
+	
+	Interpolate（補間）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Mouth De-click（マウスクリック除去）" href="../33-mouth-de-click/index.html">
+	
+	Mouth De-click（マウスクリック除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectral De-noise（スペクトラルノイズ除去）" href="../34-spectral-de-noise/index.html">
+	
+	Spectral De-noise（スペクトラルノイズ除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectral Repair（スペクトラル修復）" href="../35-spectral-repair/index.html">
+	
+	Spectral Repair（スペクトラル修復）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Voice De-noise（声音ノイズ除去）" href="../36-voice-de-noise/index.html">
+	
+	Voice De-noise（声音ノイズ除去）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Azimuth（アジマス）" href="../37-azimuth/index.html">
+	
+	Azimuth（アジマス）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dither（ディザー）" href="../39-dither/index.html">
+	
+	Dither（ディザー）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EQ" href="../40-eq/index.html">
+	
+	EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EQ Match（EQマッチ）" href="../41-eq-match/index.html">
+	
+	EQ Match（EQマッチ）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Fade（フェード）" href="../42-fade/index.html">
+	
+	Fade（フェード）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Gain（ゲイン）" href="../44-gain/index.html">
+	
+	Gain（ゲイン）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Leveler（レベラー）" href="../45-leveler/index.html">
+	
+	Leveler（レベラー）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Loudness（ラウドネス）" href="../46-loudness/index.html">
+	
+	Loudness（ラウドネス）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Mixing（ミキシング）" href="../47-mixing/index.html">
+	
+	Mixing（ミキシング）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Normalize（ノーマライズ）" href="../48-normalize/index.html">
+	
+	Normalize（ノーマライズ）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Phase（位相）" href="../49-phase/index.html">
+	
+	Phase（位相）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pitch Contour（ピッチ等高線）" href="../50-pitch-contour/index.html">
+	
+	Pitch Contour（ピッチ等高線）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plug-in Hosting（プラグインホスト機能）" href="../51-plug-in-hosting/index.html">
+	
+	Plug-in Hosting（プラグインホスト機能）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Resample（再サンプル）" href="../52-resample/index.html">
+	
+	Resample（再サンプル）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Signal Generator（シグナルジェネレーター）" href="../53-signal-generator/index.html">
+	
+	Signal Generator（シグナルジェネレーター）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Time &amp; Pitch（時間とピッチ）" href="../54-time-and-pitch/index.html">
+	
+	Time &amp; Pitch（時間とピッチ）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Find Similar（類似イベント検出）" href="../43-find-similar/index.html">
+	
+	Find Similar（類似イベント検出）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Markers &amp; Regions（マーカーとリージョン）" href="../55-markers-and-regions/index.html">
+	
+	Markers &amp; Regions（マーカーとリージョン）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectrum Analyzer（スペクトラム・アナライザー）" href="../56-spectrum-analyzer/index.html">
+	
+	Spectrum Analyzer（スペクトラム・アナライザー）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Waveform Statistics（波形の数値）" href="../57-waveform-stats/index.html">
+	
+	Waveform Statistics（波形の数値）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RXプラグイン" href="../58-rx-plug-ins/index.html">
+	
+	RXプラグイン
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RX Monitor（RXモニター）" href="../59-rx-monitor/index.html">
+	
+	RX Monitor（RXモニター）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="RX Connect（RXコネクト）" href="../60-rx-connect/index.html">
+	
+	RX Connect（RXコネクト）
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="キーボードショートカットガイド" href="../63-keyboard-shortcut-guide/index.html">
+	
+	キーボードショートカットガイド
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="オーディオの問題の識別" href="index.html">
+	
+	オーディオの問題の識別
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotopeカスタマーケアー" href="../69-izotope-customer-care/index.html">
+	
+	iZotopeカスタマーケアー
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="エンドユーザー向け使用許諾契約" href="../70-eula/index.html">
+	
+	エンドユーザー向け使用許諾契約
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="ライセンス情報" href="../71-license-information/index.html">
+	
+	ライセンス情報
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a></li>
+        </ul>
+        <hr />
+
+
+        
+    
+          
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../en/68-audio-problems/index.html"><i class="icon icon-eye"></i> 翻訳されたページを見る</a>
+          </li>
+        </ul></div></div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+       
+    
+    
+
+	<h1>オーディオの問題の識別 </h1>
+
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">言語:</span>
+<br />
+    
+
+       
+       <a href="../../en/68-audio-problems/index.html"><button class="lang-btn-clickable">英語</button></a>
+        
+        <a href="../../en/68-audio-problems/index.html"><button class="lang-btn-active">日本語</button></a>
+       
+    
+</div>
+ 
+
+
+    
+
+    
+
+
+
+
+    
+
+	
+
+<p>医療診断がそうであるように、オーディオのレストレーションで成功の鍵を握るのは、主体となっているものの状況を分析する能力です。これは一生をかけた、終わりのない探求であり、ノイズや修正の必要なオーディオイベントを見極めるため、常に聴覚に磨きをかける必要があります。</p>
+
+<h2 id="rxの処理ステップのフローチャート">RXの処理ステップのフローチャート</h2>
+
+<p>作業を始めるにあたり、ファイルの問題を見極め、最高の結果をもたらすであろうツールを選択することはとても重要です。我々は正しいRXモジュールの見分け方の手助けとなるフローチャートを作成しましたので、思うような結果が得られない場合は、これを頼りに考慮に入れるべきモジュールを見つけてください。</p>
+
+<p><img src="../img/processing-steps-rx6_hi-res.png" alt="RX process flowchart" /></p>
+
+<p>先ず、スペクトログラムと波形画面ツールを使用し、オーディオをどのように分析すべきか見てみましょう。その上で、これらの画面でオーディオの問題を見極める方法を考えていきましょう。</p>
+
+<h2 id="スペクトログラムを使用する目的は">スペクトログラムを使用する目的は？</h2>
+
+<p>オーディオ修復やレストレーションを行う上で、良質の視覚化ツールは、可聴の問題に対し、更に多くの情報を提供することを目的とします。これは編集の際の状況判断に役立つだけでなく、スペクトログラム画面に関しては、特に波形画面と並行して使用することにより、新しいオーディオ編集の方法論が獲得できます。</p>
+
+<h2 id="ハム">ハム</h2>
+
+<p>ハムは多くの場合、録音時の信号の通り道のどこかで発生する電気的なノイズに起因します。これは通常、可聴範囲内にある低周波数のトーンで、電源の周波数によるので、録音された場所によって、50Hzまたは60Hzのトーンになります。RXのスペクトログラム画面では、ハムは水平方向の線として表示され、通常は50Hzか60Hzに明るい線が現れ、更に明度の低い線がハーモニクスの周波数帯に現れます。下図はハムの例です:</p>
+
+<p><img src="../img/68-hum-example.png" alt="Hum example" /></p>
+
+<p>ハムの周波数が問題のないオーディオとオーバーラップしない場合は、ハム除去モジュールが一番適したツールとなります。ハム除去ツールの詳細<a href="../25-de-hum/index.html">はこちらをご参照ください。</a></p>
+
+<h2 id="バズ">バズ</h2>
+
+<p>場合によっては、電気的なノイズは高周波数域に達することがあり、バックグランドのバズとして現れることがあります。下図はその例です:</p>
+
+<p><img src="../img/68-buzz-example.png" alt="Buzz example" /></p>
+
+<p>ハム除去モジュールは低周波数の除去に特化していますので、ハーモニクスが400 Hz以上の高周波数域まで達した場合は、ノイズ除去モジュールをお使いください。ノイズ除去モジュールにはトーン状ノイズ抑制コントロール機能が搭載されておりますので、ハム除去に比べ、高周波数バズの除去により適しています。<a href="../34-spectral-de-noise/index.html">Spectral De-noise（スペクトラルノイズ除去）</a></p>
+
+<h2 id="ヒスとその他の高周波数帯ノイズ">ヒスとその他の高周波数帯ノイズ</h2>
+
+<p>ハムやバズとは違い、広域周波数帯ノイズはスペクトラム上に広がっており、特定の周波数帯に集中していません。テープヒス、ファンのノイズ、空調の音などが良い例と言えるでしょう。この種のノイズはRXのスペクトログラム画面上では、メインとなるマテリアルを取り囲む多数の斑点として表示されます。下図はその一例です:<br />
+ <br />
+<img src="../img/68-hiss-broadband-noise.png" alt="Hiss example" /></p>
+
+<h2 id="クリック-ポップ-その他の短いインパルス的ノイズ">クリック、ポップ、その他の短いインパルス的ノイズ</h2>
+
+<p>クリックやポップはアナログレコード盤からの録音、あるいは、DAWへの録音時に不適切なバッファ設定などにより発生するデジタル的なエラーにより起こります。これらの瞬間的な衝撃音は、RXのスペクトログラム上では垂直の線として表示されます。クリックやポップの音が大きいほど明るく表示されます。下図はアナログレコード盤からの録音を行った際に発生したクリックとポップです:</p>
+
+<p><img src="../img/68-clicks-example.png" alt="Clicks Pops example" /></p>
+
+<p>この場合、RXでは自動でも手動でも作業できる<a href="../21-de-click/index.html">Declick（クリック除去）</a> ツールを使用します。</p>
+
+<h2 id="クリッピング">クリッピング</h2>
+
+<p>多くの場合、クリッピングは、サウンドカード/コンバーター、ミキシング・コンソール、フィールド・レコーダー、その他機器の入力でレベル過多の信号が歪むことにより発生します。結果的に信号は過負担のディストーションを起こします。クリッピングはRXの波形表示で最も見分けやすい物の一つです。下図の通り、波形の上下が四角く切り取られる形で表示されます。</p>
+
+<p><img src="../img/68-clipping1.png" alt="Clipping example 1" /></p>
+
+<p>波形を拡大すると、クリッピングにより波形の端が切り取られた箇所が特定できます。</p>
+
+<p><img src="../img/68-clipping2.png" alt="Clipping example 2" /></p>
+
+<p>RXにはこうした問題に特化した<a href="../22-de-clip/index.html">クリップ除去</a>ツールが搭載されており、クリッピングにより切り取られた部分の修復を行い、より自然な音の再現を可能にします。時として、過度にリミッター処理が施されたオーディオもズームアウトすると波形の先が切り取られたかのような形状をすることがありますが、これの場合、実際にクリップしているオーディオのように必ずしも重度の歪みが発生するわけではありません。波形を拡大し、クリッピングにより波形の端が切り取られた箇所を特定してください。</p>
+
+<h2 id="断続的なノイズ">断続的なノイズ</h2>
+
+<p>ここで定義する断続的なノイズとはヒスやハムと違い、不定期に発生するノイズで、一定のピッチや長さをとどめるわけではありません。咳、くしゃみ、足音、車のクラクション、携帯の呼び出し音などがこれに該当します。以下の二例がこのタイプのノイズに分類されます:</p>
+
+<p><img src="../img/68-intermittent-ringing-example.png" alt="intermittent ringing" /><br />
+<img src="../img/68-intermittent-cough-example.png" alt="intermittent coughs" /></p>
+
+<p>RXでは複数のモードが搭載された<a href="../35-spectral-repair/index.html">スペクトラル修復</a>ツールを使用することにより、断続的なノイズを除去し、周囲のオーディオを元に適したオーディオとの差し替えを行うことができます。</p>
+
+<h2 id="空白と欠損">空白と欠損</h2>
+
+<p>録音されたオーディオには、時として空白や欠損ができてしまうことがあります。この種の問題は、視覚的にも聴覚的にも明確です。下図はその一例です:</p>
+
+<p><img src="../img/68-dropout-example.png" alt="Dropout example" /></p>
+
+<p>この場合、<a href="../35-spectral-repair/index.html">スペクトラル修復</a>を使用することにより、欠損部分を埋めることができます。</p>
+
+
+
+    </div>
+  </article>
+
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../63-keyboard-shortcut-guide/index.html" title="キーボードショートカットガイド">
+        <span class="direction">
+          前
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              キーボードショートカットガイド
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../69-izotope-customer-care/index.html" title="iZotopeカスタマーケアー">
+        <span class="direction">
+          次
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              iZotopeカスタマーケアー
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="copyright">
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  RX6オーディオエディター 取扱説明書
+</div>
+
+  
+  </footer>
+
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+
+
+        <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-12', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+    </main>
+  </body>
+</html>

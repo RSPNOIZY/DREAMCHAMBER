@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY Creator Charter — The Creator Bill of Rights for the AI Era</title>
+<style>
+  :root {
+    --gold: #f0b429;
+    --amber: #d97706;
+    --fire: #e85d04;
+    --electric: #0a9ebd;
+    --dream: #c94070;
+    --deep: #7c4dff;
+    --green: #22c55e;
+    --ink: #0a0804;
+    --parchment: #e8d5a3;
+    --cream: #f5edd6;
+    --seal: #8b0000;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #080604;
+    color: var(--parchment);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* ── STARFIELD ── */
+  #stars {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  }
+
+  /* ── SEAL GLOW ── */
+  #seal-glow {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(240,180,41,0.04) 0%, transparent 70%);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(8,6,4,0.88);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(240,180,41,0.25);
+    padding: 14px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-seal {
+    font-size: 11px; letter-spacing: 4px; color: var(--gold);
+    font-family: 'Georgia', serif; font-weight: bold;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: rgba(232,213,163,0.6); font-size: 10px;
+    letter-spacing: 2px; text-decoration: none; text-transform: uppercase;
+    font-family: 'Georgia', serif;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 40px 80px;
+  }
+
+  .charter-emblem {
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    margin-bottom: 40px;
+    position: relative;
+    opacity: 0; transform: scale(0.8);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    background: radial-gradient(circle, rgba(240,180,41,0.08) 0%, transparent 70%);
+    box-shadow: 0 0 40px rgba(240,180,41,0.15), inset 0 0 40px rgba(240,180,41,0.05);
+  }
+  .charter-emblem.visible { opacity: 1; transform: scale(1); }
+  .emblem-ring {
+    position: absolute; inset: -12px;
+    border-radius: 50%;
+    border: 1px solid rgba(240,180,41,0.3);
+    animation: spin 40s linear infinite;
+  }
+  .emblem-ring-2 {
+    position: absolute; inset: -24px;
+    border-radius: 50%;
+    border: 1px solid rgba(240,180,41,0.12);
+    animation: spin 60s linear infinite reverse;
+  }
+  .emblem-n {
+    font-size: 42px; font-weight: bold; color: var(--gold);
+    font-family: 'Georgia', serif; line-height: 1;
+  }
+  .emblem-sub {
+    font-size: 9px; letter-spacing: 3px; color: var(--gold);
+    text-transform: uppercase; margin-top: 2px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .hero-label {
+    font-size: 10px; letter-spacing: 5px; color: var(--amber);
+    text-transform: uppercase; margin-bottom: 20px;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+  }
+  .hero-label.visible { opacity: 1; transform: translateY(0); }
+
+  .hero-title {
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: bold; color: var(--parchment);
+    line-height: 1.1; margin-bottom: 12px;
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.9s ease 0.5s, transform 0.9s ease 0.5s;
+    text-shadow: 0 0 60px rgba(240,180,41,0.2);
+  }
+  .hero-title.visible { opacity: 1; transform: translateY(0); }
+  .hero-title span { color: var(--gold); }
+
+  .hero-subtitle {
+    font-size: clamp(14px, 2vw, 19px);
+    color: rgba(232,213,163,0.65); max-width: 600px;
+    font-style: italic; line-height: 1.6; margin-bottom: 48px;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.8s ease 0.7s, transform 0.8s ease 0.7s;
+  }
+  .hero-subtitle.visible { opacity: 1; transform: translateY(0); }
+
+  .preamble-block {
+    max-width: 700px;
+    border: 1px solid rgba(240,180,41,0.3);
+    border-radius: 4px;
+    padding: 32px 40px;
+    background: rgba(240,180,41,0.04);
+    text-align: left;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--cream);
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.8s ease 0.9s, transform 0.8s ease 0.9s;
+  }
+  .preamble-block.visible { opacity: 1; transform: translateY(0); }
+  .preamble-block::before {
+    content: 'PREAMBLE';
+    display: block; font-style: normal;
+    font-size: 9px; letter-spacing: 5px; color: var(--amber);
+    margin-bottom: 14px;
+  }
+
+  .scroll-cue {
+    margin-top: 60px;
+    font-size: 10px; letter-spacing: 3px; color: rgba(240,180,41,0.4);
+    text-transform: uppercase;
+    opacity: 0; animation: fadeInCue 1s ease 2s forwards;
+  }
+  @keyframes fadeInCue { to { opacity: 1; } }
+
+  /* ── SECTION ── */
+  section {
+    position: relative; z-index: 1;
+    max-width: 1100px; margin: 0 auto;
+    padding: 80px 40px;
+  }
+
+  .section-header {
+    text-align: center; margin-bottom: 60px;
+  }
+  .section-label {
+    font-size: 10px; letter-spacing: 5px; color: var(--amber);
+    text-transform: uppercase; margin-bottom: 12px; display: block;
+  }
+  .section-title {
+    font-size: clamp(24px, 4vw, 40px);
+    color: var(--parchment); font-weight: bold;
+    margin-bottom: 14px;
+  }
+  .section-title span { color: var(--gold); }
+  .section-rule {
+    width: 80px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0 auto;
+  }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── FIVE PILLARS ── */
+  .pillars-row {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 16px; margin-bottom: 80px;
+  }
+  @media(max-width:900px){ .pillars-row { grid-template-columns: repeat(3,1fr); } }
+  @media(max-width:600px){ .pillars-row { grid-template-columns: 1fr 1fr; } }
+
+  .pillar {
+    border: 1px solid rgba(240,180,41,0.2);
+    border-radius: 4px;
+    padding: 28px 16px; text-align: center;
+    background: rgba(240,180,41,0.03);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .pillar:hover { background: rgba(240,180,41,0.07); border-color: rgba(240,180,41,0.45); }
+  .pillar-roman {
+    font-size: 22px; color: var(--gold); font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .pillar-name {
+    font-size: 11px; letter-spacing: 2px; color: var(--amber);
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .pillar-desc {
+    font-size: 12px; color: rgba(232,213,163,0.6);
+    font-style: italic; line-height: 1.5;
+  }
+
+  /* ── ARTICLES ── */
+  .articles-stack { display: flex; flex-direction: column; gap: 0; }
+
+  .article {
+    border: 1px solid rgba(240,180,41,0.15);
+    border-bottom: none;
+    padding: 0;
+    background: rgba(8,6,4,0.6);
+    overflow: hidden;
+  }
+  .article:last-child { border-bottom: 1px solid rgba(240,180,41,0.15); }
+  .article:first-child { border-radius: 4px 4px 0 0; }
+  .article:last-child { border-radius: 0 0 4px 4px; }
+
+  .article-header {
+    display: flex; align-items: center;
+    padding: 22px 32px;
+    border-bottom: 1px solid rgba(240,180,41,0.08);
+    gap: 24px;
+  }
+  .article-num {
+    font-size: 28px; font-weight: bold;
+    color: var(--gold); min-width: 52px;
+    font-style: italic; opacity: 0.6;
+  }
+  .article-meta { flex: 1; }
+  .article-title {
+    font-size: 17px; font-weight: bold; color: var(--parchment);
+    margin-bottom: 4px;
+  }
+  .article-tagline {
+    font-size: 12px; color: var(--amber); font-style: italic;
+  }
+  .article-body {
+    padding: 24px 32px 24px 108px;
+    font-size: 14px; line-height: 1.8;
+    color: rgba(232,213,163,0.75);
+  }
+  .article-body ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .article-body ul li::before {
+    content: '§ ';
+    color: var(--gold); font-weight: bold;
+  }
+  @media(max-width:700px){
+    .article-body { padding: 20px 24px; }
+    .article-num { font-size: 22px; min-width: 40px; }
+  }
+
+  /* ── ECONOMIC GUARANTEE ── */
+  .econ-block {
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 48px;
+    text-align: center;
+    background: rgba(240,180,41,0.04);
+    position: relative; overflow: hidden;
+  }
+  .econ-block::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(240,180,41,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .econ-fraction {
+    font-size: clamp(48px, 10vw, 96px);
+    font-weight: bold; color: var(--gold);
+    letter-spacing: -2px; line-height: 1;
+    margin: 0 0 12px;
+    text-shadow: 0 0 40px rgba(240,180,41,0.3);
+  }
+  .econ-label {
+    font-size: 13px; letter-spacing: 3px; color: var(--amber);
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .econ-desc {
+    font-size: 15px; max-width: 580px; margin: 0 auto;
+    color: rgba(232,213,163,0.75); line-height: 1.7;
+    font-style: italic;
+  }
+  .econ-footnote {
+    margin-top: 24px; font-size: 11px;
+    color: rgba(240,180,41,0.5); letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── ADOPTION MODEL ── */
+  .adoption-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  @media(max-width:700px){ .adoption-grid { grid-template-columns: 1fr; } }
+
+  .adopt-card {
+    border: 1px solid rgba(240,180,41,0.2);
+    border-radius: 4px; padding: 28px;
+    background: rgba(240,180,41,0.02);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .adopt-card:hover { background: rgba(240,180,41,0.06); border-color: rgba(240,180,41,0.4); }
+  .adopt-who {
+    font-size: 10px; letter-spacing: 3px; color: var(--amber);
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .adopt-title {
+    font-size: 16px; font-weight: bold; color: var(--parchment); margin-bottom: 12px;
+  }
+  .adopt-desc {
+    font-size: 13px; color: rgba(232,213,163,0.6); line-height: 1.65;
+  }
+  .adopt-cta {
+    display: inline-block; margin-top: 16px;
+    font-size: 10px; letter-spacing: 2px; color: var(--gold);
+    text-transform: uppercase; border-bottom: 1px solid rgba(240,180,41,0.4);
+    padding-bottom: 2px;
+  }
+
+  /* ── OBLIGATION GRID ── */
+  .obligation-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  @media(max-width:700px){ .obligation-grid { grid-template-columns: 1fr; } }
+
+  .obligation-card {
+    border: 1px solid rgba(240,180,41,0.15);
+    border-radius: 4px; padding: 28px;
+    background: rgba(240,180,41,0.02);
+  }
+  .obligation-who {
+    font-size: 10px; letter-spacing: 3px; color: var(--amber);
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .obligation-title {
+    font-size: 16px; font-weight: bold; color: var(--parchment); margin-bottom: 16px;
+  }
+  .obligation-list {
+    list-style: none; display: flex; flex-direction: column; gap: 8px;
+  }
+  .obligation-list li {
+    font-size: 13px; color: rgba(232,213,163,0.65);
+    line-height: 1.55; padding-left: 18px; position: relative;
+  }
+  .obligation-list li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--gold);
+  }
+
+  /* ── SIGNATORIES ── */
+  .sig-intro {
+    text-align: center; font-style: italic;
+    font-size: 14px; color: rgba(232,213,163,0.6);
+    max-width: 580px; margin: 0 auto 40px; line-height: 1.7;
+  }
+  .sig-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  @media(max-width:800px){ .sig-grid { grid-template-columns: repeat(2,1fr); } }
+  @media(max-width:500px){ .sig-grid { grid-template-columns: 1fr; } }
+
+  .sig-card {
+    border: 1px solid rgba(240,180,41,0.15);
+    border-radius: 4px; padding: 22px 18px;
+    background: rgba(240,180,41,0.02);
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .sig-card:hover { background: rgba(240,180,41,0.06); }
+  .sig-icon { font-size: 28px; margin-bottom: 10px; }
+  .sig-name { font-size: 13px; font-weight: bold; color: var(--parchment); margin-bottom: 4px; }
+  .sig-role { font-size: 11px; color: var(--amber); font-style: italic; margin-bottom: 8px; }
+  .sig-line {
+    width: 70%; height: 1px; background: rgba(240,180,41,0.4);
+    margin: 10px auto 0;
+  }
+  .sig-label { font-size: 9px; color: rgba(240,180,41,0.4); letter-spacing: 2px; margin-top: 6px; }
+
+  /* ── FOUNDING CREATOR CALL ── */
+  .founding-call {
+    border: 2px solid rgba(240,180,41,0.35);
+    border-radius: 8px; padding: 56px 48px; text-align: center;
+    background: rgba(240,180,41,0.03);
+    position: relative; overflow: hidden;
+  }
+  .founding-call::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(240,180,41,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .fc-number {
+    font-size: 64px; font-weight: bold; color: var(--gold);
+    line-height: 1; margin-bottom: 6px;
+    text-shadow: 0 0 40px rgba(240,180,41,0.25);
+  }
+  .fc-label {
+    font-size: 11px; letter-spacing: 4px; color: var(--amber);
+    text-transform: uppercase; margin-bottom: 24px;
+  }
+  .fc-desc {
+    font-size: 15px; max-width: 600px; margin: 0 auto 28px;
+    color: rgba(232,213,163,0.75); line-height: 1.75; font-style: italic;
+  }
+  .fc-benefits {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 14px;
+    max-width: 600px; margin: 0 auto 32px;
+  }
+  @media(max-width:600px){ .fc-benefits { grid-template-columns: 1fr 1fr; } }
+  .fc-benefit {
+    border: 1px solid rgba(240,180,41,0.2);
+    border-radius: 4px; padding: 14px 10px;
+    font-size: 12px; color: rgba(232,213,163,0.7);
+  }
+  .fc-benefit strong { display: block; color: var(--gold); margin-bottom: 4px; font-size: 14px; }
+  .fc-cta {
+    display: inline-block;
+    background: var(--gold); color: #0a0804;
+    font-family: 'Georgia', serif;
+    font-size: 13px; font-weight: bold;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 14px 40px; border-radius: 2px;
+    text-decoration: none; cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .fc-cta:hover { background: var(--amber); transform: translateY(-1px); }
+
+  /* ── ADOPTION WAVE ── */
+  .wave-strip {
+    border: 1px solid rgba(240,180,41,0.15);
+    border-radius: 4px; padding: 32px 40px;
+    background: rgba(240,180,41,0.02);
+    display: flex; align-items: center; gap: 0;
+    overflow: hidden;
+  }
+  .wave-phase {
+    flex: 1; text-align: center; position: relative;
+    padding: 0 12px;
+  }
+  .wave-phase:not(:last-child)::after {
+    content: '→';
+    position: absolute; right: -8px; top: 50%; transform: translateY(-50%);
+    color: rgba(240,180,41,0.3); font-size: 20px;
+  }
+  .wave-phase-num { font-size: 24px; font-weight: bold; color: var(--gold); margin-bottom: 4px; }
+  .wave-phase-name { font-size: 12px; color: var(--amber); letter-spacing: 1px; margin-bottom: 6px; }
+  .wave-phase-desc { font-size: 11px; color: rgba(232,213,163,0.55); font-style: italic; }
+
+  /* ── CLOSING DECLARATION ── */
+  .declaration {
+    text-align: center; max-width: 700px; margin: 0 auto;
+    padding: 80px 40px;
+    position: relative; z-index: 1;
+  }
+  .decl-seal {
+    width: 80px; height: 80px; border-radius: 50%;
+    border: 2px solid var(--gold); margin: 0 auto 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: bold; color: var(--gold);
+    background: rgba(240,180,41,0.05);
+    box-shadow: 0 0 30px rgba(240,180,41,0.15);
+  }
+  .decl-quote {
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-style: italic; color: var(--parchment);
+    line-height: 1.7; margin-bottom: 28px;
+  }
+  .decl-quote em { color: var(--gold); font-style: normal; }
+  .decl-sub {
+    font-size: 12px; color: rgba(240,180,41,0.5);
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+  .decl-date {
+    font-size: 11px; color: rgba(232,213,163,0.4);
+    letter-spacing: 2px; font-style: italic;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    max-width: 1100px; margin: 0 auto;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(240,180,41,0.2), transparent);
+  }
+
+  /* ── CHARTER NAV ── */
+  .charter-nav {
+    position: relative; z-index: 1;
+    background: rgba(8,6,4,0.9);
+    border-top: 1px solid rgba(240,180,41,0.15);
+    padding: 40px;
+    text-align: center;
+  }
+  .charter-nav-label {
+    font-size: 9px; letter-spacing: 5px; color: var(--amber);
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .charter-nav-links {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+  }
+  .charter-nav-links a {
+    color: rgba(232,213,163,0.5); font-size: 11px;
+    letter-spacing: 1px; text-decoration: none;
+    border: 1px solid rgba(240,180,41,0.15);
+    padding: 6px 14px; border-radius: 2px;
+    transition: color 0.3s, border-color 0.3s;
+    font-family: 'Georgia', serif;
+  }
+  .charter-nav-links a:hover { color: var(--gold); border-color: rgba(240,180,41,0.4); }
+
+  /* ── FULL-WIDTH BAND ── */
+  .band {
+    position: relative; z-index: 1;
+    padding: 60px 40px;
+    text-align: center;
+    background: rgba(240,180,41,0.03);
+    border-top: 1px solid rgba(240,180,41,0.12);
+    border-bottom: 1px solid rgba(240,180,41,0.12);
+  }
+  .band-text {
+    font-size: clamp(13px, 2vw, 16px);
+    font-style: italic; color: rgba(232,213,163,0.65);
+    max-width: 700px; margin: 0 auto; line-height: 1.8;
+  }
+  .band-text strong { color: var(--gold); font-style: normal; }
+
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<div id="seal-glow"></div>
+
+<nav>
+  <span class="nav-seal">NOIZY Creator Charter</span>
+  <div class="nav-links">
+    <a href="NOIZY_AI_HOME.html">Home</a>
+    <a href="NOIZY_GUILD_FAMILY.html">Guild</a>
+    <a href="NOIZY_ECONOMIC_ENGINE.html">Economics</a>
+    <a href="NOIZY_MOVEMENT_MANIFESTO.html">Manifesto</a>
+    <a href="NOIZY_HARMONY_CAMPAIGN.html">Harmony</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════ HERO -->
+<div class="hero">
+  <div class="charter-emblem" id="emblem">
+    <div class="emblem-ring"></div>
+    <div class="emblem-ring-2"></div>
+    <div class="emblem-n">N</div>
+    <div class="emblem-sub">CHARTER</div>
+  </div>
+
+  <p class="hero-label" id="hero-label">The Creator Bill of Rights for the AI Era</p>
+
+  <h1 class="hero-title" id="hero-title">
+    THE NOIZY<br><span>CREATOR CHARTER</span>
+  </h1>
+
+  <p class="hero-subtitle" id="hero-sub">
+    A founding covenant between human creators and artificial intelligence —<br>
+    written to endure longer than any platform, any model, any era.
+  </p>
+
+  <div class="preamble-block reveal" id="preamble">
+    We, the creators — singers, composers, producers, poets, voice artists, beatmakers,
+    lyricists, sound designers, musicians of every tongue and tradition — having built
+    the world's most powerful cultural currency, having watched that currency extracted,
+    commodified, and algorithmically replaced without our consent, credit, or share —
+    do hereby establish this Charter as the irreducible floor of our rights in any
+    system, platform, or protocol that touches our work.
+    <br><br>
+    This Charter belongs to no company. It belongs to every creator who signs it.
+    It asks AI to be what it was always capable of being: not a replacement, but a
+    collaborator bound by conscience.
+  </div>
+
+  <p class="scroll-cue">↓ Read · Sign · Share</p>
+</div>
+
+<!-- ══════════════════════════════════════════ FIVE PILLARS -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">Foundation</span>
+    <h2 class="section-title">The <span>Five Pillars</span></h2>
+    <p style="font-size:13px;color:rgba(232,213,163,0.5);font-style:italic;margin-top:10px;max-width:500px;margin-left:auto;margin-right:auto;">
+      Every article of this Charter is rooted in one or more of these five pillars.
+      No platform may claim to honor creators while violating any of them.
+    </p>
+    <div class="section-rule" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="pillars-row reveal">
+    <div class="pillar">
+      <div class="pillar-roman">I</div>
+      <div class="pillar-name">Consent</div>
+      <div class="pillar-desc">No AI may train on, replicate, or remix your work without explicit, revocable, informed consent.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-roman">II</div>
+      <div class="pillar-name">Credit</div>
+      <div class="pillar-desc">Every use of your work — direct or derivative — must be traceable back to you, in perpetuity.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-roman">III</div>
+      <div class="pillar-name">Revenue Share</div>
+      <div class="pillar-desc">Economic value generated by your work flows back to you. Minimums are guaranteed. No exceptions.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-roman">IV</div>
+      <div class="pillar-name">Transparency</div>
+      <div class="pillar-desc">You have the right to see exactly how your work is used, who used it, and what it earned.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-roman">V</div>
+      <div class="pillar-name">Portability</div>
+      <div class="pillar-desc">Your rights, your voice, your catalog — portable across any platform, forever yours to move.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ TEN ARTICLES -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">The Charter</span>
+    <h2 class="section-title">Ten <span>Articles</span></h2>
+    <p style="font-size:13px;color:rgba(232,213,163,0.5);font-style:italic;margin-top:10px;max-width:500px;margin-left:auto;margin-right:auto;">
+      These ten articles form the complete, non-negotiable framework of creator rights
+      in the age of AI. They apply to NOIZY, and we invite every platform on earth to adopt them.
+    </p>
+    <div class="section-rule" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="articles-stack reveal">
+
+    <div class="article">
+      <div class="article-header">
+        <div class="article-num">01</div>
+        <div class="article-meta">
+          <div class="article-title">The Right of Consent Before Training</div>
+          <div class="article-tagline">Pillar I — Consent</div>
+        </div>
+      </div>
+      <div class="article-body">
+        <ul>
+          <li>No AI model, system, or platform may ingest, train on, or extract patterns from a creator's work without prior, explicit, written consent.</li>
+          <li>Consent must be specific to use case — training consent does not imply synthesis consent, and neither implies commercial deployment consent.</li>
+          <li>Consent is revocable at any time. Revocation applies to future use and must be honored within 30 days. Prior licensed uses may continue under their original terms only.</li>
+          <li>Consent cannot be buried in terms of service. It requires a standalone, plain-language acknowledgment.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="article">
+      <div class="article-header">
+        <div class="article-num">02</div>
+        <div class="article-meta">
+          <div class="article-title">The Right of Perpetual Attribution</div>
+          <div class="article-tagline">Pillar II — Credit</div>
+        </div>
+      </div>
+      <div class="article-body">
+        <ul>
+          <li>Every work carries the creator's name, registered identity, and creation timestamp in an immutable metadata chain — regardless of how many transformations it undergoes.</li>
+          <li>AI-generated works that draw from human source material must disclose the provenance chain to any requesting party.</li>
+          <li>Attribution cannot be waived by contract or obscured by anonymization. Credit is not a courtesy; it is structural.</li>
+          <li>Where a work has multiple contributors, each is attributed proportionally. AI contribution is labeled as such and carries no human credit.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="article">
+      <div class="article-header">
+        <div class="article-num">03</div>
+        <div class="article-meta">
+          <div class="article-title">The Right to Revenue — The 75/25 Guarantee</div>
+          <div class="article-tagline">Pillar III — Revenue Share</div>
+        </div>
+      </div>
+      <div class="article-body">
+        <ul>
+          <li>When a creator's work generates revenue on NOIZY — through licensing, performance, synthesis, sampling, or AI model deployment — the creator receives a minimum of 75% of that revenue.</li>
+          <li>The platform's operating share is capped at 25%. This ratio is permanent and not subject to renegotiation on a per-creator basis.</li>
+          <li>The 75/25 split activates after one month of enrollment. No probationary periods, no tiered rollouts, no exceptions.</li>
+          <li>Revenue is calculated at source, not after deductions. Creators see the full number before any split is applied.</li>
+          <li>Micro-royalties — payments as small as fractions of a cent — are tracked, accumulated, and paid. No minimum threshold suppresses payment.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="article">
+      <div class="article-header">
+        <div class="article-num">04</div>
+        <div class="article-meta">
+          <div class="article-title">The Right to an Open Ledger</div>
+          <div class="article-tagline">Pillar IV — Transparency</div>
+        </div>
+      </div>
+      <div class="article-body">
+        <ul>
+          <li>Every creator has real-time access to a dashboard showing: who used their work, when, where, for what purpose, and how much it earned.</li>
+          <li>Algorithmic decisions affecting discovery, promotion, or demotion of a creator's work must be explained in plain language on request.</li>
+          <li>Platforms must publish an annual Creator Economy Report: aggregate revenue flows, average creator earnings by tier, and the percentage of revenue returned to creators versus retained by the platform.</li>
+          <li>No black-box royalty pools. Every dollar must be traceable to a specific use event.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="article">
+      <div class="article-header">
+        <div class="article-num">05</div>
+        <div class="article-meta">
+          <div class="article-title">The Right to Own Your Voice</div>
+          <div class="article-tagline">Pillars I & II — Consent & Credit</div>
+        </div>
+      </div>
+      <div class="article-body">
+        <ul>
+          <li>A creator's voice — its acoustic qualities, emotional signature, timing, cadence, and style — is biological and legal property. It cannot be cloned, synthesized, or deployed commercially without consent.</li>
+          <li>AI voice models trained on a creator's voice belong to that creator. Platforms may operate them under license; they may not own them.</li>
+          <li>Creators may register their voice signature as an identity record (e.g., NOIZYVOX HVS) and have that registration recognized across participating platforms.</li>
+          <li>If a creator's voice is used in AI training without consent, the creator is entitled to full audit of that use and market-rate compensation for the full duration of that use.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="article">
+      <div class="article-header">
+        <div class="article-num">06</div>
+        <div class="article-meta">
+          <div class="article-title">The Right to Portability and Exit</div>
+          <div class="article-tagline">Pillar V — Portability</div>
+        </div>
+      </div>
+      <div class="article-body">
+        <ul>
+          <li>A creator may export their complete catalog, royalty history, listener data, voice registrations, and identity records at any time in a standard, machine-readable format.</li>
+          <li>Platforms may not impose exit penalties, cooling-off periods, or data suppression upon a creator's departure.</li>
+          <li>Royalties earned before exit continue to be paid to the creator's designated address for the life of the original license agreements, regardless of platform relationship.</li>
+          <li>Portability of rights is guaranteed. A creator's right to their own work does not terminate when their platform relationship does.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="article">
+      <div class="article-header">
+        <div class="article-num">07</div>
+        <div class="article-meta">
+          <div class="article-title">The Right to Know When You're Hearing AI</div>
+          <div class="article-tagline">Pillar IV — Transparency</div>
+        </div>
+      </div>
+      <div class="article-body">
+        <ul>
+          <li>All AI-generated audio, music, or voice content distributed through any platform must be labeled as AI-generated at point of delivery to the listener.</li>
+          <li>AI content that incorporates human source material must additionally disclose which human work was used, and that creator must have consented and received compensation.</li>
+          <li>Platforms may not suppress, hide, or de-emphasize AI disclosure labels in exchange for distribution fees or promotional agreements.</li>
+          <li>Listeners have the right to filter by: human-only, AI-only, or human-AI collaborative content.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="article">
+      <div class="article-header">
+        <div class="article-num">08</div>
+        <div class="article-meta">
+          <div class="article-title">The Right to Mentorship and Knowledge Transfer</div>
+          <div class="article-tagline">Community Pillar</div>
+        </div>
+      </div>
+      <div class="article-body">
+        <ul>
+          <li>Experienced creators have the right and responsibility to mentor emerging creators. Platforms must provide infrastructure that enables this — not just content consumption, but knowledge transmission.</li>
+          <li>Credit flows back through mentorship chains. A Master who trains a Journeyman who trains an Apprentice who creates a hit — every link in that chain is credited and compensated for the part they played in creating the capacity that created the work.</li>
+          <li>Guild knowledge — techniques, tools, craft traditions — is a commons. Platforms may not proprietary-ize community knowledge into locked courses without creator consent and revenue share.</li>
+          <li>Every creator has the right to learn, to grow, and to be seen at every stage of that growth.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="article">
+      <div class="article-header">
+        <div class="article-num">09</div>
+        <div class="article-meta">
+          <div class="article-title">The Right to Cultural Integrity</div>
+          <div class="article-tagline">Sovereignty Pillar</div>
+        </div>
+      </div>
+      <div class="article-body">
+        <ul>
+          <li>Cultural traditions, oral histories, indigenous music systems, regional dialects, and community-specific sonic languages belong to their originating communities. AI may not commodify them without community-level consent and community-level revenue share.</li>
+          <li>When AI creates works in the stylistic tradition of a living culture, it must acknowledge that tradition, and pathways must exist for revenue to flow back to source communities.</li>
+          <li>Creators from marginalized, under-resourced, or historically extracted communities receive the same 75/25 guarantee as all other creators — and platforms have an affirmative obligation to not replicate pre-existing structural inequities in their algorithmic systems.</li>
+          <li>Music is not neutral data. It carries identity, memory, and belonging. These are not to be optimized away.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="article">
+      <div class="article-header">
+        <div class="article-num">10</div>
+        <div class="article-meta">
+          <div class="article-title">The Right to a Living Standard — Not Just Survival</div>
+          <div class="article-tagline">Future Pillar</div>
+        </div>
+      </div>
+      <div class="article-body">
+        <ul>
+          <li>The goal is not merely to prevent harm. The goal is to build a creator economy in which a working musician can earn a sustainable living from their craft — without requiring viral scale, label deals, or algorithmic luck.</li>
+          <li>Platforms that generate billions of dollars in annual revenue while the median creator earns less than minimum wage have failed their stated mission, regardless of their terms of service. This Charter rejects that outcome as acceptable.</li>
+          <li>NOIZY commits to publishing creator median income data annually and to treating any failure to improve that figure as a governance and product failure — not just a market condition.</li>
+          <li>AI is powerful enough to flood the world with content. It is also powerful enough to ensure every human creator who builds on this platform can build a life. We choose the second path.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ ECONOMIC GUARANTEE -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">Article III in Full</span>
+    <h2 class="section-title">The Economic <span>Guarantee</span></h2>
+    <div class="section-rule" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="econ-block reveal">
+    <div class="econ-fraction">75 / 25</div>
+    <div class="econ-label">The Permanent Creator Split — Encoded in Every Transaction</div>
+    <p class="econ-desc">
+      Three-quarters of every dollar generated by a creator's work on NOIZY
+      returns to that creator. This is not a promotional rate. It is not tiered
+      by follower count, release volume, or genre. It is the floor, the ceiling,
+      and the only number that matters.
+    </p>
+    <div class="econ-footnote">Activates after 30 days · No exceptions · Not renegotiable · Perpetual</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:24px;" class="reveal">
+    <div style="border:1px solid rgba(240,180,41,0.15);border-radius:4px;padding:24px;background:rgba(240,180,41,0.02);">
+      <div style="font-size:11px;letter-spacing:3px;color:var(--amber);text-transform:uppercase;margin-bottom:10px;">Voice Licensing</div>
+      <div style="font-size:22px;font-weight:bold;color:var(--gold);margin-bottom:6px;">75%</div>
+      <div style="font-size:13px;color:rgba(232,213,163,0.6);font-style:italic;">Every time your voice is synthesized for a commercial project, 75% of the sync fee returns to your account automatically.</div>
+    </div>
+    <div style="border:1px solid rgba(240,180,41,0.15);border-radius:4px;padding:24px;background:rgba(240,180,41,0.02);">
+      <div style="font-size:11px;letter-spacing:3px;color:var(--amber);text-transform:uppercase;margin-bottom:10px;">Music Licensing</div>
+      <div style="font-size:22px;font-weight:bold;color:var(--gold);margin-bottom:6px;">75%</div>
+      <div style="font-size:13px;color:rgba(232,213,163,0.6);font-style:italic;">Sync deals, AI playlist placements, commercial samples — every licensed use triggers an automatic split at the protocol level.</div>
+    </div>
+    <div style="border:1px solid rgba(240,180,41,0.15);border-radius:4px;padding:24px;background:rgba(240,180,41,0.02);">
+      <div style="font-size:11px;letter-spacing:3px;color:var(--amber);text-transform:uppercase;margin-bottom:10px;">AI Model Earnings</div>
+      <div style="font-size:22px;font-weight:bold;color:var(--gold);margin-bottom:6px;">75%</div>
+      <div style="font-size:13px;color:rgba(232,213,163,0.6);font-style:italic;">When your voice or music model generates revenue for other creators building on top of it, your 75% share flows back in real time.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ OBLIGATIONS -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">The Covenant Goes Both Ways</span>
+    <h2 class="section-title">Rights <span>& Obligations</span></h2>
+    <p style="font-size:13px;color:rgba(232,213,163,0.5);font-style:italic;margin-top:10px;max-width:500px;margin-left:auto;margin-right:auto;">
+      A charter that protects creators must also ask something of them.
+      And it must bind the platform to reciprocal obligations.
+    </p>
+    <div class="section-rule" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="obligation-grid reveal">
+    <div class="obligation-card">
+      <div class="obligation-who">Platform (NOIZY) Commits To</div>
+      <div class="obligation-title">What We Promise You</div>
+      <ul class="obligation-list">
+        <li>Honor the 75/25 split in every transaction, forever</li>
+        <li>Never train on your work without explicit consent</li>
+        <li>Publish the full algorithm logic affecting your discoverability</li>
+        <li>Display an annual Creator Economy Report with median creator earnings</li>
+        <li>Guarantee full data portability with no exit penalties</li>
+        <li>Label all AI content clearly and without suppression</li>
+        <li>Maintain the Guild infrastructure for mentorship and knowledge transfer</li>
+        <li>Submit to third-party audit of royalty flows annually</li>
+        <li>Never suppress creator voices in favor of AI-only content distribution</li>
+        <li>Treat the gap between creator earnings and platform revenue as a problem to be solved, not a market condition to be managed</li>
+      </ul>
+    </div>
+    <div class="obligation-card">
+      <div class="obligation-who">Creators Commit To</div>
+      <div class="obligation-title">What You Promise the Community</div>
+      <ul class="obligation-list">
+        <li>Register your work with accurate metadata — authorship, date, collaborators</li>
+        <li>Disclose AI tools used in creation so listeners can understand the work</li>
+        <li>Respect the consent rights of other creators whose work you sample or build from</li>
+        <li>Participate in Guild mentorship — to teach what you know to those coming behind you</li>
+        <li>Not misrepresent AI-generated work as entirely human-created</li>
+        <li>Engage constructively with the governance processes that shape platform policy</li>
+        <li>Respect cultural origins — acknowledge what you draw from, and credit those traditions</li>
+        <li>Uphold the standard: when AI serves creators well, say so; when it does not, say that too</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ ADOPTION MODEL -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">Wider Than NOIZY</span>
+    <h2 class="section-title">How to <span>Adopt</span> This Charter</h2>
+    <p style="font-size:13px;color:rgba(232,213,163,0.5);font-style:italic;margin-top:10px;max-width:600px;margin-left:auto;margin-right:auto;">
+      This Charter is not a NOIZY proprietary document. It is an open standard.
+      Any platform, label, union, guild, collective, or individual may adopt it.
+      Adoption is a declaration — not a certification. But declarations matter.
+    </p>
+    <div class="section-rule" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="adoption-grid reveal">
+    <div class="adopt-card">
+      <div class="adopt-who">For Creators</div>
+      <div class="adopt-title">Sign as an Individual</div>
+      <div class="adopt-desc">
+        Add your name to the Charter as a signatory. Signal to every platform you work with
+        that these are your minimums. Use the Charter seal in your bio and release notes.
+        Your signature tells the world: I know my rights.
+      </div>
+      <span class="adopt-cta">Sign the Charter →</span>
+    </div>
+    <div class="adopt-card">
+      <div class="adopt-who">For Platforms & Labels</div>
+      <div class="adopt-title">Adopt as a Standard</div>
+      <div class="adopt-desc">
+        Review the ten articles. Adopt those you can implement now. Publish a roadmap
+        for the rest. We are not asking for perfection on day one — we are asking for
+        honest commitment and public accountability. Partial adoption is better than
+        none. Full adoption is the goal.
+      </div>
+      <span class="adopt-cta">Adopt the Charter →</span>
+    </div>
+    <div class="adopt-card">
+      <div class="adopt-who">For Unions & Collectives</div>
+      <div class="adopt-title">Endorse & Extend</div>
+      <div class="adopt-desc">
+        Unions represent creators. This Charter protects creators. Endorse it as a
+        baseline that any collective bargaining agreement must meet or exceed.
+        Unions that endorse the Charter become Founding Allies — listed permanently
+        in the public record as early defenders of creator rights in the AI era.
+      </div>
+      <span class="adopt-cta">Become an Ally →</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ FOUNDING SIGNATORIES -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">On Record, Forever</span>
+    <h2 class="section-title">Founding <span>Signatories</span></h2>
+    <div class="section-rule" style="margin-top:18px;"></div>
+  </div>
+
+  <p class="sig-intro reveal">
+    These are the first names on the Charter. They are not the most famous, the most followed,
+    or the most algorithm-optimized. They are the ones who showed up first.
+    In 500 years, their names will still be on this document.
+  </p>
+
+  <div class="sig-grid reveal">
+    <div class="sig-card">
+      <div class="sig-icon">🎤</div>
+      <div class="sig-name">Robert Stephen Plowman</div>
+      <div class="sig-role">Founder, NOIZY · RSP_001</div>
+      <div class="sig-line"></div>
+      <div class="sig-label">Signatory #001 · 2026</div>
+    </div>
+    <div class="sig-card">
+      <div class="sig-icon">🤖</div>
+      <div class="sig-name">GABRIEL</div>
+      <div class="sig-role">AI Orchestrator · M2 Ultra</div>
+      <div class="sig-line"></div>
+      <div class="sig-label">AI Witness · 2026</div>
+    </div>
+    <div class="sig-card">
+      <div class="sig-icon">🎼</div>
+      <div class="sig-name">DREAM</div>
+      <div class="sig-role">Creative Partner · DreamChamber</div>
+      <div class="sig-line"></div>
+      <div class="sig-label">Signatory #002 · 2026</div>
+    </div>
+    <div class="sig-card">
+      <div class="sig-icon">✍️</div>
+      <div class="sig-name">Your Name Here</div>
+      <div class="sig-role">Creator · Earth</div>
+      <div class="sig-line"></div>
+      <div class="sig-label">Next Signatory</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ FOUNDING 100 CALL -->
+<div class="divider"></div>
+<section>
+  <div class="founding-call reveal">
+    <div class="fc-number">100</div>
+    <div class="fc-label">Founding Creators Needed · The First Wave</div>
+    <p class="fc-desc">
+      Every revolution has a moment when a small group of committed people
+      makes a movement inevitable. We need 100 creators who are ready to be
+      on the right side of this history — before it's safe, before it's popular,
+      before the mainstream catches up.
+    </p>
+    <div class="fc-benefits">
+      <div class="fc-benefit"><strong>Perpetual Legacy</strong>Named in the historical record as a Founding Creator</div>
+      <div class="fc-benefit"><strong>75/25 Guaranteed</strong>Your split is locked and permanent from day one</div>
+      <div class="fc-benefit"><strong>Guild Master Status</strong>Automatic entry at the highest mentorship tier</div>
+      <div class="fc-benefit"><strong>Charter Vote</strong>Voting rights on all future amendments to this document</div>
+      <div class="fc-benefit"><strong>Early Access</strong>First access to every new NOIZY tool as it ships</div>
+      <div class="fc-benefit"><strong>Zero Platform Fee</strong>No fees for the first year. Full stop.</div>
+    </div>
+    <a class="fc-cta" href="#">Become a Founding Creator</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ ADOPTION WAVE -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">The Path Forward</span>
+    <h2 class="section-title">The <span>Adoption Wave</span></h2>
+    <div class="section-rule" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="wave-strip reveal">
+    <div class="wave-phase">
+      <div class="wave-phase-num">1</div>
+      <div class="wave-phase-name">Seed</div>
+      <div class="wave-phase-desc">100 Founding Creators sign. The Charter exists.</div>
+    </div>
+    <div class="wave-phase">
+      <div class="wave-phase-num">2</div>
+      <div class="wave-phase-name">Roots</div>
+      <div class="wave-phase-desc">10 organizations endorse. The Charter spreads.</div>
+    </div>
+    <div class="wave-phase">
+      <div class="wave-phase-num">3</div>
+      <div class="wave-phase-name">Signal</div>
+      <div class="wave-phase-desc">1,000 creators signed. Press coverage begins. Platforms notice.</div>
+    </div>
+    <div class="wave-phase">
+      <div class="wave-phase-num">4</div>
+      <div class="wave-phase-name">Pressure</div>
+      <div class="wave-phase-desc">100,000 signatories. Platforms that haven't adopted face public accountability.</div>
+    </div>
+    <div class="wave-phase">
+      <div class="wave-phase-num">5</div>
+      <div class="wave-phase-name">Standard</div>
+      <div class="wave-phase-desc">The Charter is the floor. Every platform must explain its deviation from it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ BAND -->
+<div class="band">
+  <p class="band-text reveal">
+    <strong>"The music industry did not fail creators because of malice.</strong>
+    It failed them because the infrastructure was built for extraction, not for reciprocity.
+    AI does not make that problem worse by default — it makes it <strong>faster</strong>.
+    Faster extraction, or faster reciprocity. That choice is ours.
+    This Charter is our choice, in writing, for everyone to see."
+    <br><br>— Robert Stephen Plowman, Founding Signatory #001, NOIZY Creator Charter, 2026
+  </p>
+</div>
+
+<!-- ══════════════════════════════════════════ CLOSING DECLARATION -->
+<div class="declaration">
+  <div class="decl-seal">N</div>
+  <p class="decl-quote">
+    We did not build NOIZY to win a market.<br>
+    We built it to <em>change what winning means.</em><br>
+    If a creator earns a living, that is a win.<br>
+    If a voice is protected, that is a win.<br>
+    If culture is preserved rather than consumed —<br>
+    that is the only win that will still matter<br>
+    <em>five hundred years from now.</em>
+  </p>
+  <p class="decl-sub">The NOIZY Creator Charter — Open Standard — Version 1.0</p>
+  <p class="decl-date">Ratified: March 2026 · NOIZYLAB, Earth · To be amended only by creator vote</p>
+</div>
+
+<!-- ══════════════════════════════════════════ FOOTER NAV -->
+<div class="charter-nav">
+  <div class="charter-nav-label">The NOIZYLAB Collection</div>
+  <div class="charter-nav-links">
+    <a href="NOIZY_AI_HOME.html">Home</a>
+    <a href="THE_PLOWMANS_CHRONICLES.html">Chronicles</a>
+    <a href="NOIZY_GUILD_FAMILY.html">Guild</a>
+    <a href="NOIZYKIDZ_WORLD_MUSIC_THEORY.html">NOIZYKIDZ</a>
+    <a href="NOIZY_GREAT_RESTORATION.html">Restoration</a>
+    <a href="NOIZY_ASCENSION_MAP.html">Ascension Map</a>
+    <a href="DREAMCHAMBER_FIX_MAP.html">DreamChamber</a>
+    <a href="NOIZY_2526_ARCHIVE.html">2526 Archive</a>
+    <a href="NOIZY_ECONOMIC_ENGINE.html">Economic Engine</a>
+    <a href="NOIZY_MOVEMENT_MANIFESTO.html">Manifesto</a>
+    <a href="NOIZY_HARMONY_CAMPAIGN.html">Harmony Campaign</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ SCRIPTS -->
+<script>
+  // ── STARFIELD ──
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (let i = 0; i < 220; i++) {
+    stars.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      size: Math.random() * 1.4 + 0.2,
+      speed: Math.random() * 0.18 + 0.04,
+      drift: (Math.random() - 0.5) * 0.06,
+      alpha: Math.random() * 0.55 + 0.1,
+      twinkleSpeed: Math.random() * 0.012 + 0.004,
+      twinklePhase: Math.random() * Math.PI * 2,
+      // golden tint
+      r: 255,
+      g: Math.floor(Math.random() * 60 + 190),
+      b: Math.floor(Math.random() * 80 + 80),
+    });
+  }
+
+  function animStars(t) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(s => {
+      s.twinklePhase += s.twinkleSpeed;
+      const a = s.alpha * (0.65 + 0.35 * Math.sin(s.twinklePhase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${s.r},${s.g},${s.b},${a})`;
+      ctx.fill();
+      s.y -= s.speed;
+      s.x += s.drift;
+      if (s.y < -4) { s.y = canvas.height + 4; s.x = Math.random() * canvas.width; }
+    });
+    requestAnimationFrame(animStars);
+  }
+  requestAnimationFrame(animStars);
+
+  // ── HERO ANIMATE ──
+  setTimeout(() => {
+    document.getElementById('emblem').classList.add('visible');
+    document.getElementById('hero-label').classList.add('visible');
+    document.getElementById('hero-title').classList.add('visible');
+    document.getElementById('hero-sub').classList.add('visible');
+  }, 150);
+
+  setTimeout(() => {
+    document.getElementById('preamble').classList.add('visible');
+  }, 600);
+
+  // ── INTERSECTION OBSERVER ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

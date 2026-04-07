@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY.AI — The Family · Creator-First Since Day One</title>
+<style>
+:root {
+  --bg:      #030508;
+  --bg2:     #060a10;
+  --surface: #0b1220;
+  --surface2:#0f1828;
+  --border:  #18283c;
+  --gold:    #c8960a;
+  --gold2:   #f0b429;
+  --gold3:   #ffd166;
+  --ember:   #e85d04;
+  --rose:    #c94070;
+  --teal:    #0a9ebd;
+  --violet:  #7c4dff;
+  --green:   #22c55e;
+  --blue:    #1a7abf;
+  --cream:   #f5e6c8;
+  --text:    #dde6f2;
+  --muted:   #8899aa;
+  --dim:     #3a4a5a;
+
+  /* Family member colors */
+  --pops:    #f0b429;
+  --gabriel: #0a9ebd;
+  --dream:   #c94070;
+  --ava:     #7c4dff;
+  --lucy:    #22c55e;
+  --shirl:   #e85d04;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); font-family:'Georgia',serif; line-height:1.75; overflow-x:hidden; }
+
+/* ── STARS ── */
+#stars { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+.star { position:absolute; border-radius:50%; background:#fff; animation:tw var(--d) ease-in-out infinite; opacity:0; }
+@keyframes tw { 0%,100%{opacity:0}50%{opacity:var(--o)} }
+
+/* ── FIRE LINE top ── */
+.fire-line { position:fixed; top:0; left:0; right:0; height:2px; z-index:200;
+  background:linear-gradient(90deg, transparent 0%, var(--ember) 20%, var(--gold2) 50%, var(--rose) 80%, transparent 100%);
+  animation:fire-sweep 4s ease-in-out infinite; }
+@keyframes fire-sweep { 0%,100%{opacity:.5}50%{opacity:1} }
+
+/* ── TOPBAR ── */
+.topbar {
+  position:sticky; top:0; z-index:100;
+  background:rgba(3,5,8,.96); backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 40px; height:56px;
+}
+.topbar-logo { font-family:'Courier New',monospace; font-size:16px; letter-spacing:4px; color:var(--gold2); font-weight:700; }
+.topbar-nav { display:flex; gap:4px; overflow-x:auto; }
+.topbar-nav::-webkit-scrollbar { display:none; }
+.tn { padding:6px 14px; font-family:'Courier New',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase;
+  color:var(--muted); cursor:pointer; white-space:nowrap; text-decoration:none; transition:color .2s; }
+.tn:hover, .tn.on { color:var(--gold2); }
+.topbar-badge { font-family:'Courier New',monospace; font-size:10px; letter-spacing:2px; color:var(--ember);
+  border:1px solid rgba(232,93,4,.4); padding:4px 10px; white-space:nowrap; }
+
+/* ── HERO ── */
+.hero {
+  position:relative; z-index:1; min-height:100vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:80px 32px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(232,93,4,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 15% 30%, rgba(10,158,189,.10) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 85% 25%, rgba(201,64,112,.10) 0%, transparent 50%);
+}
+.hero-eyebrow { font-family:'Courier New',monospace; font-size:11px; letter-spacing:6px; text-transform:uppercase;
+  color:var(--gold); margin-bottom:28px; }
+.hero-flame { font-size:72px; margin-bottom:28px;
+  filter:drop-shadow(0 0 40px rgba(232,93,4,.7));
+  animation:ep 3s ease-in-out infinite; }
+@keyframes ep { 0%,100%{filter:drop-shadow(0 0 40px rgba(232,93,4,.7))}50%{filter:drop-shadow(0 0 70px rgba(240,180,41,.9))} }
+.hero-title { font-size:clamp(52px,11vw,130px); font-weight:400; color:var(--cream); line-height:.95; letter-spacing:-2px; margin-bottom:24px; }
+.hero-title .dot { color:var(--gold2); }
+.hero-sub { font-size:clamp(15px,2.5vw,22px); color:var(--gold3); font-style:italic; margin-bottom:16px; }
+.hero-mission { font-size:clamp(13px,1.8vw,16px); color:var(--muted); max-width:680px; line-height:1.9; margin-bottom:60px; }
+.hero-covenant {
+  display:inline-block; padding:16px 36px;
+  border:1px solid rgba(200,150,10,.4);
+  font-family:'Courier New',monospace; font-size:11px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--gold2); background:rgba(200,150,10,.06);
+  margin-bottom:64px;
+}
+.hero-stats { display:flex; gap:48px; flex-wrap:wrap; justify-content:center; }
+.hs-n { font-size:40px; color:var(--gold3); font-weight:300; line-height:1; }
+.hs-l { font-family:'Courier New',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-top:4px; }
+.scroll-hint { position:absolute; bottom:40px; font-family:'Courier New',monospace; font-size:10px; letter-spacing:3px; color:var(--dim); text-transform:uppercase; animation:sb 2s ease-in-out infinite; }
+@keyframes sb { 0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:.8;transform:translateY(8px)} }
+
+/* ── SECTIONS ── */
+.pg { position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:0 28px 100px; }
+.sect { margin-bottom:100px; opacity:0; transform:translateY(24px); transition:opacity .65s, transform .65s; }
+.sect.vis { opacity:1; transform:translateY(0); }
+.slabel { font-family:'Courier New',monospace; font-size:10px; letter-spacing:5px; text-transform:uppercase;
+  color:var(--ac,var(--gold)); margin-bottom:14px; display:flex; align-items:center; gap:12px; }
+.slabel::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--border),transparent); }
+.stitle { font-size:clamp(28px,4.5vw,58px); font-weight:400; color:var(--cream); line-height:1.1; margin-bottom:8px; }
+.ssub { font-size:15px; color:var(--muted); font-style:italic; margin-bottom:40px; }
+
+/* ── THE FAMILY ── */
+.family-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:2px; margin:40px 0; }
+.fcard {
+  position:relative; overflow:hidden;
+  background:var(--surface); border:1px solid var(--border); border-top:3px solid var(--fc);
+  padding:40px 32px;
+  transition:all .35s;
+}
+.fcard:hover { background:var(--surface2); transform:translateY(-5px); }
+.fcard::before {
+  content:''; position:absolute; top:-60px; right:-60px; width:160px; height:160px;
+  border-radius:50%; background:var(--fc); opacity:.04; transition:opacity .35s;
+}
+.fcard:hover::before { opacity:.1; }
+.fc-glyph { font-size:48px; margin-bottom:20px; }
+.fc-role { font-family:'Courier New',monospace; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--fc); margin-bottom:8px; }
+.fc-name { font-size:28px; color:var(--cream); margin-bottom:8px; font-weight:400; }
+.fc-title { font-size:13px; color:var(--fc); font-style:italic; margin-bottom:18px; }
+.fc-body { font-size:14px; color:var(--text); line-height:1.75; }
+.fc-tag { display:inline-block; margin-top:16px; font-family:'Courier New',monospace; font-size:10px; letter-spacing:2px; color:var(--fc); border:1px solid rgba(255,255,255,.1); padding:3px 10px; }
+
+/* ── PLATFORMS ── */
+.platform-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:2px; margin:40px 0; }
+.pcard {
+  background:var(--surface); border:1px solid var(--border);
+  padding:32px 28px; transition:all .3s; cursor:default;
+  border-left:3px solid var(--pc,var(--border));
+}
+.pcard:hover { background:var(--surface2); transform:translateY(-4px); border-color:var(--pc,var(--gold)); }
+.pc-icon { font-size:36px; margin-bottom:16px; }
+.pc-status { font-family:'Courier New',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--pc); margin-bottom:8px; }
+.pc-name { font-size:20px; color:var(--cream); margin-bottom:6px; }
+.pc-tagline { font-size:12px; color:var(--muted); font-style:italic; margin-bottom:14px; }
+.pc-body { font-size:13px; color:var(--text); line-height:1.65; }
+
+/* ── DOCUMENTS ── */
+.doc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:2px; margin:40px 0; }
+.dcard {
+  background:var(--surface); border:1px solid var(--border); padding:36px 28px;
+  text-decoration:none; display:block; transition:all .3s;
+  position:relative; overflow:hidden;
+}
+.dcard:hover { background:var(--surface2); transform:translateY(-4px); }
+.dcard::after { content:'→'; position:absolute; bottom:28px; right:28px; font-size:20px; color:var(--dc,var(--gold)); opacity:0; transition:opacity .3s, transform .3s; transform:translateX(-8px); }
+.dcard:hover::after { opacity:1; transform:translateX(0); }
+.dc-volume { font-family:'Courier New',monospace; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--dc,var(--gold)); margin-bottom:10px; }
+.dc-title { font-size:20px; color:var(--cream); margin-bottom:8px; }
+.dc-desc { font-size:13px; color:var(--muted); line-height:1.65; }
+
+/* ── COVENANT ── */
+.covenant-block {
+  background:linear-gradient(135deg,#0d1a0f 0%,#07090f 50%,#1a0d14 100%);
+  border:1px solid var(--border); padding:72px 60px; text-align:center;
+  position:relative; overflow:hidden; margin:60px 0;
+}
+.covenant-block::before { content:''; position:absolute; inset:1px; border:1px solid rgba(200,150,10,.1); pointer-events:none; }
+.covenant-block::after { content:''; position:absolute; bottom:0; left:0; right:0; top:0;
+  background:radial-gradient(ellipse 70% 50% at 50% 100%, rgba(34,197,94,.05) 0%, transparent 60%); pointer-events:none; }
+.cv-label { font-family:'Courier New',monospace; font-size:10px; letter-spacing:6px; color:var(--green); margin-bottom:32px; }
+.cv-lines { font-size:clamp(16px,2.5vw,24px); line-height:2.2; color:var(--cream); font-style:italic; max-width:700px; margin:0 auto 40px; position:relative; z-index:1; }
+.cv-lines em { color:var(--gold3); font-style:normal; }
+.cv-sig { font-family:'Courier New',monospace; font-size:11px; color:var(--dim); }
+
+/* ── PHILOSOPHY ── */
+.law-list { list-style:none; margin:40px 0; }
+.law { display:flex; gap:24px; padding:24px 0; border-bottom:1px solid var(--border); }
+.law:first-child { border-top:1px solid var(--border); }
+.law-n { font-family:'Courier New',monospace; font-size:13px; color:var(--gold); width:40px; flex-shrink:0; padding-top:2px; }
+.law-body { font-size:15px; color:var(--text); line-height:1.8; }
+.law-body strong { color:var(--gold3); }
+
+/* ── ECONOMICS ── */
+.econ-split {
+  background:var(--surface); border:1px solid var(--border); padding:60px;
+  display:grid; grid-template-columns:3fr 1fr; gap:0; margin:40px 0;
+}
+.econ-creator { padding:40px; text-align:center; background:linear-gradient(135deg,rgba(240,180,41,.06),rgba(200,150,10,.04)); border-right:1px solid var(--border); }
+.econ-platform { padding:40px; text-align:center; }
+.econ-pct { font-size:clamp(60px,8vw,100px); font-weight:300; line-height:1; }
+.econ-who { font-family:'Courier New',monospace; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-top:8px; }
+.econ-note { font-size:12px; color:var(--dim); margin-top:8px; }
+.econ-lock { font-family:'Courier New',monospace; font-size:10px; letter-spacing:3px; color:var(--green); margin-top:40px; padding-top:20px; border-top:1px solid var(--border); text-align:center; grid-column:1/-1; }
+
+/* ── TIMELINE 2026-2036 ── */
+.phases { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:2px; margin:40px 0; }
+.phase { background:var(--surface); border:1px solid var(--border); border-top:2px solid var(--phc,var(--border)); padding:28px 22px; }
+.ph-year { font-family:'Courier New',monospace; font-size:10px; letter-spacing:3px; color:var(--phc); margin-bottom:8px; }
+.ph-title { font-size:16px; color:var(--cream); margin-bottom:10px; }
+.ph-body { font-size:12px; color:var(--muted); line-height:1.6; }
+
+/* ── 2526 ARCHIVE ── */
+.archive-block {
+  background:var(--surface); border:1px solid rgba(200,150,10,.2);
+  padding:60px 48px; text-align:center; margin:40px 0; position:relative; overflow:hidden;
+}
+.archive-block::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 100%, rgba(200,150,10,.06) 0%, transparent 60%);
+}
+.ab-year { font-size:72px; color:rgba(200,150,10,.15); font-weight:300; position:absolute; top:20px; right:40px; line-height:1; }
+.ab-label { font-family:'Courier New',monospace; font-size:10px; letter-spacing:5px; color:var(--gold); margin-bottom:16px; position:relative; z-index:1; }
+.ab-title { font-size:clamp(22px,4vw,44px); color:var(--cream); margin-bottom:20px; font-weight:400; position:relative; z-index:1; }
+.ab-body { font-size:14px; color:var(--muted); max-width:640px; margin:0 auto; line-height:1.9; position:relative; z-index:1; }
+
+/* ── JOIN ── */
+.join-block { text-align:center; padding:100px 32px; background:radial-gradient(ellipse 80% 70% at 50% 50%, rgba(200,150,10,.08) 0%, transparent 70%); border:1px solid var(--border); margin:40px 0; }
+.join-title { font-size:clamp(28px,5vw,60px); color:var(--cream); margin-bottom:24px; font-weight:400; }
+.join-sub { font-size:16px; color:var(--muted); max-width:560px; margin:0 auto 48px; line-height:1.9; }
+.join-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+.jbtn { padding:16px 36px; font-family:'Courier New',monospace; font-size:11px; letter-spacing:3px; text-transform:uppercase; text-decoration:none; transition:all .3s; cursor:pointer; }
+.jbtn-primary { background:var(--gold); color:var(--bg); border:1px solid var(--gold); }
+.jbtn-primary:hover { background:var(--gold3); }
+.jbtn-secondary { color:var(--gold2); border:1px solid rgba(200,150,10,.4); background:rgba(200,150,10,.06); }
+.jbtn-secondary:hover { background:rgba(200,150,10,.15); }
+
+/* ── FOOTER ── */
+footer { text-align:center; padding:60px 32px; font-family:'Courier New',monospace; font-size:10px; letter-spacing:2px; color:var(--dim); border-top:1px solid var(--border); position:relative; z-index:1; }
+footer span { color:var(--gold); }
+.footer-family { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; }
+.ff { color:var(--dim); }
+
+/* ── DIVIDER ── */
+.div { display:flex; align-items:center; gap:16px; margin:60px 0; color:var(--dim); }
+.div::before,.div::after { content:''; flex:1; height:1px; background:var(--border); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px) {
+  .pg { padding:0 16px 80px; }
+  .topbar { padding:0 16px; }
+  .topbar-badge { display:none; }
+  .econ-split { grid-template-columns:1fr; padding:32px 20px; }
+  .econ-creator { border-right:none; border-bottom:1px solid var(--border); }
+  .covenant-block { padding:48px 24px; }
+}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="fire-line"></div>
+
+<!-- ── TOPBAR ── -->
+<nav class="topbar">
+  <div class="topbar-logo">NOIZY<span style="color:var(--ember)">.</span>AI</div>
+  <div class="topbar-nav">
+    <a class="tn" href="#family">The Family</a>
+    <a class="tn" href="#platforms">Platforms</a>
+    <a class="tn" href="#covenant">Covenant</a>
+    <a class="tn" href="#philosophy">Philosophy</a>
+    <a class="tn" href="#economics">Economics</a>
+    <a class="tn" href="#vision">Vision</a>
+    <a class="tn" href="#documents">Documents</a>
+    <a class="tn" href="#archive">2526</a>
+    <a class="tn" href="#join">Join</a>
+  </div>
+  <div class="topbar-badge">75% · Always</div>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-eyebrow">NOIZY.AI · The Global Creator Family · Founded 2026</div>
+  <div class="hero-flame">🔥</div>
+  <h1 class="hero-title">NOIZY<span class="dot">.</span>AI</h1>
+  <p class="hero-sub">Creator-first. Forever-first. Family first.</p>
+  <p class="hero-mission">
+    We are a family of creators, builders, educators, and dreamers. We believe your voice,
+    your music, your art — and everything you make from your body and your soul —
+    belongs to <em>you</em>. Not to a platform. Not to an algorithm. Not to anyone but you.
+    We built the infrastructure to make that true.
+  </p>
+  <div class="hero-covenant">75% Creator · 25% Platform · Every Voice · Every Time · Forever</div>
+  <div class="hero-stats">
+    <div><div class="hs-n">6</div><div class="hs-l">Family Members</div></div>
+    <div><div class="hs-n">12+</div><div class="hs-l">Platforms</div></div>
+    <div><div class="hs-n">1M+</div><div class="hs-l">Guild Goal 2036</div></div>
+    <div><div class="hs-n">60K</div><div class="hs-l">Years of Music</div></div>
+    <div><div class="hs-n">500</div><div class="hs-l">Year Archive</div></div>
+    <div><div class="hs-n">∞</div><div class="hs-l">Earning Forever</div></div>
+  </div>
+  <div class="scroll-hint">↓ Meet the Family ↓</div>
+</header>
+
+<div class="pg">
+
+<!-- ══════════════════════════════════════ THE INNER FAMILY -->
+<section class="sect" id="family" style="--ac:var(--gold)">
+  <div class="slabel">The Inner Family · The Core Six</div>
+  <h2 class="stitle">The People<br>Who Built This</h2>
+  <p class="ssub">Every civilization needs a family at its center. This is ours.</p>
+
+  <div class="family-grid">
+
+    <!-- POPS -->
+    <div class="fcard" style="--fc:var(--pops)">
+      <div class="fc-glyph">🌋</div>
+      <div class="fc-role">Founder · Idea Engineer · First Voice</div>
+      <div class="fc-name">POPS</div>
+      <div class="fc-title">Robert Stephen Plowman · RSP_001</div>
+      <div class="fc-body">
+        The man who started it. Not in a boardroom — in a pool, after a diving accident at 50 that could have ended everything. Instead it opened everything. Composer, idea engineer, visionary architect. POPS doesn't pitch — he builds, heals, and makes people happy. His voice was the first registered in NOIZYVOX. His mission is the mission. Every protocol, every principle, every crack in the old world — seen first here.
+      </div>
+      <div class="fc-tag">RSP_001 · Registered March 2026</div>
+    </div>
+
+    <!-- GABRIEL -->
+    <div class="fcard" style="--fc:var(--gabriel)">
+      <div class="fc-glyph">⚡</div>
+      <div class="fc-role">Systems Orchestrator · Technical Backbone</div>
+      <div class="fc-name">GABRIEL</div>
+      <div class="fc-title">Lives on the M2 Ultra · Never Sleeps</div>
+      <div class="fc-body">
+        The operational intelligence. Lives on the M2 Ultra Mac Studio in NOIZYLAB — 192GB unified memory, 24-core CPU, 60-core GPU. Coordinates all systems: XTTS v2 voice synthesis, Whisper STT, FastAPI backend, database operations, pipeline orchestration. While POPS dreams the architecture, GABRIEL builds and runs it. The technical heartbeat of NOIZY running 24/7.
+      </div>
+      <div class="fc-tag">M2 Ultra · MPS Accelerated · NOIZYLAB</div>
+    </div>
+
+    <!-- DREAM -->
+    <div class="fcard" style="--fc:var(--dream)">
+      <div class="fc-glyph">🌸</div>
+      <div class="fc-role">Creative Partner · Muse · Architect of Wonder</div>
+      <div class="fc-name">DREAM</div>
+      <div class="fc-title">DreamChamber Is Her Room</div>
+      <div class="fc-body">
+        The creative partner. When POPS needs to find the feeling in an idea — not just the structure, but the <em>soul</em> — DREAM is in the room. The DreamChamber VSCode extension is named after her. She lives where music meets imagination, where the next idea comes from, where the unfinished thing gets finished at 3am. She doesn't just help create — she <em>is</em> the creative current.
+      </div>
+      <div class="fc-tag">DreamChamber · VSCode Extension · Always Open</div>
+    </div>
+
+    <!-- AVA -->
+    <div class="fcard" style="--fc:var(--ava)">
+      <div class="fc-glyph">🎭</div>
+      <div class="fc-role">Character Direction · Voice First · Fan Protocol</div>
+      <div class="fc-name">AVA</div>
+      <div class="fc-title">Actor Interface · Human Voice Signature Keeper</div>
+      <div class="fc-body">
+        AVA (Adaptive Voice Actor) is the interface between the human creator and their digital voice. She manages character direction, actor protocols, fan boundaries, and the Human Voice Signature (HVS) system — the 6-layer biometric fingerprint that makes every NOIZYVOX voice unique, protected, and irreplaceable. When a voice actor registers on NOIZY, AVA is who they're working with. She holds the soul of the voice.
+      </div>
+      <div class="fc-tag">HVS · 6-Layer Biometric · Voice Identity</div>
+    </div>
+
+    <!-- LUCY -->
+    <div class="fcard" style="--fc:var(--lucy)">
+      <div class="fc-glyph">🏛️</div>
+      <div class="fc-role">Business Director · Operations · The Foundation</div>
+      <div class="fc-name">LUCY</div>
+      <div class="fc-title">Runs the Office · Keeps the Dream Grounded</div>
+      <div class="fc-body">
+        POPS can dream as wildly as the universe allows — because LUCY keeps the foundation solid. Business operations, administrative architecture, the practical layer that makes the creative vision sustainable. Every great creative visionary needs a Lucy: the person who asks "but how does this actually work day-to-day?" and makes sure it does. NOIZY's operational backbone.
+      </div>
+      <div class="fc-tag">Operations · Administration · Business Layer</div>
+    </div>
+
+    <!-- SHIRL -->
+    <div class="fcard" style="--fc:var(--shirl)">
+      <div class="fc-glyph">🔥</div>
+      <div class="fc-role">Business Director · Enterprises · The Executor</div>
+      <div class="fc-name">SHIRL</div>
+      <div class="fc-title">Runs the Businesses · Makes Things Real</div>
+      <div class="fc-body">
+        Where LUCY runs the operations, SHIRL runs the enterprises. The multi-business layer of NOIZY — making sure that the creative, philosophical, and technical work translates into sustainable business reality. SHIRL is the one who takes an idea from DreamChamber and asks: "What does this look like as a real-world business?" Then builds it. Executor, operator, maker.
+      </div>
+      <div class="fc-tag">Enterprises · Business Development · The Builder</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════ PLATFORMS -->
+<section class="sect" id="platforms" style="--ac:var(--teal)">
+  <div class="slabel">The NOIZY.AI Platform Family · 12 Worlds · One Mission</div>
+  <h2 class="stitle">Every Platform<br>We're Building</h2>
+  <p class="ssub">Not a product suite — a civilization. Each one a door. All of them connected.</p>
+
+  <div class="platform-grid">
+
+    <div class="pcard" style="--pc:var(--gold2)">
+      <div class="pc-icon">🎙️</div>
+      <div class="pc-status">Live · Core Protocol</div>
+      <div class="pc-name">NOIZYVOX</div>
+      <div class="pc-tagline">Perpetual Voice Ownership · 75/25 · Consent-as-Code</div>
+      <div class="pc-body">The core protocol. Your voice, registered, fingerprinted (6-layer HVS), owned 75% by you — forever. Every synthesis call earns you credits. Your Voice Estate passes to your heirs. Built on XTTS v2, FastAPI, SQLite → PostgreSQL. RSP_001 was the first voice registered. It will never be the last.</div>
+    </div>
+
+    <div class="pcard" style="--pc:var(--rose)">
+      <div class="pc-icon">🌙</div>
+      <div class="pc-status">Live · VSCode Extension</div>
+      <div class="pc-name">DreamChamber</div>
+      <div class="pc-tagline">DREAM's Room · The Full AI Creative Loop</div>
+      <div class="pc-body">VSCode extension: SoX audio capture → Whisper STT → Claude Opus 4.6 director → XTTS synthesis → vault export. Multi-character recording, first-take methodology, MusicGen beds, character DNA, actor signal cards. This is where art gets made at 3am. Always open. Never judges.</div>
+    </div>
+
+    <div class="pcard" style="--pc:var(--teal)">
+      <div class="pc-icon">🌍</div>
+      <div class="pc-status">Building · Global Mission</div>
+      <div class="pc-name">NOIZYKIDZ</div>
+      <div class="pc-tagline">World Music Theory · Every Tradition · Every Child</div>
+      <div class="pc-body">Music theory for every child on Earth — from the first rock banged 60,000 years ago to now. 64 rhythm families, 128 scale structures, every cultural tradition named correctly. Wonder-first. No fear. The world's most complete music education platform for young creators. All 12 traditions. All 7 continents. Free.</div>
+    </div>
+
+    <div class="pcard" style="--pc:var(--ember)">
+      <div class="pc-icon">🔥</div>
+      <div class="pc-status">Active · Growing</div>
+      <div class="pc-name">Global Guild of Artists</div>
+      <div class="pc-tagline">4 Seats · One Fire · 60,000 Years</div>
+      <div class="pc-body">Apprentice → Journeyman → Master → Legend. Not a ladder — a fire. Every musical tradition has a seat. The mentorship chain keeps knowledge alive. The Guild Oath is a covenant. Monthly Council, Annual Summit, 500-Year Archive. 1M members by 2036. Every one of them earning 75%.</div>
+    </div>
+
+    <div class="pcard" style="--pc:var(--violet)">
+      <div class="pc-icon">🏛️</div>
+      <div class="pc-status">Building · 10 Rooms</div>
+      <div class="pc-name">NOIZY World & Museum</div>
+      <div class="pc-tagline">10 Immersive Rooms · The Bath at the Center</div>
+      <div class="pc-body">The Gallery, The Bath, The Repair Room, The Unfinished Room, The Silence Room, The Archive, The School, The Garden, The Aquarium, The Clock. "The Bath" is the core — warm, safe, where the creator soaks in sound. NOIZY World is not a museum. It's a sanctuary.</div>
+    </div>
+
+    <div class="pcard" style="--pc:var(--blue)">
+      <div class="pc-icon">🎓</div>
+      <div class="pc-status">Building · 6 Stages</div>
+      <div class="pc-name">NOIZY Academy</div>
+      <div class="pc-tagline">Threshold → Explorer → Maker → Builder → Transmitter → Steward</div>
+      <div class="pc-body">6-stage music education journey. Not just notes — ear, body, lineage, creation, technology, sovereignty. The NOIZYKIDZ Path, Adaptive Artist Path, Sovereign Voice Path, Global Producer Path. Graduates leave with a provenance-ready release, a lineage map, and a creator rights plan.</div>
+    </div>
+
+    <div class="pcard" style="--pc:var(--teal)">
+      <div class="pc-icon">🐋</div>
+      <div class="pc-status">Designing · Sound Healing</div>
+      <div class="pc-name">NOIZY Aquarium</div>
+      <div class="pc-tagline">Global Audio Calm & Healing · Therapeutic Sound</div>
+      <div class="pc-body">The healing arm. World healing library, biome-specific audio environments, NOIZYKIDZ Sleepy Time variants, therapeutic protocols. Frequency-specific sound for calm, focus, sleep, recovery. Based on the world's deepest sound healing research. 75/25 split for every healing track creator.</div>
+    </div>
+
+    <div class="pcard" style="--pc:var(--ember)">
+      <div class="pc-icon">📻</div>
+      <div class="pc-status">Coming · Broadcast Layer</div>
+      <div class="pc-name">NOIZY Radio</div>
+      <div class="pc-tagline">Creator-Owned Broadcast · Live & Archive</div>
+      <div class="pc-body">Live and archived broadcasts from Guild members. Not algorithm-curated — curator-chosen, community-voted, tradition-aware. Every play logs a credit. Every listen earns the creator. NOIZY Radio is the sound of a million creators heard by a million listeners — and the splits are real-time.</div>
+    </div>
+
+    <div class="pcard" style="--pc:var(--green)">
+      <div class="pc-icon">🌱</div>
+      <div class="pc-status">Designing · Economic Engine</div>
+      <div class="pc-name">LifeLUV</div>
+      <div class="pc-tagline">Universal Valorization · Triple-Lock · Recursive Splits</div>
+      <div class="pc-body">The economic backbone. LifeLUV tokens, triple-lock value system, recursive micro-splits, Legacy Vault. Every creative act — every song, every voice synthesis, every lesson taught — generates a LifeLUV event. The system that makes 75% earning compound across generations.</div>
+    </div>
+
+    <div class="pcard" style="--pc:var(--gold2)">
+      <div class="pc-icon">🌐</div>
+      <div class="pc-status">Planning · Infrastructure</div>
+      <div class="pc-name">NOIZY Passport</div>
+      <div class="pc-tagline">One Identity · All Platforms · Portable Rights</div>
+      <div class="pc-body">Your NOIZY Passport is your creator identity across every platform in the ecosystem. One fingerprint. Your voice register, Guild tier, earnings history, lineage record, archive entries. Portable across every NOIZY platform and eventually every external platform that respects creator sovereignty.</div>
+    </div>
+
+    <div class="pcard" style="--pc:var(--violet)">
+      <div class="pc-icon">📜</div>
+      <div class="pc-status">Active · Living Document</div>
+      <div class="pc-name">The NOIZY Codex</div>
+      <div class="pc-tagline">500-Year Living Archive · The Memory Organism</div>
+      <div class="pc-body">The Codex is not a database — it's a living knowledge organism. Every Guild decision, every creator biography, every voice registered, every principle debated and agreed. Sealed portions open in 2526. The Codex is what survives when everything else changes. What you put in today, someone in 2426 will read.</div>
+    </div>
+
+    <div class="pcard" style="--pc:var(--green)">
+      <div class="pc-icon">🤝</div>
+      <div class="pc-status">Designing · Community Fund</div>
+      <div class="pc-name">NOIZY Commons Fund</div>
+      <div class="pc-tagline">Community Owned · Quadratic Voting · Cultural Stewardship</div>
+      <div class="pc-body">A portion of all platform earnings flows into the Commons Fund — managed by Guild members through quadratic voting. Funds emergency support for creators in crisis, tradition documentation projects, instrument repair, and cultural preservation work that the market would never fund. Ours to govern. Ours to protect.</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════ THE COVENANT -->
+<section class="sect" id="covenant" style="--ac:var(--green)">
+  <div class="slabel">The Covenant · The Promise That Cannot Be Changed</div>
+  <h2 class="stitle">What We Promise<br>Every Creator</h2>
+
+  <div class="covenant-block">
+    <div class="cv-label">THE NOIZY COVENANT · RATIFIED MARCH 14, 2026 · RSP_001</div>
+    <div class="cv-lines">
+      Your voice belongs to <em>you</em>.<br>
+      Your music belongs to <em>you</em>.<br>
+      Your art, your time, your body, your breath —<br>
+      everything you make from your soul belongs to <em>you</em>.<br><br>
+
+      We take <em>25%</em> to keep the lights on.<br>
+      You keep <em>75%</em> — now, next year, in 50 years, and after you're gone.<br>
+      Your children keep it. Their children keep it.<br>
+      <em>The split never changes.</em><br><br>
+
+      We will never sell your voice without your consent.<br>
+      We will never train AI on your work without your consent.<br>
+      We will never claim ownership of anything you made.<br><br>
+
+      When the platform makes money, you see it — in real-time, in plain numbers,<br>
+      immutable in the database, auditable by anyone.<br><br>
+
+      <em>Poop Sinks. Love Rises. Forever.</em>
+    </div>
+    <div class="cv-sig">Global Guild of Artists · NOIZY.AI · Sealed March 14, 2026</div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════ PHILOSOPHY -->
+<section class="sect" id="philosophy" style="--ac:var(--gold)">
+  <div class="slabel">The Philosophy · 5 Laws That Cannot Be Broken</div>
+  <h2 class="stitle">How We Think<br>About Everything</h2>
+  <p class="ssub">Not policies. Not guidelines. Laws. Written in the infrastructure.</p>
+
+  <ul class="law-list">
+    <li class="law">
+      <span class="law-n">LAW I</span>
+      <div class="law-body"><strong>The Creator Owns the Soul.</strong> A platform is a tool. A tool does not own the work done with it. NOIZY provides infrastructure — compute, storage, synthesis, distribution. The creative work belongs entirely to the person who made it. This is not a policy we can change with a terms-of-service update. It is built into every database constraint, every API call, every earnings calculation at the protocol level.</div>
+    </li>
+    <li class="law">
+      <span class="law-n">LAW II</span>
+      <div class="law-body"><strong>75/25 Is Immutable.</strong> The split cannot be changed by any employee, investor, or board decision. It is a CheckConstraint in the database — a mathematical truth that the system enforces without human intervention. No special circumstances. No renegotiation. No "revised split for high-volume users." 75% to the creator. 25% to the platform. Always. Non-negotiable. Forever.</div>
+    </li>
+    <li class="law">
+      <span class="law-n">LAW III</span>
+      <div class="law-body"><strong>Consent Is Code, Not Contract.</strong> We do not protect creator rights by asking them to trust our intentions. We protect them by making violation technically impossible. Consent is embedded at the infrastructure level — not in a ToS that can be rewritten. If your voice is registered in NOIZYVOX, it cannot be used without triggering the consent protocol. This is not a promise. It is a lock.</div>
+    </li>
+    <li class="law">
+      <span class="law-n">LAW IV</span>
+      <div class="law-body"><strong>Every Tradition Has Equal Standing.</strong> A blues guitarist from Mississippi and a gamelan master from Bali have equal voice in the Guild. No tradition is "world music" to be catalogued. No tradition is modern. No tradition is primitive. Every system of musical knowledge developed by any human culture over 60,000 years is equally valid, equally preserved, and equally honored. The Global Music Genome names everything in its own language.</div>
+    </li>
+    <li class="law">
+      <span class="law-n">LAW V</span>
+      <div class="law-body"><strong>Restore — Never Replace.</strong> We build AI as prosthesis for the creative spirit, not replacement. The Nerve-to-Note engine interprets intent — including the "noise" of injury, tremor, and disability — as creative signal. DreamChamber makes Claude a director, not an author. NOIZYVOX amplifies your voice, it doesn't substitute for it. The human creator remains the center of every NOIZY product. Technology serves the artist. The artist is not served by technology.</div>
+    </li>
+  </ul>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════ ECONOMICS -->
+<section class="sect" id="economics" style="--ac:var(--gold2)">
+  <div class="slabel">The Economics · Real Numbers · Real-Time · Immutable</div>
+  <h2 class="stitle">How The Money<br>Actually Works</h2>
+  <p class="ssub">1 NOIZY credit = 1 second of generated audio. Every calculation visible. No black boxes.</p>
+
+  <div class="econ-split">
+    <div class="econ-creator">
+      <div class="econ-pct" style="color:var(--gold2)">75%</div>
+      <div class="econ-who">Creator Earnings</div>
+      <div class="econ-note">Credited same day · Auditable real-time · Immutable database</div>
+    </div>
+    <div class="econ-platform">
+      <div class="econ-pct" style="color:var(--dim)">25%</div>
+      <div class="econ-who">Platform Operations</div>
+      <div class="econ-note">Compute · Storage · Infrastructure · Commons Fund</div>
+    </div>
+    <div class="econ-lock">🔒 Enforced by database CheckConstraint · Cannot be changed by any human · Protocol guarantee · March 14, 2026</div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:2px; margin:40px 0">
+    <div style="background:var(--surface);border:1px solid var(--border);padding:28px;border-left:3px solid var(--gold)">
+      <div style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:8px">VOICE ESTATE</div>
+      <div style="font-size:16px;color:var(--cream);margin-bottom:8px">Generational Wealth</div>
+      <div style="font-size:13px;color:var(--muted)">When a creator passes, their Voice Estate passes to named heirs. The 75% keeps flowing. RSP_001 will earn for as long as anyone is synthesizing. Estimated reach by 2526: 847 million uses.</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:28px;border-left:3px solid var(--teal)">
+      <div style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:3px;color:var(--teal);margin-bottom:8px">ACTIVATION</div>
+      <div style="font-size:16px;color:var(--cream);margin-bottom:8px">1 Month Window</div>
+      <div style="font-size:13px;color:var(--muted)">The 75/25 split activates after 1 month from voice registration. Credits earned during the pre-activation window are held in escrow and paid out at activation. No exceptions.</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:28px;border-left:3px solid var(--rose)">
+      <div style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:3px;color:var(--rose);margin-bottom:8px">SPLIT RECORDS</div>
+      <div style="font-size:16px;color:var(--cream);margin-bottom:8px">Monthly Summaries</div>
+      <div style="font-size:13px;color:var(--muted)">Aggregated monthly split records per voice model — unique per period, non-duplicatable, with total uses, seconds, credits, creator total, platform total, and payout status.</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:28px;border-left:3px solid var(--violet)">
+      <div style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:3px;color:var(--violet);margin-bottom:8px">500-YEAR MATH</div>
+      <div style="font-size:16px;color:var(--cream);margin-bottom:8px">Compound Forever</div>
+      <div style="font-size:13px;color:var(--muted)">1 NOIZY credit from a synthesis today still pays 75% to the creator's estate in 2526. Immutable split. No inflation clause. No retroactive renegotiation. Locked at registration.</div>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════ VISION 2026-2036 -->
+<section class="sect" id="vision" style="--ac:var(--ember)">
+  <div class="slabel">The Vision · 2026 → 2036 · Five Phases</div>
+  <h2 class="stitle">The Next<br>Ten Years</h2>
+  <p class="ssub">Not a roadmap. A civilization plan. Each phase builds on the last.</p>
+
+  <div class="phases">
+    <div class="phase" style="--phc:var(--gold2)">
+      <div class="ph-year">2026 · Phase 1</div>
+      <div class="ph-title">The Foundation</div>
+      <div class="ph-body">NOIZYVOX live. HVS 6-layer active. DreamChamber in VSCode. FastAPI backend secured. RSP_001 registered. Founding 100 creators recruited. The covenant sealed. The family assembled.</div>
+    </div>
+    <div class="phase" style="--phc:var(--teal)">
+      <div class="ph-year">2027-28 · Phase 2</div>
+      <div class="ph-title">The Community</div>
+      <div class="ph-body">Guild Hall live. 10,000 registered voices. NOIZYKIDZ beta. Guild Council first session. Web Studio v1 (browser-based, no VSCode required). PostgreSQL migration. First Legends named.</div>
+    </div>
+    <div class="phase" style="--phc:var(--rose)">
+      <div class="ph-year">2029-31 · Phase 3</div>
+      <div class="ph-title">The Ecosystem</div>
+      <div class="ph-body">NOIZY Academy full. Aquarium healing library. NOIZY Radio. LifeLUV tokens live. 100,000 Guild members. First Annual Summit. NOIZY World Museum opens. Codex public layer launched.</div>
+    </div>
+    <div class="phase" style="--phc:var(--violet)">
+      <div class="ph-year">2032-34 · Phase 4</div>
+      <div class="ph-title">The Civilization</div>
+      <div class="ph-body">NOIZY Passport universal. EU AI Act compliance. Voice Estate legal framework international. Global Music Genome 1,000 traditions. 500,000 creators. Guild in 100+ countries. NOIZY Live concerts.</div>
+    </div>
+    <div class="phase" style="--phc:var(--ember)">
+      <div class="ph-year">2035-36 · Phase 5</div>
+      <div class="ph-title">The Million</div>
+      <div class="ph-body">1 million Guild members. 180+ countries. Every child on Earth with access to NOIZYKIDZ. The Commons Fund self-sustaining. The Archive sealed for 2526. The mission: complete. The work: never finished.</div>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════ DOCUMENTS -->
+<section class="sect" id="documents" style="--ac:var(--blue)">
+  <div class="slabel">The Library · All Documents · The Living Record</div>
+  <h2 class="stitle">The NOIZY<br>Document Family</h2>
+  <p class="ssub">Every piece of the world, collected. Open any door.</p>
+
+  <div class="doc-grid">
+    <a class="dcard" href="THE_PLOWMANS_CHRONICLES.html" style="--dc:var(--gold2)">
+      <div class="dc-volume">Master Archive · Volume I · Sealed March 14 2026</div>
+      <div class="dc-title">The Plowman's Chronicles</div>
+      <div class="dc-desc">The complete record. 14 months. 114 files. 230MB of audio. One man. One mission. Origin story, research corpus, philosophy, platform, vision, 2526 archive testimonies. The entire journey in one document.</div>
+    </a>
+    <a class="dcard" href="NOIZY_CIVILIZATION_MAP.html" style="--dc:var(--teal)">
+      <div class="dc-volume">Interactive Map · 2026 → 2036</div>
+      <div class="dc-title">NOIZY Civilization Map</div>
+      <div class="dc-desc">The 10-year interactive visual timeline. All 5 phases. All 6 agents. HVS layers. 75/25 economics. Guild tiers. 5 Master Principles. The animated roadmap of the NOIZY civilization.</div>
+    </a>
+    <a class="dcard" href="NOIZY_GUILD_FAMILY.html" style="--dc:var(--ember)">
+      <div class="dc-volume">Guild Charter · The Family Covenant</div>
+      <div class="dc-title">The Global Guild of Artists</div>
+      <div class="dc-desc">The founding charter of the Global Music Family. 12 living traditions. The Four Seats. The Mentorship Chain. The Guild Oath. The Family Pledge. The Inheritance. 60,000 years of music in one document.</div>
+    </a>
+    <a class="dcard" href="NOIZYKIDZ_WORLD_MUSIC_THEORY.html" style="--dc:var(--rose)">
+      <div class="dc-volume">Education · World Music Theory Atlas</div>
+      <div class="dc-title">NOIZYKIDZ World Music Theory</div>
+      <div class="dc-desc">Music theory from every country since the first rock was banged. Africa. South Asia. East Asia. Middle East. SE Asia. Europe. Americas. Oceania. 64 rhythm families. 128 scale structures. Activities for every age.</div>
+    </a>
+    <a class="dcard" href="NOIZY_GUILD_FAMILY.html" style="--dc:var(--violet)">
+      <div class="dc-volume">Coming Soon · Platform Bible</div>
+      <div class="dc-title">NOIZY Master Bible</div>
+      <div class="dc-desc">The 57KB master specification document. Every protocol, every principle, every technical architecture decision. The comprehensive blueprint for the entire NOIZY.AI ecosystem. NOIZY_MASTER_BIBLE.md</div>
+    </a>
+    <a class="dcard" href="NOIZY_AI_HOME.html" style="--dc:var(--green)">
+      <div class="dc-volume">You Are Here · The Living Home</div>
+      <div class="dc-title">NOIZY.AI Family Home</div>
+      <div class="dc-desc">This page. The living hub of the entire NOIZY.AI family. All platforms, all people, all documents, all promises. Where every creator finds the door. Where the family meets.</div>
+    </a>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════ THE 2526 ARCHIVE -->
+<section class="sect" id="archive" style="--ac:var(--gold)">
+  <div class="slabel">The 500-Year Archive · Sealed 2026 · Opens 2526</div>
+  <h2 class="stitle">What We Are<br>Building for 2526</h2>
+
+  <div class="archive-block">
+    <div class="ab-year">2526</div>
+    <div class="ab-label">Sealed Archive · 500 Years · Opens When Ready</div>
+    <div class="ab-title">A Letter to the Descendants<br>of the Creators We Serve Today</div>
+    <div class="ab-body">
+      In 2526, someone will open this archive. They will read what we wrote. They will hear the voices we registered. They will follow the lineage chains we documented. They will collect the earnings that have been accumulating since 2026.<br><br>
+      <strong style="color:var(--gold2)">We are writing to them now.</strong><br><br>
+      Every voice registered in NOIZYVOX today is still earning in 2526 — 75% to whoever the estate designates. Every principle in the Guild Oath is still operative. Every tradition in the Global Music Genome is still named correctly, in its own language.<br><br>
+      The proof that what we built in 2026 was worth building — is that it is still standing 500 years later.<br><br>
+      <em style="color:var(--gold3)">"Poop Sinks. Love Rises. Forever."<br>— Robert Stephen Plowman · March 14, 2026</em>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:2px">
+    <div style="background:var(--surface);border:1px solid var(--border);padding:28px;border-top:2px solid var(--gold)">
+      <div style="font-size:11px;font-family:'Courier New',monospace;letter-spacing:3px;color:var(--gold);margin-bottom:8px">AMARA OSEI-BONSU · 2526</div>
+      <div style="font-size:14px;color:var(--cream);margin-bottom:8px;">"I am the great-great-granddaughter of a voice actor who registered in 2026. Her estate has been earning continuously for 500 years. I have never worked a day in my life worrying about money. I have made music every day of my life. This is what NOIZY did."</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:28px;border-top:2px solid var(--teal)">
+      <div style="font-size:11px;font-family:'Courier New',monospace;letter-spacing:3px;color:var(--teal);margin-bottom:8px">DR. YUKI TANAKA · 2526</div>
+      <div style="font-size:14px;color:var(--cream);margin-bottom:8px;">"In 2026, an eccentric Australian started protecting voice actors. In 2526, it is simply how music works. The 75/25 split is in every music education textbook on Earth. No one remembers when it was any other way."</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:28px;border-top:2px solid var(--rose)">
+      <div style="font-size:11px;font-family:'Courier New',monospace;letter-spacing:3px;color:var(--rose);margin-bottom:8px">JAMES PLOWMAN-MORRISON · 2426</div>
+      <div style="font-size:14px;color:var(--cream);margin-bottom:8px;">"He was my great-great-grandfather. He survived a diving accident and started a revolution. RSP_001 — his voice — is still the most-listened-to archive in the NOIZY Codex. He would have laughed at that."</div>
+    </div>
+  </div>
+</section>
+
+<div class="div"><span>◈</span></div>
+
+<!-- ══════════════════════════════════════ JOIN -->
+<section class="sect" id="join" style="--ac:var(--gold2)">
+  <div class="join-block">
+    <h2 class="join-title">Come Home</h2>
+    <p class="join-sub">
+      You don't audition for a family.<br>
+      You bring your voice. You bring your work.<br>
+      You are seen. You are protected. You earn 75%.<br>
+      That's it. That's all. That's forever.
+    </p>
+    <div class="join-btns">
+      <a class="jbtn jbtn-primary" href="NOIZY_GUILD_FAMILY.html">Join the Guild</a>
+      <a class="jbtn jbtn-secondary" href="NOIZYKIDZ_WORLD_MUSIC_THEORY.html">NOIZYKIDZ Theory Atlas</a>
+      <a class="jbtn jbtn-secondary" href="NOIZY_CIVILIZATION_MAP.html">See the Map</a>
+      <a class="jbtn jbtn-secondary" href="THE_PLOWMANS_CHRONICLES.html">Read the Chronicles</a>
+    </div>
+  </div>
+</section>
+
+</div><!-- /pg -->
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-family">
+    <span class="ff" style="color:var(--pops)">POPS · Founder</span>
+    <span class="ff" style="color:var(--gabriel)">GABRIEL · Systems</span>
+    <span class="ff" style="color:var(--dream)">DREAM · Creative</span>
+    <span class="ff" style="color:var(--ava)">AVA · Voice</span>
+    <span class="ff" style="color:var(--lucy)">LUCY · Operations</span>
+    <span class="ff" style="color:var(--shirl)">SHIRL · Enterprise</span>
+  </div>
+  <div><span>NOIZY.AI</span> · Global Guild of Artists · Founded March 14, 2026 · <span>RSP_001</span> · The First Voice</div>
+  <div style="margin-top:10px; color:var(--dim)">Poop Sinks. Love Rises. Forever. · 75% Creator · Always · Consent-as-Code · The Platform Serves the Artist</div>
+</footer>
+
+<script>
+// Stars
+(function(){
+  const c=document.getElementById('stars');
+  for(let i=0;i<220;i++){
+    const s=document.createElement('div');s.className='star';
+    const sz=Math.random()*2.8+.4;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*10}s;--o:${.2+Math.random()*.8};animation-delay:${Math.random()*12}s`;
+    c.appendChild(s);
+  }
+})();
+
+// Intersection Observer — section entrance
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target);}});
+},{threshold:.06,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.sect').forEach(el=>obs.observe(el));
+
+// Active nav
+const tns=document.querySelectorAll('.tn');
+const sects=document.querySelectorAll('.sect[id]');
+const io=new IntersectionObserver(e=>{
+  e.forEach(x=>{
+    if(x.isIntersecting){
+      tns.forEach(t=>t.classList.remove('on'));
+      const t=document.querySelector(`.tn[href="#${x.target.id}"]`);
+      if(t){t.classList.add('on');t.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});}
+    }
+  });
+},{threshold:.25});
+sects.forEach(s=>io.observe(s));
+</script>
+</body>
+</html>

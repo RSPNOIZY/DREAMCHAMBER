@@ -1,0 +1,78 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# HEAVEN — NOIZY Empire API Gateway + NOIZYSTREAM v2 Signaling
+# Constitutional Infrastructure for Human Creativity
+# Author: Robert Stephen Plowman (RSP_001) / MC96ECO
+#
+# ⚡ CANONICAL WRANGLER.TOML — UPDATED 2026-03-31
+#    Added: Durable Objects for WebRTC signaling rooms
+# ═══════════════════════════════════════════════════════════════════════════════
+
+name               = "heaven"
+main               = "src/index.ts"
+compatibility_date = "2024-01-01"
+account_id         = "2446d788cc4280f5ea22a9948410c355"  # HEAVEN account (noizy.ai)
+workers_dev        = true
+
+# ── Live Route — noizy.ai/* ──────────────────────────────────────────────────
+routes = [
+  { pattern = "noizy.ai/*", zone_name = "noizy.ai" }
+]
+
+# ── Durable Objects (NOIZYSTREAM v2) ─────────────────────────────────────────
+[durable_objects]
+bindings = [
+  { name = "SIGNALING_ROOMS", class_name = "SignalingRoom" }
+]
+
+[[migrations]]
+tag = "v1"
+new_classes = ["SignalingRoom"]
+
+# ── D1 Databases (HEAVEN account — CANONICAL) ────────────────────────────────
+# ⚠️ gabriel_db / f75939d5 = DEAD. fc0edd97 = WRONG ACCOUNT. NEVER USE.
+
+[[d1_databases]]
+binding       = "DB_MEMORY"
+database_name = "agent-memory"
+database_id   = "7b813205-fd12-4a23-84a6-ce83bc49ec70"
+
+[[d1_databases]]
+binding       = "DB_REPAIRS"
+database_name = "noizylab-repairs"
+database_id   = "2bd4aa06-f9b2-4761-b235-e92e8a21fe45"
+
+[[d1_databases]]
+binding       = "DB_AQUARIUM"
+database_name = "aquarium-archive"
+database_id   = "e6f98279-656b-4f7a-979d-9197821193f5"
+
+# ── KV Namespaces (HEAVEN account) ───────────────────────────────────────────
+
+[[kv_namespaces]]
+binding = "KV_SIGNUPS"
+id      = "392c1bf429114148999824a9f9e15169"
+
+[[kv_namespaces]]
+binding = "KV_ROYALTIES"
+id      = "4cf36e4bd1fd44fe802096925413f694"
+
+[[kv_namespaces]]
+binding = "KV_GUILD"
+id      = "8a15ed31fea8462da7c92a8237d6f854"
+
+[[kv_namespaces]]
+binding = "KV_SESSIONS"
+id      = "c90299891f684de7bcc7c53967133748"
+
+[[kv_namespaces]]
+binding = "KV_SUBMISSIONS"
+id      = "6e888a017ebe4ba78ed7497c4929439b"
+
+[[kv_namespaces]]
+binding = "KV_MEMCELL"
+id      = "9aa2511652ce4a2faeb106858f76df67"
+
+# ── Secrets (set via: wrangler secret put KEY) ────────────────────────────────
+# ANTHROPIC_API_KEY
+# NOIZY_SECRET
+# NOIZY_KEY

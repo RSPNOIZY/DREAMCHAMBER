@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZYVOX · A.I.V.A. Platform · Artificially Intelligent Voice Acting</title>
+<style>
+  :root {
+    --gold: #f0b429;
+    --amber: #d97706;
+    --electric: #0a9ebd;
+    --teal: #14b8a6;
+    --fire: #e85d04;
+    --deep: #7c4dff;
+    --green: #22c55e;
+    --dream: #c94070;
+    --ink: #040609;
+    --mist: #e8f0f5;
+    --pale: rgba(232,240,245,0.72);
+    --cyan-glow: rgba(10,158,189,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--ink);
+    color: var(--mist);
+    font-family: 'Georgia', serif;
+    overflow-x: hidden;
+  }
+
+  #stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  #voice-glow {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(ellipse 50% 35% at 50% 30%, rgba(10,158,189,0.06) 0%, transparent 70%);
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(4,6,9,0.9); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(10,158,189,0.2);
+    padding: 13px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-brand { font-size: 11px; letter-spacing: 4px; color: var(--electric); text-transform: uppercase; }
+  .nav-links { display: flex; gap: 22px; }
+  .nav-links a {
+    color: rgba(232,240,245,0.45); font-size: 10px; letter-spacing: 2px;
+    text-decoration: none; text-transform: uppercase; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--electric); }
+
+  /* ── VOICE CANVAS ── */
+  #voice-canvas {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.12;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 140px 40px 100px;
+  }
+
+  .aiva-wordmark {
+    font-size: clamp(10px, 1.5vw, 14px);
+    letter-spacing: 8px; text-transform: uppercase;
+    color: var(--electric); margin-bottom: 24px;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+  }
+  .aiva-wordmark.visible { opacity: 1; transform: translateY(0); }
+
+  .hero-title {
+    font-size: clamp(30px, 7vw, 84px);
+    font-weight: bold; line-height: 1.0; color: var(--mist);
+    margin-bottom: 8px;
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+    text-shadow: 0 0 80px rgba(10,158,189,0.18);
+  }
+  .hero-title.visible { opacity: 1; transform: translateY(0); }
+  .hero-title span { color: var(--electric); }
+
+  .hero-tagline {
+    font-size: clamp(13px, 2vw, 20px);
+    color: rgba(10,158,189,0.7); letter-spacing: 2px;
+    margin-bottom: 24px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s;
+  }
+  .hero-tagline.visible { opacity: 1; transform: translateY(0); }
+
+  .hero-sub {
+    font-size: clamp(13px, 1.7vw, 17px);
+    color: var(--pale); max-width: 640px; line-height: 1.75; font-style: italic;
+    margin-bottom: 52px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.7s ease 0.55s, transform 0.7s ease 0.55s;
+  }
+  .hero-sub.visible { opacity: 1; transform: translateY(0); }
+
+  .hero-distinction {
+    display: flex; align-items: center; gap: 20px;
+    border: 1px solid rgba(10,158,189,0.25);
+    border-radius: 40px; padding: 12px 28px;
+    background: rgba(10,158,189,0.06);
+    font-size: 13px;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 0.7s ease 0.7s, transform 0.7s ease 0.7s;
+  }
+  .hero-distinction.visible { opacity: 1; transform: translateY(0); }
+  .hd-label { color: rgba(10,158,189,0.6); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+  .hd-val { color: var(--mist); font-weight: bold; }
+  .hd-sep { color: rgba(10,158,189,0.3); }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── SECTION ── */
+  section {
+    position: relative; z-index: 1;
+    max-width: 1140px; margin: 0 auto;
+    padding: 80px 40px;
+  }
+  .section-header { text-align: center; margin-bottom: 52px; }
+  .section-label { font-size: 10px; letter-spacing: 5px; color: var(--electric); text-transform: uppercase; margin-bottom: 10px; display: block; }
+  .section-title { font-size: clamp(22px, 3.5vw, 38px); font-weight: bold; color: var(--mist); margin-bottom: 12px; }
+  .section-title span { color: var(--electric); }
+  .section-rule { width: 80px; height: 1px; background: linear-gradient(to right, transparent, var(--electric), transparent); margin: 0 auto; }
+  .divider { max-width: 1140px; margin: 0 auto; height: 1px; background: linear-gradient(to right, transparent, rgba(10,158,189,0.18), transparent); }
+
+  /* ── AIVA vs AI VOICE ── */
+  .versus-block {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 0;
+    border: 1px solid rgba(10,158,189,0.2);
+    border-radius: 4px; overflow: hidden;
+  }
+  .versus-side {
+    padding: 32px 28px;
+  }
+  .versus-bad { background: rgba(255,255,255,0.02); }
+  .versus-good { background: rgba(10,158,189,0.05); }
+  .versus-divider {
+    width: 1px; background: rgba(10,158,189,0.2);
+    display: flex; align-items: center; justify-content: center; padding: 0 20px;
+    font-size: 18px; color: rgba(10,158,189,0.4);
+    position: relative;
+  }
+  .versus-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+  .versus-bad .versus-label { color: rgba(232,88,4,0.5); }
+  .versus-good .versus-label { color: var(--electric); }
+  .versus-title { font-size: 18px; font-weight: bold; margin-bottom: 16px; }
+  .versus-bad .versus-title { color: rgba(232,240,245,0.4); }
+  .versus-good .versus-title { color: var(--mist); }
+  .versus-items { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .versus-items li { font-size: 13px; line-height: 1.55; padding-left: 18px; position: relative; }
+  .versus-bad .versus-items li { color: rgba(232,240,245,0.4); }
+  .versus-bad .versus-items li::before { content: '✗'; position: absolute; left: 0; color: rgba(232,88,4,0.4); }
+  .versus-good .versus-items li { color: var(--pale); }
+  .versus-good .versus-items li::before { content: '✓'; position: absolute; left: 0; color: var(--electric); }
+
+  /* ── 6-LAYER HVS ── */
+  .hvs-stack { display: flex; flex-direction: column; gap: 12px; }
+
+  .hvs-layer {
+    display: grid; grid-template-columns: 60px 200px 1fr auto;
+    gap: 0;
+    border: 1px solid rgba(10,158,189,0.15);
+    border-radius: 4px; overflow: hidden;
+    align-items: stretch;
+    transition: border-color 0.3s;
+  }
+  .hvs-layer:hover { border-color: rgba(10,158,189,0.4); }
+
+  .hvs-num {
+    background: rgba(10,158,189,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: bold; color: var(--electric);
+    border-right: 1px solid rgba(10,158,189,0.12);
+    font-style: italic;
+  }
+  .hvs-label {
+    padding: 18px 20px;
+    border-right: 1px solid rgba(10,158,189,0.08);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .hvs-layer-name { font-size: 14px; font-weight: bold; color: var(--mist); margin-bottom: 3px; }
+  .hvs-tech { font-size: 10px; color: var(--electric); letter-spacing: 1px; }
+  .hvs-desc {
+    padding: 18px 24px;
+    font-size: 13px; color: var(--pale); line-height: 1.55;
+    display: flex; align-items: center;
+  }
+  .hvs-output {
+    padding: 18px 20px; min-width: 120px;
+    background: rgba(10,158,189,0.04);
+    border-left: 1px solid rgba(10,158,189,0.1);
+    display: flex; flex-direction: column; justify-content: center;
+    text-align: center;
+  }
+  .hvs-output-label { font-size: 10px; letter-spacing: 2px; color: rgba(10,158,189,0.5); text-transform: uppercase; margin-bottom: 4px; }
+  .hvs-output-val { font-size: 12px; color: var(--electric); }
+
+  @media(max-width:800px){
+    .hvs-layer { grid-template-columns: 50px 1fr; grid-template-rows: auto auto; }
+    .hvs-label { border-right: none; }
+    .hvs-desc { grid-column: span 2; padding-top: 0; }
+    .hvs-output { display: none; }
+  }
+
+  /* ── RSP001 CASE STUDY ── */
+  .rsp-block {
+    border: 2px solid rgba(10,158,189,0.3);
+    border-radius: 8px; padding: 48px;
+    background: rgba(10,158,189,0.04);
+    position: relative; overflow: hidden;
+  }
+  .rsp-block::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(10,158,189,0.05) 0%, transparent 70%);
+  }
+  .rsp-id {
+    font-size: 10px; letter-spacing: 5px; color: var(--electric);
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .rsp-name { font-size: 28px; font-weight: bold; color: var(--mist); margin-bottom: 8px; }
+  .rsp-credits {
+    font-size: 13px; color: rgba(10,158,189,0.6); font-style: italic;
+    margin-bottom: 24px; line-height: 1.6;
+  }
+  .rsp-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px;
+  }
+  @media(max-width:700px){ .rsp-grid { grid-template-columns: 1fr 1fr; } }
+  .rsp-stat {
+    border: 1px solid rgba(10,158,189,0.2);
+    border-radius: 4px; padding: 16px; text-align: center;
+    background: rgba(4,6,9,0.5);
+  }
+  .rsp-stat-num { font-size: 24px; font-weight: bold; color: var(--electric); margin-bottom: 4px; }
+  .rsp-stat-label { font-size: 11px; color: rgba(232,240,245,0.45); letter-spacing: 1px; }
+
+  /* ── ONBOARDING FLOW ── */
+  .onboard-flow { display: flex; flex-direction: column; gap: 0; }
+  .onboard-step {
+    display: grid; grid-template-columns: 80px 1fr;
+    border-bottom: 1px solid rgba(10,158,189,0.08);
+  }
+  .onboard-step:last-child { border-bottom: none; }
+  .step-num {
+    padding: 28px 20px;
+    font-size: 22px; font-weight: bold; color: var(--electric);
+    border-right: 1px solid rgba(10,158,189,0.12);
+    display: flex; align-items: flex-start; justify-content: center;
+    font-style: italic; opacity: 0.6;
+  }
+  .step-content { padding: 24px 28px; }
+  .step-title { font-size: 15px; font-weight: bold; color: var(--mist); margin-bottom: 6px; }
+  .step-subtitle { font-size: 11px; color: var(--electric); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .step-desc { font-size: 13px; color: var(--pale); line-height: 1.65; }
+  .step-tools {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;
+  }
+  .step-tool {
+    font-size: 10px; letter-spacing: 1px;
+    border: 1px solid rgba(10,158,189,0.25);
+    border-radius: 2px; padding: 4px 10px;
+    color: var(--electric); text-transform: uppercase;
+    background: rgba(10,158,189,0.05);
+  }
+
+  /* ── VOICE ARMY ── */
+  .army-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  @media(max-width:800px){ .army-grid { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:520px){ .army-grid { grid-template-columns: 1fr; } }
+
+  .army-card {
+    border: 1px solid rgba(10,158,189,0.15);
+    border-radius: 4px; padding: 26px;
+    background: rgba(13,13,20,0.7);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .army-card:hover { background: rgba(10,158,189,0.05); border-color: rgba(10,158,189,0.3); }
+  .army-role { font-size: 10px; letter-spacing: 3px; color: var(--electric); text-transform: uppercase; margin-bottom: 10px; }
+  .army-title { font-size: 16px; font-weight: bold; color: var(--mist); margin-bottom: 10px; }
+  .army-pitch { font-size: 13px; color: var(--gold); font-style: italic; margin-bottom: 14px; border-left: 2px solid rgba(240,180,41,0.3); padding-left: 12px; line-height: 1.55; }
+  .army-earn { font-size: 13px; color: var(--pale); line-height: 1.6; }
+  .army-earn strong { color: var(--green); }
+
+  /* ── ROYALTY MECHANICS ── */
+  .royalty-flow {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+    border: 1px solid rgba(10,158,189,0.15);
+    border-radius: 4px; overflow: hidden;
+  }
+  @media(max-width:800px){ .royalty-flow { grid-template-columns: 1fr 1fr; } }
+
+  .rf-step {
+    padding: 24px 18px; text-align: center;
+    border-right: 1px solid rgba(10,158,189,0.1);
+    position: relative;
+  }
+  .rf-step:last-child { border-right: none; }
+  .rf-num { font-size: 28px; font-weight: bold; color: var(--electric); margin-bottom: 8px; }
+  .rf-name { font-size: 13px; font-weight: bold; color: var(--mist); margin-bottom: 6px; }
+  .rf-desc { font-size: 11px; color: rgba(232,240,245,0.5); font-style: italic; line-height: 1.4; }
+
+  /* ── EARNINGS TABLE ── */
+  .earn-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+  }
+  .earn-table th {
+    padding: 12px 20px;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--electric); border-bottom: 1px solid rgba(10,158,189,0.2);
+    background: rgba(10,158,189,0.04); text-align: left;
+  }
+  .earn-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--pale);
+  }
+  .earn-table tr:last-child td { border-bottom: none; }
+  .earn-table td:first-child { color: var(--mist); font-weight: bold; }
+  .earn-table td.earn-num { color: var(--green); font-weight: bold; }
+
+  /* ── NEVER SAY ── */
+  .never-say {
+    border: 1px solid rgba(232,88,4,0.2);
+    border-radius: 4px; padding: 24px 28px;
+    background: rgba(232,88,4,0.03);
+    display: flex; align-items: flex-start; gap: 20px;
+  }
+  .never-say-icon { font-size: 24px; flex-shrink: 0; }
+  .never-say-content { }
+  .never-say-title { font-size: 15px; font-weight: bold; color: var(--mist); margin-bottom: 10px; }
+  .never-say-rule { font-size: 13px; color: var(--pale); line-height: 1.65; }
+  .never-say-rule em { color: var(--fire); font-style: normal; font-weight: bold; }
+  .never-say-rule strong { color: var(--electric); }
+
+  /* ── QUOTE ── */
+  .qb {
+    border-left: 3px solid var(--electric);
+    padding: 20px 28px; margin: 0;
+    background: rgba(10,158,189,0.04);
+    border-radius: 0 4px 4px 0;
+    font-style: italic; font-size: 15px; color: var(--mist); line-height: 1.7;
+  }
+  .qb-src { display: block; margin-top: 12px; font-size: 11px; color: var(--electric); letter-spacing: 2px; text-transform: uppercase; font-style: normal; }
+
+  /* ── CONSENT TIMELINE ── */
+  .consent-timeline {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    border: 1px solid rgba(10,158,189,0.15);
+    border-radius: 4px; overflow: hidden;
+  }
+  @media(max-width:700px){ .consent-timeline { grid-template-columns: 1fr 1fr; } }
+  .ct-item {
+    padding: 24px 18px; text-align: center;
+    border-right: 1px solid rgba(10,158,189,0.08);
+  }
+  .ct-item:last-child { border-right: none; }
+  .ct-icon { font-size: 28px; margin-bottom: 10px; }
+  .ct-label { font-size: 11px; letter-spacing: 2px; color: var(--electric); text-transform: uppercase; margin-bottom: 6px; }
+  .ct-desc { font-size: 12px; color: rgba(232,240,245,0.55); font-style: italic; line-height: 1.45; }
+
+  /* ── FOOTER ── */
+  .footer-nav {
+    position: relative; z-index: 1;
+    background: rgba(4,6,9,0.95);
+    border-top: 1px solid rgba(10,158,189,0.12);
+    padding: 40px; text-align: center;
+  }
+  .footer-nav-label { font-size: 9px; letter-spacing: 5px; color: var(--electric); text-transform: uppercase; margin-bottom: 18px; }
+  .footer-nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .footer-nav-links a {
+    color: rgba(232,240,245,0.45); font-size: 11px;
+    text-decoration: none; border: 1px solid rgba(10,158,189,0.12);
+    padding: 6px 14px; border-radius: 2px; letter-spacing: 1px;
+    transition: color 0.3s, border-color 0.3s; font-family: 'Georgia', serif;
+  }
+  .footer-nav-links a:hover { color: var(--electric); border-color: rgba(10,158,189,0.35); }
+
+  /* ── STATUS BAND ── */
+  .status-band {
+    position: relative; z-index: 1;
+    background: rgba(10,158,189,0.06);
+    border-top: 1px solid rgba(10,158,189,0.15);
+    border-bottom: 1px solid rgba(10,158,189,0.15);
+    padding: 12px 40px;
+    display: flex; justify-content: center; gap: 40px;
+    flex-wrap: wrap;
+  }
+  .sb-item { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+  .sb-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .sb-dot.live { background: var(--green); box-shadow: 0 0 6px rgba(34,197,94,0.6); }
+  .sb-dot.dev { background: var(--electric); box-shadow: 0 0 6px rgba(10,158,189,0.6); animation: blink 2s ease infinite; }
+  .sb-dot.plan { background: rgba(240,180,41,0.5); }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .sb-label { color: rgba(232,240,245,0.6); letter-spacing: 1px; text-transform: uppercase; }
+  .sb-val { color: var(--mist); font-weight: bold; }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<canvas id="voice-canvas"></canvas>
+<div id="voice-glow"></div>
+
+<nav>
+  <span class="nav-brand">NOIZYVOX · A.I.V.A.</span>
+  <div class="nav-links">
+    <a href="NOIZY_AI_HOME.html">Home</a>
+    <a href="NOIZY_FOUNDER_BLUEPRINT.html">Blueprint</a>
+    <a href="NOIZY_BILLION_ARCHITECTURE.html">$1B Architecture</a>
+    <a href="NOIZY_CREATOR_CHARTER.html">Charter</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════ HERO -->
+<div class="hero">
+  <p class="aiva-wordmark" id="aw">NOIZYVOX · Phase 1 Product · A.I.V.A.</p>
+  <h1 class="hero-title" id="ht">ARTIFICIALLY<br><span>INTELLIGENT</span><br>VOICE ACTING</h1>
+  <p class="hero-tagline" id="htg">Not "AI Voice." Never "AI Voice." Always A.I.V.A.</p>
+  <p class="hero-sub" id="hs">
+    The consent-first platform where voice actors own their voice model as a perpetual,
+    inheritable, licensable estate asset — and earn 75% of every use, forever.
+    RSP_001 was the first. Every voice actor who joins comes second.
+  </p>
+  <div class="hero-distinction" id="hd">
+    <div><span class="hd-label">First Client</span><br><span class="hd-val">RSP_001</span></div>
+    <div class="hd-sep">·</div>
+    <div><span class="hd-label">Creator Share</span><br><span class="hd-val">75% Perpetual</span></div>
+    <div class="hd-sep">·</div>
+    <div><span class="hd-label">Platform Share</span><br><span class="hd-val">25% Max</span></div>
+    <div class="hd-sep">·</div>
+    <div><span class="hd-label">Ownership</span><br><span class="hd-val">Creator Always</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ STATUS BAND -->
+<div class="status-band">
+  <div class="sb-item"><div class="sb-dot dev"></div><span class="sb-label">Status</span><span class="sb-val">In Development · Q2 2026</span></div>
+  <div class="sb-item"><div class="sb-dot live"></div><span class="sb-label">First Voice</span><span class="sb-val">RSP_001 · Robert Stephen Plowman</span></div>
+  <div class="sb-item"><div class="sb-dot plan"></div><span class="sb-label">Operation Voice Army</span><span class="sb-val">Onboarding · May 2026</span></div>
+  <div class="sb-item"><div class="sb-dot plan"></div><span class="sb-label">Full Launch</span><span class="sb-val">September 2026</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════ NEVER SAY AI VOICE -->
+<div class="divider"></div>
+<section>
+  <div class="never-say reveal">
+    <div class="never-say-icon">⚡</div>
+    <div class="never-say-content">
+      <div class="never-say-title">The Most Important Brand Rule in NOIZY</div>
+      <div class="never-say-rule">
+        <em>Never say "AI Voice."</em> This phrase is owned by every competitor, feared by every voice actor,
+        and stripped of all meaning by overuse. NOIZYVOX uses exactly one phrase: <strong>A.I.V.A. — Artificially Intelligent Voice Acting.</strong>
+        <br><br>
+        A.I.V.A. reframes everything. It is not a tool that replaces voice actors. It is a system that extends them —
+        giving them a digital creative presence that earns while they sleep, tours while they rest, and outlives them.
+        This is not a subtle distinction. It is the entire difference between a platform that creators fear and one
+        that becomes their most powerful asset.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ AIVA vs AI VOICE -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">The Category Distinction</span>
+    <h2 class="section-title">A.I.V.A. vs <span>"AI Voice"</span></h2>
+    <div class="section-rule" style="margin-top:14px;"></div>
+  </div>
+
+  <div class="versus-block reveal">
+    <div class="versus-side versus-bad">
+      <div class="versus-label">Generic "AI Voice" Platforms</div>
+      <div class="versus-title">What You're Afraid Of</div>
+      <ul class="versus-items">
+        <li>Your voice cloned without consent</li>
+        <li>No attribution — your identity erased</li>
+        <li>Platform owns the model, you own nothing</li>
+        <li>Flat fee or per-use buyout — no perpetual royalty</li>
+        <li>Works replicated infinitely at zero cost to the platform</li>
+        <li>No portability — locked in, can't leave with your model</li>
+        <li>Legal document as only protection — rewritten at will</li>
+        <li>You become a data input, not a stakeholder</li>
+      </ul>
+    </div>
+    <div class="versus-divider">≠</div>
+    <div class="versus-side versus-good">
+      <div class="versus-label">NOIZYVOX · A.I.V.A.</div>
+      <div class="versus-title">What You Actually Get</div>
+      <ul class="versus-items">
+        <li>Your voice registered as a permanent, protected identity record</li>
+        <li>Your name on every use, every license, every derivative</li>
+        <li>You own the model — NOIZYVOX operates it under license</li>
+        <li>75% of every use, perpetually — encoded in the infrastructure</li>
+        <li>Real-time royalty dashboard — every use, every dollar, visible</li>
+        <li>Full portability — your Voice Estate leaves with you, always</li>
+        <li>Consent-as-Code — your rights enforced in the architecture itself</li>
+        <li>Voice Estate — your voice becomes a licensable inheritance for your family</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ 6-LAYER HVS -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">The Science of Identity</span>
+    <h2 class="section-title">The 6-Layer <span>Human Voice Signature</span></h2>
+    <p style="font-size:13px;color:rgba(232,240,245,0.45);font-style:italic;margin-top:10px;max-width:580px;margin-left:auto;margin-right:auto;">
+      No other platform has built a voice identity system this comprehensive.
+      The HVS is not a recording. It is a living document of who you are as a vocal artist —
+      captured in six distinct scientific dimensions.
+    </p>
+    <div class="section-rule" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="hvs-stack reveal">
+    <div class="hvs-layer">
+      <div class="hvs-num">1</div>
+      <div class="hvs-label">
+        <div class="hvs-layer-name">Acoustic Layer</div>
+        <div class="hvs-tech">Librosa</div>
+      </div>
+      <div class="hvs-desc">The physical fingerprint of your voice — pitch range, timbre, spectral shape, MFCC coefficients, formant frequencies, and harmonic content. This is the raw acoustic identity that no other human voice shares.</div>
+      <div class="hvs-output"><div class="hvs-output-label">Output</div><div class="hvs-output-val">Acoustic Vector Map</div></div>
+    </div>
+
+    <div class="hvs-layer">
+      <div class="hvs-num">2</div>
+      <div class="hvs-label">
+        <div class="hvs-layer-name">Neural Layer</div>
+        <div class="hvs-tech">WavLM</div>
+      </div>
+      <div class="hvs-desc">Deep neural representation of your vocal patterns learned from thousands of hours of speech data. WavLM extracts what Librosa cannot — the learned vocal architecture that makes your voice recognizable even after synthesis.</div>
+      <div class="hvs-output"><div class="hvs-output-label">Output</div><div class="hvs-output-val">Neural Embedding</div></div>
+    </div>
+
+    <div class="hvs-layer">
+      <div class="hvs-num">3</div>
+      <div class="hvs-label">
+        <div class="hvs-layer-name">Emotional Layer</div>
+        <div class="hvs-tech">SpeechBrain</div>
+      </div>
+      <div class="hvs-desc">The emotional palette of your voice — how you deliver fear, warmth, authority, tenderness, urgency, and humor. Captured across a range of emotional states, this layer is what casting directors call "the intangible." It is now quantifiable.</div>
+      <div class="hvs-output"><div class="hvs-output-label">Output</div><div class="hvs-output-val">Emotional Profile</div></div>
+    </div>
+
+    <div class="hvs-layer">
+      <div class="hvs-num">4</div>
+      <div class="hvs-label">
+        <div class="hvs-layer-name">Vocal Health Layer</div>
+        <div class="hvs-tech">Custom + NAI</div>
+      </div>
+      <div class="hvs-desc">The physiological state of your voice — fatigue markers, range health, onset quality, breathiness, and the long-term signature of a trained professional voice. Developed in partnership with Dr. Brien Benoit's neuro-acoustic research.</div>
+      <div class="hvs-output"><div class="hvs-output-label">Output</div><div class="hvs-output-val">Health Baseline</div></div>
+    </div>
+
+    <div class="hvs-layer">
+      <div class="hvs-num">5</div>
+      <div class="hvs-label">
+        <div class="hvs-layer-name">Identity Layer</div>
+        <div class="hvs-tech">ECAPA-TDNN</div>
+      </div>
+      <div class="hvs-desc">The speaker verification system — the mathematical proof that this voice belongs to this creator. ECAPA-TDNN produces a discriminative speaker embedding that becomes the cryptographic core of the Voice Estate registration and NOIZY PROOF signature.</div>
+      <div class="hvs-output"><div class="hvs-output-label">Output</div><div class="hvs-output-val">Identity Hash</div></div>
+    </div>
+
+    <div class="hvs-layer">
+      <div class="hvs-num">6</div>
+      <div class="hvs-label">
+        <div class="hvs-layer-name">Narrative Layer</div>
+        <div class="hvs-tech">Claude (GABRIEL)</div>
+      </div>
+      <div class="hvs-desc">The story of your voice — who you are, what you have made, where your voice has appeared, and why it matters culturally and commercially. The layer that no other AI can replicate, because it is the lived context of 40 years of professional work encoded as provenance.</div>
+      <div class="hvs-output"><div class="hvs-output-label">Output</div><div class="hvs-output-val">Voice Estate Provenance</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ RSP001 CASE STUDY -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">The Proof of Concept</span>
+    <h2 class="section-title">RSP_001 — <span>Client Zero</span></h2>
+    <p style="font-size:13px;color:rgba(232,240,245,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      The founder is the first client. If NOIZYVOX doesn't work for RSP_001, it ships to nobody.
+      Here is what the system was built to protect.
+    </p>
+    <div class="section-rule" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="rsp-block reveal">
+    <div class="rsp-id">RSP_001 · NOIZYVOX Registration #001 · March 2026</div>
+    <div class="rsp-name">Robert Stephen Plowman</div>
+    <div class="rsp-credits">
+      40-year professional composer · Sound Designer · Audio Director<br>
+      Q107 Homegrown Contest Winner · Ed Edd n Eddy · Dragon Tales · Johnny Test ·
+      Transformers · Barbie Feature Films · Audio Director, Fuel Industries (150 staff, 14 years)<br>
+      C3 spinal injury with permanent nerve damage · Built GORUNFREE to survive ·
+      Ottawa, Canada · 2026
+    </div>
+    <div class="rsp-grid">
+      <div class="rsp-stat">
+        <div class="rsp-stat-num">40</div>
+        <div class="rsp-stat-label">Years Professional Credits</div>
+      </div>
+      <div class="rsp-stat">
+        <div class="rsp-stat-num">34TB</div>
+        <div class="rsp-stat-label">THE_AQUARIUM Archive</div>
+      </div>
+      <div class="rsp-stat">
+        <div class="rsp-stat-num">#1</div>
+        <div class="rsp-stat-label">First NOIZYVOX Registrant</div>
+      </div>
+      <div class="rsp-stat">
+        <div class="rsp-stat-num">6</div>
+        <div class="rsp-stat-label">HVS Layers Captured</div>
+      </div>
+      <div class="rsp-stat">
+        <div class="rsp-stat-num">75%</div>
+        <div class="rsp-stat-label">Perpetual Revenue Share</div>
+      </div>
+      <div class="rsp-stat">
+        <div class="rsp-stat-num">∞</div>
+        <div class="rsp-stat-label">Voice Estate Duration</div>
+      </div>
+    </div>
+    <blockquote class="qb" style="border-color:var(--electric);">
+      "I am the first client. If it doesn't work for me, it ships to nobody. My voice, my 40 years of work, my family's inheritance — all of it runs through NOIZYVOX now. That is the proof. If this system can capture and protect what I built through a spinal injury, it can capture and protect anyone."
+      <span class="qb-src">— RSP_001 · Robert Stephen Plowman · NOIZYVOX Founding Statement</span>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ CONSENT TIMELINE -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">Consent-as-Code in Practice</span>
+    <h2 class="section-title">The <span>Consent Architecture</span></h2>
+    <p style="font-size:13px;color:rgba(232,240,245,0.45);font-style:italic;margin-top:10px;max-width:500px;margin-left:auto;margin-right:auto;">
+      Consent is not a checkbox. It is a protocol that governs every transaction the platform makes with your voice.
+    </p>
+    <div class="section-rule" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="consent-timeline reveal">
+    <div class="ct-item">
+      <div class="ct-icon">📝</div>
+      <div class="ct-label">Register</div>
+      <div class="ct-desc">Your voice, its allowable uses, its restrictions, and its royalty routing — all defined at registration, stored in Cloudflare D1</div>
+    </div>
+    <div class="ct-item">
+      <div class="ct-icon">🔐</div>
+      <div class="ct-label">Lock</div>
+      <div class="ct-desc">Consent parameters are hashed and stored. No use of your voice can occur outside these parameters — enforced in the code, not just in a contract</div>
+    </div>
+    <div class="ct-item">
+      <div class="ct-icon">✅</div>
+      <div class="ct-label">Verify</div>
+      <div class="ct-desc">Every request to use your voice triggers an automated consent check. GABRIEL verifies parameters before synthesis begins. Non-compliant requests are refused at the protocol level</div>
+    </div>
+    <div class="ct-item">
+      <div class="ct-icon">💰</div>
+      <div class="ct-label">Pay</div>
+      <div class="ct-desc">Compliant use triggers automatic royalty distribution. 75% to your account in real time. Every micro-payment tracked, accumulated, and paid. No minimums. No delays. No deductions.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ ONBOARDING FLOW -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">The Experience</span>
+    <h2 class="section-title">NOIZYVOX <span>Onboarding Flow</span></h2>
+    <p style="font-size:13px;color:rgba(232,240,245,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      Every step closes the gap between a voice actor's anxiety about AI and their mastery of it.
+      GORUNFREE principles applied: 1-click execution, no friction, immediate results.
+    </p>
+    <div class="section-rule" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="onboard-flow reveal" style="border:1px solid rgba(10,158,189,0.15);border-radius:4px;overflow:hidden;">
+    <div class="onboard-step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <div class="step-subtitle">Invitation</div>
+        <div class="step-title">Personal Invitation — Never a Form</div>
+        <div class="step-desc">Every NOIZYVOX registration begins with a personal invitation from RSP_001 or a Founding Creator. No sign-up form. No cold onboarding. You receive a call or direct message that explains exactly why you have been selected and what registration means for your career.</div>
+      </div>
+    </div>
+    <div class="onboard-step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <div class="step-subtitle">Voice Estate Definition</div>
+        <div class="step-title">Define Your Digital Civilization Before Any Recording</div>
+        <div class="step-desc">Before a single syllable is captured, you define your Voice Estate. What uses are permitted? What are forbidden? Who inherits? What is your creative legacy? The ENGR_KEITH guidance agent walks you through this definition — systems thinking applied to your identity.</div>
+        <div class="step-tools">
+          <span class="step-tool">ENGR_KEITH Agent</span>
+          <span class="step-tool">D1 Consent Ledger</span>
+          <span class="step-tool">GABRIEL_V3</span>
+        </div>
+      </div>
+    </div>
+    <div class="onboard-step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <div class="step-subtitle">HVS Capture Session</div>
+        <div class="step-title">The 6-Layer Human Voice Signature Recording</div>
+        <div class="step-desc">A structured recording session: multiple emotional states, vocal ranges, performance styles, and narrative registers — guided by a protocol developed from RSP_001's own capture. Librosa, WavLM, SpeechBrain, ECAPA-TDNN, and GABRIEL process the session into your permanent HVS identity record.</div>
+        <div class="step-tools">
+          <span class="step-tool">Librosa</span>
+          <span class="step-tool">WavLM</span>
+          <span class="step-tool">SpeechBrain</span>
+          <span class="step-tool">ECAPA-TDNN</span>
+          <span class="step-tool">GABRIEL</span>
+        </div>
+      </div>
+    </div>
+    <div class="onboard-step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <div class="step-subtitle">Voice Estate Registration</div>
+        <div class="step-title">Your Voice Becomes a Digital Legal Entity</div>
+        <div class="step-desc">Your HVS is hashed with your consent parameters and stored in the NOIZYVOX Identity Registry (Cloudflare D1). NOIZY PROOF signs the registration — Adam Robb's cryptographic watermarking system that survives format conversion and AI transformation. You receive a Voice Estate registration certificate.</div>
+        <div class="step-tools">
+          <span class="step-tool">NOIZY PROOF</span>
+          <span class="step-tool">Voice Estate Registry</span>
+          <span class="step-tool">Cloudflare D1/KV</span>
+        </div>
+      </div>
+    </div>
+    <div class="onboard-step">
+      <div class="step-num">05</div>
+      <div class="step-content">
+        <div class="step-subtitle">Model Build</div>
+        <div class="step-title">Your Voice Model — Built on the SUPERSONIC AI Stack</div>
+        <div class="step-desc">Your HVS data trains a synthesis model using XTTS v2 + RVC + pedalboard on the SUPERSONIC AI STACK v2.0. The model is yours — NOIZYVOX holds it under license according to the terms you defined. The build runs on the GABRIEL GPU environment at 10.90.90.20.</div>
+        <div class="step-tools">
+          <span class="step-tool">XTTS v2</span>
+          <span class="step-tool">RVC</span>
+          <span class="step-tool">Pedalboard</span>
+          <span class="step-tool">GPU — 10.90.90.20</span>
+        </div>
+      </div>
+    </div>
+    <div class="onboard-step">
+      <div class="step-num">06</div>
+      <div class="step-content">
+        <div class="step-subtitle">Live Dashboard</div>
+        <div class="step-title">Your Open Ledger — Every Use, Every Dollar</div>
+        <div class="step-desc">Your personal NOIZYVOX dashboard shows every synthesis request, every license query, every royalty transaction in real time. Who used your voice, when, for what purpose, how much it earned, and how much hit your account. The 75/25 split is visible at source — before any deductions. No black boxes.</div>
+        <div class="step-tools">
+          <span class="step-tool">Real-Time Royalty</span>
+          <span class="step-tool">Use Audit Log</span>
+          <span class="step-tool">75/25 Dashboard</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ ROYALTY MECHANICS -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">The Economics</span>
+    <h2 class="section-title">How the <span>Agentic Royalty</span> Works</h2>
+    <p style="font-size:13px;color:rgba(232,240,245,0.45);font-style:italic;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">
+      The first automated, perpetual royalty split built at protocol level.
+      Every GABRIEL agent use of a voice asset triggers an instant payment.
+      No human involvement. No delay. No minimum threshold.
+    </p>
+    <div class="section-rule" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="royalty-flow reveal">
+    <div class="rf-step">
+      <div class="rf-num">1</div>
+      <div class="rf-name">Request</div>
+      <div class="rf-desc">A synthesis request hits the HEAVEN Worker — GABRIEL's master Cloudflare router</div>
+    </div>
+    <div class="rf-step">
+      <div class="rf-num">2</div>
+      <div class="rf-name">Verify</div>
+      <div class="rf-desc">Consent parameters checked against D1 registry — use case, geography, commercial vs. creative, duration</div>
+    </div>
+    <div class="rf-step">
+      <div class="rf-num">3</div>
+      <div class="rf-name">Synthesize</div>
+      <div class="rf-desc">Compliant request executes — XTTS v2 + RVC + NOIZY PROOF watermark embedded in output</div>
+    </div>
+    <div class="rf-step">
+      <div class="rf-num">4</div>
+      <div class="rf-name">Calculate</div>
+      <div class="rf-desc">Use fee calculated at source — 75% routed to creator account, 25% to platform operations, instantly</div>
+    </div>
+    <div class="rf-step">
+      <div class="rf-num">5</div>
+      <div class="rf-name">Record</div>
+      <div class="rf-desc">Transaction logged to D1 — timestamp, use type, amount, creator attribution, watermark hash</div>
+    </div>
+  </div>
+
+  <div style="margin-top:28px;overflow:auto;" class="reveal">
+    <div style="margin-bottom:14px;font-size:11px;letter-spacing:3px;color:var(--electric);text-transform:uppercase;">Voice Actor Earnings Potential by Tier</div>
+    <table class="earn-table">
+      <thead>
+        <tr>
+          <th>Creator Type</th>
+          <th>Voice Estate Value</th>
+          <th>Use Case</th>
+          <th>Monthly Est.</th>
+          <th>Annual Est.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Emerging Voice Actor</td>
+          <td>Niche genre specialist</td>
+          <td>Short-form commercial, podcast narration</td>
+          <td class="earn-num">$100–500</td>
+          <td class="earn-num">$1,200–6,000</td>
+        </tr>
+        <tr>
+          <td>Professional Voice Actor</td>
+          <td>Broad-use studio quality</td>
+          <td>Audiobooks, e-learning, game NPCs</td>
+          <td class="earn-num">$500–2,500</td>
+          <td class="earn-num">$6,000–30,000</td>
+        </tr>
+        <tr>
+          <td>Senior Voice Artist</td>
+          <td>Recognizable character voice</td>
+          <td>Animation, film dubbing, major game characters</td>
+          <td class="earn-num">$2,500–8,000</td>
+          <td class="earn-num">$30,000–96,000</td>
+        </tr>
+        <tr>
+          <td>RSP_001 Tier (Founder)</td>
+          <td>40-year professional archive + voice</td>
+          <td>Sync licensing, narrative documentary, AI composition</td>
+          <td class="earn-num">$5,000–20,000+</td>
+          <td class="earn-num">$60,000–240,000+</td>
+        </tr>
+        <tr>
+          <td>Voice Estate (Post-Life)</td>
+          <td>Properly registered legacy estate</td>
+          <td>All licensed uses continue after creator's passing</td>
+          <td class="earn-num">Inheritable</td>
+          <td class="earn-num">500-Year Perpetual</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ OPERATION VOICE ARMY -->
+<div class="divider"></div>
+<section>
+  <div class="section-header reveal">
+    <span class="section-label">May 2026 · Phase 1 Talent Acquisition</span>
+    <h2 class="section-title">Operation <span>Voice Army</span></h2>
+    <p style="font-size:13px;color:rgba(232,240,245,0.45);font-style:italic;margin-top:10px;max-width:600px;margin-left:auto;margin-right:auto;">
+      The goal is not volume. The goal is the right 100 voices — the ones that prove the thesis.
+      Elite, diverse, credentialed, and afraid of what AI is doing to their industry.
+      These creators become the proof that changes the narrative for everyone who comes after them.
+    </p>
+    <div class="section-rule" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="army-grid reveal">
+    <div class="army-card">
+      <div class="army-role">Target · Tier 1</div>
+      <div class="army-title">Professional Voice Actors</div>
+      <div class="army-pitch">"Every AI company is training on your voice right now. NOIZYVOX is the first system that turns that threat into a 500-year revenue stream."</div>
+      <div class="army-earn">Channel SAG-AFTRA, Voice Actor forums, Backstage, and Voices.com communities. Estimate <strong>$6K–$96K/year</strong> per registered voice depending on catalog size and use frequency.</div>
+    </div>
+    <div class="army-card">
+      <div class="army-role">Target · Tier 2</div>
+      <div class="army-title">Composers & Sound Designers</div>
+      <div class="army-pitch">"40 years of your work is sitting on a hard drive. NOIZYVOX makes it a perpetual licensing engine — with your name on every use forever."</div>
+      <div class="army-earn">Channel ASCAP/BMI/SOCAN composer networks, game audio communities, film scoring groups. THE_AQUARIUM is the proof that <strong>34TB = permanent income</strong>.</div>
+    </div>
+    <div class="army-card">
+      <div class="army-role">Target · Tier 3</div>
+      <div class="army-title">Animation & Game Audio Veterans</div>
+      <div class="army-pitch">"The studios that hired you are now training AI on your session work. NOIZYVOX registers your voice before they get any further."</div>
+      <div class="army-earn">Channel animation guild networks, game developer communities, IGDA audio SIG. Veterans with <strong>10+ years of credits</strong> are the ideal Voice Estate candidates.</div>
+    </div>
+    <div class="army-card">
+      <div class="army-role">Target · Tier 4</div>
+      <div class="army-title">Global Tradition Voice Artists</div>
+      <div class="army-pitch">"Your cultural voice is the most distinctive thing AI cannot generate authentically. Register it before it's used without you."</div>
+      <div class="army-earn">Channel ethnomusicology networks, cultural preservation organizations, international voice artist communities. Cultural specificity commands <strong>premium licensing rates</strong>.</div>
+    </div>
+    <div class="army-card">
+      <div class="army-role">Target · Tier 5</div>
+      <div class="army-title">Narrators & Audiobook Professionals</div>
+      <div class="army-pitch">"Audible is already using AI narration. Every day you don't own your voice model, someone else profits from what you built."</div>
+      <div class="army-earn">Channel APA (Association of Publishers' Audio), narrator communities, ACX. Audiobook AI is the fastest-moving threat — <strong>urgency converts</strong> these creators.</div>
+    </div>
+    <div class="army-card">
+      <div class="army-role">Target · Tier 6</div>
+      <div class="army-title">Singers & Vocal Performers</div>
+      <div class="army-pitch">"Your voice is your instrument and your signature. NOIZYVOX makes it an inheritable estate asset — for your kids, their kids, and every generation that follows."</div>
+      <div class="army-earn">Channel music production communities, vocal coaching networks, independent artist platforms. Singers understand legacy — the <strong>Voice Estate inheritance framework</strong> speaks directly to that.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ QUOTE -->
+<div class="divider"></div>
+<section style="max-width:780px;">
+  <blockquote class="qb reveal">
+    "NOIZYVOX was not built to compete with ElevenLabs. ElevenLabs is in the business of voice generation.
+    NOIZYVOX is in the business of voice protection, voice inheritance, and voice civilization.
+    Those are different businesses. The first extracts. The second compounds.
+    In five years, every voice actor who registered with us early will understand the difference in their bank account."
+    <span class="qb-src">— RSP_001 · NOIZYVOX A.I.V.A. Platform Statement · 2026</span>
+  </blockquote>
+</section>
+
+<!-- ══════════════════════════════════════════ FOOTER -->
+<div class="footer-nav">
+  <div class="footer-nav-label">The NOIZYLAB Collection · 14 Documents</div>
+  <div class="footer-nav-links">
+    <a href="NOIZY_AI_HOME.html">Home</a>
+    <a href="NOIZY_FOUNDER_BLUEPRINT.html">Founder Blueprint</a>
+    <a href="NOIZY_BILLION_ARCHITECTURE.html">$1B Architecture</a>
+    <a href="NOIZY_CREATOR_CHARTER.html">Creator Charter</a>
+    <a href="THE_PLOWMANS_CHRONICLES.html">Chronicles</a>
+    <a href="NOIZY_GUILD_FAMILY.html">Guild</a>
+    <a href="NOIZYKIDZ_WORLD_MUSIC_THEORY.html">NOIZYKIDZ</a>
+    <a href="NOIZY_GREAT_RESTORATION.html">Restoration</a>
+    <a href="NOIZY_ASCENSION_MAP.html">Ascension Map</a>
+    <a href="DREAMCHAMBER_FIX_MAP.html">DreamChamber</a>
+    <a href="NOIZY_2526_ARCHIVE.html">2526 Archive</a>
+    <a href="NOIZY_ECONOMIC_ENGINE.html">Economic Engine</a>
+    <a href="NOIZY_MOVEMENT_MANIFESTO.html">Manifesto</a>
+    <a href="NOIZY_HARMONY_CAMPAIGN.html">Harmony Campaign</a>
+  </div>
+</div>
+
+<script>
+  // ── STARFIELD ──
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+  const stars = Array.from({length:160},()=>({
+    x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight,
+    size: Math.random()*1.2+0.15, speed: Math.random()*0.13+0.03,
+    drift: (Math.random()-0.5)*0.04, alpha: Math.random()*0.4+0.07,
+    phase: Math.random()*Math.PI*2, phaseSpeed: Math.random()*0.01+0.003
+  }));
+  function animStars() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    stars.forEach(s => {
+      s.phase += s.phaseSpeed;
+      const a = s.alpha*(0.6+0.4*Math.sin(s.phase));
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.size,0,Math.PI*2);
+      ctx.fillStyle=`rgba(180,230,245,${a})`; ctx.fill();
+      s.y -= s.speed; s.x += s.drift;
+      if(s.y<-4){s.y=canvas.height+4;s.x=Math.random()*canvas.width;}
+    });
+    requestAnimationFrame(animStars);
+  }
+  requestAnimationFrame(animStars);
+
+  // ── VOICE WAVEFORM CANVAS ──
+  const vc = document.getElementById('voice-canvas');
+  const vctx = vc.getContext('2d');
+  function vcResize() { vc.width = window.innerWidth; vc.height = window.innerHeight; }
+  vcResize(); window.addEventListener('resize', vcResize);
+
+  const waveLines = [
+    { amp:60, freq:0.005, phase:0, speed:0.008, y:0.35, color:'rgba(10,158,189,0.5)' },
+    { amp:40, freq:0.007, phase:2, speed:0.012, y:0.5,  color:'rgba(20,184,166,0.4)' },
+    { amp:30, freq:0.003, phase:4, speed:0.006, y:0.65, color:'rgba(10,158,189,0.3)' },
+  ];
+
+  function animVoice() {
+    vctx.clearRect(0,0,vc.width,vc.height);
+    waveLines.forEach(w => {
+      w.phase += w.speed;
+      vctx.beginPath();
+      for(let x=0;x<vc.width;x++) {
+        const y = vc.height*w.y + Math.sin(x*w.freq+w.phase)*w.amp;
+        x===0 ? vctx.moveTo(x,y) : vctx.lineTo(x,y);
+      }
+      vctx.strokeStyle = w.color;
+      vctx.lineWidth = 1.5;
+      vctx.stroke();
+    });
+    requestAnimationFrame(animVoice);
+  }
+  requestAnimationFrame(animVoice);
+
+  // ── HERO ANIMATE ──
+  setTimeout(() => {
+    ['aw','ht','htg','hs','hd'].forEach((id,i) => {
+      setTimeout(() => document.getElementById(id).classList.add('visible'), i*130);
+    });
+  }, 150);
+
+  // ── OBSERVER ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}
+    });
+  }, {threshold:0.07, rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

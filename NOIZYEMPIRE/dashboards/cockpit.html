@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NOIZY DreamChamber Interface</title>
+  <style>
+    :root {
+      --bg: #0b1118;
+      --panel: #121c28;
+      --panel-2: #0f1722;
+      --text: #edf3fa;
+      --muted: #9db0c3;
+      --accent: #22d3ee;
+      --line: #27394d;
+      --ok: #34d399;
+      --warn: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 500px at 10% -10%, #1b3350 0%, var(--bg) 55%);
+    }
+    .shell {
+      max-width: 1260px;
+      margin: 18px auto;
+      padding: 0 14px 18px;
+      display: grid;
+      gap: 10px;
+    }
+    .bar {
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(180deg, #172638, #111b28);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+    .title {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      margin: 0;
+    }
+    .subtitle {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .pill {
+      border: 1px solid #31516f;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: #cbe4fb;
+      background: #0f1a27;
+      white-space: nowrap;
+    }
+    .pill.mode { border-color: #2f6f67; color: #bdf6ef; }
+    .layout {
+      display: grid;
+      grid-template-columns: 2fr 5fr 2fr;
+      gap: 10px;
+    }
+    .panel {
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      min-height: 240px;
+    }
+    .panel h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #d6ecff;
+    }
+    .hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .cmd {
+      display: inline-block;
+      font-size: 12px;
+      border: 1px solid #2f465e;
+      border-radius: 8px;
+      background: #0f1a26;
+      color: #cbe3f7;
+      padding: 6px 8px;
+      margin: 3px 4px 3px 0;
+    }
+    .list {
+      margin: 0;
+      padding-left: 16px;
+      color: #d8e8f5;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .stack {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 10px;
+    }
+    .bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .voice {
+      min-height: 120px;
+    }
+    .status-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .status {
+      border: 1px solid #2d455c;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 12px;
+      color: #cfe4f5;
+      background: #101c2a;
+    }
+    .ok { color: var(--ok); }
+    .warn { color: var(--warn); }
+    a {
+      color: #8de6ff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="bar">
+      <div>
+        <p class="title">NOIZY DreamChamber Interface</p>
+        <p class="subtitle">Voice-first creative cockpit: think -> explore -> build -> present</p>
+      </div>
+      <span class="pill">Project: NOIZY.AI</span>
+      <span class="pill mode">Mode: Exploration/Creation/Collaboration</span>
+      <span class="pill">Safety: Allowlisted Commands Only</span>
+    </section>
+
+    <section class="layout">
+      <article class="panel">
+        <h3>AVA Collaborators</h3>
+        <p class="hint">Activate expert personas by voice.</p>
+        <ul class="list">
+          <li>Rob.AVA</li>
+          <li>Producer.AVA</li>
+          <li>Writer.AVA</li>
+          <li>Historian.AVA</li>
+          <li>ResearchAgent.AVA</li>
+          <li>ComposerCouncil.AVA</li>
+          <li>NOIZYKIDZTeacher.AVA</li>
+        </ul>
+        <div style="margin-top:8px">
+          <span class="cmd">ask producer ava improve structure</span>
+          <span class="cmd">ask historian ava synth history</span>
+          <span class="cmd">join as composer &lt;name&gt;</span>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Creative Canvas</h3>
+        <p class="hint">Central visual workspace for diagrams, slides, and architecture.</p>
+        <div class="status-row">
+          <div class="status">Canvas Type<br><strong>System Diagram</strong></div>
+          <div class="status">Output Target<br><strong>slides/deck.md</strong></div>
+          <div class="status">Last Action<br><strong>Export HTML</strong></div>
+        </div>
+        <div style="margin-top:10px">
+          <span class="cmd">visualize ava architecture</span>
+          <span class="cmd">create pitch deck noizy ai</span>
+          <span class="cmd">build ava prototype</span>
+        </div>
+        <p class="hint" style="margin-top:10px">Maps directly to source files in <code>ideas/</code>, <code>slides/</code>, <code>prototypes/</code>.</p>
+      </article>
+
+      <div class="stack">
+        <article class="panel">
+          <h3>Research Agents</h3>
+          <p class="hint">Continuous market + tech scan panel.</p>
+          <ul class="list">
+            <li>AI music trends</li>
+            <li>Voice rights / policy shifts</li>
+            <li>Competitor capability watch</li>
+          </ul>
+          <div style="margin-top:8px">
+            <span class="cmd">research ai music startups</span>
+          </div>
+        </article>
+        <article class="panel">
+          <h3>Community Link</h3>
+          <p class="hint">Open collaboration hub manually.</p>
+          <p class="list" style="padding-left:0">
+            Discord invite:<br>
+            <a href="https://discord.gg/zWGTCV6A">discord.gg/zWGTCV6A</a>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="bottom">
+      <article class="panel">
+        <h3>Creative Memory Timeline</h3>
+        <p class="hint">Persistent journey of ideas and outputs.</p>
+        <ul class="list">
+          <li>2026 - DreamChamber concept</li>
+          <li>2026 - AVA architecture</li>
+          <li>2026 - NOIZY Vox prototype</li>
+          <li>2026 - AIVA Studio concept</li>
+        </ul>
+        <div style="margin-top:8px">
+          <span class="cmd">show ideas from last week</span>
+          <span class="cmd">recall ava architecture discussion</span>
+        </div>
+      </article>
+      <article class="panel">
+        <h3>Prototype Lab + Build Panel</h3>
+        <p class="hint">Generate scaffolds and route execution tasks.</p>
+        <ul class="list">
+          <li class="ok">Idea capture and slide export live</li>
+          <li class="ok">Mode switching live</li>
+          <li class="ok">Aquarium composer guild + teacher pipeline live</li>
+          <li class="warn">Whisper direct hook pending</li>
+        </ul>
+        <div style="margin-top:8px">
+          <span class="cmd">activate dream chamber</span>
+          <span class="cmd">switch to creation mode</span>
+          <span class="cmd">promote to noizykidz teacher &lt;name&gt;</span>
+          <span class="cmd">export slides pptx</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel voice">
+      <h3>Voice Console</h3>
+      <p class="hint">Primary interaction channel. Connect transcript source to command router for hands-free operation.</p>
+      <div class="status-row">
+        <div class="status">Input<br><strong>Speech / Typed Phrase</strong></div>
+        <div class="status">Router<br><strong class="ok">Allowlisted</strong></div>
+        <div class="status">Execution<br><strong>Ideas / Slides / Prototype</strong></div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

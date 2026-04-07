@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .container {
+            color: var(--Text-text-primary);
+            font-size: var(--font13);
+            line-height: 24px;
+            padding-inline: 0px;
+        }
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: stretch;
+            padding: 12px 16px;
+            border-radius: 6px;
+            background: var(--Background-bg-quinary, #212224);
+            margin-bottom: 20px;
+            gap: 8px;
+        }
+
+        .whats-new {
+            display: flex;
+            padding: 0 12px 0 8px;
+            align-items: center;
+            gap: 4px;
+            border-radius: 16px;
+            background: var(--Gradient-primary, linear-gradient(90deg, #4776E6 0%, #8E54E9 100%));
+            color: #FFF;
+            font-family: "Public Sans", sans-serif;
+            font-size: var(--font13);
+            font-weight: 600;
+            width: max-content;
+            margin-top: 16px;
+            margin-bottom: 4px;
+        }
+
+        .title-text {
+            color: var(--Text-text-primary);
+            font-family: "Public Sans", sans-serif;
+            font-size: var(--font15);
+            font-weight: 600;
+        }
+
+        .body-text {
+            font-family: "Public Sans", sans-serif;
+            font-size: var(--font13);
+        }
+
+        .codereview-text {
+            background: color-mix(in srgb, var(--Text-Text-brand) 16%, transparent);
+            border: 1px solid color-mix(in srgb, var(--Text-Text-brand) 20%, transparent);
+            color: #78C8FF;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-weight: 400;
+        }
+
+        .code-container {
+            color: var(--Text-text-primary);
+            font-size: var(--font13);
+            background: color-mix(in srgb, var(--Text-Text-brand) 50%, transparent);
+        }
+
+        .links-section {
+            display: flex;
+            gap: 8px;
+        }
+
+        .link {
+            color: var(--Button-Link-button-link-default);
+            font-size: var(--font13);
+            font-weight: 600;
+            font-family: "Public Sans", sans-serif;
+        }
+
+        .link:hover {
+            cursor: pointer;
+            text-decoration: underline;
+            color: var(--Button-Link-button-link-default);
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        .show {
+            display: flex !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="section {{CRA_NOT_ALLOWED}}">
+            <div class="whats-new m-0">
+                <img src="https://uiast.bito.ai/marketplace/Speaker-Alt-splash-screen.png" class="img-16x16" />
+                What's new
+            </div>
+            <div class="title-text">Introducing AI Code Reviews in your IDE</div>
+            <div class="body-text">
+                By popular demand, we're bringing Bito's AI Code Review Agent to your IDE. The agentic, codebase aware Bito reviewer that teams love in Git PRs can now review code pre-PR in your IDE. 
+                It will be rolling out in the next few weeks to all users. Please contact <a href="mailto:support@bito.ai" class="link focus-on-tab">support@bito.ai</a> for early access.
+            </div>
+            <div class="links-section">
+                <a href="https://bit.ly/bito-code-review-ide-docs-overview"
+                    class="link focus-on-tab">
+                    See docs
+                    <img src="https://uiast.bito.ai/marketplace/Arrow-External-OpenIn-splash-screen.png"
+                        class="img-16x16 ml-1" />
+                </a>
+                <a href="https://bit.ly/bito-code-review-ide-demo-video" class="link focus-on-tab">
+                    Watch Demo
+                    <img src="https://uiast.bito.ai/marketplace/Play-circle-splash-screen.png" class="img-16x16 ml-1" />
+                </a>
+            </div>
+        </div>
+        <div class="section hidden {{CRA_ALLOWED}}">
+            <div class="whats-new m-0">
+                <img src="https://uiast.bito.ai/marketplace/Speaker-Alt-splash-screen.png" class="img-16x16" />
+                What's new
+            </div>
+            <div class="title-text">Introducing AI Code Reviews in your IDE</div>
+            <div class="body-text">
+                By popular demand, we're bringing Bito's AI Code Review Agent to your IDE. The agentic, codebase aware Bito
+                reviewer that teams love in Git PRs can now review code pre-PR in your IDE.
+            </div>
+            <div class="links-section">
+                <a href="https://bit.ly/bito-code-review-ide-docs-overview" class="link focus-on-tab">
+                    See docs
+                    <img src="https://uiast.bito.ai/marketplace/Arrow-External-OpenIn-splash-screen.png"
+                        class="img-16x16 ml-1" />
+                </a>
+                <a href="https://bit.ly/bito-code-review-ide-demo-video" class="link focus-on-tab">
+                    Watch Demo
+                    <img src="https://uiast.bito.ai/marketplace/Play-circle-splash-screen.png" class="img-16x16 ml-1" />
+                </a>
+            </div>
+            <div class="codereview-text">
+                Right click in your file editor and choose "Bito Code Review Agent", or type <code
+                    class="code-container">@codereview</code> in the chat box to get started.
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Creative Cockpit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Creative for All</h1>
+    <div class="mode creative"><span>Mode:</span> <strong>{{ status.mode|capitalize }}</strong></div>
+    <a class="btn small" href="{{ url_for('dashboard') }}">Back</a>
+  </header>
+
+  <section class="grid">
+    <a class="btn creative" href="{{ url_for('creative_code') }}">
+      <span class="title">Code</span>
+      <span class="desc">Open VS Code workspace</span>
+    </a>
+
+    <a class="btn" href="{{ url_for('creative_design') }}">
+      <span class="title">Design</span>
+      <span class="desc">Generate Designer prompt pack</span>
+    </a>
+
+    <a class="btn" href="{{ url_for('creative_sound') }}">
+      <span class="title">Sound</span>
+      <span class="desc">Start neuroacoustic session</span>
+    </a>
+
+    <a class="btn" href="{{ url_for('creative_share') }}">
+      <span class="title">Share</span>
+      <span class="desc">Publish to Creative Commons</span>
+    </a>
+  </section>
+</body>
+</html>

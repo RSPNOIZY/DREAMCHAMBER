@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>waveform_statistics</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="waveform_statistics" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer224" class="Basic-Text-Frame">
+			<p id="_idParaDest-224" class="heading-1"><a id="_idTextAnchor228"></a><a id="_idTextAnchor229"></a>Waveform Statistics</p>
+			<p class="Inline-Art"><img src="image/image_CDDVWO3YYUN5AMHNP5I6PVGUEG6FDIKP" alt="" /></p>
+			<p class="Normal">The Waveform Statistics window shows information about the waveform inside your current selection. This information can help you find and fix problems like clipping more easily. It is also useful for comparing two similar selections or files. RX treats your selection as a full bandwidth (time-only) selection when calculating these statistics.</p>
+			<p class="Normal">To open the Waveform Statistics window, go to the Window menu, and click "Waveform Statistics." This window can stay open throughout your work to constantly monitor the statistics of any selection you make.</p>
+			<p class="Normal">Waveform statistics automatically update to your current selection. If no selection is made, the statistics are collected from the entire audio file.</p>
+			<p class="Normal">Using the cursor icon next to an item will move the playhead to the position in the file where the level was detected.</p>
+			<p id="_idParaDest-225" class="heading-2"><a id="_idTextAnchor230"></a>True peak level</p>
+			<p class="Normal">The highest peak level detected, including signal levels between digital samples (called ISPs or Intersample Peaks).</p>
+			<p class="Normal">True peak reflects the expected peak level of the analog waveform after digital-to-analog conversion. In practice, it is calculated by oversampling of the digital waveform according to BS.1770-3 standard. Different software may measure true peak levels slightly differently, because the standard leaves some freedom in choice of oversampling filters.</p>
+			<p id="_idParaDest-226" class="heading-2"><a id="_idTextAnchor231"></a>Sample peak level</p>
+			<p class="Normal">The maximum level of digital samples in your selection.</p>
+			<p id="_idParaDest-227" class="heading-2"><a id="_idTextAnchor232"></a>Max. RMS level</p>
+			<p class="Normal">The highest RMS level detected in the selection. </p>
+			<p class="Normal">RX measures RMS using 50-ms windows (more specifically, a Hann window with a 100-ms period) and references levels using either an AES-17 standard (full-scale sine wave = 0 dB RMS) or a "scientific" standard (full-scale square wave = 0 dB RMS). These RMS measurement standards differ by 3 dB and can be chosen in RX Preferences.</p>
+			<p id="_idParaDest-228" class="heading-2"><a id="_idTextAnchor233"></a>Min. RMS level</p>
+			<p class="Normal">The lowest RMS level detected in the selection.</p>
+			<p id="_idParaDest-229" class="heading-2"><a id="_idTextAnchor234"></a>Total RMS level</p>
+			<p class="Normal">The RMS level of the entire selection.</p>
+			<p id="_idParaDest-230" class="heading-2"><a id="_idTextAnchor235"></a>Possibly clipped samples</p>
+			<p class="Normal">The number of samples where the true peak signal level exceeds 0 dBTP.</p>
+			<p id="_idParaDest-231" class="heading-2"><a id="_idTextAnchor236"></a>DC offset</p>
+			<p class="Normal">The amount of DC offset, in percent of the full scale. Hover this value with your cursor to see this level in decibels.</p>
+			<p id="_idParaDest-232" class="heading-2"><a id="_idTextAnchor237"></a>Max. momentary loudness and Max. short-term loudness</p>
+			<p class="Normal">The maximum levels of momentary loudness and short-term loudness (as defined by BS.1770). Momentary loudness is computed on a K-weighted audio signal using 400-ms windows. Short-term loudness is using 3000-ms windows.</p>
+			<p id="_idParaDest-233" class="heading-2"><a id="_idTextAnchor238"></a>Integrated loudness</p>
+			<p class="Normal">Displays the integrated loudness level (as defined by BS.1770-2). Settings in the Loudness module may switch this field to BS.1770-1 standard.</p>
+			<p id="_idParaDest-234" class="heading-2"><a id="_idTextAnchor239"></a>Loudness range (LRA)</p>
+			<p class="Normal">Displays the loudness range (as defined by BS.1770). This value reflects the dynamics of audio levels in the selection.</p>
+		</div>
+	</body>
+</html>

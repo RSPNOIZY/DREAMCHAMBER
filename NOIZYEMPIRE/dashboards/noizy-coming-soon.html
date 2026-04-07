@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY.AI</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000508;
+  }
+
+  /* ── Water canvas sits behind everything ── */
+  #water-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  /* ── Overlay layers ── */
+  .depth-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 80% at 50% 60%,
+      transparent 0%,
+      rgba(0, 5, 20, 0.45) 60%,
+      rgba(0, 3, 12, 0.85) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .vignette {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 100% 100% at 50% 50%,
+      transparent 30%,
+      rgba(0, 2, 8, 0.7) 80%,
+      rgba(0, 1, 5, 0.95) 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* ── Center content ── */
+  .stage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  /* ── The ghostly logo ── */
+  .logo-wrap {
+    position: relative;
+    text-align: center;
+    animation: surface 12s ease-in-out infinite;
+  }
+
+  .logo-text {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: clamp(52px, 9vw, 120px);
+    font-weight: 100;
+    letter-spacing: clamp(12px, 3vw, 40px);
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(160, 200, 220, 0.18);
+    text-stroke: 1px rgba(160, 200, 220, 0.18);
+    text-shadow:
+      0 0 80px rgba(100, 180, 220, 0.08),
+      0 0 160px rgba(60, 140, 200, 0.06),
+      0 2px 40px rgba(0, 100, 160, 0.12);
+    animation: ghost-pulse 8s ease-in-out infinite;
+    user-select: none;
+    position: relative;
+  }
+
+  /* subtle fill that breathes */
+  .logo-text::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    color: rgba(140, 190, 220, 0.07);
+    animation: fill-breathe 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* ── Tagline ── */
+  .tagline {
+    margin-top: 28px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: clamp(10px, 1.2vw, 13px);
+    letter-spacing: clamp(4px, 1.5vw, 10px);
+    text-transform: uppercase;
+    color: rgba(120, 170, 200, 0.0);
+    animation: tagline-surface 20s ease-in-out infinite;
+    text-align: center;
+  }
+
+  /* ── Depth indicator ── */
+  .depth-text {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(80, 130, 160, 0.25);
+    animation: depth-flicker 15s ease-in-out infinite;
+    z-index: 10;
+    white-space: nowrap;
+  }
+
+  /* ── Bubbles ── */
+  .bubbles {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .bubble {
+    position: absolute;
+    bottom: -20px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid rgba(140, 200, 230, 0.15);
+    animation: rise linear infinite;
+  }
+
+  /* ── Animations ── */
+  @keyframes surface {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    25%       { transform: translateY(-8px) translateX(3px); }
+    50%       { transform: translateY(-4px) translateX(-2px); }
+    75%       { transform: translateY(-12px) translateX(1px); }
+  }
+
+  @keyframes ghost-pulse {
+    0%, 100% {
+      -webkit-text-stroke-color: rgba(160, 200, 220, 0.18);
+      text-shadow:
+        0 0 80px rgba(100, 180, 220, 0.08),
+        0 0 160px rgba(60, 140, 200, 0.06),
+        0 2px 40px rgba(0, 100, 160, 0.12);
+    }
+    30% {
+      -webkit-text-stroke-color: rgba(160, 200, 220, 0.28);
+      text-shadow:
+        0 0 100px rgba(100, 180, 220, 0.15),
+        0 0 200px rgba(60, 140, 200, 0.10),
+        0 2px 60px rgba(0, 120, 180, 0.20);
+    }
+    60% {
+      -webkit-text-stroke-color: rgba(160, 200, 220, 0.12);
+      text-shadow:
+        0 0 60px rgba(100, 180, 220, 0.04),
+        0 0 120px rgba(60, 140, 200, 0.03),
+        0 2px 30px rgba(0, 100, 160, 0.08);
+    }
+  }
+
+  @keyframes fill-breathe {
+    0%, 100% { color: rgba(140, 190, 220, 0.05); }
+    40%       { color: rgba(140, 190, 220, 0.12); }
+    70%       { color: rgba(140, 190, 220, 0.03); }
+  }
+
+  @keyframes tagline-surface {
+    0%        { color: rgba(120, 170, 200, 0.0);  letter-spacing: 6px; }
+    10%       { color: rgba(120, 170, 200, 0.0); }
+    25%       { color: rgba(120, 170, 200, 0.22); letter-spacing: 8px; }
+    50%       { color: rgba(120, 170, 200, 0.18); letter-spacing: 10px; }
+    75%       { color: rgba(120, 170, 200, 0.08); letter-spacing: 8px; }
+    90%       { color: rgba(120, 170, 200, 0.0); }
+    100%      { color: rgba(120, 170, 200, 0.0);  letter-spacing: 6px; }
+  }
+
+  @keyframes depth-flicker {
+    0%, 100% { opacity: 0.0; }
+    20%       { opacity: 0.4; }
+    40%       { opacity: 0.2; }
+    60%       { opacity: 0.5; }
+    80%       { opacity: 0.1; }
+  }
+
+  @keyframes rise {
+    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(-100vh) translateX(var(--drift)); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Water simulation canvas -->
+<canvas id="water-canvas"></canvas>
+
+<!-- Depth layers -->
+<div class="depth-overlay"></div>
+<div class="vignette"></div>
+
+<!-- Bubbles -->
+<div class="bubbles" id="bubbles"></div>
+
+<!-- Center stage -->
+<div class="stage">
+  <div class="logo-wrap">
+    <div class="logo-text" data-text="NOIZY.AI">NOIZY.AI</div>
+    <div class="tagline">Something this way comes</div>
+  </div>
+</div>
+
+<!-- Depth indicator -->
+<div class="depth-text">◈ &nbsp; NOIZY.AI &nbsp; ◈ &nbsp; COMING SOON &nbsp; ◈</div>
+
+<script>
+// ─── Water Simulation ─────────────────────────────────────────────────────────
+const canvas = document.getElementById('water-canvas');
+const ctx = canvas.getContext('2d');
+
+let W, H, time = 0;
+let caustics = [];
+let rays = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+  initCaustics();
+  initRays();
+}
+
+// Caustic light blobs — the shimmer on the bottom of a pool
+function initCaustics() {
+  caustics = [];
+  const count = Math.floor((W * H) / 28000);
+  for (let i = 0; i < count; i++) {
+    caustics.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: 40 + Math.random() * 120,
+      speed: 0.0003 + Math.random() * 0.0008,
+      phase: Math.random() * Math.PI * 2,
+      opacity: 0.015 + Math.random() * 0.035,
+      drift: { x: (Math.random() - 0.5) * 0.3, y: (Math.random() - 0.5) * 0.15 },
+    });
+  }
+}
+
+// Light rays from above
+function initRays() {
+  rays = [];
+  const count = 6 + Math.floor(Math.random() * 4);
+  for (let i = 0; i < count; i++) {
+    rays.push({
+      x: W * (0.1 + Math.random() * 0.8),
+      width: 20 + Math.random() * 80,
+      speed: 0.0002 + Math.random() * 0.0004,
+      phase: Math.random() * Math.PI * 2,
+      opacity: 0.012 + Math.random() * 0.025,
+    });
+  }
+}
+
+function drawBackground() {
+  // Deep ocean gradient
+  const grad = ctx.createRadialGradient(W/2, H*0.3, 0, W/2, H*0.5, Math.max(W, H) * 0.9);
+  grad.addColorStop(0, '#001525');
+  grad.addColorStop(0.3, '#000e1c');
+  grad.addColorStop(0.6, '#000810');
+  grad.addColorStop(1, '#000408');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+}
+
+function drawRays(t) {
+  ctx.save();
+  for (const ray of rays) {
+    const sway = Math.sin(t * ray.speed + ray.phase) * 60;
+    const x = ray.x + sway;
+    const opacity = ray.opacity * (0.6 + 0.4 * Math.sin(t * 0.0007 + ray.phase));
+
+    const grad = ctx.createLinearGradient(x, 0, x + ray.width * 0.3, H);
+    grad.addColorStop(0, `rgba(80, 160, 210, ${opacity * 1.2})`);
+    grad.addColorStop(0.3, `rgba(40, 120, 180, ${opacity * 0.7})`);
+    grad.addColorStop(0.7, `rgba(20, 80, 140, ${opacity * 0.3})`);
+    grad.addColorStop(1, `rgba(0, 20, 60, 0)`);
+
+    ctx.beginPath();
+    ctx.moveTo(x - ray.width * 0.5, 0);
+    ctx.lineTo(x + ray.width * 1.5, 0);
+    ctx.lineTo(x + ray.width * 0.8 + sway * 0.3, H);
+    ctx.lineTo(x - ray.width * 0.2 + sway * 0.3, H);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+function drawCaustics(t) {
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+
+  for (const c of caustics) {
+    const pulse = Math.sin(t * c.speed + c.phase);
+    const r = c.r * (0.8 + 0.2 * pulse);
+    const x = c.x + Math.sin(t * c.speed * 0.7 + c.phase) * 80 * c.drift.x;
+    const y = c.y + Math.cos(t * c.speed * 0.5 + c.phase * 1.3) * 40 * c.drift.y;
+    const opacity = c.opacity * (0.5 + 0.5 * Math.abs(pulse));
+
+    const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
+    grad.addColorStop(0, `rgba(60, 160, 220, ${opacity})`);
+    grad.addColorStop(0.5, `rgba(30, 100, 180, ${opacity * 0.4})`);
+    grad.addColorStop(1, `rgba(0, 20, 80, 0)`);
+
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+  }
+
+  ctx.restore();
+}
+
+function drawSurface(t) {
+  // Subtle surface tension lines at top
+  ctx.save();
+  ctx.globalAlpha = 0.06;
+  for (let i = 0; i < 8; i++) {
+    const y = (H * 0.05) + i * 12;
+    const amplitude = 3 + i * 0.8;
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    for (let x = 0; x <= W; x += 4) {
+      const wave1 = Math.sin(x * 0.008 + t * 0.0006 + i) * amplitude;
+      const wave2 = Math.sin(x * 0.015 - t * 0.0004 + i * 1.3) * (amplitude * 0.5);
+      ctx.lineTo(x, y + wave1 + wave2);
+    }
+    ctx.strokeStyle = `rgba(100, 200, 240, ${0.3 - i * 0.03})`;
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawParticles(t) {
+  // Floating micro-particles (sediment/plankton)
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+  const seed = 42;
+  for (let i = 0; i < 80; i++) {
+    const baseX = (Math.sin(i * 2.3 + seed) * 0.5 + 0.5) * W;
+    const speed = 0.00008 + (i % 7) * 0.00003;
+    const drift = Math.sin(i * 1.7 + t * 0.0003) * 30;
+    const x = baseX + drift;
+    const y = ((t * speed * H + i * (H / 80)) % H);
+    const opacity = 0.08 + 0.12 * Math.abs(Math.sin(i + t * 0.001));
+    const size = 0.5 + (i % 3) * 0.4;
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(140, 200, 230, ${opacity})`;
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+function frame(timestamp) {
+  time = timestamp;
+  ctx.clearRect(0, 0, W, H);
+  drawBackground();
+  drawRays(time);
+  drawCaustics(time);
+  drawSurface(time);
+  drawParticles(time);
+  requestAnimationFrame(frame);
+}
+
+// ─── Bubbles ─────────────────────────────────────────────────────────────────
+function spawnBubble() {
+  const container = document.getElementById('bubbles');
+  const b = document.createElement('div');
+  b.className = 'bubble';
+  const size = 2 + Math.random() * 8;
+  const duration = 8 + Math.random() * 20;
+  const x = 5 + Math.random() * 90;
+  const drift = (Math.random() - 0.5) * 80;
+
+  b.style.cssText = `
+    left: ${x}%;
+    width: ${size}px;
+    height: ${size}px;
+    --drift: ${drift}px;
+    animation-duration: ${duration}s;
+    animation-delay: ${Math.random() * 5}s;
+    opacity: ${0.2 + Math.random() * 0.4};
+  `;
+
+  container.appendChild(b);
+  setTimeout(() => b.remove(), (duration + 5) * 1000);
+}
+
+// Spawn bubbles at random intervals
+function bubbleLoop() {
+  spawnBubble();
+  setTimeout(bubbleLoop, 800 + Math.random() * 3000);
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+window.addEventListener('resize', resize);
+resize();
+requestAnimationFrame(frame);
+bubbleLoop();
+
+// Spawn some initial bubbles
+for (let i = 0; i < 12; i++) {
+  setTimeout(spawnBubble, i * 400);
+}
+</script>
+
+</body>
+</html>

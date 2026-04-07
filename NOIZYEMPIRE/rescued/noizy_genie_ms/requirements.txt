@@ -1,0 +1,41 @@
+flask==3.0.0
+tqdm==4.66.4
+requests==2.32.3
+msal==1.31.0
+python-dotenv==1.0.1
+watchdog==4.0.0
+pydantic==2.9.2
+
+<a class="btn" href="{{ url_for('ritual_archive') }}" aria-label="Archive Designer Assets">
+  <span class="title">Archive Designer Assets</span>
+  <span class="desc">Sidecar metadata</span>
+  <span class="status">Last: {{ status.last_archive or "—" }}</span>
+</a>
+
+<a class="btn emergency" href="{{ url_for('mode_emergency') }}" aria-label="Emergency Mode">
+  <span class="title">Emergency Mode</span>
+  <span class="desc">Comms, maps, power</span>
+</a>
+
+<a class="btn emotech" href="{{ url_for('mode_emotech') }}" aria-label="Emotional Tech Mode">
+  <span class="title">Emotional Tech</span>
+  <span class="desc">Voices, neuroacoustics</span>
+</a>
+
+<a class="btn creative" href="{{ url_for('mode_creative') }}" aria-label="Creative Mode">
+  <span class="title">Creative Cockpit</span>
+  <span class="desc">VS Code, Designer, Copilot</span>
+</a>
+
+<a class="btn" href="{{ url_for('designer_prompt', pack='NoizyRubber_Revival') }}" aria-label="Designer Prompt">
+  <span class="title">Generate Designer Prompt</span>
+  <span class="desc">NoizyRubber Revival</span>
+</a>
+
+<script>
+  const defaultPlaylist = "{{ default_playlist or '' }}";
+  if (defaultPlaylist) loadPlaylist(defaultPlaylist);
+  // ...rest of JS...
+</script>
+
+launchctl load ~/Library/LaunchAgents/com.noizy.lifesaver.plist

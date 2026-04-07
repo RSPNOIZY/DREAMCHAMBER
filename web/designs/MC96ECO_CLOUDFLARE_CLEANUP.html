@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MC96ECO — Cloudflare Infrastructure Cleanup Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep:#0A0E17;--mid:#111827;--panel:#151D2E;
+  --signal:#00D4FF;--nerve:#E8A87C;--restore:#00FFB3;
+  --pulse:#FF4D6D;--soul:#B185DB;--gold:#D4A017;
+  --white:#F1F5F9;--silver:#94A3B8;--mgray:#4A5568;
+  --font-d:'Cormorant Garamond',Georgia,serif;
+  --font-m:'IBM Plex Mono','Courier New',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--deep);color:var(--white);font-family:var(--font-d);line-height:1.6}
+body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px)}
+header{padding:32px 40px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:22px;font-weight:700;letter-spacing:0.15em}
+.logo span{color:var(--gold)}
+.subtitle{font-family:var(--font-m);font-size:11px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase}
+.date{font-family:var(--font-m);font-size:11px;color:var(--mgray)}
+main{max-width:1400px;margin:0 auto;padding:40px}
+
+/* Stats Row */
+.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-bottom:48px}
+@media(max-width:900px){.stats{grid-template-columns:repeat(3,1fr)}}
+.stat{background:var(--panel);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:20px;text-align:center}
+.stat-val{font-size:28px;font-weight:700;margin-bottom:4px}
+.stat-label{font-family:var(--font-m);font-size:9px;letter-spacing:0.2em;color:var(--silver);text-transform:uppercase}
+
+/* Section */
+.section{margin-bottom:56px}
+.section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.section-title{font-size:24px;font-weight:300}
+.section-badge{font-family:var(--font-m);font-size:10px;letter-spacing:0.2em;padding:4px 12px;border-radius:3px;text-transform:uppercase}
+.badge-action{background:rgba(255,77,109,0.12);color:var(--pulse);border:1px solid rgba(255,77,109,0.3)}
+.badge-keep{background:rgba(0,255,179,0.08);color:var(--restore);border:1px solid rgba(0,255,179,0.2)}
+.badge-migrate{background:rgba(212,160,23,0.1);color:var(--gold);border:1px solid rgba(212,160,23,0.3)}
+.badge-info{background:rgba(0,212,255,0.08);color:var(--signal);border:1px solid rgba(0,212,255,0.2)}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font-family:var(--font-m);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);text-align:left;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.08)}
+td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top}
+tr:hover{background:rgba(255,255,255,0.02)}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px}
+.dot-live{background:var(--restore)}
+.dot-stale{background:var(--gold)}
+.dot-dead{background:var(--pulse)}
+.dot-migrate{background:var(--signal)}
+.action-tag{font-family:var(--font-m);font-size:10px;padding:3px 8px;border-radius:3px;letter-spacing:0.1em;white-space:nowrap}
+.tag-keep{background:rgba(0,255,179,0.1);color:var(--restore)}
+.tag-cleanup{background:rgba(255,77,109,0.1);color:var(--pulse)}
+.tag-upgrade{background:rgba(0,212,255,0.1);color:var(--signal)}
+.tag-migrate{background:rgba(212,160,23,0.1);color:var(--gold)}
+.tag-enable{background:rgba(181,133,219,0.1);color:var(--soul)}
+.mono{font-family:var(--font-m);font-size:12px;color:var(--nerve)}
+.note{font-size:13px;color:var(--silver);font-style:italic}
+
+/* Checklist */
+.checklist{list-style:none;padding:0}
+.checklist li{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;gap:12px;cursor:pointer;transition:background 0.2s}
+.checklist li:hover{background:rgba(255,255,255,0.02)}
+.check-box{width:20px;height:20px;border:2px solid var(--mgray);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.check-box.checked{background:var(--restore);border-color:var(--restore)}
+.check-box.checked::after{content:'✓';color:var(--deep);font-size:12px;font-weight:700}
+.check-text{flex:1;font-size:14px}
+.check-priority{font-family:var(--font-m);font-size:10px;letter-spacing:0.15em;text-transform:uppercase}
+.priority-high{color:var(--pulse)}
+.priority-med{color:var(--gold)}
+.priority-low{color:var(--silver)}
+
+/* Summary Box */
+.summary-box{background:var(--panel);border:1px solid rgba(212,160,23,0.2);border-radius:12px;padding:32px;margin-top:48px}
+.summary-title{font-size:20px;color:var(--gold);margin-bottom:16px}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:768px){.summary-grid{grid-template-columns:1fr}}
+.summary-col h4{font-family:var(--font-m);font-size:11px;letter-spacing:0.2em;color:var(--signal);text-transform:uppercase;margin-bottom:12px}
+.summary-col p{font-size:14px;color:var(--silver);line-height:1.8;margin-bottom:8px}
+.summary-col strong{color:var(--white)}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="logo">MC96ECO <span>INFRASTRUCTURE</span></div>
+    <div class="subtitle">Cloudflare Cleanup & DNS Rationalization</div>
+  </div>
+  <div class="date">March 19, 2026 · Robert Stephen Plowman</div>
+</header>
+
+<main>
+<!-- ═══ STATS ═══ -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-val" style="color:var(--signal)">5</div>
+    <div class="stat-label">Domains</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val" style="color:var(--pulse)">1</div>
+    <div class="stat-label">Worker</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val" style="color:var(--gold)">11</div>
+    <div class="stat-label">D1 Databases</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val" style="color:var(--soul)">20</div>
+    <div class="stat-label">KV Namespaces</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val" style="color:var(--restore)">0</div>
+    <div class="stat-label">R2 Buckets</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val" style="color:var(--nerve)">6</div>
+    <div class="stat-label">GoDaddy Accounts</div>
+  </div>
+</div>
+
+<!-- ═══ DOMAINS & DNS ═══ -->
+<div class="section">
+  <div class="section-head">
+    <h2 class="section-title">Domains & DNS</h2>
+    <span class="section-badge badge-action">Action Required</span>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Domain</th><th>Registrar</th><th>Status</th><th>Notes</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mono">noizy.ai</td>
+        <td>Cloudflare</td>
+        <td><span class="status-dot dot-live"></span>Live on CF</td>
+        <td class="note">AI projects — primary NOIZY.AI domain</td>
+        <td><span class="action-tag tag-keep">KEEP · CONFIGURE DNS</span></td>
+      </tr>
+      <tr>
+        <td class="mono">noizylab.ca</td>
+        <td>Cloudflare</td>
+        <td><span class="status-dot dot-live"></span>Live on CF</td>
+        <td class="note">Primary NOIZYLAB business</td>
+        <td><span class="action-tag tag-keep">KEEP · POINT TO WORKER</span></td>
+      </tr>
+      <tr>
+        <td class="mono">fishmusicinc.com</td>
+        <td>Cloudflare</td>
+        <td><span class="status-dot dot-live"></span>Live on CF</td>
+        <td class="note">Fish Music Inc — 40+ years legacy</td>
+        <td><span class="action-tag tag-keep">KEEP · LEGACY REDIRECT</span></td>
+      </tr>
+      <tr>
+        <td class="mono">noizyfish.com</td>
+        <td style="color:var(--pulse)">GoDaddy</td>
+        <td><span class="status-dot dot-migrate"></span>Locked at GD</td>
+        <td class="note">Creative/business domain — NEEDS TRANSFER</td>
+        <td><span class="action-tag tag-migrate">MIGRATE TO CLOUDFLARE</span></td>
+      </tr>
+      <tr>
+        <td class="mono">noizylab.com</td>
+        <td style="color:var(--pulse)">GoDaddy</td>
+        <td><span class="status-dot dot-migrate"></span>Locked at GD</td>
+        <td class="note">CPU repair service — NEEDS TRANSFER</td>
+        <td><span class="action-tag tag-migrate">MIGRATE TO CLOUDFLARE</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top:16px;font-family:var(--font-m);font-size:11px;color:var(--pulse)">
+    ⚠ 2 domains still at GoDaddy · 6 GoDaddy accounts still active · 0 of 13 escape milestones completed
+  </p>
+</div>
+
+<!-- ═══ WORKER ═══ -->
+<div class="section">
+  <div class="section-head">
+    <h2 class="section-title">Cloudflare Workers</h2>
+    <span class="section-badge badge-action">Needs Upgrade</span>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Worker</th><th>Created</th><th>Modified</th><th>Status</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mono">deploy</td>
+        <td class="note">Dec 2, 2025</td>
+        <td class="note">Dec 2, 2025</td>
+        <td><span class="status-dot dot-stale"></span>Hello World stub — never updated</td>
+        <td><span class="action-tag tag-upgrade">UPGRADE → HEAVEN17 ROUTER</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top:16px;font-size:14px;color:var(--silver)">
+    The HEAVEN17 Worker (450+ lines, master router with /health, /siri, /agents, /repairs, /vox, /ai/chat, /ai/embed, /portal endpoints) is designed and documented in the repo but has <strong style="color:var(--pulse)">never been deployed</strong>. The live "deploy" worker is still the initial Hello World stub from December 2025.
+  </p>
+</div>
+
+<!-- ═══ D1 DATABASES ═══ -->
+<div class="section">
+  <div class="section-head">
+    <h2 class="section-title">D1 Databases</h2>
+    <span class="section-badge badge-info">11 Databases · Audit</span>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Database</th><th>Size</th><th>Tables</th><th>Real Data?</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mono">agent-memory</td><td>2.4 MB</td><td>memcells, knowledge, noizyvox_artists, voice_models, gabriel_knowledge +</td>
+        <td><span class="status-dot dot-live"></span>326 memcells, 145 knowledge — <strong>THE BRAIN</strong></td>
+        <td><span class="action-tag tag-keep">KEEP · CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td class="mono">rsp-master-budget</td><td>840 KB</td><td>subscriptions, digital_accounts, income +</td>
+        <td><span class="status-dot dot-live"></span>68 subs, 437 accounts, 3 income</td>
+        <td><span class="action-tag tag-keep">KEEP · UPDATE</span></td>
+      </tr>
+      <tr>
+        <td class="mono">noizylab-repairs</td><td>459 KB</td><td>Multiple repair/service tables</td>
+        <td><span class="status-dot dot-stale"></span>Has schema, needs verification</td>
+        <td><span class="action-tag tag-keep">KEEP · VERIFY</span></td>
+      </tr>
+      <tr>
+        <td class="mono">ai-router-brain</td><td>107 KB</td><td>models, agents, routes, routing_rules, usage_log +</td>
+        <td><span class="status-dot dot-stale"></span>9 AI models cataloged, 5 agents, 0 routes</td>
+        <td><span class="action-tag tag-upgrade">UPGRADE · POPULATE ROUTES</span></td>
+      </tr>
+      <tr>
+        <td class="mono">mc96-command-central</td><td>250 KB</td><td>systems, agents, workflows, events, metrics, health_checks +</td>
+        <td><span class="status-dot dot-stale"></span>32 tables, empty operational data</td>
+        <td><span class="action-tag tag-upgrade">UPGRADE · CONNECT TO WORKER</span></td>
+      </tr>
+      <tr>
+        <td class="mono">email-command-center</td><td>262 KB</td><td>Email management tables</td>
+        <td><span class="status-dot dot-dead"></span>Schema only — no real data</td>
+        <td><span class="action-tag tag-cleanup">CANDIDATE FOR MERGE</span></td>
+      </tr>
+      <tr>
+        <td class="mono">tencc-pipeline</td><td>250 KB</td><td>Pipeline tables</td>
+        <td><span class="status-dot dot-dead"></span>Schema only</td>
+        <td><span class="action-tag tag-cleanup">CANDIDATE FOR MERGE</span></td>
+      </tr>
+      <tr>
+        <td class="mono">aquarium-archive</td><td>233 KB</td><td>projects, credits</td>
+        <td><span class="status-dot dot-live"></span>25 projects, 16 credits</td>
+        <td><span class="action-tag tag-keep">KEEP · ARCHIVE</span></td>
+      </tr>
+      <tr>
+        <td class="mono">gabriel_db</td><td>352 KB</td><td>Gabriel-specific tables</td>
+        <td><span class="status-dot dot-dead"></span>Schema only</td>
+        <td><span class="action-tag tag-cleanup">MERGE → agent-memory</span></td>
+      </tr>
+      <tr>
+        <td class="mono">godaddy-escape-tracker</td><td>94 KB</td><td>domains, godaddy_accounts, dns_records, escape_milestones +</td>
+        <td><span class="status-dot dot-live"></span>5 domains, 6 GD accounts, 13 milestones</td>
+        <td><span class="action-tag tag-keep">KEEP · UPDATE MILESTONES</span></td>
+      </tr>
+      <tr>
+        <td class="mono">subscription-killer</td><td>66 KB</td><td>subscriptions, cancellation_log, savings +</td>
+        <td><span class="status-dot dot-stale"></span>Schema ready, needs population</td>
+        <td><span class="action-tag tag-upgrade">POPULATE FROM rsp-master-budget</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ KV NAMESPACES ═══ -->
+<div class="section">
+  <div class="section-head">
+    <h2 class="section-title">KV Namespaces</h2>
+    <span class="section-badge badge-info">20 Namespaces · Rationalize</span>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Namespace</th><th>Purpose</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="mono">GABRIEL_KV</td><td>Gabriel agent state</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">GABRIEL_VOICE</td><td>Gabriel voice model</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">agent-state</td><td>AI Family agent state</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">session-cache</td><td>Session management</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">gorunfree-execution-state</td><td>GORUNFREE protocol state</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">noizyvox-signups</td><td>NOIZYVOX signups</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">noizyvox-royalties</td><td>Royalty tracking</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">noizylab-customers</td><td>NOIZYLAB customer data</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">noizylab-edge-config</td><td>Edge config for NOIZYLAB</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">noizylab-submissions</td><td>Repair submissions</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">mc96-hotrod-cache</td><td>Hot rod cache layer</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">emergency-alerts</td><td>Alert system</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">command-queue</td><td>Command queuing</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">conductor-locks</td><td>Orchestration locks</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">model-performance</td><td>AI model metrics</td><td><span class="action-tag tag-keep">KEEP</span></td></tr>
+      <tr><td class="mono">godaddy-escape-state</td><td>Migration state</td><td><span class="action-tag tag-cleanup">DELETE AFTER MIGRATION</span></td></tr>
+      <tr><td class="mono">tencc-locks</td><td>TenCC pipeline locks</td><td><span class="action-tag tag-cleanup">CANDIDATE FOR DELETE</span></td></tr>
+      <tr><td class="mono">discord-queue</td><td>Discord integration</td><td><span class="action-tag tag-cleanup">VERIFY OR DELETE</span></td></tr>
+      <tr><td class="mono">antigravity-cache</td><td>Unknown purpose</td><td><span class="action-tag tag-cleanup">VERIFY OR DELETE</span></td></tr>
+      <tr><td class="mono">CRAWLER_KV</td><td>Web crawler state</td><td><span class="action-tag tag-cleanup">VERIFY OR DELETE</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ R2 STORAGE ═══ -->
+<div class="section">
+  <div class="section-head">
+    <h2 class="section-title">R2 Storage</h2>
+    <span class="section-badge badge-action">Not Enabled</span>
+  </div>
+  <p style="font-size:16px;color:var(--silver);padding:20px;background:var(--panel);border-radius:8px;border-left:3px solid var(--pulse)">
+    <strong style="color:var(--pulse)">R2 is not enabled.</strong> Voice file storage for NOIZYVOX (voice models, samples, watermarked assets)
+    requires R2. This needs to be enabled through the Cloudflare Dashboard before any voice assets can be stored.
+    This is a prerequisite for a functioning NOIZYVOX platform.
+  </p>
+</div>
+
+<!-- ═══ GODADDY ESCAPE STATUS ═══ -->
+<div class="section">
+  <div class="section-head">
+    <h2 class="section-title">GoDaddy Escape — Migration Status</h2>
+    <span class="section-badge badge-action">0 of 13 Milestones Complete</span>
+  </div>
+  <ul class="checklist" id="checklist">
+    <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Inventory all GoDaddy accounts</span><span class="check-priority priority-high">HIGH</span></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Get all Customer IDs for 6 accounts</span><span class="check-priority priority-high">HIGH</span></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Unlock noizyfish.com &amp; noizylab.com domains</span><span class="check-priority priority-high">HIGH</span></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Obtain auth codes for both domains</span><span class="check-priority priority-high">HIGH</span></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Add payment method to Cloudflare Registrar</span><span class="check-priority priority-med">MED</span></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Initiate transfer: noizyfish.com → Cloudflare</span><span class="check-priority priority-high">HIGH</span></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Initiate transfer: noizylab.com → Cloudflare</span><span class="check-priority priority-high">HIGH</span></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Approve all transfers at GoDaddy</span><span class="check-priority priority-med">MED</span></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Remove GoDaddy M365 partner link</span><span class="check-priority priority-med">MED</span></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Kill fishmusicinc.com M365 tenant at GoDaddy</span><span class="check-priority priority-med">MED</span></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Verify Microsoft account unblocked</span><span class="check-priority priority-low">LOW</span></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Confirm all transfers complete</span><span class="check-priority priority-high">HIGH</span></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Close ALL 6 GoDaddy accounts — TOTAL FREEDOM</span><span class="check-priority priority-high">HIGH</span></li>
+  </ul>
+</div>
+
+<!-- ═══ DNS CONFIGURATION PLAN ═══ -->
+<div class="section">
+  <div class="section-head">
+    <h2 class="section-title">DNS Configuration Plan</h2>
+    <span class="section-badge badge-migrate">Post-Migration</span>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Domain</th><th>Record Type</th><th>Name</th><th>Value</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="mono" rowspan="4">noizy.ai</td><td>CNAME</td><td>@</td><td class="mono">deploy.workers.dev</td><td>Main site → HEAVEN17 Worker</td></tr>
+      <tr><td>CNAME</td><td>api</td><td class="mono">deploy.workers.dev</td><td>API endpoint</td></tr>
+      <tr><td>CNAME</td><td>portal</td><td class="mono">deploy.workers.dev</td><td>Artist portal</td></tr>
+      <tr><td>TXT</td><td>_dmarc</td><td class="mono">v=DMARC1; p=reject</td><td>Email security</td></tr>
+      <tr><td class="mono" rowspan="3">noizyfish.com</td><td>CNAME</td><td>@</td><td class="mono">deploy.workers.dev</td><td>Corporate site</td></tr>
+      <tr><td>CNAME</td><td>www</td><td class="mono">deploy.workers.dev</td><td>WWW redirect</td></tr>
+      <tr><td>TXT</td><td>_dmarc</td><td class="mono">v=DMARC1; p=reject</td><td>Email security</td></tr>
+      <tr><td class="mono" rowspan="2">noizylab.ca</td><td>CNAME</td><td>@</td><td class="mono">deploy.workers.dev</td><td>Repair service</td></tr>
+      <tr><td>CNAME</td><td>www</td><td class="mono">deploy.workers.dev</td><td>WWW redirect</td></tr>
+      <tr><td class="mono" rowspan="2">noizylab.com</td><td>CNAME</td><td>@</td><td class="mono">noizylab.ca</td><td>Redirect to .ca</td></tr>
+      <tr><td>CNAME</td><td>www</td><td class="mono">noizylab.ca</td><td>WWW redirect</td></tr>
+      <tr><td class="mono">fishmusicinc.com</td><td>CNAME</td><td>@</td><td class="mono">deploy.workers.dev</td><td>Legacy archive page</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ SUMMARY ═══ -->
+<div class="summary-box">
+  <h3 class="summary-title">Cleanup Action Summary</h3>
+  <div class="summary-grid">
+    <div class="summary-col">
+      <h4>Immediate Actions</h4>
+      <p><strong>1. Enable R2 Storage</strong> — Required for voice assets</p>
+      <p><strong>2. Transfer 2 domains from GoDaddy</strong> — noizyfish.com + noizylab.com</p>
+      <p><strong>3. Deploy HEAVEN17 Worker</strong> — Replace Hello World stub</p>
+      <p><strong>4. Configure DNS records</strong> — Point all domains to Worker</p>
+      <p><strong>5. Close GoDaddy accounts</strong> — All 6, after transfers complete</p>
+    </div>
+    <div class="summary-col">
+      <h4>Database Rationalization</h4>
+      <p><strong>KEEP (5):</strong> agent-memory, rsp-master-budget, aquarium-archive, noizylab-repairs, godaddy-escape-tracker</p>
+      <p><strong>UPGRADE (3):</strong> ai-router-brain, mc96-command-central, subscription-killer</p>
+      <p><strong>MERGE/DELETE (3):</strong> gabriel_db → agent-memory, email-command-center → merge, tencc-pipeline → verify</p>
+      <p><strong>KV CLEANUP (4-5):</strong> godaddy-escape-state (post-migration), tencc-locks, discord-queue, antigravity-cache, CRAWLER_KV</p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+function toggleCheck(li) {
+  const box = li.querySelector('.check-box');
+  box.classList.toggle('checked');
+}
+</script>
+</body>
+</html>

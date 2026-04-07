@@ -1,0 +1,4728 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+<html class="no-js" lang="ja">
+  <head lang="ja">
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Ozone8ユーザーマニュアル - Ozone8ユーザーズマニュアル</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="index.html">
+    <meta property="og:title" content="Ozone8ユーザーズマニュアル">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone8ユーザーズマニュアル">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/palettes.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+    <body class="palette-primary-print-page palette-accent-print-page">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | Ozone8ユーザーマニュアル</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+  
+
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+	<img src="../images/header-intro-site/site-header-print.png" alt="iZotope Ozone">
+	<h1>Ozone8ユーザーズマニュアル</h1>
+
+	<hr />
+
+  
+  <h1><span class="icon icon-bookmark"></span>  Ozone 8の概要</h1>
+    
+
+<h2 id="ozone-8とは">Ozone 8とは?</h2>
+
+<p>iZotopeの賞に輝いたマスタリングソフトウェアであるOzone 8の世界にようこそ。Ozone 8には前例のないデジタル信号処理、マシーンラーニング、そしてアシスタント技術が備わっており、豊富なマスタリングツールにより、音楽制作の理想的な開始、完了、そしてその後のデリバリーを実現します。</p>
+
+<p><img src="../images/o8-main.png" alt="ozone 8" /></p>
+
+<h2 id="ozone-8の設計">Ozone 8の設計</h2>
+
+<p>Ozoneはマスタリングオーディオの“魔術”に対する神秘性を取り除くところから出発しました。15年以上が過ぎた今、我々は最新の技術革新をお届けすべく、未だにマスタリングとオーディオソフトウェアの境界線を押し上げようとしています。</p>
+
+<p>この新バージョンでは、ワークフローの向上、カスタム設定の提案、音的バランスと耳障りな音への対処、そして他のiZotopeソフトウェアとのコミュニケーションなどを可能にする新機能を盛り込むことにより、より快適なマスタリング作業が実現します。Ozone 8の技術は、これまで経験したことのない方法でユーザーと音楽と結びつける大志により、業界の常識を打ち破ります。</p>
+
+<p>Ozone 8は高く評価された次世代のマスタリングスイートです。我々の狙いは、ユーザーに音楽制作に対する自信を植え付け、クリエイティブな試みをインスパイアすることなのです。</p>
+
+<h2 id="neutron-2とのプラグイン間コミュニケーション">Neutron 2とのプラグイン間コミュニケーション</h2>
+
+<p>iZotopeはミキシングとマスタリングの関係性が変化し始めていることを認識したため、トーナルバランスコントロールを通じ、Ozone 8とNeutron 2に接続性を持たせることにしました。Neutron 2とOzone 8の構想に及び、我々は大抵の創作作業の全体的なプロセスは単一のワークフローで行われていることに気付きました。ミキシング、マスタリング、そしてオーディオ制作は全て、同時に同じ手によって発生しているのです。そうなると、「この2つの世界は融合できるのか?」という問いが投げかけられます。我々の答えは、はっきりとしたイエスなのです。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  Ozone応用</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>Ozone 8のスタンドアローン版は、そのマスタリングツールを、外部DAWから独立したスタンドアローンアプリケーションとして使用することができます。</p>
+
+<p><img src="../images/app.png" alt="app-interface-guide" /></p>
+
+<h2 id="ozoneアプリケーションのインターフェース">Ozoneアプリケーションのインターフェース</h2>
+
+<ul>
+<li><strong>トランスポートバー</strong>: 再生操作とカウンター情報が搭載されます。</li>
+<li><strong>トラックタブ</strong>: 各タブにはオーディオファイルと、使用中のOzoneプロジェクトの関連設定が含まれます。</li>
+<li><strong>波形画面</strong>: 選択されたトラックのグラフィック描写です。</li>
+<li><strong>モジュールチェーン</strong>: 完全にカスタマイズ可能なOzoneモジュールの信号処理チェーンです。</li>
+<li><strong>モジュール操作パネル</strong>: 選択されたモジュールの操作とメーター情報が含まれます。</li>
+<li><strong>プリセット</strong>: プリセットマネージャを開きます。</li>
+<li><strong>マスターアシスタント</strong>: マスターアシスタント操作パネルを開きます。</li>
+<li><strong>入出力セクション</strong>: 入出力のゲイン操作とメーター情報が含まれます。</li>
+<li><strong>試聴セクション</strong>: グローバルバイパス、ゲインマッチ、モノ合算、チャンネル取り換え、リファレンス、コーデックプレビュー[ADV]及びディザーが含まれます。</li>
+</ul>
+
+<h2 id="ファイルメニュー">ファイルメニュー</h2>
+
+<p>Ozoneのファイルメニューからは以下のコマンドを実行することができます:</p>
+
+<ul>
+<li>プロセッシングへ向けOzoneプロジェクトへのオーディオファイルの読み込み。</li>
+<li>プロジェクトの保存。</li>
+<li>処理済みのオーディオファイルのエクスポート。</li>
+</ul>
+
+<h2 id="オーディオのインポート">オーディオのインポート</h2>
+
+<p>Ozoneプロジェクトには、以下の何れかの方法で最大16個のオーディオファイルをインポートすることができます:</p>
+
+<ul>
+<li>画面上部のファイルメニューをクリックし、“Import Audio Files”を選択。</li>
+<li>インターフェースの左上にある“plus”アイコンをクリック。</li>
+<li>キーボードショートカットのCmd+IまたはCtrl+Iを使用: 標準的なダイアログボックスが表示されますので、該当するファイルまでナビゲートし、“Open”をクリックしてプロジェクトへインポートします。</li>
+<li>Ozoneインターフェースにオーディオファイルをドラッグ&amp;ドロップ。</li>
+</ul>
+
+<h3 id="サポートされるインポートファイルの種類">サポートされるインポートファイルの種類</h3>
+
+<table>
+<thead>
+<tr>
+<th>ファイル形式</th>
+<th>ビットデプス</th>
+<th>サンプルレート</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>.wav</td>
+<td>16ビット</td>
+<td>11,250 Hz</td>
+</tr>
+
+<tr>
+<td>.aiff</td>
+<td>20ビット</td>
+<td>22,050 Hz</td>
+</tr>
+
+<tr>
+<td>.mp3</td>
+<td>24ビット</td>
+<td>44,100 Hz</td>
+</tr>
+
+<tr>
+<td>.aac</td>
+<td></td>
+<td>48,000 Hz</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>88,200 Hz</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>96,000 Hz</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>176,400 Hz</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>192,000 Hz</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">サンプルレート</p>
+<p><ul>
+<li>プロジェクトのサンプルレートのデフォルト値は、最初に読み込まれたファイルのサンプルレートが適用されます。</li>
+<li>それ以降に読み込まれたファイルのサンプルレートが異なる場合は、初めのファイルによって定義されたプロジェクトのオリジナルの値、あるいはその後手動で変更した値に変換されます。</li>
+<li>既に変換済み/処理済みのファイルは（読み込みに伴い作業用ファイルとしてコピーされているため）、変換処理は施されません。Ozoneは常にオリジナルのファイルから作業用として新たにコピーを作成し、その作業用ファイルのレートを変換します。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="オーディオのエクスポート">オーディオのエクスポート</h2>
+
+<p>Ozoneアプリケーションからは、以下の何れかの方法で処理されたオーディオファイルをエクスポートすることができます:</p>
+
+<ul>
+<li>ファイルメニューをクリックし、“Export Audio Files”を選択。</li>
+<li>キーボードショートカットのCommand+E (Mac)またはCtrl+E (Windows)を使用。</li>
+</ul>
+
+<p>エクスポートに際し、様々なオプションが提供されるダイアログボックスが表示されます。</p>
+
+<h3 id="現在のトラックと全てのトラック">現在のトラックと全てのトラック</h3>
+
+<ul>
+<li>“Current Track”をクリックすると、現在選択されハイライトされているタブのオーディオファイルのみがエクスポートされます。</li>
+<li>“All Tracks”をクリックすると、プロジェクト内に読み込まれた全てのオーディオファイルが個別にエクスポートされます。</li>
+</ul>
+
+<h4 id="current-track-現在のトラック">Current Track（現在のトラック）</h4>
+
+<p><img src="../images/export.png" alt="export" /></p>
+
+<h3 id="ファイル名-current-track使用時のみ選択可能">ファイル名 (Current Track使用時のみ選択可能)</h3>
+
+<p>このフィールドにファイル名を入力します。エクスポートされるファイルの名称はここに入力したファイル名が反映されます。</p>
+
+<h4 id="all-tracks-全てのトラック">All Tracks（全てのトラック）</h4>
+
+<p><img src="../images/export-all-tracks.png" alt="export" /></p>
+
+<h3 id="テキスト追記-all-tracks使用時のみ選択可能">テキスト追記 (All Tracks使用時のみ選択可能)</h3>
+
+<p>このフィールドにファイル名を入力します。すると、エクスポートされた各トラックに自動的にテキストが追記されます。追記する場所としては、ファイル名の冒頭か末尾のどちらかを選択することができます。これはファイルのタグ付けに便利な機能です。例えば、ファイルのグループに対し、“2014年1月18日セッション”といった追記を行うことができます。</p>
+
+<h3 id="トラック数の追加-all-tracks使用時のみ選択可能">トラック数の追加 (All Tracks使用時のみ選択可能)</h3>
+
+<p>エクスポートダイアログ内の“All Tracks”セクションではエクスポートするトラック数を追加することができます。“Add Track Numbers”のチェックボックスを選択すると、エクスポートされたファイルはOzoneプロジェクト内の順番と同じ順列で数字付けされます。</p>
+
+<h3 id="形式">形式</h3>
+
+<p>エクスポートするファイルの形式を選択します: WAV、AIFF、MP3またはAACの何れかを選択してください。</p>
+
+<div class="admonition note">
+<p class="admonition-title">Ozoneが使用するAAC及びMP3コーデック</p>
+<p><ul>
+<li>AACでエクスポートする場合、Ozoneはフラウンホーファーコーデックを使用します。</li>
+<li>MP3でエクスポートする場合は、LAMEコーデックを使用します(www.mp3dev.org)。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="ビットレート-mp3及びaac使用時のみ選択可能">ビットレート (MP3及びAAC使用時のみ選択可能)</h3>
+
+<p>圧縮ファイル形式のビットレートを設定します。ビットレートが高いほどオーディオ品質は向上します。</p>
+
+<h3 id="保存場所">保存場所</h3>
+
+<p>Pathボタンをクリックするとダイアログボックスが表示されますので、エクスポートするファイルの保存場所を決めてください。</p>
+
+<ul>
+<li>プロジェクトが未保存の場合、デフォルトの保存先は書類フォルダとなります。</li>
+<li>プロジェクトが既に保存されている場合、デフォルトの保存先はプロジェクトと同じ場所にあるExported Audio Filesフォルダとなります。</li>
+</ul>
+
+<h3 id="サンプルレート">サンプルレート</h3>
+
+<p>エクスポートするオーディオファイルのサンプルレートを選択することができます。インポート時と異なるサンプルレートを使用する場合、Ozoneはファイルに対し高品質のサンプルレート変換を適用します。</p>
+
+<div class="admonition note">
+<p class="admonition-title">AACまたはMP3形式でエクスポートする際のサンプルレート</p>
+<p>MP3またはAAC形式が選択されていると、ファイルはサンプルレートが44.1kHzでエクスポートされます。</p>
+</div>
+
+<h3 id="ビットデプス">ビットデプス</h3>
+
+<p>オーディオファイルのビットデプスを選択します。</p>
+
+<h3 id="ディザー有効化">ディザー有効化</h3>
+
+<p>Ozoneは32ビットでファイルを処理するため、32ビット以下でファイルをエクスポートする際は、ディザーの使用が望ましいといえます。32ビット以下のビットデプスでエクスポートを行う際は、この欄をチェックするとエクスポートするファイルに対し高品質のディザー処理が適用されます。</p>
+
+<p>これを行うことにより、ビットデプスを低くしてエクスポートする際に、より高いビットデプス域の音質とダイナミックレンジが保持されます。</p>
+
+<p>例えば、24ビット環境でオーディオ録音を行い、32ビットで処理を行うOzoneのようなアプリケーションにオーディオをインポートして処理を施すのはワークフローとして一般化しています。</p>
+
+<p>しかしながら、オーディオ素材を商用CDとしてリリースする場合、オーディオコンテンツは規格の関係上、どこかの段階で16ビットに変換される必要があります。</p>
+
+<h3 id="ヘルプ">ヘルプ</h3>
+
+<p>HelpボタンをクリックするとOzone 8のヘルプドキュメントが開きます。</p>
+
+<h3 id="キャンセル">キャンセル</h3>
+
+<p>エクスポート作業をキャンセルし、メイン画面へ戻る際はCancelボタンをクリックします。</p>
+
+<h3 id="エクスポート">エクスポート</h3>
+
+<p>Exportボタンをクリックするとエクスポートが始まります（MP3とAACの場合はトラック情報画面が表示されます）。エクスポート中は、その進捗状況を表すダイアログ画面が表示され、リアルタイム以上の速度でエクスポートが行われます。</p>
+
+<h3 id="トラック情報-mp3及びaac使用時のみ選択可能">トラック情報 (MP3及びAAC使用時のみ選択可能)</h3>
+
+<p>MP3またはAACが選択された場合、Exportボタンをクリックするとトラック情報画面が表示されます。ここではファイルのメタデータを入力することができます。MP3の場合はID3v2.3形式でタグ付けが行われ、AACはiTunesスタイルのタグを使用します。</p>
+
+<h2 id="トランスポート">トランスポート</h2>
+
+<p>Ozoneには画面上部に便利なトランスポートバーが搭載されており、インポートしたオーディオファイルの再生操作を簡単にナビゲートすることができます。
+トランスポートバーには以下の機能が含まれます:</p>
+
+<h3 id="再生">再生</h3>
+
+<p>再生ボタンをクリックするか、スペースバーを押すとオーディオファイルを再生することができます。</p>
+
+<h3 id="停止">停止</h3>
+
+<p>停止ボタンをクリックすると再生が停止します。</p>
+
+<h3 id="ゼロ復帰-後ろへスキップ">ゼロ復帰/後ろへスキップ</h3>
+
+<p>このボタンには、オーディオファイル内のプレイヘッド位置に応じて、2つの機能があります:</p>
+
+<ul>
+<li>再生ヘッドがオーディオファイル上の２秒地点以降にある場合、このボタンはゼロ復帰として作用しますので、クリックすると表示されているファイルの先頭に再生ヘッドが戻ります。</li>
+<li>再生ヘッドがファイルの先頭付近にある場合、このボタンはスキップバックとして作用しますので、クリックすると前回読み込んだファイルに戻ります（該当する場合のみ）。</li>
+</ul>
+
+<h3 id="前へスキップ">前へスキップ</h3>
+
+<p>このボタンをクリックすると、ソフトウェアに読み込まれた次のファイルにスキップします。</p>
+
+<h3 id="プレイヘッドが再生を追従">プレイヘッドが再生を追従</h3>
+
+<p>このボタンをクリックすることで、スペースバーと再生ボタンの停止動作をトグルできます。
+ここが選択されている場合、再生を停止すると、再生ヘッドはその場所に留まります。</p>
+
+<h3 id="ループ">ループ</h3>
+
+<p>オーディオの特定箇所をループ再生する際は、オーディオファイル上でマウスをドラッグして範囲選択します。選択範囲は青で表示され、トランスポートバーのループアイコンもハイライトされます。</p>
+
+<p>この状態で再生をクリックすると、選択範囲のみ繰り返しループ再生されます。</p>
+
+<p>ループ再生を停止する場合は今一度ループボタンをクリックします。ボタンは消灯し、波形は引き続き範囲選択されながらもループ状態は解除されます。再びオーディオをループする場合は、手動でループボタンをクリックします。</p>
+
+<h3 id="トランスポート読み出し"><strong>トランスポート読み出し</strong></h3>
+
+<h3 id="トラック番号">トラック番号</h3>
+
+<p>選択されているトラックのトラック番号が表示されます。</p>
+
+<h3 id="タイムカウンター">タイムカウンター</h3>
+
+<p>オーディオファイル内の時間位置が分/秒/ミリ秒で表示されます。</p>
+
+<h3 id="総合時間">総合時間</h3>
+
+<p>小さい方のディスプレイにはセッション内の全ての曲の総合時間が表示されます。</p>
+
+<h2 id="複数ファイルのワークフロー">複数ファイルのワークフロー</h2>
+
+<p>同一のプロジェクト内に最大16個のファイルを読み込むことができ、各ファイルへは該当するトラックタブをクリックしてナビゲートします。</p>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><ul>
+<li>Ozoneではプロジェクトで1回につき1ファイルのみインポートできます。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="トラックの順列変更">トラックの順列変更</h3>
+
+<p>プロジェクト内のオーディオファイルのタブ順列は、各タブをクリックしたまま左右にドラッグすることで変更できます。</p>
+
+<h3 id="トラックの削除">トラックの削除</h3>
+
+<p>オーディオファイルは以下の何れかの方法で削除できます:</p>
+
+<ul>
+<li>タブを右クリックし、“Remove Track”を選択。</li>
+<li>タブをクリックしてハイライトし、“X”をクリック。</li>
+</ul>
+
+<p>ファイルを消去する際は、ダイアログボックスが表示され、以下のオプションが提示されます:</p>
+
+<ul>
+<li><strong>Delete</strong>ボタンをクリックするとOzoneプロジェクトのディレクトリにあるにImported Audio Filesフォルダに読み込まれたオリジナルのファイルを消去します。</li>
+<li><strong>Keep</strong>ボタンをクリックすると、セッション内のトラックを削除しますが、Imported Audio Filesフォルダのファイルは消去せずに残します。</li>
+</ul>
+
+<h2 id="ozoneプロジェクトの保存">Ozoneプロジェクトの保存</h2>
+
+<p>Ozoneプロジェクトには以下のコンポーネントが含まれます:</p>
+
+<ul>
+<li>Ozoneのセッションファイル（.OZN）。</li>
+<li>Imported Audio Filesフォルダ。</li>
+<li>Exported Audio Filesフォルダ。</li>
+</ul>
+
+<h3 id="save-project-as-名前を付けてプロジェクトを保存">Save Project As…（名前を付けてプロジェクトを保存）</h3>
+
+<p>別名で使用中のプロジェクトのコピーを保存します。</p>
+
+<h3 id="ozoneセッションファイル-ozn">Ozoneセッションファイル（.OZN）</h3>
+
+<p>Ozoneのセッションファイルには以下のセッションデータが含まれます:</p>
+
+<ul>
+<li>インポートされたオーディオトラック</li>
+<li>Ozoneモジュールの設定</li>
+<li>トラックのトリム及びフェード設定</li>
+<li>グローバルI/O設定</li>
+</ul>
+
+<h3 id="save-ozn-as-別名で-oznを保存">Save (.OZN) As…（別名で.OZNを保存）</h3>
+
+<p>使用中のOzoneプロジェクトのディレクトリにセッションファイルのコピーを新規保存します。これは時間経過に伴う別バージョンのOzoneプロジェクトを保存するのに適しています。この方法を使用すると、インポートされたオーディオファイルのコピーは作成されず、使用中のプロジェクトのディレクトリにある Imported Audio Filesフォルダのファイルを参照します。</p>
+
+<h3 id="close-project-プロジェクトを閉じる">Close Project（プロジェクトを閉じる）</h3>
+
+<p>プロジェクトを終了する際は、以下のオプションを含む画面が表示されます:</p>
+
+<ul>
+<li><strong>Cancel（キャンセル）:</strong> 操作をキャンセルします。プロジェクトはロードされたままとなります。</li>
+<li><strong>Don’t Save（保存しない）:</strong> 最後に保存された後の設定変更などは保存されずにプロジェクトが閉じます。</li>
+<li><strong>Save（保存）:</strong> 設定変更などは全て更新された状態で保存され、プロジェクトが閉じます。</li>
+</ul>
+
+<h3 id="create-new-project-新規プロジェクトを作成">Create New Project（新規プロジェクトを作成）</h3>
+
+<p>新規Ozoneプロジェクトのディレクトリを作成します。</p>
+
+<h3 id="open-project-プロジェクトを開く">Open Project（プロジェクトを開く）</h3>
+
+<p>既存のOzoneプロジェクトを開きます。</p>
+
+<h2 id="editメニュー">Editメニュー</h2>
+
+<p>オーディオ機器設定の調整やOzoneオプション画面を開くことができます。</p>
+
+<h3 id="audio-devices-オーディオ機器"><strong>Audio Devices（オーディオ機器）</strong></h3>
+
+<h3 id="buffer-size-バッファサイズ">Buffer Size（バッファサイズ）</h3>
+
+<p>使用中のOzoneセッションのバッファサイズを調整します。</p>
+
+<h3 id="output-devices-出力デバイス">Output Devices（出力デバイス）</h3>
+
+<p>Ozoneセッションでオーディオ再生に使用するハードウェアデバイスを選択します。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  プリセットシステム</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>Ozoneにはプリセットの使用を迅速かつ簡便にするプリセットマネージャ機能が搭載されています。</p>
+
+<h2 id="ファクトリープリセット">ファクトリープリセット</h2>
+
+<p>Ozone 8のグローバルなファクトリープリセットは次のフォルダで管理されます:</p>
+
+<ul>
+<li><strong>ALL PURPOSE MASTERING（多目的マスタリング用）</strong></li>
+<li><strong>GENRE-SPECIFIC MASTERING（特定ジャンルのマスタリング用）</strong></li>
+<li><strong>INSTRUMENTS AND BUSSES（楽器とバス）</strong></li>
+<li><strong>SIGNATURE PRESETS（シグネチャープリセット）</strong></li>
+</ul>
+
+<h2 id="全般的な機能">全般的な機能</h2>
+
+<h3 id="プリセットの読み込み">プリセットの読み込み</h3>
+
+<p>リスト上の名称をクリックすることで、プリセットを選択し、試聴することができます。これにより、適切なOzoneモジュールが選択され、オーディオ再生を行うことでプリセットの効果を試聴することができます。リスト上から別の名称をクリックすることで、複数のプリセットを簡単に比較することができます。</p>
+
+<h3 id="プリセットの名称変更">プリセットの名称変更</h3>
+
+<p>プリセットマネージャではプリセットをダブルクリックすることで名称変更が行えます。</p>
+
+<h3 id="show-at-startup-起動時に表示">Show at Startup（起動時に表示）</h3>
+
+<p>デフォルトでは、プリセットマネージャは自動的に起動時に表示されます。これを望まない場合は、プリセット画面最下部にある“show at startup”のチェックを外してください。</p>
+
+<h3 id="working-settings-使用中の設定">Working Settings（使用中の設定）</h3>
+
+<p>変更されながらも保存されていないプリセットをリコールします。</p>
+
+<h3 id="default-デフォルト">Default（デフォルト）</h3>
+
+<p>ファクトリーデフォルト、あるいはカスタムで組んだデフォルトのプリセットを読み込みます。</p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<h3 id="add-追加">Add（追加）</h3>
+
+<p>このボタンをクリックすると、その時のOzoneの設定を新規プリセットとして追加します。名称を決め、オプションでコメントを入力することも可能です。</p>
+
+<div class="admonition note">
+<p class="admonition-title">プリセット名の特殊文字</p>
+<p><ul>
+<li>記号の「* 」や「/」など、プリセット名として使用不可能な記号や文字があります。該当する文字や記号を入力しようとしても、名称には反映されません。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="delete-削除">Delete（削除）</h3>
+
+<p>恒久的にプリセットを削除する場合は、リストから該当するプリセットを選択し、Deleteボタンをクリックします。</p>
+
+<h3 id="new-新規">New（新規）</h3>
+
+<p>新規フォルダを作成する場合はこのボタンをクリックします。</p>
+
+<h3 id="change-folder-フォルダ変更">Change Folder（フォルダ変更）</h3>
+
+<p>プリセットの保存先を変更する場合はこのボタンをクリックします。</p>
+
+<div class="admonition note">
+<p class="admonition-title">Ozone初期状態のプリセットパス</p>
+<p>デフォルトでは、Ozoneのプリセットは以下の階層のフォルダに保存されます:</p>
+
+<ul>
+<li><strong>Windows:</strong> C:\ユーザ\ユーザ名\書類\iZotope\Ozone 8\Presets<br /></li>
+<li><strong>Mac:</strong> ユーザ/ユーザ名/書類/iZotope/Ozone 8/Presets/</li>
+</ul>
+</p>
+</div>
+
+<h3 id="save-保存">Save（保存）</h3>
+
+<p>Saveをクリックすると使用中のプリセットが上書き保存されます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">保存と変更状態を表すフラッグ（*）について</p>
+<p><ul>
+<li>変更が加えられながら保存されていないプリセットには名称にアスタリスク（*）が付きます。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="close-閉じる">Close（閉じる）</h3>
+
+<p>Closeボタンをクリックするとプリセットマネージャ画面が消えます。</p>
+
+<h2 id="カスタムデフォルト">カスタムデフォルト</h2>
+
+<p>Ozone起動時のデフォルトとして使用したい既存のプリセットがある場合は、プリセットマネージャでそのプリセットの名称を右クリックし、“Set ‘プリセット名’ as ”を選択します。</p>
+
+<p>デフォルト状態を工場出荷時に戻す場合は、プリセットの何れかを右クリックし“Reset to factory default”を選択します。
+右クリックして“Set current state as”を選択することにより、現在の設定をデフォルトにすることができます。</p>
+
+<h2 id="モジュールのプリセットシステム">モジュールのプリセットシステム</h2>
+
+<p>モジュールプリセットは、信号チェーン上にある他のモジュールに影響を及ぼすことなく個々のモジュールのプリセットを簡単に保存し、読み込むことを可能にします。Ozone 8では、モジュールとコンポーネントプラグインのプリセットが交換可能となっておりますので、Ozone 8 Advancedを使用する場合は、モジュールのプリセットをコンポーネントプラグイン内で使用することも、その逆を行うことも可能です。</p>
+
+<h3 id="モジュールのプリセットシステムを開くには">モジュールのプリセットシステムを開くには</h3>
+
+<p>モジュールプリセットシステムはOzoneの信号チェーンから簡単にアクセスすることができます。モジュールのソロボタンの真上にあるボタンをクリックするとモジュールプリセット画面が開きます。</p>
+
+<h3 id="モジュールプリセットの読み込み">モジュールプリセットの読み込み</h3>
+
+<p>プリセットを選択すると、その設定が読み込まれ、関連したコメントがモジュールプリセット画面下方に表示されます。</p>
+
+<h3 id="モジュールプリセットの保存">モジュールプリセットの保存</h3>
+
+<p>モジュールのその時の設定をモジュールの新規プリセットとして保存する場合は、“Add”ボタンをクリックします。</p>
+
+<div class="admonition note">
+<p class="admonition-title">モジュールプリセットのアップデート</p>
+<p>モジュールプリセット画面にはSaveボタンがありません。設定変更を行ったモジュールプリセットは、Addボタンをクリックし、新規プリセットとして追加で保存してください。</p>
+</div>
+
+<h3 id="モジュールプリセットの消去">モジュールプリセットの消去</h3>
+
+<p>既存のモジュールプリセットファイルを消去する際は、該当するプリセットをモジュールプリセット画面にて選択し、“Delete”ボタンをクリックします。これにより、モジュールプリセットファイルはゴミ箱へ移動します。</p>
+
+<h3 id="モジュールプリセットシステムフォルダの変更">モジュールプリセットシステムフォルダの変更</h3>
+
+<p>モジュールプリセットの保存先を変更するには、Changeボタンをクリックします。</p>
+
+<p>デフォルトでは、各モジュールのプリセットは以下の階層に保存されます:</p>
+
+<div class="admonition note">
+<p class="admonition-title">Windowsでのモジュールプリセットのファイルパス:</p>
+<p><ul>
+<li>C:\ユーザ\ユーザ名\書類\iZotope\Ozone 8\Presets\Dynamic EQ Presets</li>
+<li>C:\ユーザ\ユーザ名\書類\iZotope\Ozone 8\Presets\Dynamics Presets</li>
+<li>C:\ユーザ\ユーザ名\書類\iZotope\Ozone 8\Presets\EQ Presets</li>
+<li>C:\ユーザ\ユーザ名\書類\iZotope\Ozone 8\Presets\Exciter Presets</li>
+<li>C:\ユーザ\ユーザ名\書類\iZotope\Ozone 8\Presets\Imager Presets</li>
+<li>C:\ユーザ\ユーザ名\書類\iZotope\Ozone 8\Presets\Maximizer Presets</li>
+<li>C:\ユーザ\ユーザ名\書類\iZotope\Ozone 8\Presets\Spectral Shaper Presets</li>
+<li>C:\ユーザ\ユーザ名\書類\iZotope\Ozone 8\Presets\Vintage Compressor Presets</li>
+<li>C:\ユーザ\ユーザ名\書類\iZotope\Ozone 8\Presets\Vintage Limiter Presets</li>
+<li>C:\ユーザ\ユーザ名\書類\iZotope\Ozone 8\Presets\Vintage EQ Presets</li>
+<li>C:\ユーザ\ユーザ名\書類\iZotope\Ozone 8\Presets\Vintage Tape Presets</li>
+</ul>
+</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">Macでのモジュールプリセットのファイルパス:</p>
+<p><ul>
+<li>ユーザ/ユーザ名/書類/iZotope/Ozone 8/Presets/Dynamic EQ Presets</li>
+<li>ユーザ/ユーザ名/書類/iZotope/Ozone 8/Presets/Dynamics Presets</li>
+<li>ユーザ/ユーザ名/書類/iZotope/Ozone 8/Presets/EQ Presets</li>
+<li>ユーザ/ユーザ名/書類/iZotope/Ozone 8/Presets/Exciter Presets</li>
+<li>ユーザ/ユーザ名/書類/iZotope/Ozone 8/Presets/Imager Presets</li>
+<li>ユーザ/ユーザ名/書類/iZotope/Ozone 8/Presets/Maximizer Presets</li>
+<li>ユーザ/ユーザ名/書類/iZotope/Ozone 8/Presets/Spectral Shaper Presets</li>
+<li>ユーザ/ユーザ名/書類/iZotope/Ozone 8/Presets/Vintage Compressor Presets</li>
+<li>ユーザ/ユーザ名/書類/iZotope/Ozone 8/Presets/Vintage Limiter Presets</li>
+<li>ユーザ/ユーザ名/書類/iZotope/Ozone 8/Presets/Vintage EQ Presets</li>
+<li>ユーザ/ユーザ名/書類/iZotope/Ozone 8/Presets/Vintage Tape Presets</li>
+</ul>
+</p>
+</div>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  全般的な機能</h1>
+    
+
+<h2 id="取り消し履歴">取り消し履歴</h2>
+
+<p><img src="../images/general-functions/undo-history.png" alt="History Window" /></p>
+
+<p>Ozoneで各設定値を変えると、その度毎にその編集作業が履歴リストに記録され、表示されます。各エントリーをクリックすると、その時の状態にOzoneの設定を戻すことができます。</p>
+
+<table>
+<thead>
+<tr>
+<th>操作項目</th>
+<th>説明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>CLEAR（クリア）</strong></td>
+<td>Clearボタンをクリックすると履歴リストがクリアされます。履歴をクリアしてもパラメーターの設定値には影響を及ぼさず、単にリスト内の全エントリーを削除します。</td>
+</tr>
+
+<tr>
+<td><strong>CLOSE（閉じる）</strong></td>
+<td>取り消し履歴画面を閉じます。</td>
+</tr>
+
+<tr>
+<td><strong>A/B/C/D</strong></td>
+<td>履歴リストに最大4つのスナップショットをアサインすることができます。スナップショットをトグルすることにより、別設定の処理状態を手早く聴き比べることができます。スナップショットボタン下の“Set”ボタンをクリックすると履歴リストのイベントをスナップショットとしてアサインできます。</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="モジュールチェーン">モジュールチェーン</h2>
+
+<p>Ozoneの処理モジュールはインターフェース上部に水平方向の信号チェーンで表示されます。</p>
+
+<p><img src="../images/general-functions/module-chain.png" alt="Ozone Module chain" /></p>
+
+<p>モジュールをクリックし、ホールドしたまま水平方向へドラッグすると、信号処理チェーンの順列を入れ替えることができます。モジュールチェーンに関する詳細は<a href="../common-module-controls/index.html#module-chain">モジュールの標準的な操作項目</a>の章をご参照ください。</p>
+
+<h2 id="モジュール-プラグイン-ブラウザ">モジュール/プラグイン・ブラウザ</h2>
+
+<p>モジュールブラウザ画面を開くことにより、OzoneモジュールやVST及びAUプラグインの閲覧や追加ができます。モジュールブラウザ画面を表示させるには、信号チェーンのスペースにある‘+’ボタンをクリックしてください。</p>
+
+<div class="admonition note">
+<p class="admonition-title">モジュールチェーンに関する注</p>
+<p><ul>
+<li>Ozoneのモジュールチェーンで同時使用できるのは最大6モジュールまでとなります。モジュールチェーンが一杯の状態になっていると、モジュールブラウザにアクセスできません。モジュールブラウザにアクセスする必要がある場合は、そのチェーンからモジュールを削除してください。</li>
+<li>VST及びAUプラグインはOzoneアプリケーションでのみモジュールチェーンに追加することができます。</li>
+<li>Ozoneコンポーネントプラグインはモジュールチェーンを含みません。この機能はメインの Ozoneプラグイン及びOzoneアプリケーションでのみ使用可能です。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="ozoneのモジュール">Ozoneのモジュール</h3>
+
+<p>モジュールブラウザには使用可能な全てのOzoneモジュールが表示されます。既にモジュールがモジュールチェーンに追加されている場合、そのモジュールのアイコンはグレーアウトします。</p>
+
+<p><img src="../images/general-functions/module-panel.png" alt="Module browser" /></p>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><ul>
+<li>同一のOzoneモジュールを同一のモジュールチェーンで複数回使用することはできません。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="プラグイン-ozoneアプリケーションのみ">プラグイン（Ozoneアプリケーションのみ）</h3>
+
+<p>モジュールブラウザのPlug-insタブをクリックすると、Ozoneアプリケーションのモジュールチェーンにプラグインを追加することができます。</p>
+
+<p><img src="../images/general-functions/plugintab.png" alt="plug-in tab" /></p>
+
+<p>“Plug-ins”タブが選択されると表示されるギアアイコンをクリックすることで、プラグイン関連のオプションを管理することができます。プラグインオプションのタブでは、プラグイン形式の有効化/無効化、カスタムVSTプラグインパスの構成、そして手動でのプラグインスキャンの開始などが行えます。プラグイン形式が有効になっていると、Ozoneアプリケーションは開かれる度に、バックグラウンドで新しいプラグインをスキャンします。</p>
+
+<h2 id="グローバルi-oメーターとゲイン">グローバルI/Oメーターとゲイン</h2>
+
+<p><img src="../images/general-functions/io.png" alt="I/O Meters" /></p>
+
+<p>Ozoneの入出力メーターは、左右のチャンネルの入力と出力のレベルを表示します。メーターには複数のオプションがあります。このオプションの選択は、<a href="../options/index.html#io">I/Oオプションのタブ</a>を開くか、あるいはI/Oメーター上部のI/Oボタンをクリックする（こちらの方が<a href="../options/index.html#io">I/O</a> オプションタブと比較するとオプションは制限されます）ことで行うことができます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">入出力ゲインの設定</p>
+<p>入出ゲインのレベル調整はマウスでフェーダーをスライドさせるか、あるいはクリックした状態でマウスホイールを使うことで行うことができます。</p>
+</div>
+
+<h3 id="左右のチャンネルを個別に設定">左右のチャンネルを個別に設定</h3>
+
+<p>デフォルトでは左右のチャンネルはリンクされていますので、片方のフェーダーを動かすと、もう片方も連動します。“ロック”アイコンをクリックすることで、このリンクを解き、左右を別々に調整することができるようになります。また、2チャンネルをオフセットした状態で再びロックすると、オフセットが掛かったまま左右のフェーダーが連動します。フェーダーは上下に振り切った状態でもオフセットを記憶しておりますので、まだ中程の位置に戻すとオフセットが再現されます。</p>
+
+<h3 id="ダブルクリックでフェーダーをリセット">ダブルクリックでフェーダーをリセット</h3>
+
+<p>左右のフェーダーがロックされている状態でどちらかのフェーダーをダブルクリックすると、両フェーダー共にレベルが0 dBにリセットされます。ロックされていない状態でどちらか片方のフェーダーをダブルクリックすると、そのフェーダーのみが0 dBにリセットされます。
+オフセットが掛かった状態で左右のフェーダーがロックされている場合、ダブルクリックすると両フェーダーのレベルが揃います。その上でもう一回ダブルクリックすると、両フェーダーのレベルが0 dBにリセットされます。</p>
+
+<h3 id="メーターの尺度を設定">メーターの尺度を設定</h3>
+
+<p>入出力メーターの尺度を調整することで、更にメーター機能をカスタマイズすることができます。</p>
+
+<ul>
+<li>メーター下方の“(+)”印をクリックすると、ズームインするか、あるいはメーターの解像度が増加します。</li>
+<li>メーター下方の“(-)” 印をクリックすると、ズームアウトするか、あるいはメーターの解像度が低下します。</li>
+</ul>
+
+<h2 id="試聴ツール">試聴ツール</h2>
+
+<p>Ozoneの試聴セクションは、入出力メーター下の画面右側に位置します。</p>
+
+<p><img src="../images/general-functions/audition-section.png" alt="Audition Area" /></p>
+
+<p>試聴セクションには以下の操作項目があります:</p>
+
+<h3 id="bypass-バイパス">Bypass (バイパス)</h3>
+
+<p>すべてのオゾン処理のオン/オフを切り替えます。バイパスを有効にすると、インターフェイスにオーバーレイが表示され、コントロールが暗くなり、オゾンがバイパスされていることが示されます。</p>
+
+<h3 id="gain-match-ゲインマッチ">Gain Match（ゲインマッチ）</h3>
+
+<p>Ozoneの<a href="../options/index.html#io">オプションメニュー</a>でゲインマッチの動作を変更することができます。</p>
+
+<h3 id="sum-to-mono-モノ合算">Sum to Mono（モノ合算）</h3>
+
+<p>MonoボタンをクリックするとOzoneはステレオ信号をモノにまとめますので、曲をモノの状態で確認することができます。ステレオ信号をモノの状態で確認すると、ミックスのなかで打ち消し合う要素がないかどうかを聴き分けることができますので、これは非常に重要な機能となります。</p>
+
+<h3 id="swap-button-入れ替え">Swap Button（入れ替え）</h3>
+
+<p>このボタンをクリックすると、左右のチャンネルを入れ替えます。</p>
+
+<h3 id="codec-preview-コーデックプレビュー-adv">Codec Preview（コーデックプレビュー） [ADV]</h3>
+
+<p>このボタンをクリックするとコーデック試聴画面が表示されます。詳細は<a href="../codec-preview/index.html">コーデックプレビュー</a>の章にてご確認ください。</p>
+
+<h3 id="dither-ディザー">Dither（ディザー）</h3>
+
+<p>このボタンをクリックするとディザー画面が表示されます。詳細は<a href="../dither/index.html">ディザー</a>の章にてご確認ください。</p>
+
+<h3 id="reference-リファレンス">Reference（リファレンス）</h3>
+
+<p><img src="http://www.ozone8userguide.com/ja/images/general-functions/ref.png" alt="reference" /></p>
+
+<p>このボタンをクリックするとリファレンス画面が表示されます。詳細は<a href="../track-referencing/index.html">トラックリファレンス</a>の章にてご確認ください。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  モジュールの標準的な操作項目</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>Ozoneの各モジュールは多くの操作項目やワークフローを共有しています。この章では、モジュールが共有する標準的な操作項目とワークフローに対する説明をします。</p>
+
+<h2 id="モジュールチェーン">モジュールチェーン</h2>
+
+<p><img src="../images/common-module-controls/module-chain.png" alt="module chain" /></p>
+
+<p>Ozoneの信号処理チェーンでは、同時に最大6モジュールを使用することができます。モジュールチェーンをコンポーネントプラグインで使用することはできません。
+以下の表はモジュールチェーンのオプションに関する概要です:</p>
+
+<table>
+<thead>
+<tr>
+<th>アイコン</th>
+<th>名称</th>
+<th>説明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><img src="../images/common-module-controls/add.png" alt="add" /></td>
+<td>Add（追加）</td>
+<td>モジュールスロットに空きがある場合は、このスペースをクリックすることでモジュールを追加できます。モジュール選択画面より使用可能なモジュールをクリックすると、モジュールチェーンに追加されます。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/xbtn.png" alt="remove" /></td>
+<td>Remove（削除）</td>
+<td>該当するモジュールをモジュールチェーンより削除します。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/modulepresetbtn.png" alt="module preset" /></td>
+<td>Module Preset（モジュールプリセット）</td>
+<td>モジュールプリセット画面を表示します。詳細は<a href="../preset-system/index.html#module-preset-system">モジュールプリセット</a>の項にてご確認ください。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/solobtn.png" alt="solo" /></td>
+<td>Solo（ソロ）</td>
+<td>そのモジュールの処理のみを試聴します。ソロボタンをクリックすると、表示されているモジュール以外のモジュールはバイパスされます。モジュールがソロ状態になっていても、グローバル操作（I/Oゲインと試聴操作項目）は出力に影響を及ぼします。ソロは単一のモジュールに対してのみ実行できます。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/powerbtn.png" alt="bypass" /></td>
+<td>Bypass（バイパス）</td>
+<td>バイパスボタンをクリックすると、表示されているモジュールの処理が切られます。複数のモジュールを同時にバイパスすることも可能です。モジュールがバイパスされていると、モジュールのアイコンと名称はグレーアウトします。</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="マルチバンドモジュール">マルチバンドモジュール</h2>
+
+<p>Ozoneでは以下のモジュールでマルチバンド処理を実行することができます:</p>
+
+<ul>
+<li><a href="../dynamics/index.html">ダイナミクス</a></li>
+<li><a href="../exciter/index.html">エキサイター</a></li>
+<li><a href="../imager/index.html">イメージャー</a></li>
+</ul>
+
+<p>マルチバンドモジュールでは周波数に特化した処理を行うことができます。最大4帯域を個別に操作することができ、クロスオーバーはミニスペクトラル画面のハンドルにて調整します。</p>
+
+<h2 id="クロスオーバー">クロスオーバー</h2>
+
+<p>マルチバンドモジュールでは、クロスオーバーのミニスペクトラムメーター画面にて、クロスオーバーの周波数帯の調整や試聴などを操作することができます。</p>
+
+<p><img src="../images/common-module-controls/crossover.png" alt="crossover view" /></p>
+
+<h3 id="クロスオーバーカットオフの調整">クロスオーバーカットオフの調整</h3>
+
+<p>マルチバンドのクロスオーバー点は、クロスオーバーのミニスペクトラム画面にて手動で調整することができます。クロスオーバーのカットオフ点は、以下の方法で手動調節できます:</p>
+
+<ul>
+<li><strong>カットオフハンドルをクリックしてドラッグ:</strong> クロスオーバーカットオフは、白いクロスオーバーハンドルをクリックし、任意の場所へドラッグすることで調整可能です。カーソルが調整可能なクロスオーバーカットオフ用ハンドル上にあると、左右の矢印アイコンに表示が変わります。</li>
+<li><strong>テキスト入力:</strong> クロスオーバーカットオフの数値（カットオフハンドル直上の白いテキスト）をダブルクリックすると、インラインの編集フィールドが表示されます。クロスオーバーのカットオフに定めたい周波数を入力し、EnterかReturnキーを押すと、数値が更新されます。</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><ul>
+<li>クロスオーバーカットオフ点は、マルチバンドモジュール間で共有されません。特定のモジュールで行ったクロスオーバー点の調整は、別のマルチバンドモジュールには影響を及ぼしません。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="クロスオーバー画面の操作項目">クロスオーバー画面の操作項目</h3>
+
+<p>以下は、マルチバンドクロスオーバー画面の標準的な操作項目の一覧です。</p>
+
+<table>
+<thead>
+<tr>
+<th>アイコン</th>
+<th>名称</th>
+<th>説明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><img src="../images/common-module-controls/b1byp.png" alt="bypb1" /> <img src="../images/common-module-controls/b2byp.png" alt="bypb2" /> <img src="../images/common-module-controls/b3byp.png" alt="bypb3" /> <img src="../images/common-module-controls/b4byp.png" alt="bypb4" /></td>
+<td>Band Power（バンド電源）</td>
+<td>関係するバンドの処理のオン/オフをトグルします。複数のバンドを同時にバイパスすることが可能です。バンドがバイパスされると、その電源ボタンはグレーアウトします。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/b1solo.png" alt="sb1" /> <img src="../images/common-module-controls/b2solo.png" alt="sb2" /> <img src="../images/common-module-controls/b3solo.png" alt="sb3" /> <img src="../images/common-module-controls/b4solo.png" alt="sb4" /></td>
+<td>Band Solo（バンドソロ）</td>
+<td>そのバンドの出力のみを試聴します。複数のバンドを同時にソロにすることが可能です。ソロがアクティブでないと、そのバンドのソロボタンはグレーアウトします。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/minusbtn.png" alt="Remove" /></td>
+<td>Remove Band（バンド削除）</td>
+<td>xボタンをクリックすると、そのバンドを削除します。注: バンドは右から左へ削除されます。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/plusbtn.png" alt="Add" /></td>
+<td>Add Band（バンド追加）</td>
+<td>+ボタンをクリックすると、新しいバンドが挿入されます。マルチバンドモジュールは最大4バンドの処理をサポートします。</td>
+</tr>
+
+<tr>
+<td><img src="../images/common-module-controls/crossoverlearn.png" alt="Learn" /></td>
+<td>Learn（分析）</td>
+<td>有効になっていると、クロスオーバー点は入力信号に応じて自動的に調整されます。詳細はクロスオーバー分析の項をご覧ください。</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">ヒント: バンドのソロについて</p>
+<p><ul>
+<li>周波数バンドに対し、バイパスとソロを同時に行うと、そのバンドのドライの信号（処理前の信号）をソロにすることができます。これは、各バンド処理の影響を個別に試聴する際に便利です。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="クロスオーバー分析機能">クロスオーバー分析機能</h3>
+
+<p>Ozoneのマルチバンドモジュールには、クロスオーバー点を判断する革新的な分析機能が搭載されました。ここが有効の場合、クロスオーバー分析機能は、入力信号の周波数スペクトラムの最小値など、幾つかの基準を使い、自然なクロスオーバー点を割り出します。
+分析機能がアクティブになっていると、ボタンは青で表示されます。理想的なクロスオーバーカットオフの値が判別されると、機能は自動的にオフになります。分析機能がアクティブな状態で再度分析ボタンをクリックすると、手動でこの機能を切ることができます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">クロスオーバー分析に関する注</p>
+<p><ul>
+<li>クロスオーバー分析機能が正常に動作するには、分析が作動しているときにモジュールがオーディオ入力を受け取っている必要があります。</li>
+<li>クロスオーバー分析ボタンは、マルチバンドモジュールのクロスオーバーミニスペクトラム画面にてのみ操作できます。</li>
+<li>マルチバンドモジュールであっても、単一のバンドのみ有効の場合、分析ボタンはクロスオーバーミニスペクトラム画面に表示されません。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="クロスオーバー関連メニューのオプション">クロスオーバー関連メニューのオプション</h3>
+
+<p>マルチバンドモジュールのクロスオーバースペクトラム画面を右クリック（またはOption+左クリック）すると、関連メニューに以下のオプションが表示されます:</p>
+
+<p><img src="../images/common-module-controls/context.png" alt="context menu" /></p>
+
+<ul>
+<li><strong>INSERT BAND（周波数帯を挿入）:</strong> マルチバンドモジュールに新規周波数帯を追加します。各マルチバンドモジュールは最大4帯域まで追加することができます。
+
+<ul>
+<li>関連メニューの‘Insert Band’オプションから帯域を追加すると、クロスオーバー点はスペクトラムで右クリックした点に設定されます。</li>
+<li><strong>注:</strong> 右クリックした場所に既にクロスオーバー点が存在する場合、新規クロスオーバーカットオフは既存のカットオフの右側に設定されます。</li>
+</ul></li>
+<li><strong>REMOVE BAND（周波数帯を消去）:</strong> 使用中のマルチバンドモジュールから既存の周波数帯を消去します。
+
+<ul>
+<li>関連メニューの‘Remove Band’オプションから帯域を追加すると、右クリックしたポイントの右側にある最初のクロスオーバー点が消去されます。</li>
+</ul></li>
+<li><strong>COPY（コピー）:</strong> 右クリックした周波数帯の設定項目がクリップボードにコピーされます。</li>
+<li><strong>PASTE（ペースト）:</strong> クリップボードにコピーされた周波数帯の設定が、右クリックをした周波数帯に適用されます。
+
+<ul>
+<li><strong>注:</strong> 同じマルチバンドモジュールでコピーした設定のみペーストすることができます。</li>
+</ul></li>
+<li><strong>SPECTRUM OPTIONS（スペクトラムオプション）:</strong> Ozoneのスペクトラムのオプションタブへとナビゲートします。</li>
+<li><strong>CROSSOVER OPTIONS（クロスオーバーオプション）:</strong> 使用中のモジュールのクロスオーバーオプションタブへとナビゲートします。クロスオーバーの種類に関する詳細は、次項をご覧ください。</li>
+</ul>
+
+<h3 id="クロスオーバーの種類">クロスオーバーの種類</h3>
+
+<p>各マルチバンドモジュールは、それぞれ個別のクロスオーバーの種類を構成することができます。クロスオーバーの種類はオプションメニューにて変更可能です。
+各マルチバンドモジュールで使用可能なクロスオーバーの種類は以下の通りです:</p>
+
+<ul>
+<li><strong>ANALOG（アナログ）:</strong> アナログクロスオーバーオプションは、アナログ機器のフィルター曲線のような自然なキャラクターを付加します。</li>
+<li><strong>HYBRID（ハイブリッド）:</strong> この完璧に再現されたIIR（無限インパルスレスポンス）アナログクロスオーバーは、精緻なクロスオーバーポイントとアナログクロスオーバーの温かみを維持しつつ、他のアナログ変換機に見られる位相や周波数の歪みの軽減を実現します。</li>
+<li><strong>DIGITAL（デジタル）:</strong> Ozone 3で初めて搭載されたデジタルリニア位相のクロスオーバーです。このオプションはサウンドに正確さと平明さを付加します。</li>
+</ul>
+
+<h4 id="デジタルクロスオーバーのオプション">デジタルクロスオーバーのオプション</h4>
+
+<p>デジタルクロスオーバーが選択されると、以下のオプションが使用可能となります:</p>
+
+<ul>
+<li><strong>CROSSOVER BUFFER SIZE（クロスオーバーのバッファサイズ）:</strong> デジタルクロスオーバーのバッファサイズの設定が可能です。詳細はバッファサイズの項をご参照ください。</li>
+<li><strong>CROSSOVER Q（クロスオーバーのQ）:</strong> この操作項目では、クロスオーバーフィルターの周波数帯、またはQを調節することが可能です。高いQ設定はタイトなクロスオーバーに、低いQ設定はバンド間の緩やかなトランジションに結びつきます。この操作項目が使えるのはデジタルクロスオーバーのみとなります。
+<br /></li>
+</ul>
+
+<h2 id="モジュールチャンネルの処理モード">モジュールチャンネルの処理モード</h2>
+
+<p>Ozoneのモジュールには、どのように処理が適用されるのかを決定する複数のモードが用意されています。モジュールが複数のチャンネル処理モードをサポートする場合、モジュール操作エリアの左側に処理モードのオプションが表示されます。
+以下のOzoneモジュールには異なるチャンネル処理オプションが用意されています:</p>
+
+<table>
+<thead>
+<tr>
+<th>モジュール</th>
+<th>ステレオ</th>
+<th>M/S</th>
+<th>L/R</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="../dynamics/index.html">ダイナミクス</a></td>
+<td>可</td>
+<td>可</td>
+<td>不可</td>
+</tr>
+
+<tr>
+<td><a href="../dynamic-eq/index.html">ダイナミックEQ</a></td>
+<td>可</td>
+<td>可</td>
+<td>可</td>
+</tr>
+
+<tr>
+<td><a href="../equalizer/index.html">EQ</a></td>
+<td>可</td>
+<td>可</td>
+<td>可</td>
+</tr>
+
+<tr>
+<td><a href="../exciter/index.html">エキサイター</a></td>
+<td>可</td>
+<td>可</td>
+<td>不可</td>
+</tr>
+
+<tr>
+<td><a href="../spectral-shaper/index.html">スペクトラル成形</a></td>
+<td>可</td>
+<td>可</td>
+<td>不可</td>
+</tr>
+
+<tr>
+<td><a href="../vintage-compressor/index.html">ビンテージコンプレッサー</a></td>
+<td>可</td>
+<td>可</td>
+<td>不可</td>
+</tr>
+
+<tr>
+<td><a href="../vintage-eq/index.html">ビンテージEQ</a></td>
+<td>可</td>
+<td>可</td>
+<td>可</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="ステレオモード">ステレオモード</h2>
+
+<p>ステレオモード（入力オーディオが単一チャンネルの場合は“モノ”モード）は全モジュールにとってデフォルトの処理モードとなります。これは、Mid/SideやLeft/Right処理モードのないモジュールにも当てはまります。</p>
+
+<p><img src="../images/common-module-controls/stereo-selected.png" alt="Processing modes Stereo selected" /></p>
+
+<p>ステレオモードが選択されている場合、選択されたモジュールでは処理を行う上でワンセットの操作項目が使用可能となります。</p>
+
+<h2 id="mid-side-m-s-モード">Mid/Side (M/S)モード</h2>
+
+<p>モジュール操作エリアの左側にあるM-Sマークを選択することによりMid/Sideプロセッシングに切り替えることができます。</p>
+
+<p><img src="../images/common-module-controls/m-s-controls.png" alt="Processing modes MS selected" /></p>
+
+<div class="admonition note">
+<p class="admonition-title">Mid/Side処理の例</p>
+<p>Mid/Side処理の具体的な用例につきましては、<a href="../tips-and-examples/index.html#mid-side-processing-examples">ヒントと用例</a>の章をご覧ください。</p>
+</div>
+
+<h3 id="mid-sideのエンコードとデコード">Mid/Sideのエンコードとデコード</h3>
+
+<p>Mid/Sideモードが有効の場合、モジュールへの入力信号はMid/Side構成にエンコードされます。Mid/Sideモードで処理を行った後、信号はモジュールの出力にてMid/Sideからステレオにデコードされます。</p>
+
+<ul>
+<li><strong>Mid Channel Encoding（Midチャンネルのエンコード）:</strong> エンコードされたMidチャンネルの信号は、左右のスピーカーの間のファントム画像、または入力オーディオの中央チャンネルを示します。</li>
+<li><strong>Side Channel Encoding（Sideチャンネルのエンコード）:</strong> エンコードされたSideチャンネルの信号は、入力のサイド（または端）を示します。</li>
+</ul>
+
+<h3 id="midとsideの独立した操作機能">MidとSideの独立した操作機能</h3>
+
+<p>Mid/Sideモードを選択すると、処理のための2つの固有のパラメーターが表示されます。ひとつのパラメーターのセットはエンコードされたMidチャンネルの処理のためのものであり、もうひとつのセットはエンコードされたSideチャンネルの処理のためのパラメーターとなります。</p>
+
+<h4 id="midチャンネルの操作項目">Midチャンネルの操作項目</h4>
+
+<ul>
+<li><strong>Midチャンネルの操作項目を閲覧及び調整：</strong> “Mid”ボタンを選択すると、アクティブなモジュールのMidチャンネルの処理に特化したパラメーターを閲覧し、調整することができます。</li>
+<li><strong>Midチャンネル処理をバイパス：</strong> Midチャンネルセレクター上部の電源ボタンをオフにするとMidチャンネルの処理がバイパスされます。</li>
+<li><strong>Midチャンネル処理をソロ：</strong> Midチャンネルセレクター上部の’S’ボタンを選択すると、モジュールのMidチャンネル処理がソロになります。</li>
+</ul>
+
+<h4 id="sideチャンネルの操作項目">Sideチャンネルの操作項目</h4>
+
+<ul>
+<li><strong>Sideチャンネルの操作項目を閲覧及び調整：</strong> “Side”ボタンを選択すると、アクティブなモジュールのSideチャンネルの処理に特化したパラメーターを閲覧し、調整することができます。</li>
+<li><strong>Sideチャンネル処理をバイパス：</strong> Sideチャンネルセレクター上部の電源ボタンをオフにするとSideチャンネルの処理がバイパスされます。</li>
+<li><strong>Sideチャンネル処理をソロ：</strong> Sideチャンネルセレクター上部の’S’ボタンを選択すると、モジュールのSideチャンネル処理がソロになります。</li>
+</ul>
+
+<h3 id="リンクされたmid-side操作の調整">リンクされたMid/Side操作の調整</h3>
+
+<p>MidとSideの操作項目はMidとSideの選択ボタンの間にある‘Link’ボタンを有効にすることで簡単にリンクさせることができます。リンクされている状態では、Midチャンネルのパラメーターを調整すると、リンクされたSideチャンネルのパラメーターも呼応し、その逆もまた然りです。</p>
+
+<div class="admonition note">
+<p class="admonition-title">追加情報: 相対リンク作業</p>
+<p>Ozoneのパラメーターのリンクに関する追加情報は<a href="../tips-and-examples/index.html#relative-parameter-linking">ヒントと用例</a>の章でご覧頂けます。</p>
+</div>
+
+<h2 id="mid-sideのメーター">Mid/Sideのメーター</h2>
+
+<p>デフォルトではI/Oメーターにはオーディオのステレオミックスが表示されます。しかしながら、Mid/Sideプロセッシングで作業する場合、MidとSideの全体的なレベルを個別に表示できるメーターがあると非常に便利です。I/OメーターのソースをMid/Sideに変更すると、マスターのメーター情報をMid/Sideの情報に切り替えることができます。</p>
+
+<p><img src="../images/common-module-controls/mid-side.png" alt="Mid/Side Source Meter" /></p>
+
+<p>I/OメーターがMid/Sideモードになると、信号のディスプレイはステレオの左右に準じたものではなくなります。メーター中央にはMidチャンネル全体のレベルが表示され、左右のメーターにはSideチャンネル全体のレベルが表示されます。左右のゲインスライダーは引き続き、信号の左右のゲインを調整します。Mid/SideメーターのタイプとスケールはI/Oオプションのメニューの設定に従います。</p>
+
+<h2 id="left-right-l-r-モード">Left/Right (L/R) モード</h2>
+
+<p>モジュール操作エリアの左側にあるL-Rボタンを選択することによりLet/Rightプロセッシングに切り替えることができます。</p>
+
+<p><img src="../images/common-module-controls/l-r-selected.png" alt="Processing modes LR selected" /></p>
+
+<p>ここが有効化されると、モジュールへの入力信号はLeft及びRightの処理チャンネルに分離します。信号は出力にて、ステレオ信号に“合算”されます。</p>
+
+<h3 id="leftとrightの独立した操作機能">LeftとRightの独立した操作機能</h3>
+
+<p>Left/Rightモードを選択すると、処理のための2つの固有のパラメーターが表示されます。ひとつのパラメーターのセットはLeftチャンネルの処理のためのものであり、もうひとつのセットはRightチャンネルの処理のためのパラメーターとなります。</p>
+
+<h4 id="leftチャンネルの操作項目">Leftチャンネルの操作項目</h4>
+
+<ul>
+<li><strong>Leftチャンネルの操作項目を閲覧及び調整：</strong> “Left”ボタンを選択すると、アクティブなモジュールのLeftチャンネルの処理に特化したパラメーターを閲覧し、調整することができます。</li>
+<li><strong>Leftチャンネル処理をバイパス：</strong> Leftチャンネルセレクター上部の電源ボタンをオフにするとLeftチャンネルの処理がバイパスされます。</li>
+<li><strong>Leftチャンネル処理をソロ：</strong> Leftチャンネルセレクター上部の’S’ボタンを選択すると、モジュールのLeftチャンネル処理がソロになります。</li>
+</ul>
+
+<h4 id="rightチャンネルの操作項目">Rightチャンネルの操作項目</h4>
+
+<ul>
+<li><strong>Rightチャンネルの操作項目を閲覧及び調整：</strong> “Right”ボタンを選択すると、アクティブなモジュールのRightチャンネルの処理に特化したパラメーターを閲覧し、調整することができます。</li>
+<li><strong>Rightチャンネル処理をバイパス：</strong> Rightチャンネルセレクター上部の電源ボタンをオフにするとRightチャンネルの処理がバイパスされます。</li>
+<li><strong>Rightチャンネル処理をソロ：</strong> Rightチャンネルセレクター上部の’S’ボタンを選択すると、モジュールのRightチャンネル処理がソロになります。</li>
+</ul>
+
+<h3 id="リンクされたleft-right操作の調整">リンクされたLeft/Right操作の調整</h3>
+
+<p>LeftとRightの操作項目はLeftとRightの選択ボタンの間にある‘Link’ボタンを有効にすることで簡単にリンクさせることができます。
+リンクされている状態では、左チャンネルのパラメーターを調整すると、リンクされた右チャンネルのパラメーターも呼応し、その逆もまた然りです。</p>
+
+<div class="admonition note">
+<p class="admonition-title">More information: 追加情報: 相対リンク作業</p>
+<p>Ozoneのパラメーターのリンクに関する追加情報は<a href="../tips-and-examples/index.html#relative-parameter-linking">ヒントと用例</a>の章でご覧頂けます。</p>
+</div>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  ダイナミクス</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>ダイナミクスはOzoneの中で最もパワフルなモジュールのひとつです。このモジュールを使用すると、最大4バンドに対するアナログ式のコンプレッション、リミッティング、そしてエクスパンションを行うことで、ミックスのダイナミクスを成形することができます。Ozone 8 Advancedではダイナミクスをコンポーネントプラグインとして使用することも可能です。</p>
+
+<p><img src="../images/dynamics/dyn-all-bands.png" alt="dynamics" /></p>
+
+<h2 id="グローバルな操作項目">グローバルな操作項目</h2>
+
+<p><img src="../images/dynamics/global-controls.png" alt="global controls" /></p>
+
+<h3 id="single-band-all-bands-display-単一バンド-全バンド表示">Single Band/All Bands Display（単一バンド/全バンド表示）</h3>
+
+<p>全バンド表示と単一バンド表示をトグルします。単一バンドで表示されている場合、バンドアイコンの右か左にある矢印を使うと、有効なバンドを循環して表示させることができます。</p>
+
+<h3 id="link-bands-バンドをリンク">Link Bands（バンドをリンク）</h3>
+
+<p>リンク印をクリックすると、全バンドのコントロールがリンクします。リンクした状態で特定のバンドの設定に変更を加えると、全バンドにその変更が適用されます。</p>
+
+<h3 id="adaptive-release-適応リリース">Adaptive Release（適応リリース）</h3>
+
+<p>ダイナミクスモジュールでAdaptive Releaseがオンになっていると、信号のピーク状態に応じてコンプレッサーのリリース時間が自動的に調節されます。瞬間的な信号が検知されるとリリース時間はポンピングを抑えるため短めに設定されます。ある程度持続する音が検知された場合は、ディストーションを抑えるべく、リリース時間は長めに設定されます。</p>
+
+<p>リリース時間はユーザによりセットされたリリース値に応じて弾き出されます。例えば、リリース時間を100ミリ秒でセットした状態でコンプレッサーを使用すると、このモード下で自動的に設定されるリリース時間は、信号の種類に応じ、20ミリ秒から200ミリ秒の間となります。</p>
+
+<h3 id="gain-ゲイン">Gain（ゲイン）</h3>
+
+<ul>
+<li><strong>全バンド表示:</strong> ゲインスライダーはダイナミクスモジュール処理後の信号全体に影響を与えます。これは、コンプレッション適用後のロスを埋め合わせる際のメイクアップ適用時に便利です。</li>
+<li><strong>単一バンド表示:</strong> ゲインスライダーは表示されているバンドの処理後の信号にのみ影響を与えます。</li>
+</ul>
+
+<h3 id="auto-自動補正ゲイン">Auto（自動補正ゲイン）</h3>
+
+<p>有効になっていると、メイクアップゲインが自動的に計算されて出力に適用され、ダイナミクス処理により生じたレベルの差異を補正します。</p>
+
+<p>自動ゲインコントロールは、ダイナミクスの各クロスオーバー帯域の入出力信号のRMSレベルを個別に計算します。入力と出力信号のRMSレベルの差異に応じて、出力にゲインが自動的に適用されます。</p>
+
+<p>これにより、メイクアップゲインの操作がスマートに行われ、処理後のレベルと処理前の入力レベルが合わせ込まれます。これは、ゲインの違いによる聴覚への影響のない状態で、マルチバンドダイナミクスモジュールの設定をA/B比較する際に便利です。</p>
+
+<div class="admonition note">
+<p class="admonition-title">自動及び手動のゲイン調整</p>
+<p><ul>
+<li>自動モードと手動のバンド/グローバルゲイン調整は同時に適用することができます。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="レベル検知モード">レベル検知モード</h3>
+
+<p>スレッシュホルドの入力メーターの下に配置された以下の3種類のボタンにより、ダイナミックモジュール全体の検知レベルを設定することができます。</p>
+
+<ul>
+<li><strong>PEAK:</strong> このオプションが選択されていると、Ozoneの検知回路は入力信号のピーク値を見るようになります。一般的には、この機能は音楽のピークを揃えたい時に有効です。</li>
+<li><strong>RMS:</strong> このオプションが選択されていると、Ozoneの検知回路は入力信号の平均レベルを見るようになります。RMS検知は音の性質を変えずに全体的なボリュームを押し上げる際に便利な機能です。</li>
+<li><strong>ENVELOPE:</strong> エンベロープモードはRMSモードと類似した機能ですが、幾つか鍵となる利点があります。RMSと違い、エンベロープモードでは全ての周波数でレベルを均一にします。また、エンベロープモードでは、RMS検知で発生し得るエイリアスや人工的な付加物が発生しません。</li>
+</ul>
+
+<h3 id="parallel-パラレル">Parallel（パラレル）</h3>
+
+<p>このスライダーで、モジュールにより処理されたウェットな信号と処理されていないドライの信号のミックスを調整します。これは“パラレル圧縮”という未処理の信号をミックスするテクニックを駆使する際に便利な機能です。</p>
+
+<h2 id="バンド毎の操作項目">バンド毎の操作項目</h2>
+
+<p><img src="../images/dynamics/dyn-single-band.png" alt="single band" /></p>
+
+<h3 id="threshold-スレッシュホルド">Threshold（スレッシュホルド）</h3>
+
+<p>リミッター及びコンプレッサーのスレッシュホルドを調節し、ダイナミクス処理がトリガーされるポイントを設定します。</p>
+
+<h3 id="ratio-比率">Ratio（比率）</h3>
+
+<p>リミッターとコンプレッサーにはそれぞれ個別の比率コントロールがついております。比率が高い程、極度の圧縮がかかります。コンプレッサーまたはリミッターの比率がマイナスになると、エキスパンダーとして機能するようになります。</p>
+
+<h3 id="attack-release-アタックとリリース">Attack &amp; Release（アタックとリリース）</h3>
+
+<p>アタックとリリースで、ダイナミクスプロセッサーがスレッシュホルドを超えたオーディオに対し、如何に迅速に反応するかを調整します。</p>
+
+<ul>
+<li><strong>アタック</strong>でダイナミクスプロセッサーがスレッシュホルド超過時に如何に迅速に反応するかを調節します。</li>
+<li><strong>リリース</strong>は、信号がスレッシュホルドを下回った際、ダイナミクスプロセッサーが如何に迅速に通常レベルに戻るかを定義します。</li>
+</ul>
+
+<h3 id="knee-膝値">Knee（膝値）</h3>
+
+<p>この設定項目では、圧縮の性質を設定します。</p>
+
+<ul>
+<li>ここの設定値が高いと、より柔軟な設定となり、微細で自然な音のする圧縮となります。</li>
+<li>ここの設定値が低いと、硬質な設定となり、アグレッシブな音のする圧縮となります。これはキックドラムやスネアドラムのような個々のトラックに屢々使用されます。</li>
+</ul>
+
+<h2 id="mid-sideプロセッシング">Mid/Sideプロセッシング</h2>
+
+<p>ダイナミクスモジュールはステレオまたはMid/Sideモードで操作することができます。詳細は<a href="../common-module-controls/index.html#module-channel-processing-modes">Mid/Sideプロセッシング</a>の項をご参照ください。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="スレッシュホルドメーター">スレッシュホルドメーター</h3>
+
+<p><img src="../images/dynamics/threshold.png" alt="threshold" /></p>
+
+<p>スレッシュホルドメーターには、検知回路への入力レベル（グレーで表示）と並列して、ダイナミクス処理の結果として発生しているゲインリダクション量（該当するバンドと同色）が表示されます。</p>
+
+<h3 id="ダイナミック曲線メーター">ダイナミック曲線メーター</h3>
+
+<p><img src="../images/dynamics/curve-meter.png" alt="curve meter" /></p>
+
+<p>このメーターはX軸で入力信号を、Y軸で処理済みの出力信号を表示します。水平に近い程、信号は圧縮されているということになります。
+右下の“+”と“-”ボタンでメーターのズームインとズームアウトが行えます。
+このメーターにはリミッター(L)とコンプレッサー&copy;用に個別の操作点が内蔵されます。これらの操作点はスレッシュホルドと比率にリンクされており、視覚的に設定を調節することが可能です。</p>
+
+<h3 id="ミニメーター表示">ミニメーター表示</h3>
+
+<p>ダイナミクスモジュールには操作画面上部に以下の3種類のミニメーター表示があります。</p>
+
+<h4 id="crossover-クロスオーバー">Crossover（クロスオーバー）</h4>
+
+<p><img src="../images/dynamics/crossover.png" alt="crossover" /></p>
+
+<p>この画面にはスペクトラムアナライザーとマルチバンドクロスオーバーの操作項目が表示されます。クロスオーバー表示に関する詳細は、<a href="../common-module-controls/index.html">モジュールの標準的な操作項目</a>の章をご参照ください。</p>
+
+<h4 id="detection-filter-検知フィルター">Detection Filter（検知フィルター）</h4>
+
+<p><img src="../images/dynamics/det-filter.png" alt="det filter" /></p>
+
+<p>この表示ではダイナミクス処理に使用される検知回路の周波数特性を変更できますので、周波数帯に応じて入力に対する感度を変えることができます。
+検知フィルター表示では以下の操作項目が使用できます:</p>
+
+<ul>
+<li><strong>NONE（なし）:</strong> ダイナミクスモジュールの検知回路にはフィルターが適用されません。</li>
+<li><strong>HIGHPASS（ハイパス）:</strong> ダイナミクスモジュールの検知回路にハイパスフィルターが適用されます。
+
+<ul>
+<li><strong>SLOPE（スロープ）</strong>: スロープ値の読み出しをクリックすると、スロープ値をトグルすることができます。ハイパス検知フィルターには次のスロープオプションがあります: 6 dB、12 dB、24 dB、48 dB</li>
+<li>周波数点をクリックしてドラッグすると、ハイパスフィルターの周波数が調整できます。</li>
+</ul></li>
+<li><strong>TILT（傾斜）:</strong> APIコンプレッサーのTHRUST回路に類似しています。傾斜モードは、高周波数加重フィルター曲線を使用し、低域を保持します。‘Amount’を調整すると、傾斜フィルターのスロープを変更することができます。</li>
+<li><strong>SOLO（ソロ）:</strong> ’S’ボタンをクリックすると検知フィルターの入力が試聴できます。これにより、ダイナミクスモジュールの処理をトリガーしている信号のみを聴くことができます。</li>
+</ul>
+
+<h4 id="gain-reduction-trace-ゲイン削減トレース表示">Gain Reduction Trace（ゲイン削減トレース表示）</h4>
+
+<p><img src="../images/dynamics/trace.png" alt="trace" /></p>
+
+<p>この画面では波形表示と、ダイナミクス処理により適用されたゲイン削減を時間経過と共に表した形跡を視認することができます。</p>
+
+<p>マルチバンドモードでダイナミクスモジュールを使用する場合、この画面では波形と選択されたバンドのゲイン削減形跡のみを表示します。形跡の色には、選択されたバンドの色が反映されます。</p>
+
+<p>ゲイン削減トレース表示はアタックとリリースを正しく設定し、ゲイン削減のエンベロープをモニターする上での一助となります。</p>
+
+<div class="admonition note">
+<p class="admonition-title">ゲイン削減トレースのスケール</p>
+<p><ul>
+<li>メーター左にあるゲイン削減形跡のスケールは、そこにカーソルを合わせマウスホイールでズーンイン/アウトを行うことで調整できます。</li>
+<li>スケールの可視範囲はクリックして上下にドラッグすることで調整できます。</li>
+<li>ダブルクリックすると、スケールのズームレベルをデフォルトに戻すことができます。</li>
+</ul>
+</p>
+</div>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  ダイナミックEQ</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>この処理機能は他に比べ顕著にレベルの高い特定の周波数を抑える際に有効であり、通常の固定EQでは実現できない精密さでこれを果たします。</p>
+
+<p><img src="../images/dynamic-eq-interface.png" alt="dyn eq" /></p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<h3 id="全体的なeqのフィルターモード">全体的なEQのフィルターモード</h3>
+
+<p>ダイナミックEQモジュールで使用するEQの処理タイプを決めます。これはグローバル設定であり、ダイナミックEQの全帯域に適用されます。</p>
+
+<ul>
+<li><strong>ANALOG（アナログ）:</strong> アナログのアルゴリズムは最小位相FIRフィルターで、ほぼ全ての状況で効果を発揮します。</li>
+<li><strong>DIGITAL（デジタル）:</strong> デジタルのアルゴリズムはリニア位相IIRフィルターで、オリジナルの信号の位相を維持しますが、より多くのCPUリソースを必要とします。</li>
+</ul>
+
+<h3 id="フィルター形状">フィルター形状</h3>
+
+<p>選択されたバンドに対して適用するフィルターの種類を指定します:</p>
+
+<ul>
+<li>Baxandall Bass（バクサンドール・ベース）</li>
+<li>Band Shelf（バンドシェルフ）</li>
+<li>Peak Bell（ピークベル）</li>
+<li>Proportional Q（比例Q）</li>
+<li>Baxandall Treble（バクサンドール・トレブル）</li>
+</ul>
+
+<h3 id="周波数とゲインの調節">周波数とゲインの調節</h3>
+
+<p>EQバンドは操作点をクリックし、水平方向にドラッグすることで周波数を、垂直方向にドラッグすることでゲインを調節することができます。</p>
+
+<h3 id="q-帯域幅">Q（帯域幅）</h3>
+
+<p>Qまたは帯域幅は操作点の脇にあるハンドルをドラッグすることで調節可能です。ホイールマウス使用時は、マウスホイールで選択されたバンドの幅を調整することができます。</p>
+
+<h3 id="threshold-スレッシュホルド">Threshold（スレッシュホルド）</h3>
+
+<p>スレッシュホルドをドラッグし、選択された特定のEQバンドに適用される圧縮の度合いを調整してください。</p>
+
+<h3 id="ダイナミックトリガーモード">ダイナミックトリガーモード</h3>
+
+<ul>
+<li><strong>UP:</strong> 信号がスレッシュホルドを超過すると、フィルターは上向きに移動します。
+
+<ul>
+<li>固定ゲイン値が正数の場合: Upトリガーを使用すると、フィルターはセンターラインから固定点へ向けて移動します（トリガー時はブースト）。</li>
+<li>固定ゲイン値が負数の場合: Upトリガーを使用すると、フィルターはトリガーされるまで、フルのマイナスゲインを適用し、トリガー後にセンターライン方向へ移動します。</li>
+</ul></li>
+<li><strong>DOWN:</strong> 信号がスレッシュホルドを超過すると、フィルターは下向きに移動します。
+
+<ul>
+<li>固定ゲイン値が正数の場合: Downトリガーを使用すると、フィルターはセンターラインから固定ブースト値へ向けて移動します（トリガー時はカット）。</li>
+<li>固定ゲイン値が負数の場合: Downトリガーを使用すると、フィルターはセンターラインから固定マイナスゲイン値へ向けて移動します。</li>
+</ul></li>
+</ul>
+
+<h3 id="attack-アタック">Attack（アタック）</h3>
+
+<p>信号がスレッシュホルド値を超過した際、バンドのダイナミックトリガーがどれだけ速く反応するかを調整します。アタック値は値の読み出しをクリックしてドラッグするか、あるいは値をダブルクリックして手動で数値入力を行うことで変更できます。</p>
+
+<h3 id="release-リリース">Release（リリース）</h3>
+
+<p>信号がスレッシュホルド値を下回った際、バンドのダイナミックトリガーがどれだけ時間をかけてフィルターを固定設定に戻るかを調整します。リリース値は値の読み出しをクリックしてドラッグするか、あるいは値をダブルクリックして手動で数値入力を行うことで変更できます。</p>
+
+<h3 id="auto-scale-自動スケール">Auto Scale（自動スケール）</h3>
+
+<p>ここが有効の場合、バンドの周波数に合わせ、アタックとリリースの値の表示スケールが自動的に設定されます。</p>
+
+<h3 id="offset-オフセット">Offset（オフセット）</h3>
+
+<p>該当するバンドに対し、固定ゲインオフセットを設定します。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  イコライザー</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>Ozoneのイコライザーはアナログ型フィルターによる温かみとキャラクターの付与、そしてデジタルリニア位相フィルターによる精緻な周波数の増減の両方を実現します。メインのOzoneプラグインとOzoneアプリケーションでは、EQ及びポストEQの2種類のEQモジュールが使用できます。また、Ozone 8 AdvancedではコンポーネントプラグインとしてEQを使用することもできます。</p>
+
+<p><img src="../images/equalizer/eq-interface.png" alt="eq plugin" /></p>
+
+<h2 id="eqの画面表示">EQの画面表示</h2>
+
+<p>OzoneのEQモジュールを使用する際は、用途に応じて3種類の表示オプションを選択することができます。</p>
+
+<h3 id="スペクトラム画面">スペクトラム画面</h3>
+
+<p><img src="../images/equalizer/eq-spectrum-view.png" alt="spectrum view" /></p>
+
+<p>これはスペクトラム表示エリアが拡大され、バンドのパラメーターの詳細が縮小された画面モードです。バンドのパラメーターは、有効なバンドのEQ操作点を使用することで調整できます。バンドの有効化と無効化は、スペクトラム表示下部の電源ボタンで切り替えることができます。操作点を調節すると、異なる曲線が表示されます。白線は全EQ帯域のコンポジットであり、各バンドの線はそれぞれ別の色で細めに表示されます。</p>
+
+<h3 id="スペクトラム画面でeqバンドのパラメーターを調整するには">スペクトラム画面でEQバンドのパラメーターを調整するには</h3>
+
+<ul>
+<li><strong>周波数:</strong> EQ操作点を左右に動かすと周波数が調整できます。</li>
+<li><strong>ゲイン:</strong> EQ操作点を上下に動かすと周波数が調整できます。</li>
+<li><strong>Q (帯域幅):</strong> バンドの両端にあるハンドルをマウスで動かすことにより、そのEQバンドの帯域幅（Q）を調整することができます。クリックしてドラッグ、あるいはマウスやトラックパッドのスクロール機能でも選択されたバンドの帯域幅の調整を行うことができます。</li>
+<li><strong>フィルター形状:</strong> EQ操作点を右クリックすると、フィルター形状のオプションを含む関連メニューが表示されます。このメニューを開くと、そのとき使用されているフィルター形状がハイライトされた状態で表示されます。メニューの内の別のフィルター形状を選択することで、そのバンドに使用するフィルター形状を変更することができます。フィルター形状の変更が行われる、あるいはここを変更することなくインターフェース内の別の箇所をクリックすると、関連メニューは自動的に閉じます。</li>
+</ul>
+
+<h3 id="全バンド画面">全バンド画面</h3>
+
+<p><img src="../images/equalizer/eq-all-bands-view.png" alt="source spectrum curve overlay" /></p>
+
+<p>この画面では各バンドの基本的なパラメーターの数値の概要が表示されます。各バンドの周波数、ゲイン、Qは以下を行うと調整できます:</p>
+
+<ul>
+<li>表示された数値をクリックし（左右または上下に）ドラッグ。</li>
+<li>数値をダブルクリックし、手動で新たに数値を入力。</li>
+</ul>
+
+<h3 id="詳細バンド画面">詳細バンド画面</h3>
+
+<p><img src="../images/equalizer/eq-detailed-view.png" alt="main view" /></p>
+
+<p>この画面では選択されたバンドのタブに関するパラメーターの詳細が表示されます。これがEQ表示のデフォルトとなります。</p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<p>EQモジュールは、多くのパワフルな操作項目を使用して調整します。選択された表示モードによっては、表示されない操作項目もあります。表示モードを変更するか、あるいはスペクトラムエリアにてEQ操作点を使用することで、種々の操作項目にアクセスすることができます。</p>
+
+<h3 id="グローバルフィルターeqモード">グローバルフィルターEQモード</h3>
+
+<p>グローバルEQフィルターのアルゴリズムが変更できます。EQモードの選択肢は以下の2種類です:</p>
+
+<ul>
+<li><strong>ANALOG（アナログ）:</strong> 旧式のアナログEQを模しており、音像に彩りが付与されます。このモードではIIR（無限インパルス応答）フィルターを利用します。</li>
+<li><strong>DIGITAL（デジタル）:</strong> 精緻で分析的な音像のEQモデルです。このモードではFIR（有限インパルス応答）フィルターを利用します。</li>
+</ul>
+
+<p><strong>Digitalモードを選択すると、更に2つのパラメーターが追加されます:</strong></p>
+
+<ul>
+<li><strong>PHASE（位相）:</strong> イコライザーをDigitalモードで使用すると、各EQバンドの位相スライダーが使用できるようになります。位相スライダーが0%に設定されていると、そのバンドはリニア位相特性になります。 位相スライダーが100%にセットされていると、そのバンドは最小位相特性になります。</li>
+<li><strong>SURGICAL MODE（整形モード）:</strong> Surgical Modeを有効にすると、フィルター曲線は音楽的ではなく、精緻な整形に適した形状になります。</li>
+</ul>
+
+<h3 id="フィルター形状">フィルター形状</h3>
+
+<p>Analog及びDigitalモードでは、両方とも8つのEQ操作点のタイプまたは形状を選定することができます。各操作点は以下のEQフィルター形状に設定できます:</p>
+
+<ul>
+<li>ローパスフィルターとハイパスフィルターはバタワースフィルターです。パスバンドまたはストップバンドで細波音や共鳴音が生じることなく最大限フラットになるよう最適化されています。</li>
+<li>ブリックウォールのローパスフィルターとハイパスフィルターは楕円フィルターです。急なスロープでパスバンドまたはストップバンドで生じる細波音が極小になるよう最適化されています。</li>
+<li>有名なプルテックアナログイコライザーをモデルに作られたビンテージタイプのフィルターは、単一の操作点で複雑なスロープを描くことができます。</li>
+</ul>
+
+<h3 id="frequency-gain-q-周波数-ゲイン-帯域幅-q">Frequency/Gain/Q（周波数/ゲイン/帯域幅(Q)）</h3>
+
+<p>詳細バンド画面モードでは対応したスライダーを使用するか、あるいは数値をダブルクリックして手動で別の数値を入力することで、選択されたバンドの周波数、ゲイン、帯域幅を個別に調整することができます。スペクトラム画面では有効化されたバンドの周波数、ゲイン及びQを前述の方法で調整することができます。</p>
+
+<h2 id="マッチングeq">マッチングEQ</h2>
+
+<p>マッチングEQは、精密なマッチングを実現する8,000バンド以上の周波数を使用するリニア位相EQです。</p>
+
+<p><img src="../images/equalizer/matching.png" alt="matching eq" /></p>
+
+<h3 id="ワークフロー">ワークフロー</h3>
+
+<p>マッチングEQパネルへアクセスするには、EQを詳細バンド画面にし、Analog/Digitalボタン直下にある<strong>Matching</strong>ボタンをクリックします。</p>
+
+<h4 id="ソース曲線のキャプチャ">ソース曲線のキャプチャ</h4>
+
+<p>ソース曲線の下にあるCaptureボタンを押し、作業しているトラックを再生すると、スナップショットの取得が始まります。Stopボタンを押し、キャプチャを停止すると、曲線の形状がフリーズします。</p>
+
+<p><img src="../images/equalizer/source-curve-capture.png" alt="source curve" /></p>
+
+<p>ソース曲線はキャプチャされると、EQスペクトラムアリア内に黄色で表示されます。</p>
+
+<p><img src="../images/equalizer/source-curve-on-spectrum.png" alt="source spectrum curve overlay" /></p>
+
+<p>キャプチャされた曲線に満足が行かない場合は、Clearボタンを押してソース曲線をクリアし、もう一度キャプチャの作業をやり直してください。</p>
+
+<h4 id="ターゲット曲線のキャプチャと選択">ターゲット曲線のキャプチャと選択</h4>
+
+<p>曲線にマッチさせたいトラックがある場合は、“Custom”オプションを選択してください。その上でトラックをインポートし、オーディオがOzoneを通過することを確認してください。アプリケーションでは、ターゲットのトラックをセッションにインポートし、そのトラックのタブが選択された状態で曲線をキャプチャすることもできます。Ozoneアプリケーションでは全トラックが同じターゲット曲線を共有します。カスタムターゲット曲線は、スペクトラムエリアに青で表示されます。</p>
+
+<p><img src="../images/equalizer/target-curve.png" alt="target curve overlay" /></p>
+
+<p>自身でリファレンスをキャプチャする以外にも、“Pink Noise”または“6 dB Guide”のプリセットターゲット曲線を選択することができます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">Pink Noise及び6dB Guideターゲット曲線</p>
+<p><ul>
+<li>これらのスナップショットには、多くの商用録音に見られる高周波数ディケイが組み込まれております。これらはガイドとして自身のスペクトラムと比較してお使いください。</li>
+<li>一般的に、多くの録音は6 dB曲線が採用されており、より新しい録音にはピンクノイズスペクトラムが使用される傾向にあります。</li>
+<li>これらガイドの位置や全体的なレベルを調整することができませんので、これらは自身のスペクトラムの描写曲線として使ってください。これは（ミックスの絶対的なレベルではなく）音的なバランスを定義するスペクトラムの曲線となります。</li>
+</ul>
+</p>
+</div>
+
+<h4 id="マッチ曲線の設定">マッチ曲線の設定</h4>
+
+<p>ソースとターゲット曲線を設定した後に、Matchingボタン左にある電源ボタンを押すと、EQマッチ曲線を有効にすることができます。マッチ曲線は白い曲線で表示されます。この曲線はAmount（量）とSmoothing（円滑化）設定により更新されます。</p>
+
+<p><img src="../images/equalizer/matched-curve.png" alt="matched curve overlay" /></p>
+
+<div class="admonition note">
+<p class="admonition-title">マッチングEQの注</p>
+<p><ul>
+<li>マッチ曲線が100%になり、スムーシングが0%になると、“リファレンス”のミックスに対して、技術的には一番近い状態となりますが、実際的には最も効果的なコンビネーションであるとは言えないでしょう。この設定では、全てのピークや底を完全にキャプチャしようとしますので、極端に不自然なEQという結果になります。</li>
+<li>我々はマッチ曲線を50%以下に留めておくことを推奨します。マッチングEQ曲線のピークと底の間隔が狭い場合は、スムーシングを増加させ、より平滑な曲線にしてください。ここでの目的は、あくまでもリファレンスの全体的な音的形状をキャプチャすることであり、完全なるマッチングを行うことではありません。</li>
+<li>AnalogまたはDigitalボタンをクリックするとメイン画面へ戻ります。その後も、更なるイコライゼーションの調節のため、引き続きEQ操作点は機能します。この作業は必ずしも必要なわけではありませんが、状況に応じて手動で微調整を施してください。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="m-s及びl-rモード">M/S及びL/Rモード</h2>
+
+<p>イコライザーにはステレオ、Mid/Side及びLeft/Rightの処理モードがあります。詳細は<a href="../common-module-controls/index.html#mid-side-m-s-mode">モジュールの標準的な操作項目の処理モード</a>のセクションをご参照ください。</p>
+
+<h2 id="メーター尺度">メーター尺度</h2>
+
+<ul>
+<li><strong>EQ GAIN SCALE（EQゲインスケール）:</strong> EQ曲線のゲインスケールはスペクトラム画面右側に表示されます。</li>
+<li><strong>SPECTRUM MAGNITUDE SCALE（スペクトラム振幅スケール）:</strong> スペクトラム振幅（dB）スケールはスペクトラム画面左側に表示されます。</li>
+<li><strong>SPECTRUM FREQUENCY SCALE（スペクトラム周波数スケール）:</strong>スペクトラム及びEQ曲線の周波数スケールはスペクトラム画面上部に表示されます。
+<br /></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><ul>
+<li>設計により、EQとスペクトラムのスケールは異なります。これが同一だと、使用に能うほど十分にスペクトラムが見えなくなります。グレーで表示される周波数スケールは、EQとスペクトラムの両方に適用されます。</li>
+<li>Spectrum Optionsタブにアクセスするか、あるいはスペクトラムを右クリックして関連メニューから“Spectrum Options”を選択すると、スペクトラムのオプションを設定することができます。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="alt-solo-alt-ソロ機能">Alt-Solo（Alt-ソロ機能）</h2>
+
+<p><img src="../images/equalizer/alt-solo.png" alt="alt solo" /></p>
+
+<p>Altキーを押しながらスペクトラムをクリックすると、“オーディオ虫眼鏡的“機能を使用することができ、EQの設定に影響を与えることなく、マウスカーソル下の周波数のみの試聴が可能となります。これは、EQバンドを変更せずにミックス内の周波数の位置がピンポイントで特定できる便利な機能です。マウスのボタンを放すと、通常のEQのサウンドに戻ります。EQオプション画面の “Alt-Solo Filter Q”にてデフォルトの帯域幅を設定することができます。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  エキサイター</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>OzoneのExciterは最大4バンドでサチュレーションを構成することができます。バンド毎のエキサイターモードにより、音楽に加えるサチュレーションの具合を完全にカスタマイズすることができます。</p>
+
+<p><img src="../images/exciter/exciter-interface.png" alt="exciter" /></p>
+
+<h2 id="バンド毎の操作項目">バンド毎の操作項目</h2>
+
+<p>各バンドには以下の操作項目があります。</p>
+
+<h3 id="amount-分量">Amount（分量）</h3>
+
+<p>周波数バンドにかかるハーモニクス励起の度合いを調節します。</p>
+
+<h3 id="mix-ミックス">Mix（ミックス）</h3>
+
+<p>元の信号と処理された信号の配分を調整します。</p>
+
+<h3 id="modes-モード">Modes（モード）</h3>
+
+<p>エキサイターにはそれぞれのバンドに複数のモードが搭載されています。これらのモードは、各バンド個別にAmountとMixスライダーの上にあるドロップダウンメニューから選択できます。</p>
+
+<p>各モードにはそれぞれ固有の音的特性があります:</p>
+
+<ul>
+<li><strong>ANALOG:</strong> アナログモードはトランジスタ型の奇数ハーモニクスをエミュレートした音であり、オーディオに活力を与えます。</li>
+<li><strong>WARM:</strong> ウォームモードは速く衰退する偶数ハーモニクスのみを生成します。</li>
+<li><strong>RETRO:</strong> レトロモードはトランジスタの特性を基にしており、緩やかに衰退する奇数ハーモニクスを生成します。</li>
+<li><strong>TAPE:</strong> テープモードは明るい音色が特徴です。これはアナログテープのサチュレーションで見られる奇数ハーモニクスに起因します。</li>
+<li><strong>TUBE:</strong> チューブモードは、ダイナミックまたはトランジエントのアタックを強調するクリアなトーン的励起が特徴です。</li>
+<li><strong>TRIODE:</strong> 三極真空管モードはリアルなアナログの温かみを再現すべく、真空管回路を正確にモデリングしたモードです。このモードではデュアル三極真空管モードの半分の真空管回路を使用しているため、微妙なオーバードライブが実現します。</li>
+<li><strong>DUAL TRIODE:</strong> デュアル三極真空管モードは真空管回路をフルに使用しており、温かい音色で顕著なオーバードライブを発生させます。</li>
+</ul>
+
+<h2 id="全体的な操作項目">全体的な操作項目</h2>
+
+<h3 id="oversampling-オーバーサンプリング">Oversampling（オーバーサンプリング）</h3>
+
+<p>このオプションはエキサイターの全帯域に対し有効です。</p>
+
+<p>オーバーサンプリングはより多くの処理パワーを使用することでエキサイターモジュールの品質を向上させるモードであり、適用されるディストーションのサンプルレートを上げることでエイリアスを軽減します。</p>
+
+<h3 id="link-bands-帯域リンク">Link Bands（帯域リンク）</h3>
+
+<p>ここが有効化されると、エキサイターのMix、Amount及びModeの全操作がリンクされます。リンクされた状態で一つのバンドのモードを変更すると、全バンドのモードが変更されます。</p>
+
+<p>リンク後に特定のバンドでAmountまたはMixの操作をすると、他のバンドも同じ分量だけ変化します。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="post-filter-ポストフィルター">Post Filter（ポストフィルター）</h3>
+
+<p><img src="../images/exciter/exciter-post-filter.png" alt="exciter post filter" /></p>
+
+<p>ポストフィルターはエキサイターモジュールのウェット（処理済み）出力に作用するハイシェルフフィルターを調整する項目です。これにより、エキサイター処理により発生した高周波数に関する問題を解決することができます。
+また、ポストフィルター画面には、全周波数スペクトラムを通じた信号に適用されるサチュレーションのヒストグラムが表示されます。エキサイターにより最も影響を受けている周波数スペクトラムは明るい白で表示され、エキサイターにより影響を受けていない箇所は色付けされません。ヒストグラム表示はポストフィルター適用後に計算されておりますので、ポストフィルターの値を調整すると、ヒストグラムの表示は更新され、エキサイターモジュールの出力で発生しているサチュレーションが表示されます。</p>
+
+<h3 id="crossover-クロスオーバー">Crossover（クロスオーバー）</h3>
+
+<p><img src="../images/exciter/exc-crossover.png" alt="crossover" /></p>
+
+<p>エキサイターの周波数スペクトラムアナライザーと、クロスオーバーの操作が表示されます。
+Ozoneの標準的なマルチバンドクロスオーバーの操作については、<a href="../common-module-controls/index.html#crossovers">モジュールの標準的な操作項目</a>の章をご覧ください。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  イメージャー</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>Ozoneのイメージャーモジュールは、マルチバンドのステレオイメージング機能によりミックスのステレオ幅の調節ができます。Ozone 8 Advancedではイメージャーをコンポーネントプラグインとして使用することもできます。</p>
+
+<p><img src="../images/imager/imager-module.png" alt="Imager module" /></p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<h3 id="band-width-帯域幅">Band Width（帯域幅）</h3>
+
+<p>各バンドに対しイメージャーにより適用されるステレオ幅の分量を調整します。数値が高い程ステレオ幅が広がり、マイナス値になるとより幅が狭まります（-100は実質的にモノとなります）。</p>
+
+<h3 id="enable-stereoize-ステレオ化の有効">Enable Stereoize（ステレオ化の有効）</h3>
+
+<p>ステレオ幅の狭い録音素材に、自然な音でステレオ幅を広げる効果を持つステレオ成分を付加します。</p>
+
+<h3 id="stereoize-amount-ステレオ化分量">Stereoize Amount（ステレオ化分量）</h3>
+
+<p>ステレオ幅スライダーと組み合わせてこの分量を調節することで、ステレオ効果の性質を操作することができます。このステレオ化効果は完全にモノ互換となっておりますので、オーディオにステレオ幅を持たせたとしても、不快な人口音を付加することなくモノとして再生することができます。</p>
+
+<h3 id="link-bands-帯域リンク">Link Bands（帯域リンク）</h3>
+
+<p>ここが有効化されると、全バンドに対するWidthの操作がリンクされます。リンク後に特定のバンドでWidthの操作をすると、他のバンドも同じ分量だけ変化します。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h2 id="vectorscope-ベクトロスコープ">Vectorscope（ベクトロスコープ）</h2>
+
+<p>ベクトロスコープで信号のステレオイメージを描写します。ここではイメージャーの信号チェーンにおける位置に関わらず、Ozoneの最終的な出力がモニターされます。このモジュールでステレオ音像の間隔を確認することができ、設定次第でその幅を狭めたり広げたりできます。ベクトロスコープには3種類の表示オプションがあり、これはスコープ下のタブで切り替えることができます:</p>
+
+<h4 id="polar-sample-vectorscope-両極サンプルベクトロスコープ">Polar Sample Vectorscope（両極サンプルベクトロスコープ）</h4>
+
+<p><img src="../images/imager/polar-sample.png" alt="Imager Lissajous vectorscope" /></p>
+
+<p>Polar Sample Vectorscopeはサンプル毎にドットをプロットしますが、極座標を基にした表示方法を採りますので、入力信号のステレオイメージをハイライトする上でより便利な機能です。45度以内に表示されるパターンは正相にあることを意味しますが、その45度線から外れたパターンは位相ずれを意味します。Polar Sample Vectorscopeでは履歴として表示される過去の点がゆっくりとフェードアウトします。直近の数秒間のオーディオ情報が表示され、データ点は徐々にフェードアウトして行きます。メーター上をリクリックすると、画面表示をリセットすることができます。</p>
+
+<h4 id="polar-level-vectorscope-両極レベルベクトロスコープ">Polar Level Vectorscope（両極レベルベクトロスコープ）</h4>
+
+<p><img src="../images/imager/polar-level.png" alt="Imager Polar Level vectorscope" /></p>
+
+<p>録音素材のステレオ熱量はPolar Level Vectorscopeで明確に表示されます。ここでは極座標に表示される点は平均サンプルとなります。光線の長さは振幅度合いを示しており、光線の角度でステレオ位置を表します。45度以内に表示される光線は同位相にあることを意味しますが、その45度線から外れたパターンは異相を意味します。Polar Level Vectorscopeでは時間に対し、プロットされた層が緩やかに縮まることで経緯が表示されます。層はベクトロスコープ中央に向かって縮まり、外郭部分をリアルタイム分析のためのスペースをとして確保します。</p>
+
+<h4 id="lissajous-vectorscope-リサージュベクトロスコープ">Lissajous Vectorscope（リサージュベクトロスコープ）</h4>
+
+<p><img src="../images/imager/lissajous.png" alt="Imager Lissajous vectorscope" /></p>
+
+<p>Polar Sample Vectorscope同様にLissajous Vectorscopeもサンプル毎に点をプロットしますが、全体が伝統的なオシロスコープのような表示画面となります。通常、Lissajous Vectorscopeは横ではなく縦に長いランダムのパターンでステレオ録音素材を表示します。 垂直方向の広がりは左右のチャンネルが似ていることを意味します（垂直の一本線で表示されるモノ信号に近いことを意味します）。水平方向のパターンは、2つのチャンネルに大きな違いがあることを意味しますので、モノ信号との互換性上の問題が発生する可能性があります。</p>
+
+<h4 id="correlation-meter-相関メーター">Correlation Meter（相関メーター）</h4>
+
+<p><img src="../images/imager/correlation-meter.png" alt="Imager Correlation Meter" /></p>
+
+<p>相関メーターは左右のチャンネルの類似性（相関性）を+1/0/-1の垂直メーターで明示します。左右のチャンネルの類似性が高い程、メーターは最上部に近づきます。このため、左右のチャンネルが全く同じという極端な例では、相関性は+1となりメーターは一番上に振り切られた状態となります。左右のチャンネルの類似性が低いとメーターは下方へ振れます。例えば左右のチャンネルが完全に逆相という極端な例では、相関性は-1となり、メーターは底部まで振り切れます。</p>
+
+<h4 id="クリッピング">クリッピング</h4>
+
+<ul>
+<li>ベクトロスコープではクリップしたサンプルは赤で表示されます。</li>
+<li>ベクトロスコープをダブルクリックするとメーター表示をクリアすることができます。</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">位相相関メーターに関する注</p>
+<p><ul>
+<li>一般的には、このメーターの値は0から+1の間に収まります。下方に表示される場合、必ずしも問題というわけではありませんが、モノ互換に問題が生じる可能性が指摘できます。</li>
+<li>オーディオのマルチバンドステレオ幅を広げると、左右のチャンネル間が広がり、より類似性が薄まるため、位相相関メーターはより下半分へ近づく傾向にあります。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="ミニメーター表示">ミニメーター表示</h3>
+
+<p>イメージャーの操作エリア上部にミニメーター表示があります。</p>
+
+<h4 id="stereo-width-spectrum-ステレオ幅スペクトラム表示">Stereo Width Spectrum（ステレオ幅スペクトラム表示）</h4>
+
+<p><img src="../images/imager/hybrid-spectrum.png" alt="width spectrum" /></p>
+
+<p>信号のステレオ幅がミラーリングされたハイブリッドのスペクトラム表示です。このメーターが使用できるのはイメージャーのみです。</p>
+
+<h4 id="correlation-trace-相関性トレース表示">Correlation Trace（相関性トレース表示）</h4>
+
+<p><img src="../images/imager/correlation-trace.png" alt="width spectrum" /></p>
+
+<p>この表示オプションでは、スクロール形式で、画面に入力信号のステレオ相関性がリアルタイム表示されます。プラス数値（同位相）は水色で、マイナス数値（異相）は赤で表示されます。</p>
+
+<h4 id="crossover-クロスオーバー">Crossover（クロスオーバー）</h4>
+
+<p><img src="../images/imager/crossover.png" alt="crossover spectrum" /></p>
+
+<p>この画面では、スペクトラルアナライザーとマルチバンドクロスオーバーの操作項目が表示されます。詳細は<a href="../common-module-controls/index.html">モジュールの標準的な操作項目</a>の章をご参照ください。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  マキシマイザー</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>好評を博すOzoneのIRC（インテリジェント・リリース・コントロール）を使用することで、ダイナミクスやクリアさを犠牲にすることなく、ミックス全体のレベルをブーストすることができます。マキシマイザーはミックスの全帯域に適用されますので、マルチバンドエフェクトではありません。</p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<p><img src="../images/maximizer/max-interface.png" alt="Maximizer interface" /></p>
+
+<h3 id="モード"><strong>モード</strong></h3>
+
+<p>Maximizerには、次のインテリジェントリリースコントロール（IRC）モードが含まれています。</p>
+
+<ul>
+<li><a href="index.html#irc-ll">IRC LL</a></li>
+<li><a href="index.html#irc-i">IRC I</a></li>
+<li><a href="index.html#irc-ii">IRC II</a></li>
+<li><a href="index.html#irc-iii">IRC III</a></li>
+<li><a href="index.html#irc-iv">IRC IV</a></li>
+</ul>
+
+<h3 id="irc-ll">IRC LL</h3>
+
+<p>IRC Iの低レーテンシー版として、インテリジェントな音量極大化を行います。</p>
+
+<h3 id="irc-i">IRC I</h3>
+
+<p>このモードは信号に対するインテリジェントなデジタル音量極大化を行います。これは、ソース素材を分析した上で、心理音響的に心地良いリミッティングを適用し、トランジエントには迅速に反応し（ポンピング防止のため）、一定のベーストーンには（ディストーション防止のため）緩やかに反応することで、実現します。</p>
+
+<h3 id="irc-ii">IRC II</h3>
+
+<p>上記のインテリジェントモードと似ておりますが、このモードは更にトランジエントを保存するために最適化されているため、アグレッシブなリミッティングを実行したとしても、出力信号はシャープでクリアな音像となります。</p>
+
+<h3 id="irc-iii">IRC III</h3>
+
+<p>これは、入力信号に対するリミッティングの速度を、人間の聴覚でも聴き取れるレベルのディストーションが発生する前にインテリジェントに定義する進化した心理音響モデルを使用することにより、最もアグレッシブなリミッティングを可能にしたモードです。</p>
+
+<p>IRC IIIモードはCPU負荷が非常に重く、高いレーテンシーが発生し、特にサンプルレートが高い場合において顕著です。サンプルレートが48kHz以上の場合は、このインテリジェントIIIモードのリアルタイムでの使用は現実的ではないかもしれません。</p>
+
+<p>各IRCモードにはインテリジェントなリリースコントロール機能（オーディオ素材によりリリース時間を自動的に設定）が搭載されます。しかしながら、IRC IIIモードでマキシマイザーを使用する際は、以下の4つのスタイルを使い分け、リリース動作をより細かく設定することで、リミッターの最終的な音の品質をより高めることができます。</p>
+
+<h4 id="irc-iiiのスタイル">IRC IIIのスタイル</h4>
+
+<ul>
+<li><strong>CLIPPING</strong>: これはIRC IIIで最もアグレッシブなスタイルであり、ディストーションで僅かにミックスに色付けしたい場合、あるいはクリッピングの最大リスクと引き換えに最大レベルのラウドネスを実現したい場合の選択肢となります。</li>
+<li><strong>CRISP</strong>: この設定は、リミッターのリリース修正をアグレッシブに抑制し、ディストーションをポンピングに優先させます。</li>
+<li><strong>BALANCED</strong>: この設定はリミッターのリリース修正を概して平明な方法で抑制するため、殆ど全ての素材に適しているといえます。</li>
+<li><strong>PUMPING</strong>: これはIRC IIIでは最もアグレッシブでないスタイル設定であり、リミッターのリリース修正を抑制しません。これを選択するとリリース時間が遅くなり易く、ポンピングの発生に結びつくことがあります。これはOzoneバージョン5.01以前で使用されていた“レガシー”設定です。</li>
+</ul>
+
+<h3 id="irc-iv">IRC IV</h3>
+
+<p>これは既存のIRCテクノロジーを基に、スペクトラムを成型することにより更にポンピングとディストーションを軽減させたモードです。信号がスレッシュホルドを超過すると、IRC IVアルゴリズムはそのピークの中で最も顕著な周波数帯をリミッティングします。これにより、異なる信号成分間で発生する混変調を軽減します。</p>
+
+<p>例えばボーカルとドラムに処理を施す場合、このアルゴリズムはドラムのトランジエントのリミッティングに対する分離感度が高くなりつつ、ボーカルに対する影響を最小限に抑えます。リミッティングが不要な場合はスペクトラムがそのまま保たれます。</p>
+
+<p>通常、典型的なマルチバンドリミッターはクロスオーバーの組み合わせで数バンドに分けて処理するに留まりますが、OzoneのIRC IVアルゴリズムは心理音響的に分離された数多くのバンド数を駆使し、あらゆるタイプのオーディオに適応します。</p>
+
+<h4 id="irc-ivスタイル">IRC IVスタイル</h4>
+
+<ul>
+<li><strong>CLASSIC</strong>: この設定はOzoneの旧バージョンから存在する、ミックス全体を程よく促進する昔ながらの響きのするモードですが、今日も多くのプロフェッショナルが使用しています。</li>
+<li><strong>MODERN</strong>: このスタイルもミックスを活き活きとさせる程よい効果をもたらしますが、クラシックスタイルよりもディテールと清澄性に長けています。</li>
+<li><strong>TRANSIENT</strong>: このスタイルは全てのトランジエントをできる限り保持するよう最適化されており、全体的なサウンドにディテールが備わりますので、更なる清澄性を必要とするミックスに恩恵をもたらします。</li>
+</ul>
+
+<h3 id="threshold-スレッシュホルド"><strong>Threshold（スレッシュホルド）</strong></h3>
+
+<p>どのレベルでリミッティングがトリガーされるかと、出力を最大化するために追加されるゲイン量を決定します。スレッシュホルドの値を、リミッターをトリガーしない0でない数値に設定したとしても、マキシマイザーの出力は増加します。例えば、マキシマイザーの入力レベルが-15 dBでピークを迎え、マキシマイザーのスレッシュホルドが-4dBに設定されている場合、リミッティングは発生しませんが、マキシマイザーの出力は-11dBでピークするようになります。</p>
+
+<h3 id="learn-threshold-スレッシュホルド分析"><strong>Learn Threshold（スレッシュホルド分析）</strong></h3>
+
+<p>ここが有効になっていると、マキシマイザーはスレッシュホルドターゲットの値に入力オーディオを合わせ込むべく、自動的にスレッシュホルドのスライダーを調整します。ターゲットLUFSの数値をダブルクリックすると、LUFSターゲット値を編集することができます。</p>
+
+<p>分析後も、このパラメーターは自動的に無効にはなりません。ターゲット値へ合わせるため、継続的にスレッシュホルドを更新するために使用することができます。</p>
+
+<div class="admonition warning">
+<p class="admonition-title">スレッシュホルド分析機能はラウドネス批准目的での使用には推奨されません</p>
+<p><ul>
+<li>スレッシュホルド分析機能はラウドネス批准のために設計された操作項目ではありません。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="ceiling-シーリング"><strong>Ceiling（シーリング）</strong></h3>
+
+<p>マキシマイザーの出力する最高レベルを設定します。一般的に、ディザー使用時は-0.3 dBが推奨値となりますが、マスタリングされるオーディオを.mp3または.aacへ変換する場合は、将来的なクリッピングを防止すべく、更に低いレベル(-0.6から-0.8)が推奨されます。</p>
+
+<h3 id="threshold-ceiling-link-スレッシュホルドとシーリングをリンク"><strong>Threshold &amp; Ceiling Link（スレッシュホルドとシーリングをリンク）</strong></h3>
+
+<p>有効にするとスレッシュホルドとシーリングの操作がリンクします。片方の操作をすると、もう片方も同じ分量だけ変化します。</p>
+
+<h3 id="true-peak-真正ピーク"><strong>True Peak（真正ピーク）</strong></h3>
+
+<p>各デジタルサンプルのレベルのみならず、D/A変換後のアナログ信号のレベルも鑑みたリミッティングを行う場合は、真正ピークリミッティング機能を有効化します。アナログ信号のピーク値とデジタル信号のピーク値とでは、一致する値であっても実際は3dB以上アナログの方が高い場合がありますので、時としてこの機能が必要となります。</p>
+
+<div class="admonition note">
+<p class="admonition-title">真正ピークリミッティングとCPU使用率</p>
+<p>この機能を使用すると僅かながらCPU使用率が上がりますが、ミックスのレベルが高めに設定されている場合は、D/A変換の段階でディストーションが発生しないよう、この機能を有効化する方が確実と言えます。</p>
+</div>
+
+<h3 id="character-処理性質"><strong>Character（処理性質）</strong></h3>
+
+<p>キャラクタースライダーにより、マキシマイザー処理の音質に直結する全体的なレスポンス時間を調節します。</p>
+
+<h3 id="stereo-independence-ステレオ独立機能"><strong>Stereo Independence（ステレオ独立機能）</strong></h3>
+
+<p>ステレオ独立機能は以前のバージョンのOzoneのステレオアンリンク機能にあたります。ステレオ独立機能の操作（TransientとSustain）はデフォルトで0%に設定されており、以前のステレオアンリンク機能のデフォルト設定と同じ状態になっております。</p>
+
+<p>チャンネルを個別にリミッティングする場合（両スライダーとも100%に設定）、マキシマイザーの出力音量を上げることは可能ですが、これを行うとステレオ野が狭まる可能性があります。ステレオアンリンク時の操作における狭窄効果を軽減するため、この機能ではフェーダーが2本に分離されています。</p>
+
+<p>0でない数値に設定されていると、個別のチャンネルレベルと全体的なステレオ野により生成されたレベルエンベロープに応じて、トランジエントとサステイン成分が別々にリミッティングされる処理が適用されます。</p>
+
+<ul>
+<li><strong>Transient（トランジエント）:</strong> チャンネルを通じ、トランジエントな素材に対しリミッターが如何に反応するかを調整します。</li>
+<li><strong>Sustain（サステイン）:</strong> トラックを通じ、響きの長い素材に対しリミッターが如何に反応するかを調整します。</li>
+<li><strong>Link（リンク）:</strong> トランジエントとサステインのスライダーをリンクさせます。</li>
+</ul>
+
+<h3 id="transient-emphasis-トランジエント強調機能"><strong>Transient Emphasis（トランジエント強調機能）</strong></h3>
+
+<p>Transient Emphasisの電源ボタンをクリックするとトランジエント強調機能の調整が有効になります。 Amountの操作を行うと、リミッティング前のトランジエントの成形の微調整を行うことができます。この機能は、ラウドネスを最適化しつつドラムのような音の鋭さを保持する際に便利です。</p>
+
+<div class="admonition note">
+<p class="admonition-title">ヒント</p>
+<p><ul>
+<li>ここの数値が高い程、リミッティング処理後のトランジエントが際立ちます。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="スレッシュホルドメーター"><strong>スレッシュホルドメーター</strong></h3>
+
+<p><img src="../images/maximizer/max-threshold.png" alt="Maximizer threshold meter" /></p>
+
+<p>スレッシュホルドメーターは、レベルメーター上で発生しているゲインリダクションの量を表示します。外側の2本のメーターが入力信号を示し、ゲインリダクションが発生すると、中央のメーターに赤でその分量が表示されます。</p>
+
+<h3 id="ミニメーター画面"><strong>ミニメーター画面</strong></h3>
+
+<p>マキシマイザーには操作画面上部に以下のミニメーター画面があります。</p>
+
+<h3 id="gain-reduction-trace-ゲイン削減トレース表示">Gain Reduction Trace（ゲイン削減トレース表示）</h3>
+
+<p><img src="../images/maximizer/max-gr-trace.png" alt="gain reduction" /></p>
+
+<p>この画面では、入力信号の波形にゲイン削減の分量がリアルタイムでスーパーインポーズされた曲線が表示されるスクロールメーターが表示されます。ゲイン削減トレース表示はアタックとリリースを正しく設定し、ゲイン削減のエンベロープをモニターする上での一助となります。</p>
+
+<h3 id="spectrum-analyzer-スペクトラムアナライザー">Spectrum Analyzer（スペクトラムアナライザー）</h3>
+
+<p><img src="../images/maximizer/max-spectrum.png" alt="spectrum" /></p>
+
+<p>Ozoneの出力のスペクトラムがリアルタイムで表示されます。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  スペクトラル成形 [ADV]</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>iZotopeのSpectral Shaper技術を使用したスペクトラル成形は、全スペクトラムの中で発生する特定の周波数による問題を高い解像度で処理する機能です。構成可能な時定数、音質調整、そして可変フルスペクトラムアクションリージョンが搭載されたスペクトラル成形は、Ozone 8 Advancedで追加された完璧なる新機能です。</p>
+
+<h2 id="操作項目">操作項目</h2>
+
+
+
+<figure >
+    
+        <img src="../images/spectral-shaper.png" alt="Spectral Shaper Interface" />
+    
+    
+</figure>
+
+
+<h3 id="action-region-cutoffs-アクションリージョンのカットオフ">Action Region Cutoffs（アクションリージョンのカットオフ）</h3>
+
+<p>スペクトラル成形のアクションリージョンは、ミニスペクトラムメーター画面のカットオフハンドルで調整します。カットオフハンドルは、以下の何れかの方法で調節することが可能です:</p>
+
+<ul>
+<li>カットオフハンドルをクリックし、個別にドラッグ。</li>
+<li>メーター画面内でカットオフハンドル間をクリックし、両方のカットオフハンドルを同時にドラッグ。</li>
+<li>カットオフハンドル上の数値表示をダブルクリックし、テキスト編集ボックスに手動で数値を入力。</li>
+</ul>
+
+<h3 id="action-region-solo-アクションリージョンのソロ">Action Region Solo（アクションリージョンのソロ）</h3>
+
+<p>スペクトラル成形のアクションリージョンをソロにします。このソロは、スペクトラル成形の処理が適用する前に発生します。</p>
+
+<h3 id="mode-モード">Mode（モード）</h3>
+
+<p>スペクトラル成形に適用されるリダクションの強度を設定します。</p>
+
+<ul>
+<li>モードの選択肢:
+
+<ul>
+<li>Light（軽）</li>
+<li>Medium（中）</li>
+<li>Heavy（重）</li>
+</ul></li>
+</ul>
+
+<h3 id="threshold-スレッシュホルド">Threshold（スレッシュホルド）</h3>
+
+<p>アクションリージョンに対しスペクトラルゲイン削減が適用されるレベルを設定します。</p>
+
+<h3 id="listen-試聴">Listen（試聴）</h3>
+
+<p>スペクトラル成形の結果、ゲイン削減が行われオーディオをソロにします。</p>
+
+<h3 id="tone-トーン">Tone（トーン）</h3>
+
+<p>スペクトラル成形処理のスペクトラル傾斜を操作します。傾斜が正数の場合、全体的に明るいスペクトラル性質となり、負数の場合、全体的に暗いスペクトラル性質となります。</p>
+
+<h3 id="attack-アタック">Attack（アタック）</h3>
+
+<p>信号がスレッシュホルドを超過した後、スペクトラル成形がゲイン削減を始めるまでの時間を設定します。</p>
+
+<h3 id="release-リリース">Release（リリース）</h3>
+
+<p>信号がスレッシュホルドを下回った後、スペクトラル成形がゲイン削減処理を終えるまでの時間を設定します。</p>
+
+<h2 id="mid-sideプロセッシング">Mid/Sideプロセッシング</h2>
+
+<p>スペクトラル成形にはステレオ及びMid/Sideの処理モードがあります。詳細は<a href="../common-module-controls/index.html#module-channel-processing-modes">モジュールの標準的な操作項目</a>の処理モードのセクションをご参照ください。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="threshold-input-スレッシュホルド入力"><strong>Threshold Input（スレッシュホルド入力）</strong></h3>
+
+<p>アクションリージョンに含まれる全バンドの最大レベルを表示します。</p>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><ul>
+<li>スペクトラル成形のスレッシュホルド入力メーターは、マキシマイザーやビンテージリミッターモジュールのスレッシュホルド入力メーターとは異なる情報が表示されます。マキシマイザーやビンテージリミッターでは、スレッシュホルド入力は全周波数スペクトラムに基づいています。スペクトラル成形では、スレッシュホルド入力は、アクションリージョン内の周波数バンドの最大レベルに基づいています。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="ミニメーター画面"><strong>ミニメーター画面</strong></h3>
+
+<h3 id="action-region-アクションリージョン">Action Region（アクションリージョン）</h3>
+
+<p><img src="../images/spec-action-region.png" alt="action region" /></p>
+
+<p>スペクトラルメーターの上に、リージョンカットオフハンドルとアクションリージョンのソロ操作が表示されます。</p>
+
+<h3 id="gain-reduction-trace-ゲイン削減トレース表示">Gain Reduction Trace（ゲイン削減トレース表示）</h3>
+
+<p><img src="../images/spectral-trace.png" alt="trace" /></p>
+
+<p>この画面では、入力信号の波形にゲイン削減の分量がリアルタイムでスーパーインポーズされた曲線が表示されるスクロールメーターが表示されます。ゲイン削減トレース表示はアタックとリリースを正しく設定し、ゲイン削減のエンベロープをモニターする上での一助となります。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  ビンテージコンプレッサー [ADV]</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>ビンテージコンプレッサーは、これまで存在したことのない、正確にアナログをエミュレートしたコンプレッサーであると言えます。我々はビンテージアナログコンプレッサーの持つ最高の要素を掛け合わせてこのアルゴリズムを作り上げました。</p>
+
+<p>ビンテージコンプレッサーはフィードバックコンプレッサーです。通常のコンプレッサーは信号レベルを検知し、信号がスレッシュホルドを超えるとゲインを減退させます。これに対し、フィードバックコンプレッサーは、コンプレッサーの入力ではなく出力でレベルの検知を行います。この設計は古いアナログのコンプレッサーでは一般的でしたが、先行予測型トポロジーを用いるデジタルのコンプレッサーでは一般的ではありません。フィードバック圧縮は、アナログ回路では自然ですが、デジタル的に実行するのは困難がつきまといます。フィードバックにより、コンプレッサーの出力は即座にそれ自体に依存することになり、これはコンピューターにとって必ずしも好ましいことではありません。我々のアルゴリズムは洗練された技術のもと、この問題を解決し、フィードバックループ内の擬制のディレイを回避することで、この上なく正確なアナログエミュレーションを実現しました。</p>
+
+<p>コンプレッサーの音像ではアタックとリリースの衝撃が重要な位置を占めます。リリースはプログラム依存であるため、トランジエントのリリース時間は、一定時間持続する圧縮に比べると格段に速くなりますので、ポンピングとディストーションの軽減に繋がります。更に、フィードバック圧縮のユニークな点は、発生する圧縮の量に応じてアタックとリリース時間が変化するところです。</p>
+
+<p>このアルゴリズムには、フィードバックループ内に配された多機能検知フィルターが内包されます。これは、レベル検知機を通過し、コンプレッサーをトリガーする信号のコンポーネントを変化させる信号をフィルターする機能です。コンプレッサーによっては、ハイパスフィルター、またはハイシェルフブーストでポンピングの軽減を行うものもあります。また、高周波数帯での広域ブーストでコンプレッサーの高周波数成分をドライブするコンプレッサーもあります。Ozoneのビンテージコンプレッサーはこれら全てのフィルターを併せ持ったコンプレッサーです。</p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<p><img src="../images/vcomp-trace.png" alt="vcomp" /></p>
+
+<h3 id="threshold-スレッシュホルド">Threshold（スレッシュホルド）</h3>
+
+<p>コンプレッサーのスレッシュホルド値を調整し、ダイナミクス処理の発生するポイントを設定します。モードによっては膝値があるため、このポイントの下方でも柔らかい圧縮が発生することがあります。</p>
+
+<h3 id="ratio-比率">Ratio（比率）</h3>
+
+<p>信号がスレッシュホルドを通過した際に適用される減衰の量を設定します。比率が高い程、極度の圧縮がかかります。</p>
+
+<h3 id="attack-release-アタックとリリース">Attack &amp; Release（アタックとリリース）</h3>
+
+<p>アタックとリリースで、ビンテージプロセッサーがスレッシュホルドを超えたオーディオに対し、如何に迅速に反応するかを調整します。</p>
+
+<ul>
+<li><strong>ATTACK:</strong> アタックでビンテージプロセッサーがスレッシュホルド超過時に如何に迅速に反応するかを調節します。</li>
+<li><strong>RELEASE:</strong> リリースは、信号がスレッシュホルドを下回った際、ビンテージプロセッサーが如何に迅速に通常レベルに戻るかを定義します。この操作項目ではトランジエントのリリース時間を設定します。継続的圧縮では、リリース時間は著しく長くなります。</li>
+</ul>
+
+<h3 id="モード">モード</h3>
+
+<p>モードセレクターでビンテージコンプレッサーの信号依存型内部衝撃を調整し、全体的な音像の性質を好みの状態に仕立て上げます。ビンテージコンプレッサーには以下のモードがあります:</p>
+
+<ul>
+<li><strong>SHARP（シャープ）:</strong> 明確なダイナミクスがトランジエントを強調しつつ信号のボディを制御して保ちます。</li>
+<li><strong>BALANCED（バランス）:</strong> 信号のボディのダイナミクス保持と全体的な増進の間で信号依存のバランスを提供します。</li>
+<li><strong>SMOOTH（スムース）:</strong> その名称に相応しく、トランジエントとダイナミクスを平滑にしつつ、その他の信号を増進させることにより、分厚く満たされた音像を実現します。</li>
+</ul>
+
+<h3 id="gain-ゲイン">Gain（ゲイン）</h3>
+
+<p>ビンテージコンプレッサーモジュールの出力ゲインを調整します。これは圧縮後のレベル減少を補う際などに有益です。</p>
+
+<h3 id="auto-gain-自動ゲイン">Auto Gain（自動ゲイン）</h3>
+
+<p>Autoボタンをクリックすると、自動ゲインコントロールがコンプレッサーの各クロスオーバーバンドの入出力のRMSレベルを算出し、出力信号に然るべきゲインを適用して差異を補正します。</p>
+
+<p>これにより、自動的にオーディオのレベルが未処理の状態のオーディオと同等になるため、スマート“埋め合わせゲイン”コントロールとしての役割をミックスの中で果たすことになります。これは、モジュールの異なる設定を、聴官上のゲインを保ったまま比較する際にも便利な機能です。</p>
+
+<h2 id="mid-sideプロセッシング">Mid/Sideプロセッシング</h2>
+
+<p>ビンテージコンプレッサーにはステレオ及びMid/Sideの処理モードがあります。詳細は<a href="../common-module-controls/index.html#module-channel-processing-modes">モジュールの標準的な操作項目</a>の処理モードのセクションをご参照ください。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="スレッシュホルドメーター">スレッシュホルドメーター</h3>
+
+<p><img src="../images/vcomp-threshold.png" alt="vintage comp threshold" /></p>
+
+<p>スレッシュホルドメーターには、モジュールの入力レベルと、モジュール処理によるゲイン削減が並べて表示されます。スレッシュホルドメーター画面で左右一番外側のメーターは入力オーディオレベルを表しており、入力メーターの間にある2本のメーターは適用されたゲイン削減量を表します。</p>
+
+<h3 id="ミニメーター表示">ミニメーター表示</h3>
+
+<h3 id="detection-filter-検知フィルター">Detection Filter（検知フィルター）</h3>
+
+<p><img src="../images/vcomp-det-filter.png" alt="vcomp det filter" /></p>
+
+<p>この画面では、ビンテージコンプレッサーが使用する検知回路の周波数特性を特定することができますので、周波数帯に応じた感度の高低を設定することが可能です。検知フィルターはこの画面に表示されるフィルター操作点で調整することができます。</p>
+
+<p>画面左上の“Solo Detection Filter”ボタンをクリックすると、検知回路がビンテージコンプレッサーをトリガーする際に使用するフィルターされた信号をモニターすることができます。これは、ビンテージコンプレッサー処理をトリガーするのに使用している入力信号を手早く聴く際に便利です。</p>
+
+<h3 id="gain-reduction-trace-ゲイン削減トレース表示">Gain Reduction Trace（ゲイン削減トレース表示）</h3>
+
+<p><img src="../images/vcomp-trace-sm.png" alt="trace sm" /></p>
+
+<p>この画面では、入力信号の波形にゲイン削減の分量がリアルタイムでスーパーインポーズされた曲線が表示されるスクロールメーターが表示されます。ゲイン削減トレース表示はアタックとリリースを正しく設定し、ゲイン削減のエンベロープをモニターする上での一助となります。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  ビンテージEQ [ADV]</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>ビンテージEQモジュールは1950年代を代表するイコライザーであるPultec EQP-1AとPultec MEQ-5を基に設計されました。EQP-1Aはハイとロー、MEQ-5はミッドレンジの処理を行います。OzoneのビンテージEQは、Pultec EQP-1AとMEQ-5個々の回路コンポーネントを模することにより、それぞれの周波数特性をかなり正確に再現しました。</p>
+
+<p><img src="../images/veq-interface.png" alt="veq" /></p>
+
+<h2 id="低域及び高域周波数の操作項目">低域及び高域周波数の操作項目</h2>
+
+<p>ビンテージEQモジュールの最上段は、プルテックEQP-1Aイコライザーをモデルにしたパラメーターです。</p>
+
+<p><img src="../images/veq-top.png" alt="VEQ top row" /></p>
+
+<p>低周波数帯のブーストとカットのコントロールが分離されているのはEQP-1Aの特徴の１つです。オリジナルハードウェアのマニュアルには、「ブーストと削減は同時に行わないでください」という記述がありますが、多くのエンジニアは、この両方のコントロールは非常に好ましい形で相互作用していると感じてきました。この2つの操作を同時に行うと、打ち消し合うのではなく、少し高い音域でちょっとした沈みが発生しつつ低周波数帯をブーストすることが分かっています。この独特のフィルター形状はイコライザーモジュールの“ビンテージローシェルフ”でも再現されています。</p>
+
+<h3 id="低周波数の操作項目">低周波数の操作項目</h3>
+
+<ul>
+<li><strong>LOW FREQUENCY（低域周波数）:</strong> ブーストする低周波数を設定します。20 Hz、30 Hz、45 Hz、60 Hz、100 Hzの何れかを選択します。</li>
+<li><strong>LOW BOOST（低域ブースト）:</strong> 選択した低周波数に対するブースト量を設定します。これはローシェルフフィルターです。</li>
+<li><strong>LOW CUT（低域カット）:</strong> 選択した低周波数に対するカット量を設定します。これもローシェルフフィルターです。</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">低域周波数に関する注</p>
+<p><ul>
+<li>オリジナルのハードウェには45 Hzのオプションはありませんでしたが、マスタリング作業に於ける利便性を高めるべく、同オプションを加えました。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="高周波数ブーストの操作項目">高周波数ブーストの操作項目</h3>
+
+<ul>
+<li><strong>HIGH BOOST FREQUENCY（高域ブースト周波数）:</strong> ブーストする高周波数を設定します。3 kHz、4 kHz、5 kHz、8 kHz、10 kHz、12 kHz、16 kHzの何れかを選択します。</li>
+<li><strong>HIGH BOOST（高域ブースト）:</strong> 選択した高周波数に対するブースト量を設定します。これはピーキングフィルターです。</li>
+<li><strong>HIGH Q（高域Q）:</strong> 高周波数ブーストに適用する帯域幅を設定します。実際のEQP-1A同様、ブースト量と帯域幅は相互作用します（例：ブースト量に伴いQも変化）。</li>
+</ul>
+
+<h3 id="高周波数カットの操作項目">高周波数カットの操作項目</h3>
+
+<ul>
+<li><strong>HIGH CUT FREQUENCY（高域カット周波数）:</strong> 減じる高周波数を設定します。5 kHz、10 kHz、20 kHzの何れかを選択します。</li>
+<li><strong>HIGH CUT（高域カット）:</strong> 選択した高周波数に対するカット量を設定します。これはハイシェルフフィルターです。</li>
+</ul>
+
+<h2 id="中域周波数の操作項目">中域周波数の操作項目</h2>
+
+<p>ビンテージEQモジュールの下段は、プルテックMEQ-5イコライザーをモデルにしたパラメーターです。</p>
+
+<p><img src="../images/veq-btm.png" alt="VEQ bottom row" /></p>
+
+<p>中域周波数の操作項目は全てピーキングフィルターです。オリジナルのMEQ-5同様、フィルター帯域幅はブースト/カット量の影響を受けます。</p>
+
+<h3 id="中低域周波数の操作項目">中低域周波数の操作項目</h3>
+
+<ul>
+<li><strong>LOW-MID BOOST FREQUENCY（中低域ブースト周波数）:</strong> ブーストする中低域周波数を設定します。200 Hz、300 Hz、500 Hz、700 Hz、1000 Hzの何れかを選択します。</li>
+<li><strong>LM BOOST（中低域ブースト）:</strong> 選択した低中間周波数に対するブースト量を設定します。</li>
+</ul>
+
+<h3 id="中域周波数カットの操作項目">中域周波数カットの操作項目</h3>
+
+<ul>
+<li><strong>MID CUT FREQUENCY（中域カット周波数）:</strong> 減じる中域周波数を設定します。200 Hz、300 Hz、500 Hz、700 Hz、1 kHz、1.5 kHz、2 kHz、3 kHz、4 kHz、5 kHz、7 kHzの何れかを選択します。</li>
+<li><strong>MID CUT（中域カット）:</strong> 選択した中域周波数に対するカット量を設定します。</li>
+</ul>
+
+<h3 id="中高域周波数の操作項目">中高域周波数の操作項目</h3>
+
+<ul>
+<li><strong>HIGH-MID BOOST FREQUENCY（中高域ブースト周波数）:</strong> ブーストする中高域周波数を設定します。1.5 kHz、2 kHz、3 kHz、4 kHz、5 kHzの何れかを選択します。</li>
+<li><strong>HM BOOST（中高域ブースト）:</strong> 選択した中高域周波数に対するブースト量を設定します。</li>
+</ul>
+
+<h2 id="m-s及びl-r操作">M/S及びL/R操作</h2>
+
+<p>ビンテージEQにはMid/Side及びLeft/Rightの処理モードがあります。詳細は<a href="../common-module-controls/index.html#module-channel-processing-modes">モジュールの標準的な操作項目</a>の処理モードのセクションをご参照ください。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="スペクトラムアナライザーとコンポジットeq曲線">スペクトラムアナライザーとコンポジットEQ曲線</h3>
+
+<p><img src="../images/veq-spectrum-comp-curve.png" alt="VEQ Spectrum and Curve" /></p>
+
+<p>ビンテージEQの設定を反映したコンポジットEQ曲線が、Ozoneの出力信号を表したリアルタイムのスペクトラムアナライザーに重ねて表示されます。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  ビンテージリミッター</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>ビンテージリミッターはダイナミックレンジをリミッティングし、ミックスの全体的なレベルをブーストすることで、ラウドかつ満たされたマスターの作成を実現します。これはフィードバックベースの真空管コンプレッサー/リミッターであるFairchild 670をモデルに設計され、フィードバック技術の差異により若干異なるアタックとリリースを持ったリミッターです。IRC Iリミッターはクリッピングを防止すべく真空管処理を模して作られました。ビンテージリミッターはマキシマイザー同様、ミックスの全帯域に適用されますので、マルチバンド効果ではありません。ビンテージリミッターは温かいアナログ感とデジタル最大化の微細さを併せ持つモジュールです。</p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<p><img src="../images/vlim.png" alt="vlim" /></p>
+
+<h3 id="モード">モード</h3>
+
+<p>それぞれ特徴のある音像の3種類のリミッティングモードからリミッティングの仕方を選択します:</p>
+
+<ul>
+<li><strong>ANALOG（アナログ）:</strong> 速いアタックと可変リリース時間により、このモードでは分厚いリミッティング品質によるタイトなベース特性が実現します。アナログ回路特有の平滑さを保ちつつ、ローエンドのトランジエントを取り除きます。</li>
+<li><strong>TUBE（真空管）:</strong> これは可変アタック及び可変リリース時間により最もバランスの取れたモードとなっており、入力信号により異なる広い音質特性と平滑なフィードバックが実現します。ノンリニアであるにもかかわらず、このモードではクリップとピークを防止しつつ、モダンな微細さを再現することができます。</li>
+<li><strong>MODERN（モダン）:</strong> これは真の意味で新旧のハイブリッドと言え、分厚いビンテージな特性とノンリニアの広域性、そして今日的なIRCリミッティング、可変リリース時間、そして可変トランジエント再生成といった機能を兼ね備えています。</li>
+</ul>
+
+<h3 id="threshold-スレッシュホルド">Threshold（スレッシュホルド）</h3>
+
+<p>スレッシュホルドでは、ビンテージリミッターがリミッティングを開始するレベルを決めます。入力信号がスレッシュホルドを超過すると、リミッターが作動します。この操作項目では、スレッシュホルドを下げることにより、ゲインが加わります。信号より更にスレッシュホルドを下げると、全体的なミックスの音量は上がります。
+言い換えると、スレッシュホルドを下げることにより、ミックスのダイナミックレンジが限定されますので、ビンテージリミッターは出力レベルを最大化するため、自動的に比例する量のゲインを加えるのです。</p>
+
+<h3 id="ceiling-シーリング">Ceiling（シーリング）</h3>
+
+<p>シーリングでビンテージリミッターの出力する最高レベルを設定します。</p>
+
+<div class="admonition note">
+<p class="admonition-title">推奨値</p>
+<p>一般的に、ディザー使用時は-0.3 dBが推奨値となりますが、マスタリングされるオーディオを.mp3または.aacへ変換する場合は、将来的なクリッピングを防止すべく、更に低いレベル(-0.6から-0.8)が推奨されます。詳細は <a href="../codec-preview/index.html">コーデック試聴</a>の項をご参照ください。</p>
+</div>
+
+<h3 id="link-threshold-ceiling-スレッシュホルドとシーリングをリンク">Link Threshold &amp; Ceiling（スレッシュホルドとシーリングをリンク）</h3>
+
+<p>有効の場合、スレッシュホルドとシーリングの操作がリンクされます。どちらか片方の操作で調整を行うと、もう片方も同じ分量だけ変化します。</p>
+
+<h3 id="true-peak-limiting-真正ピークリミッティング">True Peak Limiting（真正ピークリミッティング）</h3>
+
+<p>各デジタルサンプルのレベルのみならず、D/A変換後のアナログ信号のレベルも鑑みたリミッティングを行う場合は、真正ピークリミッティング機能を有効化します。アナログ信号のピーク値とデジタル信号のピーク値とでは、一致する値であっても実際は3dB以上アナログの方が高い場合がありますので、時としてこの機能が必要となります。</p>
+
+<div class="admonition note">
+<p class="admonition-title">真正ピークリミッティングとCPU使用率</p>
+<p>この機能を使用すると僅かながらCPU使用率が上がりますが、ミックスのレベルが高めに設定されている場合は、D/A変換の段階でディストーションが発生しないよう、この機能を有効化する方が確実と言えます。</p>
+</div>
+
+<h3 id="character-処理性質">Character（処理性質）</h3>
+
+<p>キャラクターコントロールでビンテージリミッターのアタックとリリース時間を調節します。これは選択されたモードにより、速(0.0)から遅(10.0)までの連続的な数値で分量を定義します。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="スレッシュホルドメーター">スレッシュホルドメーター</h3>
+
+<p><img src="../images/vlim-threshold.png" alt="VLIM Threshold meter" /></p>
+
+<p>スレッシュホルドメーターは、モジュールの処理により発生しているゲインリダクションの量を表示します。外側の2本のメーターが入力信号を示し、ゲインリダクションが発生すると、中央のメーターでその分量が表示されます。</p>
+
+<h3 id="ミニメーター画面">ミニメーター画面</h3>
+
+<h4 id="gain-reduction-trace-ゲイン削減トレース表示">Gain Reduction Trace（ゲイン削減トレース表示）</h4>
+
+<p><img src="../images/vlim-trace.png" alt="trace" /></p>
+
+<p>この画面では、入力信号の波形にゲイン削減の分量がリアルタイムでスーパーインポーズされた曲線が表示されるスクロールメーターが表示されます。ゲイン削減トレース表示はアタックとリリースを正しく設定し、ゲイン削減のエンベロープをモニターする上での一助となります。</p>
+
+<h4 id="spectrum-analyzer-スペクトラムアナライザー">Spectrum Analyzer（スペクトラムアナライザー）</h4>
+
+<p><img src="../images/vlim-spectrum.png" alt="vlim spectrum" /></p>
+
+<p>Ozoneの出力がリアルタイムで表示されるスペクトラムアナライザーです。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  ビンテージテープ [ADV]</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>ビンテージテープは音像に、クロストーク、ヒス、ワウ、そして不規則な振動音と言ったミックスを阻害する成分を加えることなく、磁気テープ特有の周波数特性（規模と位相）とサチュレーション特性の付加を実現します。このモジュールは、マスタリングに最適のクリーンで正確なスタダーA810、2トラックテープデッキにインスパイアされて設計されました。テープサチュレーションの分量は、高周波数（~100 kHz）のACバイアス信号に極度に依存しており、バイアス値を変更することで、サチュレーション効果の性質を劇的に変化させることができます。バイアス値を高めに設定すると、ダイナミックレンジが狭まるため圧縮率が高まり、低くすると別の形でディストーション量を増やします。テープサチュレーションは波長（テープ速度÷周波数）依存の処理であるため、サチュレーションの音質はテープ速度、バイアス値、素材、その他諸々の相互作用により複合的に決まります。テープサチュレーションは奇数ハーモニクスでディストーションを生成するのが一般的です。しかしながら、ACバイアスの設計上の不正確さ、あるいは機器の電気的なディストーションにより、しばしば偶数ハーモニクスが混じる場合があります。ビンテージテープは偶数ハーモニクスのディストーションと再生ヘッドの周波数特性をカスタマイズすることで、素材にアナログテープ特有の音像を付け加えます。</p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<p><img src="../images/vtape-interface.png" alt="vtape" /></p>
+
+<h3 id="input-gain-入力ゲイン">Input Gain（入力ゲイン）</h3>
+
+<p>テープエミュレーション前の入力信号のゲインを調節します。振幅の高い信号を録音する際、テープはノンリニアとなり、サチュレーションを引き起こします。テープエミュレーション前の入力ゲインを上げると、サチュレーションの度合いも強まり、入力ゲインを低くするとサチュレーションも弱まります。素材の周波数成分やバイアス設定に応じてゲイン量を変更し、サチュレーションの具合を調整してください。
+ビンテージテープには入力ゲインに対してテープサチュレーション処理を設定する自動ゲイン調節機能が搭載されておりますので、入力ゲインの設定に関係なく、出力レベルのジャンプアップを防止することができます。</p>
+
+<h3 id="bias-バイアス">Bias（バイアス）</h3>
+
+<p>バイアスは主にディストーション曲線の形状に影響を与えますが、周波数特性（主にハイエンド）にも変化をもたらします。マイナス方向のバイアスは高周波数帯をブーストし、プラス方向のバイアスに比べると高周波数帯でのディストーションが増加します。プラス方向のバイアスを高めに設定すると、ダイナミックレンジが極度に狭められ、オーバーバイアスされたテープ機器の特徴が強調されます。</p>
+
+<h3 id="speed-速度">Speed（速度）</h3>
+
+<p>速度は主に周波数特性を変えますが、ディストーションの発生するそれぞれの周波数帯のレベルも変化させます。特に、高周波数（短い波長）は低周波数（長い波長）に比べて低い入力レベルで音が歪みます。速度を変えると波長（波長＝速度÷周波数）も変わりますので、7.5 ipsで500Hzにディストーションが発生する場合、15 ipsではレベルが同じだと1000Hzでディストーションが発生し、30 ipsではレベルが同じだと2000Hzでディストーションが発生します。</p>
+
+<h3 id="harmonics-ハーモニクス">Harmonics（ハーモニクス）</h3>
+
+<p>テープディストーションに偶数ハーモニクスを加えます。</p>
+
+<h3 id="low-emphasis-低域強調">Low Emphasis（低域強調）</h3>
+
+<p>再生ヘッドの共鳴ピークを操作します。ここの設定を上げるとベース比重の高い素材のゲインを増加させます。</p>
+
+<h3 id="high-emphasis-高域強調">High Emphasis（高域強調）</h3>
+
+<p>再生ヘッドの高周波数ロスを補完します。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="スペクトラムアナライザー">スペクトラムアナライザー</h3>
+
+<p><img src="../images/vtape-spectrum.png" alt="VTAPE Spectrum Analyzer" /></p>
+
+<p>Ozoneの出力がリアルタイムで表示されるスペクトラムアナライザーです。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  コーデックプレビュー</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>オーディオ方式を（MP3やAACなどへ）不可逆な圧縮変換する際、心理音響アルゴリズムが使用され、より可聴でないオーディオ成分が切り詰められます。これは、実際的にオーディオの一部分が除去されていることを意味し、サウンドに微妙な（ビットレートが低い場合、それなりに顕著な）影響を与えます。</p>
+
+<p>コーデックプレビューにより、不可逆な圧縮変換後の音を予め試聴することができるため、DAWから離れることなく、データ損失に対する補正を行うことができます。例えば、ビットレートの低いMP3へ変換する場合、高周波数データの損失を埋め合わせるべく、音像を全体的に明る目に補正することが効果的であるのが一般的です。</p>
+
+<h3 id="コーデックプレビューの操作パネルへアクセスするには">コーデックプレビューの操作パネルへアクセスするには</h3>
+
+<p><img src="../images/codec-preview/codec-panel.png" alt="Codec Preview button in Auditioning section" /></p>
+
+<p>コーデックプレビューの操作画面にアクセスするには、Ozoneアプリケーション及びOzone 8プラグインの試聴セクション下部にあるCodecボタンをクリックします。</p>
+
+<div class="admonition note">
+<p class="admonition-title">コーデックプレビュー使用について</p>
+<p><ul>
+<li>コーデックプレビューはAdvancedのみの機能であり、コンポーネントプラグインでは使用できませんのでご注意ください。コーデックプレビューへは、メインのOzoneプラグインとOzoneアプリケーションからアクセスできます。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="コーデックプレビューの有効化と無効化">コーデックプレビューの有効化と無効化</h3>
+
+<p><img src="../images/codec-preview/enable-codec.png" alt="Codec Preview enabled" /></p>
+
+<p>試聴セクションにある“Codec”ボタン隣の電源ボタンをクリックすると、コーデックプレビューのオン/オフが切り替えられます。</p>
+
+<h2 id="操作項目">操作項目</h2>
+
+<p>コーデックプレビューの操作画面には以下の操作項目があります:</p>
+
+<p><img src="../images/codec-preview/codec-preview-controls.png" alt="Codec Preview panel controls" /></p>
+
+<h3 id="形式-mp3-aac">形式: MP3/AAC</h3>
+
+<p>試聴のコーデック形式を選択します: 選択肢はMP3かAACとなります。</p>
+
+<div class="admonition note">
+<p class="admonition-title">Ozone Codec Information</p>
+<p><ul>
+<li>AAC: Ozoneはフラウンホーファーのコーデックを使用します。</li>
+<li>MP3: OzoneはLAMEコーデックを使用します<a href="http://www.mp3dev.org">www.mp3dev.org</a>。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="bit-rate-ビットレート-常時適用">Bit Rate（ビットレート：常時適用）</h3>
+
+<p>コーデックプレビューで常時適用されるビットレートを選択します。</p>
+
+<table>
+<thead>
+<tr>
+<th>ビットレート</th>
+<th>注釈</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>96 kpbs</strong></td>
+<td><em>通常、低品質ストリーミングに使用されます</em></td>
+</tr>
+
+<tr>
+<td><strong>112 kbps</strong></td>
+<td></td>
+</tr>
+
+<tr>
+<td><strong>128 kbps</strong></td>
+<td></td>
+</tr>
+
+<tr>
+<td><strong>160 kbps</strong></td>
+<td></td>
+</tr>
+
+<tr>
+<td><strong>192 kbps</strong></td>
+<td></td>
+</tr>
+
+<tr>
+<td><strong>224 kbps</strong></td>
+<td></td>
+</tr>
+
+<tr>
+<td><strong>256 kbps</strong></td>
+<td>コーデックプレビューで<strong>モノファイル</strong>をストリーミングする際に使用可能な最高ビットデプスは256 kbpsとなります。</td>
+</tr>
+
+<tr>
+<td><strong>320 kbps</strong></td>
+<td><em>MP3でサポートされる最高ビットデプス</em></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="solo-codec-artifacts-コーデックのアーティファクトのソロ">Solo Codec Artifacts（コーデックのアーティファクトのソロ）</h3>
+
+<p>このオプションにより、不可逆圧縮変換により失われるオーディオ成分のみを試聴することができます。コーデックアーティファクトとは、エンコード前の信号からコーデックプレビューが出力する信号を差し引いた残りの信号です。</p>
+
+<h2 id="サンプルレートとパフォーマンスについて">サンプルレートとパフォーマンスについて</h2>
+
+<div class="admonition warning">
+<p class="admonition-title">パフォーマンスに関する注</p>
+<p>AACとMP3ファイルでサポートされる最大サンプルレートは48kHzとなります。AACやMP3への圧縮に伴う音質変化を正確に表現するべく、コーデックプレビュー使用時はリアルタイムでの再サンプリングが必要なることがあります。セッションのサンプルレートが44.1kHzまたは48kHz以外に設定されている場合、コーデックプレビューが作動する状況でOzoneは高品質のリアルタム再サンプリングを行います。リアルタイム再サンプリングはCPU使用率が高く、サンプルレートの高いセッションにおいてバッファサイズが低く設定されている際にその傾向はより顕著になります。作業の中断やパフォーマンスの問題を回避する上で、高サンプルレートのセッションでこの機能を使用する際は、バッファサイズを高めに設定して頂くことを推奨します。
+これに加え、リアルタイム再サンプリングは数学的に集約性が高く、負荷が大きいため、著しいレーテンシーの原因となることがあります。大部分のホストアプリケーションにはこのレーテンシーを補正する機能が搭載されていますが、コーデックプレビューが作動していると、再生時に僅かな遅延が聞こえる場合があります。</p>
+</div>
+
+<h2 id="信号の流れ">信号の流れ</h2>
+
+<p>コーデックプレビューはOzoneの中では信号チェーンの末尾に位置します。Ozoneをプラグインとして使用する時にコーデックプレビュー機能を使用する場合は、Ozoneを全てのインサートの後に使用することが重要です。これにより、ミックス内での処理を全て経た状態でコーデックプレビューが適用されることになります。</p>
+
+<p>コーデックプレビューは試聴目的のみでの使用となり、OzoneアプリケーションやDAWからのエクスポートに際し、実際にMP3やAACへの圧縮変換が行われるわけではありません。この機能はエクスポートに最適な設定を模索する上での補助として使用し、実際のエクスポート時は必ずこの機能は切るようにしてください。</p>
+
+<h2 id="ヘッドルームとクリッピング">ヘッドルームとクリッピング</h2>
+
+<p>不可逆圧縮変換には近似値エラーが付き物であり、ソースとなる非圧縮ファイルのピークが0 dBに達していなくとも、ノイズによりピーク値が上がり、クリップが発生することがあります。</p>
+
+<p>このため、AACやMP3のような圧縮方式用にマスタリングする際は、圧縮に伴うクリップを回避するべく、-1 dBから-1.5 dBほどのヘッドルームを持たせるのが理想的です。</p>
+
+<p>コーデックプレビューを使用すると、このクリップを回避するのに必要な微調整を行うことができます。</p>
+
+<p>Ozoneの出力メーター上部のクリップインジケーターを確認し、オーディオのエクスポートを実行する前にクリップの発生していないことを確認してください。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  ディザー</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>Ozoneには、オーディオを24、20、16、12または8ビットにディザリングしながら効果的に変換し、CDやその他方式用にスタジオ品質のオーディオの準備を可能にする包括的なディザリングツールのセットが内蔵されております。尚、ディザーツールはマキシマイザーモジュールから独立した形で機能します。</p>
+
+<h3 id="主な機能">主な機能</h3>
+
+<ul>
+<li>各種ビットデプスへの非常に平明な変換を可能とするiZotope MBIT+ディザー内蔵。これはiZotopeが専有する、感知できる最小限のノイズでクオンタイゼーションノイズを削減するリダクション技術です。逆説的に聞こえるかもしれませんが、MBIT+はとても平滑かつ静かで、殆ど“アナログ的音質”のテクノロジーです。</li>
+<li>独特なビットメーターとDCオフセット（直流オフセット）メーターの組み合わせが、デジタルビットストリームと変換プロセスの完璧な表示を提供します。</li>
+</ul>
+
+<h3 id="ディザー操作画面の表示と有効化">ディザー操作画面の表示と有効化</h3>
+
+<p><img src="../images/dither/dither-button.png" alt="dither button" /></p>
+
+<ul>
+<li>ディザーの操作画面はI/Oメーター下のDitherボタンをクリックすると表示されます。</li>
+<li>ディザーのオン/オフはディザーボタン左の電源ボタンをクリックして行います。</li>
+</ul>
+
+<h2 id="操作項目">操作項目</h2>
+
+<p><img src="../images/dither/dither-interface.png" alt="dither panel" /></p>
+
+<h3 id="bit-depth-ビットデプス">Bit Depth（ビットデプス）</h3>
+
+<p>ここではオーディオのターゲットとなるビットデプスを設定します。例えばCD向けにマスタリングを行う際は、ここの数値を16ビットに設定します。</p>
+
+<div class="admonition note">
+<p class="admonition-title">注: 8及び12ビットのオプション</p>
+<p><ul>
+<li>8ビットと12 ビットはOzoneアプリケーション内での試聴時のみのオプションであり、Ozoneアプリケーションからのエクスポート時には使用できません。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="dither-amount-ディザー量">Dither Amount（ディザー量）</h3>
+
+<p>ここではビットの数、または使用されるディザーの分量を設定します。ディザー量の選択肢は以下の通りです:</p>
+
+<ul>
+<li>Strong（強）</li>
+<li>Medium（中）</li>
+<li>Low（弱）</li>
+<li>Off（オフ）</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">ディザー量に関する注</p>
+<p><ul>
+<li>OffまたはLowに設定すると、ノンリニアクオンタイゼーションディストーションやディザーノイズモジュレーションが僅かに残る可能性があります。</li>
+<li>Strongに設定すると、OffまたはLowにより発生し得るノンリニアディストーションを完全に除去する代わりにノイズフロアーが僅かに増加します。</li>
+<li>一般的には、Medium設定のディザーが良い選択であると言えます。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="harmonic-suppression-ハーモニクス抑制">Harmonic Suppression（ハーモニクス抑制）</h3>
+
+<p>何らかの理由によりディザーノイズが好ましくない場合、単純な切り捨てが唯一の選択肢となります。切り捨ては信号に上音を加えて音色を歪ませるハーモニククオンタイゼーションディストーションを引き起こします。</p>
+
+<p>この場合、Harmonic Suppressionボタンをクリックすると、切り捨て方法を僅かに変更することで可聴周波数の上音からハーモニククオンタイゼーションディストーションを取り除きます。</p>
+
+<p>このオプションではランダムディザリングによるノイズフロアーが生成されるわけではありません。これは切り捨てとして作用しますが、処理後の信号をより高品質にする形で行われます。</p>
+
+<h3 id="limit-peaks-ピーク抑制">Limit Peaks（ピーク抑制）</h3>
+
+<p>ディザーノイズは元来ランダムで振幅の非常に低い性質のものです。しかしながら、ノイズ形成後、特にアグレッシブなディザーモードでは、高周波数帯のディザーノイズが大幅に増幅され、全体的なディザーノイズに深刻なピーク（16ビットのクオンタイゼーションで最高-60 dB FS）が出現することがあります。</p>
+
+<p>こうしたピークが好ましくない場合は、Limit Peaksボタンをクリックすることで、ノイズ成形されたディザー内の深刻なピークを効果的に抑制することができます。</p>
+
+<h3 id="auto-blanking-自動ミュート">Auto-Blanking（自動ミュート）</h3>
+
+<p>このオプションを選択すると、入力信号が0.7秒以上無音（0ビットのオーディオ）の場合、ディザー出力（ディザーノイズ）が完全にミュートされます。</p>
+
+<h3 id="noise-shaping-ノイズ成形">Noise Shaping（ノイズ成形）</h3>
+
+<p>ここでディザー処理に際して適用されるノイズ成形の分量を設定します。ノイズ形成により、ディザリングに必要なノイズをより可聴範囲から遠ざけることができ、感知できるノイズをより少なくした状態でのディザーが実現します。</p>
+
+<p>成形の度合いはOff (成形なし)からMax (大体14 dBの可聴ノイズ抑制)の間の何れかを選択できます。</p>
+
+<p>ノイズ形成の各分量が音質に与える影響の差異は極めて微妙ですので、素材に応じて各設定を聴き比べた上で分量を決定してください。</p>
+
+<h3 id="filter-dc-offset-フィルターdcオフセット">Filter DC Offset（フィルターDCオフセット）</h3>
+
+<p>1 Hzのカットオフ周波数がセットされたハイパスフィルターを作動させます。</p>
+
+<p>DCオフセット（直流オフセット）は、録音に際して、波形の平均電圧がゼロの上下どちらかにある場合は欠点となります。オーディオ信号は交流で表示され、平均電圧はゼロになるのが通常です。録音機材に不具合が起こると、信号に直流信号が洩れでることがあります。この問題により、録音された波形がゼロの上下どちらかに偏ります。</p>
+
+<p>FFT（速フーリエ変換）分析器では、DCオフセットはゼロ周波数(0 Hz)のエネルギーで表されます。このDCオフセットはハイパスフィルターにより除外することができます。DCオフセットを波形の不均整と区別するのは重要なことです。不均整は波形の形状をプラス側、あるいはマイナス側に堆い状態にしますが、平均レベルは飽くまでゼロに留まります。DCオフセットと違い、不均整の場合、0 Hz付近に特定のエネルギーは発生していないため、位相回転フィルターにより軽減することが可能です。</p>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p>フィルターDCオフセットはリアルタイムで、マキシマイザーの前に掛かります。DCオフセットのフィルタリングを施す場合は、信号チェーンの中にマキシマイザーモジュールが存在する必要があります。</p>
+</div>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="bit-meter-ビットメーター">Bit Meter（ビットメーター）</h3>
+
+<p><img src="../images/dither/bit-meter.png" alt="dither bit meter" /></p>
+
+<p>これは、素材の以下に関するデジタル活動をモニターする上で、非常に貴重なリソースとなり得ます:</p>
+
+<ul>
+<li>ビットのフルレンジ（ダイナミックレンジ）が使用されているか否かの確認。</li>
+<li>出力のワード長。</li>
+<li>A/Dコンバーターの不調。</li>
+<li>サブパーのプラグイン処理（固定整数計算を使用し16ビットのみで処理をするプラグインの検出など）。</li>
+</ul>
+
+<p>ビットメーターはデジタル信号内のビット状態をモニターします。</p>
+
+<ul>
+<li>内側の2本のメーターは左右チャンネルのオーディオのビットのリアルタイムの状態を表します。</li>
+<li>外側の2本のメーターは“ピークホールド”的な手法で、リアルタイムの状態を記憶します。</li>
+<li>内側のメーターはビットをトグルし、外側のメーターは使用されているビットを表示します。</li>
+</ul>
+
+<p>一般的には、各ビットの動きを検知する必要があり（一番上のビットは除きますが、これは後述します）、数秒間の間に外側のメーターの各ビットが点灯します。
+また、定期的にメーターをクリックすることで、外側のピークホールド値をリセットすることができ、これはDCオフセットのトグル動作上、必要な作業となります。</p>
+
+<p>ディザーで下げる場合、（ディザーの出力ビットデプスに呼応して）16、12、または8ビットが点灯している必要があります。</p>
+
+<p>ビットメーターはレベルメーターではないことをご留意ください。これはどのビットが使用されているかを示すメーターです。ビット使用時は、そのビットの位置が点灯します。ビットメーターの主な使用目的は、問題やデジタル信号の不連続性の検知にあります。</p>
+
+<p>以下はビットメーターで識別できる問題の例です:</p>
+
+<ul>
+<li><strong>ヘッドルーム:</strong> 24ビットのオーディオファイルであっても、フルにビットを使用していない場合があります。</li>
+<li><strong>16ビット:</strong> 更に極端な例では、16ビットのみ使用していることもあります。16ビットにディザリングする場合は、これが正常な動作となります。しかし、ディザリングをしていない場合、これはA/D変換、あるいはプラグインの何れかに問題が発生していることを意味します。</li>
+<li><strong>スタックビット:</strong> 信号内の１ビットが使用されていない場合、A/D変換の不調、あるいはソフトウェアプラグインのバグである可能性が指摘できます。</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">ビットメーターでなぜ最上部のビットは点灯しないのか</p>
+<p><ul>
+<li>サンプルが二進法で数字上に保存される際、負数は特別な手法でエンコードされます。二進法では負数は無効であるため、Ozoneはビットメーターへプロットする前に各サンプルの絶対値を取ります。</li>
+<li>この時、最も有意なサンプルは負であるため、このビットが点灯することはありません。最上部のビットは、単に完成度を高めるためのプレースホルダとして存在します。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="bit-meter-reset-ビットメーターをリセット">Bit Meter Reset（ビットメーターをリセット）</h3>
+
+<p>ここをクリックするとビットメーターはリセットされ、素材の現在の再生点の状況を表示し始めます。</p>
+
+<h3 id="noise-shaping-curve-ノイズ成形曲線">Noise Shaping Curve（ノイズ成形曲線）</h3>
+
+<p><img src="../images/dither/noise-shaping.png" alt="noise shaping curve" /></p>
+
+<p>このグラフは、ノイズ成形のプロフィール曲線を表し、周波数スペクトラムを通じて表示されます。このグラフには、アルゴリズムに応じて、使用されている特定のディザーノイズプロフィールの全般的な周波数曲線が表示されます。</p>
+
+<h3 id="dcオフセットメーター">DCオフセットメーター</h3>
+
+<p><img src="../images/dither/dc-offset.png" alt="dc offset meter" /></p>
+
+<p>DCオフセットフィルターが作動している場合、DCオフセットメーターが除去される直流量を表示します。</p>
+
+<div class="admonition note">
+<p class="admonition-title">ディザーに関する追加情報</p>
+<p><ul>
+<li>iZotopeウェブサイトに掲載された<a href="https://www.izotope.com/en/support/support-resources/guides.html">こちらのガイド</a>でも、ディザーに関する実地な使用のヒントや、その技術の裏側にある理論についてお読み頂くことができます。</li>
+<li>ディザーの秘訣については<a href="../tips-and-examples/index.html#dithering-tips">ヒントと用例</a>の章も合わせてご確認ください。</li>
+</ul>
+</p>
+</div>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  マスターアシスタント</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>マスターアシスタントはOzone 8 Elements、StandardそしてAdvancedに導入された、アシスト技術、マシーンラーニング、そしてインテリジェンスにおける最新の進展です。これにより、音楽に合わせてインテリジェントにあつらえた作業開始点が提供されますので、経験値に関係なく、プロフェッショナルな音像のマスターを制作する大きな助けとなります。</p>
+
+<p>マスターアシスタントはメインのOzone 8プラグインとOzone 8スタンドアローンアプリケーションに含まれます。マスターアシスタントの操作パネルはプリセット表示左の“Master Assistant”ボタンをクリックすると表示されることができます。</p>
+
+<h2 id="ジャンル分けとリサーチ結果">ジャンル分けとリサーチ結果</h2>
+
+<p>マスターアシスタントは、内部的なディスカッションと研究の組み合わせにより生成されたターゲットジャンル曲線を利用します。我々の作業は数多くのオーディオファイルを10種類の音楽ジャンルに分類することから始まりました。その上で、それらジャンルのスペクトラル特徴を分析しました。その研究に基づき、我々は各ジャンルの典型的なスペクトラル特徴を表した10種類のジャンルターゲット曲線を作り出しました。</p>
+
+<p>典型的なスペクトラル特徴を分析するのに加え、神経網分類機能を鍛錬し、入力オーディオを10種類のジャンルの混合となる特有のターゲット曲線にマップするようにしました。</p>
+
+<p>注: 我々は10種類のジャンルにカテゴリー分けしましたが、分析の結果、大半の曲線は大きく3種類のカテゴリーに分かれることが証明されました。この大きな3種類のカテゴリーを示すそれぞれの結合ターゲット曲線は<a href="../tonal-balance-control/index.html">トーナルバランスコントロール</a>プラグインにも内包されます。</p>
+
+<p>以下がその3つのカテゴリーです:</p>
+
+<ul>
+<li>Bass Heavy（EDM、ヒップホップなど）</li>
+<li>Orchestral（一般的な器楽、その他）</li>
+<li>Modern（ポップ、ロックなど）</li>
+</ul>
+
+<p>これらの曲線がマスターアシスタント処理の中でどのように使用されるかについての詳細は、後述の<a href="index.html#processing-steps">処理ステップ</a>の項をご参照ください。</p>
+
+<h2 id="ワークフロー">ワークフロー</h2>
+
+<p>マスターアシスタントはOzone 8プラグインとOzone 8アプリケーションの両方で使用できます。マスターアシスタントのパネルは、プリセット表示左の“Master Assistant”ボタンをクリックすると開きます。</p>
+
+<p><img src="../images/master-assistant/ma-button.png" alt="MA button" /></p>
+
+<h3 id="ターゲット選択">ターゲット選択</h3>
+
+<p>マスターアシスタントを実行する前に、初めに表示される画面にてターゲット出力を選択してください。</p>
+
+<h4 id="streaming-ストリーミング">Streaming（ストリーミング）</h4>
+
+<p><img src="../images/master-assistant/streaming.png" alt="MA streaming" /></p>
+
+<ul>
+<li>ラウドネスのターゲット値（LUFSを使用）に合致するためのマキシマイザーのスレッシュホルド設定が知らされます。</li>
+<li>ストリーミングオプションのターゲットラウドネスのデフォルトは-14 LUFSに設定されています。このターゲット値は、一般的なストリーミングサービスにより使用される典型的なラウドネス値に基づいています。</li>
+<li>この値はOzoneのOptionsメニューのGeneralタブにてカスタマイズすることができます。</li>
+</ul>
+
+<h4 id="cd">CD</h4>
+
+<p><img src="../images/master-assistant/cd.png" alt="MA cd" /></p>
+
+<p>選択された強度オプションに対し、できる限り出力の音量を上げるためのマキシマイザーのスレッシュホルド設定が知らされます。</p>
+
+<h4 id="cd-intensity-cd-強度">CD: Intensity（CD: 強度）</h4>
+
+<p><img src="../images/master-assistant/intensity.png" alt="MA intensity" /></p>
+
+<p>入力オーディオに対しリミッターがどれくらい頻繁にトリガーされるかを特定することによりマキシマイザーのスレッシュホルド設定が知らされます。</p>
+
+<h4 id="reference-リファレンス">Reference（リファレンス）</h4>
+
+<p><img src="../images/master-assistant/reference.png" alt="MA target screen" /></p>
+
+<ul>
+<li>ターゲットとして、リファレンスパネルに読み込まれたリファレンストラックを選択することができます。</li>
+<li>このオプションが選択されていると、ターゲットラウドネスとターゲットEQ曲線が、選択されたリファレンストラックのラウドネスとEQ曲線を基に計算されます。</li>
+</ul>
+
+<p>これらのターゲットに関する選択は、色々な形でマスターアシスタントの分析やその結果に影響を与えます。以下のステップは、ターゲット選択がいかに与えられた処理ステップに影響を及ぼすかを説明したものです。</p>
+
+<h3 id="オーディオを再生">オーディオを再生</h3>
+
+<p>ターゲットを選択した後、Nextをクリックしてマスターアシスタントを実行します。</p>
+
+<p><img src="../images/master-assistant/next.png" alt="next button" /></p>
+
+<div class="admonition note">
+<p class="admonition-title">便利なヒント</p>
+<p><ul>
+<li><strong>マスターアシスタントにはオーディオ入力が必須:</strong> ホストアプリケーションでオーディオを再生する必要があります。</li>
+<li><strong>より良い結果を得るため、トラックで最も音量の高い箇所でマスターアシスタントを実行することが推奨されます。</strong></li>
+<li>マスターアシスタントは分析に際し、約30秒間のオーディオを必要とします。もし、マスターアシスタントに30秒未満のオーディオを分析させる場合は、ループ再生をしながらマスターアシスタントを実行することが推奨されます。</li>
+</ul>
+</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">リファレンスターゲット選択に関する注</p>
+<p><ul>
+<li>リファレンスがターゲットとして選択された状態でマスターアシスタントを実行するには、リファレンスパネルにリファレンストラックが読み込まれている必要があります。先へ進むには、マスターアシスタントを終了し、リファレンスファイルを読み込まなければなりません。</li>
+<li>リファレンスファイルをマスターアシスタントのリファレンストラックのドラップダウンで選択するには、ファイルの読み込みが完了している必要があります。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="処理ステップ">処理ステップ</h2>
+
+<p>以下は、ターゲットを選択し、‘Next’ボタンをクリックした後のマスターアシスタントの作業手順のあらましです。</p>
+
+<h3 id="オーディオ分析">オーディオ分析</h3>
+
+<p>“Next”ボタンをクリックすると、マスターアシスタントは約5秒間、入力オーディオを聴きます。</p>
+
+<p><img src="../images/master-assistant/working.png" alt="analyze" /></p>
+
+<div class="admonition note">
+<p class="admonition-title">Waiting For Audio（オーディオ待機）画面</p>
+<p>マスターアシスタントがオーディオを受信していないと、“Waiting for audio”画面が表示されます。オーディオを再生すると、この待機画面は消えます。</p>
+</div>
+
+<h3 id="固有のジャンルターゲット曲線">固有のジャンルターゲット曲線</h3>
+
+<p>数秒間オーディオを聴いた後、マスターアシスタントはEQ処理ステップ（後述）で使用する固有のターゲット曲線を生成します。</p>
+
+<div class="admonition note">
+<p class="admonition-title">マスターアシスタントはどのように固有のターゲット曲線を作り出すのか?</p>
+<p><ul>
+<li>初回試聴時にマスターアシスタントは、オーディオを分析し、既定の10種類のジャンルの曲線との類似性を判断します（これら曲線については前出の<a href="../index.html#genre-classes">ジャンル分け</a>の項をご参照ください）。</li>
+<li>各ジャンル曲線に対し類似性の比率がアサインされます。</li>
+<li>その上で、マスターアシスタントはジャンル分け比率に基づいた固有のターゲット曲線を作り出します。</li>
+<li><strong>例:</strong> マスターアシスタントが与えられたトラックを60%ポップ、30%ロック、10%カントリーと比率付けした場合、固有のターゲット曲線はポップのターゲット6割、ロックのターゲット3割、そしてカントリーのターゲット1割がミックスされたものとなります。</li>
+</ul>
+</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">リファレンスオーディオを基にしたターゲット曲線</p>
+<p><ul>
+<li>マスターアシスタントのターゲットに“Reference”が選択されている場合、固有のターゲット曲線は、入力オーディオのジャンルの計算ではなく、選択されたリファレンストラックから導き出されます。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="プリセットの適用">プリセットの適用</h3>
+
+<p>固有のターゲット曲線が生成されると、マスターアシスタントは最も類似性の比率の高かったジャンルに基づいたプリセットを読み込みます。これらプリセットはマスターアシスタント処理を利用するモジュールの作業開始点として提供され、IRCモードやマキシマイザーや、ダイナミクスのアタック及びリリース時間など、入力オーディオを分析したものではないパラメーターを設定します。マスターアシスタントのプリセットは、Neutronのトラックアシスタント処理で使用されるプリセットと比較すると微細な設定となります。</p>
+
+<div class="admonition note">
+<p class="admonition-title">マスターアシスタント実行後のモジュールチェーンについて</p>
+<p><ul>
+<li>マスターアシスタント実行後は、使用モジュールと信号処理チェーンにおける順列は常に不動となります。</li>
+<li>状況に応じ（入力オーディオによっては）、マスターアシスタントはダイナミクスモジュールをバイパスにすることがあります。この判断については、後述の情報をご参照ください。</li>
+<li>繰り返し作業を行う: マスターアシスタント実行後のモジュールは、推奨設定、あるいはマスターに対する作業開始点としての使用のために準備されます。Ozoneには、多種多様な処理モジュールがありますので、トラックの状況に合わせ、モジュールを追加したり削除したりすることをお勧めします。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="eq">EQ</h2>
+
+<p>プリセット適用後、マスターアシスタントはEQモジュールの設定を変更します。
+マスターアシスタントは、入力オーディオと処理ステップの第一段階で生成された固有のターゲット曲線を比較し、EQ設定をインテリジェントに変更します。入力オーディオをターゲット曲線に近づけるEQ曲線を作り出すべく、EQ操作点が調整されます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">EQ帯域の設定</p>
+<p><ul>
+<li>マスターアシスタントは常にバンド1と8に対し、それぞれローシェルフとハイシェルフを有効にします。</li>
+<li>マスターアシスタントはターゲット曲線に合わせ込むため、バンド2から7に対し、最大6つのピークベルフィルターを追加します。</li>
+</ul>
+</p>
+</div>
+
+<h2 id="ダイナミクス">ダイナミクス</h2>
+
+<p>EQモジュールの設定が完了すると、マスターアシスタントはダイナミクスモジュールの設定を変更します。ダイナミック過ぎるオーディオに対しては、低域に圧縮を適用することで、マキシマイザーがより平明に動作するようにします。マキシマイザーの出力にダイナミクス処理を施すことが良い影響を与えるかどうか判断するため、マスターアシスタントは入力オーディオの波高因子を計測します。</p>
+
+<p>検知されたジャンルが広域の“オーケストラ”カテゴリーとなった場合、波高因子は信号の全帯域をベースに計算されます。これ以外では、波高因子は入力オーディオの低域を基に計算されます。</p>
+
+<p>計測された波高因子が既定のカットオフ値（このカットオフ値は内的分析の結果決定したもの）よりも高かった場合、ダイナミクスモジュールが有効化されます。計測された波高因子が既定のカットオフ値よりも低かった場合、ダイナミクスモジュールは無効化されます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">波高因子とは?</p>
+<p>波高因子は、ピークの振幅値を波形のRMS値で割ったものです。この計測値は、波形内にどれだけ極度のピークがあるかを明示するものであり、信号のダイナミックレンジと同一と見なすことができます。マスターアシスタントにより使用される波高因子の幅は-1から14で、理想的な波高因子のレンジは3から10となります。波高因子が3未満の場合、“圧縮過多”と判断することができます。波高因子が10を越える場合、“ダイナミック過ぎ”と判断できます。</p>
+</div>
+
+<p>コンプレッサーのスレッシュホルド値は、コンプレッサーがオーディオに確実に作用するよう、入力オーディオの平均レベルを基に分析されます。</p>
+
+<h2 id="マキシマイザー">マキシマイザー</h2>
+
+<p>EQモジュールの設定が終わると、マスターアシスタントはマキシマイザーの設定の調整に取り掛かります。</p>
+
+<h3 id="シーリング">シーリング</h3>
+
+<p>シーリングの値は、マスターアシスタントの最初の画面で選択されたターゲットに基づいて決められます。</p>
+
+<ul>
+<li><strong>ストリーミング:</strong> -1dB</li>
+<li><strong>CD（全ての強度値に共通）:</strong> -0.3dB</li>
+<li><strong>リファレンス:</strong> -0.3dB</li>
+</ul>
+
+<h3 id="スレッシュホルド">スレッシュホルド</h3>
+
+<p>スレッシュホルド値は、入力オーディオと選択されたマスターアシスタントのターゲットの分析傾向によって決定します。</p>
+
+<h3 id="ストリーミング">ストリーミング</h3>
+
+<ul>
+<li>マキシマイザーのスレッシュホルドのターゲットラウドネス値は-14 LUFS（良く利用されるストリーミングサービスで一般的なラウドネス）に設定されます。</li>
+<li>ラウドネスのターゲットは<a href="../options/index.html#general">Options &gt; General</a>タブにて手動で設定できます。</li>
+</ul>
+
+<h3 id="cd-1">CD</h3>
+
+<ul>
+<li>入力オーディオと強度の選択に基づき、マキシマイザーのスレッシュホルドはマスターの音量をできる限り大きくする値に設定されます。</li>
+</ul>
+
+<h3 id="cd-intensity-強度">CD: Intensity（強度）</h3>
+
+<p>マキシマイザーのスレッシュホルド分析時に、どれくらい頻繁にリミッターが作動するかを決定します。</p>
+
+<ul>
+<li>Low:（低） リミッターの作動率は時間尺に対し0%となります</li>
+<li>Medium（中）: リミッターの作動率は時間尺に対し1%となります</li>
+<li>High（高）: リミッターの作動率は時間尺に対し2%となります</li>
+</ul>
+
+<h3 id="reference-リファレンス-1">Reference（リファレンス）</h3>
+
+<ul>
+<li>マキシマイザーのスレッシュホルドのためのターゲットラウドネス値（単位LUFS）は選択されたリファレンストラックのラウドネスから計算されます。</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><ul>
+<li>トラックの音量がターゲットラウドネス値よりも高い場合、マスターアシスタントはシーリング値により発生した差異よりも音量を下げません。</li>
+</ul>
+</p>
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">重要</p>
+<p>マスターアシスタントを実行する場合は、トラックの中の最も音量の高い部分を再生することが肝要です。静かな箇所でマキシマイザーのスレッシュホルドを分析してしまうと、その部分に対して最適なラウドネスの最大化が行われます。レベルの低い箇所を基にしたスレッシュホルドを使用すると、より音量の高い箇所でディストーションを引き起こす可能性がありますのでご注意ください。</p>
+</div>
+
+<h2 id="ダイナミックeq">ダイナミックEQ</h2>
+
+<p>マスターアシスタントはマキシマイザーの入力信号と出力信号を比較し、どの周波数が最も強くリミッターに当たっているかを判断します。</p>
+
+<p>ダイナミックEQ操作点は、マキシマイザーの使用によるディストーションの発生を軽減するため、ピークの周波数に置かれます。スレッシュホルド値は、ダイナミックEQバンドの入力オーディオを基に分析されます。</p>
+
+<h2 id="承認とキャンセル">承認とキャンセル</h2>
+
+<p>マスターアシスタントが完了すると、変更のAccept（承認）かCancel（キャンセル）が選択できます。</p>
+
+<p><img src="../images/master-assistant/ma-accept.png" alt="accept" /></p>
+
+<ul>
+<li><strong>Accept（承認）</strong>を選択するとマスターアシスタントのパネルが消え、マスターアシスタントにより変更された設定が維持されます。</li>
+<li>承認後、マスターアシスタントの変更を取り消して元の設定に戻したい場合は、取り消し履歴画面でその作業を行ってください。</li>
+<li><strong>Cancel（キャンセル）</strong>を選択するとマスターアシスタントのパネルが消え、マスターアシスタントを実行する前の状態に戻ります。</li>
+</ul>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  トラックリファレンス</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>Ozone 8のトラックリファレンスは、DAW内の音楽の対比と比較を手助けする信頼性の高いワークフローです。Ozoneの新しいリファレンス操作パネルを使用すると、リファレンストラックを最高10トラックまでインポートでき、重ねて表示されたスペクトラムメーターにより音楽内の相違が視覚化され、試聴パネルにて手早くA/B比較を行うことができます。</p>
+
+<p><img src="../images/ref-panel.png" alt="ref panel" /></p>
+
+<h2 id="リファレンスにインポート">リファレンスにインポート</h2>
+
+<p>リファレンス操作パネルには、Ozoneインターフェース右下にある“Reference”ボタンをクリックするとアクセスできます。Ozone 8アプリケーションとOzone 8プラグインには、最大10のリファレンスファイルを加えることができます。</p>
+
+<p>リファレンス操作パネルの空きセクション中央にある“+”ボタンをクリックして読み込むリファレンスファイルを選択してください。</p>
+
+<h2 id="サポートされるファイル形式">サポートされるファイル形式</h2>
+
+<table>
+<thead>
+<tr>
+<th>サポートされるファイル形式</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>wav</td>
+</tr>
+
+<tr>
+<td>aif/aiff</td>
+</tr>
+
+<tr>
+<td>mp3</td>
+</tr>
+
+<tr>
+<td>AAC</td>
+</tr>
+
+<tr>
+<td>FLAC</td>
+</tr>
+</tbody>
+</table>
+
+<p>リファレンス操作パネルには同時に最大10のリファレンストラックを読み込めます。Ozoneアプリケーションでリファレンス操作パネルを使用する場合、読み込まれたリファレンスは別々のトラックで共有されます（例: Ozoneプロジェクトの各トラックのリファレンスパネルには、同じリファレンストラックが表示されます）。</p>
+
+<h2 id="ループ区画">ループ区画</h2>
+
+<p>リファレンス操作パネルにトラックが読み込まれると、波形表示上にハンドルが出現します。各ハンドルは既定ループポイントの境界線を表します。ループ境界は、トラック内で検知された類似箇所を基に設置されます。この技術は、Ozoneアプリケーションで波形に区分線を生成する際に用いられるマシーンラーニング技術と同様です。
+デフォルトでは、各区画はA/B/C/D/Eという具会に、文字で名称が付けられます。</p>
+
+<h3 id="ループ区画の名称変更">ループ区画の名称変更</h3>
+
+<p><img src="../images/segments.png" alt="segment names" /></p>
+
+<p>リファレンス操作パネルでは、以下の方法でループ区画の名称が変更できます:</p>
+
+<ul>
+<li>現在の名称をダブルクリック</li>
+<li>テキストボックスに名称を入力</li>
+<li>Enter/Returnキーを押して変更した名称を保存</li>
+</ul>
+
+<h3 id="リファレンス再生のループ">リファレンス再生のループ</h3>
+
+<p>特定の区画をループ再生する場合は、区画の開始と終了ハンドルの間をクリックします。“Select all”ボタンをクリックすると、ファイル全体をループ再生することができます。</p>
+
+<h3 id="選択済みリファレンスの削除方法">選択済みリファレンスの削除方法</h3>
+
+<p>リファレンストラックのタブが選択された状態で‘x’ボタンをクリックすると、リファレンス操作パネルから選択されたリファレンストラックを削除することができます。</p>
+
+<h2 id="リファレンスループの試聴">リファレンスループの試聴</h2>
+
+<p>リファレンス操作パネル隣の電源ボタンをクリックすると、選択されたリファレンストラックを再生することができます。</p>
+
+<h2 id="ゲイン">ゲイン</h2>
+
+<p>リファレンストラックの出力はGainスライダーを使用して調整します。</p>
+
+<h2 id="リファレンスメーター">リファレンスメーター</h2>
+
+<p>リファレンストラックのメーターに関するオプションは、I/Oメーター上部にあるI/Oオプションのポップアップメニューにあります。</p>
+
+<p><img src="../images/reference-spectrum.png" alt="spectrum" /></p>
+
+<h3 id="replace-input-with-reference-入力をリファレンスと置き換える">Replace Input with Reference（入力をリファレンスと置き換える）</h3>
+
+<p>ここが有効の場合、Ozoneの入力メーターにはリファレンストラックのレベルが表示されます。</p>
+
+<h3 id="show-reference-spectrum-リファレンスのスペクトラムを表示">Show Reference Spectrum（リファレンスのスペクトラムを表示）</h3>
+
+<p>ここが有効の場合、リファレンストラックのスペクトラムは、使用中のトラックのスペクトラムメーターと並んでモジュールのスペクトラムメーターに表示されます。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  トーナルバランスコントロール</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>トーナルバランスコントロールは、インサートされたトラックのターゲット曲線との相対的なスペクトラムメーター情報を表示します。これは、ミックスやマスタリング時に出来するトーンバランス的な問題に取り組む際に特に便利な機能です。トーナルバランスコントロールは、低域のパワー不足、あるいは高域の鮮やかさ不足など、ミックスやマスタリング時に起こり得る問題を解決する上での道標、あるは改善の文脈を提供することで、プロフェッショナルな完成度のマテリアル作りの手助けをします。</p>
+
+<div class="admonition note">
+<p class="admonition-title">トーナルバランスコントロールは信号チェーンの末尾で使用する必要があります</p>
+<p><ul>
+<li>トーナルバランスコントロール・プラグインを最大限に活用する上で、同プラグインをマスターバストラックの信号処理チェーンの末尾にインサートすることを推奨します。</li>
+<li>これにより、選択されているターゲット曲線と比較するスペクトラム曲線が、確実にセッション内の全ての処理を終えたものとなります。</li>
+<li>トーナルバランスコントロールが信号処理チェーンの末尾にあると、Neutron 2、あるいはOzone 8のEQで行われた調整が、確実にトーナルバランスコントロールに表示されるスペクトラム曲線に反映されるようになります。</li>
+</ul>
+</p>
+</div>
+
+<p>トーナルバランスコントロールのファクトリー仕様のターゲット曲線は、異なるスタイルの音楽で見られる典型的なスペクトラル形状を表しております。これらターゲット曲線は、様々なジャンルやスタイルの音楽の多種多様なトラックのスペクトラル特性を分析した上で作成されました。ターゲット曲線は類似したスタイルの音楽に対し、一定の幅のスペクトラル・バリエーションを表示します。</p>
+
+<h2 id="メーター">メーター</h2>
+
+<h3 id="broad-view-広域表示">Broad View（広域表示）</h3>
+
+<p><img src="../images/tbc-target-curves-meters/broad-view.png" alt="Broad View" /></p>
+
+<p>Broad Viewではターゲット曲線が4つの周波数帯域に分割されて表示されます。</p>
+
+<ul>
+<li>低域: 20 Hz - 250 Hz</li>
+<li>低中域: 250 Hz - 2 kHz</li>
+<li>中域: 2kHz - 8 kHz</li>
+<li>高域: 8 kHz - 20 kHz</li>
+</ul>
+
+<p>各周波数帯に表示される青いバーは、選択されたターゲット曲線の典型的なスペクトラル・バリエーションを表しています。</p>
+
+<p>白線により、トラックとターゲット曲線の比較状態が更新されます。OzoneやNeutronのEQで調整し、青いターゲット幅に収まるようにミックスを修正することができます。</p>
+
+<h3 id="fine-view-詳細表示">Fine View（詳細表示）</h3>
+
+<p><img src="../images/tbc-target-curves-meters/fine-view.png" alt="Fine View" /></p>
+
+<p>Fine Viewでは周波数スペクトラム全域を通し、選択されたターゲット曲線の幅が青色で表示されます。この表示では白いスペクトラム曲線はその時のトラックを表します。</p>
+
+<h3 id="帯域インジケーター">帯域インジケーター</h3>
+
+<p><img src="../images/tbc-target-curves-meters/target-selection.png" alt="Band Indicators" /></p>
+
+<p>周波数帯の表示は、その時のトラックが選択されているターゲット曲線に対し、典型的な幅に収まっていると白に変わります。</p>
+
+<h3 id="crest-factor-波高因子">Crest Factor（波高因子）</h3>
+
+<p><img src="../images/tbc-target-curves-meters/crest-factor-close.png" alt="Crest Factor" /></p>
+
+<p>Crest Factorメーターは、トラック内の低域のダイナミックレンジに関する情報を表示します。メーターの比重が左側にある場合、そのミックスは低域が「過度にダイナミック」であることを意味します。右側に比重がある場合、そのミックスは低域が「過度に圧縮」されていることを意味します。</p>
+
+<h2 id="ターゲット曲線"><strong>ターゲット曲線</strong></h2>
+
+<p><img src="../images/tbc-target-curves-meters/target-selection.png" alt="Target Menu" /></p>
+
+<p>トーナルバランスコントロールには、主要な音楽スタイルに合わせた典型的なスペクトラル曲線を表示する以下の3種類のファクトリー仕様ターゲット曲線があります。</p>
+
+<ul>
+<li><strong>ORCHESTRAL（オーケストラ用）</strong></li>
+<li><strong>BASS HEAVY（重量感ベース）</strong></li>
+<li><strong>MODERN（モダン）</strong></li>
+</ul>
+
+<h2 id="カスタムターゲット曲線">カスタムターゲット曲線</h2>
+
+<p>ターゲット曲線のドロップダウンメニュー右側のメニューボタンをクリックすると、自分自身でターゲット曲線を作成するオプションが表示されます。</p>
+
+<table>
+<thead>
+<tr>
+<th>サポートされるファイル形式</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>AIFF</td>
+</tr>
+
+<tr>
+<td>WAV</td>
+</tr>
+
+<tr>
+<td>MP3</td>
+</tr>
+
+<tr>
+<td>M4A</td>
+</tr>
+
+<tr>
+<td>FLAC</td>
+</tr>
+
+<tr>
+<td>OGG</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="create-custom-target-curve-from-file-ファイルからカスタムターゲット曲線を作成">Create custom target curve from file&hellip;（ファイルからカスタムターゲット曲線を作成）</h3>
+
+<p>カスタムターゲット曲線を作成するため、オーディオファイルを選択するシステム画面が開きます。</p>
+
+<h3 id="create-custom-target-from-folder-of-files-ファイルのフォルダからカスタムターゲット曲線を作成">Create custom target from folder of files&hellip;（ファイルのフォルダからカスタムターゲット曲線を作成）</h3>
+
+<p>オーディオファイルのフォルダが選択できます。トーナルバランスコントロールは、選択されたフォルダに存在する全てのオーディオファイルをもとに、単一のターゲット曲線を作成します。</p>
+
+<h3 id="save-custom-target-curve-カスタムターゲット曲線を保存">Save custom target curve&hellip;（カスタムターゲット曲線を保存）</h3>
+
+<p>将来的な使用に備え、作成したカスタムターゲット曲線を保存します。</p>
+
+<h3 id="change-target-curve-folder-ターゲット曲線のフォルダを変更">Change target curve folder&hellip;（ターゲット曲線のフォルダを変更）</h3>
+
+<p>ターゲット曲線の保存とリコールを行うための場所を変更することができます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">ターゲット曲線フォルダのデフォルト位置</p>
+<p><ul>
+<li><strong>Mac</strong>: ユーザ/実際のユーザ名/書類/iZotope/Tonal Balance Control/Target Curves</li>
+<li><strong>Windows</strong>: C:\ユーザ\実際のユーザ名\書類\iZotope\Tonal Balance Control\Target Curves</li>
+</ul>
+</p>
+</div>
+
+<h3 id="show-target-curve-folder-in-finder-explorer-ファインダー-エクスプローラーでターゲット曲線フォルダを表示">Show target curve folder in finder/explorer&hellip;（ファインダー/エクスプローラーでターゲット曲線フォルダを表示）</h3>
+
+<p>ファインダー（Mac）、またはエクスプローラー（Windows）上で現在のターゲット曲線のディレクトリを表示します。</p>
+
+<h2 id="options">Options</h2>
+
+<p>オプションメニューへは、トーナルバランスコントロールのインターフェース右上角にあるギアボタンをクリックすることでアクセスできます。</p>
+
+<p><img src="../images/tbc-options/tonal-balance-control-options.png" alt="Options Window" /></p>
+
+<ul>
+<li><strong>バージョン情報:</strong> オプション画面右上には現在使用中のトーナルバランスコントロールのバージョン及びビルト番号が表示されます。</li>
+<li><strong>Reset（リセット）:</strong> トーナルバランスコントロールの全オプションをファクトリーデフォルト値にリセットします。.</li>
+<li><strong>Cancel（キャンセル）:</strong> オプション画面で行った設定変更を保存せずにオプション画面を終了します。</li>
+<li><strong>Ok:</strong> オプション画面で行った設定変更を保存してオプション画面を終了します。</li>
+</ul>
+
+<h3 id="general-全般">General（全般）</h3>
+
+<ul>
+<li><strong>Enable Analytics（統計分析を有効化）:</strong> チェックされていると、将来的な改善のため、匿名のユーザーデーターがiZotopeへ送信されます。</li>
+<li><strong>Enable Tooltips（ツールのヒントの有効化）:</strong> チェックされていると、トーナルバランスコントロールのインターフェース上にカーソルがある場合、その操作項目などに関するヒントや情報が表示されます。</li>
+</ul>
+
+<h3 id="spectrum-スペクトラム">Spectrum（スペクトラム）</h3>
+
+<ul>
+<li><strong>Average Time（平均時間）:</strong> 設定に応じてスペクトラムを平均化します。長い平均時間は、ミックスの全体的な音的バランスを視認するのに適しており、短い平均時間はよりリアルタイムの表示となります。</li>
+<li><strong>Frequency Scale（周波数尺度）:</strong> トーナルバランスコントロールのメーターで使用される周波数尺度を設定します。選択肢は以下の通りです:
+
+<ul>
+<li><strong>FLAT LOG（フラットログ）</strong></li>
+<li><strong>EXTENDED LOG（拡張ログ）</strong></li>
+<li><strong>PIANO ROLL（ピアノロール）</strong></li>
+</ul></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p>トーナルバランスコントロールのインターフェースにある周波数ルーラーを右クリックすると、オプション画面を開かなくても周波数尺度を変更することができます。</p>
+</div>
+
+<h2 id="トーナルバランスコントロールでのozone-8">トーナルバランスコントロールでのOzone 8</h2>
+
+<p>トーナルバランスコントロールのプラグイン選択メニューより、使用するOzone 8を選択すると、リモートでEQのパラメーターが操作できるほか、全てのOzone 8プラグインのスペクトラムメーターを見ることができます。</p>
+
+<p><img src="../images/tbc-o8/o8-eq-display.png" alt="Ozone 8 instance selected" /></p>
+
+<p>以下の表は、トーナルバランスコントロールにて操作や表示の可否を表したOzone 8プラグインの種類の一覧です。</p>
+
+<table>
+<thead>
+<tr>
+<th>プラグイン/モジュール名</th>
+<th>EQ操作</th>
+<th>スペクトラム表示</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Ozone 8 / EQモジュール</td>
+<td>あり</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 / ポストEQモジュール</td>
+<td>あり</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 EQ</td>
+<td>あり</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 ダイナミック EQ</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 ダイナミクス</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 エキサイター</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 イメージャー</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 マキシマイザー</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 スペクトラル成形</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 ビンテージリミッター</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 ビンテージ EQ</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 ビンテージテープ</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+
+<tr>
+<td>Ozone 8 ビンテージコンプレッサー</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+</tbody>
+</table>
+
+<p>EQ操作のないOzone 8プラグインがトーナルバランスコントロールで選択されると、以下のような画面になります:
+<img src="../images/tbc-o8/o8-plugin-no-eq-controls.png" alt="No EQ Controls" /></p>
+
+<p>EQ互換のあるOzone 8プラグインがトーナルバランスコントロールで選択されると、以下のような画面になります:
+<img src="../images/tbc-o8/o8-eq-params-close.png" alt="EQ Controls" /></p>
+
+<h3 id="グローバルeq操作"><strong>グローバルEQ操作</strong></h3>
+
+<p><img src="../images/tbc-o8/o8-global-bar.png" alt="global control bar" /></p>
+
+<h3 id="source-plug-in-selection-menu-ソースプラグイン選択メニュー">Source Plug-in Selection Menu（ソースプラグイン選択メニュー）</h3>
+
+<p>トーナルバランスコントロールのインターフェースで表示/操作する使用プラグインが選択できます。</p>
+
+<h3 id="analog-digital-surgical-アナログ-デジタル-整形モード">Analog/Digital/Surgical（アナログ/デジタル/整形モード）</h3>
+
+<p>グローバルEQの処理モードを設定します。</p>
+
+<ul>
+<li><strong>ANALOG（アナログ）:</strong> ここが選択されると、最小位相特性のアナログ型フィルターが全EQ帯域に使用されます。</li>
+<li><strong>DIGITAL（デジタル）:</strong> ここが選択されると、位相特性の調整が可能なフィルターが全EQ帯域に使用されます。</li>
+<li><strong>SURGICAL（整形）:</strong> ここが選択されると、精密なデジタルフィルターが全EQ帯域に使用されます。整形モードでは選択されたフィルター形状のみ使用可能です。</li>
+</ul>
+
+<h3 id="bypass-バイパス">Bypass（バイパス）</h3>
+
+<p>一時的に選択されたOzone 8プラグインのEQ処理をバイパスします。このバイパス操作は、A/B比較の際に便利です。</p>
+
+<div class="admonition note">
+<p class="admonition-title">EQバイパス状態に関する注</p>
+<p><ul>
+<li>選択されたEQがプラグインでバイパスされていると、トーナルバランスコントロール上の操作項目は淡色表示となります。選択されたプラグインでEQを有効にするには、プラグイン画面を表示させ、EQのバイパスを解く必要があります。トーナルバランスコントロールのインターフェースから、選択されたプラグインのEQのバイパス状態を変えることはできません。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="show-hide-selected-plug-in-display-選択されたプラグイン画面の表示切り替え">Show/Hide Selected Plug-in Display（選択されたプラグイン画面の表示切り替え）</h3>
+
+<p>選択されたプラグイン画面の表示/非表示を切り替えます。</p>
+
+<h3 id="メーター機能と操作"><strong>メーター機能と操作</strong></h3>
+
+<p><img src="../images/tbc-o8/o8-spectrum-close-up.png" alt="Spectrum and EQ curve" /></p>
+
+<h3 id="spectrum-metering-スペクトラムメーター">Spectrum Metering（スペクトラムメーター）</h3>
+
+<p>選択されたプラグインのスペクトラムメーターを表示します。Ozone 8プラグインのスペクトラムメーターは青で表示されます。</p>
+
+<h3 id="eq-curve-eq曲線">EQ Curve（EQ曲線）</h3>
+
+<p>選択されたOzone 8プラグインがEQ操作をサポートする場合、EQ曲線操作はスペクトラムメーターのある部分に表示されます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">EQ操作点の使用に関するヒント</p>
+<p><ul>
+<li><strong>フィルター形状の変更:</strong> 操作点を右クリックすると、表示されるメニュー内でフィルター形状を変更することができます。</li>
+<li><strong>操作点をデフォルトにリセット:</strong> 操作点をダブルクリックするとデフォルト値にリセットされます。</li>
+<li><strong>ダブルクリックで帯域を有効化:</strong> スペクトラム画面の空白部分をダブルクリックすると、その周波数の帯域が有効になります。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="帯域選択と操作項目の有効化-無効化">帯域選択と操作項目の有効化/無効化</h3>
+
+<p><img src="../images/tbc-o8/o8-band-selection-enable-disable-bar.png" alt="Band select and enable bar" /></p>
+
+<ul>
+<li>EQ帯域は、帯域番号の左にある電源ボタンで有効/無効を切り替えることができます。</li>
+<li>帯域番号のアイコンを直接クリックすると、その帯域に関係した操作項目が表示されます。</li>
+</ul>
+
+<h3 id="eqの操作項目"><strong>EQの操作項目</strong></h3>
+
+<p>選択されたOzone EQの操作項目は、トーナルバランスコントロールのインターフェース底部のバーに位置しています。</p>
+
+<p><img src="../images/tbc-o8/o8-static-band-controls.png" alt="EQ Controls" /></p>
+
+<ul>
+<li><strong>BAND SHAPE（帯域形状）:</strong> 選択された帯域に使用するフィルター形状を選択します。</li>
+<li><strong>FREQUENCY（周波数）:</strong> 選択されたフィルターの中央周波数を設定します。</li>
+<li><strong>GAIN（ゲイン）:</strong> 選択されたフィルターに適用されるゲインをプラス値かマイナス値で設定します。</li>
+<li><strong>Q:</strong> 現在のフィルターの帯域幅を設定します。</li>
+<li><strong>PHASE（位相: デジタル及び整形モードのみ）:</strong>  選択された帯域の位相特性を操作します。0% = リニア位相特性、100% = 最小位相特性となります。</li>
+</ul>
+
+<h3 id="全般的な注意点"><strong>全般的な注意点</strong></h3>
+
+<h3 id="操作の有効性">操作の有効性</h3>
+
+<p>以下の操作項目は、Ozone 8 EQ/ポストEQモジュールとEQコンポーネントプラグインからアクセスできますが、トーナルバランスコントロールのインターフェースからアクセスすることはできません:</p>
+
+<ul>
+<li>EQモジュール/プラグインのバイパス</li>
+<li>マッチングEQの操作項目</li>
+<li>Mid/SideまたはLeft/Right処理モードの操作項目</li>
+<li>EQモジュールのリセット</li>
+<li>I/Oまたはチャンネル操作項目</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">トーナルバランスコントロールにおけるM/S &amp; L/R操作の制限</p>
+<p>トーナルバランスコントロールで選択されたOzone EQプラグインがMid/SideまたはLeft/Right処理モードを使用している場合、トーナルバランスコントロールにはEQの操作項目は表示されません。現在、トーナルバランスコントロールは、ステレオ処理モード下にあるOzone EQの操作のみをサポートします。</p>
+</div>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  オプション</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>Ozoneには統合的なユーザ設定オプションが用意されています。Optionsメニューはインターフェース右上にあるギアボタンをクリックするとアクセスできます。</p>
+
+<p><img src="../images/options/gear.png" alt="options dialog button" /></p>
+
+<p>オプション画面下部には以下のグローバルパラメーターがあります:</p>
+
+<p><img src="../images/options/btmbar.png" alt="ozone options" /></p>
+
+<ul>
+<li><strong>?:</strong> このヘルプドキュメントを起動します。</li>
+<li><strong>Reset（リセット）:</strong> 選択されているオプションタブの全項目がデフォルト値にリセットされます。</li>
+<li><strong>Version information（バージョン情報）:</strong> 使用中のOzoneのバージョンとビルト番号が表示されます。</li>
+<li><strong>Cancel（キャンセル）:</strong> 変更を保存せずにオプション画面を閉じます。</li>
+<li><strong>Ok:</strong> 変更を保存してオプション画面を閉じます。</li>
+</ul>
+
+<h2 id="general-全般オプション">General（全般オプション）</h2>
+
+<p><img src="../images/options/general.png" alt="general options with plugin options" /></p>
+
+<h3 id="graphics-画面表示">Graphics（画面表示）</h3>
+
+<ul>
+<li><strong>ENABLE METERS（メーター有効化）:</strong> 全メーターを一度にオン/オフできます。</li>
+<li><strong>SHOW TOOLTIPS（操作説明の表示）:</strong> 操作項目にポインターを置いた際の操作説明の表示のオン/オフを切り替えます。</li>
+<li><strong>DIM CONTROLS WHEN BYPASSED（バイパス時は操作項目の輝度を下げる）:</strong> このオプションが有効の場合、全ての操作項目はバイパス時に暗く表示されます。これによりバイバスされているモジュールの見分けが一目瞭然となり、誤操作の防止に繋がります。</li>
+<li><strong>MODULE PRESET MANAGER FOLLOWS MODULE SELECTION（モジュール選択に応じてモジュールのプリセットマネージャを変更）:</strong> このオプションが有効の場合、必ず選択されているモジュールのモジュールプリセットマネージャが表示されます。ここが無効の場合、別のモジュールをクリックしても、モジュールプリセットマネージャは切り替わりません。</li>
+<li><strong>FRAME RATE LIMITER（フレームレートリミッター）:</strong> Ozoneがメーター表示を行う際に使用する速度（毎秒フレーム数）を設定します。殆どの場合、デフォルト設定でスムースなメーター表示が為されますが、オーディオの処理時間に応じて適切な速度を設定することができます。</li>
+<li><strong>WINDOW OPACITY（画面の半透明表示）:</strong> Ozoneプラグイン使用時に同一画面から別の操作項目へもアクセスできるよう、Ozoneプラグイン画面の透明性を調整します。これは、Ozoneアプリケーションでは使用できません。</li>
+</ul>
+
+<h3 id="authorization-updates-オーソリゼーションとアップデート">Authorization &amp; Updates（オーソリゼーションとアップデート）</h3>
+
+<ul>
+<li><strong>CHECK FOR UPDATES（アップデートの確認）:</strong> Ozone 8が自動的にアップデート確認を行う頻度を設定します。選択肢は、Never（しない）、Daily（毎日）、Weekly（毎週）、そしてMonthly（毎月）の何れかです。</li>
+<li><strong>CHECK NOW（今すぐ確認）:</strong> 使用中のOzoneが最新の状態になっているか即座に確認します。</li>
+<li><strong>AUTHORIZE（オーソライズ）:</strong>てオーソリゼーションウィザードが起動します。Ozoneのオーソライズに関する詳細は、オーソリゼーションの章か、あるいは後述のMore Infoボタンをクリックの上、ご確認ください。
+
+<ul>
+<li><strong>REMOVE AUTHORIZATION（オーソリゼーションの解除）:</strong> オーソライズされている場合、ここからOzoneのオーソリゼーションを解除することができます。</li>
+</ul></li>
+<li><strong>MORE INFO（更なる情報）:</strong> iZotopeカスタマーケアーのオーソライズに関するページが表示されます。</li>
+</ul>
+
+<h3 id="other-その他">Other（その他）</h3>
+
+<ul>
+<li><strong>ENABLE ANALYTICS（分析機能有効化）:</strong> ここを有効にすると、Ozineがアプリケーションの使用パターンをiZotopeのサーバーへ送信します。これは完全に匿名機能であり、将来的に最高のアップデートを提供すべく、利用習性の理解のみを目的とした機能です。</li>
+<li><strong>HISTORY DEPTH（履歴深度）:</strong> ここでは取り消し履歴の回数を設定し、履歴ログファイルのサイズを操作します。</li>
+<li><strong>KEYBOARD SUPPORT（キーボードサポート）:</strong> 全てのキーボードショートカットを使用するには、キーボードサポートのオプションは“full”が選択されている必要があります。選択肢は、Full（フルキーボードサポート）、Minimal（TAB、矢印及びENTERキーのみ）、None（キーボードショートカットの無効化）の何れかです。</li>
+</ul>
+
+<h4 id="master-assistant-マスターアシスタント">Master Assistant（マスターアシスタント）</h4>
+
+<ul>
+<li><strong>LOUDNESS TARGET（ラウドネスターゲット）:</strong> “Streaming”がターゲットに選択されている状態で<a href="../master-assistant/index.html">マスターアシスタント</a>を実行する際に、マキシマイザーのスレッシュホルド分析が使用するラウドネスターゲットを設定します。</li>
+</ul>
+
+<h4 id="plug-in-host-プラグインホスト">Plug-in Host（プラグインホスト）</h4>
+
+<ul>
+<li><strong>HOST SYNC（ホスト同期）:</strong> ホストアプリケーションのトランスポートの状態に関する情報を表示します。</li>
+<li><strong>VIEW BUFFERS（バッファ閲覧）:</strong> Ozoneがホストアプリケーションから受け取っているバッファサイズの情報がキャプチャできます。</li>
+<li><strong>DELAY COMPENSATION（遅延補正）:</strong> Ozone処理により発生している遅延に関する情報が表示されます。</li>
+</ul>
+
+<h2 id="spectrum-スペクトラムのオプション">Spectrum（スペクトラムのオプション）</h2>
+
+<p><img src="../images/options/spectrum.png" alt="spectrum" /></p>
+
+<ul>
+<li><strong>SPECTRUM TYPE（スペクトラムタイプ）:</strong> 以下の4種類からスペクトラムの種類を選択することができます:<br />
+
+<ul>
+<li><strong>LINEAR（リニア）:</strong> スペクトラムの計算点を繋いだ連続的な線。</li>
+<li><strong><sup>1</sup>&frasl;<sub>3</sub> OCTAVE（オクターブ三分割）:</strong> オクターブを三等分に分割してスペクトラムを表示します。スペクトラムのバンド毎に個別に分割されますが、このオプションは特に低周波数帯での解像度に秀でています。</li>
+<li><strong>CRITICAL（臨界表示）:</strong> スペクトラムのバンドを人間の聴覚に応じて分離します。各バンドは周波数の中で我々が類似していると感じる音にまとめて表示されます。</li>
+<li><strong>FULL OCTAVE（フルオクターブ）:</strong> スペクトラムを１オクターブの幅に分割します。</li>
+</ul></li>
+<li><strong>FILL SPECTRUM（スペクトラム全体表示）:</strong> これを選択するとリアルタイムのスペクトラムが線状ではなくソリッドなグラフ上に表示されます。このオプションにより、リアルタイムのスペクトラムにピークホールドのスペクトラムとの違いを持たせることができます。</li>
+<li><strong>WINDOW SIZE（画面サイズ）:</strong> スペクトラムアナライザーの画面サイズを調整し、モニターの大きさに合わせて最適化します。</li>
+<li><strong>WINDOW（画面タイプ）:</strong> スペクトラムの画面タイプを選択します。大概はデフォルトの画面タイプが適しているといえますが、多種多様なタイプを選択することができます。振幅と周波数の解像度は選択する画面タイプにより異なります。</li>
+<li><strong>PEAK HOLD TIME（ピークホールド時間）:</strong> ここでピークホールドの表示が更新されるまでの時間を設定します。特定の時間（ミリ秒）から無限まで時間長を設定することができます。
+<div class="admonition note">
+<p class="admonition-title">ピークホールドのリセット</p>
+<p><ul>
+<li>スペクトラムをクリックすることによりピークのリセットを行うことができます。</li>
+</ul>
+</p>
+</div></li>
+<li><strong>SHOW PEAK HOLD（ピークホールドを表示）:</strong> Ozoneがスペクトラムのピークをホールドするか否かをトグルします。</li>
+<li><strong>AVERAGE TIME（平均時間）:</strong> この設定状況に応じてスペクトラムが平均化されます。長めの平均時間はミックスの全体的な音像バランスを把握するのに適しており、平均時間が短い程リアルタイムに近い表示となります。</li>
+<li><strong>OVERLAP（オーバーラップ）:</strong> スペクトラムのアップデート頻度を設定します。オーバーラップの回数設定が高いと、CPU使用率の増加と引き換えに、スペクトラムの更新頻度が高くなります。</li>
+</ul>
+
+<h2 id="eq-eqのオプション">EQ（EQのオプション）</h2>
+
+<p><img src="../images/options/eq.png" alt="eq options tab" /></p>
+
+<ul>
+<li><strong>SHOW SPECTRUM（スペクトラムを表示）:</strong> イコライザー曲線の下にリアルタイムのスペクトラムアナライザーを表示させる場合はここをチェックします。これはミックスの周波数バランスや、EQの適用により起こる変化を表示するのに便利な機能です。</li>
+<li><strong>SHOW MUSICAL UNITS（音楽ユニットを表示）:</strong> ここがチェックされていると、従来のEQ測定単位であるHzに加え、周波数が音楽ノート（例：A4など）で表示されます。</li>
+<li><strong>SHOW EXTRA CURVES（追加曲線を表示）:</strong> ここをチェックすると、位相ディレイ、位相特性、そしてグループディレイが表示されます。</li>
+<li><strong>SOFT SATURATION（軽度サチュレーション）:</strong> このボタンをチェックすると、オーディオ素材がオーバーロードするポイントまでブーストされた際、デジタル式の耳障りなオーバーロードではなく、アナログ式の許容性のある軽度のサチュレーションを引き起こすようになります。</li>
+<li><strong>BUFFER SIZE（バッファサイズ）:</strong> イコライゼーションの適用に応じてOzoneの使用するメモリバッファの大きさをサンプル数で設定します。</li>
+<li><strong>FREQUENCY RESOLUTION（周波数解像度）:</strong> イコライザーの調整可能な最小解像度を選択します * 選択肢は次の何れかです: 3 Hz、6 Hz、12 Hz、24 Hz、48 Hz</li>
+<li><strong>FILTER SIZE（フィルターサイズ）:</strong> EQモジュールで使用するフィルター設定の斜度を調整します。</li>
+<li><strong>ALT-SOLO FILTER Q（ALT-SOLOのフィルターQ）:</strong> Alt-Solo機能使用時の帯域幅（Q）を設定します。</li>
+</ul>
+
+<h2 id="exciter-エキサイターのオプション">Exciter（エキサイターのオプション）</h2>
+
+<p><img src="../images/options/exciter.png" alt="exciter options tab" /></p>
+
+<ul>
+<li><strong>CROSSOVER TYPE（クロスオーバーの種類）:</strong> エキサイターのマルチバンド処理に使用するクロスオーバーの種類を設定します。
+
+<ul>
+<li><strong>ANALOG:</strong> 自然なアナログ的音像のクロスオーバーとなります。</li>
+<li><strong>DIGITAL:</strong> より平明な音像のクロスオーバーとなります。</li>
+<li><strong>HYBRID:</strong> この完璧に再現されたIIR（無限インパルスレスポンス）アナログクロスオーバーは、精緻なクロスオーバーポイントとアナログクロスオーバーの温かみを維持しつつ、他のアナログ変換機に見られる位相や周波数の歪みの軽減を実現します。</li>
+</ul></li>
+<li><strong>CROSSOVER BUFFER SIZE（クロスオーバーのバッファサイズ）:</strong> エキサイターモジュールのクロスオーバーが使用するデジタルオーディオバッファの値を設定します。</li>
+<li><strong>CROSSOVER Q（クロスオーバーQ）:</strong> デジタルのクロスオーバーを使用すると、エキサイターモジュールのクロスオーバー点の帯域幅を手動で設定することができます。Qの値が高いとタイトなクロスオーバーとなり、Qの値が低いと帯域間の移行が緩やかになります。</li>
+</ul>
+
+<h2 id="dynamics-ダイナミクスのオプション">Dynamics（ダイナミクスのオプション）</h2>
+
+<p><img src="../images/options/dynamics.png" alt="dyn options tab" /></p>
+
+<ul>
+<li><strong>LOOK AHEAD TIME（先読み時間）:</strong> できる限り平明かつ効果的なダイナミクス操作の実現へ向け、ダイナミクスのプロセッサが読み込まれたデジタルオーディオファイルのどれくらい先のポイントを見に行くかを設定します。ここの数値は0から10ミリ秒の間で設定します。</li>
+<li><strong>CROSSOVER TYPE（クロスオーバーの種類）:</strong> ダイナミクスモジュールのマルチバンド処理に使用するクロスオーバーの種類を設定します。
+
+<ul>
+<li><strong>ANALOG:</strong> 自然なアナログ的音像のクロスオーバーとなります。</li>
+<li><strong>DIGITAL:</strong> より平明な音像のクロスオーバーとなります。</li>
+<li><strong>HYBRID:</strong> この完璧に再現されたIIR（無限インパルスレスポンス）アナログクロスオーバーは、精緻なクロスオーバーポイントとアナログクロスオーバーの温かみを維持しつつ、他のアナログ変換機に見られる位相や周波数の歪みの軽減を実現します。</li>
+</ul></li>
+<li><strong>CROSSOVER BUFFER SIZE（クロスオーバーのバッファサイズ）:</strong> ダイナミクスモジュールのクロスオーバーが使用するデジタルオーディオバッファの値を設定します。</li>
+<li><strong>CROSSOVER Q（クロスオーバーQ）:</strong> デジタルのクロスオーバーを使用すると、ダイナミクスモジュールのクロスオーバー点の帯域幅を手動で設定することができます。Qの値が高いとタイトなクロスオーバーとなり、Qの値が低いと帯域間の移行が緩やかになります。</li>
+</ul>
+
+<h2 id="dynamic-eq-ダイナミックeqのオプション">Dynamic EQ（ダイナミックEQのオプション）</h2>
+
+<p><img src="../images/options/dyn-eq.png" alt="dyn eq options tab" /></p>
+
+<ul>
+<li><strong>SHOW MUSICAL UNITS（音楽ユニットの表示）:</strong> ここがチェックされていると、Hzではなく周波数が音楽ノート（例：A4など）で表示されます。</li>
+<li><strong>SHOW SPECTRUM（スペクトラムを表示）:</strong> イコライザー曲線の下にリアルタイムのスペクトラムアナライザーを表示させる場合はここをチェックします。これはミックスの周波数バランスや、EQの適用により起こる変化を表示するのに便利な機能です。</li>
+<li><strong>ALT-SOLO FILTER Q（Alt-SoloのフィルターQ）:</strong> ダイナミックEQの使用する帯域幅（Q）を設定します。ここは.2から12の間で設定します。</li>
+</ul>
+
+<h2 id="imager-イメージャーのオプション">Imager（イメージャーのオプション）</h2>
+
+<p><img src="../images/options/imager.png" alt="imager options tab" /></p>
+
+<ul>
+<li><strong>PREVENT ANTIPHASE（逆位相防止）:</strong> ここがチェックされていると、イメージャーはステレオ信号がモノに合算された際の位相相殺に繋がりかねない設定を自動的に防止します。</li>
+<li><strong>VECTORSCOPE DETECTION METHOD（ベクトロスコープの検知方法）:</strong> ベクトロスコープの使用する振幅検知方法を以下より選択します:
+
+<ul>
+<li><strong>PEAK（ピーク）:</strong> このオプションが有効になっていると、Ozoneの検知回路は入力信号のピーク値を見るようになります。一般的に、これは音楽の中の突発的なピークをならす上で便利なモードです。</li>
+<li><strong>RMS:</strong> このオプションが有効になっていると、Ozoneの検知回路は入力信号の平均レベルを見るようになります。RMS検知は、音像の性質を変えることなく全体的なボリュームレベルを増加させたい時に便利なモードです。</li>
+<li><strong>ENVELOPE（エンベロープ）:</strong> エンベロープモードはRMSモードと類似する動作をしますが、幾つかの鍵となる利点が備わっています。RMSとは違い、真正エンベロープモードは全ての周波数で同一のレベルを作り出します。</li>
+</ul></li>
+<li><strong>CROSSOVER TYPE（クロスオーバーの種類）:</strong> イメージャーモジュールのマルチバンド処理に使用するクロスオーバーの種類を設定します。
+
+<ul>
+<li><strong>ANALOG:</strong> 自然なアナログ的音像のクロスオーバーとなります。</li>
+<li><strong>DIGITAL:</strong> より平明な音像のクロスオーバーとなります。</li>
+<li><strong>HYBRID:</strong> この完璧に再現されたIIR（無限インパルスレスポンス）アナログクロスオーバーは、精緻なクロスオーバーポイントとアナログクロスオーバーの温かみを維持しつつ、他のアナログ変換機に見られる位相や周波数の歪みの軽減を実現します。</li>
+</ul></li>
+<li><strong>CROSSOVER BUFFER SIZE（クロスオーバーのバッファサイズ）:</strong> イメージャーモジュールのクロスオーバーが使用するデジタルオーディオバッファの値を設定します。</li>
+<li><strong>CROSSOVER Q（クロスオーバーQ）:</strong> デジタルのクロスオーバーを使用すると、イメージャーモジュールのクロスオーバー点の帯域幅を手動で設定することができます。Qの値が高いとタイトなクロスオーバーとなり、Qの値が低いと帯域間の移行が緩やかになります。</li>
+</ul>
+
+<h2 id="i-o-入出力のオプション">I/O（入出力のオプション）</h2>
+
+<p><img src="../images/options/io.png" alt="io options tab" /></p>
+
+<ul>
+<li><strong>ENABLE METERS（メーター有効化）:</strong> OzoneのマスターI/Oセクションのメーターを有効にします。チェックされていないとメーターは表示されません。</li>
+<li><strong>SHOW PEAK HOLD（ピークホールドを表示）:</strong> マスターI/Oメーターにピークホールドバーが表示されます。</li>
+<li><strong>DETECT TRUE PEAKS（真正ピークの検知）:</strong> デフォルトではI/Oメーターの警告灯はデジタル領域で発生したクリッピングのみを表示します。デジタルからアナログへの変換を行う際の信号を正確に計測したい場合は、ここをチェックします。</li>
+<li><strong>ENABLE LEGACY BYPASS GAIN MATCH BEHAVIOR（レガシーの自動マッチ効果ゲイン動作を有効化）:</strong> 試聴セクションのゲインマッチ機能の動作を決定します。
+
+<ul>
+<li><strong>チェックされている時の動作:</strong> Ozoneが使用されていると、マルチバンドダイナミクスやラウドネスマキシマイザーなどにより、知覚されるミックスの全体的な音量に影響を及ぼすことがあります。このため、“Ozoneがオン”の状態と“Ozoneバイパス”状態の比較が困難になります。しかし“Automatically Match Effective Gain When Bypassed”機能がこの問題を解消します。Ozoneは全てのアクティブなモジュールにより、どれだけ知覚的なラウドネスが追加されているかを検出し、Ozoneがバイパス状態になった際は、その分量を自動的に付加します。Ozoneをバイパスにすると、ゲインは自動的に調整されますので、同じ音量でOzoneがオンの状態とオフの状態のA/B比較をすることができます。このゲイン処理はOzoneがバイパス状態のときのみ適用されるものであり、もちろん、実際にOzoneがバイパスにならない限り適用されません。
+<div class="admonition note">
+<p class="admonition-title">注</p>
+<p><ul>
+<li>プラグイン版のOzoneを使用する際、ホストアプリケーションでOzoneをバイパスすると、この機能は作用しない可能性があります。ホストアプリケーションがバイパスされていることを告げた場合、この機能は作動し、OzoneのBypassボタンも自動的に押された状態に変わります。ホストアプリケーションがバイパスされていると告げない場合、Ozoneは状況を判断することができず、この機能は作用しません。
+<br /></li>
+</ul>
+</p>
+</div></li>
+<li><strong>チェックされていない時の動作:</strong> このオプションが無効の場合、I/OセクションのGain Match機能が作動し、ドライの信号のゲインに合わせるべく、出力ゲインのスライダーが自動調整されます。レベルが自動調整されると、出力フェーダーは色が青に変わります。これはOzoneによる効果をA/B比較するのに便利です。レガシーの自動ゲインとは動作が異なりますので、ゲインマッチは常に有効にするのではなく、必要に応じて入れたり切ったりすることを推奨します。この動作はOzoneの出力に影響を与えます。</li>
+</ul></li>
+<li><strong>METER TYPE（メーターの種類）:</strong> Ozone 8では以下の異なるオーディオモニタリングの種類からI/Oメーターのピーク表示方法を選択することができます:
+
+<ul>
+<li><strong>RMS:</strong> RMS（実効値）はソフトウェアベースで行うアナログ型のレベルメーターです。異なる統合時間の使用により、一般的なVUメーターやPPMメーターを模すことができます。RMSメーターは短時間に於ける平均レベルを表示します。通常、RMSメーターは全体的な音量からピークを平均化しているため、その数値は同等のPPMメーター（デジタル/アナログ）と比較すると低くなります。</li>
+<li><strong>PEAK:</strong> ピークメーターは“detect inter-sample peaks”の設定により、瞬時の最大サンプル値か、あるいはアナログ波形のピーク値を表示する速いメーターです。クリッピングの可能性がある状況でピークをトラッキングする場合は、ピークメーターが最も適しています。</li>
+<li><strong>RMS + PEAK:</strong> これはRMSとピークが統合されたメーターです。このメーターでは低く明るいバーで平均レベル（RMS）を示し、高く暗いバーでピーク値を示します。また、バーの上にある動く線で直近のピーク値またはピークホールドを表示します。</li>
+<li><strong>K-SYSTEM:</strong> Ozone 8はピークとRMAを同時に表示するボブ・カッツのKシステム式メーターをサポートします。</li>
+<li><strong>MOMENTARY:</strong> これは400ミリ秒あたりのラウドネスから算出された測定値を表示するメーターです。</li>
+<li><strong>SHORT TERM:</strong> これは3秒あたりのラウドネスから算出された測定値を表示するメーターです。</li>
+<li><strong>INTEGRATED:</strong> これは不定時間あたりのラウドネスから算出された測定値を表示するメーターです。</li>
+</ul></li>
+<li><strong>SCALE（尺度）:</strong> ここではI/Oメーターのレンジと尺度を設定します。選択肢は以下の通りです:
+
+<ul>
+<li><strong>dB (リニア):</strong> -60 dBから0の間でリニア形式にて表示されるデシベル尺度</li>
+<li><strong>dB(ノンリニア):</strong> ノンリニア形式で表示されるフルデシベル尺度(dBfs)</li>
+<li><strong>BS.1771:</strong> ITUにより推奨される-45 LUFSから-14.0 LUFSで表示されるラウドネス尺度</li>
+<li><strong>EBU +9:</strong> EBUがデフォルトとする-41.0 LUFSから-14.0 LUFSで表示されるラウドネス尺度</li>
+<li><strong>EBU +18:</strong> ラウドネス幅の広い素材を使用する際にEBUにより推奨される-59.0 LUFSから-5.0 LUFSで表示されるラウドネス尺度
+<div class="admonition note">
+<p class="admonition-title">LUFSに関する注</p>
+<p><ul>
+<li>LUFSはラウドネス・ユニット・フルスケールの意であり、1 LUFS = 1 dBとなる。</li>
+</ul>
+</p>
+</div></li>
+</ul></li>
+<li><strong>SOURCE（ソース）:</strong> 入出力メーターに表示するオーディオのソースを選択します。選択肢は、StereoかMid/Sideとなります。デフォルトではI/Oメーターはオーディオのステレオミックスのレベルを表示します。入出力メーターの表示をMid/Sideのメーター情報に切り替える場合は、I/Oボタン上部のI/Oメーターをクリックし、“Source”をMid/Sideに変更してください。I/OメーターがMid/Sideモードになると、メーター中央にはMidチャンネル全体のレベルが表示され、左右のメーターにはSideチャンネル全体のレベルが表示されます。左右のゲインスライダーは、メーターソースの設定に関わらず、引き続き、信号の左右のゲインを調整します。</li>
+</ul>
+
+<p><img src="../images/common-module-controls/mid-side.png" alt="Mid/Side Source Meter" /></p>
+
+<ul>
+<li><strong>PEAK HOLD TIME（ピークホールド時間）:</strong> ピークとして認識される上で必要となるデジタルフルスケール（0 dBFS）超過後の連続サンプル数を設定します。選択肢は次の通りです: 5 ms、250 ms、500 ms、1,000 ms、5,000 ms、無限</li>
+<li><strong>INTEGRATION TIME（統合時間）:</strong> ここではRMS計算のための統合時間を設定します。多くのRMSメーターでは、統合時間は300ミリ秒前後に設定されます。選択肢は次の通りです: 10 ms, 50 ms, 300 ms (VU), 1,475 ms, 2,650 ms, 3,825 ms, 5,000 ms.</li>
+<li><strong>READOUT（読み出し）:</strong> メーターのピークホールドセクションに表示される値を、現在のピーク値(current)にするか、オーディオファイルの中で発生した最大値(max peak)にするか選択します。</li>
+</ul>
+
+<h2 id="ozoneアプリケーションのオプション">Ozoneアプリケーションのオプション</h2>
+
+<p>Ozoneアプリケーションのオプションメニューには、アプリケーションに特化したタブが表示されます。これらのタブにて、プラグインスキャンの管理や、アプリケーション特有の動作を設定することができます。</p>
+
+<h3 id="plug-in-プラグイン">Plug-in（プラグイン）</h3>
+
+<p><img src="../images/options/plugin-app.png" alt="plugin options tab" /></p>
+
+<ul>
+<li><strong>ENABLED PLUG-IN FORMATS（プラグイン形式を有効化）:</strong> Ozoneの“Plug-ins”セクションに自動的に読み込まれるプラグイン形式（VSTかAudioUnit）を個別に選択することができます。</li>
+<li><strong>SCAN PLUG-INS（プラグインをスキャン）:</strong> このボタンをクリックすると、選択されたプラグインの場所が再スキャンされ、新規インストールされたプラグインが読み込まれます。</li>
+<li><strong>VST PLUG-IN FOLDERS（VSTプラグインフォルダ）:</strong>
+
+<ul>
+<li>Ozoneの“Plug-ins”セクションに読み込まれたVSTプラグインのフォルダパスが表示されます。</li>
+<li>“Add VST Folder”を併用すると新しい場所を追加でき、“Delete VST Folder”を使用すると、表示中のフォルダパスを削除することができます。</li>
+</ul></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">AudioUnitプラグインに関する注</p>
+<p><ul>
+<li>AudioUnitプラグイン（OS X/MacOSのみ）はフォルダパスを特定する必要がありません。OS Xでは、AudioUnitプラグインは常に所定のフォルダにインストールされますので、追加でインストールされたAudioUnitプラグインに対し、Ozoneは特定の場所のみスキャンします。</li>
+</ul>
+</p>
+</div>
+
+<h3 id="app">App</h3>
+
+<p><img src="../images/options/app.png" alt="app options tab" /></p>
+
+<ul>
+<li><strong>ENABLE WAVEFORM SEGMENTS OVERLAY（波形区画の重複表示を有効化）:</strong> クリックすると、波形の真下に位置する色違いのバーで示される波形区画が重ねて表示されます。Ozone 8では、インポートされた全てのオーディオファイルは、区画マッチングのためスキャンされ、色分けされたバーで表示されます。この表示機能は、曲の異なるセクションを色分けするのに有益です。マスタリングエンジニアは、この色分けを使って曲間のトランジッションを手早くチェックすることができるほか、異なる曲のコーラス部分をA/B比較することなどもできます。色分けされた区画をクリックすることで、該当するオーディオを選択することができますので、ループリージョンが簡単に選択できるほか、ファイルの別セクションへ迅速にジャンプすることができます。</li>
+<li><strong>PLAYHEAD FOLLOWS PLAYBACK（再生ヘッドが再生に追従）:</strong> この操作がチェックされていると、再生ヘッドは再生終了後、スタート位置へ帰らずに停止ボタンが押された場所に留まります。</li>
+</ul>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  プラグインオートメーション</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>オートメーションは、ミックスの時間経過と共に特定のパラメーターを自動的に調整し、コーラス中のステレオ拡幅やソロの際のEQブーストといった効果を実現する上で便利です。Ozoneではエフェクトのオートメーションが可能なホストアプリケーションを使用すれば、数多くのパラメーターが自動化できます。</p>
+
+<h2 id="ozoneでオートメーションを使用する">Ozoneでオートメーションを使用する</h2>
+
+<p>オートメーションの実施方法や仕様はホストアプリケーションにより異なります。ミックスの自動化に関する詳細は使用するホストアプリケーションのマニュアルをご参照ください。</p>
+
+<p>通常は、Ozoneを普通のエフェクトとしてトラックにインサートし、ホストアプリケーションのトラック画面上でオートメーションのエンベロープをアサインするのが一般的な方法となります。</p>
+
+<p>このエンベロープにより、Ozoneの各パラメーターがミックスの中で時間経過と共にどのように変化するかを操作します。この場合、パラメーター調整の殆どは、Ozoneの画面内で操作項目を調整するのではなく、ホストアプリケーションのトラック画面上にて、曲線やエンベロープをドラッグすることで行われます。</p>
+
+<h2 id="ozoneにおけるオートメーション関連のパラメーター名">Ozoneにおけるオートメーション関連のパラメーター名</h2>
+
+<p>我々は操作項目にインテリジェントな名称をつける最大限の努力を行いましたが、ここでオートメーション可能なOzoneのパラメーターの全リストを提示すると、いささかユーザの皆様を圧倒させてしまうかもしれません。</p>
+
+<p>各マルチバンドモジュールは、パラメーター毎に最大4バンドの項目がリスト上に表示されます。</p>
+
+<p>例えば、“Dynamics: Comp Thresh Band 1”はダイナミックモジュールのバンド1におけるコンプレッサーのスレッシュホルド設定を意味します。</p>
+
+<p>EQモジュールでパラメーターのオートメーションを実行する時は、Stereo/Mid/Leftパラメーターは接頭文字として“St/M/L”が付き、Side/Rightパラメーターには接頭文字として“S/R”が付くことを知っておく必要があります。</p>
+
+<p>トラック画面にてオートメーションの操作を行う際は、ホストアプリケーションの中で、Ozoneインターフェースの操作項目が動くのを見て取ることができます。我々はCPUパワーが操作項目のグラフィックスのリドローに割かれず、オーディオ処理に割り当てられるよう、意図的にこれらの操作項目の位置が頻繁にアップデートされないよう設計しました。このため、グラフィックス上は、これらの操作ノブやスライダーなどが段階的に作動しているに見えますが、実際には平滑な動きで処理が施されていますのでご安心ください。</p>
+
+<h2 id="シースルー操作">シースルー操作</h2>
+
+<p>トラック画面にてエンベロープを見ながら作業しながらも、Ozoneインターフェースをメインに作業する場合、我々は前面にあるOzoneをシースルーにする形でトラック画面が見えれば便利であることに気が付きました。このため、我々はOzoneにインターフェースの不透明度をコントロールできるスライダーをオプション画面に付加しました（プラグイン版のみSettings -&gt; General -&gt; Graphics -&gt; Opacityからこの機能を使用することができます）。</p>
+
+<p>これにより、Ozoneをシースルーにすることで、オートメーション曲線の状況とOzoneの動作状況の両方を同時に視認することができます。</p>
+
+<p>これは全てのホストアプリケーションに付帯する機能ではなく、不透明度が100%を下回る程（インターフェースが透明に見えるようになればなる程）CPU使用率が高くなりますのでご注意ください。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  ヒントと用例</h1>
+    
+
+<h2 id="ozoneのパフォーマンスを最適化するためのヒント">Ozoneのパフォーマンスを最適化するためのヒント</h2>
+
+<p>多くのシングルタスクのプラグインとは異なり、Ozone 8は6つのプラグイン分のパワーを使用し、起動時は膨大な数の計算をこなします。複数のDSPモジュールがアナログ模倣を実行し、6本のリアルタイムメーターが表示されるOzoneは、典型的なプラグインを遥かに凌ぐCPU処理を要求します。</p>
+
+<p>オーディオ信号処理の品質を更に向上させながらも、Ozone 8はCPUの最適化に関しても大きな進歩を遂げ、セッションを効果的に運用することが可能となりました。</p>
+
+<p>もし、使用状況がコンピューターの限界に近づいた場合は、以下を実行するとCPUの最適化に繋がることがあります:</p>
+
+<ul>
+<li><strong>処理を行っていないモジュールは信号処理チェーンから除外してください。</strong></li>
+<li>Ozoneの<strong>デジタルEQを使用している場合は、最適なパフォーマンスに必要なEQバッファサイズを割り当ててください。</strong>詳細は<a href="index.html#buffer-sizes">バッファサイズ</a>の項をご覧ください。</li>
+<li>何れかのマルチバンドモジュールで<strong>クロスオーバーの種類をデジタルにしている場合は、オプションメニューでクロスオーバーのバッファサイズを調整してみてください</strong>。</li>
+<li><strong>プラグインとして使用する場合は、ホストアプリケーション側でバッファサイズやレーテンシーの設定を変更してみてください。</strong>
+
+<ul>
+<li>バッファが大きすぎる場合（レーテンシーも大きくなり）、メーターの反応が遅くなり、パフォーマンスに問題をきたすことがあります。</li>
+<li>バッファが小さい場合（レーテンシーも小さくなりますが）、EQやクロスオーバーによるCPUパワーの消費が嵩みます。</li>
+</ul></li>
+<li>オプション画面にて<strong>メーターを非表示</strong>にして見てください。</li>
+<li><strong>クロスオーバーのバンド数を減らすとCPUへの負担が劇的に軽減することがあります。</strong>例えば、ダイナミクスは全4バンドではなく、1バンドか2バンドで使用してみてください。クロスオーバーのバンド数変更は<a href="../common-module-controls/index.html">モジュールの標準的な操作項目</a>の章の<a href="../common-module-controls/index.html#multiband-modules">マルチバンドモジュールの使用</a>に関する項を参照してください。</li>
+<li>Ozone 8 Advancedでモジュール使用数が4種類以下の場合は、<strong>各モジュールを個別のコンポーネントプラグインとして使用</strong>すると、CPUパワーの消費軽減に繋がります。</li>
+</ul>
+
+<h2 id="バッファサイズ">バッファサイズ</h2>
+
+<p>Ozone 8には特定の設定状況での最適なパフォーマンスを実現する進化した操作項目が内蔵されます。Ozoneは内部DSPチェーンに複数のモジュールを内包するため、内部バッファサイズを操作できる場所が複数用意さています。</p>
+
+<p>一般的には、システムによらずデフォルト値で良いパフォーマンスを発揮します。しかしながら、ホストアプリケーションによっては、この限りではありません。この項を参照の上、Ozoneを貴方の使用する特定の設定状況で最適化してください。</p>
+
+<h3 id="個別のモジュールでバッファサイズを設定する">個別のモジュールでバッファサイズを設定する</h3>
+
+<p>Ozoneのイコライザーは特定のモード下では固定のバッファサイズに設定する必要があります。この限りでない場合、オプションタブにて個別にバッファサイズを設定することができます。ただし、デフォルト値は多くの使用環境に対して好ましい設定になっており、殆どの場合、ここを調整せずともOzoneを恙無く使用することができます。</p>
+
+<h3 id="ozoneでホストのバッファサイズを判断する">Ozoneでホストのバッファサイズを判断する</h3>
+
+<p>OzoneのBuffer Size Viewerを使用すると、ホストアプリケーションがどのようなバッファをOzoneに送信しているかを判断することができます（Ozoneプラグインのみ該当）。</p>
+
+<ul>
+<li>以下の手順でOzoneのView Buffers画面を開きます:
+
+<ul>
+<li>Options -&gt; General -&gt; Host -&gt; View Buffers。ホストアプリケーションにより送信されるバッファサイズを把握した後は、以下をお試しください:</li>
+</ul></li>
+<li>信号処理チェーンにEQモジュールを追加し、その他のモジュールを同じ信号処理チェーンから全て外してください。</li>
+<li>EQモジュールがデジタルモードに設定されていることを確認します。</li>
+<li>EQフィルターのサイズを最も頻繁に使用する値にセットします。</li>
+<li>EQバッファサイズをホストアプリケーションのバッファサイズと最も近い値にセットします（View buffers画面に表示）。</li>
+<li>CPUメーターを開きます。
+
+<ul>
+<li>多くのホストアプリケーションにはビルトインのCPUメーターがついていますが、Windows機で使用する場合はCtrl+Shift+ESCを押してパフォーマンスタブを選択することでも同様のメーターが使用できます。通常、CPUメーターの精度は高くありませんが、ここではCPU使用率の相対的な変化の確認を目的とします。</li>
+</ul></li>
+<li>オーディオファイルを開き、Ozoneを通して再生します（あるいはトラックの出力をOzoneがインサートされたバスに設定します）。
+
+<ul>
+<li>ファイルが普段使用する状態（サンプルレート、ビットデプス、チャンネル数など）に近いことを確認してください。</li>
+<li>普段、マルチトラック環境でOzoneを使用する場合は、ここでも同様の環境で使用してください。</li>
+</ul></li>
+<li>オーディオを再生します。</li>
+<li>再生に伴いEQのバッファを変更しながらCPUメーターを観察し、CPU使用率へ良い影響を及ぼしているかどうか確認します。
+
+<ul>
+<li>ホストアプリケーションのバッファサイズに近い値が開始点として申し分ありませんが、最適な数値はOzoneのコントロールの効く範疇の外にあるシステムやホストアプリケーションの要素に依存します。</li>
+</ul></li>
+<li>この設定により、使用中のセッションのパラメーターに対するOzoneのCPU消費は最適化されます。</li>
+<li>Ozoneの使用環境を変える場合は（例：44.1 kHzから96 kHzへの変更、あるいは単一トラックからマルチトラック環境へ移行する場合など）、上記の手順を再び実行し、バッファ設定が最適であるかどうかを確認する必要があります。</li>
+</ul>
+
+<p>以上が、音質を犠牲にすることなくOzoneの内蔵DSPを最適化する方法です。これが多種多様な環境でのOzoneの快適な使用に繋がれば幸いです。これらのステップを踏むことにより、我々の操作できる範疇にない、ユーザにより異なる状況への対処が可能となることでしょう。</p>
+
+<h2 id="ozone-8のマスタリングプリセットを使用する">Ozone 8のマスタリングプリセットを使用する</h2>
+
+<p>Ozoneのプリセットは迅速な作業開始を可能とするべく設計されております。</p>
+
+<p>全てのミックスは固有であり、万能なプリセットは存在しません。しかしながら、我々は作業の良好な開始点となり得る幅広いプリセットの作成に努めました。プリセットから作業を開始することで、そのセッションの方向性に合致した微細な設定を実現する手助けとなります。</p>
+
+<p>Ozoneでマスタリングする際の基本的な原理の習得へ向け、Ozoneマスタリングガイドをダウンロードして頂くことをお勧めします。プリセットは沢山ありますが、Ozoneの各マスタリングモジュールの仕組みを把握して頂くことが成功への鍵となります。後悔はさせません。これで貴方のマスターもこれまでにないサウンドを獲得します。</p>
+
+<h2 id="入力レベルの設定">入力レベルの設定</h2>
+
+<p>Ozoneで入力レベルを設定すると、Ozoneのダイナミクス系モジュールの作用に大きな違いをもたらします。 また、入力レベルの大小がサウンドに与える影響は大きいため、入力レベルの設定は、プリセットの選定に際して重要となります。 </p>
+
+<p>手始めに、Ozoneの入力レベルを使用し、入力信号がメーターの上半分から上四半分に来るよう設定してください。Ozoneのマキシマイザーモジュールが有効化されている場合は、オーディオのクリッピングが防止されますので、入力メーターのピークがトップに近い状態でも構いません。</p>
+
+<h2 id="開始点を選択する">開始点を選択する</h2>
+
+<p>手始めにOzoneのプリセットを幾つか聴き比べます。プリセットは処理後の結果が分かるようにネーミングされています。また、ジャンル別のマスタリングプリセット、あるいは単純に一般目的別のマスタリングプリセットを使用するのも良い開始点といえます。</p>
+
+<p>ミックスはそれぞれ固有のものですので、その状況に合った開始点が見つけられるよう、我々は多くのプリセットを用意しました。その時のミックスに見合ったプリセットを見つけ、その上で微調整を行うと良いでしょう。</p>
+
+<h2 id="ディザーの使用の秘訣">ディザーの使用の秘訣</h2>
+
+<p>プラグイン版のOzone 8を使用する際のディザーについて:</p>
+
+<ul>
+<li>Ozoneでディザー処理を施した信号はそれ以上プロセッシングを行わないでください。Ozoneの出力ゲインスライダーの調整は構いませんが（ディザー前に通過する信号であるため）、ホストアプリケーションやその他のプラグインのレベルは変えないでください。</li>
+<li>ほぼ全てのホストアプリケーションには、エフェクト位置の後に専用のマスターフェーダーが用意されており、ここでレベル調整を行うと、ディザー処理が破壊されます。</li>
+<li>Ozoneでディザリングを行う場合は、Ozoneの後にプラグインを使用しないでください。ディザーは最後にオーディオに対する処理を行う物である必要があります。</li>
+<li>ホストアプリケーションのディザリングはオフにしてください。これは、基本的には、何れにしろゼロであるが故にビットを切り詰めているためです。</li>
+</ul>
+
+<h2 id="ozoneでのパラメーターの相対リンク作業">Ozoneでのパラメーターの相対リンク作業</h2>
+
+<p>Ozoneには関連するパラメーターの数値を相対的にリンクさせるパラメーターリンク機能が備わっています。各パラメーターは、リンクされた時点の数値の相対性が維持されます。</p>
+
+<div class="admonition note">
+<p class="admonition-title">相対リンクの例</p>
+<p><ul>
+<li>エキサイターでM/Sモードを有効化</li>
+<li>Midチャンネルを調整: バンド1のミックスを50%へ</li>
+<li>Mid/Sideリンクを有効化</li>
+<li>Sideチャンネルを調整: バンド1のミックスを75%へ</li>
+<li>この状態でMidチャンネル画面に戻るとバンド1のミックスが25%に変化しています</li>
+</ul>
+</p>
+</div>
+
+<h2 id="mid-sideプロセッシングの例">Mid/Sideプロセッシングの例</h2>
+
+<h3 id="eqモジュールでのmidプロセッシングの使用例"><strong>EQモジュールでのMidプロセッシングの使用例</strong></h3>
+
+<ol>
+<li>EQモジュールでMid/Sideモードを選択した上で“Mid”をクリックし、中央のEQカーブを表示させます。その上で小さく表示された“s”をクリックし、Midチャンネルをソロにします。</li>
+<li>この状態でオーディオファイルを再生すると、音像の中央にアサインされたオーディオ信号のみを聴くことができ、通常この位置に置かれるリードボーカルやその他のリード楽器を他から分離してモニターできます。</li>
+<li>ここで、1Khz周辺のEQ点を選択し、オレンジのEQ曲線を6dBほど押し上げます。これにより、他の楽器やステレオ分離された全体の周波数帯域に影響を与えることなく、リードボーカルのみを前面に出すことが可能となります。</li>
+</ol>
+
+<h3 id="eqモジュールでのsideプロセッシングの使用例"><strong>EQモジュールでのSideプロセッシングの使用例</strong></h3>
+
+<ol>
+<li>EQモジュールでMid/Sideモードを選択した上で“Side”をクリックし、サイドのEQカーブを表示させます。その上で小さく表示された“s”をクリックし、Sideチャンネルをソロにします。 + この状態でオーディオファイルを再生すると、音像の両端にアサインされたオーディオ信号のみを聴くことができ、通常この位置にあるリバーブの終端部分や両端にパンで振られた楽器を他から分離してモニターできます。</li>
+<li>ここで、6Khz周辺のEQ点を選択し、青色のEQ曲線を6dBほど押し上げます。この6 kHzに特定した周波数帯域の押し上げは音像の両端にのみ適用されます。この処理は、ステレオ領域の広がりとリッチな音像を実現する効果をもたらします。</li>
+</ol>
+
+<h3 id="エキサイターモジュールでのmid-sideプロセッシングの使用例"><strong>エキサイターモジュールでのMid/Sideプロセッシングの使用例</strong></h3>
+
+<p>ハーモニックエキサイターモジュールをSideチャンネルで使用の上、ミックスから高い周波数帯を選択します。高周波数帯のスライダーを上昇させることで、Mid（中央）のチャンネルをそのままにした状況で、ミックスに極度のエッジを効かすことができます。</p>
+
+<h3 id="ダイナミックモジュールでのmid-sideプロセッシングの使用例"><strong>ダイナミックモジュールでのMid/Sideプロセッシングの使用例</strong></h3>
+
+<p>ステレオミックスでマルチバンド圧縮を行う際、互いの周波数帯が近すぎるため、特定の楽器やボーカルにのみ処理を適用するのが困難な場合があります。</p>
+
+<p>こうしたケースでは、Mid/Sideプロセッシングを使用すると、特定の周波数帯を中央とサイドに分離し、それぞれ個別に処理を適用することができ、より精度の高いミックスが実現します。</p>
+
+<p>圧縮を施す際、Mid/Sideプロセッシングには多くの使い道があります。例えば、ボーカルは通常ミックスのセンターに位置し、他の楽器はサイドに振られる傾向があるため、ボーカルに掛かるコンプレッションが他の楽器に及ぼす影響を抑えることなどが可能となります。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  オーソリゼーション</h1>
+    
+
+<h2 id="概要">概要</h2>
+
+<p>Ozone 8アプリケーション、またはOzone 8プラグインの初回起動時にはオーソライズ画面が表示されます。</p>
+
+<p>オーソライズ画面では以下の作業が行えます:</p>
+
+<ul>
+<li><strong>TRIAL（トライアル）:</strong> 購入前の試験運用としてトライアル版の使用を開始します。</li>
+<li><strong>DEMO（デモ）:</strong> 機能が限定されたデモ版として（10日間のトライアル期間が過ぎた後）試験使用を継続します。</li>
+<li><strong>AUTHORIZE（オーソライズ）:</strong> シリアル番号で製品をオーソライズします。</li>
+</ul>
+
+<h2 id="トライアルとデモモード">トライアルとデモモード</h2>
+
+<p>Ozone 8アプリケーションまたはOzone 8プラグインの初回使用時に10日間のトライアル期間が始まります。この10日が過ぎると、Ozone 8はデモモードで起動します。トライアル、またはデモモードを解除するには、正規のシリアル番号で製品をオーソライズする必要があります。</p>
+
+<h3 id="トライアルモード">トライアルモード</h3>
+
+<p>Ozone 8を最初に起動した時点、またはDAW/NLEで最初にOzone 8プラグインをインサートした時点でトライアルモードでの使用が始まります。その間、オーソライズ画面にはトライアル期間の残り日数が表示されます。
+&ldquo;Continue&rdquo;ボタンをクリックすると、オーソライズ画面を閉じることができますので、トライアル版としてOzone 8の試験使用を継続することができます。</p>
+
+<h3 id="デモモード">デモモード</h3>
+
+<p>トライアルの10日間を過ぎると、Ozone 8はデモモードで起動します。デモモードでは、Ozone 8アプリケーションの保存とエクスポート機能が作用しなくなり、連続再生は30秒間に限定されます。またOzone 8プラグインは定期的に無音になります。デモモードでの試験使用を継続したい場合は、&rdquo;Demo&rdquo;ボタンをクリックします。</p>
+
+<h2 id="ozone-8のオーソライズ方法">Ozone 8のオーソライズ方法</h2>
+
+<p>Ozone 8には3種類のオーソライズ方法があります:</p>
+
+<ul>
+<li><strong>オンライン・オーソリゼーション:</strong> インターネット接続のあるコンピューターでOzone 8を使用する場合は、この方法を選択してください。</li>
+<li><strong>オフライン・オーソリゼーション:</strong> Ozone 8を使用するコンピューターがインターネットに接続されていない場合は、この方法を選択してください。</li>
+<li><strong>iLokオーソリゼーション:</strong> iLokでOzone 8をオーソライズする場合は、この方法を選択してください。</li>
+</ul>
+
+<h2 id="更なる情報">更なる情報</h2>
+
+<p>オーソリゼーションに関する詳細はiZotopeウェブサイトにてご覧頂けます:</p>
+
+<p><a href="https://www.izotope.com/authorization">https://www.izotope.com/authorization</a></p>
+
+<h2 id="izotopeカスタマーケアーへのコンタクト">iZotopeカスタマーケアーへのコンタクト</h2>
+
+<p>Ozone 8アプリケーションのオーソライズについて更なる手助けが必要な場合は下記をご利用ください:</p>
+
+<ul>
+<li>iZotopeウェブサイトのカスタマーケアーに関するページをご覧ください:  <a href="http://www.izotope.com/support">http://www.izotope.com/support</a></li>
+<li>カスタマーケアー<a href="mailto:support@izotope.com">support@izotope.com</a>までお問い合わせください。
+<br /></li>
+</ul>
+
+<p>iZotopeのカスタマーケアーに関する詳細は<a href="../customer-care/index.html">iZotopeカスタマーケアー</a>の章に記述があります。</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  iZotopeカスタマーケアー</h1>
+    
+
+<h2 id="ozone-8の購入">Ozone 8の購入</h2>
+
+<p>デモバージョンで使用するOzone 8をフルバージョンにしたい場合は、iZotopeオンラインストアーにてOzone 8をご購入頂けます: <a href="https://www.izotope.com/store">www.izotope.com/store</a></p>
+
+<p>購入が完了すると、Ozone 8をオーサライズするのに必要なフルバージョンのシリアル番号がメールで送付されます。</p>
+
+<h2 id="izotopeカスタマーケアーの方針">iZotopeカスタマーケアーの方針</h2>
+
+<p>iZotopeは全ての登録ユーザー様に、完全に無償でプロフェッショナルなテクニカル/カスタマーケアーを提供しております。</p>
+
+<p><a href="https://www.izotope.com/support/contact/index.php">www.izotope.com/support/contact/index.php</a></p>
+
+<p>また、弊社ではiZotope製品の購入に興味がおありのお客様にも、価値あるプリセールスのテクニカル/カスタマーケアーを提供しております。iZotopeカスタマーケアーへご連絡頂きます際は、事前に<a href="https://www.izotope.com/support/kb/index.php/kb/browse/32-iZotope_Knowledgebase">製品ナレッジベース</a>をご確認の上、ご質問や問題に対する解答がないかどうかお調べください。</p>
+
+<p><strong>iZotopeは購入した製品に対し、どれくらいの期間、カスタマーケアーを提供するのですか?</strong></p>
+
+<p>iZotope製品の購入から12ヶ月間は質問内容に関わらず、弊社カスタマーケアーまでメールでお問い合わせ頂くことができます。それ以降は、アカウントやオーソライズに関するご質問はお受け致しますが、技術的なご質問や製品に対する詳細なご質問はお受け致しかねます。製品の詳細な使い方に関するご質問に関しては、弊社サイトのFAQやチュートリアルを活用してください。</p>
+
+<p><strong>iZotopeはいつまで製品をサポートするのですか?</strong></p>
+
+<p>お約束はできませんが、弊社は我々の製品を最新のオペレーティングシステムやプラグインホストに対応できるよう、最善の努力を尽くします。時として、他社により我々がサポートできない変更が加えられることはありますが、我々はそうした互換性の問題を回避すべく、他社とアクティブに作業を行っております。また、我々は規定した仕様に沿って製品をお使い頂けるよう、製品内のバグフィックスにも最善を尽くしております。</p>
+
+<p>製品のリリースから12ヶ月間にわたり、アップデートを提供致します。リリースから12ヶ月を過ぎると、アップデートの提供はありません。</p>
+
+<p>それぞれの製品に対応したオペレーティングシステムやプラグインホストソフトウェアに関する公式な互換性情報につきましては、製品の仕様ページをご覧ください。</p>
+
+<h2 id="izotopeカスタマーケアーへの連絡方法">iZotopeカスタマーケアーへの連絡方法</h2>
+
+<p>Ozone 8に関するご質問は下記にて承っております:</p>
+
+<ul>
+<li>弊社ウェブサイトのカスタマーケアーページ（<a href="https://www.izotope.com/support">www.izotope.com/support</a>）をご覧ください。</li>
+<li>カスタマーケアー<a href="mailto:support@izotope.com">support@izotope.com</a>までお問い合わせください。</li>
+</ul>
+
+<p>頂きましたご質問には、熟練のiZotopeカスタマーケアーチームが、1営業日、あるいはそれ以内に返答をお送りします。問題やご質問の内容は、できる限り詳細かつ明確に記述してください。これは、初回返信時での正確な返答や問題解決にとって欠かせません。ご使用のOzone 8のビルト/バージョンや、全システムの仕様を必ずご記入ください。</p>
+
+<p>カスタマーケアーへのリクエストが送信されると、iZotopeカスタマーケアーより自動返信の確認メールが送信されます。数分以内にこのメールが届かない場合は、スパムフォルダを確認し、我々からのメールがブロックされていないことをお確かめください。こうした問題は、<a href="mailto:support@izotope.com">support@izotope.com</a>を認証メールアドレスに追加して頂くことにより防止できます。</p>
+
+<h2 id="国際的な販売網">国際的な販売網</h2>
+
+<p>世界各地のiZotope認定代理店にてiZotope製品をご購入頂いたお客様には、それら代理店よりカスタマーケアーが提供されます。</p>
+
+<p>カスタマーケアーの有無につきましては、該当する代理店までお問い合わせください。各地域の販売代理店に関するご質問につきましては、iZotopeカスタマーケアーまでお問い合わせください。</p>
+
+<p>Ozone 8をご利用頂きまして誠に有り難うございます。</p>
+
+<p>-iZotopeチーム一同</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  License Information (ライセンス情報)</h1>
+    
+
+<h2 id="anti-grain-geometry">Anti-Grain Geometry</h2>
+
+<p>Version 2.4</p>
+
+<p>Copyright &copy; 2002-2005 Maxim Shemanarev (McSeem).</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the
+ distribution.</p></li>
+
+<li><p>The name of the author may not be used to endorse or promote
+ products derived from this software without specific prior written
+ permission.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS&rdquo; AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="better-enums">Better Enums</h2>
+
+<p>Version 0.11.1</p>
+
+<p>Copyright &copy; 2012-2016, Anton Bachin.  All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="flac">FLAC</h2>
+
+<p>libFLAC and libFLAC++</p>
+
+<p>Version 1.3.2</p>
+
+<p>Copyright &copy; 2000-2009 Josh Coalson</p>
+
+<p>Copyright &copy; 2011-2016 Xiph.Org Foundation</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:</p>
+
+<ul>
+<li><p>Redistributions of source code must retain the above copyright notice,
+this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution
+.</p></li>
+
+<li><p>Neither the name of the Xiph.org Foundation nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.</p></li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="fmt">fmt</h2>
+
+<p>Version 4.0.0</p>
+
+<p>Copyright &copy; 2012 - 2016, Victor Zverovich</p>
+
+<p>All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:</p>
+
+<ol>
+<li><p>Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.</p></li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS
+IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="freetype">FreeType</h2>
+
+<p>FreeType is licensed under the FreeType Project LICENSE.</p>
+
+<p>Portions of this software are copyright Â© 1996-2002, 2006 The FreeType
+Project (www.freetype.org).  All rights reserved.</p>
+
+<h2 id="gsl">gsl</h2>
+
+<p>Copyright &copy; 2015 Microsoft Corporation. All rights reserved.</p>
+
+<p>This code is licensed under the MIT License (MIT).</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</p>
+
+<h2 id="jsoncpp">JsonCpp</h2>
+
+<p>Version 1.2.1</p>
+
+<p>Copyright &copy; 2007-2010 Baptiste Lepilleur and The JsonCpp Authors</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h2 id="lame">LAME</h2>
+
+<p>libmp3lame</p>
+
+<p>Version 3.99.5</p>
+
+<p>Copyright &copy; 1999-2011 The L.A.M.E. Team</p>
+
+<p>Distributed under the
+<a href="https://www.gnu.org/licenses/old-licenses/lgpl-2.0.txt">GNU Library General Public License v2 (LGPLv2)</a>.</p>
+
+<p>Full text of the license is available here: <a href="https://www.gnu.org/licenses/old-licenses/lgpl-2.0.txt">https://www.gnu.org/licenses/old-licenses/lgpl-2.0.txt</a></p>
+
+<p>To receive a copy of the source code for the LAME library
+distributed with this product under the under the terms of the LGPLv2
+please contact <a href="mailto:devsupport@izotope.com">devsupport@izotope.com</a>.</p>
+
+<h2 id="libxml2">LibXML2</h2>
+
+<p>Version 2.7.8</p>
+
+<p>Except where otherwise noted in the source code (e.g. the files hash.c,
+list.c and the trio files, which are covered by a similar licence but
+with different Copyright notices) all the files are:</p>
+
+<p>Copyright &copy; 1998-2003 Daniel Veillard.  All Rights Reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is fur-
+nished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FIT-
+NESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+DANIEL VEILLARD BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CON-
+NECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<p>Except as contained in this notice, the name of Daniel Veillard shall not
+be used in advertising or otherwise to promote the sale, use or other deal-
+ings in this Software without prior written authorization from him.</p>
+
+<h2 id="material-docs-theme">Material Docs Theme</h2>
+
+<p>Copyright &copy; 2016 Digitalcraftsman <a href="mailto:digitalcraftsman@protonmail.com">digitalcraftsman@protonmail.com</a><br/>
+Copyright &copy; 2016 Martin Donath <a href="mailto:martin.donath@squidfunk.com">martin.donath@squidfunk.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to
+deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.</p>
+
+<h2 id="nanomsg">nanomsg</h2>
+
+<p>Version 0.5-beta</p>
+
+<p>Copyright &copy; 2012-2013 Martin Sustrik  All rights reserved.<br/>
+Copyright &copy; 2013 GoPivotal, Inc.  All rights reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &ldquo;Software&rdquo;),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom
+the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.</p>
+
+<p>&ldquo;nanomsg&rdquo; is a trademark of Martin Sustrik</p>
+
+<h2 id="ogg-vorbis">OGG / Vorbis</h2>
+
+<p>libogg and libvorbis</p>
+
+<p>Version 1.3.2</p>
+
+<p>Copyright &copy; 2014, Xiph.org Foundation</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:</p>
+
+<ul>
+<li><p>Redistributions of source code must retain the above copyright notice,
+this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/ or other materials provided with the distribution.</p></li>
+
+<li><p>Neither the name of the Xiph.org Foundation nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.</p></li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS â€œAS
+ISâ€ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="readerwriterqueue">readerwriterqueue</h2>
+
+<p>Copyright &copy; 2013-2015, Cameron Desrochers
+All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:</p>
+
+<ul>
+<li>Redistributions of source code must retain the above copyright notice, this list of
+conditions and the following disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright notice, this list of
+conditions and the following disclaimer in the documentation and/or other materials
+provided with the distribution.</li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS IS&rdquo; AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="taglib">TagLib</h2>
+
+<p>Version 1.9.1</p>
+
+<p>Copyright &copy; 1995-2015 Scott Wheeler, Lukas Lalinsky, Ismael Orenstein,
+Allan Sandfeld Jensen, Teemu Tervo, Mathias PanzenbÃ¶ck, and Tsuda Kageyu.</p>
+
+<p>Distributed under the <a href="https://www.mozilla.org/en-US/MPL/1.1/">Mozilla Public License v1.1 (MPLv1.1)</a>.</p>
+
+<h2 id="tinyxml">TinyXML</h2>
+
+<p>Copyright &copy; 2000-2002 Lee Thomason (www.grinninglizard.com)</p>
+
+<p>This software is provided &lsquo;as-is&rsquo;, without any express or implied
+warranty. In no event will the authors be held liable for any
+damages arising from the use of this software.</p>
+
+<p>Permission is granted to anyone to use this software for any
+purpose, including commercial applications, and to alter it and
+redistribute it freely, subject to the following restrictions:</p>
+
+<ol>
+<li><p>The origin of this software must not be misrepresented; you must
+not claim that you wrote the original software. If you use this
+software in a product, an acknowledgment in the product documentation
+would be appreciated but is not required.</p></li>
+
+<li><p>Altered source versions must be plainly marked as such, and
+must not be misrepresented as being the original software.</p></li>
+
+<li><p>This notice may not be removed or altered from any source
+distribution.</p></li>
+</ol>
+
+<h2 id="tipue-search">Tipue Search</h2>
+
+<p>Copyright &copy; 2017 Tipue</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+&ldquo;Software&rdquo;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h2 id="vectorize">vectorize</h2>
+
+<p>Copyright &copy; 2012 Aaron Wishnick.  All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:</p>
+
+<ul>
+<li><p>Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.</p></li>
+
+<li><p>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.</p></li>
+
+<li><p>Neither the name of the <organization> nor the
+names of its contributors may be used to endorse or promote products
+derived from this software without specific prior written permission.</p></li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS IS&rdquo; AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+<h2 id="zeromq">ZeroMQ</h2>
+
+<p>Copyright &copy; 2007-2015 iMatix Corporation
+Copyright &copy; 2009-2011 250bpm s.r.o.
+Copyright &copy; 2010-2011 Miru Limited
+Copyright &copy; 2011 VMware, Inc.
+Copyright &copy; 2012 Spotify AB
+Copyright &copy; 2013 Ericsson AB
+Copyright &copy; 2014 AppDynamics Inc.</p>
+
+<p>Distributed under the
+<a href="https://www.gnu.org/licenses/lgpl-3.0.txt">GNU Lesser General Public License v3 (LGPLv3)</a> with the following
+&ldquo;Static linking exception&rdquo;:</p>
+
+<p>The copyright holders give you permission to link this library with independent
+modules to produce an executable, regardless of the license terms of these
+independent modules, and to copy and distribute the resulting executable under
+terms of your choice, provided that you also meet, for each linked independent
+module, the terms and conditions of the license of that module. An independent
+module is a module which is not derived from or based on this library. If you
+modify this library, you must extend this exception to your version of the
+library.</p>
+
+<p>Full text of the license is available here:
+<a href="https://www.gnu.org/licenses/lgpl-3.0.txt">https://www.gnu.org/licenses/lgpl-3.0.txt</a></p>
+
+<p>To receive a copy of the source code for the ZeroMQ library
+distributed with this product under the under the terms of the LGPLv3
+please contact <a href="mailto:devsupport@izotope.com">devsupport@izotope.com</a>.</p>
+
+<h2 id="zlib">zlib</h2>
+
+<p>Copyright &copy; 1995-2004 Jean-loup Gailly and Mark Adler.</p>
+
+<p>This software is provided &lsquo;as-is&rsquo;, without any express or implied
+warranty.  In no event will the authors be held liable for any damages
+arising from the use of this software.</p>
+
+<p>Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:</p>
+
+<ol>
+<li><p>The origin of this software must not be misrepresented; you must not
+ claim that you wrote the original software. If you use this software
+ in a product, an acknowledgment in the product documentation would be
+ appreciated but is not required.</p></li>
+
+<li><p>Altered source versions must be plainly marked as such, and must not be
+ misrepresented as being the original software.</p></li>
+
+<li><p>This notice may not be removed or altered from any source distribution.</p></li>
+</ol>
+
+<p>Jean-loup Gailly jloup@gzip.org</p>
+
+<p>Mark Adler madler@alumni.caltech.edu</p>
+
+<hr />
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+  <h1><span class="icon icon-bookmark"></span>  EULA (エンドユーザー向け使用許諾契約)</h1>
+    <p><strong>END USER LICENSE AGREEMENT</strong></p>
+
+<p>READ CAREFULLY THE TERMS AND CONDITIONS OF THIS AGREEMENT (“AGREEMENT”) BEFORE YOU CLICK ON THE “ACCEPT” BUTTON OR OTHERWISE USE THE PRODUCT. CLICKING ON THE “ACCEPT” BUTTON OR OTHERWISE DOWNLOADING, INSTALLING AND/OR USING THE LICENSED SOFTWARE OR ANY TECHNOLOGY, IDEA, DATA AND DATABASES, ALGORITHM OR INFORMATION CONTAINED THEREIN OR PROVIDED THEREWITH (COLLECTIVELY, THE “SOFTWARE”), ESTABLISHES A BINDING AGREEMENT BETWEEN YOU AS THE PERSON LICENSING THE SOFTWARE, EITHER ON BEHALF OF YOURSELF OR ANY THIRD PARTY ENTITY (“YOU” OR &ldquo;LICENSEE&rdquo;) AND IZOTOPE, INC. (“IZOTOPE”), YOU (WHETHER AN INDIVIDUAL OR FORMAL LEGAL ENTITY) (HEREINAFTER REFERRED TO AS “YOU”), AGREE TO BE BOUND BY THE TERMS AND CONDITIONS OF THIS AGREEMENT WITH RESPECT TO YOUR USE OF THE SOFTWARE.</p>
+
+<p>BY INSTALLING AND/OR BY USING THE SOFTWARE, YOU REPRESENT AND WARRANT THAT YOU HAVE THE LEGAL CAPACITY AND AUTHORITY TO ENTER INTO A BINDING AGREEMENT TO ADHERE TO THE TERMS AND CONDITIONS SET FORTH HEREIN, AND THAT THE SOFTWARE WILL BE USED ONLY IN ACCORDANCE WITH THESE TERMS AND CONDITIONS AND WITH ALL APPLICABLE LAWS. IF AN INDIVIDUAL IS REGISTERING OR USING THE SOFTWARE ON BEHALF OF AN ENTITY OR ORGANIZATION, THAT INDIVIDUAL WARRANTS, REPRESENTS, AND COVENANTS TO IZOTOPE THAT SUCH INDIVIDUAL IS DULY AUTHORIZED TO AGREE TO THESE TERMS AND CONDITIONS ON BEHALF OF THE ORGANIZATION AND TO BIND THE ORGANIZATION TO THEM.</p>
+
+<p><strong>LICENSE.</strong> Subject to all the terms and conditions of this Agreement, iZotope hereby grants to Licensee a license to use the Software accompanying this Agreement, as well as any presets and documentation provided, whether in printed, &ldquo;online&rdquo; or electronic form, either on a stand-alone computer or on a network, on any one computer at any one time. If more than one user will be using the Software at any one time, you must obtain from iZotope additional license(s) for each additional concurrent user of the Software. The Software is &ldquo;in use&rdquo; on a computer when loaded into memory (RAM). You may make one copy of the Software solely for backup or archival purposes if all copyright and other notices are reproduced on that copy, or you may copy the Software to a single hard disk provided you keep the original solely for backup or archival purposes. If the Software is an upgrade, you must have a license for the Software from which it is upgraded. If you receive the Software in more than one media, that does not affect the number of licenses you are receiving or any other term of this Agreement.</p>
+
+<p><strong>OWNERSHIP.</strong> The copyrights, patents, trade secrets, trademarks, and all other intellectual property rights in the Software and documentation (including any images, photographs, animations, video, audio, music and text incorporated in them) are owned by iZotope or its suppliers and are protected by the copyright, patent and other laws of the United States and other countries and by international treaty provisions. iZotope retains all rights not expressly granted in this Agreement. You shall not remove any product identification, trademark, copyright or other notices contained in or on the Software.</p>
+
+<p><strong>OTHER RESTRICTIONS.</strong> You may not modify, adapt, decompile, disassemble or otherwise reverse engineer the Software, except to the extent this restriction is expressly prohibited by applicable law, nor may you create derivative works based upon the Software, or to permit third parties to do so. You may not loan, rent, lease, or license the Software, or use the Software as a service bureau, as an application service provider, to perform consulting or training services for a third party or in any commercial time share arrangement, but you may permanently transfer your rights under this Agreement provided you transfer this Agreement, the Software, and all accompanying printed materials and retain no copies, and the recipient agrees to the terms of this Agreement. Any such transfer must include the most recent update and all prior versions.</p>
+
+<p><strong>LIMITED WARRANTY.</strong> iZotope warrants that, for a period of thirty (30) days from the date the Software is made available to you for download, the Software will substantially conform to the applicable user documentation provided with the Software.  Any implied warranties which may exist despite the disclaimer herein will be limited to thirty (30) days (“Warranty Period”). This limited warranty is void if you buy from an unauthorized reseller, you violate the terms of this Agreement, or if the failure of the Software is due to accident, abuse or misapplication. Some states/jurisdictions do not allow limitations on duration of an implied warranty, so this limitation may not apply to you.</p>
+
+<p><strong>YOUR REMEDIES.</strong> iZotope&rsquo;s sole obligation and your exclusive remedy for any breach of warranty will be, at iZotope&rsquo;s sole option, either the return of the purchase price you paid or the repair or replacement of the Software, media and documentation, provided you in all instances return the Software, together with all media and documentation and a copy of your receipt, to the location where you obtained it during the Warranty Period.  Outside the United States, neither these remedies nor any support services are available without proof of purchase from an authorized non-U.S. source.</p>
+
+<p><strong>SUPPORT.</strong> Subject to the limited warranty stated above, and further subject to you not being in violation of any term of this Agreement, iZotope will provide email support for the Software to the original purchaser, for a period of 12 months from the original purchase date.</p>
+
+<p><strong>REGISTRATION INFORMATION.</strong> When you activate the Software, iZotope may collect your name and email address and other contact information you choose to provide.  iZotope may use this information to contact you regarding upgrades and new products.  iZotope does not collect or retain any financial information (such as credit card information).</p>
+
+<p><strong>USAGE INFORMATION.</strong>  When you activate and/or use the Software, iZotope may collect certain information about your computer and your interaction with the Software via the internet (“Usage Information”).  Usage Information is information on how you interact with the Software, and is then utilized by iZotope for statistical analysis for improving the Software, and to provide you with a more relevant user experience.  No direct personal information or audio files/samples are collected as part of this Usage Information. Usage Information is generally collected in the aggregate form, without identifying any user individually, although IP addresses, computer and session ids in relation to purchases and downloads/installations of the Software may be tracked as part of iZotope&rsquo;s customer order review, statistical analysis, and fraud and piracy prevention efforts.  This Usage Information may be sent to an iZotope web or third-party cloud server for storage or further processing by iZotope and/or its partners, subsidiaries or affiliates, including, but not limited to, Google Analytics. The Software includes an opt-out provision if you do not wish to provide iZotope with such Usage Information.</p>
+
+<p><strong>DISCLAIMER.</strong> THE SOFTWARE IS PROVIDED “AS IS.”  TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, EXCEPT FOR THE EXPRESS WARRANTY SET FORTH HEREIN, IZOTOPE DISCLAIMS ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. IZOTOPE DOES NOT WARRANT THAT THE SOFTWARE WILL MEET YOUR REQUIREMENTS OR THAT THE SOFTWARE WILL OPERATE UNINTERRUPTED OR ERROR-FREE. THE WARRANTY AND REMEDIES SET FORTH HEREIN ARE EXCLUSIVE AND IN LIEU OF ALL OTHERS, ORAL OR WRITTEN, EXPRESS OR IMPLIED. No dealer, distributor, agent or employee of iZotope is authorized to change or add to the warranty and remedies set forth herein. Any other software furnished with or accompanying the Software is not warranted by iZotope.</p>
+
+<p><strong>LIMITATION OF LIABILITY.</strong> TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL IZOTOPE BE LIABLE FOR ANY AMOUNTS EXCEEDING THE AMOUNTS RECEIVED FROM YOU FOR YOUR LICENSE OF THE SOFTWARE, REGARDLESS OF THE FORM OF ACTION, AND WHETHER ARISING OUT OF THE USE OF OR INABILITY TO USE THE SOFTWARE (INCLUDING, WITHOUT LIMITATION, DAMAGES OR COSTS FOR LOSS OF PROFITS, BUSINESS, GOODWILL, DATA OR OTHER ASSETS, OR COMPUTER PROGRAMS) EVEN IF IZOTOPE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. Some jurisdictions do not allow exclusion or limitation of liability for consequential or incidental damages, so this limitation may not apply to you.</p>
+
+<p><strong>TERMINATION.</strong> The Agreement will terminate automatically if you fail to comply with any of its terms. On termination, you must immediately cease using and destroy all copies of the Software.</p>
+
+<p><strong>LICENSES TO U.S. GOVERNMENT.</strong> This paragraph applies to all acquisitions of the Software by or for the federal government, or by any prime contractor or subcontractor (at any tier) under any contract, grant, cooperative agreement or other activity with the United States government (collectively, the “Government”). By clicking “I ACCEPT”, you are agreeing on behalf of the Government that the Software and any documentation related thereto are respectively “commercial computer software” and “commercial computer software documentation” within the meaning of the acquisition regulation(s) applicable to this procurement. These terms and conditions alone will govern the Government’s use of the Software and will supersede any conflicting contractual terms or conditions. If the license granted by these terms and conditions fails to meet the Government’s needs or is inconsistent in any respect with Federal law, the Government must return the Software unused to iZotope. Contractor/Manufacturer is iZotope, Inc., 60 Hampshire Street, Cambridge, MA 02139.</p>
+
+<p><strong>GENERAL.</strong> The export of the Software from the United States and re-export from any other country is governed by the U.S. Department of Commerce under the export control laws and regulations of the United States and by any applicable law of such other country, and the Software may not be exported or re-exported in violation of any such laws or regulations. This Agreement is the complete and exclusive statement of the agreement between you and iZotope and supersedes any proposal or prior agreement, oral or written, and any other communications relating to the subject matter of this Agreement. This Agreement will be governed by and interpreted under the laws of the Commonwealth of Massachusetts, United States of America, without regard to conflicts of law provisions. The application of the United Nations Convention of Contracts for the International Sale of Goods is expressly excluded. This Agreement is in the English language only, which language will be controlling in all respects, and all versions of this Agreement in any other language will be for accommodation only.</p>
+
+<p>IN ADDITION, ANY SUCH LEGAL PROCEEDING SHALL NOT BE HEARD BEFORE A JURY. EACH PARTY GIVES UP ANY RIGHT TO A JURY TRIAL. To the extent permitted by law, you agree that you will not bring any class action lawsuit against iZotope or be a representative plaintiff or plaintiff class member in any such lawsuit.</p>
+
+<p>Should you have any questions about this Agreement or iZotope&rsquo;s software use policies, or if you desire to contact iZotope for any other reason, in the U.S., please email sales@izotope.com; outside the U.S., please contact the iZotope representative or affiliate serving your country or, if you are unsure whom to contact, iZotope at the above location.
+Please indicate that you understand and accept these terms by clicking the “Accept” option. If you do not accept these terms, installation will terminate.</p>
+
+<hr />
+
+<p>January 2018</p>
+
+    <br />
+    <hr />
+    <br />
+    <div class="printpagebreak"></div>
+  
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+	
+
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

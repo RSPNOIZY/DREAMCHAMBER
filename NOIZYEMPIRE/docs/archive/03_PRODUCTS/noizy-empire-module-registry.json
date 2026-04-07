@@ -1,0 +1,330 @@
+{
+  "version": "0.1",
+  "last_updated": "2026-03-12",
+  "start_read_path": [
+    "NOIZY_ARCHIVE/00_INDEX.md",
+    "NOIZY_ARCHIVE/NOIZY_WORLD_MASTER_ARCHIVE.md",
+    "NOIZY_ARCHIVE/03_PRODUCTS/noizy-empire-claude-build-brief.md",
+    "NOIZY_ARCHIVE/03_PRODUCTS/noizy-empire-claude-cowork-system.md"
+  ],
+  "current_sprint": [
+    {
+      "module_id": "technical_infrastructure",
+      "target_artifact": "local session manifest schema v0.1"
+    },
+    {
+      "module_id": "dreamchamber_xr_runtime",
+      "target_artifact": "DreamChamber scene state schema v0.1"
+    },
+    {
+      "module_id": "flow_state_engine_adaptive_composer",
+      "target_artifact": "Flow-State Engine Control Schema v0.1"
+    },
+    {
+      "module_id": "global_music_school",
+      "target_artifact": "Semester 1 Weekly Map v0.1"
+    },
+    {
+      "module_id": "rights_provenance_lifeluv",
+      "target_artifact": "session-to-release provenance flow v0.1"
+    }
+  ],
+  "modules": [
+    {
+      "id": "foundation_knowledge_engine",
+      "display_name": "Foundation / Knowledge Engine",
+      "status": "active",
+      "priority": "foundation",
+      "purpose": "Keep the whole ecosystem coherent, navigable, and Claude-readable.",
+      "dependencies": [],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/00_INDEX.md",
+        "NOIZY_ARCHIVE/NOIZY_WORLD_MASTER_ARCHIVE.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/founder-intelligence-archive.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/knowledge-engine.md"
+      ],
+      "next_artifact": "NOIZY archive search service v0.1",
+      "non_negotiables": [
+        "update canon",
+        "refresh workspace maps",
+        "avoid orphan docs"
+      ]
+    },
+    {
+      "id": "global_sonic_map_timeline",
+      "display_name": "Global Sonic Map And Timeline",
+      "status": "active",
+      "priority": "high",
+      "purpose": "Represent the world sonic heritage by region, method, state, and history.",
+      "dependencies": [
+        "foundation_knowledge_engine"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-global-sonic-map.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-biome-matrix.json",
+        "NOIZY_ARCHIVE/03_PRODUCTS/global-music-genome-table.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/global-music-genome-table.json",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-3d-world-mapping-table.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-planetary-engine-architecture.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-planetary-engine-architecture.json",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-3d-world-mapping-table.json",
+        "NOIZY_ARCHIVE/02_RESEARCH/global-sonic-consciousness-atlas.md",
+        "NOIZY_ARCHIVE/06_APPENDIX/global-sonic-consciousness-timeline.md"
+      ],
+      "next_artifact": "lineage note schema v0.1",
+      "non_negotiables": [
+        "lineage-aware naming",
+        "no flattened cultural presets",
+        "machine-readable support"
+      ]
+    },
+    {
+      "id": "dreamchamber_xr_runtime",
+      "display_name": "DreamChamber XR Runtime",
+      "status": "immediate",
+      "priority": "highest",
+      "purpose": "Build the first playable immersive sound world.",
+      "dependencies": [
+        "foundation_knowledge_engine",
+        "global_sonic_map_timeline"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-prototype-spec.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-biome-matrix.json",
+        "NOIZY_ARCHIVE/03_PRODUCTS/global-music-genome-table.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/global-music-genome-table.json",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-3d-world-mapping-table.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-3d-world-mapping-table.json",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-planetary-engine-architecture.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-planetary-engine-architecture.json",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-ux-wireflow.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/noizy-next-systems-roadmap.md"
+      ],
+      "next_artifact": "DreamChamber scene state schema v0.1",
+      "non_negotiables": [
+        "sober-first",
+        "local-first for sensitive inputs",
+        "human co-creation remains central"
+      ]
+    },
+    {
+      "id": "flow_state_engine_adaptive_composer",
+      "display_name": "Flow-State Engine And Adaptive AI Composer",
+      "status": "design_ready",
+      "priority": "high",
+      "purpose": "Make sound respond to motion, breath, gesture, and future local biosignals.",
+      "dependencies": [
+        "dreamchamber_xr_runtime",
+        "technical_infrastructure"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/sound-mind-ritual-blueprint.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-planetary-engine-architecture.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-planetary-engine-architecture.json",
+        "NOIZY_ARCHIVE/03_PRODUCTS/nerve-to-note.md",
+        "NOIZY_ARCHIVE/02_RESEARCH/biometric-governance.md"
+      ],
+      "next_artifact": "Flow-State Engine Control Schema v0.1",
+      "non_negotiables": [
+        "sober-first",
+        "no fake therapeutic claims",
+        "raw sensitive streams stay local"
+      ]
+    },
+    {
+      "id": "global_music_school",
+      "display_name": "Global Music School",
+      "status": "active",
+      "priority": "high",
+      "purpose": "Guide humans from wonder to stewardship through immersive, lineage-aware, rights-aware learning.",
+      "dependencies": [
+        "global_sonic_map_timeline",
+        "dreamchamber_xr_runtime"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/08_EDUCATION/noizy-music-school.md",
+        "NOIZY_ARCHIVE/08_EDUCATION/noizy-music-school-curriculum.md",
+        "NOIZY_ARCHIVE/08_EDUCATION/noizy-teaching-credo.md"
+      ],
+      "next_artifact": "Semester 1 Weekly Map v0.1",
+      "non_negotiables": [
+        "listening before performance",
+        "lineage before presets",
+        "sovereignty before extraction"
+      ]
+    },
+    {
+      "id": "human_sonic_legacy_vault",
+      "display_name": "Human Sonic Legacy Vault",
+      "status": "pending",
+      "priority": "medium",
+      "purpose": "Preserve releases, sessions, teaching artifacts, and lineage-aware archives.",
+      "dependencies": [
+        "global_sonic_map_timeline",
+        "rights_provenance_lifeluv"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/founder-intelligence-archive.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/provenance-validator.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/fiduciary-agent.md"
+      ],
+      "next_artifact": "Human Sonic Legacy Vault Spec v0.1",
+      "non_negotiables": [
+        "human curation remains visible",
+        "provenance stays attached",
+        "no homogenized archive language"
+      ]
+    },
+    {
+      "id": "community_platform",
+      "display_name": "Noizy Empire Community Platform",
+      "status": "pending",
+      "priority": "medium",
+      "purpose": "Support collaboration, mentorship, circles, and live co-creation.",
+      "dependencies": [
+        "dreamchamber_xr_runtime",
+        "global_music_school",
+        "rights_provenance_lifeluv"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/sovereign-voice-network.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/sovereign-voice-local-direction-hub.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/ava-direction-packet-spec.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/ava-direction-packet-schema.json",
+        "NOIZY_ARCHIVE/03_PRODUCTS/actor-facing-signal-card.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/noizyvox-frequency-transmission-blueprint.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-planetary-engine-architecture.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/creative-transmission-protocol.md",
+        "CODEMASTER/projects/dreamchamber-bridge/README.md"
+      ],
+      "next_artifact": "NOIZY Community Platform Spec v0.1",
+      "non_negotiables": [
+        "rights-aware collaboration",
+        "mentorship visible",
+        "communities form around real artifacts"
+      ]
+    },
+    {
+      "id": "neuroacoustic_regulation_systems",
+      "display_name": "NeuroAcoustic Regulation Systems",
+      "status": "design_ready",
+      "priority": "high",
+      "purpose": "Build caregiver-guided, creator-governed, non-clinical listening and voice systems with safety and transparency at the center.",
+      "dependencies": [
+        "community_platform",
+        "flow_state_engine_adaptive_composer",
+        "rights_provenance_lifeluv"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/calm-studio-product-spec.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/regulation-voices-product-spec.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/regulation-voice-profile-spec.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/community-feedback-architecture.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/noizyvox-settings-governance-suite.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/noizyvox-sitecopy-pack.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/noizyvox-legal-pack.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/neuroacoustic-safety-charter.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/audiogenius-research-platform.md",
+        "NOIZY_ARCHIVE/02_RESEARCH/biometric-governance.md"
+      ],
+      "next_artifact": "Safety review console schema v0.1",
+      "non_negotiables": [
+        "no medical overclaiming",
+        "caregiver and creator control remain visible",
+        "sensitive data defaults stay minimal",
+        "child-safety beats growth metrics"
+      ]
+    },
+    {
+      "id": "ritual_flow_state_design",
+      "display_name": "Ritual And Flow-State Design",
+      "status": "active",
+      "priority": "high",
+      "purpose": "Provide sober-first state shaping, reflection, and ritual pacing across the ecosystem.",
+      "dependencies": [
+        "global_sonic_map_timeline"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/sound-mind-ritual-blueprint.md",
+        "NOIZY_ARCHIVE/02_RESEARCH/global-sonic-consciousness-atlas.md"
+      ],
+      "next_artifact": "Listening Chamber Route Templates v0.1",
+      "non_negotiables": [
+        "sober-first",
+        "reflection built in",
+        "no false sacred claims"
+      ]
+    },
+    {
+      "id": "universal_instrument_style_integration",
+      "display_name": "Universal Instrument And Style Integration",
+      "status": "active",
+      "priority": "high",
+      "purpose": "Maintain broad global instrument and style coverage without flattening source cultures.",
+      "dependencies": [
+        "global_sonic_map_timeline"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/global-music-genome.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/global-music-genome-table.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/global-music-genome-table.json",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-planetary-engine-architecture.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-planetary-engine-architecture.json",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-global-music-atlas.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-biome-matrix.json"
+      ],
+      "next_artifact": "source-lineage annotation set v0.1",
+      "non_negotiables": [
+        "visible cultural context",
+        "region and method routes",
+        "no generic world-music language"
+      ]
+    },
+    {
+      "id": "technical_infrastructure",
+      "display_name": "Technical Infrastructure",
+      "status": "active",
+      "priority": "high",
+      "purpose": "Define runtime stack, input model, middleware, export, and collaboration architecture.",
+      "dependencies": [
+        "dreamchamber_xr_runtime"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-prototype-spec.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-planetary-engine-architecture.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-planetary-engine-architecture.json",
+        "NOIZY_ARCHIVE/03_PRODUCTS/noizy-next-systems-roadmap.md",
+        "CODEMASTER/docs/discord/DREAMCHAMBER_UPGRADES.md"
+      ],
+      "next_artifact": "local session manifest schema v0.1",
+      "non_negotiables": [
+        "OpenXR-compatible thinking",
+        "local-first sensitive input handling",
+        "engine-agnostic where practical"
+      ]
+    },
+    {
+      "id": "rights_provenance_lifeluv",
+      "display_name": "Rights, Provenance, And LIFELUV",
+      "status": "active",
+      "priority": "high",
+      "purpose": "Keep the ecosystem artist-safe, attributable, and economically real.",
+      "dependencies": [
+        "foundation_knowledge_engine"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/02_RESEARCH/provenance-research.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/provenance-validator.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/fiduciary-agent.md",
+        "NOIZY_ARCHIVE/04_BUSINESS/monetization-models.md",
+        "NOIZY_ARCHIVE/01_PHILOSOPHY/lifeluv.md"
+      ],
+      "next_artifact": "session-to-release provenance flow v0.1",
+      "non_negotiables": [
+        "consent visible",
+        "human contribution legible",
+        "payout path traceable"
+      ]
+    }
+  ]
+}

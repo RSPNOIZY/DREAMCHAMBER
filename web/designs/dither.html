@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>dither</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="dither" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer220" class="Basic-Text-Frame">
+			<p id="_idParaDest-213" class="heading-1"><a id="_idTextAnchor216"></a>Dither</p>
+			<p class="Normal">Dither is a necessary process when converting from a higher bit resolution to a lower bit resolution.</p>
+			<p class="Normal">Dithering is used to tame the quantization distortion that happens when converting between bit depths due to requantization. Dither also preserves more of the dynamic range of a signal when converting to a lower bit depth.</p>
+			<p class="Normal">The Dither module applies iZotope&apos;s MBIT+ dithering and noise shaping technology to maintain the highest audio quality possible when you are converting to 24, 20, 16, 12, or 8 bits.</p>
+			<p class="Normal">MBIT+ uses psychoacoustic methods to distribute dithering noise into less audible ranges. The result is a more pleasing sound and smoother fades.</p>
+			<p class="Inline-Art"><img src="image/image_4RTOHCVTOQ7QP6CG6XXSI5U2CWCSEEML" alt="" /></p>
+			<p id="_idParaDest-214" class="heading-2"><a id="_idTextAnchor217"></a>New bit depth</p>
+			<p class="Normal">This sets the target resolution (bit depth) of the audio file.</p>
+			<p id="_idParaDest-215" class="heading-2"><a id="_idTextAnchor218"></a>Noise shaping</p>
+			<p class="Normal">Chooses the aggressiveness of dither noise shaping.</p>
+			<p class="Normal">It is possible to provide more effective and transparent dithering by shaping the dithered noise spectrum so less noise is in the audible range and more noise is in the inaudible range.</p>
+			<p class="Normal">You can control the aggressiveness of this shaping, ranging from None (no shaping, plain dither) through Ultra (roughly 14 dB of audible noise suppression).</p>
+			<p class="Normal">More noise shaping can cause slightly higher peaks in your signal, even at high bit depths.</p>
+			<p id="_idParaDest-216" class="heading-2"><a id="_idTextAnchor219"></a>Dither Amount</p>
+			<p class="Normal">The dithering amount can be varied from None (noise shaping only) to High. In general, the Normal dither amount is a good choice.</p>
+			<p class="Normal">No dithering or Low dither amount can leave some non-linear quantization distortion or dither noise modulation, while higher settings completely eliminate the non-linear distortion at the expense of a slightly increased noise floor.</p>
+			<p class="Normal">A dither amount setting of High with no noise shaping produces a standard TPDF dither: a common white noise generation method with a triangular distribution of amplitudes between −1 and +1 of the Least Significant Bit (LSB).</p>
+			<p id="_idParaDest-217" class="heading-2"><a id="_idTextAnchor220"></a>Auto-blanking</p>
+			<p class="Normal">Mutes dither output (i.e. dither noise) when the input signal is completely silent (0 bits of audio).</p>
+			<p id="_idParaDest-218" class="heading-2"><a id="_idTextAnchor221"></a>Limit noise peaks</p>
+			<p class="Normal">Dither noise is random in nature and has a very low amplitude. However, after noise shaping, especially in aggressive dithering modes like Ultra, the high-frequency dither noise is significantly amplified, and the overall dither signal can show spurious peaks up to −60 dBFS during 16-bit quantization. If such high peaks are undesirable, you can enable this option to effectively suppress the spurious peaks in the noise-shaped dither.</p>
+			<p id="_idParaDest-219" class="heading-2"><a id="_idTextAnchor222"></a>Suppress harmonics</p>
+			<p class="Normal">If, for some reason, any dithering noise is undesirable, simple truncation remains the only choice. Truncation results in harmonic quantization distortion that adds overtones to the signal and distorts the timbre. In this case you can enable Suppress Harmonics option to slightly alter the truncation rules, moving the harmonic quantization distortion away from overtones of audible frequencies. This option doesn&apos;t create any random dithering noise floor. Instead it works more like truncation, but with better tonal quality in the resulting signal. This option is applicable only in the modes without dithering noise and without aggressive noise shaping.</p>
+		</div>
+	</body>
+</html>

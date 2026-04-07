@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Using_RX_Connect_with_Avid_Media_Composer</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="Using_RX_Connect_with_Avid_Media_Composer" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer240" class="Basic-Text-Frame">
+			<p id="_idParaDest-248" class="heading-1"><a id="_idTextAnchor254"></a>How to use RX Connect with Avid Media Composer</p>
+			<p class="Normal">When using Media Composer, there are two separate workflows for using RX Connect depending on whether you are operating in Master Clip mode or Timeline Mode.</p>
+			<p id="_idParaDest-249" class="heading-2"><a id="_idTextAnchor255"></a>Master Clip Workflow</p>
+			<ol>
+				<li class="Numbered-List" value="1">Open the AudioSuite Window from the Tools menu</li>
+				<li class="Numbered-List">Drag the Master Clip that you wish to edit onto the AudioSuite Window</li>
+				<li class="Numbered-List">Choose "iZotope RX 5 Connect" from the Plug-in Menu Selection</li>
+				<li class="Numbered-List">Click the purple Activate Current Plug-in button</li>
+				<li class="Numbered-List">Press the SEND button in Media Composer 7.0.x, or Optional in Media Composer 8.1.x to send the audio master clip over to RX</li>
+				<li class="Numbered-List">When you have finished editing your audio in RX, click the "SEND BACK" button</li>
+				<li class="Numbered-List">Back in the AudioSuite Window, press the OK button, and then Render Effect to commit changes</li>
+				<li class="Numbered-List">A new Master clip will now be generated into the designated bin</li>
+			</ol>
+			<p id="_idParaDest-250" class="heading-2"><a id="_idTextAnchor256"></a>Timeline Workflow</p>
+			<ol>
+				<li class="Numbered-List" value="1">Open the AudioSuite Window from the Tools menu</li>
+				<li class="Numbered-List">Select a single audio track in the Timeline, and then choose "iZotope RX 5 Connect" from the Plug-in Menu Selection </li>
+				<li class="Numbered-List">Click the Activate Current Plug-in button</li>
+				<li class="Numbered-List">Press the SEND button in Media Composer 7.0.x, or Optional in Media Composer 8.1.x to send the audio master clip over to RX.</li>
+				<li class="Numbered-List">When you have finished editing your audio in RX, click "SEND BACK" button</li>
+				<li class="Numbered-List">In the AudioSuite Window press the OK button, and then Render Effect to commit changes</li>
+			</ol>
+			<p class="Normal">When rendering RX Connect as an AudioSuite effect in Media Composer, the resulting audio will exist in a rendered effect container for the duration of that clip on the timeline. If the clip length is extended beyond those bounds, the rendered effect will become un-rendered, as indicated by a blue dot. To avoid losing the audio in the rendered effect container, we recommend either:</p>
+			<ol>
+				<li class="Numbered-List" value="1">Achieve locked picture prior to the audio edit</li>
+				<li class="Numbered-List">Extend the bounds of the clip prior to the audio edit, perform the audio edit with RX Connect, mixdown the clip to a new audio file, and then reduce the bounds back to the original size</li>
+			</ol>
+			<p class="Normal">If you make extensive repairs inside of the RX Audio Editor, you can also save an .rxdoc of the file, which will preserve all your adjustments so you can modify them later if you need to.</p>
+			<p class="heading-3">Monitoring the output of RX Audio Editor</p>
+			<p class="Normal">With some audio hardware systems, Media Composer will has control of your audio drivers so that you aren’t able to hear the output of RX. However, we’ve built the RX Monitor tool to solve just this problem. Create a dedicated auxiliary audio track for monitoring RX, and insert RX Monitor from the "Noise Reduction" or "Sound Field" menus.</p>
+			<p class="Normal">Now, go to the "Preferences" menu in the RX Audio Editor by clicking on the wrench icon in the top-right of the window. In the "Audio" tab, set your Driver type to be "RX Monitor." Now we can hear the output of the RX Audio Editor through the audio output chain that Media Composer is using.</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>spectral_repair</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="spectral_repair" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer167" class="Basic-Text-Frame">
+			<p id="_idParaDest-130" class="heading-1"><a id="_idTextAnchor132"></a>Spectral Repair</p>
+			<p class="Normal">Spectral Repair intelligently removes undesired sounds from a file with natural-sounding results.</p>
+			<p class="Normal">This tool treats areas selected in spectrogram/waveform display as corrupted audio that will be repaired using information from outside of the selection.</p>
+			<p class="Normal">When used with a time selection, it is able to provide higher quality processing than De-click for long corrupted segments of audio (above 10 ms).</p>
+			<p class="Normal">When used with a time/frequency, lasso, brush, or wand selection, it can be used to remove (or attenuate) unwanted sounds from recordings, such as squeaky chairs, coughs, wheezes, burps, whistles, dropped objects, mic stand bumps, clattering dishes, mobile phones ringing, metronomes, click tracks, door slams, sniffles, laughter, background chitchat, digital artifacts from bad hardware, dropouts from broken audio cables, rustle sounds from microphone movements, fret and string noise from guitars, ringing tones from rooms or drum kits, squeaky wheels, dog barks, jingling change, or just about anything else you could imagine.</p>
+			<p class="Normal">Spectral Repair can also repair gaps or replace audio intelligently by using advanced resynthesis techniques.</p>
+			<p class="Inline-Art"><img src="image/image_K4HD2GJY27JLHBWTUQO2HASTTGFEZ3SB" alt="" /></p>
+			<p id="_idParaDest-131" class="heading-2"><a id="_idTextAnchor133"></a>Attenuate</p>
+			<p class="Normal">This mode removes sounds by comparing what’s inside a selection to what’s outside of it.</p>
+			<p class="Normal">Attenuate reduces spectrogram magnitudes in the selected area to match magnitudes from the surrounding area, resulting in the removal of the sound without leaving an audible gap behind.</p>
+			<p class="Normal">Attenuate does not resynthesize any audio. It modifies dissimilar audio in your selection to be more similar to the surrounding audio.</p>
+			<p class="Normal">This mode is suitable for recordings with background noise or where noise is the essential part of music (drums, percussion) and should be accurately preserved. It&apos;s also good when unwanted events are not obscuring the desired signal completely. For example, this mode can be used to bring noises like door slams or chair squeaks down to a level where they are inaudible and blend into background noise. </p>
+			<p id="_idParaDest-132" class="heading-2"><a id="_idTextAnchor134"></a>Replace</p>
+			<p class="Normal">This mode can be used to replace badly damaged sections (such as gaps) in tonal audio. It completely replaces the selected content with audio interpolated from the surrounding data.</p>
+			<p id="_idParaDest-133" class="heading-2"><a id="_idTextAnchor135"></a>Pattern</p>
+			<p class="Normal">This mode finds the most similar portion of the surrounding audio and uses this to replace the corrupted audio.</p>
+			<p class="Normal">Pattern mode is suitable for badly damaged audio with background noise or for audio with repeating parts.</p>
+			<p id="_idParaDest-134" class="heading-2"><a id="_idTextAnchor136"></a>Partials + Noise</p>
+			<p class="Normal">The advanced version of Replace mode. It restores harmonics of the audio more accurately with control over the Harmonic sensitivity parameter.</p>
+			<p class="Normal">This mode allows for higher-quality interpolation by explicit location of signal harmonics from the 2 sides of the corrupted interval and linking them together by synthesis.</p>
+			<p class="Normal">Partials + Noise is able to correctly interpolate cases of pitch modulation, including vibrato. The remaining of non-harmonic material ("residual") is interpolated using Replace method.</p>
+			<p id="_idParaDest-135" class="heading-2"><a id="_idTextAnchor137"></a>Applying Spectral Repair</p>
+			<p class="Normal">To start working with Spectral Repair, switch to the spectrogram view by dragging the spectrogram/waveform transparency balance slider to the right. Next, identify the unwanted event on a spectrogram and select it using a selection tool. You can audition this selected time-frequency tile by pressing the Play selection button in the RX transport.</p>
+			<p class="Inline-Art"><img src="image/image_APGYZNKH5PK6OAEFX4KFI352EXX73TF5" alt="" /></p>
+			<p class="Normal">Select the noise you want to repair and Spectral Repair will reduce it to the level of the noise floor, replace it with audio from around the selection, or generate entirely new audio to fit the selection.</p>
+			<p class="Normal">Note: Some unwanted events consist of several separate regions on a spectrogram. In some cases, it&apos;s possible to achieve more accurate results by repairing several smaller selections one by one, instead of one large selection. Also, you can use the Find Similar Event tool to save time when searching for and fixing many similar events in large files.</p>
+			<p class="Normal">Once you&apos;ve found the event(s) to repair, select the appropriate Spectral Repair mode from the tabs at the top of the Spectral Repair settings window. Sometimes it&apos;s worth trying several different methods or number of bands to achieve the desired result. A higher number of bands doesn&apos;t necessarily mean higher quality! We encourage you to use the Compare Settings window to experiment and find the best settings for the project at hand.</p>
+			<p class="Normal">Common parameters for many modes include Surrounding region length that determines how far around the selection Spectral Repair will look for a good signal. Before/after weighting allows you to use more information from either before or after the selection for interpolation. For example, if your unwanted event is just before a transient (such as a drum hit) in the audio, you may want to set this parameter to use more of the audio before the selection to prevent smearing of the transient into the selection.</p>
+			<p id="_idParaDest-136" class="heading-2"><a id="_idTextAnchor138"></a>Processing Limitations</p>
+			<p class="Normal">Depending on the mode and settings, Spectral Repair will have varying limits to the amount of audio that can be processed in your selection.</p>
+			<ul>
+				<li class="Unordered-List">Unlimited — Attenuate when in Vertical mode only.</li>
+				<li class="Unordered-List">10 seconds — Attenuate Horizontal or 2D; Replace modes.</li>
+				<li class="Unordered-List">4 seconds — Pattern, Partials+Noise modes.</li>
+				<li class="Unordered-List">Longer selections will automatically adjust processing to use the correct mode.</li>
+			</ul>
+			<p id="_idParaDest-137" class="heading-2"><a id="_idTextAnchor139"></a>Bands</p>
+			<p class="Normal">Selects the number of frequency bands used for interpolation. A higher number of bands can provide better frequency resolution, but also requires wider surrounding area to be analyzed for interpolation. A lower number of bands is ideal for processing short selections or transient signals.</p>
+			<p id="_idParaDest-138" class="heading-2"><a id="_idTextAnchor140"></a>Multi-resolution <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Normal">The multiresolution mode enables uses better frequency resolution for interpolation of low-frequency content and better time resolution for interpolation of high-frequency content.</p>
+			<p class="Normal">The multiresolution processing option is available for each of the Spectral Repair modes individually.</p>
+			<p id="_idParaDest-139" class="heading-2"><a id="_idTextAnchor141"></a>Strength</p>
+			<p class="Normal">Adjusts strength of attenuation in Attenuate mode.</p>
+			<p id="_idParaDest-140" class="heading-2"><a id="_idTextAnchor142"></a>Direction</p>
+			<p class="Normal">In Attenuate mode, Direction determines whether material to the left and right (Horizontal), above and below (Vertical), or both horizontal and vertical (2D) is used in repairing the selection.</p>
+			<p class="Normal">Modes other than Attenuate all use Horizontal mode, and do not display this option.</p>
+			<p id="_idParaDest-141" class="heading-2"><a id="_idTextAnchor143"></a>Surrounding region length</p>
+			<p class="Normal">Defines how much of the surrounding content will be used for interpolation.</p>
+			<p class="heading-3">Surrounding region shading</p>
+			<p class="Normal">When using the Spectral Repair module, your selections will be shown with a dotted line surrounding your selected region. This dotted line is directly controlled by the Surrounding Region and Before/After Weighting controls inside of your Spectral Repair modules, and provides a visual representation of your set values.</p>
+			<p class="Normal">The surrounding region is the region that RX uses for interpolation of the selected region. The data from the surrounding region is used to restore the selected region.</p>
+			<p id="_idParaDest-142" class="heading-2"><a id="_idTextAnchor144"></a>Before/After weighting</p>
+			<p class="Normal">Gives more weight to the surrounding audio before or after the selection</p>
+			<p id="_idParaDest-143" class="heading-2"><a id="_idTextAnchor145"></a>Pattern search range</p>
+			<p class="Normal">In Pattern mode, selects the length of the audio segment used in a search for a suitable replacement interval. For example, setting it to 5 seconds will allow search within ±5 second range from the selection.</p>
+			<p id="_idParaDest-144" class="heading-2"><a id="_idTextAnchor146"></a>Harmonics sensitivity</p>
+			<p class="Normal">Adjusts amount of detected and linked harmonics in Partials + Noise mode. Lower values will detect fewer harmonics, while higher values will detect more harmonics and can introduce some unnatural pitch modulations in the interpolated result.</p>
+		</div>
+	</body>
+</html>

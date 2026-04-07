@@ -1,0 +1,2281 @@
+{
+  "generated_at": "2026-03-12T05:37:48",
+  "tracked_file_count": 142,
+  "project_count": 22,
+  "project_summary": {
+    ".skills": {
+      "file_count": 1,
+      "first_updated": "2026-02-09",
+      "last_updated": "2026-02-09",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-02-09"
+      ],
+      "kinds": {
+        "doc": 1
+      },
+      "recent_files": [
+        ".skills/skills/engr/SKILL.md"
+      ],
+      "linked_projects": []
+    },
+    ".vscode": {
+      "file_count": 1,
+      "first_updated": "2026-03-12",
+      "last_updated": "2026-03-12",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-12"
+      ],
+      "kinds": {
+        "config": 1
+      },
+      "recent_files": [
+        ".vscode/mcp.json"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/02_RESEARCH",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/06_APPENDIX",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    },
+    "CODEMASTER": {
+      "file_count": 5,
+      "first_updated": "2026-02-05",
+      "last_updated": "2026-02-27",
+      "active_date_count": 2,
+      "active_dates": [
+        "2026-02-27",
+        "2026-02-05"
+      ],
+      "kinds": {
+        "code": 3,
+        "config": 1,
+        "doc": 1
+      },
+      "recent_files": [
+        "CODEMASTER/script.js",
+        "CODEMASTER/index.html",
+        "CODEMASTER/AI_MORNING_NEWS.sh",
+        "CODEMASTER/CHECK_ANTHROPIC_STATUS.sh",
+        "CODEMASTER/.vscode/settings.json"
+      ],
+      "linked_projects": [
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-02-05"
+          ]
+        },
+        {
+          "project": "CODEMASTER/projects/gabriel-core",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-02-05"
+          ]
+        },
+        {
+          "project": "CODEMASTER/projects/dreamchamber-bridge",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-02-27"
+          ]
+        },
+        {
+          "project": "GABRIEL",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-02-05"
+          ]
+        }
+      ]
+    },
+    "CODEMASTER/docs": {
+      "file_count": 1,
+      "first_updated": "2026-03-01",
+      "last_updated": "2026-03-01",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-01"
+      ],
+      "kinds": {
+        "doc": 1
+      },
+      "recent_files": [
+        "CODEMASTER/docs/discord/DREAMCHAMBER_UPGRADES.md"
+      ],
+      "linked_projects": [
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-01"
+          ]
+        }
+      ]
+    },
+    "CODEMASTER/logs": {
+      "file_count": 1,
+      "first_updated": "2026-01-18",
+      "last_updated": "2026-01-18",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-01-18"
+      ],
+      "kinds": {
+        "log": 1
+      },
+      "recent_files": [
+        "CODEMASTER/logs/dreamchamber_shell_test.json"
+      ],
+      "linked_projects": []
+    },
+    "CODEMASTER/projects/NOIZY.AI": {
+      "file_count": 2,
+      "first_updated": "2026-03-12",
+      "last_updated": "2026-03-12",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-12"
+      ],
+      "kinds": {
+        "code": 2
+      },
+      "recent_files": [
+        "CODEMASTER/projects/NOIZY.AI/fiduciary/c2pa_schema.py",
+        "CODEMASTER/projects/NOIZY.AI/fiduciary/fiduciary_agent.py"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/02_RESEARCH",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/06_APPENDIX",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    },
+    "CODEMASTER/projects/dreamchamber-bridge": {
+      "file_count": 5,
+      "first_updated": "2026-02-27",
+      "last_updated": "2026-02-27",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-02-27"
+      ],
+      "kinds": {
+        "code": 1,
+        "config": 3,
+        "doc": 1
+      },
+      "recent_files": [
+        "CODEMASTER/projects/dreamchamber-bridge/src/index.ts",
+        "CODEMASTER/projects/dreamchamber-bridge/tsconfig.json",
+        "CODEMASTER/projects/dreamchamber-bridge/package.json",
+        "CODEMASTER/projects/dreamchamber-bridge/bridge.config.example.json",
+        "CODEMASTER/projects/dreamchamber-bridge/README.md"
+      ],
+      "linked_projects": [
+        {
+          "project": "CODEMASTER",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-02-27"
+          ]
+        }
+      ]
+    },
+    "CODEMASTER/projects/gabriel-core": {
+      "file_count": 9,
+      "first_updated": "2026-02-05",
+      "last_updated": "2026-02-05",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-02-05"
+      ],
+      "kinds": {
+        "code": 5,
+        "doc": 4
+      },
+      "recent_files": [
+        "CODEMASTER/projects/gabriel-core/MAGIC_DISCOVERED.md",
+        "CODEMASTER/projects/gabriel-core/MASTER_INTEGRATION.md",
+        "CODEMASTER/projects/gabriel-core/mcp/mc96_integration.py",
+        "CODEMASTER/projects/gabriel-core/mcp/fix_npm_permissions.sh",
+        "CODEMASTER/projects/gabriel-core/mcp/OPTIONAL_MCP_SERVERS.md"
+      ],
+      "linked_projects": [
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-02-05"
+          ]
+        },
+        {
+          "project": "CODEMASTER",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-02-05"
+          ]
+        },
+        {
+          "project": "GABRIEL",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-02-05"
+          ]
+        }
+      ]
+    },
+    "CODEMASTER/projects/q4git": {
+      "file_count": 9,
+      "first_updated": "2026-02-10",
+      "last_updated": "2026-02-10",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-02-10"
+      ],
+      "kinds": {
+        "code": 8,
+        "config": 1
+      },
+      "recent_files": [
+        "CODEMASTER/projects/q4git/src/q4git/__main__.py",
+        "CODEMASTER/projects/q4git/src/q4git/cli.py",
+        "CODEMASTER/projects/q4git/src/q4git/report.py",
+        "CODEMASTER/projects/q4git/src/q4git/scientist.py",
+        "CODEMASTER/projects/q4git/src/q4git/github.py"
+      ],
+      "linked_projects": []
+    },
+    "GABRIEL": {
+      "file_count": 4,
+      "first_updated": "2026-02-05",
+      "last_updated": "2026-02-05",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-02-05"
+      ],
+      "kinds": {
+        "code": 4
+      },
+      "recent_files": [
+        "GABRIEL/bin/install_launchd.sh",
+        "GABRIEL/bin/health_check.sh",
+        "GABRIEL/bin/start_bridge.sh",
+        "GABRIEL/bin/start_server.sh"
+      ],
+      "linked_projects": [
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-02-05"
+          ]
+        },
+        {
+          "project": "CODEMASTER/projects/gabriel-core",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-02-05"
+          ]
+        },
+        {
+          "project": "CODEMASTER",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-02-05"
+          ]
+        }
+      ]
+    },
+    "NOIZY_ARCHIVE": {
+      "file_count": 2,
+      "first_updated": "2026-03-12",
+      "last_updated": "2026-03-12",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-12"
+      ],
+      "kinds": {
+        "doc": 2
+      },
+      "recent_files": [
+        "NOIZY_ARCHIVE/NOIZY_WORLD_MASTER_ARCHIVE.md",
+        "NOIZY_ARCHIVE/00_INDEX.md"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/02_RESEARCH",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/06_APPENDIX",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    },
+    "NOIZY_ARCHIVE/01_PHILOSOPHY": {
+      "file_count": 8,
+      "first_updated": "2026-03-12",
+      "last_updated": "2026-03-12",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-12"
+      ],
+      "kinds": {
+        "doc": 8
+      },
+      "recent_files": [
+        "NOIZY_ARCHIVE/01_PHILOSOPHY/noizy-creator-first-doctrine.md",
+        "NOIZY_ARCHIVE/01_PHILOSOPHY/dreamchamber-principles.md",
+        "NOIZY_ARCHIVE/01_PHILOSOPHY/resonance-principle.md",
+        "NOIZY_ARCHIVE/01_PHILOSOPHY/master-origin-story.md",
+        "NOIZY_ARCHIVE/01_PHILOSOPHY/manifesto.md"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/02_RESEARCH",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/06_APPENDIX",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/99_TEMPLATES",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    },
+    "NOIZY_ARCHIVE/02_RESEARCH": {
+      "file_count": 11,
+      "first_updated": "2026-03-12",
+      "last_updated": "2026-03-12",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-12"
+      ],
+      "kinds": {
+        "doc": 11
+      },
+      "recent_files": [
+        "NOIZY_ARCHIVE/02_RESEARCH/world-instrument-atlas.md",
+        "NOIZY_ARCHIVE/02_RESEARCH/world-timbre-atlas.md",
+        "NOIZY_ARCHIVE/02_RESEARCH/world-style-lineages-atlas.md",
+        "NOIZY_ARCHIVE/02_RESEARCH/noizy-64-rhythm-archetypes.md",
+        "NOIZY_ARCHIVE/02_RESEARCH/noizy-128-scale-structures.md"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/06_APPENDIX",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/99_TEMPLATES",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    },
+    "NOIZY_ARCHIVE/03_PRODUCTS": {
+      "file_count": 49,
+      "first_updated": "2026-03-12",
+      "last_updated": "2026-03-12",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-12"
+      ],
+      "kinds": {
+        "config": 7,
+        "doc": 42
+      },
+      "recent_files": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/noizyvox-settings-governance-suite.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/noizy-master-encyclopedia-draft.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/noizy-empire-module-registry.json",
+        "NOIZY_ARCHIVE/03_PRODUCTS/noizy-empire-claude-package.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/noizyvox-sitecopy-pack.md"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/02_RESEARCH",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/06_APPENDIX",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/99_TEMPLATES",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    },
+    "NOIZY_ARCHIVE/04_BUSINESS": {
+      "file_count": 2,
+      "first_updated": "2026-03-12",
+      "last_updated": "2026-03-12",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-12"
+      ],
+      "kinds": {
+        "doc": 2
+      },
+      "recent_files": [
+        "NOIZY_ARCHIVE/04_BUSINESS/monetization-models.md",
+        "NOIZY_ARCHIVE/04_BUSINESS/go-to-market.md"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/02_RESEARCH",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/06_APPENDIX",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    },
+    "NOIZY_ARCHIVE/05_PITCHES": {
+      "file_count": 3,
+      "first_updated": "2026-03-12",
+      "last_updated": "2026-03-12",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-12"
+      ],
+      "kinds": {
+        "doc": 3
+      },
+      "recent_files": [
+        "NOIZY_ARCHIVE/05_PITCHES/google.md",
+        "NOIZY_ARCHIVE/05_PITCHES/apple.md",
+        "NOIZY_ARCHIVE/05_PITCHES/anthropic.md"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/02_RESEARCH",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/06_APPENDIX",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    },
+    "NOIZY_ARCHIVE/06_APPENDIX": {
+      "file_count": 9,
+      "first_updated": "2026-03-12",
+      "last_updated": "2026-03-12",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-12"
+      ],
+      "kinds": {
+        "doc": 9
+      },
+      "recent_files": [
+        "NOIZY_ARCHIVE/06_APPENDIX/research-timeline.md",
+        "NOIZY_ARCHIVE/06_APPENDIX/theme-index.md",
+        "NOIZY_ARCHIVE/06_APPENDIX/five-layer-knowledge-architecture.md",
+        "NOIZY_ARCHIVE/06_APPENDIX/world-regional-origin-timeline.md",
+        "NOIZY_ARCHIVE/06_APPENDIX/global-sonic-consciousness-timeline.md"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/02_RESEARCH",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/99_TEMPLATES",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    },
+    "NOIZY_ARCHIVE/07_INBOX": {
+      "file_count": 1,
+      "first_updated": "2026-03-12",
+      "last_updated": "2026-03-12",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-12"
+      ],
+      "kinds": {
+        "doc": 1
+      },
+      "recent_files": [
+        "NOIZY_ARCHIVE/07_INBOX/capture.md"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/02_RESEARCH",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/06_APPENDIX",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    },
+    "NOIZY_ARCHIVE/08_EDUCATION": {
+      "file_count": 3,
+      "first_updated": "2026-03-12",
+      "last_updated": "2026-03-12",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-12"
+      ],
+      "kinds": {
+        "doc": 3
+      },
+      "recent_files": [
+        "NOIZY_ARCHIVE/08_EDUCATION/noizy-teaching-credo.md",
+        "NOIZY_ARCHIVE/08_EDUCATION/noizy-music-school.md",
+        "NOIZY_ARCHIVE/08_EDUCATION/noizy-music-school-curriculum.md"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/02_RESEARCH",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/06_APPENDIX",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    },
+    "NOIZY_ARCHIVE/99_TEMPLATES": {
+      "file_count": 4,
+      "first_updated": "2026-03-12",
+      "last_updated": "2026-03-12",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-12"
+      ],
+      "kinds": {
+        "doc": 4
+      },
+      "recent_files": [
+        "NOIZY_ARCHIVE/99_TEMPLATES/research-note.md",
+        "NOIZY_ARCHIVE/99_TEMPLATES/versioned-concept.md",
+        "NOIZY_ARCHIVE/99_TEMPLATES/product-spec.md",
+        "NOIZY_ARCHIVE/99_TEMPLATES/partner-brief.md"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/02_RESEARCH",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/06_APPENDIX",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    },
+    "NOIZY_ARCHIVE/scripts": {
+      "file_count": 1,
+      "first_updated": "2026-03-12",
+      "last_updated": "2026-03-12",
+      "active_date_count": 1,
+      "active_dates": [
+        "2026-03-12"
+      ],
+      "kinds": {
+        "code": 1
+      },
+      "recent_files": [
+        "NOIZY_ARCHIVE/scripts/build_workspace_inventory.py"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/02_RESEARCH",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "ROOT",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/06_APPENDIX",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    },
+    "ROOT": {
+      "file_count": 11,
+      "first_updated": "2026-02-05",
+      "last_updated": "2026-03-12",
+      "active_date_count": 4,
+      "active_dates": [
+        "2026-03-12",
+        "2026-03-11",
+        "2026-03-01",
+        "2026-02-05"
+      ],
+      "kinds": {
+        "automation": 2,
+        "code": 4,
+        "config": 3,
+        "doc": 2
+      },
+      "recent_files": [
+        "whatsapp-cohere-bot.js",
+        "NOIZYEMPIRE DREAMCHAMBER.code-workspace",
+        "package-lock.json",
+        "package.json",
+        "NOIZYLAB_ECOSYSTEM.html"
+      ],
+      "linked_projects": [
+        {
+          "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/02_RESEARCH",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "CODEMASTER/projects/gabriel-core",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-02-05"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/06_APPENDIX",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+          "shared_date_count": 1,
+          "shared_dates": [
+            "2026-03-12"
+          ]
+        }
+      ]
+    }
+  },
+  "date_summary": {
+    "2026-03-12": {
+      "file_count": 97,
+      "project_count": 14,
+      "projects": {
+        ".vscode": 1,
+        "CODEMASTER/projects/NOIZY.AI": 2,
+        "NOIZY_ARCHIVE": 2,
+        "NOIZY_ARCHIVE/01_PHILOSOPHY": 8,
+        "NOIZY_ARCHIVE/02_RESEARCH": 11,
+        "NOIZY_ARCHIVE/03_PRODUCTS": 49,
+        "NOIZY_ARCHIVE/04_BUSINESS": 2,
+        "NOIZY_ARCHIVE/05_PITCHES": 3,
+        "NOIZY_ARCHIVE/06_APPENDIX": 9,
+        "NOIZY_ARCHIVE/07_INBOX": 1,
+        "NOIZY_ARCHIVE/08_EDUCATION": 3,
+        "NOIZY_ARCHIVE/99_TEMPLATES": 4,
+        "NOIZY_ARCHIVE/scripts": 1,
+        "ROOT": 1
+      }
+    },
+    "2026-03-11": {
+      "file_count": 1,
+      "project_count": 1,
+      "projects": {
+        "ROOT": 1
+      }
+    },
+    "2026-03-01": {
+      "file_count": 3,
+      "project_count": 2,
+      "projects": {
+        "CODEMASTER/docs": 1,
+        "ROOT": 2
+      }
+    },
+    "2026-02-27": {
+      "file_count": 7,
+      "project_count": 2,
+      "projects": {
+        "CODEMASTER": 2,
+        "CODEMASTER/projects/dreamchamber-bridge": 5
+      }
+    },
+    "2026-02-10": {
+      "file_count": 9,
+      "project_count": 1,
+      "projects": {
+        "CODEMASTER/projects/q4git": 9
+      }
+    },
+    "2026-02-09": {
+      "file_count": 1,
+      "project_count": 1,
+      "projects": {
+        ".skills": 1
+      }
+    },
+    "2026-02-05": {
+      "file_count": 23,
+      "project_count": 4,
+      "projects": {
+        "CODEMASTER": 3,
+        "CODEMASTER/projects/gabriel-core": 9,
+        "GABRIEL": 4,
+        "ROOT": 7
+      }
+    },
+    "2026-01-18": {
+      "file_count": 1,
+      "project_count": 1,
+      "projects": {
+        "CODEMASTER/logs": 1
+      }
+    }
+  },
+  "cross_project_days": [
+    {
+      "date": "2026-03-12",
+      "project_count": 14,
+      "file_count": 97,
+      "projects": [
+        ".vscode",
+        "CODEMASTER/projects/NOIZY.AI",
+        "NOIZY_ARCHIVE",
+        "NOIZY_ARCHIVE/01_PHILOSOPHY",
+        "NOIZY_ARCHIVE/02_RESEARCH",
+        "NOIZY_ARCHIVE/03_PRODUCTS",
+        "NOIZY_ARCHIVE/04_BUSINESS",
+        "NOIZY_ARCHIVE/05_PITCHES",
+        "NOIZY_ARCHIVE/06_APPENDIX",
+        "NOIZY_ARCHIVE/07_INBOX",
+        "NOIZY_ARCHIVE/08_EDUCATION",
+        "NOIZY_ARCHIVE/99_TEMPLATES",
+        "NOIZY_ARCHIVE/scripts",
+        "ROOT"
+      ]
+    },
+    {
+      "date": "2026-03-01",
+      "project_count": 2,
+      "file_count": 3,
+      "projects": [
+        "CODEMASTER/docs",
+        "ROOT"
+      ]
+    },
+    {
+      "date": "2026-02-27",
+      "project_count": 2,
+      "file_count": 7,
+      "projects": [
+        "CODEMASTER",
+        "CODEMASTER/projects/dreamchamber-bridge"
+      ]
+    },
+    {
+      "date": "2026-02-05",
+      "project_count": 4,
+      "file_count": 23,
+      "projects": [
+        "CODEMASTER",
+        "CODEMASTER/projects/gabriel-core",
+        "GABRIEL",
+        "ROOT"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizyvox-settings-governance-suite.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:37:34",
+      "size_bytes": 5817
+    },
+    {
+      "path": "NOIZY_ARCHIVE/06_APPENDIX/research-timeline.md",
+      "project": "NOIZY_ARCHIVE/06_APPENDIX",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:37:26",
+      "size_bytes": 28162
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizy-master-encyclopedia-draft.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:37:26",
+      "size_bytes": 24335
+    },
+    {
+      "path": "NOIZY_ARCHIVE/NOIZY_WORLD_MASTER_ARCHIVE.md",
+      "project": "NOIZY_ARCHIVE",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:37:08",
+      "size_bytes": 14824
+    },
+    {
+      "path": "NOIZY_ARCHIVE/06_APPENDIX/theme-index.md",
+      "project": "NOIZY_ARCHIVE/06_APPENDIX",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:37:08",
+      "size_bytes": 14491
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizy-empire-module-registry.json",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "config",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:37:08",
+      "size_bytes": 13173
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizy-empire-claude-package.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:37:08",
+      "size_bytes": 6028
+    },
+    {
+      "path": "NOIZY_ARCHIVE/00_INDEX.md",
+      "project": "NOIZY_ARCHIVE",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:37:08",
+      "size_bytes": 11072
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizyvox-sitecopy-pack.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:35:44",
+      "size_bytes": 8642
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizyvox-product-doctrine.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:35:44",
+      "size_bytes": 3890
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizyvox-legal-pack.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:35:44",
+      "size_bytes": 6290
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/regulation-voices-product-spec.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:29:08",
+      "size_bytes": 3871
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/regulation-voice-profile-spec.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:29:08",
+      "size_bytes": 2824
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/neuroacoustic-safety-charter.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:29:08",
+      "size_bytes": 2712
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/community-feedback-architecture.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:29:08",
+      "size_bytes": 2522
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/calm-studio-product-spec.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:29:08",
+      "size_bytes": 4234
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/audiogenius-research-platform.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:29:08",
+      "size_bytes": 3109
+    },
+    {
+      "path": "NOIZY_ARCHIVE/01_PHILOSOPHY/noizy-creator-first-doctrine.md",
+      "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:29:08",
+      "size_bytes": 3632
+    },
+    {
+      "path": "NOIZY_ARCHIVE/01_PHILOSOPHY/dreamchamber-principles.md",
+      "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:29:08",
+      "size_bytes": 2019
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizyvox-frequency-transmission-blueprint.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:20:24",
+      "size_bytes": 5103
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/creative-transmission-protocol.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:20:24",
+      "size_bytes": 6386
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/ava-direction-packet-spec.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:20:24",
+      "size_bytes": 5585
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/ava-direction-packet-schema.json",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "config",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:20:24",
+      "size_bytes": 5904
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/actor-facing-signal-card.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:20:24",
+      "size_bytes": 3050
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/sovereign-voice-blueprint.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:17:05",
+      "size_bytes": 8072
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/sovereign-voice-network.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:14:59",
+      "size_bytes": 7626
+    },
+    {
+      "path": "NOIZY_ARCHIVE/01_PHILOSOPHY/resonance-principle.md",
+      "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:14:59",
+      "size_bytes": 3360
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/global-music-genome-table.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:12:07",
+      "size_bytes": 14527
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-prototype-spec.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:12:07",
+      "size_bytes": 8620
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizy-next-systems-roadmap.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:11:17",
+      "size_bytes": 5674
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizy-empire-systems-blueprint.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:11:17",
+      "size_bytes": 10421
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-planetary-engine-architecture.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:11:01",
+      "size_bytes": 9434
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-planetary-engine-architecture.json",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "config",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:11:01",
+      "size_bytes": 7254
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/global-music-genome.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:04:15",
+      "size_bytes": 27981
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/global-music-genome-table.json",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "config",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:04:15",
+      "size_bytes": 26236
+    },
+    {
+      "path": "NOIZY_ARCHIVE/02_RESEARCH/world-instrument-atlas.md",
+      "project": "NOIZY_ARCHIVE/02_RESEARCH",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:04:15",
+      "size_bytes": 12921
+    },
+    {
+      "path": "NOIZY_ARCHIVE/01_PHILOSOPHY/master-origin-story.md",
+      "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:04:15",
+      "size_bytes": 7186
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-3d-world-mapping-table.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T05:01:27",
+      "size_bytes": 17479
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-3d-world-mapping-table.json",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "config",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:56:31",
+      "size_bytes": 43231
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-global-music-atlas.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:56:01",
+      "size_bytes": 10020
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-global-sonic-map.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:53:59",
+      "size_bytes": 8953
+    },
+    {
+      "path": "NOIZY_ARCHIVE/02_RESEARCH/world-timbre-atlas.md",
+      "project": "NOIZY_ARCHIVE/02_RESEARCH",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:43:51",
+      "size_bytes": 5796
+    },
+    {
+      "path": "NOIZY_ARCHIVE/02_RESEARCH/world-style-lineages-atlas.md",
+      "project": "NOIZY_ARCHIVE/02_RESEARCH",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:43:51",
+      "size_bytes": 7237
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/second-brain-ai.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:39:12",
+      "size_bytes": 5524
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/living-encyclopedia-blueprint.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:39:12",
+      "size_bytes": 6303
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/founder-intelligence-archive.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:39:12",
+      "size_bytes": 3414
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizy-knowledge-grid.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:34:21",
+      "size_bytes": 3697
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/knowledge-engine.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:34:21",
+      "size_bytes": 2949
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/idea-object-schema.json",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "config",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:34:21",
+      "size_bytes": 2575
+    },
+    {
+      "path": "NOIZY_ARCHIVE/06_APPENDIX/five-layer-knowledge-architecture.md",
+      "project": "NOIZY_ARCHIVE/06_APPENDIX",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:32:13",
+      "size_bytes": 3780
+    },
+    {
+      "path": "NOIZY_ARCHIVE/02_RESEARCH/noizy-64-rhythm-archetypes.md",
+      "project": "NOIZY_ARCHIVE/02_RESEARCH",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:30:05",
+      "size_bytes": 8568
+    },
+    {
+      "path": "NOIZY_ARCHIVE/02_RESEARCH/noizy-128-scale-structures.md",
+      "project": "NOIZY_ARCHIVE/02_RESEARCH",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:30:05",
+      "size_bytes": 9364
+    },
+    {
+      "path": "NOIZY_ARCHIVE/02_RESEARCH/world-scale-systems-atlas.md",
+      "project": "NOIZY_ARCHIVE/02_RESEARCH",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:27:44",
+      "size_bytes": 9716
+    },
+    {
+      "path": "NOIZY_ARCHIVE/02_RESEARCH/world-rhythm-systems-atlas.md",
+      "project": "NOIZY_ARCHIVE/02_RESEARCH",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:27:44",
+      "size_bytes": 10074
+    },
+    {
+      "path": "NOIZY_ARCHIVE/06_APPENDIX/world-regional-origin-timeline.md",
+      "project": "NOIZY_ARCHIVE/06_APPENDIX",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:24:29",
+      "size_bytes": 10446
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizy-empire-claude-cowork-system.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:12:52",
+      "size_bytes": 5680
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-biome-matrix.json",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "config",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:12:52",
+      "size_bytes": 24947
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizy-empire-claude-build-brief.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:12:32",
+      "size_bytes": 7507
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-ux-wireflow.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:11:40",
+      "size_bytes": 9559
+    },
+    {
+      "path": "NOIZY_ARCHIVE/04_BUSINESS/monetization-models.md",
+      "project": "NOIZY_ARCHIVE/04_BUSINESS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:04:08",
+      "size_bytes": 1110
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/sovereign-voice-local-direction-hub.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T04:04:08",
+      "size_bytes": 7503
+    },
+    {
+      "path": "NOIZY_ARCHIVE/08_EDUCATION/noizy-teaching-credo.md",
+      "project": "NOIZY_ARCHIVE/08_EDUCATION",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:45:12",
+      "size_bytes": 2950
+    },
+    {
+      "path": "NOIZY_ARCHIVE/08_EDUCATION/noizy-music-school.md",
+      "project": "NOIZY_ARCHIVE/08_EDUCATION",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:45:12",
+      "size_bytes": 6015
+    },
+    {
+      "path": "NOIZY_ARCHIVE/08_EDUCATION/noizy-music-school-curriculum.md",
+      "project": "NOIZY_ARCHIVE/08_EDUCATION",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:43:33",
+      "size_bytes": 8536
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/noizy-empire-master-blueprint.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:40:10",
+      "size_bytes": 7193
+    },
+    {
+      "path": "NOIZY_ARCHIVE/02_RESEARCH/global-sonic-consciousness-atlas.md",
+      "project": "NOIZY_ARCHIVE/02_RESEARCH",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:40:10",
+      "size_bytes": 7858
+    },
+    {
+      "path": "NOIZY_ARCHIVE/06_APPENDIX/global-sonic-consciousness-timeline.md",
+      "project": "NOIZY_ARCHIVE/06_APPENDIX",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:36:13",
+      "size_bytes": 4966
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/sound-mind-ritual-blueprint.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:33:11",
+      "size_bytes": 7654
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/humanity-reconnection-blueprint.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:30:44",
+      "size_bytes": 5741
+    },
+    {
+      "path": "NOIZY_ARCHIVE/01_PHILOSOPHY/manifesto.md",
+      "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:24:24",
+      "size_bytes": 1074
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/nerve-to-note.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:24:19",
+      "size_bytes": 1015
+    },
+    {
+      "path": "NOIZY_ARCHIVE/99_TEMPLATES/research-note.md",
+      "project": "NOIZY_ARCHIVE/99_TEMPLATES",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:19:54",
+      "size_bytes": 580
+    },
+    {
+      "path": "NOIZY_ARCHIVE/07_INBOX/capture.md",
+      "project": "NOIZY_ARCHIVE/07_INBOX",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:19:50",
+      "size_bytes": 1214
+    },
+    {
+      "path": "NOIZY_ARCHIVE/01_PHILOSOPHY/origin-story.md",
+      "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:19:43",
+      "size_bytes": 1939
+    },
+    {
+      "path": "NOIZY_ARCHIVE/scripts/build_workspace_inventory.py",
+      "project": "NOIZY_ARCHIVE/scripts",
+      "kind": "code",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:18:10",
+      "size_bytes": 16559
+    },
+    {
+      "path": "NOIZY_ARCHIVE/99_TEMPLATES/versioned-concept.md",
+      "project": "NOIZY_ARCHIVE/99_TEMPLATES",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:14:39",
+      "size_bytes": 658
+    },
+    {
+      "path": "NOIZY_ARCHIVE/06_APPENDIX/claude-local-setup.md",
+      "project": "NOIZY_ARCHIVE/06_APPENDIX",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:13:31",
+      "size_bytes": 1778
+    },
+    {
+      "path": ".vscode/mcp.json",
+      "project": ".vscode",
+      "kind": "config",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:13:22",
+      "size_bytes": 723
+    },
+    {
+      "path": "NOIZY_ARCHIVE/06_APPENDIX/project-constellation.md",
+      "project": "NOIZY_ARCHIVE/06_APPENDIX",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:07:07",
+      "size_bytes": 3816
+    },
+    {
+      "path": "NOIZY_ARCHIVE/99_TEMPLATES/product-spec.md",
+      "project": "NOIZY_ARCHIVE/99_TEMPLATES",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 439
+    },
+    {
+      "path": "NOIZY_ARCHIVE/99_TEMPLATES/partner-brief.md",
+      "project": "NOIZY_ARCHIVE/99_TEMPLATES",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 476
+    },
+    {
+      "path": "NOIZY_ARCHIVE/06_APPENDIX/open-questions.md",
+      "project": "NOIZY_ARCHIVE/06_APPENDIX",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 678
+    },
+    {
+      "path": "NOIZY_ARCHIVE/06_APPENDIX/glossary.md",
+      "project": "NOIZY_ARCHIVE/06_APPENDIX",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 882
+    },
+    {
+      "path": "NOIZY_ARCHIVE/05_PITCHES/google.md",
+      "project": "NOIZY_ARCHIVE/05_PITCHES",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 707
+    },
+    {
+      "path": "NOIZY_ARCHIVE/05_PITCHES/apple.md",
+      "project": "NOIZY_ARCHIVE/05_PITCHES",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 697
+    },
+    {
+      "path": "NOIZY_ARCHIVE/05_PITCHES/anthropic.md",
+      "project": "NOIZY_ARCHIVE/05_PITCHES",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 871
+    },
+    {
+      "path": "NOIZY_ARCHIVE/04_BUSINESS/go-to-market.md",
+      "project": "NOIZY_ARCHIVE/04_BUSINESS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 725
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/provenance-validator.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 811
+    },
+    {
+      "path": "NOIZY_ARCHIVE/03_PRODUCTS/fiduciary-agent.md",
+      "project": "NOIZY_ARCHIVE/03_PRODUCTS",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 783
+    },
+    {
+      "path": "NOIZY_ARCHIVE/02_RESEARCH/provenance-research.md",
+      "project": "NOIZY_ARCHIVE/02_RESEARCH",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 1135
+    },
+    {
+      "path": "NOIZY_ARCHIVE/02_RESEARCH/platform-policies.md",
+      "project": "NOIZY_ARCHIVE/02_RESEARCH",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 888
+    },
+    {
+      "path": "NOIZY_ARCHIVE/02_RESEARCH/biometric-governance.md",
+      "project": "NOIZY_ARCHIVE/02_RESEARCH",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 882
+    },
+    {
+      "path": "NOIZY_ARCHIVE/01_PHILOSOPHY/lifeluv.md",
+      "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 940
+    },
+    {
+      "path": "NOIZY_ARCHIVE/01_PHILOSOPHY/crown-jewels-protocol.md",
+      "project": "NOIZY_ARCHIVE/01_PHILOSOPHY",
+      "kind": "doc",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T03:02:01",
+      "size_bytes": 842
+    },
+    {
+      "path": "CODEMASTER/projects/NOIZY.AI/fiduciary/c2pa_schema.py",
+      "project": "CODEMASTER/projects/NOIZY.AI",
+      "kind": "code",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T02:52:09",
+      "size_bytes": 11690
+    },
+    {
+      "path": "CODEMASTER/projects/NOIZY.AI/fiduciary/fiduciary_agent.py",
+      "project": "CODEMASTER/projects/NOIZY.AI",
+      "kind": "code",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T02:50:30",
+      "size_bytes": 16809
+    },
+    {
+      "path": "whatsapp-cohere-bot.js",
+      "project": "ROOT",
+      "kind": "code",
+      "modified_date": "2026-03-12",
+      "modified_at": "2026-03-12T02:50:17",
+      "size_bytes": 24009
+    },
+    {
+      "path": "NOIZYEMPIRE DREAMCHAMBER.code-workspace",
+      "project": "ROOT",
+      "kind": "config",
+      "modified_date": "2026-03-11",
+      "modified_at": "2026-03-11T14:43:47",
+      "size_bytes": 61
+    },
+    {
+      "path": "package-lock.json",
+      "project": "ROOT",
+      "kind": "config",
+      "modified_date": "2026-03-01",
+      "modified_at": "2026-03-01T13:37:38",
+      "size_bytes": 118484
+    },
+    {
+      "path": "package.json",
+      "project": "ROOT",
+      "kind": "config",
+      "modified_date": "2026-03-01",
+      "modified_at": "2026-03-01T13:36:26",
+      "size_bytes": 332
+    },
+    {
+      "path": "CODEMASTER/docs/discord/DREAMCHAMBER_UPGRADES.md",
+      "project": "CODEMASTER/docs",
+      "kind": "doc",
+      "modified_date": "2026-03-01",
+      "modified_at": "2026-03-01T12:44:32",
+      "size_bytes": 3604
+    },
+    {
+      "path": "CODEMASTER/projects/dreamchamber-bridge/src/index.ts",
+      "project": "CODEMASTER/projects/dreamchamber-bridge",
+      "kind": "code",
+      "modified_date": "2026-02-27",
+      "modified_at": "2026-02-27T13:58:23",
+      "size_bytes": 10554
+    },
+    {
+      "path": "CODEMASTER/projects/dreamchamber-bridge/tsconfig.json",
+      "project": "CODEMASTER/projects/dreamchamber-bridge",
+      "kind": "config",
+      "modified_date": "2026-02-27",
+      "modified_at": "2026-02-27T13:55:19",
+      "size_bytes": 333
+    },
+    {
+      "path": "CODEMASTER/projects/dreamchamber-bridge/package.json",
+      "project": "CODEMASTER/projects/dreamchamber-bridge",
+      "kind": "config",
+      "modified_date": "2026-02-27",
+      "modified_at": "2026-02-27T13:55:19",
+      "size_bytes": 529
+    },
+    {
+      "path": "CODEMASTER/projects/dreamchamber-bridge/bridge.config.example.json",
+      "project": "CODEMASTER/projects/dreamchamber-bridge",
+      "kind": "config",
+      "modified_date": "2026-02-27",
+      "modified_at": "2026-02-27T13:55:19",
+      "size_bytes": 150
+    },
+    {
+      "path": "CODEMASTER/projects/dreamchamber-bridge/README.md",
+      "project": "CODEMASTER/projects/dreamchamber-bridge",
+      "kind": "doc",
+      "modified_date": "2026-02-27",
+      "modified_at": "2026-02-27T13:55:19",
+      "size_bytes": 1885
+    },
+    {
+      "path": "CODEMASTER/script.js",
+      "project": "CODEMASTER",
+      "kind": "code",
+      "modified_date": "2026-02-27",
+      "modified_at": "2026-02-27T13:39:13",
+      "size_bytes": 9753
+    },
+    {
+      "path": "CODEMASTER/index.html",
+      "project": "CODEMASTER",
+      "kind": "doc",
+      "modified_date": "2026-02-27",
+      "modified_at": "2026-02-27T13:38:53",
+      "size_bytes": 24976
+    },
+    {
+      "path": "CODEMASTER/projects/q4git/src/q4git/__main__.py",
+      "project": "CODEMASTER/projects/q4git",
+      "kind": "code",
+      "modified_date": "2026-02-10",
+      "modified_at": "2026-02-10T15:16:00",
+      "size_bytes": 79
+    },
+    {
+      "path": "CODEMASTER/projects/q4git/src/q4git/cli.py",
+      "project": "CODEMASTER/projects/q4git",
+      "kind": "code",
+      "modified_date": "2026-02-10",
+      "modified_at": "2026-02-10T15:15:57",
+      "size_bytes": 4399
+    },
+    {
+      "path": "CODEMASTER/projects/q4git/src/q4git/report.py",
+      "project": "CODEMASTER/projects/q4git",
+      "kind": "code",
+      "modified_date": "2026-02-10",
+      "modified_at": "2026-02-10T15:15:38",
+      "size_bytes": 348
+    },
+    {
+      "path": "CODEMASTER/projects/q4git/src/q4git/scientist.py",
+      "project": "CODEMASTER/projects/q4git",
+      "kind": "code",
+      "modified_date": "2026-02-10",
+      "modified_at": "2026-02-10T15:15:35",
+      "size_bytes": 2203
+    },
+    {
+      "path": "CODEMASTER/projects/q4git/src/q4git/github.py",
+      "project": "CODEMASTER/projects/q4git",
+      "kind": "code",
+      "modified_date": "2026-02-10",
+      "modified_at": "2026-02-10T15:15:24",
+      "size_bytes": 1850
+    },
+    {
+      "path": "CODEMASTER/projects/q4git/src/q4git/gittools.py",
+      "project": "CODEMASTER/projects/q4git",
+      "kind": "code",
+      "modified_date": "2026-02-10",
+      "modified_at": "2026-02-10T15:15:13",
+      "size_bytes": 1995
+    },
+    {
+      "path": "CODEMASTER/projects/q4git/src/q4git/config.py",
+      "project": "CODEMASTER/projects/q4git",
+      "kind": "code",
+      "modified_date": "2026-02-10",
+      "modified_at": "2026-02-10T15:15:03",
+      "size_bytes": 618
+    },
+    {
+      "path": "CODEMASTER/projects/q4git/src/q4git/__init__.py",
+      "project": "CODEMASTER/projects/q4git",
+      "kind": "code",
+      "modified_date": "2026-02-10",
+      "modified_at": "2026-02-10T15:14:58",
+      "size_bytes": 48
+    },
+    {
+      "path": "CODEMASTER/projects/q4git/pyproject.toml",
+      "project": "CODEMASTER/projects/q4git",
+      "kind": "config",
+      "modified_date": "2026-02-10",
+      "modified_at": "2026-02-10T15:14:54",
+      "size_bytes": 451
+    },
+    {
+      "path": ".skills/skills/engr/SKILL.md",
+      "project": ".skills",
+      "kind": "doc",
+      "modified_date": "2026-02-09",
+      "modified_at": "2026-02-09T22:38:01",
+      "size_bytes": 8083
+    },
+    {
+      "path": "CODEMASTER/projects/gabriel-core/MAGIC_DISCOVERED.md",
+      "project": "CODEMASTER/projects/gabriel-core",
+      "kind": "doc",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:50:34",
+      "size_bytes": 4327
+    },
+    {
+      "path": "CODEMASTER/projects/gabriel-core/MASTER_INTEGRATION.md",
+      "project": "CODEMASTER/projects/gabriel-core",
+      "kind": "doc",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:46:46",
+      "size_bytes": 4556
+    },
+    {
+      "path": "CODEMASTER/projects/gabriel-core/mcp/mc96_integration.py",
+      "project": "CODEMASTER/projects/gabriel-core",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:41:48",
+      "size_bytes": 10831
+    },
+    {
+      "path": "CODEMASTER/projects/gabriel-core/mcp/fix_npm_permissions.sh",
+      "project": "CODEMASTER/projects/gabriel-core",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:36:10",
+      "size_bytes": 1322
+    },
+    {
+      "path": "CODEMASTER/projects/gabriel-core/mcp/OPTIONAL_MCP_SERVERS.md",
+      "project": "CODEMASTER/projects/gabriel-core",
+      "kind": "doc",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:35:56",
+      "size_bytes": 1072
+    },
+    {
+      "path": "CODEMASTER/projects/gabriel-core/mcp/__init__.py",
+      "project": "CODEMASTER/projects/gabriel-core",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:31:29",
+      "size_bytes": 697
+    },
+    {
+      "path": "CODEMASTER/projects/gabriel-core/mcp/setup_credentials.sh",
+      "project": "CODEMASTER/projects/gabriel-core",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:31:14",
+      "size_bytes": 5221
+    },
+    {
+      "path": "CODEMASTER/projects/gabriel-core/mcp/SETUP_GUIDE.md",
+      "project": "CODEMASTER/projects/gabriel-core",
+      "kind": "doc",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:30:46",
+      "size_bytes": 5327
+    },
+    {
+      "path": "CODEMASTER/projects/gabriel-core/mcp/gabriel_mcp_config.py",
+      "project": "CODEMASTER/projects/gabriel-core",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:29:53",
+      "size_bytes": 13484
+    },
+    {
+      "path": "NOIZYLAB_ECOSYSTEM.html",
+      "project": "ROOT",
+      "kind": "doc",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:08:11",
+      "size_bytes": 22022
+    },
+    {
+      "path": "CODEMASTER/AI_MORNING_NEWS.sh",
+      "project": "CODEMASTER",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:06:11",
+      "size_bytes": 6348
+    },
+    {
+      "path": "CODEMASTER/CHECK_ANTHROPIC_STATUS.sh",
+      "project": "CODEMASTER",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:05:48",
+      "size_bytes": 4648
+    },
+    {
+      "path": "GABRIEL/bin/install_launchd.sh",
+      "project": "GABRIEL",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:05:17",
+      "size_bytes": 7623
+    },
+    {
+      "path": "GABRIEL/bin/health_check.sh",
+      "project": "GABRIEL",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:04:44",
+      "size_bytes": 16411
+    },
+    {
+      "path": "noizylab_system.talon",
+      "project": "ROOT",
+      "kind": "automation",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:02:47",
+      "size_bytes": 1627
+    },
+    {
+      "path": "noizylab_system.py",
+      "project": "ROOT",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:02:35",
+      "size_bytes": 13913
+    },
+    {
+      "path": "GABRIEL/bin/start_bridge.sh",
+      "project": "GABRIEL",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:01:32",
+      "size_bytes": 8973
+    },
+    {
+      "path": "GABRIEL/bin/start_server.sh",
+      "project": "GABRIEL",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T23:01:03",
+      "size_bytes": 7251
+    },
+    {
+      "path": "setup_voice_ssh.sh",
+      "project": "ROOT",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T22:59:28",
+      "size_bytes": 5311
+    },
+    {
+      "path": "noizylab_voice.talon",
+      "project": "ROOT",
+      "kind": "automation",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T22:44:41",
+      "size_bytes": 2273
+    },
+    {
+      "path": "noizylab_voice.py",
+      "project": "ROOT",
+      "kind": "code",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T22:44:29",
+      "size_bytes": 10835
+    },
+    {
+      "path": "CODEMASTER/.vscode/settings.json",
+      "project": "CODEMASTER",
+      "kind": "config",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T16:27:13",
+      "size_bytes": 33
+    },
+    {
+      "path": "NOIZYLAB_GOOGLE_BUSINESS_SETUP.html",
+      "project": "ROOT",
+      "kind": "doc",
+      "modified_date": "2026-02-05",
+      "modified_at": "2026-02-05T15:59:14",
+      "size_bytes": 29716
+    },
+    {
+      "path": "CODEMASTER/logs/dreamchamber_shell_test.json",
+      "project": "CODEMASTER/logs",
+      "kind": "log",
+      "modified_date": "2026-01-18",
+      "modified_at": "2026-01-18T03:29:04",
+      "size_bytes": 26979
+    }
+  ]
+}

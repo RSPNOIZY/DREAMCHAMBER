@@ -1,0 +1,1188 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html class="no-js" lang="en">
+  <head lang="en">
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Dynamics - Ozone 8 Documentation</title>
+    <meta name="generator" content="Hugo 0.40.3" />
+
+    
+    <meta name="description" content="Ozone 8 User Guide">
+    
+    <link rel="canonical" href="index.html">
+    
+    <meta name="author" content="iZotope">
+    
+
+    <meta property="og:url" content="http://www.ozone8userguide.com/en/dynamics/">
+    <meta property="og:title" content="Ozone 8 Documentation">
+    
+    <meta name="apple-mobile-web-app-title" content="Ozone 8 Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../images/header-intro-site/favicon.ico">
+
+    <style>@font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot')
+               format('embedded-opentype'),
+             url('../fonts/icon.woff')
+               format('woff'),
+             url('../fonts/icon.ttf')
+               format('truetype'),
+             url('../fonts/icon.svg')
+               format('svg');
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    
+    <link rel="stylesheet" href="../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+    
+    
+    <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700%7CRoboto+Mono">
+ 
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="../stylesheets/language_buttons.css">
+    
+    <link rel="stylesheet" href="../stylesheets/ie7.css">
+    
+    <link rel="stylesheet" href="../stylesheets/image_style.css">
+    
+    
+
+    <script src="../javascripts/modernizr.js"></script>
+
+    
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-63445037-14', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+        gtag('config', 'UA-63445037-14');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+  </head>
+   <body class="palette-primary-ozone-docs palette-accent-ozone-docs">
+
+
+<div class="backdrop">
+  <div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+    
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        <a href="../index.html" >
+        <img src="../images/header-intro-site/site-header.png"> | Dynamics</a>
+      </div>
+    </div>
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+  
+</header>
+
+<main class="main">
+    <div class="drawer">
+      
+        <nav aria-label="Navigation">
+<form action="../search/index.html">
+ <div class="group">      
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>Search</label>
+      <div style="clear: both;"></div>
+    </div>
+</form>
+</nav>
+
+
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Introduction" href="../index.html">
+	
+	Introduction
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone 8 Overview" href="../ozone-overview/index.html">
+	
+	Ozone 8 Overview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ozone Application" href="../ozone-app-overview/index.html">
+	
+	Ozone Application
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Preset System" href="../preset-system/index.html">
+	
+	Preset System
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="General Functions" href="../general-functions/index.html">
+	
+	General Functions
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Common Module Controls" href="../common-module-controls/index.html">
+	
+	Common Module Controls
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Dynamics" href="index.html">
+	
+	Dynamics
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dynamic EQ" href="../dynamic-eq/index.html">
+	
+	Dynamic EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Equalizer" href="../equalizer/index.html">
+	
+	Equalizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Exciter" href="../exciter/index.html">
+	
+	Exciter
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Imager" href="../imager/index.html">
+	
+	Imager
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Maximizer" href="../maximizer/index.html">
+	
+	Maximizer
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Spectral Shaper" href="../spectral-shaper/index.html">
+	
+	Spectral Shaper
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Compressor" href="../vintage-compressor/index.html">
+	
+	Vintage Compressor
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage EQ" href="../vintage-eq/index.html">
+	
+	Vintage EQ
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Limiter" href="../vintage-limiter/index.html">
+	
+	Vintage Limiter
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Vintage Tape" href="../vintage-tape/index.html">
+	
+	Vintage Tape
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Codec Preview" href="../codec-preview/index.html">
+	
+	Codec Preview
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Dither" href="../dither/index.html">
+	
+	Dither
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Master Assistant" href="../master-assistant/index.html">
+	
+	Master Assistant
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Track Referencing" href="../track-referencing/index.html">
+	
+	Track Referencing
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tonal Balance Control" href="../tonal-balance-control/index.html">
+	
+	Tonal Balance Control
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Options" href="../options/index.html">
+	
+	Options
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plug-in Automation" href="../plug-in-automation/index.html">
+	
+	Plug-in Automation
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tips &amp; Examples" href="../tips-and-examples/index.html">
+	
+	Tips &amp; Examples
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Authorization" href="../authorization/index.html">
+	
+	Authorization
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="iZotope Customer Care" href="../customer-care/index.html">
+	
+	iZotope Customer Care
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License Information" href="../license-information/index.html">
+	
+	License Information
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="EULA" href="../eula/index.html">
+	
+	EULA
+</a>
+
+
+  
+</li>
+
+
+
+        </ul>
+        
+
+    
+    
+    
+            <hr>
+        <ul>
+          <li><a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="Print this page"> Print this page</a></li>
+          
+          <li><a class="icon-new-tab" href="../print/index.html" target="_blank" title="Print entire document"> Print entire document</a></li>
+        </ul>
+        <hr />
+
+    
+        
+    
+      
+        <ul>
+          <li>
+            <a href="../../ja/dynamics/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+          </li>
+        </ul>
+      
+      </div>
+    
+      </div>
+    </div>
+
+      
+    </div>
+  
+  <article class="article">
+    <div class="wrapper">
+    
+      
+    
+    
+
+	<h1>Dynamics </h1>
+
+
+	
+	
+	
+    	
+
+
+<div class="lang-buttons-box">
+<span class="lang-header">Languages:</span>
+<br />
+    
+
+       
+       <a href="../../ja/dynamics/index.html"><button class="lang-btn-active">English</button></a>
+       
+        
+       <a href="../../ja/dynamics/index.html"><button class="lang-btn-clickable">日本語</button></a>
+    
+</div>
+ 
+
+
+    	
+    	
+    
+
+    
+
+
+
+
+
+
+
+<nav>
+  
+  <h4>Table of Contents</h4>
+  <ul>
+    
+      
+      
+
+      
+
+      
+      
+      <li>
+        <a href="index.html#overview">Overview</a>
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#global-controls">Global Controls</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#per-band-controls">Per Band Controls</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#mid/side-processing">Mid/Side Processing</a>
+
+          
+      
+    
+      
+      
+
+      
+
+      
+        
+        
+
+          
+
+          
+
+          
+            </li>
+          
+          
+          <li>
+            <a href="index.html#meters">Meters</a>
+
+          
+            
+          
+      
+    
+
+    
+    
+    
+
+  </ul>
+</nav>
+
+
+
+
+    
+
+	
+
+<h2 id="overview">Overview</h2>
+
+<p>One of the most powerful modules in Ozone is the Dynamics module. You can use this module to shape the dynamics of your mix, with up to four bands of analog-modeled compression, limiting, and expansion. Dynamics is also available as a component plug-in of Ozone 8 Advanced.</p>
+
+<p><img src="../images/dynamics/dyn-all-bands.png" alt="dynamics" /></p>
+
+<h2 id="global-controls">Global Controls</h2>
+
+<p><img src="../images/dynamics/global-controls.png" alt="global controls" /></p>
+
+<h3 id="single-band-all-bands-display">Single Band/All Bands Display</h3>
+
+<p>Toggles between All Bands view and Single Band view. When Single Band view is selected, you can use the arrows to the left or right of the band icon to cycle through the enabled bands.</p>
+
+<h3 id="link-bands">Link Bands</h3>
+
+<p>When enabled, adjustments made to a control in one band will adjust the corresponding control in all other bands of the Dynamics module by the same amount.</p>
+
+<h3 id="adaptive-release">Adaptive Release</h3>
+
+<p>When Adaptive Release is On in the Dynamics module, it will automatically adjust the Release time of the Compressor based on the Peak factor of a signal. If a transient signal is detected, the Release time is scaled to be shorter for less pumping. If a sustained note is detected, the Release time is scaled to be longer for lower distortion.</p>
+
+<p>The Release time is scaled in relation to the Release value set by the user. <em>For example:</em> if you are using the Compressor with the Release time set to 100 ms, the Release time will be automatically adjusted to a value within a range of 20 ms to 200 ms, depending on the type of signal that is being processed.</p>
+
+<h3 id="gain">Gain</h3>
+
+<ul>
+<li><strong>IN ALL BANDS VIEW:</strong> The Gain slider affects the gain of the entire Dynamics module after processing. This is useful for applying make-up to compensate for any loss in level after compression has been applied.</li>
+<li><strong>IN SINGLE BAND VIEW:</strong> The Gain slider will affect the output gain of the currently selected band after processing.</li>
+</ul>
+
+<h3 id="auto">Auto</h3>
+
+<p>When enabled, make-up gain will automatically be calculated and applied to the output signal to compensate for level differences introduced by dynamics processing.</p>
+
+<p>The automatic gain control calculates the RMS levels of the input and output signals independently for each Dynamics crossover band. Gain is automatically applied to the output signal based on the RMS level difference between the input and output signals.</p>
+
+<p>This control acts as a smart “make-up gain” control that will adapt the post-processing level to match the pre-processing input level over time. This can be a useful tool for A/B’ing various settings in the multiband Dynamics module without having gain changes affect your perception.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Auto &amp; Manual Gain Adjustments</p>
+<p><ul>
+<li>Auto mode and manual band/global gain adjustments can be applied simultaneously.</li>
+</ul>
+</p>
+</div>
+
+<h3 id="level-detection-mode">Level Detection Mode</h3>
+
+<p>The 3 buttons below the threshold input meters control the <strong>global</strong> level detection mode for the Dynamics module.</p>
+
+<ul>
+<li><strong>PEAK:</strong> When this option is enabled Ozone’s detection circuit looks at peak levels of the incoming signal. In general, this setting is useful when you are trying to even out sudden peaks in your music.</li>
+<li><strong>RMS:</strong> When this option is enabled, Ozone looks at the average level of the incoming signal. RMS detection is useful when you are trying to increase the overall volume level without changing the character of the sound.</li>
+<li><strong>ENVELOPE:</strong> Envelope mode behaves much like RMS mode, but with some key advantages. Unlike RMS, Envelope mode produces even levels across all frequencies. Additionally, Envelope mode will not produce the aliasing or artifacts that RMS detection can cause.</li>
+</ul>
+
+<h3 id="parallel">Parallel</h3>
+
+<p>Adjust this slider to control the dry/wet mix of direct, unprocessed signal to the processed signal for the current band. This slider is very useful for applying the technique called “parallel compression” where you can mix in a desired amount of unprocessed signal.</p>
+
+<h2 id="per-band-controls">Per Band Controls</h2>
+
+<p><img src="../images/dynamics/dyn-single-band.png" alt="single band" /></p>
+
+<h3 id="threshold">Threshold</h3>
+
+<p>Adjust the threshold of the limiter and compressor to set the level at which the dynamics processing is triggered.</p>
+
+<h3 id="ratio">Ratio</h3>
+
+<p>Both the Limiter and Compressor have their own ratio control. Higher ratios will result in more extreme compression. When the Compressor or Limter’s ratio is set to a negative number, it will act as an expanders.</p>
+
+<h3 id="attack-release">Attack &amp; Release</h3>
+
+<p>Adjust the attack and release controls to set how quickly the dynamics processor reacts to audio that crosses the threshold.</p>
+
+<ul>
+<li><strong>ATTACK</strong> determines how quickly the dynamic processor reacts when the threshold is reached.</li>
+<li><strong>RELEASE</strong> determines the amount of time before the dynamics processor returns the level to normal once the signal is no longer above the threshold.</li>
+</ul>
+
+<h3 id="knee">Knee</h3>
+
+<p>Adjust this control to set the desired character of the compression.</p>
+
+<ul>
+<li>Higher settings result in a “soft knee” setting with a subtler, natural sounding compression.</li>
+<li>Lower settings result in a “hard knee” setting with a more aggressive sounding compression, often used as an intended effect on individual tracks such as kick and snare drum.</li>
+</ul>
+
+<h2 id="mid-side-processing">Mid/Side Processing</h2>
+
+<p>The Dynamics module can operate in either Stereo or Mid/Side operation. See the <a href="../common-module-controls/index.html#module-channel-processing-modes">Mid/Side Processing section</a> for more details.</p>
+
+<h2 id="meters">Meters</h2>
+
+<h3 id="threshold-meter">Threshold Meter</h3>
+
+<p><img src="../images/dynamics/threshold.png" alt="threshold" /></p>
+
+<p>The Threshold meter displays the input level into the detection circuit (displayed in grey) alongside the gain reduction occuring as a result of the dynamics processing (displayed in the corresponding band color).</p>
+
+<h3 id="dynamic-curve-meter">Dynamic Curve Meter</h3>
+
+<p><img src="../images/dynamics/curve-meter.png" alt="curve meter" /></p>
+
+<p>This meter shows the input signal (x axis) plotted against the output (processed) signal (y axis). Lowering the horizontal compression control add more compression to the signal.</p>
+
+<p>You can zoom in and out on the meter by clicking the “+” and “-” buttons in the bottom right.</p>
+
+<p>The meter features individual nodes for the Limiter ( L ) and Compressor ( C ). These nodes are linked to the Threshold and Ratio controls, and can be used to adjust the curve in a visual way, rather than setting them with the standard controls.</p>
+
+<h3 id="mini-meter-view">Mini-meter View</h3>
+
+<p>The Dynamics module offers 3 different mini-metering views along the top of the controls panel.</p>
+
+<h4 id="crossover">Crossover</h4>
+
+<p><img src="../images/dynamics/crossover.png" alt="crossover" /></p>
+
+<p>This view displays a spectrum analyzer and multiband crossover controls. For more information about using the crossover view, see the <a href="../common-module-controls/index.html">Common Module Controls</a> chapter.</p>
+
+<h4 id="detection-filter">Detection Filter</h4>
+
+<p><img src="../images/dynamics/det-filter.png" alt="det filter" /></p>
+
+<p>This view allows you to modify the frequency response of the detection circuit used for the dynamics processing, so that it responds more or less to input in different frequency ranges.</p>
+
+<p>The following controls are available in the Detection Filter view:</p>
+
+<ul>
+<li><strong>NONE</strong>: No filter is applied to the dynamics module detection circuit.</li>
+<li><strong>HIGHPASS</strong>: A high-pass filter is applied to the dynamics detection circuit.
+
+<ul>
+<li><strong>SLOPE</strong>: Click on the Slope value readout to toggle between the different Slope values. The Highpass detection filter includes the following Slope options: 6 dB, 12 dB, 24 dB, 48 dB.</li>
+<li>Click and drag the frequency node to adjust the frequency of th highpass filter.</li>
+</ul></li>
+<li><strong>TILT</strong>: Similar to the THRUST circuit found on API compressors, Tilt mode preserves low frequencies using a high-frequency weighted filter curve. Adjusting the &lsquo;Amount&rsquo; will modify the slope of the Tilt filter.</li>
+<li><strong>SOLO</strong>: Clicking on the &rsquo;S&rsquo; button will audition the input to the detection filter. This allows you to listen to only the signal that is triggering processing in the Dynamics module.</li>
+</ul>
+
+<h4 id="gain-reduction-trace">Gain Reduction Trace</h4>
+
+<p><img src="../images/dynamics/trace.png" alt="trace" /></p>
+
+<p>This view features a waveform display and a scrolling trace that indicates the amount of gain reduction applied by the dynamics processing over time.</p>
+
+<p>When using the Dynamics module in multiband mode, the gain reduction trace displays the waveform and gain reduction trace for the currently selected band only. The trace color will reflect the color of the currently selected band.</p>
+
+<p>The Gain Reduction Trace can help you to set attack and release controls appropriately and monitor the envelope of gain reduction.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Gain reduction trace scale</p>
+<p><ul>
+<li>Adjust the gain reduction trace scale on the left of the meter by hovering over it and using the mousewheel to zoom in or out.</li>
+<li>Adjust the visible range of the scale by clicking and dragging up or down.</li>
+<li>Reset the scale to the default zoom level by double-clicking.</li>
+</ul>
+</p>
+</div>
+
+
+
+    </div>
+  </article>
+  <footer class="footer">
+  
+    
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="../common-module-controls/index.html" title="Common Module Controls">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Common Module Controls
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+  
+  <div class="next">
+  
+      <a href="../dynamic-eq/index.html" title="Dynamic EQ">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Dynamic EQ
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+    <div class="copyright">
+
+
+     
+      
+      <a class="lang-footer" href="../../ja/dynamics/index.html"><i class="icon icon-eye"></i> 日本語での表示</a>
+      
+    
+  <br />
+
+
+
+  
+  &copy; 2018 iZotope, Inc. &ndash;
+  
+  Ozone 8 Help Documentation 
+
+
+</div>
+  
+  </footer>
+    <div class="results" role="status" aria-live="polite">
+      <div class="scrollable">
+        <div class="wrapper">
+          <div class="meta"></div>
+          <div class="list"></div>
+        </div>
+      </div>
+    </div>
+    
+            <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+ 
+  
+  <script src="../javascripts/ie7.js"></script>
+ 
+
+    <script src="../javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    </main>
+  </body>
+</html>

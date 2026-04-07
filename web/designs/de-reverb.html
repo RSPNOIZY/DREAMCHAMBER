@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>de-reverb</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="de-reverb" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer175" class="Basic-Text-Frame">
+			<p id="_idParaDest-149" class="heading-1"><a id="_idTextAnchor151"></a>De-reverb</p>
+			<p class="Normal">De-reverb gives you control over the amount of ambient space captured in a recording. It can make large cathedrals sound like small halls and make roomy vocals sound like they were recorded in a treated space.</p>
+			<p class="Normal">Reverb is the ambient sound of audio energy as it loses power in a space. We can think of a sound in a room as having two components: the direct sound and its reverberant tail. The reverberant tail decays in power over time depending on various factors, like the size of the space, the materials in it, and the geometry of its construction.</p>
+			<p class="Normal">Reverb tails also have an important time component: early reflections. Early reflections are the rapid echoes of a direct sound from a nearby surface. They are often distinct from the rest of a reverberant tail because they have a lot of energy but end quickly. Early reflections typically comprise the first 5 to 100 milliseconds of a reverb tail.</p>
+			<p class="Normal">If a listener (or a microphone) is close to the source of a direct sound, the direct sound is perceived more than the reverb. If a listener is farther away from a direct sound, more reverb is perceived in relation to the direct sound. A listener moving away from the direct sound in a space will eventually cross a threshold where the reverberant signal is perceived as prominently as the direct signal.</p>
+			<p class="Normal">De-reverb processes audio according to the reverberant/direct ratio (also known as wet/dry ratio) detected in the signal. It can learn your audio to suggest some frequency and decay time settings, or you can estimate these yourself.</p>
+			<p class="Inline-Art"><img src="image/image_64NPGEJQK72RJ6JUCHMKK5SMNKTALTLV" alt="" /><img src="image/image_EE6OK4UZR4KCIETNOULOYPXGTUO4DKAW" alt="" /><img src="image/image_DVUOG73TPZK7ZYSREFNKAPO4QMK5EYUH" alt="" /></p>
+			<p class="Normal"><span class="Body-Text-Italic">De-reverb has the effect of sharpening a signal in time. You can notice this transition in the spectrogram: reverberant audio looks blurred, and cleaned audio appears more focused. Here, a recording of a distant speaker (left) has had its long tails processed (center) before another De-reverb pass with shorter tail lengths to tackle the early reflections (right).</span></p>
+			<p id="_idParaDest-150" class="heading-2"><a id="_idTextAnchor152"></a>Learning a Reverb Profile</p>
+			<p class="Inline-Art-with-Caption"><img src="image/image_JDJMKTPI52RX5ZZL7AMPO7RLPDJWDMPX" alt="" /></p>
+			<p class="Caption"><span class="Body-Text-Italic">To find the best settings for your signal quickly, find about five seconds of audio that starts with noise and has both direct signal and reverberant tails.</span></p>
+			<p class="Normal">RX De-reverb can suggest some settings based on your signal.</p>
+			<p class="Normal">Find five to ten seconds of audio that starts with noise and has both a direct signal and a reverberant tail. </p>
+			<p class="Normal">Direct signal, reverberant tail, and noise are all important to help De-reverb understand your audio and set its controls appropriately. It needs to understand the ratio of dry signal to reverberant signal, how long reverb tails last, and where the noise floor of your signal is (to avoid excessive processing).</p>
+			<p class="Normal">If you are having trouble finding a good portion of audio to help De-reverb learn a good reverb profile, try running the Learn feature on any transient audio where both the direct signal and reverberant tail are apparent.</p>
+			<p id="_idParaDest-151" class="heading-2"><a id="_idTextAnchor153"></a>Complicated Reverbs</p>
+			<p class="Normal">If the audio you are working with has a very complex reverb, such as a reverb with apparent early reflections, you may get better results after trying a few passes of De-reverb.</p>
+			<p class="Normal">First, start by training the De-reverb and set the Reduction amount to a value that yields good results on the long reverberant tail. After processing, Learn a new reverb profile and try reducing the level of early reflections: set the Tail Length control to 0.5, Artifact Smoothing around 3.0, and increase Reduction.</p>
+			<p class="Normal">A combination of De-reverb and De-noise can be used to tame very reverberant signals. It does not matter whether you process with De-reverb or De-noise first.</p>
+			<p id="_idParaDest-152" class="heading-2"><a id="_idTextAnchor154"></a>De-reverb Controls</p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_AJEP3EC3MSPW5HX7S4OEVHTQN4TVXIPU" alt="" /></p>
+			<p class="heading-3">Learn</p>
+			<p class="Normal">Teaches De-reverb how much reverb is in your signal. </p>
+			<p class="Normal">The Learn feature analyzes the signal and determines the wet/dry ratio per frequency of your signal, as well as the overall rate of decay of reverb.</p>
+			<p class="Normal">When the Learn operation completes, the Reverb Profile and Tail Length controls will be set to their suggested values.</p>
+			<p class="Normal">The Learn operation can be performed on any reverberant audio. We strongly recommend using the Learn feature on a selection of audio that starts with some noise floor (or room tone), is several seconds long, and includes both the direct signal and its reverberant tails.</p>
+			<p class="Normal">Try to find a good five second slice of reverberant audio. If you can find enough direct signal and reverberant tails to fill the De-reverb signal trace meter while using Learn, you will probably get a good reverb profile.</p>
+			<p class="Normal">If you have trouble getting good results from using the Learn feature, you can try</p>
+			<ul>
+				<li class="Unordered-List">learning on transient broadband audio, like drums, claps, or coughs;</li>
+				<li class="Unordered-List">learning on any audio that is obviously reverberant; and</li>
+				<li class="Unordered-List">learning for a longer amount of time — most reverb can be analyzed in a few seconds, but some reverb profiles can require up to ten seconds of analysis.</li>
+			</ul>
+			<p class="heading-3">Metering</p>
+			<p class="Normal">The top meter shows a comparison between the input and output signal energy over the past five seconds of playback.</p>
+			<p class="Normal">The bottom meter shows the amount of reverb reduction over time. It is the difference between input and output plotted on a flat line.</p>
+			<p class="Normal">Both of the meters together give you an idea of what De-reverb considers reverb and help you refine your settings.</p>
+			<p class="heading-3">Reduction</p>
+			<p class="Normal">Controls the amount of De-reverb effect applied.</p>
+			<p class="Normal">Larger amounts mean more reverb is removed. Smaller amounts perform less processing.</p>
+			<p class="Normal">This control represents the target wet/dry ratio for processing. In other words, if it is set very high, it will treat the signal as though it has more reverb and process it more.</p>
+			<p class="Normal">If the output of De-reverb sounds unnatural after Learning, try slowly turning this control down first.</p>
+			<p class="Normal">Negative reduction will increase the amount of reverb in the signal.</p>
+			<p class="heading-3">Reverb Profile</p>
+			<p class="Normal">Controls the amount of De-reverb effect applied per band. These<span class="Body-Text-Italic"> </span>controls are set automatically by the Learn<span class="Body-Text-Italic"> </span>feature.</p>
+			<p class="Normal">If a group of reverberant tones are more prominent in a signal, increase the control for that band.</p>
+			<p class="Normal">Generally you want to set these controls to match the reverb originally present in your signal. For example, if reverb takes longer to decay (or is more present) in a particular band, set that control higher.</p>
+			<p class="Normal">These controls can also be used to address more prominent ringing or resonant groups in signals. For example, increasing the profile control for low frequencies can remove muddiness from a resonant bass guitar, while increasing the high band control can curtail ringing sibilance in live vocal recordings.</p>
+			<p class="heading-3">Tail length</p>
+			<p class="Normal">Controls the decay of De-reverb processing.</p>
+			<p class="Normal">This control is an approximation of RT-60, the rate of time it takes for a reverberant signal to decrease in amplitude by 60 dB.</p>
+			<p class="Normal">This is automatically set by the Learn feature.</p>
+			<p class="Normal">Increase this control if reverb tails reappear after processing, or if early reflections are too apparent.</p>
+			<p class="Normal">Decrease this control if reverb tails and noise floors sound over-processed, or if the processed audio sounds dull.</p>
+			<p class="Normal">This control can be set to its minimum setting to process early reflections.</p>
+			<p class="heading-3">Artifact smoothing</p>
+			<p class="Normal">Controls the frequency accuracy of De-reverb processing.</p>
+			<p class="Normal">Because reverb is generally smooth across the frequency spectrum, the default value of this control is very high. However, if you need more accuracy to address issues like resonant tones in a room, you can decrease this control. The tradeoff is generally more artifacts from strong processing, so you may have to balance adjusting this and the Reduction control.</p>
+			<p class="heading-3">Enhance dry signal</p>
+			<p class="Normal">Increases the level of the direct signal.</p>
+			<p class="Normal">Boosting the non-reverberant signal can help create more dynamic range in the signal and is a good option to try when working with voice or transient material. Enabling Enhance Dry Signal can also help prepare material for later de-noising.</p>
+			<p class="heading-3">Output reverb only</p>
+			<p class="Normal">Changes the output of De-reverb from the processed signal to the wet reverberant signal.</p>
+			<p class="Normal">This is useful for monitoring the processing to get better results. Hearing just the reverb helps you understand the impact of controls like Reduction, Reverb Profile, Tail Length, and Artifact Smoothing.</p>
+			<p class="Normal">When this option is enabled, the output may not sound much like reverb because it is the difference of processing against the original signal, with some enhancement to expose more of the reverb apparent in the recording.</p>
+			<p class="heading-3">Using De-reverb as a real-time plug-in</p>
+			<p class="Normal">De-reverb is available as a VST/AU/RTAS/AAX real-time plug-in inside your DAW or NLE.  However, due to the complexity of this processing, it can be resource intensive.  To achieve high-quality results, it is always best to bring the audio file in question into RX Editor (via RX Connect or by opening it directly), applying De-reverb, and then returning the file back to your original session.  </p>
+		</div>
+	</body>
+</html>

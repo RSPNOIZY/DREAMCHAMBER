@@ -1,0 +1,20 @@
+name = "noisyproof"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "noisyproof"
+route = { pattern = "proof.noisy.io/*", custom_domain = true }
+
+[[d1_databases]]
+binding = "DB"
+database_name = "noisyproof"
+database_id = "be3e1a74-9bab-4f48-975a-0d8a912f6592"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "d4ee2982306b486495189216402d8442"
+preview_id = "d4ee2982306b486495189216402d8442"
+
+[build]
+command = "npm run build"

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Identifying_Audio_Problems</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="Identifying_Audio_Problems" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer255" class="Basic-Text-Frame">
+			<p id="_idParaDest-258" class="heading-1"><a id="_idTextAnchor264"></a>Identifying Audio Problems</p>
+			<p class="Normal">As with medical diagnostics, the key to successful audio restoration lies in your ability to correctly analyze the subject’s condition. This can be a life-long, never-ending quest, constantly honing the ear to distinguish the noises and audio events that need to be corrected.</p>
+			<p class="Normal">To get started, it’s important to identify the problems with your file and identify which tool(s) will give you the results you want. Let’s briefly look at how to examine your audio using the spectrogram and waveform display tools, then consider how to identify audio problems using these displays.</p>
+			<p id="_idParaDest-259" class="heading-2"><a id="_idTextAnchor265"></a>What’s the goal of using a Spectrogram?</p>
+			<p class="Normal">The aim of any good visualization tool for audio repair and restoration is to provide you with more information about an audible problem. This not only helps inform your editing decisions, but, in the case of a spectrogram display, can provide new, exciting ways to edit audio—especially when used in tandem with a waveform display.</p>
+			<p id="_idParaDest-260" class="heading-2"><a id="_idTextAnchor266"></a>Hum</p>
+			<p class="Normal">Hum is usually the result of electrical noise somewhere in the recorded signal chain. It’s normally heard as a low-frequency tone based at either 50 Hz or 60 Hz depending on whether the recording was made in North America or Europe. If you zoom in to the low frequencies, you’ll be able to see hum as a series of horizontal lines, usually with a bright line at 50 Hz or 60 Hz and several less intense lines above it at harmonics. See the example below: </p>
+			<p class="Inline-Art"><img src="image/image_SG7NPZGK3S45OP32NABJ62MZBVP3ADO3" alt="" /></p>
+			<p class="Normal">De-hum works best when frequencies of the hum do not overlap with any useful transient signals. You can learn more about the <a target="mainFrame" href="de-hum.html#_idTextAnchor087"><span class="Hyperlink">De-hum tool</span></a> here. </p>
+			<p id="_idParaDest-261" class="heading-2"><a id="_idTextAnchor267"></a>Buzz</p>
+			<p class="Normal">In some cases, electrical noise will extend up to higher frequencies and manifest itself as a background buzz. See the example below:</p>
+			<p class="Inline-Art"><img src="image/image_XZ7QFNFU5TP5BEHZC6VQQK6O6NKSKZC6" alt="" /> </p>
+			<p class="Normal">Hum-removal tools usually focus on low-frequency hum, so when the harmonics extend to frequencies above 400 Hz, the <a target="mainFrame" href="de-noise_spectral.html#_idTextAnchor099"><span class="Hyperlink">De-noise tool</span></a> is often more effective at removing the problem.</p>
+			<p id="_idParaDest-262" class="heading-2"><a id="_idTextAnchor268"></a>Hiss and other Broadband Noise</p>
+			<p class="Normal">Unlike hum and buzz, broadband noise is spread throughout the frequency spectrum and isn’t concentrated at specific frequencies. Tape hiss and noise from fans and air conditioners are good examples of broadband noise. In a spectrogram display, broadband noise usually appears as speckles that surround the program material. See the example below: </p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_JDK24OYGWT3BI65BY47TU2DKYI7Q76Y6" alt="" /></p>
+			<p id="_idParaDest-263" class="heading-2"><a id="_idTextAnchor269"></a>Clicks, Pops, and Other Short Impulse Noises</p>
+			<p class="Normal">Clicks and pops are common on recordings made from vinyl, shellac and other grooved media—but can also be introduced by digital errors, including recording into a DAW with improper buffer settings, or making a bad audio edit that missed a zero crossing. Even mouth noises such as tongue clicks and lip smacks fall into the clicks category. These short impulse noises appear in a spectrogram as vertical lines. The louder the click or pop, the brighter the line will appear. The example below shows clicks and pops appearing in an audio recording transferred from vinyl: </p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_57ADG56TAGTKFNOESAUARORILL2BPBFP" alt="" /></p>
+			<p class="Normal">The <a target="mainFrame" href="de-click.html#_idTextAnchor082"><span class="Hyperlink">De-click tool</span></a> can recognize, isolate, and then reduce and remove clicks like these. </p>
+			<p id="_idParaDest-264" class="heading-2"><a id="_idTextAnchor270"></a>Clipping</p>
+			<p class="Normal">Clipping is an all-too-common problem. It can occur when a loud signal distorts the input to an audio interface, analog-to-digital converter, mixing console, field recorder, or other sound capture device. A spectrogram is not particularly useful for identifying clipped audio—for this you’ll want to work with a waveform display. As you’ll see in the image below, the clipping appears as "squared-off" sections of the waveform.  </p>
+			<p class="Inline-Art"><img src="image/image_E63S6A35KBVLLZXHGL4W25VB5AW6V6MS" alt="" /></p>
+			<p class="Normal">You can zoom in on a waveform and see in detail where the wave for has been truncated because of clipping.</p>
+			<p class="Inline-Art"><img src="image/image_PAZ44JIOE5GDA2WEOGNAFIUS6XQLR5N5" alt="" /></p>
+			<p class="Normal">The <a target="mainFrame" href="de-clip.html#_idTextAnchor073"><span class="Hyperlink">De-clip tool</span></a> can intelligently redraw the waveform to where it might have naturally been if the signal hadn’t clipped. Sometimes, brickwall limited audio will also appear "squared off" when zoomed out, but this doesn’t necessarily mean it will sound as heavily distorted as clipped waveforms that have been truncated. You can zoom in to see if the tops of individual waveforms are clipped.</p>
+			<p id="_idParaDest-265" class="heading-2"><a id="_idTextAnchor271"></a>Intermittent Noises</p>
+			<p class="Normal">Intermittent noises are different than hiss and hum—they may appear infrequently and may not be consistent in pitch or duration. Common examples include coughs, sneezes, footsteps, car horns, ringing cell phones, etc. The images below represent two different examples of these noises:</p>
+			<p class="Inline-Art"><img src="image/image_FHRZNKDJ3ZAKQXCM2RAZ63G5ZDPAM3WT" alt="" /></p>
+			<p class="Inline-Art"><img src="image/image_IPMPAKP36AYEEHUNPHQVGCOABBP2OAHS" alt="" /></p>
+			<p class="Normal">The <a target="mainFrame" href="spectral_repair.html#_idTextAnchor132"><span class="Hyperlink">Spectral Repair tool</span></a> can help isolate these intermittent sounds, analyze the audio around them and attenuate or replace them.</p>
+			<p id="_idParaDest-266" class="heading-2"><a id="_idTextAnchor272"></a>Gaps and Drop Outs</p>
+			<p class="Normal">Sometimes a recording may have short sections of missing or corrupted audio. These are usually very obvious to both the eye and the ear! See the example below:</p>
+			<p class="Inline-Art-less-space-below"><img src="image/image_IULUHKIXO56CQKYJUHLC765HAGYMSBHT" alt="" /></p>
+			<p class="Normal">Deleting the gap and then applying <a target="mainFrame" href="spectral_repair.html#_idTextAnchor132"><span class="Hyperlink">Spectral Repair</span></a> to replace any missing audio can help fix these problems.</p>
+		</div>
+	</body>
+</html>

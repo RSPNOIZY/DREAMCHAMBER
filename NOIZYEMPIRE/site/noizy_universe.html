@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOIZY Universe Blueprint</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #020408;
+      color: #c8cdd8;
+      font-family: 'IBM Plex Mono', monospace;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #universe-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    #title-block {
+      position: fixed;
+      top: 28px;
+      left: 40px;
+      z-index: 20;
+    }
+
+    .title-brand {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #e8a832;
+      margin-bottom: 4px;
+    }
+
+    .title-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      color: #eef0f4;
+      line-height: 1.2;
+    }
+
+    #north-star {
+      position: fixed;
+      bottom: 32px;
+      left: 40px;
+      z-index: 20;
+      max-width: 400px;
+      border-left: 2px solid rgba(232,168,50,0.4);
+      padding-left: 16px;
+    }
+
+    .ns-label {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #e8a832;
+      margin-bottom: 6px;
+    }
+
+    .ns-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      font-style: italic;
+      font-weight: 300;
+      color: #8a9090;
+      line-height: 1.5;
+    }
+
+    #legend {
+      position: fixed;
+      top: 28px;
+      right: 40px;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: #5a6070;
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    #tooltip {
+      position: fixed;
+      z-index: 30;
+      background: rgba(3,4,10,0.92);
+      border: 1px solid rgba(232,168,50,0.25);
+      padding: 16px 20px;
+      max-width: 280px;
+      pointer-events: none;
+      display: none;
+      backdrop-filter: blur(8px);
+    }
+
+    .tt-orbit {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #e8a832;
+      margin-bottom: 6px;
+    }
+
+    .tt-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: #eef0f4;
+      margin-bottom: 8px;
+    }
+
+    .tt-body {
+      font-size: 11px;
+      color: #5a6070;
+      line-height: 1.6;
+    }
+
+    #controls {
+      position: fixed;
+      bottom: 32px;
+      right: 40px;
+      z-index: 20;
+      display: flex;
+      gap: 8px;
+    }
+
+    .ctrl-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(3,4,10,0.7);
+      color: #5a6070;
+      cursor: pointer;
+      transition: all 0.2s;
+      backdrop-filter: blur(4px);
+    }
+
+    .ctrl-btn:hover {
+      color: #e8a832;
+      border-color: rgba(232,168,50,0.3);
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="universe-canvas"></canvas>
+
+<div id="title-block">
+  <div class="title-brand">NOIZY.AI — Universe Blueprint</div>
+  <div class="title-main">Humanity at the center.<br>Everything else in orbit.</div>
+</div>
+
+<div id="north-star">
+  <div class="ns-label">North Star</div>
+  <div class="ns-text">"If a system makes humans invisible,<br>disposable, or uncompensated,<br>we do not build it."</div>
+</div>
+
+<div id="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#f5e642;box-shadow:0 0 6px #f5e642"></div>HVS™ Core — Humanity</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#3d8ef8;box-shadow:0 0 6px #3d8ef8"></div>First Orbit — Co-Creation</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#2ecc71;box-shadow:0 0 6px #2ecc71"></div>Second Orbit — The Guild</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#1aab5c;box-shadow:0 0 6px #1aab5c"></div>Third Orbit — Guardians</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#c044d0;box-shadow:0 0 6px #c044d0"></div>Fourth Orbit — Immersive Labs</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#00e5ff;box-shadow:0 0 6px #00e5ff"></div>Outer — Infinite Expansion</div>
+</div>
+
+<div id="tooltip">
+  <div class="tt-orbit" id="tt-orbit"></div>
+  <div class="tt-name" id="tt-name"></div>
+  <div class="tt-body" id="tt-body"></div>
+</div>
+
+<div id="controls">
+  <button class="ctrl-btn" onclick="togglePause()">Pause</button>
+  <button class="ctrl-btn" onclick="toggleLines()">Flow Lines</button>
+  <button class="ctrl-btn" onclick="toggleLabels()">Labels</button>
+</div>
+
+<script>
+const canvas = document.getElementById('universe-canvas');
+const ctx = canvas.getContext('2d');
+const tooltip = document.getElementById('tooltip');
+
+let W, H, CX, CY;
+let frame = 0;
+let paused = false;
+let showLines = true;
+let showLabels = true;
+let hoveredNode = null;
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+  CX = W / 2;
+  CY = H / 2;
+}
+
+function scale() {
+  return Math.min(W, H) / 1200;
+}
+
+// ─── ORBITS ───
+const orbits = [
+  { r: 0,   color: '#f5e642', speed: 0 },
+  { r: 155, color: '#3d8ef8', speed: 0.00018 },
+  { r: 270, color: '#2ecc71', speed: 0.00012 },
+  { r: 385, color: '#1aab5c', speed: 0.000085 },
+  { r: 500, color: '#c044d0', speed: 0.00006 },
+  { r: 620, color: '#00e5ff', speed: 0.000038 },
+];
+
+// ─── NODES ───
+const nodes = [
+  // CENTER — HVS CORE
+  {
+    orbit: 0, angle: 0, r: 30, label: 'HUMANITY', sublabel: 'HVS™ Core',
+    color: '#f5e642', glowColor: 'rgba(245,230,66,0.35)',
+    orbitLabel: 'Center — HVS™ Core',
+    body: 'The Human Voice Signature at the heart of everything. Every system, tool, and interaction originates with real human intent and creativity. The earth spins — the connection holds.',
+    pulse: true
+  },
+
+  // FIRST ORBIT — CO-CREATION ENGINES (Electric Blue)
+  {
+    orbit: 1, angle: 0, r: 12, label: 'GABRIEL', sublabel: 'AI Co-Director',
+    color: '#3d8ef8', glowColor: 'rgba(61,142,248,0.25)',
+    orbitLabel: '1st Orbit — Co-Creation Engines',
+    body: 'M2 Ultra 6-agent swarm. Master intelligence, creative signal, rapid execution, memory, prediction. Not a tool — a collaborator. AI that amplifies, never replaces.',
+  },
+  {
+    orbit: 1, angle: Math.PI * 0.5, r: 10, label: 'DREAMCHAMBER', sublabel: 'Creative Engine',
+    color: '#5aa4ff', glowColor: 'rgba(90,164,255,0.2)',
+    orbitLabel: '1st Orbit — Co-Creation Engines',
+    body: "DREAM's room. 12-module co-creation environment. Claude as live director. WAAPI Wwise access. Sound, motion, visuals, story — all fused.",
+  },
+  {
+    orbit: 1, angle: Math.PI * 1.0, r: 10, label: 'NOIZYVOX', sublabel: 'Voice Protocol',
+    color: '#2278e8', glowColor: 'rgba(34,120,232,0.2)',
+    orbitLabel: '1st Orbit — Co-Creation Engines',
+    body: 'SHA-256 fingerprint. Consent key. Context rules. 75/25 perpetual. Every suggestion aligned with the creator\'s emotional signature.',
+  },
+  {
+    orbit: 1, angle: Math.PI * 1.5, r: 10, label: 'GENOME', sublabel: 'Music Intelligence',
+    color: '#6ab0ff', glowColor: 'rgba(106,176,255,0.2)',
+    orbitLabel: '1st Orbit — Co-Creation Engines',
+    body: '64 rhythm archetypes. 128 scale structures. Every sonic tradition on earth. Procedural creative worlds built from living cultural DNA.',
+  },
+
+  // SECOND ORBIT — THE GUILD (Emerald Green)
+  {
+    orbit: 2, angle: 0.3, r: 11, label: 'THE 1000', sublabel: 'Guild Members',
+    color: '#2ecc71', glowColor: 'rgba(46,204,113,0.25)',
+    orbitLabel: '2nd Orbit — The Guild',
+    body: 'One thousand creators. Consent-locked. Financially sovereign. The community that enforces the HVS standard globally.',
+  },
+  {
+    orbit: 2, angle: Math.PI * 0.7, r: 10, label: 'HVS™', sublabel: 'Human Voice Sig.',
+    color: '#27e87a', glowColor: 'rgba(39,232,122,0.2)',
+    orbitLabel: '2nd Orbit — The Guild',
+    body: 'Human Voice Signature. Proves a voice is human-performed, consent-locked, commercially cleared. The premium tier in an AI-saturated market.',
+  },
+  {
+    orbit: 2, angle: Math.PI * 1.3, r: 10, label: '7 CLAUSES', sublabel: 'Constitution',
+    color: '#1db862', glowColor: 'rgba(29,184,98,0.2)',
+    orbitLabel: '2nd Orbit — The Guild',
+    body: 'Seven Never Clauses. Inviolable. Never exploitation. Never extraction without attribution. Never impersonation. Never deception. Never erasure. Never context violation. Never silence in the face of harm.',
+  },
+  {
+    orbit: 2, angle: Math.PI * 1.85, r: 10, label: '75/25', sublabel: 'Universal Rate',
+    color: '#12a456', glowColor: 'rgba(18,164,86,0.2)',
+    orbitLabel: '2nd Orbit — The Guild',
+    body: '75% to the creator. Always. After 30 days. Permanent. Non-renegotiable. The number is the statement.',
+  },
+
+  // THIRD ORBIT — GUILD OF GUARDIANS (Deep Emerald)
+  {
+    orbit: 3, angle: 0.6, r: 10, label: 'AUTHORSHIP', sublabel: 'Human First',
+    color: '#1aab5c', glowColor: 'rgba(26,171,92,0.2)',
+    orbitLabel: '3rd Orbit — Guild of Guardians',
+    body: 'Every output traces to a human author. Attribution is not optional. Invisibility is system failure.',
+  },
+  {
+    orbit: 3, angle: Math.PI * 0.5, r: 9, label: 'ETHICS ENGINE', sublabel: 'Embedded Check',
+    color: '#15974f', glowColor: 'rgba(21,151,79,0.2)',
+    orbitLabel: '3rd Orbit — Guild of Guardians',
+    body: 'Every tool, algorithm, and decision checks for human visibility, fairness, and value preservation before activation. If it fails, it does not ship.',
+  },
+  {
+    orbit: 3, angle: Math.PI * 1.0, r: 9, label: 'EQUITY', sublabel: 'Fair Value',
+    color: '#0e8342', glowColor: 'rgba(14,131,66,0.2)',
+    orbitLabel: '3rd Orbit — Guild of Guardians',
+    body: 'Every creator earns equitably. No platform dependency. Real-time oversight, dispute resolution, and feedback loops enforce creator-first integrity.',
+  },
+  {
+    orbit: 3, angle: Math.PI * 1.5, r: 9, label: 'CULTURE', sublabel: 'Preservation',
+    color: '#0a7038', glowColor: 'rgba(10,112,56,0.2)',
+    orbitLabel: '3rd Orbit — Guild of Guardians',
+    body: 'Protects indigenous, emergent, and endangered arts while enabling global collaboration without exploitation. Culture is not content.',
+  },
+  {
+    orbit: 3, angle: Math.PI * 1.85, r: 9, label: 'ALIGNMENT', sublabel: 'North Star Check',
+    color: '#065c2e', glowColor: 'rgba(6,92,46,0.2)',
+    orbitLabel: '3rd Orbit — Guild of Guardians',
+    body: 'The cosmic filter. Every feature, partner, and product validated against the North Star before launch. Guardian light around the core.',
+  },
+
+  // FOURTH ORBIT — HYPER-IMMERSIVE LABS (Violet/Magenta)
+  {
+    orbit: 4, angle: 0.8, r: 10, label: 'HEALING STACK', sublabel: '7 Layers',
+    color: '#c044d0', glowColor: 'rgba(192,68,208,0.22)',
+    orbitLabel: '4th Orbit — Hyper-Immersive Labs',
+    body: '55Hz drone. Binaural beats. Melodic regulation. Breathwork + drumming + movement synced with HVS™ feedback for maximum emotional resonance.',
+  },
+  {
+    orbit: 4, angle: Math.PI * 0.6, r: 9, label: 'RITUALS', sublabel: 'Embodiment Zones',
+    color: '#a030bc', glowColor: 'rgba(160,48,188,0.2)',
+    orbitLabel: '4th Orbit — Hyper-Immersive Labs',
+    body: 'Threshold → Descent → Encounter → Return → Integration. Safe, multisensory, gamified experiences for experimentation and embodiment.',
+  },
+  {
+    orbit: 4, angle: Math.PI * 1.1, r: 9, label: 'GAMES', sublabel: 'FMOD · Wwise · XR',
+    color: '#d060e0', glowColor: 'rgba(208,96,224,0.2)',
+    orbitLabel: '4th Orbit — Hyper-Immersive Labs',
+    body: 'Life simulators. Ethical choice gamification. FMOD, Wwise, Unity, Unreal. Cross-medium portals where music, XR, AI art, and live performance interconnect.',
+  },
+  {
+    orbit: 4, angle: Math.PI * 1.6, r: 9, label: 'GALLERY', sublabel: 'Global Bridges',
+    color: '#b850c8', glowColor: 'rgba(184,80,200,0.2)',
+    orbitLabel: '4th Orbit — Hyper-Immersive Labs',
+    body: 'Rotating Canadian artist gallery. Micro-communities from across the planet connecting, collaborating, celebrating diversity in real-time. 75/25 from day one.',
+  },
+
+  // OUTER — INFINITE EXPANSION (Neon Cyan / Orange)
+  {
+    orbit: 5, angle: 1.0, r: 8, label: 'VSI', sublabel: '50+ Languages',
+    color: '#00e5ff', glowColor: 'rgba(0,229,255,0.18)',
+    orbitLabel: 'Outer — Infinite Expansion',
+    body: 'VSI London. 50+ language regional variants. Every character that starts in one language lives fully in all of them.',
+  },
+  {
+    orbit: 5, angle: Math.PI * 0.45, r: 7, label: 'DREAMER FESTS', sublabel: 'Live Events',
+    color: '#ff6d00', glowColor: 'rgba(255,109,0,0.18)',
+    orbitLabel: 'Outer — Infinite Expansion',
+    body: 'DREAMER Festivals. Synchronized global events — digital, XR, and real-world spaces firing simultaneously. The cosmos becomes the venue.',
+  },
+  {
+    orbit: 5, angle: Math.PI * 0.9, r: 7, label: 'ANTHROPIC', sublabel: 'Primary Partner',
+    color: '#00cfee', glowColor: 'rgba(0,207,238,0.18)',
+    orbitLabel: 'Outer — Infinite Expansion',
+    body: "Rob as Anthropic's Audio Dreamer. NOIZY as the proof that AI + human creativity produces something neither could make alone.",
+  },
+  {
+    orbit: 5, angle: Math.PI * 1.3, r: 8, label: 'RESURRECTION', sublabel: 'Cultural Engine',
+    color: '#ff8c00', glowColor: 'rgba(255,140,0,0.2)',
+    orbitLabel: 'Outer — Infinite Expansion',
+    body: 'Cultural Resurrection Engine. Reconstruct lost music, stories, and languages interactively. Every piece of human sonic knowledge that disappears makes all of us less.',
+  },
+  {
+    orbit: 5, angle: Math.PI * 1.62, r: 7, label: 'LIFELUV', sublabel: 'Perpetual Assets',
+    color: '#00bbd4', glowColor: 'rgba(0,187,212,0.18)',
+    orbitLabel: 'Outer — Infinite Expansion',
+    body: 'Triple-lock: Shield, Sword, Life Support. Blockchain lineage. Creator visibility engine — every remix traces back. The work funds its own future.',
+  },
+  {
+    orbit: 5, angle: Math.PI * 1.9, r: 7, label: 'NOIZYFISH', sublabel: '34TB Archive',
+    color: '#ff5500', glowColor: 'rgba(255,85,0,0.18)',
+    orbitLabel: 'Outer — Infinite Expansion',
+    body: 'The Aquarium. 40 years of sonic DNA. 34TB. The proof it was never about technology — it was always about the music. The bloodline that started everything.',
+  },
+];
+
+function getNodePos(node, t) {
+  const orbit = orbits[node.orbit];
+  if (orbit.r === 0) return { x: CX, y: CY };
+  const angle = node.angle + (paused ? 0 : t) * orbit.speed * 1000;
+  return {
+    x: CX + Math.cos(angle) * orbit.r * scale(),
+    y: CY + Math.sin(angle) * orbit.r * scale()
+  };
+}
+
+// ─── STARS ───
+const stars = [];
+for (let i = 0; i < 300; i++) {
+  stars.push({
+    x: Math.random(), y: Math.random(),
+    r: Math.random() * 1.1 + 0.1,
+    a: Math.random() * 0.45 + 0.08,
+    phase: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.025 + 0.005
+  });
+}
+
+// ─── FLOW PARTICLES ───
+const flowParticles = [];
+for (let i = 0; i < 70; i++) {
+  const orbitIdx = Math.floor(Math.random() * 5) + 1;
+  flowParticles.push({
+    orbitIdx,
+    angle: Math.random() * Math.PI * 2,
+    speed: (Math.random() * 0.0006 + 0.0002) * (Math.random() > 0.5 ? 1 : -1),
+    alpha: Math.random() * 0.45 + 0.15,
+    size: Math.random() * 1.4 + 0.4,
+    amber: Math.random() > 0.5
+  });
+}
+
+function draw(t) {
+  const sc = scale();
+
+  ctx.fillStyle = '#020408';
+  ctx.fillRect(0, 0, W, H);
+
+  // ── NEBULA CENTER GLOW ──
+  const neb = ctx.createRadialGradient(CX, CY, 0, CX, CY, Math.min(W, H) * 0.6);
+  neb.addColorStop(0, 'rgba(18,10,32,0.85)');
+  neb.addColorStop(0.5, 'rgba(6,8,18,0.6)');
+  neb.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = neb;
+  ctx.fillRect(0, 0, W, H);
+
+  // ── NEBULAE CLUSTERS (violet/magenta clouds floating around 4th orbit zone) ──
+  [
+    [0.9,  'rgba(110,0,170,0.07)'],
+    [Math.PI * 0.85, 'rgba(170,0,200,0.055)'],
+    [Math.PI * 1.55, 'rgba(85,0,150,0.05)'],
+    [Math.PI * 1.92, 'rgba(140,0,210,0.065)'],
+  ].forEach(([ang, col]) => {
+    const nr = orbits[4].r * sc;
+    const nx = CX + Math.cos(ang + t * 0.000045) * nr;
+    const ny = CY + Math.sin(ang + t * 0.000045) * nr;
+    const ng = ctx.createRadialGradient(nx, ny, 0, nx, ny, nr * 0.78);
+    ng.addColorStop(0, col);
+    ng.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = ng;
+    ctx.fillRect(0, 0, W, H);
+  });
+
+  // ── STARS ──
+  stars.forEach(s => {
+    const a = s.a * (0.6 + 0.4 * Math.sin(s.phase + t * s.speed));
+    ctx.beginPath();
+    ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(200,210,225,${a})`;
+    ctx.fill();
+  });
+
+  // ── NORTH STAR RAYS ──
+  // Thin gradient beams from the compass star to the center and select nodes
+  const nsx = W - 80, nsy = 80;
+  const rayPulse = 0.05 + 0.025 * Math.sin(frame * 0.022);
+  const rayTargets = [
+    { x: CX, y: CY },
+    ...nodes.filter(n => n.orbit === 1).map(n => getNodePos(n, t)),
+    ...nodes.filter(n => n.orbit === 5).slice(0, 3).map(n => getNodePos(n, t)),
+  ];
+  rayTargets.forEach(target => {
+    const rg = ctx.createLinearGradient(nsx, nsy, target.x, target.y);
+    rg.addColorStop(0, `rgba(232,168,50,${rayPulse * 3})`);
+    rg.addColorStop(0.35, `rgba(232,168,50,${rayPulse})`);
+    rg.addColorStop(1, 'rgba(232,168,50,0)');
+    ctx.beginPath();
+    ctx.moveTo(nsx, nsy);
+    ctx.lineTo(target.x, target.y);
+    ctx.strokeStyle = rg;
+    ctx.lineWidth = 0.45;
+    ctx.stroke();
+  });
+
+  // ── ORBIT RINGS ──
+  orbits.forEach(orbit => {
+    if (orbit.r === 0) return;
+    ctx.beginPath();
+    ctx.arc(CX, CY, orbit.r * sc, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+    ctx.lineWidth = 0.5;
+    ctx.setLineDash([3, 8]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  });
+
+  // ── COMET TRAILS (outer orbit nodes leave glowing arcs as they travel) ──
+  nodes.filter(n => n.orbit === 5).forEach(n => {
+    const orb = orbits[n.orbit];
+    const curAngle = n.angle + (paused ? 0 : t) * orb.speed * 1000;
+    const r = orb.r * sc;
+    const trailLen = 0.52;
+    const steps = 26;
+    for (let i = 0; i < steps; i++) {
+      const frac = i / steps;
+      const a = curAngle - trailLen * (1 - frac);
+      const tx = CX + Math.cos(a) * r;
+      const ty = CY + Math.sin(a) * r;
+      const alpha = frac * 0.38;
+      const sz = n.r * sc * 0.6 * frac;
+      if (sz < 0.25) continue;
+      ctx.beginPath();
+      ctx.arc(tx, ty, sz, 0, Math.PI * 2);
+      ctx.fillStyle = n.glowColor.replace(/[\d.]+\)$/, `${alpha})`);
+      ctx.fill();
+    }
+  });
+
+  // ── FLOW PARTICLES ──
+  if (showLines) {
+    flowParticles.forEach(p => {
+      if (!paused) p.angle += p.speed;
+      const orb = orbits[p.orbitIdx];
+      const r = orb.r * sc;
+      const x = CX + Math.cos(p.angle) * r;
+      const y = CY + Math.sin(p.angle) * r;
+      ctx.beginPath();
+      ctx.arc(x, y, p.size, 0, Math.PI * 2);
+      // orbit-matched color — amber accent every other particle
+      if (p.amber) {
+        ctx.fillStyle = `rgba(232,168,50,${p.alpha})`;
+      } else {
+        const hex = orb.color.slice(1);
+        const ri = parseInt(hex.slice(0,2),16), gi = parseInt(hex.slice(2,4),16), bi = parseInt(hex.slice(4,6),16);
+        ctx.fillStyle = `rgba(${ri},${gi},${bi},${p.alpha * 0.65})`;
+      }
+      ctx.fill();
+    });
+
+    // ── RADIAL SPOKES: center → orbit 1 ──
+    nodes.filter(n => n.orbit === 1).forEach(n => {
+      const pos = getNodePos(n, t);
+      const pulse = 0.08 + 0.05 * Math.sin(frame * 0.04 + n.angle * 2);
+      const grad = ctx.createLinearGradient(CX, CY, pos.x, pos.y);
+      grad.addColorStop(0, `rgba(232,168,50,${pulse * 2})`);
+      grad.addColorStop(1, 'rgba(232,168,50,0)');
+      ctx.beginPath();
+      ctx.moveTo(CX, CY);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 0.6;
+      ctx.stroke();
+    });
+
+    // ── ENERGY BRIDGES: luminous web connecting adjacent orbit nodes ──
+    for (let oi = 1; oi < orbits.length - 1; oi++) {
+      const innerNodes = nodes.filter(n => n.orbit === oi);
+      const outerNodes = nodes.filter(n => n.orbit === oi + 1);
+      innerNodes.forEach(inner => {
+        const iPos = getNodePos(inner, t);
+        let closest = null, closestD = Infinity;
+        outerNodes.forEach(outer => {
+          const oPos = getNodePos(outer, t);
+          const d = Math.hypot(iPos.x - oPos.x, iPos.y - oPos.y);
+          if (d < closestD) { closestD = d; closest = outer; }
+        });
+        if (!closest) return;
+        const oPos = getNodePos(closest, t);
+        const bPulse = 0.028 + 0.014 * Math.sin(frame * 0.032 + inner.angle * 3);
+        const bg = ctx.createLinearGradient(iPos.x, iPos.y, oPos.x, oPos.y);
+        bg.addColorStop(0, inner.glowColor.replace(/[\d.]+\)$/, `${bPulse * 3.5})`));
+        bg.addColorStop(0.5, `rgba(255,255,255,${bPulse * 0.8})`);
+        bg.addColorStop(1, closest.glowColor.replace(/[\d.]+\)$/, `${bPulse * 3.5})`));
+        ctx.beginPath();
+        ctx.moveTo(iPos.x, iPos.y);
+        ctx.lineTo(oPos.x, oPos.y);
+        ctx.strokeStyle = bg;
+        ctx.lineWidth = 0.45;
+        ctx.stroke();
+      });
+    }
+  }
+
+  // ── NODES ──
+  nodes.forEach(node => {
+    const pos = getNodePos(node, t);
+    const isHovered = hoveredNode === node;
+    const r = node.r * sc * (isHovered ? 1.35 : 1);
+
+    // Glow
+    const glowSize = r * (node.pulse ? (2.8 + 0.6 * Math.sin(frame * 0.055)) : 2.2);
+    const glow = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, glowSize);
+    glow.addColorStop(0, node.glowColor);
+    glow.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.beginPath();
+    ctx.arc(pos.x, pos.y, glowSize, 0, Math.PI * 2);
+    ctx.fillStyle = glow;
+    ctx.fill();
+
+    // Body
+    ctx.beginPath();
+    ctx.arc(pos.x, pos.y, r, 0, Math.PI * 2);
+    if (isHovered) {
+      ctx.fillStyle = node.color;
+    } else {
+      const ng = ctx.createRadialGradient(pos.x - r * 0.3, pos.y - r * 0.3, 0, pos.x, pos.y, r);
+      ng.addColorStop(0, node.color + 'ff');
+      ng.addColorStop(1, node.color + '88');
+      ctx.fillStyle = ng;
+    }
+    ctx.fill();
+
+    // Highlight
+    ctx.beginPath();
+    ctx.arc(pos.x - r * 0.28, pos.y - r * 0.28, r * 0.32, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255,255,255,0.14)';
+    ctx.fill();
+
+    // Label
+    if (showLabels) {
+      const fs = Math.max(7, 9 * sc);
+      ctx.font = `${fs}px 'IBM Plex Mono'`;
+      ctx.textAlign = 'center';
+      const lY = pos.y + r + fs * 1.8;
+      ctx.fillStyle = isHovered ? node.color : `rgba(200,212,224,${node.orbit === 0 ? 0.9 : 0.5})`;
+      ctx.fillText(node.label, pos.x, lY);
+      if (node.sublabel && isHovered) {
+        ctx.font = `${Math.max(6, 8 * sc)}px 'IBM Plex Mono'`;
+        ctx.fillStyle = 'rgba(150,160,170,0.5)';
+        ctx.fillText(node.sublabel, pos.x, lY + fs * 1.4);
+      }
+    }
+  });
+
+  // ── NORTH STAR GLYPH (canvas, top-right) ──
+  const sx = W - 80, sy = 80;
+  const sp = 0.7 + 0.3 * Math.sin(frame * 0.03);
+  ctx.save();
+  ctx.translate(sx, sy);
+  ctx.fillStyle = `rgba(232,168,50,${sp * 0.85})`;
+  for (let i = 0; i < 4; i++) {
+    ctx.save();
+    ctx.rotate(i * Math.PI / 2);
+    ctx.beginPath();
+    ctx.moveTo(0, -14 * sc * sp);
+    ctx.lineTo(2.5 * sc, -2.5 * sc);
+    ctx.lineTo(0, 0);
+    ctx.lineTo(-2.5 * sc, -2.5 * sc);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+  ctx.beginPath();
+  ctx.arc(0, 0, 3 * sc, 0, Math.PI * 2);
+  ctx.fill();
+  const sg = ctx.createRadialGradient(0, 0, 0, 0, 0, 22 * sc);
+  sg.addColorStop(0, `rgba(232,168,50,${sp * 0.25})`);
+  sg.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = sg;
+  ctx.beginPath();
+  ctx.arc(0, 0, 22 * sc, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+// ─── HIT TEST ───
+let lastT = 0;
+function hitTest(mx, my, t) {
+  for (let i = nodes.length - 1; i >= 0; i--) {
+    const n = nodes[i];
+    const p = getNodePos(n, t);
+    const r = n.r * scale() * 2;
+    if ((mx - p.x) ** 2 + (my - p.y) ** 2 < r * r) return n;
+  }
+  return null;
+}
+
+canvas.addEventListener('mousemove', e => {
+  const n = hitTest(e.clientX, e.clientY, lastT);
+  hoveredNode = n;
+  canvas.style.cursor = n ? 'pointer' : 'default';
+  if (n) {
+    document.getElementById('tt-orbit').textContent = n.orbitLabel;
+    document.getElementById('tt-name').textContent = n.label + (n.sublabel ? ' — ' + n.sublabel : '');
+    document.getElementById('tt-body').textContent = n.body;
+    tooltip.style.display = 'block';
+    let tx = e.clientX + 20, ty = e.clientY - 10;
+    if (tx + 300 > W) tx = e.clientX - 305;
+    if (ty + 160 > H) ty = H - 160;
+    tooltip.style.left = tx + 'px';
+    tooltip.style.top = ty + 'px';
+  } else {
+    tooltip.style.display = 'none';
+  }
+});
+
+canvas.addEventListener('mouseleave', () => {
+  hoveredNode = null;
+  tooltip.style.display = 'none';
+});
+
+function togglePause() {
+  paused = !paused;
+  document.querySelectorAll('.ctrl-btn')[0].textContent = paused ? 'Play' : 'Pause';
+}
+function toggleLines() {
+  showLines = !showLines;
+  document.querySelectorAll('.ctrl-btn')[1].style.color = showLines ? '' : '#e8a832';
+}
+function toggleLabels() {
+  showLabels = !showLabels;
+  document.querySelectorAll('.ctrl-btn')[2].style.color = showLabels ? '' : '#e8a832';
+}
+
+function loop(t) {
+  if (!paused) frame++;
+  lastT = t * 0.001;
+  draw(t * 0.001);
+  requestAnimationFrame(loop);
+}
+
+resize();
+window.addEventListener('resize', resize);
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

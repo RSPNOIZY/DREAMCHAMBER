@@ -1,0 +1,10 @@
+name = "noizy-coming-soon"
+main = "worker.js"
+compatibility_date = "2024-09-02"
+account_id = "2446d788cc4280f5ea22a9948410c355"
+
+[triggers]
+crons = []
+
+# To deploy: wrangler deploy
+# To preview locally: wrangler dev

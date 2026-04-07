@@ -1,0 +1,255 @@
+{
+  "version": "0.1",
+  "status": "design_ready",
+  "purpose": "Unify the four DreamChamber core systems into one engine-facing architecture layer.",
+  "runtime_stack": {
+    "xr_runtime": "OpenXR",
+    "device_targets": [
+      "Meta Quest 3",
+      "Quest Pro experimental eye tracking",
+      "PC tethered development"
+    ],
+    "engines": [
+      "Unreal Engine 5.x",
+      "Unity XR Toolkit fallback"
+    ],
+    "audio_middleware": [
+      "FMOD Studio",
+      "Wwise"
+    ],
+    "local_services": [
+      "sensor adapters",
+      "local Nerve-to-Note processing",
+      "session manifest generation",
+      "rights-aware policy checks",
+      "local export packaging"
+    ]
+  },
+  "core_systems": [
+    {
+      "id": "global_music_genome",
+      "display_name": "Global Music Genome",
+      "purpose": "Represent world musical lineages as runtime-ready structures instead of preset categories.",
+      "inputs": [
+        "regional nodes",
+        "instrument families",
+        "rhythm seeds",
+        "scale and microtonal seeds",
+        "style lineages",
+        "timbre fields",
+        "human function routes"
+      ],
+      "runtime_objects": [
+        "biome nodes",
+        "overlay routes",
+        "instrument clusters",
+        "scale constellations",
+        "rhythm wells",
+        "lineage note hooks"
+      ],
+      "outputs": [
+        "scene data assets",
+        "middleware seed parameters",
+        "curriculum routes",
+        "archive references"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/global-music-genome.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/global-music-genome-table.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-3d-world-mapping-table.md"
+      ],
+      "dependencies": [],
+      "next_artifact": "lineage note schema v0.1"
+    },
+    {
+      "id": "neural_creativity_interface",
+      "display_name": "Neural Creativity Interface",
+      "purpose": "Translate human intention into musical output without erasing expressive identity.",
+      "inputs": [
+        "hand tracking",
+        "head orientation",
+        "gaze",
+        "locomotion",
+        "breath",
+        "EMG later",
+        "EEG later",
+        "MIDI later",
+        "controller fallback"
+      ],
+      "runtime_objects": [
+        "intent vector",
+        "neural smoothing stage",
+        "adaptive mapping layer",
+        "world-aware musical events"
+      ],
+      "outputs": [
+        "middleware parameter updates",
+        "expressive note and gesture events",
+        "assistive control states"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/nerve-to-note.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/dreamchamber-prototype-spec.md",
+        "NOIZY_ARCHIVE/02_RESEARCH/biometric-governance.md"
+      ],
+      "dependencies": [
+        "global_music_genome"
+      ],
+      "next_artifact": "Flow-State Engine Control Schema v0.1"
+    },
+    {
+      "id": "collective_vr_studios",
+      "display_name": "Collective VR Studios",
+      "purpose": "Support shared, ethical, source-governed collaboration in spatial audio rooms.",
+      "inputs": [
+        "participant roles",
+        "scene authority",
+        "tempo anchors",
+        "harmonic anchors",
+        "governed source policies",
+        "session capture state"
+      ],
+      "runtime_objects": [
+        "shared room state",
+        "participant presence",
+        "sync cues",
+        "solo focus",
+        "capture state",
+        "voice-twin policy gates"
+      ],
+      "outputs": [
+        "shared scene events",
+        "policy-compliant collaboration sessions",
+        "multiplayer artifact packages"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/sovereign-voice-network.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/sovereign-voice-local-direction-hub.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/creative-transmission-protocol.md"
+      ],
+      "dependencies": [
+        "global_music_genome",
+        "neural_creativity_interface"
+      ],
+      "next_artifact": "multi-user scene sync schema v0.1"
+    },
+    {
+      "id": "planetary_music_archive",
+      "display_name": "Planetary Music Archive",
+      "purpose": "Preserve each meaningful DreamChamber session as a human-readable and rights-aware artifact.",
+      "inputs": [
+        "session manifest",
+        "scene state summary",
+        "route metadata",
+        "lineage references",
+        "contributor links",
+        "reflection notes"
+      ],
+      "runtime_objects": [
+        "archive gate",
+        "session package",
+        "artifact mode selector",
+        "release candidate handoff"
+      ],
+      "outputs": [
+        "private sketches",
+        "teaching artifacts",
+        "collaboration artifacts",
+        "release candidates",
+        "lineage study snapshots"
+      ],
+      "canonical_docs": [
+        "NOIZY_ARCHIVE/03_PRODUCTS/founder-intelligence-archive.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/provenance-validator.md",
+        "NOIZY_ARCHIVE/03_PRODUCTS/fiduciary-agent.md"
+      ],
+      "dependencies": [
+        "global_music_genome",
+        "collective_vr_studios"
+      ],
+      "next_artifact": "local session manifest schema v0.1"
+    }
+  ],
+  "runtime_data_flows": [
+    {
+      "id": "world_to_room",
+      "path": [
+        "global_music_genome",
+        "biome selection",
+        "scene state",
+        "middleware routing"
+      ]
+    },
+    {
+      "id": "body_to_sound",
+      "path": [
+        "neural_creativity_interface",
+        "intent vector",
+        "adaptive mapping",
+        "musical event"
+      ]
+    },
+    {
+      "id": "human_to_human",
+      "path": [
+        "collective_vr_studios",
+        "shared scene authority",
+        "sync cues",
+        "governed collaboration"
+      ]
+    },
+    {
+      "id": "session_to_memory",
+      "path": [
+        "planetary_music_archive",
+        "manifest",
+        "artifact package",
+        "future retrieval"
+      ]
+    }
+  ],
+  "engine_responsibilities": {
+    "unreal_or_unity": [
+      "room geometry",
+      "navigation",
+      "interaction capture",
+      "scene state",
+      "participant presence",
+      "multiplayer authority",
+      "archive gate UI"
+    ],
+    "fmod_or_wwise": [
+      "spatialization",
+      "RTPC or game parameter responses",
+      "event triggering",
+      "transitions and snapshots",
+      "rhythmic density layers",
+      "harmonic state layers",
+      "drone and silence framing"
+    ],
+    "local_services": [
+      "sensitive sensor handling",
+      "intent translation",
+      "policy checks",
+      "manifest assembly",
+      "local export and sync handoff"
+    ]
+  },
+  "non_negotiables": [
+    "human co-creation remains central",
+    "sober-first defaults",
+    "local-first sensitive input handling",
+    "lineage-aware naming",
+    "accessible fallback controls",
+    "no flattening of living cultures into generic presets",
+    "no fake clinical or therapeutic claims",
+    "governed sources stay governed in multiplayer and export flows"
+  ],
+  "immediate_next_artifacts": [
+    "local session manifest schema v0.1",
+    "DreamChamber scene state schema v0.1",
+    "Flow-State Engine Control Schema v0.1",
+    "multi-user scene sync schema v0.1",
+    "lineage note schema v0.1"
+  ]
+}

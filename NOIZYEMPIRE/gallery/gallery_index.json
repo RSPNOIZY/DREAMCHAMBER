@@ -1,0 +1,17 @@
+{
+  "gallery": "NOIZY Dreamer Gallery",
+  "tagline": "Where Canada's hidden artists are discovered",
+  "currentWeek": "week_001",
+  "rotation": "every Monday 00:00 UTC",
+  "weeks": [
+    {
+      "id": "week_001",
+      "weekOf": "2026-03-16",
+      "artistName": "Heidi Conrod",
+      "location": "Ottawa, Ontario",
+      "medium": "Mixed media + neon light",
+      "status": "PENDING_ARTIST_APPROVAL",
+      "file": "weeks/week_001.json"
+    }
+  ]
+}

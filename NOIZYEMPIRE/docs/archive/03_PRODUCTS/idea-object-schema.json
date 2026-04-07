@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NOIZY Idea Object",
+  "description": "Machine-readable schema for durable ideas in the NOIZY living encyclopedia.",
+  "type": "object",
+  "required": [
+    "idea_id",
+    "captured_at",
+    "project",
+    "idea_type",
+    "title",
+    "summary",
+    "status"
+  ],
+  "properties": {
+    "idea_id": {
+      "type": "string",
+      "description": "Stable identifier for the idea object."
+    },
+    "captured_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "note_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "project": {
+      "type": "string"
+    },
+    "project_context": {
+      "type": "string"
+    },
+    "idea_type": {
+      "type": "string",
+      "enum": [
+        "philosophy",
+        "research",
+        "product",
+        "business",
+        "pitch",
+        "education",
+        "operations",
+        "experiment"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "detail": {
+      "type": "string"
+    },
+    "impact": {
+      "type": "string"
+    },
+    "use_cases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "themes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "connections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "relation",
+          "target"
+        ],
+        "properties": {
+          "relation": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "source_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lineage_notes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "inbox",
+        "candidate",
+        "canon",
+        "versioned",
+        "experimental",
+        "archived"
+      ]
+    },
+    "promote_to": {
+      "type": "string"
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_action": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

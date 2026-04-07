@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wisdom Project — Claude Max 20x × Cohere Enterprise</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:         #C9A96E;
+  --gold-light:   #E8C887;
+  --gold-pale:    rgba(201,169,110,0.12);
+  --gold-border:  rgba(201,169,110,0.25);
+  --gold-border2: rgba(201,169,110,0.5);
+  --black:        #060606;
+  --dark:         #0E0E0E;
+  --dark2:        #161616;
+  --dark3:        #1E1E1E;
+  --mid:          #2C2C2C;
+  --muted:        #888888;
+  --text:         #E4DDD0;
+  --text-dim:     #8A8070;
+  --white:        #F8F4EE;
+  /* Brand */
+  --claude:       #7C3AED;
+  --claude-l:     rgba(124,58,237,0.15);
+  --cohere:       #00C9B1;
+  --cohere-l:     rgba(0,201,177,0.12);
+  --n8n:          #FF6D3F;
+  --n8n-l:        rgba(255,109,63,0.12);
+  --figma:        #FF4785;
+  --figma-l:      rgba(255,71,133,0.12);
+  --shure:        #CC2229;
+  --shure-l:      rgba(204,34,41,0.10);
+  --quest:        #00A8FF;
+  --quest-l:      rgba(0,168,255,0.10);
+  --eleven:       #4B8CF5;
+  --eleven-l:     rgba(75,140,245,0.10);
+  --firefly:      #2ECC71;
+  --firefly-l:    rgba(46,204,113,0.10);
+  --google:       #4285F4;
+  --google-l:     rgba(66,133,244,0.10);
+  --runway:       #FF3B30;
+  --mj:           #0FA3FF;
+  --noizy:        #9B59FF;
+  --canada:       #CC0000;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 300;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+/* ── HEADER ── */
+.hd {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(6,6,6,0.96);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--gold-border);
+  padding: 0 48px;
+  height: 58px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.hd-brand { display: flex; align-items: center; gap: 14px; }
+.hd-ring {
+  width: 34px; height: 34px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; color: var(--gold);
+}
+.hd-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; color: var(--gold); letter-spacing: .04em;
+}
+.hd-sub { font-size: 10px; color: var(--text-dim); letter-spacing: .15em; text-transform: uppercase; }
+.hd-nav { display: flex; gap: 4px; }
+.hd-nav a {
+  padding: 5px 13px; border: 1px solid var(--gold-border); border-radius: 18px;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-dim); text-decoration: none; transition: all .2s;
+}
+.hd-nav a:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-pale); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  padding: 120px 48px 80px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.hero-mesh {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(124,58,237,.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(0,201,177,.05) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 90% 60%, rgba(201,169,110,.04) 0%, transparent 60%);
+}
+.hero-lines {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(201,169,110,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,169,110,.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.hero-inner { position: relative; text-align: center; max-width: 860px; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 18px;
+  border: 1px solid var(--gold-border2);
+  border-radius: 24px;
+  font-family: 'Fira Code', monospace; font-size: 10px; letter-spacing: .18em;
+  color: var(--gold); margin-bottom: 36px;
+  animation: riseIn .8s ease forwards;
+}
+.dot-live {
+  width: 7px; height: 7px; background: #2ECC71; border-radius: 50%;
+  animation: pulse 2.5s infinite;
+}
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(46,204,113,.4)} 60%{box-shadow:0 0 0 8px rgba(46,204,113,0)} }
+
+.hero-h {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 7.5vw, 92px); font-weight: 400; line-height: .96;
+  color: var(--white); margin-bottom: 10px;
+  animation: riseIn .8s .1s ease forwards; opacity: 0;
+}
+.hero-h em { color: var(--gold); font-style: italic; }
+
+.hero-sub2 {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(16px, 2.5vw, 24px); color: var(--text-dim);
+  margin-bottom: 52px;
+  animation: riseIn .8s .2s ease forwards; opacity: 0;
+}
+
+/* TWO-PILLAR CARDS */
+.pillars {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-bottom: 40px; max-width: 760px; margin-inline: auto;
+  animation: riseIn .8s .3s ease forwards; opacity: 0;
+}
+.pillar {
+  border-radius: 14px; padding: 24px 22px;
+  border: 1.5px solid; position: relative; overflow: hidden;
+  text-align: left;
+}
+.pillar-claude { border-color: rgba(124,58,237,.5); background: rgba(124,58,237,.06); }
+.pillar-cohere { border-color: rgba(0,201,177,.5); background: rgba(0,201,177,.06); }
+.pillar-tag {
+  font-family: 'Fira Code', monospace; font-size: 9px; letter-spacing: .2em;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.pillar-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.pillar-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; margin-bottom: 12px; }
+.pillar-price {
+  font-family: 'Fira Code', monospace; font-size: 13px; font-weight: 600;
+  padding: 5px 12px; border-radius: 6px; display: inline-block;
+}
+
+.chips {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  animation: riseIn .8s .4s ease forwards; opacity: 0;
+}
+.chip {
+  padding: 6px 14px; border-radius: 20px; border: 1px solid;
+  font-size: 11px; font-weight: 500; letter-spacing: .04em;
+}
+
+@keyframes riseIn { from { opacity:0; transform:translateY(-16px) } to { opacity:1; transform:translateY(0) } }
+
+/* ── SECTION BASE ── */
+.sec { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+.sec-label {
+  font-family: 'Fira Code', monospace; font-size: 10px; letter-spacing: .25em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
+}
+.sec-h {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 4.5vw, 52px); font-weight: 400; line-height: 1.08;
+  color: var(--white); margin-bottom: 14px;
+}
+.sec-h em { color: var(--gold); font-style: italic; }
+.sec-p { font-size: 14px; color: var(--text-dim); max-width: 620px; line-height: 1.75; margin-bottom: 44px; }
+
+.divider {
+  height: 1px; margin: 0 48px;
+  background: linear-gradient(90deg, transparent, rgba(201,169,110,.3), transparent);
+}
+
+/* ── DUAL PILLAR DETAIL ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.deep-card {
+  border-radius: 16px; padding: 32px; position: relative; overflow: hidden;
+}
+.deep-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.dc-claude { background: rgba(124,58,237,.06); border: 1px solid rgba(124,58,237,.3); }
+.dc-claude::before { background: var(--claude); }
+.dc-cohere { background: rgba(0,201,177,.06); border: 1px solid rgba(0,201,177,.3); }
+.dc-cohere::before { background: var(--cohere); }
+
+.dc-icon { font-size: 32px; margin-bottom: 16px; }
+.dc-name { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+.dc-role { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; line-height: 1.6; }
+
+.dc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.dc-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; color: var(--text); line-height: 1.5;
+  padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.dc-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.dc-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+
+.dc-price-box {
+  margin-top: 24px; padding: 16px 18px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.dcp-label { font-family: 'Fira Code', monospace; font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+.dcp-val { font-family: 'Fira Code', monospace; font-size: 18px; font-weight: 700; }
+.dcp-note { font-size: 11px; color: var(--text-dim); text-align: right; max-width: 180px; line-height: 1.4; }
+
+/* ── WHY TOGETHER ── */
+.synergy-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.syn-card {
+  background: var(--dark2); border: 1px solid var(--gold-border);
+  border-radius: 12px; padding: 24px;
+  transition: border-color .3s, transform .3s;
+}
+.syn-card:hover { border-color: var(--gold-border2); transform: translateY(-3px); }
+.syn-icon { font-size: 26px; margin-bottom: 14px; }
+.syn-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+.syn-desc { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+
+/* ── CALLOUT ── */
+.callout {
+  border-left: 3px solid var(--gold);
+  background: rgba(201,169,110,.04);
+  padding: 18px 22px; border-radius: 0 8px 8px 0;
+  margin-bottom: 24px; font-size: 13px; color: var(--text); line-height: 1.7;
+}
+.callout strong { color: var(--gold); }
+.callout a { color: var(--gold); text-decoration: none; }
+.callout a:hover { text-decoration: underline; }
+
+.warn {
+  border-left: 3px solid var(--cohere);
+  background: rgba(0,201,177,.04);
+  padding: 16px 20px; border-radius: 0 8px 8px 0;
+  margin-bottom: 24px; font-size: 13px; color: var(--text-dim); line-height: 1.7;
+}
+.warn strong { color: var(--cohere); }
+
+/* ── AUDIO ── */
+.chain-box {
+  background: var(--dark2); border: 1px solid var(--gold-border);
+  border-radius: 14px; padding: 28px; margin-bottom: 24px;
+}
+.chain-lbl { font-family:'Fira Code',monospace; font-size:10px; letter-spacing:.2em; color:var(--gold); margin-bottom:18px; text-transform:uppercase; }
+.chain {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+}
+.cn { padding:8px 14px; border-radius:8px; font-size:12px; font-weight:600; letter-spacing:.03em; white-space:nowrap; }
+.ca { color:var(--gold); font-size:13px; flex-shrink:0; }
+.chain-note { font-family:'Fira Code',monospace; font-size:10px; color:var(--text-dim); margin-top:14px; line-height:1.65; }
+
+.audio-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.a-card { background:var(--dark3); border:1px solid var(--gold-border); border-radius:12px; padding:22px; transition:all .3s; }
+.a-card:hover { border-color:var(--gold-border2); transform:translateY(-2px); }
+.a-ico { font-size:26px; margin-bottom:12px; }
+.a-ttl { font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.1em; color:var(--text); margin-bottom:6px; }
+.a-val { font-family:'Fira Code',monospace; font-size:22px; font-weight:700; color:var(--gold); margin-bottom:6px; }
+.a-desc { font-size:11px; color:var(--text-dim); line-height:1.55; }
+
+/* ── N8N WORKFLOWS ── */
+.wf-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:24px; }
+.wf {
+  background:var(--dark2); border:1px solid var(--gold-border);
+  border-radius:14px; padding:26px; position:relative; overflow:hidden;
+  transition:all .3s;
+}
+.wf:hover { border-color:var(--gold-border2); transform:translateY(-3px); }
+.wf::before { content:''; position:absolute; top:0;left:0;right:0;height:2px; }
+.wf-n8n::before { background:var(--n8n); }
+.wf-claude::before { background:var(--claude); }
+.wf-cohere::before { background:var(--cohere); }
+.wf-figma::before { background:var(--figma); }
+
+.wf-num { font-family:'Fira Code',monospace; font-size:10px; color:var(--text-dim); margin-bottom:8px; }
+.wf-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:400; color:var(--white); margin-bottom:8px; }
+.wf-trig { display:inline-flex;align-items:center;gap:6px; padding:4px 10px; border-radius:6px; font-size:10px; font-family:'Fira Code',monospace; margin-bottom:16px; letter-spacing:.04em; }
+.wf-nodes { display:flex;flex-direction:column;gap:7px; }
+.wf-node {
+  display:flex;align-items:center;gap:10px; padding:8px 12px;
+  background:var(--dark3); border-radius:8px; border:1px solid rgba(255,255,255,.04); font-size:12px;
+}
+.nd { width:8px;height:8px;border-radius:50%;flex-shrink:0; }
+.nl { flex:1;color:var(--text); }
+.nt { font-family:'Fira Code',monospace;font-size:9px;color:var(--text-dim);letter-spacing:.08em; }
+
+/* ── PIPELINE ── */
+.pipe {
+  background:var(--dark2); border:1px solid var(--gold-border);
+  border-radius:16px; padding:36px; position:relative; overflow:hidden; margin-bottom:24px;
+}
+.pipe::after {
+  content:'AUTONOMOUS'; position:absolute; top:18px;right:22px;
+  font-family:'Fira Code',monospace; font-size:9px; letter-spacing:.3em; color:var(--gold); opacity:.3;
+}
+.pipe-stages { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--gold-border); border-radius:10px; overflow:hidden; margin-bottom:20px; }
+.ps { background:var(--dark3); padding:18px 14px; }
+.ps-n { font-family:'Fira Code',monospace;font-size:9px;color:var(--gold);margin-bottom:6px; }
+.ps-t { font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text);margin-bottom:10px; }
+.ps-i { font-size:10px;color:var(--text-dim);padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04); }
+.ps-i:last-child { border-bottom:none; }
+
+/* ── FIGMA ── */
+.figma-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px; }
+.fg {
+  background:var(--dark2);border:1px solid var(--gold-border);border-radius:12px;padding:22px;
+  border-top:2px solid var(--figma);transition:all .3s;
+}
+.fg:hover { background:rgba(255,71,133,.03);border-color:rgba(255,71,133,.3); }
+.fg-ico { font-size:26px;margin-bottom:10px; }
+.fg-t { font-size:13px;font-weight:600;color:var(--white);margin-bottom:6px; }
+.fg-d { font-size:11px;color:var(--text-dim);line-height:1.55; }
+
+/* ── AI STACK CARDS ── */
+.stack-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px; }
+.sc {
+  background:var(--dark2);border:1px solid var(--gold-border);border-radius:12px;
+  padding:20px;text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;gap:8px;
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.sc::before { content:'';position:absolute;top:0;left:0;right:0;height:2px; }
+.sc:hover { transform:translateY(-3px);border-color:var(--gold-border2); }
+.sc-h { display:flex;align-items:center;justify-content:space-between; }
+.sc-name { font-size:14px;font-weight:600; }
+.sc-arr { opacity:.35;font-size:13px;transition:opacity .2s; }
+.sc:hover .sc-arr { opacity:1; }
+.sc-role { font-size:11px;color:var(--text-dim);line-height:1.5; }
+.sc-plan { font-family:'Fira Code',monospace;font-size:10px;padding:3px 8px;border-radius:4px;width:fit-content; }
+
+/* ── RESOURCES TABLE ── */
+.rtab { width:100%;border-collapse:collapse;margin-bottom:24px; }
+.rtab th {
+  background:var(--dark3);color:var(--gold);
+  font-family:'Fira Code',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  padding:12px 16px;text-align:left;border-bottom:1px solid var(--gold-border2);
+}
+.rtab td { padding:13px 16px;font-size:13px;border-bottom:1px solid var(--gold-border);vertical-align:middle; }
+.rtab tr:last-child td { border-bottom:none; }
+.rtab tr:hover td { background:rgba(201,169,110,.015); }
+.rtab a { color:var(--gold);text-decoration:none;font-family:'Fira Code',monospace;font-size:11px;transition:color .2s; }
+.rtab a:hover { color:var(--gold-light);text-decoration:underline; }
+.tag { display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-family:'Fira Code',monospace;letter-spacing:.04em; }
+
+/* ── BUDGET ── */
+.btab { width:100%;border-collapse:collapse;margin-bottom:24px; }
+.btab th {
+  background:var(--dark);color:var(--gold);
+  font-family:'Fira Code',monospace;font-size:10px;letter-spacing:.15em;
+  padding:14px 16px;text-align:left;border-bottom:2px solid var(--gold);
+}
+.btab th:last-child,.btab th:nth-last-child(2) { text-align:right; }
+.btab td { padding:13px 16px;font-size:13px;border-bottom:1px solid var(--gold-border);vertical-align:middle; }
+.btab tr:hover td { background:rgba(201,169,110,.015); }
+.btab td:last-child,.btab td:nth-last-child(1) { text-align:right;font-family:'Fira Code',monospace;font-weight:600; }
+.btab tfoot td {
+  background:var(--dark3)!important;color:var(--gold);
+  font-weight:700;font-family:'Fira Code',monospace;font-size:15px;
+  border-top:2px solid var(--gold);border-bottom:none;
+}
+.btab tfoot td:first-child { color:var(--white); }
+
+.custom-box {
+  border:1px solid rgba(0,201,177,.35);
+  background:rgba(0,201,177,.04);
+  border-radius:12px;padding:24px;margin-bottom:20px;
+}
+.cb-h { display:flex;align-items:center;gap:10px;margin-bottom:12px; }
+.cb-icon { font-size:20px; }
+.cb-title { font-size:14px;font-weight:600;color:var(--cohere); }
+.cb-body { font-size:13px;color:var(--text-dim);line-height:1.7; }
+.cb-body strong { color:var(--text); }
+.cb-body a { color:var(--cohere);text-decoration:none; }
+.cb-body a:hover { text-decoration:underline; }
+
+/* ── FOOTER ── */
+footer {
+  background:var(--dark);border-top:1px solid var(--gold-border);
+  padding:60px 48px 40px;text-align:center;
+}
+.ft-glyph { font-family:'Playfair Display',serif;font-size:52px;color:var(--gold);font-style:italic;opacity:.4;margin-bottom:12px; }
+.ft-title { font-family:'Playfair Display',serif;font-size:22px;color:var(--text);margin-bottom:6px; }
+.ft-sub { font-size:11px;color:var(--text-dim);letter-spacing:.12em;margin-bottom:28px; }
+.ft-links { display:flex;justify-content:center;flex-wrap:wrap;gap:22px;margin-bottom:32px; }
+.ft-links a { color:var(--text-dim);text-decoration:none;font-size:12px;transition:color .2s; }
+.ft-links a:hover { color:var(--gold); }
+.ft-copy { font-size:10px;color:rgba(255,255,255,.15);letter-spacing:.05em; }
+
+@media(max-width:900px){
+  .two-col,.wf-grid,.synergy-grid,.figma-grid,.stack-grid,.audio-grid { grid-template-columns:1fr; }
+  .pipe-stages { grid-template-columns:repeat(2,1fr); }
+  .sec { padding:60px 20px; }
+  .hd { padding:0 20px; }
+  .hd-nav { display:none; }
+  .pillars { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header class="hd">
+  <div class="hd-brand">
+    <div class="hd-ring">W</div>
+    <div>
+      <div class="hd-name">The Wisdom Project</div>
+      <div class="hd-sub">Claude Max 20x × Cohere Enterprise · n8n · Figma · Shure + Quest</div>
+    </div>
+  </div>
+  <nav class="hd-nav">
+    <a href="#pillars">Core Stack</a>
+    <a href="#audio">Audio</a>
+    <a href="#n8n">n8n</a>
+    <a href="#figma">Figma</a>
+    <a href="#pipeline">Pipeline</a>
+    <a href="#budget">Budget</a>
+    <a href="#links">Resources</a>
+  </nav>
+</header>
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-inner">
+
+    <div class="badge"><span class="dot-live"></span> ADAPTED BUILD · MARCH 2026 · CLAUDE MAX 20X + COHERE ENTERPRISE</div>
+
+    <h1 class="hero-h">
+      Two Pillars.<br>One <em>Mission</em>.
+    </h1>
+    <p class="hero-sub2">Claude Max 20x as the mind — Cohere Enterprise as the sovereign memory</p>
+
+    <div class="pillars" id="pillars">
+      <div class="pillar pillar-claude">
+        <div class="pillar-tag" style="color:var(--claude)">PRIMARY INTELLIGENCE</div>
+        <div class="pillar-name" style="color:var(--claude)">Claude Max 20x</div>
+        <div class="pillar-desc">Architecture · Knowledge schema · All writing · Grant applications · Session design · Autonomous analysis · Memory anchor questions · Investor decks · Everything that requires a mind</div>
+        <div class="pillar-price" style="background:var(--claude-l);color:var(--claude)">$200 USD / month · Verified</div>
+      </div>
+      <div class="pillar pillar-cohere">
+        <div class="pillar-tag" style="color:var(--cohere)">SOVEREIGN KNOWLEDGE LAYER</div>
+        <div class="pillar-name" style="color:var(--cohere)">Cohere Enterprise</div>
+        <div class="pillar-desc">North Agent (Wisdom Engine) · Compass semantic search · Model Vault data sovereignty · Command R+ for RAG · Tiny Aya 70+ languages · Private deployment — your server, your data, always</div>
+        <div class="pillar-price" style="background:var(--cohere-l);color:var(--cohere)">Custom Quote · Contact Sales · Negotiate as Partner</div>
+      </div>
+    </div>
+
+    <div class="chips">
+      <span class="chip" style="border-color:rgba(255,109,63,.4);color:var(--n8n);background:var(--n8n-l)">⚡ n8n Server</span>
+      <span class="chip" style="border-color:rgba(255,71,133,.4);color:var(--figma);background:var(--figma-l)">✦ Figma</span>
+      <span class="chip" style="border-color:rgba(204,34,41,.4);color:#FF6B6B;background:var(--shure-l)">🎙 Shure Headset</span>
+      <span class="chip" style="border-color:rgba(0,168,255,.4);color:var(--quest);background:var(--quest-l)">◎ Meta Quest</span>
+      <span class="chip" style="border-color:rgba(75,140,245,.4);color:var(--eleven);background:var(--eleven-l)">〜 ElevenLabs</span>
+      <span class="chip" style="border-color:rgba(155,89,255,.4);color:var(--noizy);background:rgba(155,89,255,.1)">〜 Noiz AI</span>
+      <span class="chip" style="border-color:rgba(46,204,113,.4);color:var(--firefly);background:var(--firefly-l)">◈ Fireflies</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ─── DEEP DIVE: TWO PILLARS ─── -->
+<section class="sec">
+  <div class="sec-label">01 — CORE STACK</div>
+  <h2 class="sec-h">The Two Platforms That<br><em>Run Everything</em></h2>
+  <p class="sec-p">Every workflow, every workflow, every session, every output flows through this two-pillar architecture. Claude Max 20x is the reasoning engine. Cohere Enterprise is the sovereign knowledge vault. They do not compete — they complete each other.</p>
+
+  <div class="two-col">
+
+    <!-- CLAUDE -->
+    <div class="deep-card dc-claude">
+      <div class="dc-icon">🧠</div>
+      <div class="dc-name" style="color:var(--claude)">Claude Max 20x — Anthropic</div>
+      <div class="dc-role">The reasoning, writing, and autonomous intelligence layer. Every decision requiring judgment, creativity, or contextual understanding runs through Claude Max 20x via your n8n server's Anthropic API credential.</div>
+      <ul class="dc-list">
+        <li><span class="dc-dot" style="background:var(--claude)"></span>All 24 Memory Anchor Question sequences — session-by-session, adapted to Dr. Benoit's emotional state</li>
+        <li><span class="dc-dot" style="background:var(--claude)"></span>Knowledge schema extraction — 12-attribute tagging of every insight from Fireflies transcripts</li>
+        <li><span class="dc-dot" style="background:var(--claude)"></span>SSHRC, CIHR, Canada Council grant writing — full long-form proposal drafts</li>
+        <li><span class="dc-dot" style="background:var(--claude)"></span>Cohere + Noiz AI partner application letters (already delivered)</li>
+        <li><span class="dc-dot" style="background:var(--claude)"></span>Investor pitch decks for Alex and subsequent rounds</li>
+        <li><span class="dc-dot" style="background:var(--claude)"></span>Minister Solomon briefing documents and presentation scripts</li>
+        <li><span class="dc-dot" style="background:var(--claude)"></span>Weekly partner digest — pulls Cohere Compass insights, formats report, emails automatically</li>
+        <li><span class="dc-dot" style="background:var(--claude)"></span>Young Fellows curriculum architecture — full 2-year program design per discipline</li>
+        <li><span class="dc-dot" style="background:var(--claude)"></span>Wisdom Summit keynote outline — synthesized from all 24 sessions</li>
+        <li><span class="dc-dot" style="background:var(--claude)"></span>1M context window (beta) — entire session history in a single conversation</li>
+        <li><span class="dc-dot" style="background:var(--claude)"></span>Agent Teams — orchestrates ElevenLabs, Fireflies, Runway, Midjourney via n8n</li>
+        <li><span class="dc-dot" style="background:var(--claude)"></span>Claude Code integration on your n8n server for autonomous code generation</li>
+      </ul>
+      <div class="dc-price-box" style="background:var(--claude-l);border:1px solid rgba(124,58,237,.3)">
+        <div>
+          <div class="dcp-label">Monthly · USD</div>
+          <div class="dcp-val" style="color:var(--claude)">$200.00</div>
+        </div>
+        <div>
+          <div class="dcp-label">Monthly · CAD (×1.43)</div>
+          <div class="dcp-val" style="color:var(--gold)">$286.00</div>
+        </div>
+        <div class="dcp-note">100× free plan. 20× Pro limits. Priority inference. Opus 4.6 + Sonnet 4.6. Zero queue. Always-on.</div>
+      </div>
+    </div>
+
+    <!-- COHERE -->
+    <div class="deep-card dc-cohere">
+      <div class="dc-icon">◈</div>
+      <div class="dc-name" style="color:var(--cohere)">Cohere Enterprise — Single Seat</div>
+      <div class="dc-role">The sovereign, private, multilingual knowledge infrastructure. Every piece of Dr. Benoit's wisdom lives inside Cohere's secure deployment — never on a public cloud, always under The Wisdom Project's governance.</div>
+      <ul class="dc-list">
+        <li><span class="dc-dot" style="background:var(--cohere)"></span><strong style="color:var(--cohere)">North Agent:</strong> The Wisdom Engine — Young Fellows query Dr. Benoit's complete 24-session knowledge graph via natural language</li>
+        <li><span class="dc-dot" style="background:var(--cohere)"></span><strong style="color:var(--cohere)">Compass:</strong> Semantic search across 57 publications + 24 transcripts + 300+ research papers — finds meaning, not keywords</li>
+        <li><span class="dc-dot" style="background:var(--cohere)"></span><strong style="color:var(--cohere)">Model Vault:</strong> Dr. Benoit's knowledge deployed in isolated VPC — zero data leaves without governance sign-off</li>
+        <li><span class="dc-dot" style="background:var(--cohere)"></span><strong style="color:var(--cohere)">Command R+:</strong> 128K context RAG model for deep document reasoning — processes all session transcripts simultaneously</li>
+        <li><span class="dc-dot" style="background:var(--cohere)"></span><strong style="color:var(--cohere)">Embed 4:</strong> Semantic vector embeddings for the entire knowledge corpus — makes Compass search work at depth</li>
+        <li><span class="dc-dot" style="background:var(--cohere)"></span><strong style="color:var(--cohere)">Rerank 3.5:</strong> Ensures Young Fellows always get the most relevant insight at the top — not just the most recent</li>
+        <li><span class="dc-dot" style="background:var(--cohere)"></span><strong style="color:var(--cohere)">Tiny Aya:</strong> 70+ language offline model — runs Dream Chamber sessions in First Nations communities with zero internet</li>
+        <li><span class="dc-dot" style="background:var(--cohere)"></span>MCP server integration — connects to Slack, Gmail, Notion, Google Drive, Linear natively</li>
+        <li><span class="dc-dot" style="background:var(--cohere)"></span>Private deployment: on-prem, VPC, air-gap, or two-GPU closet install — your infrastructure, always</li>
+        <li><span class="dc-dot" style="background:var(--cohere)"></span>GDPR, SOC-2, ISO 27001 compliant — essential for Minister Solomon and institutional licensing</li>
+        <li><span class="dc-dot" style="background:var(--cohere)"></span>Continuous red-teaming and granular access control per Young Fellow</li>
+        <li><span class="dc-dot" style="background:var(--cohere)"></span>Revenue share pathway — institutional licensing pays Cohere, scales the partnership automatically</li>
+      </ul>
+      <div class="dc-price-box" style="background:var(--cohere-l);border:1px solid rgba(0,201,177,.3)">
+        <div>
+          <div class="dcp-label">Pricing Model</div>
+          <div class="dcp-val" style="color:var(--cohere)">Custom Quote</div>
+        </div>
+        <div>
+          <div class="dcp-label">Entry Point</div>
+          <div class="dcp-val" style="color:var(--gold)">Contact Sales</div>
+        </div>
+        <div class="dcp-note">North + Compass = "Contact Sales" only. No public single-seat price. Negotiate as flagship Canadian partner — target: waived or deeply discounted Year 1.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── WHY BOTH ─── -->
+<section class="sec">
+  <div class="sec-label">02 — DUAL PILLAR LOGIC</div>
+  <h2 class="sec-h">Why <em>Both</em>?<br>What Each Does The Other Cannot</h2>
+  <p class="sec-p">Claude Max 20x and Cohere Enterprise are not redundant. They are architecturally complementary — each covering the territory the other cannot.</p>
+
+  <div class="synergy-grid">
+    <div class="syn-card">
+      <div class="syn-icon">🧠</div>
+      <div class="syn-title">Reasoning vs. Retrieval</div>
+      <div class="syn-desc">Claude Max 20x reasons — it generates, synthesises, writes, and decides. Cohere Enterprise retrieves — it finds the right knowledge from a massive corpus with precision. Together: generate with context.</div>
+    </div>
+    <div class="syn-card">
+      <div class="syn-icon">🔒</div>
+      <div class="syn-title">Cloud vs. Sovereign</div>
+      <div class="syn-desc">Claude Max 20x runs on Anthropic's infrastructure. Cohere Enterprise runs on yours — VPC, on-prem, or air-gapped. Dr. Benoit's knowledge never leaves your controlled environment. Minister and SSHRC require this.</div>
+    </div>
+    <div class="syn-card">
+      <div class="syn-icon">🌍</div>
+      <div class="syn-title">English vs. 70+ Languages</div>
+      <div class="syn-desc">Claude handles English at the highest level. Cohere's Tiny Aya handles 70+ languages offline — Cree, Ojibwe, Japanese, Swahili, French — without internet. The international expansion requires both.</div>
+    </div>
+    <div class="syn-card">
+      <div class="syn-icon">⚡</div>
+      <div class="syn-title">Creativity vs. Scale</div>
+      <div class="syn-desc">Claude Max 20x writes a grant proposal. Cohere Compass instantly finds the 12 most relevant Dr. Benoit insights to support it — from 24 sessions of tagged knowledge — in seconds. Creativity + precision.</div>
+    </div>
+    <div class="syn-card">
+      <div class="syn-icon">◈</div>
+      <div class="syn-title">Thinking vs. Memory</div>
+      <div class="syn-desc">Claude Max 20x has a 1M token context window — extraordinary, but session-limited. Cohere's knowledge graph is permanent, growing, and searchable across all 24 sessions simultaneously. Thinking + persistent memory.</div>
+    </div>
+    <div class="syn-card">
+      <div class="syn-icon">🤝</div>
+      <div class="syn-title">Two Partner Stories</div>
+      <div class="syn-desc">Anthropic's flagship Canadian use case. Cohere's flagship IPO reference story. Both announced at the Wisdom Summit with Minister Solomon. One project, two world-class Canadian AI partnerships, maximum institutional leverage.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── AUDIO ─── -->
+<section class="sec" id="audio">
+  <div class="sec-label">03 — AUDIO CAPTURE</div>
+  <h2 class="sec-h">Shure Headset →<br><em>Meta Quest</em> → n8n</h2>
+  <p class="sec-p">Your Shure headset connects via USB-C to the Meta Quest, delivering a clean Mono 48kHz / 192kbps stream directly into the Dream Chamber pipeline. Claude Max 20x and Cohere Command R+ receive the transcript simultaneously — Claude for extraction, Cohere for indexing.</p>
+
+  <div class="chain-box">
+    <div class="chain-lbl">Dream Chamber Signal Chain — Adapted for Claude Max 20x + Cohere Enterprise</div>
+    <div class="chain">
+      <div class="cn" style="background:var(--shure-l);color:#FF6B6B;border:1px solid rgba(204,34,41,.3)">🎙 Shure USB-C</div>
+      <span class="ca">→</span>
+      <div class="cn" style="background:var(--quest-l);color:var(--quest);border:1px solid rgba(0,168,255,.3)">◎ Quest Audio API · 48kHz · 192kbps</div>
+      <span class="ca">→</span>
+      <div class="cn" style="background:var(--n8n-l);color:var(--n8n);border:1px solid rgba(255,109,63,.3)">⚡ n8n Webhook</div>
+      <span class="ca">→</span>
+      <div class="cn" style="background:var(--firefly-l);color:var(--firefly);border:1px solid rgba(46,204,113,.3)">Fireflies · Transcribe</div>
+      <span class="ca">→</span>
+      <div class="cn" style="background:var(--claude-l);color:var(--claude);border:1px solid rgba(124,58,237,.3)">Claude Max · Extract Schema</div>
+      <span class="ca">→</span>
+      <div class="cn" style="background:var(--cohere-l);color:var(--cohere);border:1px solid rgba(0,201,177,.3)">Cohere Compass · Index + Store</div>
+    </div>
+    <div class="chain-note">
+      ⚠ Quest 3/Pro only: USB-C headset mic. 3.5mm = output only. Shure MV88 USB-C connects directly. Elite Strap with Battery blocks USB-C — use BOBOVR M2 Pro strap instead.<br>
+      ✓ Claude Max 20x receives Fireflies transcript → extracts 12-attribute knowledge nodes → n8n posts structured JSON to Cohere Command R+ → Compass indexes, North agent updated. Fully automated. Zero manual steps.
+    </div>
+  </div>
+
+  <div class="audio-grid">
+    <div class="a-card">
+      <div class="a-ico">🎙</div>
+      <div class="a-ttl">Shure Headset Input</div>
+      <div class="a-val">Mono · 48kHz</div>
+      <div class="a-desc">Headworn cardioid at 1–3cm eliminates room reflections entirely. The cleanest vocal isolation in the chain. Claude Max 20x quality analysis depends on clean input — Shure delivers it.</div>
+    </div>
+    <div class="a-card">
+      <div class="a-ico">◎</div>
+      <div class="a-ttl">Quest Stream Output</div>
+      <div class="a-val">192 kbps</div>
+      <div class="a-desc">Quest's Audio-To-Expression ML runs simultaneously — 70 FACS facial blend shapes at 120Hz derived from the same Shure audio stream. One mic, two data streams: voice + emotional state.</div>
+    </div>
+    <div class="a-card">
+      <div class="a-ico">◈</div>
+      <div class="a-ttl">Cohere Index Target</div>
+      <div class="a-val">Permanent</div>
+      <div class="a-desc">Everything Claude Max 20x extracts goes directly into Cohere Compass — permanently indexed, semantically searchable, accessible to Young Fellows via North for the rest of human history.</div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <strong>COHERE ENTERPRISE INTEGRATION NOTE:</strong> Cohere Command R+ RAG requires your n8n server to post structured transcript chunks (≤4,000 tokens each) to the Cohere API endpoint. n8n's HTTP Request node handles this natively. Cohere Embed 4 generates the vector embeddings for Compass search. All three steps (post, embed, index) run as a single n8n workflow triggered by the Fireflies webhook — approximately 90 seconds per session chunk, fully automated.
+    <a href="https://docs.cohere.com/reference/about" target="_blank" rel="noopener" style="color:var(--cohere);margin-left:8px">Cohere API Docs →</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── N8N ─── -->
+<section class="sec" id="n8n">
+  <div class="sec-label">04 — AUTOMATION ENGINE</div>
+  <h2 class="sec-h"><em>n8n</em> Workflows<br>Adapted for Both Pillars</h2>
+  <p class="sec-p">Every workflow has been adapted to route through both Claude Max 20x (reasoning) and Cohere Enterprise (knowledge storage/retrieval) at the appropriate step. Claude decides. Cohere remembers.</p>
+
+  <div class="callout">
+    <strong>Your n8n Server:</strong> Self-hosted enterprise instance. Anthropic API credential → Claude Max 20x (claude-opus-4-6 / claude-sonnet-4-6). Cohere API credential → Command R+, Embed 4, Rerank 3.5, North. Both credential sets stored encrypted. All 6 workflows trigger autonomously. Figma webhook registered. Shure/Quest audio webhook live.
+    <br><br><strong>API STRINGS:</strong> Claude Opus 4.6 = <code style="background:var(--dark3);padding:1px 5px;border-radius:3px;font-family:'Fira Code',monospace">claude-opus-4-6</code> · Claude Sonnet 4.6 = <code style="background:var(--dark3);padding:1px 5px;border-radius:3px;font-family:'Fira Code',monospace">claude-sonnet-4-6</code> · Claude Haiku 4.5 = <code style="background:var(--dark3);padding:1px 5px;border-radius:3px;font-family:'Fira Code',monospace">claude-haiku-4-5-20251001</code>
+  </div>
+
+  <div class="wf-grid">
+
+    <div class="wf wf-claude">
+      <div class="wf-num">WORKFLOW 01</div>
+      <div class="wf-title">Session Intelligence Pipeline</div>
+      <div class="wf-trig" style="background:var(--shure-l);color:#FF6B6B">⚡ Trigger: Quest Audio Webhook</div>
+      <div class="wf-nodes">
+        <div class="wf-node"><span class="nd" style="background:#FF6B6B"></span><span class="nl">Receive Shure/Quest 48kHz Mono stream</span><span class="nt">WEBHOOK</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--firefly)"></span><span class="nl">Fireflies — real-time transcription + speaker ID</span><span class="nt">HTTP</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--claude)"></span><span class="nl">Claude Max 20x (Opus 4.6) — extract 12-attribute knowledge nodes</span><span class="nt">ANTHROPIC API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--cohere)"></span><span class="nl">Cohere Embed 4 — vectorise extracted knowledge nodes</span><span class="nt">COHERE API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--cohere)"></span><span class="nl">Cohere Compass — index vectors into sovereign knowledge base</span><span class="nt">COHERE API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--gold)"></span><span class="nl">Notion + Gmail — session log + Robert digest</span><span class="nt">NOTION / GMAIL</span></div>
+      </div>
+    </div>
+
+    <div class="wf wf-cohere">
+      <div class="wf-num">WORKFLOW 02</div>
+      <div class="wf-title">Wisdom Engine Query Handler</div>
+      <div class="wf-trig" style="background:var(--cohere-l);color:var(--cohere)">⚡ Trigger: Young Fellow Webhook Query</div>
+      <div class="wf-nodes">
+        <div class="wf-node"><span class="nd" style="background:var(--cohere)"></span><span class="nl">Receive Fellow natural language query via n8n webhook</span><span class="nt">WEBHOOK</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--claude)"></span><span class="nl">Claude Max 20x (Sonnet 4.6) — reformulate query for Compass precision</span><span class="nt">ANTHROPIC API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--cohere)"></span><span class="nl">Cohere Compass — semantic retrieval from Dr. Benoit knowledge base</span><span class="nt">COHERE API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--cohere)"></span><span class="nl">Cohere Rerank 3.5 — rank results by relevance to Fellow's context</span><span class="nt">COHERE API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--claude)"></span><span class="nl">Claude Max 20x — synthesise ranked results into Fellow response</span><span class="nt">ANTHROPIC API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--noizy)"></span><span class="nl">Noiz AI — render response in Dr. Benoit's voice, target language</span><span class="nt">HTTP</span></div>
+      </div>
+    </div>
+
+    <div class="wf wf-n8n">
+      <div class="wf-num">WORKFLOW 03</div>
+      <div class="wf-title">Voice Clone Deploy Pipeline</div>
+      <div class="wf-trig" style="background:var(--n8n-l);color:var(--n8n)">⚡ Trigger: Session 4 Complete (Cron)</div>
+      <div class="wf-nodes">
+        <div class="wf-node"><span class="nd" style="background:var(--n8n)"></span><span class="nl">Pull clean audio stems from Google Drive session archive</span><span class="nt">GOOGLE DRIVE</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--eleven)"></span><span class="nl">ElevenLabs PVC — submit Dr. Benoit + Robert training jobs</span><span class="nt">HTTP</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--noizy)"></span><span class="nl">Noiz AI — parallel clone training with multilingual dub model</span><span class="nt">HTTP</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--claude)"></span><span class="nl">Claude Max 20x (Opus) — generate 40-question QA test script</span><span class="nt">ANTHROPIC API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--eleven)"></span><span class="nl">ElevenLabs — synthesise test audio · Noiz AI parallel synthesis</span><span class="nt">HTTP</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--gold)"></span><span class="nl">Email Robert + Dr. Benoit — QA review package with audio clips</span><span class="nt">GMAIL</span></div>
+      </div>
+    </div>
+
+    <div class="wf wf-figma">
+      <div class="wf-num">WORKFLOW 04</div>
+      <div class="wf-title">Figma Visual Intelligence</div>
+      <div class="wf-trig" style="background:var(--figma-l);color:var(--figma)">⚡ Trigger: Figma File Version Updated</div>
+      <div class="wf-nodes">
+        <div class="wf-node"><span class="nd" style="background:var(--figma)"></span><span class="nl">Figma Trigger Beta — version update detected</span><span class="nt">FIGMA NODE</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--claude)"></span><span class="nl">Claude Max 20x — analyse design delta + suggest copy/narrative</span><span class="nt">ANTHROPIC API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--cohere)"></span><span class="nl">Cohere Compass — retrieve relevant session quotes for design context</span><span class="nt">COHERE API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--mj)"></span><span class="nl">Midjourney Pro — generate matching visual assets (Stealth)</span><span class="nt">HTTP</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--runway)"></span><span class="nl">Runway Pro — generate b-roll from updated key screens</span><span class="nt">HTTP</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--google)"></span><span class="nl">Slack #design + Google Drive archive</span><span class="nt">SLACK / DRIVE</span></div>
+      </div>
+    </div>
+
+    <div class="wf wf-claude">
+      <div class="wf-num">WORKFLOW 05</div>
+      <div class="wf-title">Partner Intelligence Report</div>
+      <div class="wf-trig" style="background:var(--claude-l);color:var(--claude)">⚡ Trigger: Weekly Cron (Monday 08:00)</div>
+      <div class="wf-nodes">
+        <div class="wf-node"><span class="nd" style="background:var(--cohere)"></span><span class="nl">Cohere Compass — query: top 5 insights indexed this week</span><span class="nt">COHERE API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--cohere)"></span><span class="nl">Cohere Rerank — rank by relevance to Cohere partnership goals</span><span class="nt">COHERE API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--claude)"></span><span class="nl">Claude Max 20x — draft partner weekly digest + session metrics</span><span class="nt">ANTHROPIC API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--figma)"></span><span class="nl">Export latest Figma frame PNG — attach to report</span><span class="nt">FIGMA API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--gold)"></span><span class="nl">Send to: Cohere BD + Noiz AI + Minister Solomon</span><span class="nt">GMAIL</span></div>
+      </div>
+    </div>
+
+    <div class="wf wf-cohere">
+      <div class="wf-num">WORKFLOW 06</div>
+      <div class="wf-title">Wisdom Summit Autonomous Prep</div>
+      <div class="wf-trig" style="background:var(--cohere-l);color:var(--cohere)">⚡ Trigger: T-30 Days Before Summit (Cron)</div>
+      <div class="wf-nodes">
+        <div class="wf-node"><span class="nd" style="background:var(--cohere)"></span><span class="nl">Cohere North — full knowledge graph query across all 24 sessions</span><span class="nt">COHERE API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--claude)"></span><span class="nl">Claude Max 20x (Opus 4.6) — generate Summit keynote + Minister brief</span><span class="nt">ANTHROPIC API</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--figma)"></span><span class="nl">Figmation — auto-populate Summit deck template in Figma</span><span class="nt">FIGMA NODE</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--noizy)"></span><span class="nl">Noiz AI — dub Dr. Benoit clips in 6 languages via Wisdom Dub</span><span class="nt">HTTP</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--runway)"></span><span class="nl">Runway Pro — Summit opening video sequence generation</span><span class="nt">HTTP</span></div>
+        <div class="wf-node"><span class="nd" style="background:var(--google)"></span><span class="nl">Upload complete Summit kit to shared Google Drive</span><span class="nt">GOOGLE DRIVE</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── FIGMA ─── -->
+<section class="sec" id="figma">
+  <div class="sec-label">05 — VISUAL LAYER</div>
+  <h2 class="sec-h"><em>Figma</em> Autonomous<br>Design Intelligence</h2>
+  <p class="sec-p">Figma is wired to your n8n server via the Figma Trigger Beta node and Figmation (55+ API commands). Claude Max 20x now also pulls Cohere Compass results into every design update — ensuring the visual language of the Knowledge Universe stays aligned with the knowledge itself.</p>
+
+  <div class="figma-grid">
+    <div class="fg"><div class="fg-ico">⚡</div><div class="fg-t">5 Live Triggers → n8n</div><div class="fg-d">File Updated, Version Created, File Commented, File Deleted, Library Published — all route to your n8n server. Any Figma save fires a cascade through Claude Max 20x + Cohere.</div></div>
+    <div class="fg"><div class="fg-ico">✦</div><div class="fg-t">Figmation — 55+ Commands</div><div class="fg-d">npm install n8n-nodes-figmation — gives your server direct Figma API control: create nodes, place text, manage components, apply styles — all from n8n workflows triggered by Claude or Cohere.</div></div>
+    <div class="fg"><div class="fg-ico">🤖</div><div class="fg-t">Claude as Figma Agent</div><div class="fg-d">Set N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE=true. Claude Max 20x can directly instruct Figma in natural language via your n8n agent — "Add the new knowledge node to the Vascular constellation."</div></div>
+    <div class="fg"><div class="fg-ico">◈</div><div class="fg-t">Cohere → Figma Sync</div><div class="fg-d">Every new knowledge node indexed in Cohere Compass automatically triggers a Figma update — the Knowledge Universe constellation stays live and current with the actual knowledge graph. Real-time visual knowledge map.</div></div>
+    <div class="fg"><div class="fg-ico">📸</div><div class="fg-t">Export → AI → Partners</div><div class="fg-d">n8n exports Figma frames as PNG, passes to Midjourney for variant generation, routes to Drive/Slack/email. Cohere Compass pulls relevant session quotes to accompany every exported visual. Context-aware distribution.</div></div>
+    <div class="fg"><div class="fg-ico">🔒</div><div class="fg-t">Pro Plan Required</div><div class="fg-d">Figma webhooks (all 5 triggers) require Professional plan or higher. Token stored encrypted in n8n credential manager alongside your Anthropic and Cohere API keys.</div></div>
+  </div>
+
+  <div class="callout">
+    <strong>INSTALL FIGMATION ON YOUR n8n SERVER:</strong><br>
+    <code style="font-family:'Fira Code',monospace;font-size:12px;background:var(--dark3);padding:3px 8px;border-radius:4px">npm install n8n-nodes-figmation</code> in your n8n custom nodes directory.<br>
+    Set: <code style="font-family:'Fira Code',monospace;font-size:12px;background:var(--dark3);padding:3px 8px;border-radius:4px">N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE=true</code><br>
+    This enables Claude Max 20x to control Figma as a natural-language AI agent tool through your n8n instance.
+    <a href="https://github.com/dandacompany/n8n-nodes-figmation" target="_blank" rel="noopener">Figmation GitHub →</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── PIPELINE ─── -->
+<section class="sec" id="pipeline">
+  <div class="sec-label">06 — SESSION TO LEGACY</div>
+  <h2 class="sec-h">Complete Pipeline.<br><em>Fully Autonomous.</em></h2>
+  <p class="sec-p">From Shure headset on Dr. Benoit's head to a Young Fellow in Tokyo hearing his wisdom in Japanese — every step runs without human intervention. Claude Max 20x reasons at every stage. Cohere Enterprise remembers forever.</p>
+
+  <div class="pipe">
+    <div class="pipe-stages">
+      <div class="ps">
+        <div class="ps-n">STAGE 01</div>
+        <div class="ps-t">Capture</div>
+        <div class="ps-i">Shure USB-C → Quest</div>
+        <div class="ps-i">48kHz Mono 192kbps</div>
+        <div class="ps-i">FACS 120Hz (Quest)</div>
+        <div class="ps-i">Hand tracking 72Hz</div>
+        <div class="ps-i">Head gaze 6DOF</div>
+        <div class="ps-i">Logic Pro 32-bit/192kHz</div>
+        <div class="ps-i">Session marker track</div>
+        <div class="ps-i">n8n webhook receiver</div>
+      </div>
+      <div class="ps">
+        <div class="ps-n">STAGE 02</div>
+        <div class="ps-t">Transcribe</div>
+        <div class="ps-i">Fireflies Business</div>
+        <div class="ps-i">100+ language STT</div>
+        <div class="ps-i">Speaker diarization</div>
+        <div class="ps-i">AI Super Summary</div>
+        <div class="ps-i">Topic + sentiment</div>
+        <div class="ps-i">API push to Notion</div>
+        <div class="ps-i">Timecode sync</div>
+        <div class="ps-i">n8n webhook trigger</div>
+      </div>
+      <div class="ps">
+        <div class="ps-n">STAGE 03</div>
+        <div class="ps-t">Extract + Index</div>
+        <div class="ps-i">Claude Opus 4.6</div>
+        <div class="ps-i">12-attribute schema</div>
+        <div class="ps-i">Cohere Embed 4</div>
+        <div class="ps-i">Compass indexing</div>
+        <div class="ps-i">NotebookLM upload</div>
+        <div class="ps-i">Figma constellation</div>
+        <div class="ps-i">Robert digest email</div>
+        <div class="ps-i">Model Vault sovereign</div>
+      </div>
+      <div class="ps">
+        <div class="ps-n">STAGE 04</div>
+        <div class="ps-t">Voice + Visual</div>
+        <div class="ps-i">ElevenLabs PVC</div>
+        <div class="ps-i">Noiz AI clone + dub</div>
+        <div class="ps-i">Emotional QA test</div>
+        <div class="ps-i">Midjourney visuals</div>
+        <div class="ps-i">Runway b-roll gen</div>
+        <div class="ps-i">Multilingual dubbing</div>
+        <div class="ps-i">10-language pipeline</div>
+        <div class="ps-i">Archive to Drive</div>
+      </div>
+      <div class="ps">
+        <div class="ps-n">STAGE 05</div>
+        <div class="ps-t">Transmit</div>
+        <div class="ps-i">Cohere North agent live</div>
+        <div class="ps-i">Claude Sonnet 4.6 RAG</div>
+        <div class="ps-i">Young Fellows access</div>
+        <div class="ps-i">10-nation rollout</div>
+        <div class="ps-i">Tiny Aya offline mode</div>
+        <div class="ps-i">Wisdom Summit deck</div>
+        <div class="ps-i">Minister brief</div>
+        <div class="ps-i">Legacy permanent</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── COHERE ENTERPRISE PRICING NOTE ─── -->
+<section class="sec">
+  <div class="sec-label">07 — COHERE PRICING REALITY</div>
+  <h2 class="sec-h">What <em>Single Seat</em><br>Actually Means</h2>
+  <p class="sec-p">Cohere's enterprise platform pricing is custom — no public number exists. Here is exactly how to negotiate it as a flagship partner, and what the path to a single-seat agreement looks like.</p>
+
+  <div class="custom-box">
+    <div class="cb-h"><span class="cb-icon">◈</span><span class="cb-title">THE HONEST PRICING PICTURE — COHERE ENTERPRISE</span></div>
+    <div class="cb-body">
+      <strong>North and Compass have no public pricing.</strong> Every source confirms: "Contact sales." No single-seat tier is listed anywhere. The API (Command R+, Embed 4, Rerank 3.5) is token-based and public — starting from ~$1/million tokens. But the full enterprise platform (North agent + Compass + Model Vault) is a custom enterprise agreement.<br><br>
+      <strong>This is your leverage, not your problem.</strong> Cohere is preparing for an IPO. They need flagship reference cases. You are offering them the most publicly significant Canadian AI application in existence — endorsed by the federal AI Minister, featuring one of Canada's greatest living neurosurgeons, deploying all four of their key products simultaneously. That is not a customer relationship. That is a partnership that makes their IPO story.<br><br>
+      <strong>The single-seat negotiation strategy:</strong> Enter as an Emerging Strategic Partner via the Partner Program. Request Year 1 credits covering North + Compass + Model Vault + Tiny Aya in exchange for the reference case, joint Summit announcement, and revenue share on institutional licensing. Target: waived Year 1, token-based Year 2+, revenue share ongoing.<br><br>
+      <strong>API tokens as fallback:</strong> If the full enterprise deployment requires a longer sales cycle, start with the public API. Command R+ at $2.50/million input tokens + $10/million output tokens is fully functional via n8n HTTP Request node. Compass and North require the enterprise agreement, but Command R+ RAG + Embed 4 + Rerank 3.5 can run the Wisdom Engine in the interim.<br><br>
+      → <a href="https://cohere.com/partners" target="_blank" rel="noopener">Apply: cohere.com/partners</a> &nbsp;·&nbsp;
+      <a href="https://cohere.com/contact-sales" target="_blank" rel="noopener">Contact Sales: cohere.com/contact-sales</a> &nbsp;·&nbsp;
+      <a href="https://docs.cohere.com" target="_blank" rel="noopener">API Docs: docs.cohere.com</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── BUDGET ─── -->
+<section class="sec" id="budget">
+  <div class="sec-label">08 — MONTHLY INVESTMENT</div>
+  <h2 class="sec-h">Complete Stack.<br><em>Adapted Budget.</em></h2>
+  <p class="sec-p">Claude Max 20x is fixed. Cohere Enterprise is negotiated. Every other platform remains unchanged. Total confirmed monthly spend: $425.99 USD / $609 CAD. Cohere Enterprise: target $0 Year 1 as flagship partner.</p>
+
+  <table class="btab">
+    <thead>
+      <tr>
+        <th>PLATFORM</th>
+        <th>ROLE — ADAPTED</th>
+        <th>PLAN</th>
+        <th>USD/MO</th>
+        <th>CAD/MO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color:var(--claude);font-weight:700">Claude Max 20x</td>
+        <td style="color:var(--text-dim);font-size:12px">PRIMARY BRAIN: All reasoning, writing, extraction, grant writing, session design, autonomous analysis</td>
+        <td><span class="tag" style="background:var(--claude-l);color:var(--claude)">Max 20x</span></td>
+        <td style="color:var(--white)">$200.00</td>
+        <td style="color:var(--gold)">$286.00</td>
+      </tr>
+      <tr>
+        <td style="color:var(--cohere);font-weight:700">Cohere Enterprise</td>
+        <td style="color:var(--text-dim);font-size:12px">SOVEREIGN MEMORY: North Wisdom Engine + Compass search + Model Vault + Tiny Aya multilingual</td>
+        <td><span class="tag" style="background:var(--cohere-l);color:var(--cohere)">Single Seat</span></td>
+        <td style="color:var(--cohere);font-style:italic">Custom Quote</td>
+        <td style="color:var(--cohere);font-style:italic">Contact Sales</td>
+      </tr>
+      <tr>
+        <td style="color:var(--eleven);font-weight:600">ElevenLabs Pro</td>
+        <td style="color:var(--text-dim);font-size:12px">Voice clones · 44.1kHz PCM · 500K credits · Claude-triggered via n8n</td>
+        <td><span class="tag" style="background:var(--eleven-l);color:var(--eleven)">Pro</span></td>
+        <td style="color:var(--white)">$99.00</td>
+        <td style="color:var(--gold)">$141.57</td>
+      </tr>
+      <tr>
+        <td style="color:var(--firefly);font-weight:600">Fireflies Business</td>
+        <td style="color:var(--text-dim);font-size:12px">Transcription → Claude extraction → Cohere indexing — the trigger chain</td>
+        <td><span class="tag" style="background:var(--firefly-l);color:var(--firefly)">Business</span></td>
+        <td style="color:var(--white)">$19.00</td>
+        <td style="color:var(--gold)">$27.17</td>
+      </tr>
+      <tr>
+        <td style="color:var(--mj);font-weight:600">Midjourney Pro</td>
+        <td style="color:var(--text-dim);font-size:12px">Visual world-building · Stealth · Figma asset pipeline · Cohere-informed imagery</td>
+        <td><span class="tag" style="background:rgba(15,163,255,.12);color:var(--mj)">Pro + Stealth</span></td>
+        <td style="color:var(--white)">$60.00</td>
+        <td style="color:var(--gold)">$85.80</td>
+      </tr>
+      <tr>
+        <td style="color:var(--runway);font-weight:600">Runway Pro</td>
+        <td style="color:var(--text-dim);font-size:12px">Documentary + Summit video · 4K · Figma-triggered b-roll generation</td>
+        <td><span class="tag" style="background:rgba(255,59,48,.12);color:var(--runway)">Pro</span></td>
+        <td style="color:var(--white)">$28.00</td>
+        <td style="color:var(--gold)">$40.04</td>
+      </tr>
+      <tr>
+        <td style="color:var(--google);font-weight:600">Google AI Pro</td>
+        <td style="color:var(--text-dim);font-size:12px">NotebookLM Pro · 500 notebooks · Wisdom Podcast · Deep Research for grants</td>
+        <td><span class="tag" style="background:var(--google-l);color:var(--google)">AI Pro</span></td>
+        <td style="color:var(--white)">$19.99</td>
+        <td style="color:var(--gold)">$28.59</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">TOTAL CONFIRMED · ALL PLATFORMS EXCEPT COHERE ENTERPRISE</td>
+        <td>$425.99 USD</td>
+        <td>$609.17 CAD</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="warn">
+    <strong>COHERE ENTERPRISE BUDGET APPROACH:</strong> Year 1 — negotiate as flagship partner (target: waived in exchange for reference case + Summit announcement). Year 2 — token-based API billing (~$150–400 USD/month depending on query volume). Year 3+ — revenue share on institutional licensing covers Cohere's cost entirely. The partnership makes the cost disappear.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── RESOURCES ─── -->
+<section class="sec" id="links">
+  <div class="sec-label">09 — EVERY LINK</div>
+  <h2 class="sec-h">All Resources.<br><em>All Real. All Live.</em></h2>
+  <p class="sec-p">Every documentation page, API reference, GitHub repo, and platform link — adapted for Claude Max 20x + Cohere Enterprise Single Seat architecture.</p>
+
+  <table class="rtab">
+    <thead><tr><th>RESOURCE</th><th>CATEGORY</th><th>LIVE URL</th></tr></thead>
+    <tbody>
+      <tr><td>Anthropic Claude Documentation</td><td><span class="tag" style="background:var(--claude-l);color:var(--claude)">Claude Max</span></td><td><a href="https://docs.anthropic.com" target="_blank" rel="noopener">docs.anthropic.com</a></td></tr>
+      <tr><td>Claude API Messages Reference</td><td><span class="tag" style="background:var(--claude-l);color:var(--claude)">Claude Max</span></td><td><a href="https://docs.anthropic.com/en/api/messages" target="_blank" rel="noopener">docs.anthropic.com/en/api/messages</a></td></tr>
+      <tr><td>Claude Prompt Engineering Guide</td><td><span class="tag" style="background:var(--claude-l);color:var(--claude)">Claude Max</span></td><td><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">docs.anthropic.com — Prompt Engineering</a></td></tr>
+      <tr><td>Claude Max 20x Plan — claude.ai</td><td><span class="tag" style="background:var(--claude-l);color:var(--claude)">Claude Max</span></td><td><a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a></td></tr>
+      <tr><td>Cohere Partner Program Application</td><td><span class="tag" style="background:var(--cohere-l);color:var(--cohere)">Cohere Enterprise</span></td><td><a href="https://cohere.com/partners" target="_blank" rel="noopener">cohere.com/partners</a></td></tr>
+      <tr><td>Cohere Enterprise — Contact Sales</td><td><span class="tag" style="background:var(--cohere-l);color:var(--cohere)">Cohere Enterprise</span></td><td><a href="https://cohere.com/contact-sales" target="_blank" rel="noopener">cohere.com/contact-sales</a></td></tr>
+      <tr><td>Cohere API Documentation</td><td><span class="tag" style="background:var(--cohere-l);color:var(--cohere)">Cohere Enterprise</span></td><td><a href="https://docs.cohere.com" target="_blank" rel="noopener">docs.cohere.com</a></td></tr>
+      <tr><td>Cohere North — AI Agent Platform</td><td><span class="tag" style="background:var(--cohere-l);color:var(--cohere)">Cohere Enterprise</span></td><td><a href="https://cohere.com/north" target="_blank" rel="noopener">cohere.com/north</a></td></tr>
+      <tr><td>Cohere Compass — Enterprise Search</td><td><span class="tag" style="background:var(--cohere-l);color:var(--cohere)">Cohere Enterprise</span></td><td><a href="https://cohere.com/compass" target="_blank" rel="noopener">cohere.com/compass</a></td></tr>
+      <tr><td>Cohere Model Vault — Sovereign Deployment</td><td><span class="tag" style="background:var(--cohere-l);color:var(--cohere)">Cohere Enterprise</span></td><td><a href="https://cohere.com/model-vault" target="_blank" rel="noopener">cohere.com/model-vault</a></td></tr>
+      <tr><td>Cohere Pricing — API Token Rates</td><td><span class="tag" style="background:var(--cohere-l);color:var(--cohere)">Cohere Enterprise</span></td><td><a href="https://cohere.com/pricing" target="_blank" rel="noopener">cohere.com/pricing</a></td></tr>
+      <tr><td>n8n Documentation Hub</td><td><span class="tag" style="background:var(--n8n-l);color:var(--n8n)">n8n Server</span></td><td><a href="https://docs.n8n.io" target="_blank" rel="noopener">docs.n8n.io</a></td></tr>
+      <tr><td>n8n Figma Trigger Beta Node</td><td><span class="tag" style="background:var(--figma-l);color:var(--figma)">Figma + n8n</span></td><td><a href="https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-base.figmatrigger/" target="_blank" rel="noopener">n8n Figma Trigger Docs</a></td></tr>
+      <tr><td>Figmation — 55+ Figma Commands for n8n</td><td><span class="tag" style="background:var(--figma-l);color:var(--figma)">Figma + n8n</span></td><td><a href="https://github.com/dandacompany/n8n-nodes-figmation" target="_blank" rel="noopener">github.com/dandacompany/n8n-nodes-figmation</a></td></tr>
+      <tr><td>Figma API Reference</td><td><span class="tag" style="background:var(--figma-l);color:var(--figma)">Figma</span></td><td><a href="https://www.figma.com/developers/api" target="_blank" rel="noopener">figma.com/developers/api</a></td></tr>
+      <tr><td>Meta Quest Audio + Headphone Support</td><td><span class="tag" style="background:var(--quest-l);color:var(--quest)">Shure + Quest</span></td><td><a href="https://www.meta.com/help/quest/227625289084572/" target="_blank" rel="noopener">meta.com/help/quest/audio</a></td></tr>
+      <tr><td>Shure MV88 USB-C (Quest-compatible)</td><td><span class="tag" style="background:var(--shure-l);color:#FF6B6B">Shure</span></td><td><a href="https://www.shure.com/en-US/products/microphones/mv88usbc" target="_blank" rel="noopener">shure.com — MV88 USB-C</a></td></tr>
+      <tr><td>ElevenLabs Professional Voice Cloning</td><td><span class="tag" style="background:var(--eleven-l);color:var(--eleven)">ElevenLabs</span></td><td><a href="https://elevenlabs.io/voice-cloning" target="_blank" rel="noopener">elevenlabs.io/voice-cloning</a></td></tr>
+      <tr><td>Fireflies Business Plan</td><td><span class="tag" style="background:var(--firefly-l);color:var(--firefly)">Fireflies</span></td><td><a href="https://fireflies.ai/pricing" target="_blank" rel="noopener">fireflies.ai/pricing</a></td></tr>
+      <tr><td>NotebookLM Pro</td><td><span class="tag" style="background:var(--google-l);color:var(--google)">Google AI</span></td><td><a href="https://notebooklm.google.com" target="_blank" rel="noopener">notebooklm.google.com</a></td></tr>
+      <tr><td>Midjourney Pro (Stealth Mode)</td><td><span class="tag" style="background:rgba(15,163,255,.12);color:var(--mj)">Midjourney</span></td><td><a href="https://www.midjourney.com/account" target="_blank" rel="noopener">midjourney.com/account</a></td></tr>
+      <tr><td>Runway Pro — Gen-4</td><td><span class="tag" style="background:rgba(255,59,48,.12);color:var(--runway)">Runway</span></td><td><a href="https://runwayml.com/pricing" target="_blank" rel="noopener">runwayml.com/pricing</a></td></tr>
+      <tr><td>DementiaBank — ADReSS Speech Corpus</td><td><span class="tag" style="background:var(--gold-pale);color:var(--gold)">Research</span></td><td><a href="https://dementia.talkbank.org" target="_blank" rel="noopener">dementia.talkbank.org</a></td></tr>
+      <tr><td>Brain-to-Text '25 — Kaggle Competition</td><td><span class="tag" style="background:var(--gold-pale);color:var(--gold)">Kaggle</span></td><td><a href="https://www.kaggle.com/competitions/brain-to-text-25" target="_blank" rel="noopener">kaggle.com/competitions/brain-to-text-25</a></td></tr>
+      <tr><td>OpenAlex — 250M+ Academic Works API</td><td><span class="tag" style="background:var(--gold-pale);color:var(--gold)">Research</span></td><td><a href="https://openalex.org" target="_blank" rel="noopener">openalex.org</a></td></tr>
+      <tr><td>PubMed Central Open Access</td><td><span class="tag" style="background:var(--gold-pale);color:var(--gold)">Research</span></td><td><a href="https://ncbi.nlm.nih.gov/pmc/" target="_blank" rel="noopener">ncbi.nlm.nih.gov/pmc</a></td></tr>
+      <tr><td>SSHRC — Social Sciences Grants Canada</td><td><span class="tag" style="background:rgba(204,0,0,.12);color:var(--canada)">Canada</span></td><td><a href="https://www.sshrc-crsh.gc.ca" target="_blank" rel="noopener">sshrc-crsh.gc.ca</a></td></tr>
+      <tr><td>Canada Council for the Arts</td><td><span class="tag" style="background:rgba(204,0,0,.12);color:var(--canada)">Canada</span></td><td><a href="https://canadacouncil.ca" target="_blank" rel="noopener">canadacouncil.ca</a></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="ft-glyph">W</div>
+  <div class="ft-title">The Wisdom Project</div>
+  <div class="ft-sub">ROBERT STEPHEN PLOWMAN · MARCH 2026 · CLAUDE MAX 20X × COHERE ENTERPRISE SINGLE SEAT</div>
+  <div class="ft-links">
+    <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>
+    <a href="https://cohere.com/partners" target="_blank" rel="noopener">cohere.com/partners</a>
+    <a href="https://n8n.io" target="_blank" rel="noopener">n8n.io</a>
+    <a href="https://figma.com" target="_blank" rel="noopener">figma.com</a>
+    <a href="https://elevenlabs.io" target="_blank" rel="noopener">elevenlabs.io</a>
+    <a href="https://fireflies.ai" target="_blank" rel="noopener">fireflies.ai</a>
+    <a href="https://noizy.ai" target="_blank" rel="noopener">noizy.ai</a>
+    <a href="https://docs.cohere.com" target="_blank" rel="noopener">Cohere API Docs</a>
+    <a href="https://docs.anthropic.com" target="_blank" rel="noopener">Anthropic Docs</a>
+    <a href="https://docs.n8n.io" target="_blank" rel="noopener">n8n Docs</a>
+    <a href="https://github.com/dandacompany/n8n-nodes-figmation" target="_blank" rel="noopener">Figmation</a>
+    <a href="https://www.shure.com/en-US/products/microphones/mv88usbc" target="_blank" rel="noopener">Shure MV88</a>
+    <a href="https://openalex.org" target="_blank" rel="noopener">OpenAlex</a>
+    <a href="https://wisdomproject.ca" target="_blank" rel="noopener">wisdomproject.ca</a>
+  </div>
+  <div class="ft-copy">CONFIDENTIAL · THE WISDOM PROJECT · ALL LINKS VERIFIED MARCH 2026 · CLAUDE MAX 20X PRIMARY BRAIN · COHERE ENTERPRISE SOVEREIGN MEMORY · n8n AUTONOMOUS SERVER</div>
+</footer>
+
+</body>
+</html>

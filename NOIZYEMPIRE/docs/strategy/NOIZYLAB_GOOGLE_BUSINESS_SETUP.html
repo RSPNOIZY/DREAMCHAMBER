@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZYLAB - Google & Domain Setup Dashboard</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #141420;
+    --surface2: #1c1c2e;
+    --border: #2a2a40;
+    --text: #e8e8f0;
+    --text-dim: #888899;
+    --accent: #00d4ff;
+    --accent-glow: rgba(0, 212, 255, 0.15);
+    --green: #00e676;
+    --red: #ff4444;
+    --orange: #ffaa00;
+    --purple: #b388ff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 24px;
+  }
+  .header {
+    text-align: center;
+    padding: 40px 0 30px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 30px;
+  }
+  .header h1 {
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .header .subtitle {
+    color: var(--text-dim);
+    font-size: 0.95em;
+    margin-top: 8px;
+  }
+  .header .date {
+    color: var(--text-dim);
+    font-size: 0.8em;
+    margin-top: 4px;
+  }
+
+  /* Status Overview */
+  .overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-card .number {
+    font-size: 2em;
+    font-weight: 700;
+  }
+  .stat-card .label {
+    color: var(--text-dim);
+    font-size: 0.85em;
+    margin-top: 4px;
+  }
+  .stat-green { color: var(--green); }
+  .stat-red { color: var(--red); }
+  .stat-orange { color: var(--orange); }
+  .stat-accent { color: var(--accent); }
+
+  /* Sections */
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .section-header:hover { background: var(--surface2); }
+  .section-header h2 {
+    font-size: 1.15em;
+    font-weight: 600;
+    flex: 1;
+  }
+  .section-header .badge {
+    font-size: 0.75em;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .badge-red { background: rgba(255,68,68,0.15); color: var(--red); }
+  .badge-orange { background: rgba(255,170,0,0.15); color: var(--orange); }
+  .badge-green { background: rgba(0,230,118,0.15); color: var(--green); }
+  .badge-accent { background: var(--accent-glow); color: var(--accent); }
+
+  .section-body { padding: 24px; }
+  .section-body.collapsed { display: none; }
+
+  /* Domain table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+  }
+  th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    color: var(--text-dim);
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  td { font-size: 0.92em; }
+  .status-ok { color: var(--green); }
+  .status-warn { color: var(--orange); }
+  .status-fail { color: var(--red); }
+  .status-unknown { color: var(--text-dim); }
+
+  /* Checklist */
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.92em;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .check-icon:hover { border-color: var(--accent); }
+  .check-icon.done {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .check-icon.done::after {
+    content: "\2713";
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .check-content { flex: 1; }
+  .check-content strong { display: block; margin-bottom: 2px; }
+  .check-content .detail { color: var(--text-dim); font-size: 0.9em; }
+
+  /* Priority tag */
+  .priority {
+    font-size: 0.7em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .p-high { background: rgba(255,68,68,0.15); color: var(--red); }
+  .p-med { background: rgba(255,170,0,0.15); color: var(--orange); }
+  .p-low { background: rgba(0,212,255,0.15); color: var(--accent); }
+
+  /* Steps */
+  .steps { counter-reset: step; }
+  .step {
+    padding: 16px 16px 16px 56px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    font-size: 0.92em;
+  }
+  .step:last-child { border-bottom: none; }
+  .step::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    width: 28px;
+    height: 28px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .step strong { display: block; margin-bottom: 4px; }
+  .step .detail { color: var(--text-dim); font-size: 0.9em; }
+
+  /* Info box */
+  .info-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 0.9em;
+  }
+  .info-box.warn { border-left-color: var(--orange); }
+  .info-box.success { border-left-color: var(--green); }
+  .info-box strong { color: var(--accent); }
+  .info-box.warn strong { color: var(--orange); }
+
+  /* Code */
+  code {
+    background: var(--surface2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.85em;
+    color: var(--accent);
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 8px 0;
+  }
+
+  /* Email table additions */
+  .email-active { color: var(--green); }
+  .email-pending { color: var(--orange); }
+
+  @media (max-width: 768px) {
+    body { padding: 12px; }
+    .overview { grid-template-columns: repeat(2, 1fr); }
+    .header h1 { font-size: 1.6em; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>NOIZYLAB</h1>
+  <div class="subtitle">Google Business, Domain & Email Setup Dashboard</div>
+  <div class="date">Audit Date: February 5, 2026 | Owner: Rob Plowman</div>
+</div>
+
+<!-- Status Overview -->
+<div class="overview">
+  <div class="stat-card">
+    <div class="number stat-accent">5</div>
+    <div class="label">Total Domains</div>
+  </div>
+  <div class="stat-card">
+    <div class="number stat-green">3</div>
+    <div class="label">On Cloudflare</div>
+  </div>
+  <div class="stat-card">
+    <div class="number stat-red">2</div>
+    <div class="label">Still on GoDaddy</div>
+  </div>
+  <div class="stat-card">
+    <div class="number stat-orange">0</div>
+    <div class="label">Email Auth Verified</div>
+  </div>
+  <div class="stat-card">
+    <div class="number stat-red">0</div>
+    <div class="label">Google Business Profiles</div>
+  </div>
+  <div class="stat-card">
+    <div class="number stat-accent">53</div>
+    <div class="label">CF KV Namespaces</div>
+  </div>
+</div>
+
+<!-- DOMAIN INVENTORY -->
+<div class="section">
+  <div class="section-header" onclick="toggle(this)">
+    <h2>Domain Inventory</h2>
+    <span class="badge badge-orange">2 NEED TRANSFER</span>
+  </div>
+  <div class="section-body">
+    <table>
+      <thead>
+        <tr>
+          <th>Domain</th>
+          <th>Registrar</th>
+          <th>Status</th>
+          <th>Purpose</th>
+          <th>MX/SPF/DKIM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>noizylab.ca</strong></td>
+          <td class="status-ok">Cloudflare</td>
+          <td class="status-ok">Active</td>
+          <td>Primary NOIZYLAB Business</td>
+          <td class="status-unknown">Unverified</td>
+        </tr>
+        <tr>
+          <td><strong>fishmusicinc.com</strong></td>
+          <td class="status-ok">Cloudflare</td>
+          <td class="status-ok">Active</td>
+          <td>Fish Music Inc (40+ years)</td>
+          <td class="status-unknown">Unverified</td>
+        </tr>
+        <tr>
+          <td><strong>noizy.ai</strong></td>
+          <td class="status-ok">Cloudflare</td>
+          <td class="status-ok">Active</td>
+          <td>AI Projects</td>
+          <td class="status-unknown">Unverified</td>
+        </tr>
+        <tr>
+          <td><strong>noizyvox.com</strong></td>
+          <td class="status-ok">Cloudflare</td>
+          <td class="status-ok">Active</td>
+          <td>NoizyVox Platform</td>
+          <td class="status-unknown">Unverified</td>
+        </tr>
+        <tr>
+          <td><strong>noizylab.com</strong></td>
+          <td class="status-fail">GoDaddy</td>
+          <td class="status-warn">Locked</td>
+          <td>CPU Repair Service</td>
+          <td class="status-fail">Not Configured</td>
+        </tr>
+        <tr>
+          <td><strong>noizyfish.com</strong></td>
+          <td class="status-fail">GoDaddy</td>
+          <td class="status-warn">Locked</td>
+          <td>Creative / Business</td>
+          <td class="status-fail">Not Configured</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box">
+      <strong>noizylab.io</strong> is available for registration if you want it for the GitHub project (NOIZYLAB-io repo).
+    </div>
+  </div>
+</div>
+
+<!-- EMAIL ROUTING -->
+<div class="section">
+  <div class="section-header" onclick="toggle(this)">
+    <h2>Email Configuration (Cloudflare Email Routing)</h2>
+    <span class="badge badge-orange">NEEDS VERIFICATION</span>
+  </div>
+  <div class="section-body">
+    <div class="info-box">
+      All email currently routes through <strong>Cloudflare Email Routing</strong> and forwards to <code>rsplowman@icloud.com</code>. This is receive-only. To send email AS your domain (e.g., rob@noizylab.ca), you'll need Google Workspace or another outbound provider.
+    </div>
+
+    <h3 style="margin: 20px 0 12px; font-size: 1em;">Active Email Addresses</h3>
+    <table>
+      <thead>
+        <tr><th>Address</th><th>Domain</th><th>Forwards To</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>rsp@noizylab.ca</td><td>noizylab.ca</td><td>rsplowman@icloud.com</td><td class="email-active">Active</td></tr>
+        <tr><td>help@noizylab.ca</td><td>noizylab.ca</td><td>rsplowman@icloud.com</td><td class="email-active">Active</td></tr>
+        <tr><td>rob@noizylab.ca</td><td>noizylab.ca</td><td>rsplowman@icloud.com</td><td class="email-active">Routed</td></tr>
+        <tr><td>repairs@noizylab.ca</td><td>noizylab.ca</td><td>rsplowman@icloud.com</td><td class="email-active">Routed</td></tr>
+        <tr><td>support@noizylab.ca</td><td>noizylab.ca</td><td>rsplowman@icloud.com</td><td class="email-active">Routed</td></tr>
+        <tr><td>rsp@fishmusicinc.com</td><td>fishmusicinc.com</td><td>rsplowman@icloud.com</td><td class="email-active">Active</td></tr>
+        <tr><td>rob@fishmusicinc.com</td><td>fishmusicinc.com</td><td>rsplowman@icloud.com</td><td class="email-active">Routed</td></tr>
+        <tr><td>info@fishmusicinc.com</td><td>fishmusicinc.com</td><td>rsplowman@icloud.com</td><td class="email-active">Routed</td></tr>
+        <tr><td>rsp@noizyfish.com</td><td>noizyfish.com</td><td>rsplowman@icloud.com</td><td class="email-active">Active</td></tr>
+        <tr><td>gofish@fishmusicinc.com</td><td>fishmusicinc.com</td><td>rsplowman@icloud.com</td><td class="email-pending">Pending</td></tr>
+        <tr><td>rp@fishmusicinc.com</td><td>fishmusicinc.com</td><td>rsplowman@icloud.com</td><td class="email-pending">Pending</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box warn">
+      <strong>GoDaddy Account #4</strong> still has an M365 tenant for fishmusicinc.com. This needs to be cancelled or migrated before full Cloudflare email routing will work cleanly.
+    </div>
+  </div>
+</div>
+
+<!-- GOOGLE BUSINESS PROFILE -->
+<div class="section">
+  <div class="section-header" onclick="toggle(this)">
+    <h2>Google Business Profile Setup</h2>
+    <span class="badge badge-red">NOT CREATED</span>
+  </div>
+  <div class="section-body">
+    <div class="info-box warn">
+      <strong>No Google Business Profile exists for NOIZYLAB.</strong> A GBP is essential for showing up in Google Maps, local search results, and building credibility. This is your highest priority.
+    </div>
+
+    <h3 style="margin: 20px 0 12px; font-size: 1em;">Setup Steps</h3>
+    <div class="steps">
+      <div class="step">
+        <strong>Go to business.google.com</strong>
+        <div class="detail">Sign in with the Google account you want to own the business profile. If you don't have one yet, create a Google account first (ideally rob@noizylab.ca via Google Workspace).</div>
+      </div>
+      <div class="step">
+        <strong>Enter Business Name: "NOIZYLAB"</strong>
+        <div class="detail">If prompted, confirm this is a new business. Google may show similar names — make sure you're creating new, not claiming someone else's.</div>
+      </div>
+      <div class="step">
+        <strong>Select Business Category</strong>
+        <div class="detail">Primary: "Computer Repair Service" or "Electronics Repair Shop". You can add secondary categories like "Sound Design Service", "Music Production Service" depending on what NOIZYLAB offers.</div>
+      </div>
+      <div class="step">
+        <strong>Add Location or Service Area</strong>
+        <div class="detail">If you have a physical location, enter the address. If you serve customers remotely or at their location, choose "Service area business" and define your service region.</div>
+      </div>
+      <div class="step">
+        <strong>Add Contact Info</strong>
+        <div class="detail">Website: <code>noizylab.ca</code> (or .com once transferred). Phone number. Email: <code>help@noizylab.ca</code></div>
+      </div>
+      <div class="step">
+        <strong>Verify Your Business</strong>
+        <div class="detail">Google typically offers: postcard to your address (5-14 days), phone verification, or email verification. Video verification may also be available. Complete whichever is offered.</div>
+      </div>
+      <div class="step">
+        <strong>Optimize Profile</strong>
+        <div class="detail">Add business hours, photos, services list, business description (750 chars max), and opening date. Enable messaging if desired. Add products/services with pricing.</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Pro Tip:</strong> Consider also creating a Google Business Profile for <strong>Fish Music Inc</strong> (fishmusicinc.com) if it's a separate business entity with its own customers.
+    </div>
+  </div>
+</div>
+
+<!-- GOOGLE WORKSPACE -->
+<div class="section">
+  <div class="section-header" onclick="toggle(this)">
+    <h2>Google Workspace (Professional Email)</h2>
+    <span class="badge badge-accent">RECOMMENDED</span>
+  </div>
+  <div class="section-body">
+    <div class="info-box">
+      <strong>Current setup:</strong> Cloudflare Email Routing forwards incoming mail to iCloud. This means you can RECEIVE email at rob@noizylab.ca, but you CANNOT SEND email as rob@noizylab.ca. Google Workspace solves this and gives you Gmail, Calendar, Drive, Meet, and more under your own domain.
+    </div>
+
+    <h3 style="margin: 20px 0 12px; font-size: 1em;">Recommended Setup</h3>
+    <div class="steps">
+      <div class="step">
+        <strong>Sign up at workspace.google.com</strong>
+        <div class="detail">Business Starter ($7/user/month) is sufficient for most needs. Start with noizylab.ca as the primary domain. You get 30GB storage, custom email, and all Google apps.</div>
+      </div>
+      <div class="step">
+        <strong>Verify domain ownership</strong>
+        <div class="detail">Add a TXT record to noizylab.ca DNS on Cloudflare. Google will provide the exact record. Verification is usually instant since your DNS is on Cloudflare.</div>
+      </div>
+      <div class="step">
+        <strong>Update MX records on Cloudflare</strong>
+        <div class="detail">
+          Replace Cloudflare Email Routing MX records with Google's single MX record:<br><br>
+          <code>MX smtp.google.com (priority 1)</code><br><br>
+          This will disable Cloudflare Email Routing for that domain. That's expected — Google Workspace handles everything now.
+        </div>
+      </div>
+      <div class="step">
+        <strong>Set up SPF, DKIM, and DMARC</strong>
+        <div class="detail">
+          SPF: <code>v=spf1 include:_spf.google.com ~all</code><br>
+          DKIM: Generate in Google Admin Console > Apps > Gmail > Authenticate email<br>
+          DMARC: <code>v=DMARC1; p=quarantine; rua=mailto:rob@noizylab.ca</code>
+        </div>
+      </div>
+      <div class="step">
+        <strong>Add alias domains (FREE)</strong>
+        <div class="detail">Add fishmusicinc.com, noizy.ai, noizyvox.com as alias domains. This lets you send/receive as rob@fishmusicinc.com etc. at no extra cost. Up to 20 alias domains included.</div>
+      </div>
+      <div class="step">
+        <strong>Create email aliases</strong>
+        <div class="detail">Set up group aliases: help@, support@, repairs@, info@ — these are free and don't count as users. They forward to your main inbox.</div>
+      </div>
+    </div>
+
+    <div class="info-box warn">
+      <strong>Important:</strong> Kill the M365 tenant on GoDaddy Account #4 (fishmusicinc.com) BEFORE setting up Google Workspace to avoid MX record conflicts.
+    </div>
+  </div>
+</div>
+
+<!-- GODADDY ESCAPE -->
+<div class="section">
+  <div class="section-header" onclick="toggle(this)">
+    <h2>GoDaddy Domain Transfers</h2>
+    <span class="badge badge-red">2 DOMAINS LOCKED</span>
+  </div>
+  <div class="section-body">
+    <div class="info-box warn">
+      <strong>noizylab.com</strong> and <strong>noizyfish.com</strong> are still locked at GoDaddy. Your "godaddy-escape-tracker" database shows the migration is planned but the checklist is empty — these transfers haven't started yet.
+    </div>
+
+    <h3 style="margin: 20px 0 12px; font-size: 1em;">Transfer Steps (per domain)</h3>
+    <div class="steps">
+      <div class="step">
+        <strong>Unlock the domain at GoDaddy</strong>
+        <div class="detail">GoDaddy > My Products > Domain > Domain Settings > Domain lock: OFF</div>
+      </div>
+      <div class="step">
+        <strong>Get the authorization/EPP code</strong>
+        <div class="detail">GoDaddy > Domain Settings > Transfer > Get authorization code. Save this code — you'll need it for Cloudflare.</div>
+      </div>
+      <div class="step">
+        <strong>Disable WHOIS privacy (temporarily)</strong>
+        <div class="detail">Some transfers require WHOIS privacy to be off. You can re-enable it after transfer. Cloudflare includes free WHOIS privacy.</div>
+      </div>
+      <div class="step">
+        <strong>Initiate transfer at Cloudflare</strong>
+        <div class="detail">Cloudflare Dashboard > Domain Registration > Transfer > Enter domain and auth code. Pay the transfer fee (usually just the renewal cost at Cloudflare's wholesale price).</div>
+      </div>
+      <div class="step">
+        <strong>Confirm transfer email</strong>
+        <div class="detail">GoDaddy will send a confirmation email. Approve ASAP to speed up the transfer. If you don't act, transfer completes automatically after 5 days.</div>
+      </div>
+      <div class="step">
+        <strong>Verify DNS after transfer</strong>
+        <div class="detail">Once transferred, set up MX records, SPF, DKIM, and DMARC for the new domain on Cloudflare.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DNS / EMAIL AUTH -->
+<div class="section">
+  <div class="section-header" onclick="toggle(this)">
+    <h2>DNS & Email Authentication Checklist</h2>
+    <span class="badge badge-red">NEEDS ACTION</span>
+  </div>
+  <div class="section-body">
+    <div class="info-box warn">
+      <strong>All domains show MX/SPF/DKIM as "unknown" in your email-command-center database.</strong> Since July 2025, Cloudflare requires emails to pass SPF or DKIM authentication to forward them. Without verification, emails may be getting silently dropped.
+    </div>
+
+    <h3 style="margin: 20px 0 12px; font-size: 1em;">Required DNS Records per Domain (Cloudflare Email Routing)</h3>
+    <table>
+      <thead>
+        <tr><th>Record Type</th><th>Name</th><th>Value</th><th>Priority</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>MX</td><td>@</td><td>amir.mx.cloudflare.net</td><td>13</td></tr>
+        <tr><td>MX</td><td>@</td><td>linda.mx.cloudflare.net</td><td>86</td></tr>
+        <tr><td>MX</td><td>@</td><td>isaac.mx.cloudflare.net</td><td>24</td></tr>
+        <tr><td>TXT</td><td>@</td><td><code>v=spf1 include:_spf.mx.cloudflare.net ~all</code></td><td>-</td></tr>
+        <tr><td>TXT</td><td>_dmarc</td><td><code>v=DMARC1; p=quarantine; rua=mailto:rob@noizylab.ca</code></td><td>-</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box">
+      <strong>Verify in Cloudflare Dashboard:</strong> Go to each domain > Email > Email Routing. Cloudflare will show you if MX records are correctly configured and flag any issues.
+    </div>
+  </div>
+</div>
+
+<!-- MASTER CHECKLIST -->
+<div class="section">
+  <div class="section-header" onclick="toggle(this)">
+    <h2>Master Action Checklist</h2>
+    <span class="badge badge-accent">PRIORITY ORDER</span>
+  </div>
+  <div class="section-body">
+    <ul class="checklist" id="masterChecklist">
+      <li>
+        <div class="check-icon" onclick="this.classList.toggle('done')"></div>
+        <div class="check-content">
+          <strong>Verify email authentication for all Cloudflare domains <span class="priority p-high">HIGH</span></strong>
+          <div class="detail">Check MX, SPF, DKIM records in Cloudflare Dashboard for noizylab.ca, fishmusicinc.com, noizy.ai, noizyvox.com. Fix any missing records.</div>
+        </div>
+      </li>
+      <li>
+        <div class="check-icon" onclick="this.classList.toggle('done')"></div>
+        <div class="check-content">
+          <strong>Connect Claude in Chrome extension <span class="priority p-high">HIGH</span></strong>
+          <div class="detail">Install from Chrome Web Store, then connect. This lets me help you directly with Google Business setup, Gmail, and account configuration.</div>
+        </div>
+      </li>
+      <li>
+        <div class="check-icon" onclick="this.classList.toggle('done')"></div>
+        <div class="check-content">
+          <strong>Create Google Business Profile for NOIZYLAB <span class="priority p-high">HIGH</span></strong>
+          <div class="detail">Go to business.google.com. Create profile with business name, category, location/service area, contact info. Verify ownership.</div>
+        </div>
+      </li>
+      <li>
+        <div class="check-icon" onclick="this.classList.toggle('done')"></div>
+        <div class="check-content">
+          <strong>Sign up for Google Workspace <span class="priority p-high">HIGH</span></strong>
+          <div class="detail">Business Starter plan ($7/mo). Primary domain: noizylab.ca. This gives you professional send/receive email + Google apps suite.</div>
+        </div>
+      </li>
+      <li>
+        <div class="check-icon" onclick="this.classList.toggle('done')"></div>
+        <div class="check-content">
+          <strong>Kill M365 tenant on GoDaddy Account #4 <span class="priority p-med">MEDIUM</span></strong>
+          <div class="detail">Cancel the Microsoft 365 subscription for fishmusicinc.com before migrating email to Google Workspace. Export any data first.</div>
+        </div>
+      </li>
+      <li>
+        <div class="check-icon" onclick="this.classList.toggle('done')"></div>
+        <div class="check-content">
+          <strong>Transfer noizylab.com from GoDaddy to Cloudflare <span class="priority p-med">MEDIUM</span></strong>
+          <div class="detail">Unlock domain, get auth code, initiate transfer at Cloudflare. Estimated 5-7 days.</div>
+        </div>
+      </li>
+      <li>
+        <div class="check-icon" onclick="this.classList.toggle('done')"></div>
+        <div class="check-content">
+          <strong>Transfer noizyfish.com from GoDaddy to Cloudflare <span class="priority p-med">MEDIUM</span></strong>
+          <div class="detail">Same process as noizylab.com. Can run both transfers in parallel.</div>
+        </div>
+      </li>
+      <li>
+        <div class="check-icon" onclick="this.classList.toggle('done')"></div>
+        <div class="check-content">
+          <strong>Add alias domains to Google Workspace <span class="priority p-med">MEDIUM</span></strong>
+          <div class="detail">Add fishmusicinc.com, noizy.ai, noizyvox.com (and later noizylab.com once transferred) as alias domains. Free, unlimited email aliases.</div>
+        </div>
+      </li>
+      <li>
+        <div class="check-icon" onclick="this.classList.toggle('done')"></div>
+        <div class="check-content">
+          <strong>Set up DKIM for all domains in Google Admin <span class="priority p-med">MEDIUM</span></strong>
+          <div class="detail">Google Admin Console > Apps > Gmail > Authenticate email. Generate DKIM key for each domain. Add CNAME records to Cloudflare DNS.</div>
+        </div>
+      </li>
+      <li>
+        <div class="check-icon" onclick="this.classList.toggle('done')"></div>
+        <div class="check-content">
+          <strong>Register noizylab.io (optional) <span class="priority p-low">LOW</span></strong>
+          <div class="detail">Currently available. Your GitHub repo is named NOIZYLAB-io, suggesting this was the planned domain. Consider registering to protect the brand.</div>
+        </div>
+      </li>
+      <li>
+        <div class="check-icon" onclick="this.classList.toggle('done')"></div>
+        <div class="check-content">
+          <strong>Optimize Google Business Profile <span class="priority p-low">LOW</span></strong>
+          <div class="detail">After initial setup: add photos, complete services list, write business description, set hours, enable messaging, request reviews from customers.</div>
+        </div>
+      </li>
+      <li>
+        <div class="check-icon" onclick="this.classList.toggle('done')"></div>
+        <div class="check-content">
+          <strong>Consider Google Business Profile for Fish Music Inc <span class="priority p-low">LOW</span></strong>
+          <div class="detail">If Fish Music Inc is a separate customer-facing business, it should have its own Google Business Profile.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- CLOUDFLARE INFRASTRUCTURE -->
+<div class="section">
+  <div class="section-header" onclick="toggle(this)">
+    <h2>Existing Cloudflare Infrastructure (Reference)</h2>
+    <span class="badge badge-green">OPERATIONAL</span>
+  </div>
+  <div class="section-body">
+    <table>
+      <thead>
+        <tr><th>Resource</th><th>Name</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Worker</td><td>deploy</td><td>Created Dec 2, 2025</td></tr>
+        <tr><td>D1 Database</td><td>email-command-center</td><td>Email routing, accounts, templates, analytics</td></tr>
+        <tr><td>D1 Database</td><td>godaddy-escape-tracker</td><td>Domain migration tracking from GoDaddy</td></tr>
+        <tr><td>D1 Database</td><td>noizylab-repairs</td><td>Repair service data</td></tr>
+        <tr><td>D1 Database</td><td>agent-memory</td><td>AI agent state (2.4MB)</td></tr>
+        <tr><td>D1 Database</td><td>gabriel_db</td><td>GABRIEL AI project</td></tr>
+        <tr><td>KV Namespace</td><td>noizylab-customers</td><td>Customer data</td></tr>
+        <tr><td>KV Namespace</td><td>noizylab-edge-config</td><td>Edge configuration</td></tr>
+        <tr><td>KV Namespace</td><td>noizylab-sessions</td><td>Session management</td></tr>
+        <tr><td>KV Namespace</td><td>noizylab-submissions</td><td>Form submissions</td></tr>
+        <tr><td>KV Namespace</td><td>noizyvox-signups</td><td>NoizyVox user signups</td></tr>
+        <tr><td>KV Namespace</td><td>noizyvox-royalties</td><td>Royalty tracking</td></tr>
+        <tr><td>KV Namespace</td><td>noizyvox-guild</td><td>Guild system</td></tr>
+        <tr><td>KV Namespace</td><td>gorunfree-execution-state</td><td>GORUNFREE project</td></tr>
+        <tr><td>KV Namespace</td><td>GABRIEL_VOICE</td><td>AI voice system</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box success">
+      <strong>You have substantial infrastructure already running.</strong> 11 D1 databases and 53 KV namespaces across multiple projects: NOIZYLAB, NoizyVox, Fish Music, GABRIEL, GORUNFREE, and more. The foundation is solid.
+    </div>
+  </div>
+</div>
+
+<div style="text-align: center; padding: 30px 0; color: var(--text-dim); font-size: 0.8em;">
+  Generated by Claude for NOIZYLAB | February 5, 2026<br>
+  Click any checkbox to track your progress. Refresh resets checks.
+</div>
+
+<script>
+function toggle(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('collapsed');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>De-hum</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="De-hum" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer020" class="Basic-Text-Frame">
+			<p id="_idParaDest-23" class="heading-1"><a id="_idTextAnchor022"></a>De-hum Plug-in</p>
+			<p class="Normal">De-hum is designed to remove low frequency buzz or hum from your audio file. Hum is often caused by lack of proper electrical ground. This tool includes a series of notch filters that can be set to remove both the base frequency of the hum (usually 50 or 60 Hz) as well as any harmonics that may have resulted. The De-hum plug-in is effective for removing hum that has up to seven harmonics above its primary frequency. Some very high frequency buzz can also be removed with the De-click plug-in.</p>
+			<p class="Inline-Art"><img src="image/image_YLQA2G6CA2AAQCQVKLDSFYMKZO4DMIMS" alt="" /></p>
+			<p id="_idParaDest-24" class="heading-2"><a id="_idTextAnchor023"></a>Base Frequency</p>
+			<p class="Normal">Sets the base frequency of the hum to be removed. The two most common base frequencies that cause hum are 50 Hz (Europe) and 60 Hz (U.S.). You can manually specify a base notch by choosing the Free option. </p>
+			<p id="_idParaDest-25" class="heading-2"><a id="_idTextAnchor024"></a>Manual/Adaptive</p>
+			<p class="Normal">Adaptive mode will allow the De-hum plug-in to adjust its noise profile based on changes over time in the incoming audio. In this mode, the De-hum plug-in will analyze incoming audio for the specified learning time to determine what is hum and what is desired audio material. Adaptive mode can work better with sources that are constantly evolving.</p>
+			<p class="Normal">In the Manual mode, the base hum frequency does not change over time.</p>
+			<p id="_idParaDest-26" class="heading-2"><a id="_idTextAnchor025"></a>Learn</p>
+			<p class="Normal">The De-hum plug-in can also automatically locate the root fundamental of any hum in your audio. Simply make a selection containing the trouble frequencies, and click the Learn button. This will automatically set the Base Frequency to the result of the Learn calculation. The De-hum plug-in can analyze any audio with prominent hum, if you don’t have a passage of pure hum. This is, however, less reliable than learning from only hum.</p>
+			<p class="Normal">The two most common base frequencies that cause hum are 50 Hz (Europe) and 60 Hz (U.S.). Under the Frequency Type field in the De-hum plug-in, choose the appropriate frequency and then hit Preview to hear if this has an effect.</p>
+			<p class="Normal">In some cases, you may need to choose the Free Frequency Type (e.g., when a recording made from analog tape is not precisely at its original recorded speed). Selecting this option unlocks the Base Frequency control and allows you to manually find the Hum&apos;s root note. With Preview engaged, move the slider up and down until you find the point where the hum lessens or disappears.</p>
+			<p id="_idParaDest-27" class="heading-2"><a id="_idTextAnchor026"></a>Filter Q</p>
+			<p class="Normal">Controls the bandwidth of filters for base frequency and harmonics.</p>
+			<p id="_idParaDest-28" class="heading-2"><a id="_idTextAnchor027"></a>Linear Phase filters</p>
+			<p class="Normal">Enables linear-phase FIR filters with a high FFT size. De-hum’s linear phase filters have a very accurate frequency response at the expense of latency and filter pre-ringing. When this is disabled, De-hum will use minimum-phase IIR filters, which are only susceptible to post-ringing (which is usually less noticeable than the pre-ringing introduced by FIR filters).</p>
+			<p id="_idParaDest-29" class="heading-2"><a id="_idTextAnchor028"></a>High/Low-pass filters</p>
+			<p class="Normal">These filters allow high/low frequencies to pass while attenuating low/high frequencies respectively.</p>
+			<ul>
+				<li class="Unordered-List"><span class="Bold">Frequency (Hz): </span>sets the cutoff frequency for the filter</li>
+				<li class="Unordered-List"><span class="Bold">Q: </span>sets the bandwidth of the high-pass filter</li>
+			</ul>
+			<p id="_idParaDest-30" class="heading-2"><a id="_idTextAnchor029"></a>Number of harmonics</p>
+			<p class="Normal">Because higher frequency harmonics often result from hum, the De-hum plug-in has control for attenuating these overtones. Using the Number of Harmonics control, you can select up to 7 harmonics above the primary hum frequency. Again, the spectrogram display in many cases makes it easy to identify the number of hum harmonics in your project. After selecting number of harmonics, use the Harmonic Slope control to set how aggressively the higher harmonics are being cut. The Filter Q control adjusts the width of the hum filters.</p>
+			<p class="Inline-Art-with-Caption"><img src="image/image_GWLJWYSSVROSZCC7LMPN3EL2SXCQUGRW" alt="" /></p>
+			<p class="Normal"><span class="Body-Text-Italic">60 Hz hum with harmonics</span></p>
+			<p id="_idParaDest-31" class="heading-2"><a id="_idTextAnchor030"></a>Link harmonics</p>
+			<p class="Normal">Links the gain of all of the filters, none of the filters, or odd/even filters.</p>
+			<p id="_idParaDest-32" class="heading-2"><a id="_idTextAnchor031"></a>Slope</p>
+			<p class="Normal">When harmonics are linked, this controls the slope of the gain/suppression. As the harmonic order increases, the gain/suppression level resolves closer to 0 dB. When linking type is odd/even, an odd/even slope separate control appears that allows you to control the amount of gain/suppression for both odd and even harmonics.</p>
+			<p id="_idParaDest-33" class="heading-2"><a id="_idTextAnchor032"></a>Harmonic gains (dB)</p>
+			<p class="Normal">Gives numerical readout of gain settings in dB. You can also manually type in your gain settings for any of the harmonics.</p>
+			<p id="_idParaDest-34" class="heading-2"><a id="_idTextAnchor033"></a>Output hum only</p>
+			<p class="Normal">By selecting the Output hum only checkbox, you can also hear the hum that is being removed. This is useful for fine-tuning your settings. Play through a section of your clip where the hum is mixed with other material, select this mode, and hit Preview.</p>
+			<p class="Normal">Now you can adjust parameters like the Filter Q (width) control and the Harmonic Slope control to maximize hum removal while minimizing the effect on the program material.</p>
+		</div>
+	</body>
+</html>

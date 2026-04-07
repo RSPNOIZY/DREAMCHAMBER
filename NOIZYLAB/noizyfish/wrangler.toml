@@ -1,0 +1,39 @@
+# ============================================================
+# NOISY FISH — Cloudflare Worker
+# Living Legacy Vault + Creative Services Hub
+# ============================================================
+
+name = "noizyfish"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[build]
+command = "npm run build"
+
+# Production route
+[env.production]
+routes = [
+  { pattern = "fish.noisy.io/*", custom_domain = true }
+]
+
+# D1 Database — NOISY FISH
+[[d1_databases]]
+binding = "DB"
+database_name = "noizyfish"
+database_id = "PLACEHOLDER_NOIZYFISH_DB_ID"
+
+# Service binding to noisyproof for provenance
+[[services]]
+binding = "PROOF"
+service = "noisyproof"
+
+[vars]
+NOISY_PROOF_API_URL = "https://proof.noisy.io"
+NOISY_BOX_API_URL = "https://box.noisy.io"
+PLATFORM_NAME = "NOISY FISH"
+PLATFORM_VERSION = "0.1.0"
+
+# Sacred invariants — coded, not configured
+# ROYALTY_FLOOR = 0.75 (hardcoded in source)
+# GORUNFREE_TITHE = 0.01 (hardcoded in source)
+# ATTRIBUTION_LOCKED = true (hardcoded in source)

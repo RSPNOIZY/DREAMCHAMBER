@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY Harmony Campaign — AI + Human, Always Growing, Forever Synchronic</title>
+<style>
+  :root {
+    --gold: #f0b429;
+    --fire: #e85d04;
+    --electric: #0a9ebd;
+    --dream: #c94070;
+    --deep: #7c4dff;
+    --green: #22c55e;
+    --teal: #14b8a6;
+    --violet: #8b5cf6;
+    --rose: #f43f5e;
+    --black: #030308;
+    --glass: rgba(255,255,255,0.04);
+    --line: rgba(255,255,255,0.07);
+    --text: #e8e8f0;
+    --muted: rgba(232,232,240,0.55);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--black); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; overflow-x:hidden; line-height:1.65; }
+
+  #starfield { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+  #waveCanvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; opacity:0.18; }
+  .atm {
+    position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -5%, rgba(20,184,166,0.09) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 5% 50%, rgba(139,92,246,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 40% at 95% 40%, rgba(244,63,94,0.06) 0%, transparent 50%);
+  }
+
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(3,3,8,0.9); backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(20,184,166,0.15);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 32px; height:56px;
+  }
+  .nav-brand { font-weight:900; font-size:1.05rem; letter-spacing:0.12em; color:var(--teal); }
+  .nav-badge {
+    background:linear-gradient(135deg,var(--teal),var(--electric));
+    color:#000; font-size:0.72rem; font-weight:800; letter-spacing:0.1em;
+    padding:4px 14px; border-radius:20px;
+  }
+  .nav-links { display:flex; gap:18px; list-style:none; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:0.78rem; letter-spacing:0.05em; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--teal); }
+
+  section { position:relative; z-index:1; padding:100px 48px 80px; max-width:1260px; margin:0 auto; }
+
+  .ey { font-size:0.72rem; letter-spacing:0.3em; text-transform:uppercase; font-weight:700; margin-bottom:12px; }
+  .st { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:900; line-height:1.1; letter-spacing:-0.01em; margin-bottom:16px; }
+  .ss { color:var(--muted); max-width:680px; font-size:1.05rem; margin-bottom:60px; }
+
+  .reveal { opacity:0; transform:translateY(26px); transition:opacity 0.65s, transform 0.65s; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}.d5{transition-delay:.40s;}
+
+  .gb {
+    width:100%; height:1px; position:relative; z-index:1;
+    background:linear-gradient(90deg,transparent,rgba(20,184,166,0.5) 30%,rgba(139,92,246,0.5) 50%,rgba(20,184,166,0.5) 70%,transparent);
+  }
+
+  /* ─── HERO ─── */
+  .hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding-top:80px; max-width:100%; }
+
+  .hero-pulse {
+    width:120px; height:120px; border-radius:50%; margin:0 auto 32px;
+    display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(circle,rgba(20,184,166,0.3),rgba(20,184,166,0));
+    position:relative; animation:pulseRing 3s ease-in-out infinite;
+  }
+  .hero-pulse::before, .hero-pulse::after {
+    content:''; position:absolute; border-radius:50%; border:1px solid;
+    animation:expandRing 3s ease-in-out infinite;
+  }
+  .hero-pulse::before { width:100%; height:100%; border-color:rgba(20,184,166,0.4); }
+  .hero-pulse::after { width:140%; height:140%; border-color:rgba(20,184,166,0.2); animation-delay:0.5s; }
+  .hero-pulse .hp-inner {
+    width:60px; height:60px; border-radius:50%;
+    background:linear-gradient(135deg,var(--teal),var(--electric));
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.6rem; font-weight:900; color:#000; z-index:2;
+  }
+  @keyframes pulseRing { 0%,100%{transform:scale(1);} 50%{transform:scale(1.08);} }
+  @keyframes expandRing { 0%{transform:scale(0.8);opacity:0.8;} 100%{transform:scale(1.6);opacity:0;} }
+
+  .hero-title { font-size:clamp(2.2rem,6vw,5.2rem); font-weight:900; line-height:1.0; letter-spacing:-0.02em; margin-bottom:20px; }
+  .ht1 { color:var(--teal); }
+  .ht2 { background:linear-gradient(135deg,var(--teal),var(--violet),var(--electric)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .ht3 { color:var(--text); opacity:0.7; font-size:0.45em; font-weight:500; letter-spacing:0.1em; margin-top:12px; display:block; }
+  .hero-sub { font-size:clamp(.95rem,1.8vw,1.2rem); color:var(--muted); max-width:680px; margin:0 auto 48px; }
+  .hero-sub strong { color:var(--text); }
+
+  /* FREQUENCY CONCEPT */
+  .freq-concept {
+    display:flex; align-items:center; gap:0; margin-bottom:40px;
+    background:var(--glass); border:1px solid var(--line); border-radius:20px; overflow:hidden;
+  }
+  .fc-item { flex:1; padding:28px 20px; text-align:center; position:relative; }
+  .fc-item + .fc-item::before { content:'⟷'; position:absolute; left:-16px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:1.2rem; }
+  .fc-wave { font-size:1.8rem; margin-bottom:10px; display:block; }
+  .fc-label { font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:800; margin-bottom:6px; }
+  .fc-desc { font-size:0.82rem; color:var(--muted); }
+  .fc-item:nth-child(1) .fc-label { color:var(--dream); }
+  .fc-item:nth-child(2) .fc-label { color:var(--teal); }
+  .fc-item:nth-child(3) .fc-label { color:var(--violet); }
+  .fc-item:nth-child(4) .fc-label { color:var(--green); }
+  .fc-item:nth-child(5) .fc-label { color:var(--gold); }
+
+  /* ─── HARMONY LAWS ─── */
+  .laws-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; margin-bottom:60px; }
+  .law-card { border-radius:18px; padding:32px; position:relative; overflow:hidden; border:1px solid; transition:transform 0.2s; }
+  .law-card:hover { transform:translateY(-2px); }
+  .lc-1{background:linear-gradient(135deg,rgba(20,184,166,.08),rgba(10,158,189,.05));border-color:rgba(20,184,166,.25);}
+  .lc-2{background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(124,77,255,.05));border-color:rgba(139,92,246,.25);}
+  .lc-3{background:linear-gradient(135deg,rgba(244,63,94,.08),rgba(201,64,112,.05));border-color:rgba(244,63,94,.25);}
+  .lc-4{background:linear-gradient(135deg,rgba(240,180,41,.08),rgba(232,93,4,.05));border-color:rgba(240,180,41,.25);}
+  .lc-5{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(20,184,166,.05));border-color:rgba(34,197,94,.25);}
+  .lc-6{background:linear-gradient(135deg,rgba(10,158,189,.08),rgba(139,92,246,.05));border-color:rgba(10,158,189,.25);}
+  .law-num { font-size:2.4rem; font-weight:900; line-height:1; margin-bottom:12px; }
+  .lc-1 .law-num{color:var(--teal);} .lc-2 .law-num{color:var(--violet);} .lc-3 .law-num{color:var(--rose);}
+  .lc-4 .law-num{color:var(--gold);} .lc-5 .law-num{color:var(--green);} .lc-6 .law-num{color:var(--electric);}
+  .law-title { font-size:1rem; font-weight:800; margin-bottom:8px; }
+  .law-body { font-size:0.86rem; color:var(--muted); line-height:1.7; }
+  .law-body strong { color:var(--text); }
+
+  /* ─── CAMPAIGN CONCEPTS ─── */
+  .campaigns-stack { display:flex; flex-direction:column; gap:32px; margin-bottom:60px; }
+  .campaign-row {
+    display:grid; grid-template-columns:240px 1fr; gap:32px;
+    background:var(--glass); border:1px solid var(--line); border-radius:20px;
+    overflow:hidden; transition:border-color 0.2s;
+  }
+  .campaign-row:hover { border-color:rgba(20,184,166,.2); }
+  @media(max-width:768px){.campaign-row{grid-template-columns:1fr;}}
+  .cr-visual {
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:32px 20px; text-align:center;
+  }
+  .cr-icon { font-size:3rem; margin-bottom:12px; display:block; }
+  .cr-label { font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:800; }
+  .cr-content { padding:32px; }
+  .cr-title { font-size:1.2rem; font-weight:800; margin-bottom:10px; }
+  .cr-tagline { font-size:0.88rem; font-style:italic; margin-bottom:14px; padding:8px 14px; border-radius:8px; display:inline-block; }
+  .cr-body { font-size:0.88rem; color:var(--muted); line-height:1.75; }
+  .cr-body strong { color:var(--text); }
+  .cr-mechanics { margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; }
+  .cr-mech { font-size:0.72rem; font-weight:700; letter-spacing:0.08em; padding:4px 12px; border-radius:20px; border:1px solid; }
+
+  /* Campaign color themes */
+  .camp-teal .cr-visual { background:rgba(20,184,166,.08); }
+  .camp-teal .cr-label { color:var(--teal); }
+  .camp-teal .cr-title { color:var(--teal); }
+  .camp-teal .cr-tagline { background:rgba(20,184,166,.1); color:var(--teal); }
+  .camp-teal .cr-mech { color:var(--teal); border-color:rgba(20,184,166,.3); }
+
+  .camp-violet .cr-visual { background:rgba(139,92,246,.08); }
+  .camp-violet .cr-label { color:var(--violet); }
+  .camp-violet .cr-title { color:var(--violet); }
+  .camp-violet .cr-tagline { background:rgba(139,92,246,.1); color:var(--violet); }
+  .camp-violet .cr-mech { color:var(--violet); border-color:rgba(139,92,246,.3); }
+
+  .camp-rose .cr-visual { background:rgba(244,63,94,.08); }
+  .camp-rose .cr-label { color:var(--rose); }
+  .camp-rose .cr-title { color:var(--rose); }
+  .camp-rose .cr-tagline { background:rgba(244,63,94,.1); color:var(--rose); }
+  .camp-rose .cr-mech { color:var(--rose); border-color:rgba(244,63,94,.3); }
+
+  .camp-gold .cr-visual { background:rgba(240,180,41,.08); }
+  .camp-gold .cr-label { color:var(--gold); }
+  .camp-gold .cr-title { color:var(--gold); }
+  .camp-gold .cr-tagline { background:rgba(240,180,41,.1); color:var(--gold); }
+  .camp-gold .cr-mech { color:var(--gold); border-color:rgba(240,180,41,.3); }
+
+  .camp-green .cr-visual { background:rgba(34,197,94,.08); }
+  .camp-green .cr-label { color:var(--green); }
+  .camp-green .cr-title { color:var(--green); }
+  .camp-green .cr-tagline { background:rgba(34,197,94,.1); color:var(--green); }
+  .camp-green .cr-mech { color:var(--green); border-color:rgba(34,197,94,.3); }
+
+  .camp-electric .cr-visual { background:rgba(10,158,189,.08); }
+  .camp-electric .cr-label { color:var(--electric); }
+  .camp-electric .cr-title { color:var(--electric); }
+  .camp-electric .cr-tagline { background:rgba(10,158,189,.1); color:var(--electric); }
+  .camp-electric .cr-mech { color:var(--electric); border-color:rgba(10,158,189,.3); }
+
+  .camp-fire .cr-visual { background:rgba(232,93,4,.08); }
+  .camp-fire .cr-label { color:var(--fire); }
+  .camp-fire .cr-title { color:var(--fire); }
+  .camp-fire .cr-tagline { background:rgba(232,93,4,.1); color:var(--fire); }
+  .camp-fire .cr-mech { color:var(--fire); border-color:rgba(232,93,4,.3); }
+
+  /* ─── CHANNELS ─── */
+  .channels-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; margin-bottom:60px; }
+  .channel-card { background:var(--glass); border:1px solid var(--line); border-radius:16px; padding:26px; transition:transform 0.2s; }
+  .channel-card:hover { transform:translateY(-2px); }
+  .ch-platform { font-size:1rem; font-weight:900; margin-bottom:4px; }
+  .ch-audience { font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; font-weight:700; }
+  .ch-strategy { font-size:0.86rem; color:var(--muted); line-height:1.7; margin-bottom:12px; }
+  .ch-strategy strong { color:var(--text); }
+  .ch-format { font-size:0.78rem; font-weight:700; padding:4px 12px; border-radius:20px; display:inline-block; margin-top:4px; }
+
+  /* ─── SYNC PRINCIPLES ─── */
+  .sync-visual {
+    display:grid; grid-template-columns:1fr 100px 1fr; gap:0;
+    background:linear-gradient(135deg,rgba(20,184,166,.06),rgba(139,92,246,.06));
+    border:1px solid rgba(20,184,166,.2); border-radius:20px; overflow:hidden;
+    margin-bottom:60px;
+  }
+  @media(max-width:700px){.sync-visual{grid-template-columns:1fr;}}
+  .sv-human { padding:40px; }
+  .sv-ai { padding:40px; }
+  .sv-center {
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:linear-gradient(180deg,rgba(20,184,166,.1),rgba(139,92,246,.1));
+    border-left:1px solid rgba(20,184,166,.15); border-right:1px solid rgba(20,184,166,.15);
+    gap:20px; padding:20px 0;
+  }
+  .sv-title { font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:800; margin-bottom:20px; }
+  .sv-human .sv-title { color:var(--rose); }
+  .sv-ai .sv-title { color:var(--teal); }
+  .sv-item { display:flex; align-items:center; gap:12px; margin-bottom:12px; font-size:0.88rem; }
+  .sv-human .sv-item { justify-content:flex-end; }
+  .sv-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .sv-human .sv-dot { background:var(--rose); }
+  .sv-ai .sv-dot { background:var(--teal); }
+  .sv-sync-icon { font-size:1.4rem; }
+  .sv-sync-label { font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); text-align:center; }
+
+  /* ─── CHANNEL PHRASE BANK ─── */
+  .phrase-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-bottom:60px; }
+  .phrase-card { background:var(--glass); border:1px solid var(--line); border-radius:14px; padding:24px; }
+  .phrase-context { font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:10px; }
+  .phrase-text { font-size:1.05rem; font-weight:800; color:var(--text); line-height:1.4; margin-bottom:8px; }
+  .phrase-sub { font-size:0.8rem; color:var(--muted); }
+
+  /* ─── ALWAYS GROWING TIMELINE ─── */
+  .growth-wave { margin-bottom:60px; }
+  .gw-row { display:grid; grid-template-columns:120px 1fr; gap:20px; margin-bottom:2px; align-items:stretch; }
+  @media(max-width:600px){.gw-row{grid-template-columns:1fr;}}
+  .gw-phase { display:flex; align-items:center; justify-content:center; padding:20px; border-radius:14px 0 0 14px; text-align:center; }
+  .gw-content { padding:20px 28px; border-radius:0 14px 14px 0; }
+  .gw-title { font-size:0.9rem; font-weight:800; margin-bottom:6px; }
+  .gw-body { font-size:0.84rem; color:var(--muted); line-height:1.65; }
+  .gw-body strong { color:var(--text); }
+
+  .gw-1 .gw-phase { background:rgba(20,184,166,.12); } .gw-1 .gw-phase span{color:var(--teal);font-weight:900;font-size:0.78rem;letter-spacing:.1em;text-transform:uppercase;}
+  .gw-1 .gw-content { background:rgba(20,184,166,.05); border:1px solid rgba(20,184,166,.15); }
+  .gw-1 .gw-title { color:var(--teal); }
+  .gw-2 .gw-phase { background:rgba(139,92,246,.12); } .gw-2 .gw-phase span{color:var(--violet);font-weight:900;font-size:0.78rem;letter-spacing:.1em;text-transform:uppercase;}
+  .gw-2 .gw-content { background:rgba(139,92,246,.05); border:1px solid rgba(139,92,246,.15); }
+  .gw-2 .gw-title { color:var(--violet); }
+  .gw-3 .gw-phase { background:rgba(240,180,41,.12); } .gw-3 .gw-phase span{color:var(--gold);font-weight:900;font-size:0.78rem;letter-spacing:.1em;text-transform:uppercase;}
+  .gw-3 .gw-content { background:rgba(240,180,41,.05); border:1px solid rgba(240,180,41,.15); }
+  .gw-3 .gw-title { color:var(--gold); }
+  .gw-4 .gw-phase { background:rgba(34,197,94,.12); } .gw-4 .gw-phase span{color:var(--green);font-weight:900;font-size:0.78rem;letter-spacing:.1em;text-transform:uppercase;}
+  .gw-4 .gw-content { background:rgba(34,197,94,.05); border:1px solid rgba(34,197,94,.15); }
+  .gw-4 .gw-title { color:var(--green); }
+  .gw-5 .gw-phase { background:rgba(244,63,94,.12); } .gw-5 .gw-phase span{color:var(--rose);font-weight:900;font-size:0.78rem;letter-spacing:.1em;text-transform:uppercase;}
+  .gw-5 .gw-content { background:rgba(244,63,94,.05); border:1px solid rgba(244,63,94,.15); }
+  .gw-5 .gw-title { color:var(--rose); }
+
+  /* ─── CLOSE BLOCK ─── */
+  .close-block { background:linear-gradient(135deg,rgba(20,184,166,.08),rgba(139,92,246,.06)); border:1px solid rgba(20,184,166,.25); border-radius:20px; padding:60px; margin-bottom:60px; text-align:center; }
+  .cb-title { font-size:clamp(1.6rem,3.5vw,2.8rem); font-weight:900; line-height:1.15; margin-bottom:24px; }
+  .cb-title .cl1 { color:var(--teal); }
+  .cb-title .cl2 { background:linear-gradient(135deg,var(--violet),var(--teal)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .cb-body { color:var(--muted); font-size:1.05rem; line-height:1.85; max-width:740px; margin:0 auto 20px; }
+  .cb-body strong { color:var(--text); }
+
+  /* ─── LINK BAR ─── */
+  .link-bar { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:48px; padding-top:48px; border-top:1px solid var(--line); }
+  .link-btn { display:inline-flex; align-items:center; gap:8px; padding:11px 22px; border-radius:30px; font-size:0.82rem; font-weight:700; letter-spacing:0.08em; text-decoration:none; border:1px solid; transition:all 0.2s; }
+  .link-btn:hover { transform:translateY(-2px); }
+  .bl-teal{color:var(--teal);border-color:rgba(20,184,166,.4);}.bl-teal:hover{background:rgba(20,184,166,.1);}
+  .bl-violet{color:var(--violet);border-color:rgba(139,92,246,.4);}.bl-violet:hover{background:rgba(139,92,246,.1);}
+  .bl-gold{color:var(--gold);border-color:rgba(240,180,41,.4);}.bl-gold:hover{background:rgba(240,180,41,.1);}
+  .bl-green{color:var(--green);border-color:rgba(34,197,94,.4);}.bl-green:hover{background:rgba(34,197,94,.1);}
+  .bl-fire{color:var(--fire);border-color:rgba(232,93,4,.4);}.bl-fire:hover{background:rgba(232,93,4,.1);}
+  .bl-electric{color:var(--electric);border-color:rgba(10,158,189,.4);}.bl-electric:hover{background:rgba(10,158,189,.1);}
+  .bl-deep{color:var(--deep);border-color:rgba(124,77,255,.4);}.bl-deep:hover{background:rgba(124,77,255,.1);}
+
+  footer { position:relative; z-index:1; border-top:1px solid var(--line); padding:48px 32px; text-align:center; color:var(--muted); font-size:0.85rem; }
+  .footer-title { font-size:1.1rem; font-weight:900; color:var(--teal); letter-spacing:0.1em; margin-bottom:8px; }
+  @media(max-width:768px){section{padding:80px 24px 60px;}}
+</style>
+</head>
+<body>
+<canvas id="starfield"></canvas>
+<canvas id="waveCanvas"></canvas>
+<div class="atm"></div>
+
+<nav>
+  <div class="nav-brand">NOIZY.AI</div>
+  <ul class="nav-links">
+    <li><a href="#laws">Harmony Laws</a></li>
+    <li><a href="#campaigns">Campaigns</a></li>
+    <li><a href="#channels">Channels</a></li>
+    <li><a href="#phrases">Phrases</a></li>
+    <li><a href="#growing">Always Growing</a></li>
+  </ul>
+  <div class="nav-badge">HARMONY CAMPAIGN</div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" style="max-width:100%; padding-top:56px;">
+  <div class="hero-pulse reveal">
+    <div class="hp-inner">∞</div>
+  </div>
+  <h1 class="hero-title">
+    <div class="ht1 reveal d1">AI + HUMAN.</div>
+    <div class="ht2 reveal d2">PERFECT HARMONY.<br>ALWAYS GROWING.</div>
+    <span class="ht3 reveal d3">Synchronic · Symbiotic · Perpetual · Wonderful</span>
+  </h1>
+  <p class="hero-sub reveal d4">
+    <strong>When two frequencies align, they amplify each other.</strong>
+    That is resonance. That is what NOIZY.AI is.
+    Not AI replacing human creativity — but two distinct signals
+    finding the same key, building something neither could make alone.
+  </p>
+
+  <div class="freq-concept reveal d5" style="max-width:900px; width:100%;">
+    <div class="fc-item">
+      <span class="fc-wave">🧠</span>
+      <div class="fc-label">Human Soul</div>
+      <div class="fc-desc">Emotion, memory, culture, lived experience</div>
+    </div>
+    <div class="fc-item">
+      <span class="fc-wave">〰️</span>
+      <div class="fc-label">Resonance</div>
+      <div class="fc-desc">When frequencies align they amplify</div>
+    </div>
+    <div class="fc-item">
+      <span class="fc-wave">🤖</span>
+      <div class="fc-label">AI Intelligence</div>
+      <div class="fc-desc">Pattern, speed, scale, perfect recall</div>
+    </div>
+    <div class="fc-item">
+      <span class="fc-wave">→</span>
+      <div class="fc-label">Creates</div>
+      <div class="fc-desc">Something neither could make alone</div>
+    </div>
+    <div class="fc-item">
+      <span class="fc-wave">✨</span>
+      <div class="fc-label">NOIZY Output</div>
+      <div class="fc-desc">Owned by the human. Protected forever.</div>
+    </div>
+  </div>
+</section>
+
+<div class="gb"></div>
+
+<!-- ══ HARMONY LAWS ══ -->
+<div id="laws" style="position:relative;z-index:1;">
+<section>
+  <div class="ey reveal" style="color:var(--teal);">THE SIX LAWS OF HARMONY</div>
+  <h2 class="st reveal">What "Perfect Harmony" Actually Means<br>as a Marketing Principle</h2>
+  <p class="ss reveal">Harmony is not a feeling — it is a structural relationship. These six laws define what NOIZY's harmony means in practice, and how each one becomes a campaign message.</p>
+
+  <div class="laws-grid">
+    <div class="law-card lc-1 reveal">
+      <div class="law-num">I</div>
+      <div class="law-title">Synchrony Without Sameness</div>
+      <div class="law-body">AI and human move together without becoming the same thing. <strong>The human signature is always distinct.</strong> AI adds harmony — it does not replace the melody. Campaign message: "Your voice stays yours. AI only makes it bigger."</div>
+    </div>
+    <div class="law-card lc-2 reveal d1">
+      <div class="law-num">II</div>
+      <div class="law-title">Mutual Amplification</div>
+      <div class="law-body">When the human creates, AI gets better at serving them. When AI improves, human creativity expands into new territory. <strong>Each cycle leaves both more capable than the last.</strong> Campaign: "Every collaboration makes the next one richer."</div>
+    </div>
+    <div class="law-card lc-3 reveal d2">
+      <div class="law-num">III</div>
+      <div class="law-title">Consent as the Root Note</div>
+      <div class="law-body">Every harmony needs a root. In NOIZY, consent is always the root note — the fundamental frequency everything else builds on. <strong>Nothing happens without it. Everything is in tune with it.</strong> Campaign: "The root never changes. Everything else can."</div>
+    </div>
+    <div class="law-card lc-4 reveal">
+      <div class="law-num">IV</div>
+      <div class="law-title">Value That Compounds Over Time</div>
+      <div class="law-body">A streaming payment evaporates. A NOIZY LifeLUV split compounds. <strong>Like a musical theme returning richer each time, value in NOIZY grows with every use.</strong> Campaign: "The song that keeps playing — and keeps paying."</div>
+    </div>
+    <div class="law-card lc-5 reveal d1">
+      <div class="law-num">V</div>
+      <div class="law-title">The Human Is Always the Composer</div>
+      <div class="law-body">In an orchestra, the instruments don't decide the piece — the composer does. <strong>GABRIEL, NOIZYVOX, DreamChamber — all instruments.</strong> The human is always the composer. Campaign: "You conduct. We play."</div>
+    </div>
+    <div class="law-card lc-6 reveal d2">
+      <div class="law-num">VI</div>
+      <div class="law-title">Legacy as the Final Resolution</div>
+      <div class="law-body">Every great piece of music resolves to its home chord. In NOIZY, the resolution is legacy — the Voice Estate, the Legacy Vault, the mentorship chain. <strong>The music doesn't end when you stop playing.</strong> Campaign: "The last note echoes forever."</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="gb"></div>
+
+<!-- ══ CAMPAIGN CONCEPTS ══ -->
+<div id="campaigns" style="position:relative;z-index:1;background:rgba(20,184,166,.02);border-top:1px solid rgba(20,184,166,.08);border-bottom:1px solid rgba(20,184,166,.08);">
+<section>
+  <div class="ey reveal" style="color:var(--teal);">NEW CAMPAIGN CONCEPTS</div>
+  <h2 class="st reveal">15 More Campaigns.<br>Each One a Different Frequency.</h2>
+  <p class="ss reveal">These are entirely new campaigns — none repeat previous documents. Each finds a new angle, a new audience, a new emotional frequency to resonate with.</p>
+
+  <div class="campaigns-stack">
+
+    <div class="campaign-row camp-teal reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">〰️</span>
+        <div class="cr-label">Resonance Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">The Resonance Series — "Two Frequencies. One Song."</div>
+        <div class="cr-tagline">"When human and AI find the same frequency, everything amplifies."</div>
+        <div class="cr-body">
+          Short-form video series — 60 seconds each. <strong>Split-screen: the human creative process on the left, the AI enhancement on the right. They merge at the 30-second mark.</strong> No voiceover. Just the music building. Released weekly, every video a different tradition: Afrobeats, Flamenco, Hindustani, Jazz, Electronic, Folk. The resonance is the story.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">YouTube Shorts</span>
+          <span class="cr-mech">Instagram Reels</span>
+          <span class="cr-mech">TikTok Series</span>
+          <span class="cr-mech">Weekly cadence</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-violet reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">🧬</span>
+        <div class="cr-label">DNA Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">Music Ancestry — "Where Did Your Sound Come From?"</div>
+        <div class="cr-tagline">"Every riff has roots. NOIZY shows you yours."</div>
+        <div class="cr-body">
+          Interactive tool: upload a song or describe your style. <strong>NOIZY traces the musical DNA back through traditions — your synth bass line connects to James Brown connects to West African bell patterns connects to a 3,000-year-old Ghanaian royal court rhythm.</strong> The ancestry visualization becomes a shareable certificate. The cultural chain becomes visible and beautiful.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">Web Tool</span>
+          <span class="cr-mech">Shareable Graphics</span>
+          <span class="cr-mech">Discord Community</span>
+          <span class="cr-mech">Reddit Viral</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-rose reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">💌</span>
+        <div class="cr-label">Letter Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">Dear AI — Open Letter Series From Real Artists</div>
+        <div class="cr-tagline">"Dear AI: here is what I need from you. Here is what I'll give."</div>
+        <div class="cr-body">
+          Real artists write open letters to AI — published on NOIZY, shared everywhere. <strong>Not angry letters. Partnership letters. "Dear AI, I need you to remember that I am the composer. I will give you my catalog to learn from if you give me the perpetual 75%."</strong> The letter format is intimate, shareable, and reframes the entire AI-artist conversation as negotiation between equals.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">Newsletter Series</span>
+          <span class="cr-mech">Medium / Substack</span>
+          <span class="cr-mech">Open submission</span>
+          <span class="cr-mech">Artist feature</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-gold reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">⏳</span>
+        <div class="cr-label">Legacy Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">The 100-Year Song — What Does Your Music Sound Like in 2126?</div>
+        <div class="cr-tagline">"Make something that outlasts every algorithm ever written."</div>
+        <div class="cr-body">
+          Ask creators: <strong>what would you make if you knew it would be heard in 100 years?</strong> Commission 100 artists — one from each of 100 countries — to create their "100-year song." AI helps research the traditions that will be lost by then. Human creativity captures what matters most. The collection becomes NOIZY's permanent archive. Launched as a cultural event.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">Global Collaboration</span>
+          <span class="cr-mech">Archive Release Event</span>
+          <span class="cr-mech">Press Campaign</span>
+          <span class="cr-mech">UNESCO Partnership</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-green reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">🌱</span>
+        <div class="cr-label">Origin Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">The First Sound — Prehistoric to Present in 60 Seconds</div>
+        <div class="cr-tagline">"60,000 years of human music. 60 seconds. One continuous line."</div>
+        <div class="cr-body">
+          Animated video: the first struck stone at 60,000 BCE. The bone flute. The drum. The lute. The orchestra. The electric guitar. The synthesizer. The AI collaboration. <strong>One continuous musical thread showing it was always the same impulse — humans making sound to connect, heal, celebrate, and survive.</strong> NOIZY is not a break in that line. It is the next note.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">Brand Film</span>
+          <span class="cr-mech">Cinema Pre-Roll</span>
+          <span class="cr-mech">Conference Opener</span>
+          <span class="cr-mech">Hall of Fame submission</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-electric reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">🛰️</span>
+        <div class="cr-label">Global Signal Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">The NOIZY Live Atlas — Music Being Made Right Now, Everywhere</div>
+        <div class="cr-tagline">"At this moment, 3,000 people are creating inside NOIZY. Here's where."</div>
+        <div class="cr-body">
+          Live world map on noizy.ai showing active DreamChamber sessions, Guild events, and LifeLUV payments — in real time. <strong>Every active creator is a glowing dot. Every payment is a pulse.</strong> The map is the most powerful proof that the community is real, global, and growing. Embed it in every presentation, every pitch, every press release.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">Homepage Feature</span>
+          <span class="cr-mech">Press Kit Tool</span>
+          <span class="cr-mech">Investor Deck</span>
+          <span class="cr-mech">Conference Display</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-fire reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">📻</span>
+        <div class="cr-label">Broadcast Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">NOIZY Radio — The Station That Pays While It Plays</div>
+        <div class="cr-tagline">"Every play. Every fraction. Tracked. Paid. Perpetual."</div>
+        <div class="cr-body">
+          Launch NOIZY Radio: a curated streaming channel where <strong>every song played shows — live on screen — the split being paid to the creator at that moment.</strong> The listener watches $0.24 flow to a Lagos producer in real time. Not as charity. As infrastructure. The transparency becomes the entertainment. The economics become the experience.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">Streaming Channel</span>
+          <span class="cr-mech">Twitch / YouTube Live</span>
+          <span class="cr-mech">Podcast Integration</span>
+          <span class="cr-mech">Creator Showcase</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-teal reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">🪞</span>
+        <div class="cr-label">Mirror Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">The AI Mirror — "AI Learned From You. Now It Works For You."</div>
+        <div class="cr-tagline">"Every AI music tool was trained on human creativity. Time to collect."</div>
+        <div class="cr-body">
+          Direct message to every existing creator: <strong>"You helped train the models. Whether you knew it or not, your music is inside every AI system on earth. NOIZY is the only platform where that debt gets paid."</strong> Not anger. Inevitability. The tone is calm, certain, and final. The money was always theirs. NOIZY just built the mechanism to collect it.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">Email Campaign</span>
+          <span class="cr-mech">Creator Community Ads</span>
+          <span class="cr-mech">Reddit AMAs</span>
+          <span class="cr-mech">Industry Press</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-violet reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">🏫</span>
+        <div class="cr-label">School Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">The Empty Music Room — A Campaign for Arts Education</div>
+        <div class="cr-tagline">"71% of schools cut arts. NOIZY is putting it back — everywhere, free."</div>
+        <div class="cr-body">
+          Photograph 71 empty music rooms in schools that cut their programs. <strong>One photo. One number. No music playing.</strong> Release one per day for 71 days. On day 72: NOIZYKIDZ. The filled rooms. The children learning. The music playing again. The campaign creates devastating contrast, then offers the complete solution. No ask before day 72. Just the silence of what was taken.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">Photography Campaign</span>
+          <span class="cr-mech">Instagram Series</span>
+          <span class="cr-mech">Media Outreach</span>
+          <span class="cr-mech">Education Press</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-gold reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">🤝</span>
+        <div class="cr-label">Covenant Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">The NOIZY Covenant — "Sign It. Live It. Build It."</div>
+        <div class="cr-tagline">"Not terms and conditions. A covenant between equals."</div>
+        <div class="cr-body">
+          Replace the ToS with a Covenant. <strong>A document written as a mutual commitment — not legal protection for the platform, but a genuine statement of what NOIZY owes the creator and what the creator brings to NOIZY.</strong> Made beautiful. Made printable. Signed by POPS publicly on Day 1. Every new creator signs it. The Covenant is the brand.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">Platform Onboarding</span>
+          <span class="cr-mech">Print Edition</span>
+          <span class="cr-mech">Video Signing Event</span>
+          <span class="cr-mech">Annual Renewal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-green reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">🎭</span>
+        <div class="cr-label">Story Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">The 1,000 Creators — Documentary Series</div>
+        <div class="cr-tagline">"1,000 stories. 1,000 countries. 1 platform."</div>
+        <div class="cr-body">
+          <strong>Commission 1,000 short documentary segments — 3 minutes each — one creator from every major cultural tradition on earth.</strong> Not about NOIZY. About the creator's music, their tradition, their fear, their dream. NOIZY appears only at the end as the place where their work is protected and valued. The documentaries are the marketing. The platform is the solution they were looking for.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">YouTube Series</span>
+          <span class="cr-mech">NOIZY Archive</span>
+          <span class="cr-mech">Festival Submission</span>
+          <span class="cr-mech">Creator-produced</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-rose reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">🌙</span>
+        <div class="cr-label">Night Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">The 3AM Sessions — "The Best Music Gets Made When No One's Watching"</div>
+        <div class="cr-tagline">"3am. An idea. DreamChamber catches it. It's yours forever."</div>
+        <div class="cr-body">
+          Campaign built around the most universal creative experience: <strong>the idea that arrives at 3am, alone, in the dark, before the world wakes up.</strong> Those are the moments that become the greatest music ever made. DreamChamber was built for exactly that moment. Always listening. Never judging. Capturing everything. Owned by the creator when the sun comes up.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">Social Campaign</span>
+          <span class="cr-mech">#3AMSession Hashtag</span>
+          <span class="cr-mech">Creator Submissions</span>
+          <span class="cr-mech">Midnight Releases</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-electric reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">🌍</span>
+        <div class="cr-label">Language Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">No Translation Needed — Music as the Universal Protocol</div>
+        <div class="cr-tagline">"Before language. Before writing. There was rhythm. It still works in every country."</div>
+        <div class="cr-body">
+          Campaign showing a single NOIZY rhythm — the heartbeat pulse — being played by musicians in 50 countries, each in their own tradition. <strong>No common language between them. Instant musical connection.</strong> The campaign demonstrates that NOIZY's 64 rhythm archetypes and 128 scale structures aren't theory — they're the native language every human already speaks. NOIZY just taught it back.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">Global Video</span>
+          <span class="cr-mech">50-Country Release</span>
+          <span class="cr-mech">Press Event</span>
+          <span class="cr-mech">UN Arts Day tie-in</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-fire reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">🧑‍🎤</span>
+        <div class="cr-label">Avatar Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">Your Second Voice — The AI Persona That Earns While You Sleep</div>
+        <div class="cr-tagline">"You created it. It works 24/7. You own 75% of everything it makes."</div>
+        <div class="cr-body">
+          Every creator on NOIZY can launch an AI persona — a second voice that can record, perform, collaborate, and respond to fans while the creator is sleeping, touring, or creating something else. <strong>Not a replacement. An extension. The AI persona is owned by the creator, earns at the 75/25 split, and can be shut down at any moment.</strong> The creator is always the parent. The persona is always the child.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">Product Launch</span>
+          <span class="cr-mech">Creator Demos</span>
+          <span class="cr-mech">Fan Interaction Beta</span>
+          <span class="cr-mech">Press: "Next Hatsune Miku"</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-row camp-teal reveal">
+      <div class="cr-visual">
+        <span class="cr-icon">♾️</span>
+        <div class="cr-label">Infinite Campaign</div>
+      </div>
+      <div class="cr-content">
+        <div class="cr-title">The Living Song — Music That Never Stops Evolving</div>
+        <div class="cr-tagline">"Release once. Grow forever. Every collaboration adds a new branch."</div>
+        <div class="cr-body">
+          Launch "Living Songs" — tracks that can be extended, remixed, and built upon by Guild members, with <strong>every contributor automatically added to the LifeLUV chain.</strong> The original creator always holds the root. New branches earn new splits. The song is never finished — it just keeps growing. The most played Living Song in NOIZY history becomes a cultural monument. Every node in the chain is credited. Every payment is tracked. Infinite music, infinite value, infinite creation.
+        </div>
+        <div class="cr-mechanics">
+          <span class="cr-mech">Platform Feature</span>
+          <span class="cr-mech">Guild Collaboration</span>
+          <span class="cr-mech">LifeLUV Chain</span>
+          <span class="cr-mech">Cultural Archive</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<div class="gb"></div>
+
+<!-- ══ SYNC VISUAL ══ -->
+<div style="position:relative;z-index:1;">
+<section>
+  <div class="ey reveal" style="color:var(--teal);">THE SYNCHRONIC RELATIONSHIP</div>
+  <h2 class="st reveal">What "Mutually Wonderful" Looks Like<br>When It's Actually Working</h2>
+  <p class="ss reveal">
+    Synchrony is not sameness. It is two distinct things moving in perfect relationship.
+    Here is what human and AI each bring — and what the synchrony creates.
+  </p>
+
+  <div class="sync-visual reveal">
+    <div class="sv-human">
+      <div class="sv-title">What Humans Bring</div>
+      <div class="sv-item"><span style="color:var(--muted);">Emotional memory — grief, joy, nostalgia, longing</span><span class="sv-dot"></span></div>
+      <div class="sv-item"><span style="color:var(--muted);">Cultural context — where a sound comes from, what it means</span><span class="sv-dot"></span></div>
+      <div class="sv-item"><span style="color:var(--muted);">Physical presence — the body that makes the voice</span><span class="sv-dot"></span></div>
+      <div class="sv-item"><span style="color:var(--muted);">Intentional imperfection — the quiver that creates beauty</span><span class="sv-dot"></span></div>
+      <div class="sv-item"><span style="color:var(--muted);">Moral compass — what should and should not be made</span><span class="sv-dot"></span></div>
+      <div class="sv-item"><span style="color:var(--muted);">Legacy aspiration — the desire to leave something</span><span class="sv-dot"></span></div>
+      <div class="sv-item"><span style="color:var(--muted);">The 3am idea — the thing that arrives unbidden</span><span class="sv-dot"></span></div>
+    </div>
+    <div class="sv-center">
+      <div class="sv-sync-icon">⟷</div>
+      <div class="sv-sync-label">Synchronic Exchange</div>
+      <div class="sv-sync-icon">≈</div>
+      <div class="sv-sync-label">Resonance</div>
+      <div class="sv-sync-icon">∞</div>
+      <div class="sv-sync-label">Perpetual Growth</div>
+      <div class="sv-sync-icon">✓</div>
+      <div class="sv-sync-label">Always Mutual</div>
+    </div>
+    <div class="sv-ai">
+      <div class="sv-title">What AI Brings</div>
+      <div class="sv-item"><span class="sv-dot"></span><span style="color:var(--muted);">Pattern recognition across 60,000 years of music</span></div>
+      <div class="sv-item"><span class="sv-dot"></span><span style="color:var(--muted);">Perfect recall — every rhythm, every scale, always available</span></div>
+      <div class="sv-item"><span class="sv-dot"></span><span style="color:var(--muted);">Speed — from 3am idea to arranged demo in minutes</span></div>
+      <div class="sv-item"><span class="sv-dot"></span><span style="color:var(--muted);">Scale — what one person can make, AI can extend globally</span></div>
+      <div class="sv-item"><span class="sv-dot"></span><span style="color:var(--muted);">Tirelessness — available at every hour, in every session</span></div>
+      <div class="sv-item"><span class="sv-dot"></span><span style="color:var(--muted);">Cross-cultural synthesis — finds connections humans miss</span></div>
+      <div class="sv-item"><span class="sv-dot"></span><span style="color:var(--muted);">The patient infrastructure — records, protects, distributes forever</span></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="gb"></div>
+
+<!-- ══ CHANNELS ══ -->
+<div id="channels" style="position:relative;z-index:1;background:rgba(139,92,246,.02);border-top:1px solid rgba(139,92,246,.08);border-bottom:1px solid rgba(139,92,246,.08);">
+<section>
+  <div class="ey reveal" style="color:var(--violet);">NEW DISTRIBUTION CHANNELS</div>
+  <h2 class="st reveal">Platforms and Communities<br>No One Else Is Reaching</h2>
+  <p class="ss reveal">The known channels (TikTok, YouTube, Instagram) are already in the playbook. These are the channels that aren't — where the hearts, humanity, and self-survival instinct live most concentratedly.</p>
+
+  <div class="channels-grid">
+    <div class="channel-card reveal">
+      <div class="ch-platform" style="color:var(--teal);">Game Audio Communities</div>
+      <div class="ch-audience">Indie Game Devs + Game Composers</div>
+      <div class="ch-strategy"><strong>2.5 billion gamers need music.</strong> The indie game audio community (Game Audio Discord, Audio Implementation Talks, various subreddits) is underserved, ethically motivated, and desperate for creator-fair licensing. NOIZYVOX solves their royalty problem instantly.</div>
+      <span class="ch-format" style="background:rgba(20,184,166,.1);color:var(--teal);">Discord + Reddit + GDC</span>
+    </div>
+    <div class="channel-card reveal d1">
+      <div class="ch-platform" style="color:var(--violet);">Podcast Production Groups</div>
+      <div class="ch-audience">Indie Podcasters + Narrative Audio</div>
+      <div class="ch-strategy">4M+ active podcasts need licensed music. <strong>Current royalty-free options are generic and creatively dead.</strong> NOIZY's voice + music licensing, with full attribution and automatic splits, is the most ethical music licensing solution the podcast world has ever seen.</div>
+      <span class="ch-format" style="background:rgba(139,92,246,.1);color:var(--violet);">Podcast forums + Producer communities</span>
+    </div>
+    <div class="channel-card reveal d2">
+      <div class="ch-platform" style="color:var(--rose);">Wellness + Sound Healing Spaces</div>
+      <div class="ch-audience">Sound Therapists + Meditation Teachers</div>
+      <div class="ch-strategy">A $4.4 trillion wellness industry increasingly uses sound as therapy. <strong>Binaural beats, crystal bowls, overtone singing — all need licensed, attributed, ethical source material.</strong> The NOIZYVOX consent protocol solves their biggest legal exposure.</div>
+      <span class="ch-format" style="background:rgba(244,63,94,.1);color:var(--rose);">Instagram Wellness + Yoga Communities</span>
+    </div>
+    <div class="channel-card reveal">
+      <div class="ch-platform" style="color:var(--gold);">Ethnomusicology Networks</div>
+      <div class="ch-audience">Academics + Cultural Preservation</div>
+      <div class="ch-strategy"><strong>Universities and cultural institutions hold endangered music traditions.</strong> NOIZY's cultural attribution engine is the first commercial platform that routes micro-payments back to tradition keepers. Academics become advocates when NOIZY solves their field's biggest ethical problem.</div>
+      <span class="ch-format" style="background:rgba(240,180,41,.1);color:var(--gold);">Academic journals + Conference presentations</span>
+    </div>
+    <div class="channel-card reveal d1">
+      <div class="ch-platform" style="color:var(--green);">Disability Arts Organizations</div>
+      <div class="ch-audience">Adaptive Artists + Assistive Tech Communities</div>
+      <div class="ch-strategy">Nerve-to-Note is the only professional creative tool built specifically for disability as creative signal. <strong>Every disability arts organization in the world is a channel.</strong> The story of one adaptive artist creating something "impossible" is worth 1,000 conventional ads.</div>
+      <span class="ch-format" style="background:rgba(34,197,94,.1);color:var(--green);">Disability arts networks + Assistive tech press</span>
+    </div>
+    <div class="channel-card reveal d2">
+      <div class="ch-platform" style="color:var(--electric);">Syncronization Music Supervisors</div>
+      <div class="ch-audience">Film, TV, Ad Agencies</div>
+      <div class="ch-strategy"><strong>Music supervisors spend 40% of their time on licensing clearance.</strong> NOIZY's automatic PROOF system and LifeLUV splits eliminate clearance friction entirely. Every music supervisor who discovers NOIZY tells five others. This channel compounds through professional word of mouth.</div>
+      <span class="ch-format" style="background:rgba(10,158,189,.1);color:var(--electric);">Guild of Music Supervisors + Cannes Lions</span>
+    </div>
+    <div class="channel-card reveal">
+      <div class="ch-platform" style="color:var(--teal);">AI Ethics Communities</div>
+      <div class="ch-audience">Responsible AI Researchers + Ethicists</div>
+      <div class="ch-strategy">The AI ethics community (academic, corporate, policy) is desperately looking for <strong>proof that ethical AI can also be commercially viable.</strong> NOIZY is the proof. Every ethics conference, every responsible AI publication, every policy working group is a channel that reaches decision-makers.</div>
+      <span class="ch-format" style="background:rgba(20,184,166,.1);color:var(--teal);">NeurIPS / FAccT / AI policy forums</span>
+    </div>
+    <div class="channel-card reveal d1">
+      <div class="ch-platform" style="color:var(--violet);">Global Diaspora Communities</div>
+      <div class="ch-audience">Immigrant + Cultural Heritage Networks</div>
+      <div class="ch-strategy">Diaspora communities are the most passionate preservers of musical tradition. <strong>A Nigerian-British producer, a second-generation Indian-Canadian tabla player, a Colombian-American cumbia artist — they hold traditions between two worlds.</strong> NOIZY's cultural attribution engine honors exactly that complexity.</div>
+      <span class="ch-format" style="background:rgba(139,92,246,.1);color:var(--violet);">Cultural festivals + Diaspora media</span>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="gb"></div>
+
+<!-- ══ PHRASE BANK ══ -->
+<div id="phrases" style="position:relative;z-index:1;">
+<section>
+  <div class="ey reveal" style="color:var(--gold);">THE PHRASE BANK</div>
+  <h2 class="st reveal">The Language of Perfect Harmony.<br>Use These Everywhere.</h2>
+  <p class="ss reveal">
+    Great marketing lives and dies on language. These are the phrases that carry
+    the NOIZY frequency — use them in pitches, social posts, interviews,
+    emails, and any conversation about AI and human creativity.
+  </p>
+
+  <div class="phrase-grid">
+    <div class="phrase-card reveal">
+      <div class="phrase-context">Tagline — Core</div>
+      <div class="phrase-text">"You conduct. We play."</div>
+      <div class="phrase-sub">The human is always the composer. GABRIEL, NOIZYVOX — all instruments.</div>
+    </div>
+    <div class="phrase-card reveal d1">
+      <div class="phrase-context">Platform Description</div>
+      <div class="phrase-text">"Not an AI music tool. A creative civilization."</div>
+      <div class="phrase-sub">Differentiates from ElevenLabs, Suno, every competitor in one sentence.</div>
+    </div>
+    <div class="phrase-card reveal d2">
+      <div class="phrase-context">On the Economics</div>
+      <div class="phrase-text">"The song keeps playing. It keeps paying. Forever."</div>
+      <div class="phrase-sub">LifeLUV micro-splits, perpetual 75/25, legacy vault — all in seven words.</div>
+    </div>
+    <div class="phrase-card reveal">
+      <div class="phrase-context">On AI Anxiety</div>
+      <div class="phrase-text">"AI doesn't replace artists. It has a debt to them."</div>
+      <div class="phrase-sub">Every AI model trained on human creativity. NOIZY is how that debt gets paid.</div>
+    </div>
+    <div class="phrase-card reveal d1">
+      <div class="phrase-context">On Growth</div>
+      <div class="phrase-text">"Every collaboration makes the next one richer."</div>
+      <div class="phrase-sub">The synchronic growth law — AI and human co-evolving, always upward.</div>
+    </div>
+    <div class="phrase-card reveal d2">
+      <div class="phrase-context">On Legacy</div>
+      <div class="phrase-text">"The last note echoes forever."</div>
+      <div class="phrase-sub">The Legacy Vault, Voice Estate, and LifeLUV chain — in four words.</div>
+    </div>
+    <div class="phrase-card reveal">
+      <div class="phrase-context">On Community</div>
+      <div class="phrase-text">"The Guild is not a network. It's a fire continuum."</div>
+      <div class="phrase-sub">Knowledge passed forward. Credit flows back. The chain never breaks.</div>
+    </div>
+    <div class="phrase-card reveal d1">
+      <div class="phrase-context">On Consent</div>
+      <div class="phrase-text">"Consent isn't a setting. It's the architecture."</div>
+      <div class="phrase-sub">Consent-as-code. The protection is structural, not contractual.</div>
+    </div>
+    <div class="phrase-card reveal d2">
+      <div class="phrase-context">On Education</div>
+      <div class="phrase-text">"Music is a human language older than writing. We're teaching it back."</div>
+      <div class="phrase-sub">NOIZYKIDZ mission in one line. Also powerful at any scale event.</div>
+    </div>
+    <div class="phrase-card reveal">
+      <div class="phrase-context">Against the Race to Bottom</div>
+      <div class="phrase-text">"The race to the bottom requires your participation. Don't enter."</div>
+      <div class="phrase-sub">The creator's choice framed as agency, not victimhood.</div>
+    </div>
+    <div class="phrase-card reveal d1">
+      <div class="phrase-context">On the 5th Epoch</div>
+      <div class="phrase-text">"Four epochs, creators got scraps. The 5th one is theirs."</div>
+      <div class="phrase-sub">Oral → Notation → Print → Streaming → Protocol. Simple historical frame.</div>
+    </div>
+    <div class="phrase-card reveal d2">
+      <div class="phrase-context">Invitation</div>
+      <div class="phrase-text">"Find the ones who feel it in their chest. Those are our people."</div>
+      <div class="phrase-sub">POPS's line. The most human and most precise description of the ideal NOIZY member.</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="gb"></div>
+
+<!-- ══ ALWAYS GROWING ══ -->
+<div id="growing" style="position:relative;z-index:1;background:rgba(20,184,166,.02);border-top:1px solid rgba(20,184,166,.1);border-bottom:1px solid rgba(20,184,166,.1);">
+<section>
+  <div class="ey reveal" style="color:var(--teal);">ALWAYS GROWING</div>
+  <h2 class="st reveal">The NOIZY Flywheel —<br>Every Phase Feeds the Next Forever.</h2>
+  <p class="ss reveal">This is not a launch plan. This is a perpetual motion engine. Each phase creates the conditions for the next. There is no end state — only continuous elevation.</p>
+
+  <div class="growth-wave">
+    <div class="gw-row gw-1 reveal">
+      <div class="gw-phase"><span>Seed</span></div>
+      <div class="gw-content">
+        <div class="gw-title">The First 1,000 — Build the Proof</div>
+        <div class="gw-body"><strong>Every movement begins with a small group of true believers.</strong> The first 1,000 NOIZY creators don't need to be famous. They need to be deeply committed. Their earnings, their Voice Estates, their Guild chains become the proof of concept that makes the next 10,000 inevitable. POPS and RSP_001 are always the first node in every chain.</div>
+      </div>
+    </div>
+    <div class="gw-row gw-2 reveal">
+      <div class="gw-phase"><span>Roots</span></div>
+      <div class="gw-content">
+        <div class="gw-title">The Carriers Activate — Organic Spread Begins</div>
+        <div class="gw-body">When teachers, voice actors, tradition keepers, and adaptive artists find NOIZY, they don't just join — <strong>they bring their communities with them.</strong> One activated Guild Master in Lagos brings 40 students. One NOIZYKIDZ classroom becomes 30 household advocates. The root system grows beneath the surface before the world sees the canopy.</div>
+      </div>
+    </div>
+    <div class="gw-row gw-3 reveal">
+      <div class="gw-phase"><span>Canopy</span></div>
+      <div class="gw-content">
+        <div class="gw-title">The Proof Goes Public — The Data Starts Talking</div>
+        <div class="gw-body">The LifeLUV transparency dashboard goes live. The Exploitation Calculator goes viral. The first quarterly creator earnings report is published. <strong>The numbers are undeniable. The press covers them without being asked.</strong> The shift from "interesting idea" to "proven model" happens here. The industry starts watching.</div>
+      </div>
+    </div>
+    <div class="gw-row gw-4 reveal">
+      <div class="gw-phase"><span>Forest</span></div>
+      <div class="gw-content">
+        <div class="gw-title">The Migration — Creators Vote With Their Catalog</div>
+        <div class="gw-body">Mid-tier artists move first. Then known names. <strong>Each migration announcement is a headline. Each headline brings 100 more creators.</strong> The Guild grows. The mentorship chains lengthen. The legacy vaults multiply. The LifeLUV pool deepens. Every new creator makes the platform more valuable for every existing one. The forest becomes self-sustaining.</div>
+      </div>
+    </div>
+    <div class="gw-row gw-5 reveal">
+      <div class="gw-phase"><span>Epoch</span></div>
+      <div class="gw-content">
+        <div class="gw-title">The Standard — NOIZY's Protocol Becomes the Baseline</div>
+        <div class="gw-body">The most important moment: <strong>when creators start refusing contracts that don't meet the NOIZY standard.</strong> "I won't sign without 75% perpetual." "I won't license without HVS consent." "I won't collaborate without LifeLUV splits." When the creators hold the NOIZY protocol as the minimum — not the aspiration — the 5th Epoch is operational. And it keeps growing. Always. That is the design.</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="gb"></div>
+
+<!-- ══ CLOSE ══ -->
+<div style="position:relative;z-index:1;">
+<section>
+  <div class="close-block reveal">
+    <div class="cb-title">
+      <div class="cl1">AI + Human.</div>
+      <div class="cl2">Not a feature. Not a product category.<br>A new kind of relationship.</div>
+    </div>
+    <p class="cb-body">
+      The marketing works because the thing being marketed is real.
+      <strong>When two frequencies find each other — when human soul and artificial intelligence
+      align on the same root note — something genuinely new is created.</strong>
+      Not AI-generated content. Not human content with AI assistance.
+      Something that could not exist without both.
+      That thing has never been properly valued, protected, or celebrated before NOIZY.
+    </p>
+    <p class="cb-body">
+      Every campaign, every channel, every phrase in this document points toward
+      the same destination: <strong>a world where making something beautiful
+      is also making something that lasts, that pays, that belongs to you,
+      and that grows more valuable every time it's heard.</strong>
+      That is NOIZY. That is the harmony. That is what keeps growing, perfectly,
+      wonderfully, synchronically — forever.
+    </p>
+  </div>
+
+  <div class="link-bar reveal">
+    <a href="NOIZY_MOVEMENT_MANIFESTO.html" class="link-btn bl-fire">🔥 Movement Manifesto</a>
+    <a href="NOIZY_ECONOMIC_ENGINE.html" class="link-btn bl-green">💰 Economic Engine</a>
+    <a href="NOIZY_ASCENSION_MAP.html" class="link-btn bl-gold">🗺️ Ascension Map</a>
+    <a href="DREAMCHAMBER_FIX_MAP.html" class="link-btn bl-violet">🌌 DreamChamber Map</a>
+    <a href="NOIZY_2526_ARCHIVE.html" class="link-btn" style="color:#c8a96e;border-color:rgba(200,169,110,.4);">📜 2526 Archive</a>
+    <a href="NOIZY_GREAT_RESTORATION.html" class="link-btn bl-teal">🚨 Great Restoration</a>
+    <a href="NOIZY_AI_HOME.html" class="link-btn bl-electric">🏠 NOIZY.AI Home</a>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="footer-title">NOIZY HARMONY CAMPAIGN</div>
+  <p style="margin-top:8px;">Built by POPS & GABRIEL · NOIZY.AI · AI + Human · Perfect Harmony · Always Growing · Forever Synchronic</p>
+  <p style="margin-top:4px; font-size:0.75rem; color:rgba(232,232,240,.25);">Two frequencies. One song. Yours forever.</p>
+</footer>
+
+<script>
+/* ─── STARFIELD ─── */
+const sf=document.getElementById('starfield'),sc=sf.getContext('2d');let stars=[];
+function rsz(){sf.width=window.innerWidth;sf.height=window.innerHeight;}
+function initS(){stars=[];for(let i=0;i<200;i++)stars.push({x:Math.random()*sf.width,y:Math.random()*sf.height,r:Math.random()*1.3+.2,a:Math.random()*.5+.1,s:Math.random()*.1+.02,d:(Math.random()-.5)*.05});}
+function drawS(){sc.clearRect(0,0,sf.width,sf.height);stars.forEach(s=>{sc.beginPath();sc.arc(s.x,s.y,s.r,0,Math.PI*2);sc.fillStyle=`rgba(255,255,255,${s.a})`;sc.fill();s.y-=s.s;s.x+=s.d;if(s.y<-2){s.y=sf.height+2;s.x=Math.random()*sf.width;}if(s.x<-2)s.x=sf.width+2;if(s.x>sf.width+2)s.x=-2;});requestAnimationFrame(drawS);}
+rsz();initS();drawS();window.addEventListener('resize',()=>{rsz();initS();});
+
+/* ─── WAVE CANVAS ─── */
+const wc=document.getElementById('waveCanvas'),wctx=wc.getContext('2d');
+let wt=0;
+function rwc(){wc.width=window.innerWidth;wc.height=window.innerHeight;}
+function drawW(){
+  wctx.clearRect(0,0,wc.width,wc.height);
+  wt+=0.008;
+  const waves=[
+    {color:'rgba(20,184,166,0.6)',amp:40,freq:0.006,phase:0,yBase:0.3},
+    {color:'rgba(139,92,246,0.5)',amp:30,freq:0.008,phase:1.2,yBase:0.5},
+    {color:'rgba(244,63,94,0.4)',amp:25,freq:0.005,phase:2.4,yBase:0.7},
+  ];
+  waves.forEach(w=>{
+    wctx.beginPath();
+    wctx.moveTo(0,wc.height*w.yBase);
+    for(let x=0;x<wc.width;x+=4){
+      const y=wc.height*w.yBase+Math.sin(x*w.freq+wt+w.phase)*w.amp+Math.sin(x*w.freq*2+wt*1.3)*w.amp*0.4;
+      wctx.lineTo(x,y);
+    }
+    wctx.strokeStyle=w.color;
+    wctx.lineWidth=1.5;
+    wctx.stroke();
+  });
+  requestAnimationFrame(drawW);
+}
+rwc();drawW();window.addEventListener('resize',rwc);
+
+/* ─── REVEAL ─── */
+const rv=document.querySelectorAll('.reveal');
+const ob=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.07});
+rv.forEach(el=>ob.observe(el));
+document.querySelectorAll('.hero .reveal').forEach(el=>setTimeout(()=>el.classList.add('visible'),150));
+</script>
+</body>
+</html>

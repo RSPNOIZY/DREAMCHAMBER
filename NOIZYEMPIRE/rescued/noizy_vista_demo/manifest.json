@@ -1,0 +1,9 @@
+{
+  "name": "Noizy Vista Demo",
+  "short_name": "NoizyVista",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#10131a",
+  "theme_color": "#3b82f6",
+  "icons": []
+}

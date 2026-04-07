@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="ja"><![endif]--><!--[if IE 7 ]><html class="no-js ie7" lang="ja"><![endif]--><!--[if IE 8 ]><html class="no-js ie8" lang="ja"><![endif]--><!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=5">
+<title>イコライザー(Equalizer (EQ)) - Neutron 3 Help Documentation</title>
+<meta name="generator" content="Hugo 0.58.0" />
+
+<meta name="description" content="Neutron 3 Documentation">
+
+
+<meta name="author" content="iZotope">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Neutron 3 Help Documentation">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:url" content="http://www.izotopedocs.com/ja/equalizer/index.html">
+<meta property="og:title" content="Neutron 3 Help Documentation">
+
+  <link rel="canonical" href="index.html">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <style>
+    @font-face {
+        font-family: 'icon';
+        src: url('../fonts/icon.eot');
+        src: url('../fonts/icon.eot') format('embedded-opentype'),
+        url('../fonts/icon.woff') format('woff'),
+        url('../fonts/icon.ttf') format('truetype'),
+        url('../fonts/icon.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+      <link rel="stylesheet" href="../stylesheets/application.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/palettes.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/highlight/highlight.css">
+    <link rel="stylesheet" href="../stylesheets/style_print.css" media="print">
+  <link rel="stylesheet" href="../tipuesearch/css/tipuesearch.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+  <style>
+    body, input {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;}
+    pre, code {
+      font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;}
+  </style>
+  <link rel="stylesheet" href="../stylesheets/ie7.css">
+  <link rel="stylesheet" href="../stylesheets/custom_styles.css">
+<link rel="stylesheet" href="../stylesheets/style-overrides.css">
+<script src="../javascripts/modernizr.js"></script>
+  
+  <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document,
+        'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+     
+    ga('create', 'UA-63445037-33', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P95596K');
+</script>
+
+</head>
+<body class="palette-primary-neutron3 palette-accent-neutron3">
+  <noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P95596K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<div class="backdrop"><div class="backdrop-paper"></div></div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+  <nav aria-label="Header">
+    <div class="bar default">
+      <div class="button button-menu" role="button" aria-label="Menu">
+        <label class="toggle-button icon icon-menu" for="toggle-drawer"><span></span></label>
+      </div>
+      <div class="stretch">
+        <div class="title">
+          <a href="../index.html">
+          <img src="../images/header.svg" alt="Neutron 3 docs header image"
+                 width="200px" height="50px"> イコライザー(Equalizer (EQ))</a>
+          </div>
+      </div>
+    </div>
+    <div class="bar search">
+      <div class="button button-close" role="button" aria-label="Close">
+        <label class="toggle-button icon icon-back" for="toggle-search"></label>
+      </div>
+      <div class="stretch">
+        <div class="field">
+          <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+        </div>
+      </div>
+      <div class="button button-reset" role="button" aria-label="Search">
+        <button class="toggle-button icon icon-close" id="reset-search"></button>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="main">
+<div class="drawer">
+  <nav aria-label="Navigation">
+<form action="../search/index.html"><div class="group">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required>
+      <span class="highlight"></span>
+      <span class="underline"></span>
+      <label>サーチ</label>
+      <div style="clear: both;"></div>
+    </div>
+  </form>
+</nav>
+  <div class="scrollable">
+  <div class="wrapper">
+    <div class="toc"><ul>
+        <li>
+    <a title="はじめに" href="../index.html"><span class=""></span>  はじめに</a>
+</li>
+<li>
+    <a title="さあ、始めましょう" href="../getting-started/index.html"><span class=""></span>  さあ、始めましょう</a>
+</li>
+<li>
+    <a title="全般的な操作項目" href="../general-controls/index.html"><span class=""></span>  全般的な操作項目</a>
+</li>
+<li>
+    <a title="アシスタント機能" href="../assistants/index.html"><span class=""></span>  アシスタント機能</a>
+</li>
+<li>
+    <a title="ゲート" href="../gate/index.html"><span class=""></span>  ゲート</a>
+</li>
+<li>
+    <a class="current"title="イコライザー" href="index.html"><span class=""></span>  イコライザー</a>
+<ul id="scrollspy">
+</ul>
+</li>
+<li>
+    <a title="マスキング・メーター" href="../masking-meter/index.html"><span class=""></span>  マスキング・メーター</a>
+</li>
+<li>
+    <a title="コンプレッサー" href="../compressor/index.html"><span class=""></span>  コンプレッサー</a>
+</li>
+<li>
+    <a title="トランジェント・シェイパー" href="../transient-shaper/index.html"><span class=""></span>  トランジェント・シェイパー</a>
+</li>
+<li>
+    <a title="エキサイター" href="../exciter/index.html"><span class=""></span>  エキサイター</a>
+</li>
+<li>
+    <a title="スカルプター" href="../sculptor/index.html"><span class=""></span>  スカルプター</a>
+</li>
+<li>
+    <a title="ヴィジュアル・ミキサー" href="../visual-mixer/index.html"><span class=""></span>  ヴィジュアル・ミキサー</a>
+</li>
+<li>
+    <a title="リレイ" href="../relay/index.html"><span class=""></span>  リレイ</a>
+</li>
+<li>
+    <a title="プリセット" href="../presets/index.html"><span class=""></span>  プリセット</a>
+</li>
+<li>
+    <a title="オプション" href="../options/index.html"><span class=""></span>  オプション</a>
+</li>
+<li>
+    <a title="用語集" href="../glossary/index.html"><span class=""></span>  用語集</a>
+</li>
+<li>
+    <a title="カスタマー・ケア" href="../customer-care/index.html"><span class=""></span>  カスタマー・ケア</a>
+</li>
+<li>
+    <a title="ライセンス情報" href="../license-information/index.html"><span class=""></span>  ライセンス情報</a>
+</li>
+<li>
+    <a title="エンドユーザー向け使用許諾契約" href="../eula/index.html"><span class=""></span>  エンドユーザー向け使用許諾契約</a>
+</li>
+</ul>
+      <hr />
+<span class="section">iZotopeと接続する</span>
+<ul>
+<li>
+    <a href="https://www.youtube.com/user/iZotopeinc" target="_blank" title="iZotopeinc on Youtube" target="_blank"><span class="icon icon-youtube"></span>  Youtube</a>
+  </li>
+<li>
+    <a href="https://twitter.com/iZotopeinc" target="_blank" title=" @iZotopeinc on Twitter" target="_blank"><span class="icon icon-twitter"></span>  Twitter</a>
+  </li>
+<li>
+    <a href="https://www.instagram.com/iZotopeinc" target="_blank" title="iZotopeinc on Instagram" target="_blank"><span class="icon icon-instagram"></span>  Instagram</a>
+  </li>
+<li>
+    <a href="https://www.facebook.com/iZotopeinc" target="_blank" title="iZotopeinc on Facebook" target="_blank"><span class="icon icon-facebook"></span>  Facebook</a>
+  </li>
+<li>
+    <a href="https://www.izotope.com/en/products/mix/neutron.html" target="_blank" title="iZotope Product Page"><span class="icon icon-sphere"></span>  iZotope.com</a>
+  </li>
+</ul><hr />
+<ul>
+  <li>
+    <a class="icon-printer" href="index.html#" onclick="window.print();return false;" title="このページを印刷する"> このページを印刷する</a>
+  </li>
+  <li>
+    <a class="icon-new-tab" href="../print/index.html" target="_blank" title="文書全体を印刷する"> 文書全体を印刷する</a>
+  </li>
+</ul>
+<hr /><ul>
+  <li>
+<a href="../../en/equalizer/index.html"><i class="icon icon-eye"></i>View page in English</a>
+</li>
+</ul></div>
+  </div>
+</div>
+</div>
+<article class="article">
+    <div class="wrapper">
+
+      
+
+<h1>イコライザー(Equalizer (EQ)) </h1>
+<div class="lang-btn-box">
+<a class="lang-btn clickable" href="../../en/equalizer/index.html">English</a>
+<a class="lang-btn active" href="../../en/equalizer/index.html">日本語</a>
+</div>
+
+
+
+<h2 id="概要">概要</h2>
+
+<p>イコライザーは、周波数スペクトラムの様々な部分をカットやブーストをしてキャラクター付けや補正します。</p>
+
+<h2 id="モジュール-インターフェイス">モジュール・インターフェイス</h2>
+
+<p>Equalizerモジュールの操作項目と機能は以下の通りです。</p>
+
+<figure ><img src="../images/equalizer/module-interf.png" alt="Equalizer Interface" /></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>番号</strong></th>
+<th><strong>セクション</strong></th>
+<th><strong>操作項目と機能</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1 Meters and Displays" /></figure></td>
+<td>メーターとディスプレイ</td>
+<td><a href="index.html#スペクトラム-アナライザー">スペクトラム・アナライザー</a>、<a href="index.html#複合カーブ">複合カーブ</a>、<a href="index.html#フィルターのカーブ表示">フィルターのカーブ表示</a>、<a href="index.html#メーターのスケール-目盛り">メーターのスケール</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2 Module Header" /></figure></td>
+<td>モジュール・ヘッダー</td>
+<td><a href="index.html#scale-スケール">Scale（スケール）</a>、<a href="index.html#マスキング-メーター">マスキング・メーター</a>、<a href="index.html#soft-saturation-ソフト-サチュレーション">Soft Saturation（ソフト・サチュレーション）</a>、<a href="index.html#learn-学習機能">Learn（学習機能）</a>、<a href="index.html#reset-リセット">Reset（リセット）</a>、<a href="index.html#lfe-低域効果音">LFE（低域効果音）</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="Label-3 Controls" /></figure></td>
+<td>操作項目</td>
+<td><a href="index.html#操作点の追加と削除">操作点の追加と削除</a>、<a href="index.html#hudの操作項目">HUDの操作項目</a>: <a href="index.html#バンドの操作項目">バンドの操作項目</a>、<a href="index.html#フィルター-シェイプ">フィルター・シェイプ</a>、<a href="index.html#数値の表示">数値の表示</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-4.png" alt="Label-4 Advanced Panel" /></figure></td>
+<td>アドバンス・パネル</td>
+<td><a href="index.html#dynamic-mode-ダイナミック-モード">Dynamic Mode（ダイナミック・モード）</a>、 <a href="index.html#threshold-スレッショルド">Threshold（スレッショルド）</a>、<a href="index.html#sidechain-サイドチェーン">Sidechain（サイドチェーン）</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="メーターとディスプレイ">メーターとディスプレイ</h2>
+
+<p>EQモジュールにおけるメーターとディスプレイの詳細は以下の通りです。</p>
+
+<figure ><img src="../images/equalizer/meters-displays.png" alt="Equalizer Meters and Displays" /></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>番号</strong></th>
+<th><strong>セクション</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1 Spectrum Anaylzers" /></figure></td>
+<td><a href="index.html#スペクトラム-アナライザー">スペクトラム・アナライザー</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2 Gain Reduction Meter" /></figure></td>
+<td><a href="index.html#複合カーブ">複合カーブ</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="Label-3 Gain Reduction Meter" /></figure></td>
+<td><a href="index.html#フィルターのカーブ表示">フィルターのカーブ表示</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-4.png" alt="Label-4 Gain Reduction Meter" /></figure></td>
+<td><a href="index.html#メーターのスケール-目盛り">メーターのスケール</a></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="スペクトラム-アナライザー">スペクトラム・アナライザー</h3>
+
+<p>入力信号と出力信号のゲインを周波数スペクトラム上にリアルタイムで表示します。EQモジュールでは、以下の2つのスペ
+クトラム・アナライザーが表示されます。</p>
+
+<ul>
+<li><strong>入力信号:</strong> EQモジュールの入力信号はダークグレーで表示されます。</li>
+<li><strong>出力信号:</strong> EQ処理された出力信号は白い線で表示されます。</li>
+</ul>
+
+<h3 id="複合カーブ">複合カーブ</h3>
+
+<p>全バンドを合成させたフィルターは白い線で表示されます。EQの操作点を調節することで、複合カーブの全体的な形が変化
+します。</p>
+
+<h3 id="フィルターのカーブ表示">フィルターのカーブ表示</h3>
+
+<p>選択されている操作点のフィルターを表示します。ひとつの操作点をクリックすると、フィルターが操作点と同じ色の線で
+表示されます。操作点が選択されていない場合、特定のフィルター・カーブは表示されず、複合カーブのみが表示されま
+す。</p>
+
+<h3 id="メーターのスケール-目盛り">メーターのスケール（目盛り）</h3>
+
+<p>メーターのスケールは、スペクトラム・アナライザーの右端、左端、そして下部に表示されています。これらのスケールを
+参考にしながら、パラメータを調節してください。</p>
+
+<ul>
+<li><strong>EQ操作点のゲイン (dB):</strong> スペクトラム・アナライザー右側に表示されています。</li>
+<li><strong>各周波数のゲイン (dB):</strong> スペクトラム・アナライザー左側に表示されています。</li>
+<li><strong>周波数 Scale (Hz):</strong> スペクトラム・アナライザー下部に表示されています。</li>
+</ul>
+
+<p><strong>周波数のスケール</strong>は、<a href="index.html#モジュール-ヘッダー">モジュール・ヘッダー</a>の左端にある<a href="index.html#scale-スケール">Scale（スケール）</a>
+メニューのボタンか、<a href="../options/index.html">オプション</a>のEQタブから設定できます。EQ操作点の配置を見ながら、
+<strong>周波数スケール</strong>の違いを確認できます。初期設定では、Ext Logに設定されています。</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>スケールの種類</strong></th>
+<th><strong>説明</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>リニア・スケール（Linear）</strong></td>
+<td>リニア・スケールは周波数スペクトラムの高域を強調していますので、EQにおける「エア」と呼ばれる音の明度を調節するのに便利なスケールです。</td>
+</tr>
+
+<tr>
+<td><strong>メル・スケール（Mel)</strong></td>
+<td>人間の音に対する聴覚、つまり人が感じる音程を視覚化したスケールです。</td>
+</tr>
+
+<tr>
+<td><strong>ログ・スケール（Log / Ext Log / Flat Log）</strong></td>
+<td>低域や中域の詳細を表示するノンリニア・スケールで、一般的なEQ操作に便利なスケールです。</td>
+</tr>
+
+<tr>
+<td><strong>ピアノロール（Piano Roll）</strong></td>
+<td>初期設定のExt Logスケールの下部にピアノロールを配置して、周波数と音程の関係を表示します。</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="モジュール-ヘッダー">モジュール・ヘッダー</h2>
+
+<p>EQモジュールを全体的に調節する操作項目が表示されています。詳細は以下の通りです。</p>
+
+<figure ><img src="../images/equalizer/module-header.png" alt="Equalizer Module Header" /></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>番号</strong></th>
+<th><strong>セクション</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><figure ><img src="../images/num/label-1.png" alt="Label-1 Scale" /></figure></td>
+<td><a href="index.html#scale-スケール">Scale（スケール）</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-2.png" alt="Label-2 Soft Saturation" /></figure></td>
+<td><a href="index.html#soft-saturation-ソフト-サチュレーション">Soft Saturation（ソフト・サチュレーション）</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-3.png" alt="Label-3 Masking Meter" /></figure></td>
+<td><a href="index.html#masking-meter-マスキング-メーター">Masking Meter（マスキング・メーター）</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-4.png" alt="Label-4 Learn" /></figure></td>
+<td><a href="index.html#learn-学習機能">Learn（学習機能）</a></td>
+</tr>
+
+<tr>
+<td><figure ><img src="../images/num/label-5.png" alt="Label-5 Reset" /></figure></td>
+<td><a href="index.html#reset-リセット">Reset（リセット）</a></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="scale-スケール">Scale（スケール）</h3>
+
+<p>Scale Menuで周波数スケールの種類を選択します。詳細については、<a href="index.html#メーターのスケール-目盛り">メーターのスケール</a>
+をご覧ください。</p>
+
+<h3 id="soft-saturation-ソフト-サチュレーション">Soft Saturation（ソフト・サチュレーション）</h3>
+
+<p><strong>Soft Saturation</strong>をオンにすると、入力信号にわずかな倍音を加えて、より豊かなサウンドにします。また、EQカーブ
+により若干の色付けが加わります。</p>
+
+<h3 id="masking-meter-マスキング-メーター">Masking Meter（マスキング・メーター）</h3>
+
+<p>EQモジュールをMasking Meterモードにします。詳細については、<a href="../masking-meter/index.html">マスキング・メーター</a>の
+ページをご覧ください。</p>
+
+<h3 id="learn-学習機能">Learn（学習機能）</h3>
+
+<p><strong>Learn</strong>ボタンをクリックして、歯擦音やレゾナンス、そして低音の暴れなど、オーディオ信号の中で目立つ周波数をイ
+ンテリジェントに特定してEQ操作点を配置します。</p>
+
+<div class="admonition tip">
+<p class="admonition-title">ヒント：Learnは有効になっている操作点のみを調節します</p>
+<p class="admonition-body"><strong>Learn</strong>はEQの操作点を追加、または削除をしません。EQモジュール内で既に有効になっている操作点のみを調節しま
+す。また、LearnはGainやQの調節もしません。また、操作点が配置された後、
+<kbd>Shift</kbd> キーの長押しで周波数の
+位置を維持したままGainを上下させることができます。</p>
+</div>
+
+
+<h3 id="reset-リセット">Reset（リセット）</h3>
+
+<p><strong>Reset</strong>ボタンをクリックすると、EQモジュールにおける全ての操作項目が初期設定に戻ります。ここからリセット前に
+使用していた設定に戻したい場合は、<a href="../general-controls/index.html#編集履歴の操作">編集履歴</a>のウインドウで履歴リ
+ストからリセット前の項目を選択します。</p>
+
+<h3 id="lfe-低域効果音">LFE（低域効果音）</h3>
+
+<p><strong>LFE</strong>ボタンは、LFE チャンネルを含むサラウンド・トラック (5.1 または 7.1など) で Neutron3 Advancedマザーシッ
+プ・プラグインを挿入した場合のみ表示されます。<strong>LFE</strong>を無効にすると、LFEチャンネルにおける全てのオーディオ情報
+は、レイテンシー補正されながら、未処理の状態でモジュールを通過します。詳細については、
+<a href="../general-controls/index.html#lfe-low-frequency-effects-低域効果音">LFE</a>のセクションをご覧ください。</p>
+
+<hr />
+
+<h2 id="操作項目">操作項目</h2>
+
+<h3 id="操作点の追加と削除">操作点の追加と削除</h3>
+
+<p>EQモジュールの操作点は追加（最大12個）と削除が可能です。</p>
+
+<h3 id="操作点の追加">操作点の追加</h3>
+
+<p>操作点を追加する方法は以下の通りです。</p>
+
+<ul>
+<li><strong>複合カーブ上に追加</strong>: 白い線で表示された <a href="index.html#複合カーブ"><strong>複合カーブ</strong></a> にカーソルをあてると<strong>+</strong> ボタンが
+現れます。その <strong>+</strong> ボタンをクリックして、新規の操作点を追加します。</li>
+<li><strong>キーボードショートカットで追加</strong>: 
+<kbd>Command</kbd>+
+<kbd>Return</kbd> (Mac) or 
+<kbd>Ctrl</kbd>+
+<kbd>Return</kbd> (Windows) で、EQスペクトラム中央に新規の操作点を追加します。</li>
+<li><strong>お好みの場所に追加</strong>: EQスペクトラムのお好みの場所をダブルクリックして、新規の操作点を追加します。</li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">メモ：新規の操作点には周波数に応じたフィルター・シェイプが設定されます</p>
+<p class="admonition-body"><p>新規の操作点には、追加された場所（周波数）に応じて、予め決められたフィルター・シェイプが設定されます。3種類の
+フィルター・シェイプは以下の通りです。</p>
+
+<ul>
+<li><strong>左寄りに追加した場合</strong>: フラット・ハイパス、またはローシェルフ</li>
+<li><strong>右寄りに追加した場合</strong>: フラット・ローパス、またはハイシェルフ</li>
+<li><strong>中央寄りに追加した場合</strong>: プロポーショナルQ</li>
+</ul>
+
+<p>フラット・ハイパスとフラット・ローパスが設定されるのはそれぞれ<strong>一度のみ</strong>になります。それは、周波数スペクトラ
+ムの両端でのみ使用されるフィルターだからです。それ以外の場所では、シェルフとプロポーショナルQフィルターが設定
+されます。</p>
+</p>
+</div>
+
+<h3 id="操作点の削除">操作点の削除</h3>
+
+<p>操作点を追加する方法は以下の通りです。</p>
+
+<ul>
+<li><strong>ひとつの操作点を削除</strong>: 削除したい操作点を選択し、HUDコントロールの <strong>X</strong> ボタンをクリックして削除します。</li>
+<li><strong>複数の操作点を削除</strong>: クリック＆ドラッグで削除したい複数の操作点を選択し、
+<kbd>Delete</kbd> または 
+<kbd>Backspace</kbd>キーで選択された操作点を全て削除します。</li>
+<li><strong>修飾キーで削除:</strong> 
+<kbd>Shift</kbd>+クリックで複数の操作点を選択し、
+<kbd>Delete</kbd> または
+<kbd>Backspace</kbd> キーで選択された操作点を全て削除します。</li>
+</ul>
+
+<h3 id="hudの操作項目">HUDの操作項目</h3>
+
+<p>操作点をクリックすると、HUD（ヘッド・アップ・ディスプレイ）が表示されます。HUDでの操作項目は以下の通りです。</p>
+
+<ul>
+<li><a href="index.html#バンドの操作項目">バンドの操作項目</a></li>
+<li><a href="index.html#フィルター-シェイプ">フィルター・シェイプ</a></li>
+<li><a href="index.html#数値の表示">数値の表示</a></li>
+<li><a href="index.html#フィルター-シェイプ">フィルター・シェイプ</a></li>
+</ul>
+
+<figure ><img src="../images/equalizer/hud.png" alt="EQ HUD" /></figure>
+
+<h3 id="バンドの操作項目">バンドの操作項目</h3>
+
+<p>HUDの左側には、選択されている操作点（バンド）のオン/オフ・ボタン、ソロ・ボタン、そして削除ボタンが表示されてい
+ます。</p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><strong>アイコン</strong></th>
+<th><strong>操作</strong></th>
+<th><strong>説明</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><figure ><img src="../images/equalizer/power.png" alt="Power Button" /></figure></td>
+<td>オン/オフ・ボタン</td>
+<td>選択されている操作点のオン/オフを切り替えます。</td>
+</tr>
+
+<tr>
+<td align="center"><figure ><img src="../images/equalizer/solo.png" alt="Solo Button" /></figure></td>
+<td>ソロ</td>
+<td>「S」ボタンをクリックしてソロ機能を有効にすると、操作点のフィルターのみを聴くことができます。</td>
+</tr>
+
+<tr>
+<td align="center"><figure ><img src="../images/equalizer/remove.png" alt="Remove Button" /></figure></td>
+<td>削除</td>
+<td>操作点を削除します。</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">メモ：操作点オフ時のフィルター・カーブ表示</p>
+<p class="admonition-body">EQの操作点をオフにした時、フィルター・カーブは表示されたままになりますが、他のオンになっている操作点と差別化す
+るために、フィルター・カーブの色がグレーに変わります。</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">ヒント： Alt-SoloとBand Solo</p>
+<p class="admonition-body"><p>以下の方法で、特定の周波数帯域のみを聴くことができます。</p>
+
+<ol>
+<li><strong>操作点のソロ</strong>: 操作点に設定されたフィルターの音のみを聴くことができます。この機能にアクセスするには、
+<br /></li>
+</ol>
+
+<p><kbd>Alt</kbd> (
+<kbd>option</kbd>) キーを押したまま操作点をクリックします。また、HUDコントロールで「S」ボ
+   タンをクリックしても、ソロにすることができます。
+2. <strong>Alt-Solo</strong>:
+<kbd>Alt</kbd> (
+<kbd>option</kbd>)キーを押したまま、周波数スペクトラム上をクリック＆上下左
+   右にドラッグすることで、聴きたい周波数帯域だけをフォーカスすることができます。</p>
+</p>
+</div>
+
+<h3 id="バンドのフィルター">バンドのフィルター</h3>
+
+<p>以下の表はフィルター・タイプと、それに関連するフィルター・シェイプをまとめたものになります。</p>
+
+<figure ><img src="../images/equalizer/band-filter-options.png" alt="Band Filter Options" /></figure>
+
+<h4 id="フィルター-タイプ">フィルター・タイプ</h4>
+
+<p>EQモジュールには合計13種類の <a href="index.html#フィルター-シェイプ">フィルター・シェイプ</a>があり、Pass Filter（パス・フィル
+ター）、Peak Filter（ピーク・フィルター）、Shelf Filter（シェルフ・フィルター）という３つのフィルター・タイプ
+に分類されます。</p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><strong>フィルター・タイプ</strong></th>
+<th align="left"><strong>説明</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><strong>Pass Filter（パス・フィルター）</strong></td>
+<td align="left">特定のカットオフ周波数よりも低い、または高い周波数を減衰させる時に使用します。Lowpass（ローパス）とHighpass（ハイパス）のメニューには、<strong>Flat（フラット）</strong>と<strong>Resonant（レゾナント）</strong> の選択肢があります。</td>
+</tr>
+
+<tr>
+<td align="center"><strong>Peak Filter（ピーク・フィルター）</strong></td>
+<td align="left">特定の中心周波数をブースト/カットする時に使用します。Bell（ベル）メニューには、<strong>Bell（ベル）、Proportional Q（プロポーショナルQ）、Band shelf（バンド・シェルフ）</strong> の選択肢があります。</td>
+</tr>
+
+<tr>
+<td align="center"><strong>Shelf Filter（シェルフ・フィルター）</strong></td>
+<td align="left">特定の周波数よりも低い、または高い周波数をブースト/カットする時に使用します。Low Shelf（ローシェルフ）とHigh Shelf（ハイシェルフ）のメニューにはそれぞれ、<strong>Analog（アナログ）、Vintage（ヴィンテージ）、Baxandall（バクサンドール）</strong> の選択肢があります。</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">メモ：フィルターはスロープ/Qの調節で変化します</p>
+<p class="admonition-body">周波数の帯域幅（Q値）を調節すると、中心周波数の周りのブースト/カット量が変化します。また、フィルターのスロープ
+は適用される減衰の角度を設定します。</p>
+</div>
+
+<h4 id="フィルター-シェイプ">フィルター・シェイプ</h4>
+
+<p>メニューから操作点に適用するフィルター・シェイプを選択します。ドロップダウンメニューには、フィルター・シェイプ
+が以下のサブメニューに分類されています。: <a href="index.html#bellベル">Bell（ベル）</a>、
+<a href="index.html#low-shelf-and-high-shelf-ローシェルフとハイシェルフ">Low Shelf &amp; High Shelf（ローシェルフ＆ハイシェルフ）</a>、
+<a href="index.html#lowpass-and-highpass-ローパスとハイパス">Lowpass &amp; Highpass (ローパス＆ハイパス）</a>。</p>
+
+<h5 id="bell-ベル">Bell（ベル）</h5>
+
+<p>Bellには、以下のピーク・タイプのフィルターがあります。</p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><strong>シェイプ</strong></th>
+<th><strong>説明</strong></th>
+<th><strong>特徴</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><strong>プロポーショナルQ</strong><br /><figure class="pad-even"><img src="../images/equalizer/filters/bell-prop-q.png" alt="EQ Proportional Q Bell Filter Shape" /></figure></td>
+<td>ブースト/カット量に応じて形を変えるフィルターです。帯域幅の設定によっては、ゲインを上下させた時の変化が異なります。例えば、帯域幅を狭くしてゲインを極端に上下させると、より鋭いカーブを作ることができます。</td>
+<td>狭い帯域幅で特定周波数をピンポイントでカット。ゲイン量が大きいほど、タイトなカットになります。</td>
+</tr>
+
+<tr>
+<td align="center"><strong>Bell（ベル）</strong><br /><figure class="pad-even"><img src="../images/equalizer/filters/bell.png" alt="EQ Bell Filter Shape" /></figure></td>
+<td>特定周波数を中心とする帯域をスムーズにブースト/カットします。文字どおり、ベルのような形のフィルターです。</td>
+<td>ゲインの量（ブースト/カット）が大きくなると、全体的な音の色と質感が変化します。Proportional Qよりも変化が分かりやすいフィルターです。</td>
+</tr>
+
+<tr>
+<td align="center"><strong>Band Shelf（バンド・シェルフ）</strong><br /><figure class="pad-even"><img src="../images/equalizer/filters/bell-band-shelf.png" alt="EQ Band Shelf Filter Shape" /></figure></td>
+<td>幅が広く頭がフラットなBellフィルターです。</td>
+<td>音の倍音同士の関係を変化させます。特定の周波数帯域をひとまとめでブースト/カットするのに便利です。</td>
+</tr>
+</tbody>
+</table>
+
+<h5 id="low-shelf-and-high-shelf-ローシェルフとハイシェルフ">Low Shelf and High Shelf（ローシェルフとハイシェルフ）</h5>
+
+<p>Low ShelfとHigh Shelfには、以下のシェルフ・タイプのフィルターがあります。</p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><strong>シェイプ</strong></th>
+<th><strong>説明</strong></th>
+<th><strong>特徴</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><strong>Analog（アナログ）</strong><br /><figure ><img src="../images/equalizer/filters/shelf-analog.png" alt="EQ Analog Shelf Filter Shape" /></figure></td>
+<td>シンプルなブースト/カットに優れたシェルフ・フィルターです。アナログEQのスタンダードなシェルフに似ています。</td>
+<td>ハイエンドやローエンドを強調したいなど、大きな変化を加えたい時に便利です。</td>
+</tr>
+
+<tr>
+<td align="center"><strong>Baxandall（バクサンドール）</strong><br /><figure ><img src="../images/equalizer/filters/shelf-bax.png" alt="EQ Baxandall Filter Shape" /></figure></td>
+<td>Baxandall EQにインスパイアされつつも、周波数を自由に設定できるフィルターです。<ul><li><strong>Low shelf（ローシェルフ）</strong>: 緩やかなカーブのローシェルフ<li><strong>High Shelf（ハイシェルフ）</strong>: 緩やかなカーブのハイシェルフ</ul></td>
+<td>より自然なサウンドで超低域や超高域をコントロールできます。</td>
+</tr>
+
+<tr>
+<td align="center"><strong>Vintage（ヴィンテージ）</strong><br /><figure ><img src="../images/equalizer/filters/shelf-vintage.png" alt="EQ Vintage Low Shelf Filter Shape" /></figure></td>
+<td>かの有名なPultecアナログイコライザーにインスパイアされたフィルター・シェイプで、緩やかな周波数の「谷」を描きます。また、操作点ひとつの操作で複雑なスロープを作ることができます。</td>
+<td>ローエンドを濁らせることなく太くすることが可能です。</td>
+</tr>
+</tbody>
+</table>
+
+<h5 id="lowpass-and-highpass-ローパスとハイパス">Lowpass and Highpass（ローパスとハイパス）</h5>
+
+<p>LowpassとHighpassには、以下のパス・タイプのフィルターがあります。</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">シェイプ</th>
+<th>説明</th>
+<th>特徴</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><strong>Flat（フラット）</strong><br /> <figure ><img src="../images/equalizer/filters/pass-flat.png" alt="EQ Flat HP LP Filter Shapes" /></figure></td>
+<td>Butterworth（バターワース）フィルター：通過した周波数帯域が可能な限り平坦になるよう最適化されており、パスバンド（通過帯域）やストップバンド（阻止帯域）のリップルやレゾナンスがありません。</td>
+<td>音のキャラクターを崩すことなくローエンドやハイエンドを削ります。クリーンでナチュラルな処理を行えます。</td>
+</tr>
+
+<tr>
+<td align="center"><strong>Resonant（レゾナント）</strong><br /> <figure ><img src="../images/equalizer/filters/pass-resonant.png" alt="EQ Res HP Lowpass Filter Shapes" /></figure></td>
+<td>レゾナンスをコントロールできるフィルターで、カットオフ周波数の「肩」の部分を持ち上げることができます。</td>
+<td>信号の最低域や最高域をブーストで強調して、キャラクターを加えることができます。</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">GainとQ の調節について</p>
+<p class="admonition-body"><strong>Baxandall</strong> はQの調節ができません。<br />
+<strong>Lowpass</strong>と<strong>Highpass</strong> は <strong>Gain（ゲイン）</strong> の調節ができません。</p>
+</div>
+
+<h3 id="数値の表示">数値の表示</h3>
+
+<p>操作点の調節をする際、HUDに表示される数値を確認することができます。以下の表は、HUDで確認できる項目をまとめたも
+のになります。</p>
+
+<figure class="align-image-center"><img src="../images/equalizer/readouts.png" alt="EQ Band Readouts" /></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>表示項目</strong></th>
+<th><strong>単位</strong></th>
+<th><strong>説明</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>Freq（周波数）</strong></td>
+<td>Hz</td>
+<td>選択されている操作点の中心周波数、（またはカットオフ周波数）を表示します。EQモジュールでは、20 Hzから20 kHzまで対応しています。</td>
+</tr>
+
+<tr>
+<td><strong>Gain（ゲイン）</strong></td>
+<td>dB</td>
+<td>選択されている操作点に適用されたゲイン量を表示します。EQモジュールでは、-30 dBから+15 dBまで対応しています。</td>
+</tr>
+
+<tr>
+<td><strong>Q</strong></td>
+<td>(cF/Bandwidth)</td>
+<td><em>(パラメトリック/ベル・フィルター)</em> フィルターの帯域幅、またはスロープの値を表示します。</td>
+</tr>
+
+<tr>
+<td><strong>Slope（スロープ）</strong></td>
+<td>(dB/octave)</td>
+<td><em>（ハイパス/ローパス・フィルター）</em> フィルターのカットオフ・スロープの値を表示します。</td>
+</tr>
+
+<tr>
+<td><strong>音名</strong></td>
+<td>音名</td>
+<td>操作点の位置が、音名で何にあたるかを表示します。</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="freq-gain-qの調節">Freq、Gain、Qの調節</h4>
+
+<p>Freq（周波数）、Gain（ゲイン）、そしてQ（帯域幅）は、以下の3つの方法で調節ができます。</p>
+
+<ol>
+<li>操作点、またはQハンドルのクリック＆ドラッグ</li>
+<li>HUDで直接数値を入力</li>
+<li>矢印キー</li>
+</ol>
+
+<p>以下の表は、Freq（周波数）、Gain（ゲイン）、そしてQ（帯域幅）それぞれの調節方法をまとめたものになります。</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>項目</strong></th>
+<th><strong>調節の方法</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>Freq（周波数）</strong></td>
+<td><ul><li>EQの操作点をクリックしたまま<strong>左右にドラッグ</strong> <li>HUDで直接数値を入力（以下参照） <li>左/右の矢印キー</td>
+</tr>
+
+<tr>
+<td><strong>Gain（ゲイン</strong>）</td>
+<td><ul><li>EQの操作点をクリックしたまま<strong>上下にドラッグ</strong> <li>HUDで直接数値を入力（以下参照） <li>上/下の矢印キー </ul></td>
+</tr>
+
+<tr>
+<td><strong>Q</strong></td>
+<td><ul><li>操作点のハンドルをクリックしたまま<strong>左右にドラッグ</strong>して、帯域幅を広げたり狭めたりします。<li>HUDで直接数値を入力（以下参照） <li>Use 
+<kbd>Alt</kbd>/ 
+<kbd>Option</kbd> + 矢印キー </ul></td>
+</tr>
+</tbody>
+</table>
+
+<p>Freq（周波数）、Gain（ゲイン）、そしてQ（帯域幅）の <strong>数値を直接入力するには</strong> :</p>
+
+<ol>
+<li>HUDで変更したい項目の数値をダブルクリック</li>
+<li>お好みの数値を入力</li>
+<li>
+<kbd>Enter</kbd>、または 
+<kbd>Return</kbd> キーを押して完了</li>
+</ol>
+
+<div class="admonition tip">
+<p class="admonition-title">ヒント：キーボードを併用した調節方法 </p>
+<p class="admonition-body"><ul>
+<li>
+<kbd>Shift</kbd> キーを押したまま操作点をクリック＆上下ドラッグで <strong>ゲインのみを調節</strong> できます。また
+<kbd>Shift</kbd>キーを押したまま操作点をクリック＆左右ドラッグで <strong>周波数のみ</strong> を調節できます。</li>
+<li>
+<kbd>Shift</kbd>キーを押したまま矢印キーを使うと <strong>数値の微調整</strong>が可能になります。</li>
+<li>
+<kbd>Command</kbd> キー (Mac) または
+<kbd>Ctrl</kbd> キー (Windows)を押したまま矢印キーを使うと<strong>数値の微調
+整</strong>が可能になります。<br /></li>
+</ul></p>
+</div>
+
+
+<div class="admonition note">
+<p class="admonition-title">メモ：すべてのパラメータをリセット</p>
+<p class="admonition-body">操作点のすべてのパラメータをリセットして初期設定に戻すには、操作点をダブルクリックします。</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">EQモジュールにおけるGainのスケール </p>
+<p class="admonition-body">画面の右側に表示されているGainのスケール（dB）を参考にしながら、操作点を調節してください。</p>
+</div>
+
+<hr />
+
+<h2 id="アドバンスト-パネル">アドバンスト・パネル</h2>
+
+<p>アドバンスト・パネルを開くには、HUDコントロールの右側に表示されている三角矢印マークをクリックしてください。EQ
+モジュールのアドバンスト・パネルに以下の操作項目が収納されています。</p>
+
+<ul>
+<li><a href="index.html#dynamic-mode-ダイナミック-モード">Dynamic Mode（ダイナミック・モード）</a></li>
+<li><a href="index.html#sidechain-サイドチェーン">Sidechain（サイドチェーン）</a></li>
+</ul>
+
+<figure class="align-image-center"><img src="../images/equalizer/adv-hud.png" alt="EQ Advanced Panel" /></figure>
+
+<div class="admonition note">
+<p class="admonition-title">アドバンスト・コントロールのオン/オフ表示</p>
+<p class="admonition-body">Dynamic ModeやSidechainがオフになっていてアドバンスト・パネルが閉じている時、HUDの右端にある右向き三角矢印はホ
+ワイトで表示されます。アドバンスト・パネルを開いてDynamic ModeやSidechainがオンにした状態で、右端の左向き三角
+矢印（白）をクリックしてアドバンスト・パネルを閉じることができます。この時、アドバンスト・パネルが閉じた状態の
+HUDは、右端にある右向き三角矢印が操作点の色で表示されます。<br />
+<figure class="align-image-center"><img src="../images/equalizer/dyn-ctrls-enabled.png" alt="EQ Dynamic Arrow Button Highlighted" /></figure></p>
+</div>
+
+<h3 id="dynamic-mode-ダイナミック-モード">Dynamic Mode（ダイナミック・モード）</h3>
+
+<p>選択した操作点に、スレッショルドの設定に応じたダイナミック・ゲインを適用します。Dynamic Modeは、信号がスレッ
+ショルドを超えた時に、その信号をブースト、または減衰させる機能です。ブースト、または減衰を発生させるレベルは、
+スレッショルドで設定します。</p>
+
+<div class="admonition note">
+<p class="admonition-title">注意： HighpassとLowpassには Dynamic Modeがありません</p>
+<p class="admonition-body">Dynamic Modeを使用できるのは、HighpassとLowpassを除いた全てのフィルター・シェイプになります。HighpassやLowpass
+を使用している時、Dynamic Modeはグレーアウトされてアクセスができません。</p>
+</div>
+
+<h3 id="threshold-スレッショルド">Threshold（スレッショルド）</h3>
+
+<p>ダイナミック・ゲインの調節がトリガーされるレベルを設定します。Dynamic Mode でのThresholdの設定は以下の通りで
+す。</p>
+
+<ol>
+<li>スライダーをクリック＆上下ドラッグ</li>
+<li>スライダーをクリックして上下矢印キー</li>
+<li>Thresholdの数値をダブルクリックして直接入力</li>
+</ol>
+
+<h3 id="スレッショルド-メーター">スレッショルド・メーター</h3>
+
+<p><strong>Threshold</strong>の操作に関連する２つのメーターは以下の通りです。</p>
+
+<ul>
+<li><strong>入力レベル・メーター</strong>: 選択された操作点の入力レベルを表示します。</li>
+<li><strong>リダクション/アディション・メーター</strong>: 選択された操作点に適用されたダイナミック・レベルの調節量を表示しま
+す。</li>
+</ul>
+
+<h3 id="dynamic-modeの方向">Dynamic Modeの方向</h3>
+
+<p>Dynamic Modeをオンにした時、ゲインが上下どちらの方向に変化するかをUp/Downコントロールで設定します。Up/Downコン
+トロールはDynamic Modeをオンにした時、操作点の上と下に矢印が表示されるので、いずれかをクリックで選択します。</p>
+
+<h4 id="up">UP</h4>
+
+<p>Upの矢印を選択すると、信号が <a href="index.html#threshold-スレッショルド">Threshold (スレッショルド)</a> を超えた時にフィルターの
+ゲインがブーストします。</p>
+
+<ul>
+<li>EQの操作点がゼロ・ラインよりも上にある場合、フィルターはトリガーされるまで0 dBに設定されます。信号がスレッ
+ショルドを超えてトリガーされる時、フィルターのゲインは操作点に向かってブーストします。</li>
+<li>EQの操作点がゼロ・ラインよりも下にある場合、信号がスレッショルドを超えてトリガーされる時に、フィルターのゲイ
+ンはゼロ・ラインに向かってブーストします。</li>
+</ul>
+
+<h4 id="down">DOWN</h4>
+
+<p>Upの矢印を選択すると、信号が<a href="index.html#threshold-スレッショルド">Threshold (スレッショルド)</a>を超えた時にフィルターのゲ
+インが減衰します。</p>
+
+<ul>
+<li>EQの操作点がゼロ・ラインよりも上にある場合、信号がスレッショルドを超えてトリガーされる時に、フィルターのゲイ
+ンはゼロ・ラインに向かって減衰します。</li>
+<li>EQの操作点がゼロ・ラインよりも下にある場合、フィルターはトリガーされるまで0 dBに設定されます。信号がスレッ
+ショルドを超えてトリガーされる時、フィルターのゲインは操作点に向かって減衰します。</li>
+</ul>
+
+<h3 id="sidechain-サイドチェーン">Sidechain（サイドチェーン）</h3>
+
+<p>選択されたインターナル(Int.)、またはエクスターナル(Ext.)の入力信号がトリガーとなって、コンプレッション/エクス
+パンジョンの量をコントロールします。サイドチェーン処理を行うことで、トラック同士のバランスを取ることが可能にな
+ります。</p>
+
+<div class="admonition note">
+<p class="admonition-title">Sidechainの初期設定ルーティング</p>
+<p class="admonition-body">最初にSidechainをオンにした時、初期設定の入力は選択されている操作点そのものになります。例えば、操作点5では初期
+設定の入力がインターナル(Int.)のBand 5ということになります。これは、Sidechain を無効としたDynamic Modeの処理に
+相当します。</p>
+</div>
+
+<h4 id="sidechainの設定">Sidechainの設定</h4>
+
+<p>Sidechain をオンにした時、インターナル(Int.)、またはエクスターナル(Ext.)のBandを選択ができるようになります。</p>
+
+<ul>
+<li><strong>インターナル(Int.)</strong>: EQモジュールで配置された操作点 (Band)を選択します。
+
+<ul>
+<li>インターナル・サイドチェーンは、信号そのもののバランを整えることが可能です。</li>
+<li>インターナル・フル（Int Full）は、全バンドをトリガーとします。</li>
+</ul></li>
+<li><strong>エクスターナル(Ext.)</strong>: 別のトラックやバストラックから操作点 (Band)を選択します。
+
+<ul>
+<li>エクスターナル・サイドチェーン・インプットは、他のトラックとのバランスを整えることが可能です。</li>
+<li>また、エクスターナル・バンドを選択することで（例：Ext. Band 1）、EQモジュールの特定のバンドだけにサイド
+チェーンをかけることも可能です。</li>
+</ul></li>
+</ul>
+
+<div class="admonition note">
+<p class="admonition-title">バイパスされた操作点でもサイドチェーンが可能</p>
+<p class="admonition-body">操作点がバイパスになっている場合でも、サイドチェーンの入力ソースとして使用できます。周波数とQの設定をしてお使
+いください。</p>
+</div>
+
+
+    </div>
+  </article>
+<footer class="footer">
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  <a href="../gate/index.html" title="ゲート (Gate)">
+        <span class="direction">前</span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="前">
+            <span class="icon icon-arrow-back"></span>
+          </div>
+          <div class="stretch">
+            <div class="title">ゲート (Gate)</div>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="next">
+  <a href="../masking-meter/index.html" title="マスキング・メーター">
+        <span class="direction">次</span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">マスキング・メーター</div>
+          </div>
+          <div class="button button-next" role="button" aria-label="次">
+            <span class="icon icon-arrow-forward"></span>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+    <div class="copyright">
+<a href="../../en/equalizer/index.html"><i class="icon icon-eye"></i> View page in English</a>
+<br />
+&copy; 2019 iZotope, Inc. - Neutron 3.1.0
+  </div>
+</footer>
+  <div class="results" role="status" aria-live="polite">
+    <div class="scrollable">
+      <div class="wrapper">
+        <div class="meta"></div>
+        <div class="list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/ie7.js"></script>
+<script src="../javascripts/application.js"></script>
+<script>
+  /* Add headers to scrollspy */
+  var headers   = document.getElementsByTagName("h2");
+  var scrollspy = document.getElementById('scrollspy');
+  if(scrollspy) {
+    if(headers.length > 0) {
+      for(var i = 0; i < headers.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "anchor");
+        var a  = document.createElement("a");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", headers[i].innerHTML);
+        a.innerHTML = headers[i].innerHTML;
+        li.appendChild(a)
+        scrollspy.appendChild(li);
+      }
+    } else {
+      scrollspy.parentElement.removeChild(scrollspy)
+    }
+    /* Add permanent link next to the headers */
+    var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(var i = 0; i < headers.length; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("class", "headerlink");
+        a.setAttribute("href", "#" + headers[i].id);
+        a.setAttribute("title", "Permanent link")
+        a.innerHTML = `"#"`;
+        headers[i].appendChild(a);
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </main>
+</body>
+</html>

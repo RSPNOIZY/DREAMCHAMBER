@@ -1,0 +1,19 @@
+name = "noisy-vox"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "noisy-vox"
+route = { pattern = "vox.noisy.io/*", custom_domain = true }
+
+[[d1_databases]]
+binding = "DB"
+database_name = "noisy-vox"
+database_id = "ea110bf3-5ad0-4dd3-ae3a-2ef05fc052ac"
+
+[vars]
+NOISY_PROOF_API_URL = "https://proof.noisy.io"
+
+[[services]]
+binding = "PROOF"
+service = "noisyproof"

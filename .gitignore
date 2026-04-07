@@ -1,0 +1,39 @@
+# Secrets
+.env
+.dev.vars
+
+# Dependencies
+node_modules/
+dreamchamber/node_modules/
+
+# Logs
+*.log
+dreamchamber/*.log
+dreamchamber/logs/
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Wrangler
+.wrangler/
+
+# Build
+dist/
+
+# Empire docs (OneDrive mirror — large, not source code)
+docs/empire/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Large files - exclude from git
+archivist_catalog.json
+*.dylib
+*.venv*/
+.venv*/
+__pycache__/
+*.pyc
+node_modules/

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Loudness</title>
+		<link href="css/help.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="Loudness" lang="en-US" xml:lang="en-US">
+		<div id="_idContainer193" class="Basic-Text-Frame">
+			<p id="_idParaDest-175" class="heading-1"><a id="_idTextAnchor178"></a>Loudness <img src="image/image_LJACBFXTZVI5BCXHLV7GV36JKUUW6RGC" alt="" /></p>
+			<p class="Normal">The Loudness module adjusts the gain of the signal in order to meet the specified loudness standard, such as BS.1770. Unlike the <a target="mainFrame" href="Leveler.html#_idTextAnchor155"><span class="Hyperlink">Leveler module</span></a>, the gain in Loudness module stays fixed in time. However a post-limiter will be applied to the signal, if it is required to meet the True peak specification.</p>
+			<p class="Inline-Art"><img src="image/image_SSGSY2FUE4475JMT6B2FU7ZWADCFJUTT" alt="" /></p>
+			<p class="Normal">To use Loudness:</p>
+			<ol>
+				<li class="Numbered-List" value="1">Make a selection in your file. If you want to apply Loudness to the entire clip, click Edit &gt; Select All or Edit &gt; Deselect All.</li>
+				<li class="Numbered-List">Click Process &gt; Loudness.</li>
+				<li class="Numbered-List">Select a preset, or make adjustments to the Integrated loudness and/or True peak sliders.</li>
+				<li class="Numbered-List">Click Process.</li>
+			</ol>
+			<p id="_idParaDest-176" class="heading-2"><a id="_idTextAnchor179"></a>Loudness standard</p>
+			<p class="Normal">Specifies the loudness standard used for calculating loudness and sets Integrated loudness and True peak sliders to the target values typical for the standard.</p>
+			<table id="table001-2" class="BasicTable">
+				<colgroup>
+					<col />
+					<col />
+					<col />
+					<col />
+					<col />
+					<col />
+					<col />
+				</colgroup>
+				<tbody>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Loudness Standard</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Integrated</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Integrated Tolerance (+/-)</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Short-term</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Momentary</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">True Peak</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">Gating</span></p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">AGCOM 219/09/CSP</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-24</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">0 .5</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-2</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">On</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">ARIB TR-B32</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-24</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">2</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-1</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">On</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">ATSC A/85</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-24</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">2</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-2</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">On</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">BS .1770-1</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-24</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">2</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-2</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">BS .1770-2/3</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-24</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">2</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-2</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">On</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">EBU R128</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-23</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">0 .5</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-1</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">On</p>
+						</td>
+					</tr>
+					<tr class="BasicTable">
+						<td class="BasicTable BasicCell">
+							<p class="Normal"><span class="Bold">OP-59</span></p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-24</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">1</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">Off</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">-2</p>
+						</td>
+						<td class="BasicTable BasicCell">
+							<p class="Normal">On</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p id="_idParaDest-177" class="heading-2"><a id="_idTextAnchor180"></a>Integrated loudness</p>
+			<p class="Normal">Sets the desired integrated loudness of the clip, in LKFS (which is the same as LUFS).</p>
+			<p id="_idParaDest-178" class="heading-2"><a id="_idTextAnchor181"></a>True peak</p>
+			<p class="Normal">Sets the maximum true peak value allowed in a clip.</p>
+			<p class="Normal">Note that some combinations of Integrated loudness and True peak level may be incompatible. For example, having loudness of −10 LKFS is not compatible with a true peak value of −20 dBTP. When settings are incompatible, the Loudness module will display a warning at the end of the processing pass.</p>
+		</div>
+	</body>
+</html>

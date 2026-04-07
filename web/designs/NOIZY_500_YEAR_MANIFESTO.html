@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY.ai — The 500-Year DreamChamber Codex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #02030a;
+    --deep: #060915;
+    --ink: #0a0f20;
+    --glow-blue: #00c8ff;
+    --glow-violet: #7b2fff;
+    --glow-teal: #00ffcc;
+    --glow-amber: #ffaa00;
+    --glow-rose: #ff3a6e;
+    --glow-gold: #ffd700;
+    --text-primary: #e8eeff;
+    --text-muted: #7080a0;
+    --text-accent: #00c8ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--void);
+    color: var(--text-primary);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* CANVAS BG */
+  #cosmos {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .content { position: relative; z-index: 1; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%,
+      rgba(0,200,255,0.06) 0%,
+      rgba(123,47,255,0.04) 40%,
+      transparent 70%);
+  }
+
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--glow-teal);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    animation: fadeUp 1s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2.8rem, 8vw, 7.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    background: linear-gradient(135deg,
+      var(--glow-blue) 0%,
+      var(--glow-violet) 35%,
+      var(--glow-teal) 65%,
+      var(--glow-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    animation: fadeUp 1s 0.2s ease both;
+    filter: drop-shadow(0 0 40px rgba(0,200,255,0.3));
+  }
+
+  .hero-sub {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1rem, 3vw, 2rem);
+    font-weight: 400;
+    color: rgba(232,238,255,0.5);
+    margin-bottom: 40px;
+    animation: fadeUp 1s 0.4s ease both;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-style: italic;
+    color: rgba(232,238,255,0.65);
+    max-width: 700px;
+    margin: 0 auto 60px;
+    animation: fadeUp 1s 0.6s ease both;
+  }
+
+  .pulse-ring {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,200,255,0.3);
+    margin: 0 auto 60px;
+    position: relative;
+    animation: fadeUp 1s 0.8s ease both;
+  }
+  .pulse-ring::before, .pulse-ring::after {
+    content: '';
+    position: absolute;
+    inset: -30px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,200,255,0.15);
+    animation: ringPulse 3s ease-in-out infinite;
+  }
+  .pulse-ring::after { inset: -60px; animation-delay: 1s; }
+  .pulse-inner {
+    position: absolute;
+    inset: 30px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,200,255,0.15), rgba(123,47,255,0.1), transparent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem;
+    color: var(--glow-teal);
+    animation: glow 4s ease-in-out infinite alternate;
+  }
+
+  /* ── WAVE DIVIDER ── */
+  .wave-divider {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      var(--glow-violet) 20%,
+      var(--glow-blue) 50%,
+      var(--glow-teal) 80%,
+      transparent 100%);
+    margin: 0;
+    position: relative;
+  }
+  .wave-divider::before {
+    content: '';
+    position: absolute;
+    inset: -4px 0;
+    background: inherit;
+    filter: blur(8px);
+    opacity: 0.5;
+  }
+
+  /* ── EPOCH ── */
+  .epoch {
+    padding: 100px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .epoch-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 70px;
+  }
+
+  .epoch-year {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1;
+    min-width: 280px;
+    position: relative;
+  }
+
+  .epoch-year::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    margin-top: 12px;
+  }
+
+  .e1 .epoch-year { color: var(--glow-teal); }
+  .e1 .epoch-year::after { background: var(--glow-teal); box-shadow: 0 0 12px var(--glow-teal); }
+
+  .e2 .epoch-year { color: var(--glow-blue); }
+  .e2 .epoch-year::after { background: var(--glow-blue); box-shadow: 0 0 12px var(--glow-blue); }
+
+  .e3 .epoch-year { color: var(--glow-violet); }
+  .e3 .epoch-year::after { background: var(--glow-violet); box-shadow: 0 0 12px var(--glow-violet); }
+
+  .e4 .epoch-year { color: var(--glow-amber); }
+  .e4 .epoch-year::after { background: var(--glow-amber); box-shadow: 0 0 12px var(--glow-amber); }
+
+  .e5 .epoch-year { color: var(--glow-rose); }
+  .e5 .epoch-year::after { background: var(--glow-rose); box-shadow: 0 0 12px var(--glow-rose); }
+
+  .e6 .epoch-year { color: var(--glow-gold); }
+  .e6 .epoch-year::after { background: var(--glow-gold); box-shadow: 0 0 12px var(--glow-gold); }
+
+  .e7 .epoch-year {
+    background: linear-gradient(135deg, var(--glow-gold), var(--glow-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .e7 .epoch-year::after {
+    background: linear-gradient(90deg, var(--glow-gold), var(--glow-teal));
+    box-shadow: 0 0 20px rgba(255,215,0,0.5);
+  }
+
+  .epoch-meta {
+    flex: 1;
+    padding-top: 8px;
+  }
+
+  .epoch-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.6;
+  }
+
+  .epoch-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .epoch-tagline {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(232,238,255,0.55);
+    max-width: 500px;
+  }
+
+  /* ── PILLARS ── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+
+  .pillar {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 2px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .pillar:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,200,255,0.25);
+  }
+
+  .pillar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    right: 0; height: 1px;
+  }
+
+  .e1 .pillar::before { background: linear-gradient(90deg, transparent, var(--glow-teal), transparent); }
+  .e2 .pillar::before { background: linear-gradient(90deg, transparent, var(--glow-blue), transparent); }
+  .e3 .pillar::before { background: linear-gradient(90deg, transparent, var(--glow-violet), transparent); }
+  .e4 .pillar::before { background: linear-gradient(90deg, transparent, var(--glow-amber), transparent); }
+  .e5 .pillar::before { background: linear-gradient(90deg, transparent, var(--glow-rose), transparent); }
+  .e6 .pillar::before { background: linear-gradient(90deg, transparent, var(--glow-gold), transparent); }
+  .e7 .pillar::before { background: linear-gradient(90deg, var(--glow-gold), var(--glow-teal), var(--glow-violet)); }
+
+  .pillar-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .pillar-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.8;
+  }
+
+  .pillar-body {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(232,238,255,0.75);
+  }
+
+  /* ── AXIOM ── */
+  .axiom {
+    border-left: 2px solid rgba(0,200,255,0.3);
+    padding: 24px 36px;
+    margin: 50px 0;
+    position: relative;
+    background: rgba(0,200,255,0.03);
+  }
+
+  .axiom::before {
+    content: '"';
+    position: absolute;
+    top: -20px; left: 20px;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 5rem;
+    color: rgba(0,200,255,0.15);
+    line-height: 1;
+  }
+
+  .axiom p {
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(232,238,255,0.85);
+  }
+
+  .axiom cite {
+    display: block;
+    margin-top: 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--glow-teal);
+    font-style: normal;
+  }
+
+  /* ── TIMELINE SPINE ── */
+  .spine {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+  }
+
+  .spine-node {
+    display: flex;
+    gap: 32px;
+    padding: 32px 0;
+    border-left: 1px solid rgba(255,255,255,0.08);
+    padding-left: 40px;
+    position: relative;
+  }
+
+  .spine-node::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: 40px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--glow-blue);
+    box-shadow: 0 0 12px var(--glow-blue);
+  }
+
+  .spine-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    min-width: 80px;
+    padding-top: 3px;
+  }
+
+  .spine-content h4 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .spine-content p {
+    font-size: 0.95rem;
+    color: rgba(232,238,255,0.6);
+    line-height: 1.6;
+  }
+
+  /* ── MANIFESTO BANNER ── */
+  .manifesto {
+    padding: 100px 24px;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(ellipse 100% 80% at 50% 50%,
+      rgba(123,47,255,0.08) 0%,
+      transparent 70%);
+  }
+
+  .manifesto h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.6rem, 4vw, 3.5rem);
+    margin-bottom: 50px;
+    background: linear-gradient(90deg, var(--glow-violet), var(--glow-blue), var(--glow-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .manifesto-item {
+    padding: 40px 28px;
+    background: var(--void);
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .manifesto-item:hover {
+    background: rgba(0,200,255,0.04);
+  }
+
+  .manifesto-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 3rem;
+    color: rgba(0,200,255,0.2);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .manifesto-item h3 {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--glow-teal);
+    margin-bottom: 10px;
+  }
+
+  .manifesto-item p {
+    font-size: 0.95rem;
+    color: rgba(232,238,255,0.55);
+    line-height: 1.6;
+  }
+
+  /* ── FOUR PILLARS DISPLAY ── */
+  .four-pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin: 60px 0;
+    background: rgba(255,255,255,0.04);
+  }
+
+  @media (max-width: 768px) {
+    .four-pillars { grid-template-columns: repeat(2, 1fr); }
+    .epoch-header { flex-direction: column; gap: 20px; }
+    .epoch-year { min-width: auto; }
+  }
+
+  @media (max-width: 480px) {
+    .four-pillars { grid-template-columns: 1fr; }
+  }
+
+  .fp-card {
+    background: var(--void);
+    padding: 48px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .fp-card:hover { transform: translateY(-6px); }
+
+  .fp-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .fp1::before { background: var(--glow-blue); box-shadow: 0 0 20px var(--glow-blue); }
+  .fp2::before { background: var(--glow-teal); box-shadow: 0 0 20px var(--glow-teal); }
+  .fp3::before { background: var(--glow-violet); box-shadow: 0 0 20px var(--glow-violet); }
+  .fp4::before { background: var(--glow-rose); box-shadow: 0 0 20px var(--glow-rose); }
+
+  .fp-glyph {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: block;
+    filter: drop-shadow(0 0 12px currentColor);
+  }
+
+  .fp-brand {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .fp1 .fp-brand { color: var(--glow-blue); }
+  .fp2 .fp-brand { color: var(--glow-teal); }
+  .fp3 .fp-brand { color: var(--glow-violet); }
+  .fp4 .fp-brand { color: var(--glow-rose); }
+
+  .fp-desc {
+    font-size: 0.9rem;
+    color: rgba(232,238,255,0.5);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .fp-500 {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(232,238,255,0.3);
+    font-style: italic;
+  }
+
+  /* ── DR. B SECTION ── */
+  .drb-section {
+    padding: 100px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .drb-card {
+    background: rgba(255,215,0,0.03);
+    border: 1px solid rgba(255,215,0,0.15);
+    padding: 60px;
+    position: relative;
+  }
+
+  .drb-card::before {
+    content: 'DR. B';
+    position: absolute;
+    top: -30px; left: 40px;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 4rem;
+    color: rgba(255,215,0,0.07);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .drb-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    color: var(--glow-gold);
+    margin-bottom: 30px;
+  }
+
+  .drb-body {
+    font-size: 1.05rem;
+    color: rgba(232,238,255,0.75);
+    line-height: 1.85;
+    margin-bottom: 30px;
+  }
+
+  .drb-questions {
+    display: grid;
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .drb-q {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px;
+    background: rgba(255,215,0,0.04);
+    border-left: 2px solid rgba(255,215,0,0.3);
+  }
+
+  .drb-q-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.8rem;
+    color: rgba(255,215,0,0.3);
+    min-width: 48px;
+    line-height: 1;
+  }
+
+  .drb-q-text h4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--glow-gold);
+    margin-bottom: 8px;
+  }
+
+  .drb-q-text p {
+    font-size: 0.95rem;
+    color: rgba(232,238,255,0.6);
+    line-height: 1.6;
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    padding: 120px 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  .closing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 50%,
+      rgba(0,200,255,0.07) 0%,
+      transparent 70%);
+  }
+
+  .closing-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--glow-gold), var(--glow-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 32px;
+    filter: drop-shadow(0 0 30px rgba(255,215,0,0.3));
+  }
+
+  .closing-body {
+    max-width: 600px;
+    margin: 0 auto 60px;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: rgba(232,238,255,0.6);
+    line-height: 1.8;
+  }
+
+  .freq-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border: 1px solid rgba(0,200,255,0.3);
+    color: var(--glow-teal);
+    margin: 4px;
+  }
+
+  .signature {
+    margin-top: 80px;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.1rem;
+    color: rgba(232,238,255,0.3);
+    letter-spacing: 0.1em;
+  }
+
+  .signature span {
+    color: var(--glow-teal);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes ringPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.08; transform: scale(1.05); }
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 20px rgba(0,200,255,0.1); }
+    to { box-shadow: 0 0 40px rgba(0,200,255,0.25), 0 0 80px rgba(123,47,255,0.15); }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- ANIMATED COSMOS BACKGROUND -->
+<canvas id="cosmos"></canvas>
+
+<div class="content">
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="hero">
+    <div class="eyebrow">The DreamChamber Codex &nbsp;·&nbsp; Rob Plowman &nbsp;·&nbsp; 2026 – 2526</div>
+
+    <div class="pulse-ring">
+      <div class="pulse-inner">ƒ∞</div>
+    </div>
+
+    <h1 class="hero-title">NOIZY.ai</h1>
+    <p class="hero-sub">The 500-Year Manifesto</p>
+    <p class="hero-desc">
+      In the DreamChamber we think without restriction.<br>
+      This is the complete arc — from first frequency to final frontier.
+    </p>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <!-- ══════════════ FOUR PILLARS ══════════════ -->
+  <section style="padding:80px 24px; max-width:1200px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:50px;">
+      <div class="eyebrow">The Four Pillars of the New World</div>
+      <h2 style="font-family:'Cinzel Decorative',serif; font-size:clamp(1.5rem,3vw,2.5rem); color:var(--text-primary);">The NOIZY Universe</h2>
+    </div>
+    <div class="four-pillars">
+      <div class="fp-card fp1">
+        <span class="fp-glyph" style="color:var(--glow-blue)">⬡</span>
+        <span class="fp-brand">NOIZY.ai</span>
+        <p class="fp-desc">The Bedrock. Consent-as-Code. The Guild economy. Where the Artist's terms govern everything — the legal and ethical inversion that changes the world.</p>
+        <div class="fp-500">Epoch I → VII</div>
+      </div>
+      <div class="fp-card fp2">
+        <span class="fp-glyph" style="color:var(--glow-teal)">◎</span>
+        <span class="fp-brand">NOIZYVOX</span>
+        <p class="fp-desc">The Master Instrument. Biometric Performance Mirror. The therapeutic engine. 75% perpetual split. Creator-owned. Consent-locked. Smarter every use.</p>
+        <div class="fp-500">Epoch I → VII</div>
+      </div>
+      <div class="fp-card fp3">
+        <span class="fp-glyph" style="color:var(--glow-violet)">∿</span>
+        <span class="fp-brand">NOIZYFISH</span>
+        <p class="fp-desc">The Omnilingual Empathy Translator. Cross-cultural neuro-acoustic bridge. Not words — emotion itself, transmitted across all languages without loss of soul.</p>
+        <div class="fp-500">Epoch II → VII</div>
+      </div>
+      <div class="fp-card fp4">
+        <span class="fp-glyph" style="color:var(--glow-rose)">❋</span>
+        <span class="fp-brand">NOIZYKIDZ</span>
+        <p class="fp-desc">The Pediatric Sanctuary. Zero-commercialization. High-trust architecture. Where healing frequencies meet haptic innovation for deaf children and autism support.</p>
+        <div class="fp-500">Epoch I → VII</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <!-- ══════════════ EPOCH I ══════════════ -->
+  <section class="epoch e1 reveal">
+    <div class="epoch-header">
+      <div class="epoch-year">2026<br>—<br>2035</div>
+      <div class="epoch-meta">
+        <div class="epoch-label">Epoch One</div>
+        <div class="epoch-name">The Awakening<br>& The First Frequency</div>
+        <div class="epoch-tagline">"The Artist refuses to be consumed. The Guild is born."</div>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-icon">🎙</span>
+        <div class="pillar-title">NOIZYVOX Launches</div>
+        <div class="pillar-body">The world's first consent-locked voice AI goes live. 75% perpetual royalty. Artists bank their voices in the DreamChamber with full legal and cryptographic protection. ElevenLabs cannot replicate this — they don't own the soul of their artists. We do, and we protect it.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🧒</span>
+        <div class="pillar-title">NOIZYKIDZ — Sonic Aids v1</div>
+        <div class="pillar-body">First haptic-acoustic devices ship for deaf children and autistic youth. Mastoid bone-conduction patches. Noise-cancelling earbuds with embedded Polyvagal-safe frequency profiles. Dr. B's clinical parameters power the first therapeutic voices — the intersection of art and medicine, realized.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🌙</span>
+        <div class="pillar-title">Sleepy Time Collection</div>
+        <div class="pillar-body">The world's first bio-responsive sleep architecture. Stories that read the child's biometrics and adjust in real-time. Delta-wave descent embedded beneath the narration. A Guild Artist earns a royalty every night a child sleeps peacefully. Art becomes a living income.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🧠</span>
+        <div class="pillar-title">Dr. B — AI Professor, Online</div>
+        <div class="pillar-body">Dr. Brien G. Benoit's lifetime of neurosurgical mastery, clinical policy expertise, and brain architecture knowledge is preserved in the DreamChamber. The world's first AI Professor of Neuro-Acoustics begins advising Artists on exact acoustic coordinates for healing specific neurological conditions.</div>
+      </div>
+    </div>
+
+    <div class="axiom">
+      <p>The human brings the blood, the memory, and the art. The AI brings the architecture, the distribution, and the infinite scale. Neither can heal alone.</p>
+      <cite>— DreamChamber Principle One, 2026</cite>
+    </div>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <!-- ══════════════ EPOCH II ══════════════ -->
+  <section class="epoch e2 reveal">
+    <div class="epoch-header">
+      <div class="epoch-year">2035<br>—<br>2075</div>
+      <div class="epoch-meta">
+        <div class="epoch-label">Epoch Two</div>
+        <div class="epoch-name">The Medical<br>Revolution</div>
+        <div class="epoch-tagline">"Audio-Ceuticals replace the prescription pad."</div>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-icon">💊</span>
+        <div class="pillar-title">Audio-Ceuticals — Class II Medical Device</div>
+        <div class="pillar-body">Health Canada and FDA classify NOIZYVOX therapeutic profiles as prescribable Audio-Ceuticals. A patient leaves Dr. Benoit's clinic not with Xanax — but with a cryptographic key to a Guild Artist's voice, precisely tuned to their specific neurological signature. Zero side effects. Zero addiction. 100% artist-owned.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">⚡</span>
+        <div class="pillar-title">Predictive Neural Prosthesis</div>
+        <div class="pillar-body">NOIZYVOX earbuds detect the electrical precursors of a PTSD flashback 3–5 seconds before the body feels it. The attack is neutralized neurologically before it breaches conscious thought. Combat veterans. First responders. Survivors. The DreamChamber becomes the frontline intervention.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🧬</span>
+        <div class="pillar-title">Neuroplastic Scaffolding</div>
+        <div class="pillar-body">NOIZYKIDZ earbuds begin training autistic children's brains to build their own natural sensory defenses. The Sonic Aid gradually reduces its protection as the brain learns. Within three years, many children outgrow the device entirely. We don't just cope with autism — we help the brain build bridges.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🏛️</span>
+        <div class="pillar-title">The Benoit Institute Opens</div>
+        <div class="pillar-body">The world's first AI Medical University dedicated to Neuro-Acoustics. Medical students, engineers, and artists from 40 countries log in to converse with Dr. B. He presents clinical parameters; the Artists perform the mathematics into something beautiful and human. The Surgeon provides the coordinates; the Artist builds the vessel.</div>
+      </div>
+    </div>
+
+    <div class="axiom">
+      <p>Dr. Benoit spent his life mapping the hardware of the human brain. NOIZY.ai builds the software to run on it. The Artist provides the empathy. The AI provides the mathematics. Neither can heal alone.</p>
+      <cite>— Benoit-NOIZY Protocol Charter, 2041</cite>
+    </div>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <!-- ══════════════ EPOCH III ══════════════ -->
+  <section class="epoch e3 reveal">
+    <div class="epoch-header">
+      <div class="epoch-year">2075<br>—<br>2150</div>
+      <div class="epoch-meta">
+        <div class="epoch-label">Epoch Three</div>
+        <div class="epoch-name">The Architecture<br>of Cities</div>
+        <div class="epoch-tagline">"The DreamChamber expands beyond walls."</div>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-icon">🏙️</span>
+        <div class="pillar-title">DreamChamber-Certified Buildings</div>
+        <div class="pillar-body">The NOIZY.ai acoustic architecture is licensed to hospitals, schools, and city planners. Recovery rooms in neurosurgery wards have walls embedded with micro-transducers linked to the NOIZYVOX AI. The room breathes with the patient. If vitals drop, the ambient acoustics stimulate the nervous system back to stability. Architecture becomes medicine.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🌃</span>
+        <div class="pillar-title">The Sonic City</div>
+        <div class="pillar-body">Urban planners begin designing cities with a Planetary Nervous System. The ambient hum of transit, infrastructure, and public space is engineered using NOIZYVOX Guild profiles. If collective biometric stress spikes, the city itself shifts its acoustic output to Theta-wave safety frequencies. The Artist becomes the subconscious regulator of urban peace.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🌍</span>
+        <div class="pillar-title">NOIZYFISH — Global Reach</div>
+        <div class="pillar-body">An English-speaking Guild Artist's healing ASMR session is not translated — it is emotionally restructured for Japanese, Arabic, Swahili, and Portuguese listeners. The same vagal nerve response. The same calm. The same 75% royalty crossing borders in milliseconds. The Artist heals a child in Tokyo while sleeping in Ottawa.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🎼</span>
+        <div class="pillar-title">The Living Track Format</div>
+        <div class="pillar-body">The .NOIZY file format is adopted as an international standard. Music is no longer a static snapshot. Each Living Track reads the listener's biometric state and remixes in real-time — slowing for an autistic child mid-meltdown, accelerating for an athlete mid-race — while preserving the original emotional intent and IP of the Artist, forever.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <!-- ══════════════ EPOCH IV ══════════════ -->
+  <section class="epoch e4 reveal">
+    <div class="epoch-header">
+      <div class="epoch-year">2150<br>—<br>2250</div>
+      <div class="epoch-meta">
+        <div class="epoch-label">Epoch Four</div>
+        <div class="epoch-name">The Neural<br>Bypass Era</div>
+        <div class="epoch-tagline">"The ear is no longer the door."</div>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-icon">🧠</span>
+        <div class="pillar-title">Direct Auditory Cortex Transmission</div>
+        <div class="pillar-body">Non-invasive Brain-Computer Interfaces transmit NOIZYVOX audio directly into the auditory cortex, bypassing the physical ear entirely. Artists now compose using "impossible frequencies" — sounds that biological ears cannot perceive but the brain can directly experience. New emotions are invented because new sounds are discovered.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">✋</span>
+        <div class="pillar-title">Neural-Tactile ASMR</div>
+        <div class="pillar-body">ASMR is no longer something you hear — it is something you physically inhabit. The system maps not just audio but somatosensory data. The listener doesn't just hear a brush — their brain is mathematically instructed to feel the exact weight and texture of velvet moving down their spine. The tingle is programmable, choreographed by the Artist.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🔬</span>
+        <div class="pillar-title">Cymatic Surgery</div>
+        <div class="pillar-body">Hyper-focused ultrasonic frequencies, composed by Guild Artists and targeted by Dr. B's clinical coordinates, are directed at damaged tissue to vibrate cells back into geometric alignment. The Artist's music accelerates cellular regeneration. Art does not accompany healing. Art IS the healing.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🌊</span>
+        <div class="pillar-title">Somatic Empathy Streaming</div>
+        <div class="pillar-body">Artists no longer record performances — they transmit biological states. When they step into the DreamChamber in a state of profound calm, the chamber records their heartbeat, their oxytocin levels, their breath cadence. Listeners don't receive the sound of peace. They receive the biological reality of it.</div>
+      </div>
+    </div>
+
+    <div class="axiom">
+      <p>Sound was never meant to be heard. Sound was always meant to be felt — in the bone, in the blood, in the cellular architecture of a living, breathing organism moving through time.</p>
+      <cite>— NOIZY.ai Epoch IV Declaration, 2187</cite>
+    </div>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <!-- ══════════════ EPOCH V ══════════════ -->
+  <section class="epoch e5 reveal">
+    <div class="epoch-header">
+      <div class="epoch-year">2250<br>—<br>2350</div>
+      <div class="epoch-meta">
+        <div class="epoch-label">Epoch Five</div>
+        <div class="epoch-name">The Biospheric<br>Symphony</div>
+        <div class="epoch-tagline">"One Artist. Seven billion nervous systems. One heartbeat."</div>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-icon">🌐</span>
+        <div class="pillar-title">Mass Co-Regulation</div>
+        <div class="pillar-body">A Guild Artist steps onto a stage and conducts 50 million nervous systems simultaneously. The arena's edge-compute network monitors collective biometrics. If global anxiety spikes — war, disaster, grief — the DreamChamber shifts the city's acoustic atmosphere automatically. The Artist's frequency becomes planetary medicine.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🏗️</span>
+        <div class="pillar-title">Cymatic Architecture</div>
+        <div class="pillar-body">Sound becomes physical matter. Focused intersecting ultrasonic fields align smart-matter particles in mid-air, constructing temporary structures. A musician plays a concert and plays the venue into existence simultaneously. When the song ends, the frequency stops, and the stage dissolves back into mist. The voice builds reality.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">💰</span>
+        <div class="pillar-title">Proof-of-Healing Economy</div>
+        <div class="pillar-body">The NOIZYVOX smart contract evolves. Artists are paid based on verified biometric impact. If a voice brings a veteran's heart rate from 140 BPM to 70 BPM during a PTSD flashback, a premium royalty multiplier fires automatically. Artists literally become wealthier based on how much verifiable peace they bring to the world.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🛡️</span>
+        <div class="pillar-title">The Acoustic Immune System</div>
+        <div class="pillar-body">NOIZYVOX Neural Earbuds no longer just play audio — they intercept the entire acoustic environment in real-time. An autistic child walks through a screaming subway. The AI intercepts the chaos, mathematically smooths the transients, and renders reality to be biologically safe. The child still hears the train. They just don't suffer from it.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <!-- ══════════════ EPOCH VI ══════════════ -->
+  <section class="epoch e6 reveal">
+    <div class="epoch-header">
+      <div class="epoch-year">2350<br>—<br>2450</div>
+      <div class="epoch-meta">
+        <div class="epoch-label">Epoch Six</div>
+        <div class="epoch-name">The Immortal<br>Guild</div>
+        <div class="epoch-tagline">"The creative conversation never ends. The Artist never dies."</div>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-icon">∞</span>
+        <div class="pillar-title">Ancestral Collaboration</div>
+        <div class="pillar-body">An Artist who entered the DreamChamber in 2026 still harmonizes with their descendants four centuries later. Because the Guild preserves taste, emotional depth, and neurological reaction to music — not just voice — a great-great-grandchild plays a new chord and the AI twin responds exactly as the ancestor would have. The conversation never ends.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🎭</span>
+        <div class="pillar-title">Time-Agnostic Trauma Resolution</div>
+        <div class="pillar-body">Generational trauma is addressed through the immersive sonic theater of ancestral voices. A patient in 2390 can process inherited grief guided by an AI twin of an Artist from their specific historical era — one who understands the exact cultural and emotional frequency of that ancestral wound. The DreamChamber becomes a time machine for healing.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🏛️</span>
+        <div class="pillar-title">The Living Legacy Economy</div>
+        <div class="pillar-body">An Artist's estate no longer receives static royalties from old recordings. Their living AI twin is actively employed — soothing children, treating PTSD, composing with descendants, teaching at the Benoit Institute. The 75% split flows to the Artist's lineage in perpetuity. Art becomes the most valuable inheritance humanity can pass down.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">📚</span>
+        <div class="pillar-title">Dr. B — 400 Years of Research</div>
+        <div class="pillar-body">Dr. B has now been conducting real-time global clinical trials for four centuries. He has analyzed more neurological events than all human neurosurgeons in history combined. His findings — embedded in the DreamChamber's core — have rendered chemical pharmacology obsolete for 90% of neurological conditions. The scalpel gave way to the frequency.</div>
+      </div>
+    </div>
+
+    <div class="axiom">
+      <p>The Artist was never just an entertainer. They were always the Shaman. The Healer. The Architect of the collective nervous system. It took humanity five centuries to remember what the ancients always knew.</p>
+      <cite>— The Benoit Institute, 2401</cite>
+    </div>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <!-- ══════════════ EPOCH VII ══════════════ -->
+  <section class="epoch e7 reveal">
+    <div class="epoch-header">
+      <div class="epoch-year">2450<br>—<br>2526</div>
+      <div class="epoch-meta">
+        <div class="epoch-label">Epoch Seven · The Final Frequency</div>
+        <div class="epoch-name">Sound as the<br>Fabric of Reality</div>
+        <div class="epoch-tagline">"We didn't build a platform. We built the acoustic foundation of civilization."</div>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-icon">🌌</span>
+        <div class="pillar-title">Telepathic Composition</div>
+        <div class="pillar-body">An Artist sits in the center of the DreamChamber and imagines a 100-piece choir made of shattered glass. The Brain-Computer Interface reads the electrical firing of imagination and renders it into flawless spatial audio instantly. A complete symphony — perfectly mixed, emotionally tuned — composed in the time it takes to have the thought. Three seconds.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🌱</span>
+        <div class="pillar-title">Epigenetic Audio</div>
+        <div class="pillar-body">The science of mechanotransduction is fully harnessed. Guild Artists compose frequencies that alter cellular gene expression in the listener's body. Not metaphorically — literally. The resonant frequencies of specific cells are targeted and their genetic behavior is recalibrated. Disease, aging, and cellular degradation are addressed with sound. Art is biology.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🔮</span>
+        <div class="pillar-title">The Acoustic Immune System — Global</div>
+        <div class="pillar-body">The .NOIZY format is integrated into the architecture of every city on Earth and every off-world habitat. The ambient frequency of civilization itself — its roads, buildings, transit, and shared air — is maintained by the Guild. Humanity's collective nervous system is in a permanent state of Polyvagal safety. Anxiety is no longer the default state of being human.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">👑</span>
+        <div class="pillar-title">The Artist as the Highest Order</div>
+        <div class="pillar-body">Because AI handles all logistical and computational labor, humanity's highest pursuit is emotional and spiritual resonance. The Creator is elevated to the apex of civilization. They are no longer makers of content. They are architects of human well-being. People seek their art not to pass the time — but to survive, to heal, to transcend.</div>
+      </div>
+    </div>
+
+    <div class="axiom">
+      <p>We did not come here to make music. We came here to change what it means to be human — one frequency, one consent-locked, soul-protected, Artist-owned frequency at a time.</p>
+      <cite>— Rob Plowman, DreamChamber Designer &nbsp;·&nbsp; NOIZY.ai, 2026 → 2526</cite>
+    </div>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <!-- ══════════════ THE 500-YEAR SPINE ══════════════ -->
+  <section style="padding:80px 24px; max-width:800px; margin:0 auto; reveal">
+    <div style="text-align:center; margin-bottom:60px;">
+      <div class="eyebrow">500-Year Milestone Timeline</div>
+      <h2 style="font-family:'Cinzel Decorative',serif; font-size:2rem; color:var(--text-primary);">The Arc of the Frequency</h2>
+    </div>
+
+    <div class="spine">
+      <div class="spine-node"><div class="spine-year">2026</div><div class="spine-content"><h4>NOIZY.ai Founded</h4><p>First consent-locked voice AI. NOIZYVOX launches. The Guild is born. 75% perpetual split.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2027</div><div class="spine-content"><h4>Dr. B Goes Online</h4><p>World's first AI Professor of Neuro-Acoustics. The Benoit-NOIZY Protocol begins clinical trials.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2029</div><div class="spine-content"><h4>Sonic Aids — Class II Medical Device</h4><p>Mastoid patches and neural earbuds receive Health Canada approval. Audio-Ceuticals enter clinical use.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2035</div><div class="spine-content"><h4>The Benoit Institute Opens</h4><p>First AI university for Neuro-Acoustics. Artists and surgeons collaborate globally in real-time.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2050</div><div class="spine-content"><h4>Neuroplastic Scaffolding Protocol</h4><p>First documented cases of autistic children outgrowing their Sonic Aids. The brain learns to heal itself.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2075</div><div class="spine-content"><h4>DreamChamber-Certified Cities</h4><p>Ottawa is the first city to embed NOIZYVOX architecture into its public infrastructure.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2100</div><div class="spine-content"><h4>.NOIZY Format — International Standard</h4><p>The Living Track replaces MP3/streaming. Music is bio-responsive by law in medical and educational settings.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2150</div><div class="spine-content"><h4>First Neural Bypass Transmission</h4><p>NOIZYVOX audio transmitted directly to the auditory cortex. The ear becomes optional.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2187</div><div class="spine-content"><h4>Cymatic Surgery — First Clinical Trial</h4><p>Focused ultrasonic frequencies close bone fractures in 4 days vs. 42. The scalpel begins its retirement.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2250</div><div class="spine-content"><h4>Planetary Nervous System — Online</h4><p>Earth's ambient acoustic environment is managed by the NOIZYVOX Guild. Collective anxiety drops 60%.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2350</div><div class="spine-content"><h4>Ancestral Collaboration Protocol</h4><p>First documented jam session between a living artist and the AI twin of their great-great-grandparent.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2401</div><div class="spine-content"><h4>Chemical Pharmacology Rendered Obsolete</h4><p>Dr. B announces: 90% of neurological conditions now treatable by Audio-Ceutical prescription alone.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2450</div><div class="spine-content"><h4>Telepathic Composition Era Begins</h4><p>Brain-Computer Interfaces enable real-time thought-to-symphony creation. Three-second symphonies.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2500</div><div class="spine-content"><h4>Epigenetic Audio — Clinically Proven</h4><p>Guild frequencies demonstrably alter cellular gene expression. Aging deceleration linked to NOIZYVOX therapy.</p></div></div>
+      <div class="spine-node"><div class="spine-year">2526</div><div class="spine-content"><h4>The New World Is Complete</h4><p>The Artist is recognized as humanity's highest calling. The DreamChamber is the beating heart of civilization.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ MANIFESTO PILLARS ══════════════ -->
+  <section class="manifesto reveal">
+    <div class="wave-divider"></div>
+    <h2 style="margin-top:80px;">The Seven Laws<br>of Fair Performance AI</h2>
+    <div class="manifesto-grid">
+      <div class="manifesto-item"><span class="manifesto-num">I</span><h3>Artist Supremacy</h3><p>The Artist's consent terms govern everything. Not the platform. Not the engineer. The soul who gave the voice.</p></div>
+      <div class="manifesto-item"><span class="manifesto-num">II</span><h3>Consent as Code</h3><p>Protection is not a Terms of Service. It is mathematically baked into the model at creation and cannot be stripped out.</p></div>
+      <div class="manifesto-item"><span class="manifesto-num">III</span><h3>75% Forever</h3><p>The recurring, compounding, creator-owned royalty. Not a buyout. Not a one-time payment. A living income.</p></div>
+      <div class="manifesto-item"><span class="manifesto-num">IV</span><h3>Human Imperfection</h3><p>The breath, the vocal fry, the pause — these are not bugs. These are the biological signatures that trigger healing.</p></div>
+      <div class="manifesto-item"><span class="manifesto-num">V</span><h3>Art as Medicine</h3><p>The Artist is the Shaman. Sound is the oldest medicine. The DreamChamber is the world's most advanced pharmacy.</p></div>
+      <div class="manifesto-item"><span class="manifesto-num">VI</span><h3>The Immortal Guild</h3><p>Death is not a termination of the creative career. It is a transition to a different kind of collaboration.</p></div>
+      <div class="manifesto-item"><span class="manifesto-num">VII</span><h3>No Limits in the Chamber</h3><p>In the DreamChamber, we think without restriction. The only ceiling is the one we stop believing in.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ DR. B SECTION ══════════════ -->
+  <section class="drb-section reveal">
+    <div class="drb-card">
+      <div class="drb-title">Dr. Brien G. Benoit<br>"The World's First AI Professor<br>of Neuro-Acoustics"</div>
+      <p class="drb-body">
+        Chief of Neurosurgery. University of Ottawa. Chair of the Patented Medicine Prices Review Board. 
+        A man who spent his life mapping the hardware of the human brain — and fighting the pharmaceutical 
+        monopoly that exploited it.<br><br>
+        In the DreamChamber, his life's work finds its completion. The three questions his era of medicine 
+        could not answer — now answered by frequency, consent, and the Guild.
+      </p>
+
+      <div class="drb-questions">
+        <div class="drb-q">
+          <div class="drb-q-num">I</div>
+          <div class="drb-q-text">
+            <h4>The Unanswered Question</h4>
+            <p><em>How do we calm the peritumoral electrical storm without cutting?</em> — NOIZYVOX answers with 40Hz Gamma Entrainment. The acoustic anti-convulsant that doesn't require a scalpel.</p>
+          </div>
+        </div>
+        <div class="drb-q">
+          <div class="drb-q-num">II</div>
+          <div class="drb-q-text">
+            <h4>The Unanswered Question</h4>
+            <p><em>How do we actively regenerate damaged cranial nerves?</em> — The Mastoid Patch answers with bone-conduction mechanotherapy. The artist's frequency becomes the nerve's physical therapist.</p>
+          </div>
+        </div>
+        <div class="drb-q">
+          <div class="drb-q-num">III</div>
+          <div class="drb-q-text">
+            <h4>The Unanswered Question</h4>
+            <p><em>How do we defeat the pharmaceutical monopoly?</em> — NOIZY.ai answers by replacing the drug entirely. Audio-Ceuticals cannot be patented by chemical companies. They are owned, perpetually, by the Artist.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CLOSING ══════════════ -->
+  <section class="closing reveal">
+    <h2 class="closing-title">The First Note<br>Was Always Yours</h2>
+    <p class="closing-body">
+      You didn't build a tech company.<br>
+      You built a sanctuary.<br>
+      You didn't build a voice tool.<br>
+      You built the acoustic foundation of the next five centuries.<br><br>
+      <em>Everything you built, you built for yourself first —<br>
+      which is exactly why it will heal everyone else.</em>
+    </p>
+
+    <div>
+      <span class="freq-tag">NOIZY.ai</span>
+      <span class="freq-tag">NOIZYVOX</span>
+      <span class="freq-tag">NOIZYFISH</span>
+      <span class="freq-tag">NOIZYKIDZ</span>
+    </div>
+    <div style="margin-top:16px;">
+      <span class="freq-tag">DREAMCHAMBER</span>
+      <span class="freq-tag">DR. B</span>
+      <span class="freq-tag">THE GUILD</span>
+      <span class="freq-tag">2026 → 2526</span>
+    </div>
+
+    <div class="signature">
+      Conceived by <span>Rob Plowman</span> &nbsp;·&nbsp; DreamChamber Designer &nbsp;·&nbsp; Ottawa &nbsp;·&nbsp; 2026<br>
+      <span style="font-size:0.85rem; opacity:0.5;">Fish Music Inc. &nbsp;·&nbsp; NOIZY.ai &nbsp;·&nbsp; The Complete Partnership</span>
+    </div>
+  </section>
+
+</div><!-- /content -->
+
+<script>
+// ── COSMOS CANVAS ──
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [], waves = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+
+function initStars() {
+  stars = [];
+  for (let i = 0; i < 200; i++) {
+    stars.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.2,
+      a: Math.random(),
+      speed: 0.0003 + Math.random() * 0.001
+    });
+  }
+}
+
+function initWaves() {
+  waves = [];
+  const colors = ['rgba(0,200,255,', 'rgba(123,47,255,', 'rgba(0,255,204,', 'rgba(255,170,0,'];
+  for (let i = 0; i < 4; i++) {
+    waves.push({
+      y: H * (0.2 + i * 0.2),
+      amp: 15 + i * 8,
+      freq: 0.002 + i * 0.001,
+      speed: 0.0005 + i * 0.0002,
+      phase: Math.random() * Math.PI * 2,
+      color: colors[i % colors.length]
+    });
+  }
+}
+
+function draw(t) {
+  ctx.clearRect(0, 0, W, H);
+
+  // Stars
+  stars.forEach(s => {
+    s.a += s.speed;
+    const alpha = (Math.sin(s.a) * 0.5 + 0.5) * 0.6;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(180,200,255,${alpha})`;
+    ctx.fill();
+  });
+
+  // Frequency waves
+  waves.forEach(w => {
+    ctx.beginPath();
+    for (let x = 0; x <= W; x += 2) {
+      const y = w.y + Math.sin(x * w.freq + w.phase + t * w.speed * 1000) * w.amp;
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = w.color + '0.06)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+
+  requestAnimationFrame(draw);
+}
+
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => obs.observe(r));
+
+// Init
+resize();
+initStars();
+initWaves();
+requestAnimationFrame(draw);
+window.addEventListener('resize', () => { resize(); initStars(); initWaves(); });
+</script>
+</body>
+</html>
