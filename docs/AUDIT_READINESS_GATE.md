@@ -341,6 +341,82 @@ Before approving deploy, reviewer must confirm:
 
 ---
 
+## Hardening Addenda (Locked 2026-04-07)
+
+### A. Assertive Table Existence Check
+
+A successful query is not sufficient.
+The gate must fail if `audit_events` is absent.
+
+```sql
+-- CORRECT: Returns a row only if table exists
+SELECT 1 FROM sqlite_master WHERE type='table' AND name='audit_events'
+
+-- WRONG: Query can succeed with empty result
+SELECT name FROM sqlite_master WHERE type='table' AND name='audit_events'
+```
+
+The difference: `SELECT 1` with `.first()` returns `null` if no row matches, which can be asserted against. A query that "succeeds" with no rows is not readiness.
+
+### B. Committed Dry-Run Proof
+
+Dry-run approval verification is valid only if:
+- the endpoint returns success, AND
+- a new `audit_events` row is queryable afterward
+
+```javascript
+// 1. Write test event
+await env.GABRIEL_DB.prepare(`INSERT INTO audit_events ...`).run();
+
+// 2. Verify committed (not just accepted)
+const count = await env.GABRIEL_DB.prepare(
+  `SELECT COUNT(*) as cnt FROM audit_events WHERE id = ?`
+).bind(testId).first();
+
+if (!count || count.cnt !== 1) {
+  throw new Error("AUDIT_READINESS_GATE: dry-run write not committed");
+}
+```
+
+### C. Minimum Required Table
+
+`audit_events` is the non-optional minimum audit table.
+Additional audit tables may exist (`operator_tokens`, `freeze_events`, `audit_anchors`, `transparency_log`, `audit_incidents`), but `audit_events` must exist for readiness to pass.
+
+### D. Strongest Runtime Assertion Pattern
+
+```javascript
+export async function assertAuditReady(env) {
+  if (!env.GABRIEL_DB) {
+    throw new Error("AUDIT_READINESS_GATE: GABRIEL_DB binding missing");
+  }
+
+  const result = await env.GABRIEL_DB
+    .prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='audit_events'")
+    .first();
+
+  if (!result) {
+    throw new Error("AUDIT_READINESS_GATE: audit_events table missing");
+  }
+}
+```
+
+This pattern uses Cloudflare's documented D1 binding/query model and converts "query succeeded" into "readiness proved."
+
+---
+
+## Final Locked Checklist
+
+- [ ] Migration file exists (`ops/migrations/001_audit_events.sql`)
+- [ ] `wrangler d1 execute --remote --file ...` succeeds
+- [ ] `audit_events` exists in `sqlite_master` (assertive check)
+- [ ] `GABRIEL_DB` binding exists in Worker config
+- [ ] Runtime startup assertion fails closed if table/binding is missing
+- [ ] CI fails if migration, binding, or table check fails
+- [ ] Dry-run approval creates a committed row that can be queried back
+
+---
+
 ## Final Statement
 
 Audit readiness is not optional ceremony.
@@ -348,6 +424,10 @@ Audit readiness is not optional ceremony.
 It is the minimum condition for trustworthy authority.
 
 **If the system can act, it must already be able to remember.**
+
+The stronger operational version:
+
+**If a trust-sensitive action cannot produce a committed audit row, it is not allowed to exist.**
 
 ---
 
