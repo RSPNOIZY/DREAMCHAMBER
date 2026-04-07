@@ -1,0 +1,47 @@
+# NOIZYFISH ZK Archive Engine
+# Cloudflare Worker Configuration
+# Provenance-first, consent-verified sample intelligence platform
+
+name = "noizyfish"
+main = "src/index.ts"
+compatibility_date = "2026-04-01"
+
+# Production route
+routes = [
+  { pattern = "noizyfish.com/*", zone_name = "noizyfish.com" }
+]
+
+# D1 Database binding - append-only audit events
+[[d1_databases]]
+binding = "AUDIT_DB"
+database_name = "noizyfish_audit"
+database_id = "{{NOIZYFISH_AUDIT_DB_ID}}"
+
+# R2 Storage binding - audio object storage
+[[r2_buckets]]
+binding = "AUDIO_BUCKET"
+bucket_name = "noizyfish-audio"
+
+# KV binding - session cache and rate limiting
+[[kv_namespaces]]
+binding = "SESSION_CACHE"
+id = "{{NOIZYFISH_SESSION_KV_ID}}"
+
+# Environment variables (set via wrangler secret)
+# NOIZY_API_KEY - authentication
+# CYANITE_API_KEY - audio analysis
+# ZK_VERIFIER_URL - proof verification endpoint
+
+[vars]
+ENVIRONMENT = "production"
+LOG_LEVEL = "info"
+MAX_UPLOAD_SIZE = "100MB"
+PROOF_POLICY = "REAL_HUMAN_ORIGIN"
+
+# Build configuration
+[build]
+command = "npm run build"
+
+# Observability
+[observability]
+enabled = true
