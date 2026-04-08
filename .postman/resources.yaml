@@ -1,0 +1,17 @@
+# Use this workspace to collaborate
+workspace:
+  id: 2bc94774-cfb7-4cf5-8d95-11d0ec227d6e
+
+localResources:
+  collections:
+    - ../tools/postman/HEAVEN_v17.6.0.postman_collection.json
+    - ../tools/postman/NOIZY_EMPIRE_COMPLETE.postman_collection.json
+  specs:
+    - ../NOIZYEMPIRE/codemaster/projects/_ORGANIZED/go_packages/pkg/mod/github.com/google/pprof@v0.0.0-20240727154555-813a5fbdbec8/proto/profile.proto
+    - ../NOIZYEMPIRE/codemaster/projects/_ORGANIZED/05_TOOLS/go/pkg/mod/github.com/google/pprof@v0.0.0-20240727154555-813a5fbdbec8/proto/profile.proto
+    - ../NOIZYEMPIRE/codemaster/projects/GABRIEL/DREAMCHAMBER/_ORGANIZED/go_packages/pkg/mod/github.com/google/pprof@v0.0.0-20240727154555-813a5fbdbec8/proto/profile.proto
+    - ../NOIZYEMPIRE/codemaster/projects/GABRIEL/DREAMCHAMBER/_ORGANIZED/05_TOOLS/go/pkg/mod/github.com/google/pprof@v0.0.0-20240727154555-813a5fbdbec8/proto/profile.proto
+    - ../NOIZYEMPIRE/codemaster/projects/NOIZY.AI/NOIZYLAB/gabriel/CODEMASTER/_ORGANIZED/go_packages/pkg/mod/github.com/google/pprof@v0.0.0-20240727154555-813a5fbdbec8/proto/profile.proto
+    - ../NOIZYEMPIRE/codemaster/projects/NOIZY.AI/NOIZYLAB/gabriel/CODEMASTER/_ORGANIZED/05_TOOLS/go/pkg/mod/github.com/google/pprof@v0.0.0-20240727154555-813a5fbdbec8/proto/profile.proto
+    - ../NOIZYEMPIRE/codemaster/projects/GABRIEL/DREAMCHAMBER/NOIZY.AI/NOIZYLAB/gabriel/CODEMASTER/_ORGANIZED/go_packages/pkg/mod/github.com/google/pprof@v0.0.0-20240727154555-813a5fbdbec8/proto/profile.proto
+    - ../NOIZYEMPIRE/codemaster/projects/GABRIEL/DREAMCHAMBER/NOIZY.AI/NOIZYLAB/gabriel/CODEMASTER/_ORGANIZED/05_TOOLS/go/pkg/mod/github.com/google/pprof@v0.0.0-20240727154555-813a5fbdbec8/proto/profile.proto
