@@ -1,13 +1,14 @@
 # ═══════════════════════════════════════════════════════════════
-# NOIZY EMPIRE — Full Local Stack
-# n8n + STT + Postman Mock Server
+# NOIZY EMPIRE — Full Local Stack (Hardened)
+# n8n + STT | Governance-grade orchestration
 # Run: docker compose -f ops/docker-compose.yml up -d
+# RSP_001 | NOIZY Empire | 2026
 # ═══════════════════════════════════════════════════════════════
 
 services:
   # ── n8n: Central Automation Brain ───────────────────────────
   n8n:
-    image: n8nio/n8n:latest
+    image: n8nio/n8n:2.15.0
     container_name: noizy-n8n
     restart: unless-stopped
     ports:
@@ -21,6 +22,10 @@ services:
       - GENERIC_TIMEZONE=America/Toronto
       - N8N_DIAGNOSTICS_ENABLED=false
       - N8N_PERSONALIZATION_ENABLED=false
+      # Basic auth — protects against tunnels/port forwards
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${N8N_USER:-noizylab}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_PASS:-noizy-local-2026}
     volumes:
       - n8n_data:/home/node/.n8n
       - ${HOME}/NOIZYANTHROPIC/tools/n8n_workflows:/home/node/workflows:ro
@@ -29,6 +34,11 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: 2G
 
   # ── STT: Faster-Whisper Speech-to-Text ─────────────────────
   stt:
@@ -39,6 +49,11 @@ services:
       - "127.0.0.1:8000:8000"
     volumes:
       - hf_cache:/root/.cache/huggingface
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: 4G
 
 volumes:
   n8n_data:
