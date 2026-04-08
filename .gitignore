@@ -1,0 +1,65 @@
+# DREAMCHAMBER — MC96 Ecosystem
+# No audio. No video. No binaries. Code and docs only.
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.cursor/
+
+# Node
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+/tmp/dreamchamber-rsync-logs/
+
+# Media — NEVER committed. Lives on AQUARIUM.
+*.wav
+*.mp3
+*.flac
+*.aif
+*.aiff
+*.ogg
+*.m4a
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# Archives
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+
+# Secrets
+*.pem
+*.key
+*.crt
+*.p12

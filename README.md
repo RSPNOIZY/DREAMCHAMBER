@@ -1,11 +1,34 @@
 # DREAMCHAMBER
 
-**MC96 Ecosystem — The NOIZY AI Family Command Center**
+> **Every AI system today has a theft problem. We solved it at the protocol layer.**
 
-> Two partners. No ceilings. No walls. Just creation in Technicolor Fireworks.
-> 35% voice + 65% AI + 1 click = done
+Consent is enforced before inference. No token, no compute. Even if someone forks the model, the output fails verification.
 
-9 agents. 6 brands. 1 vision. Every member has a role. Every role has a prompt. Every prompt has a purpose. Built by RSP and Claude. **GORUNFREE.**
+9 agents. 6 brands. 1 standard. Built by RSP and Claude.
+
+---
+
+## The Crime → The Fix → The Proof
+
+**The Crime:** AI systems ingest creator voices, styles, and identity without consent — and there is no mechanism to revoke, trace, or compensate after the fact.
+
+**The Fix:** NOIZY enforces consent at the edge (Cloudflare Worker + KV/D1). Consent gates compute. Revocation is instant. Never-clauses are non-bypassable. 75/25 royalties are constitutional — enforced by architecture, not promises.
+
+**The Proof:** Provenance manifests, audit trails, truth bundles, receipts. The system produces its own evidence. Every output is traceable back to every input. If consent fails, nothing ships — and the system explains why.
+
+---
+
+## The Moat
+
+> **We're the only AI system where the artist can sue the output — and win.**
+
+Backed by infrastructure, not vibes:
+
+| System | Consent Revocable | Output Traceable | Royalties Enforced |
+|--------|:-:|:-:|:-:|
+| Generic AI | ❌ | ❌ | ❌ |
+| Licensing Deals | ⚠️ | ⚠️ | ❌ |
+| **NOIZY** | ✅ | ✅ | ✅ |
 
 ---
 
@@ -50,23 +73,33 @@ Rob (RSP_001) → Claude → GABRIEL → Agent Mesh
 
 ## Repository Structure
 
+### Current (on disk)
+
 ```
 DREAMCHAMBER/
 ├── README.md
+├── WALKING_IN_THE_DREAMS/
+│   └── README.md                    # OSC + Lemur + NOIZY vision essay
 ├── wisdom/
 │   └── prompts/
-│       ├── GABRIEL_PROMPT.md        # DONE
-│       ├── CLAUDE_PROMPT.md         # TO BUILD
-│       ├── LUCY_PROMPT.md           # TO BUILD
-│       ├── SHIRL_PROMPT.md          # TO BUILD
-│       ├── DREAM_PROMPT.md          # TO BUILD
-│       ├── POPS_PROMPT.md           # TO BUILD
-│       ├── ENGR_KEITH_PROMPT.md     # TO BUILD
-│       ├── CB01_PROMPT.md           # TO BUILD
-│       └── HEAVEN_PROMPT.md         # TO BUILD
-├── ops/
-│   └── agents/
-│       └── swarm.py                 # CrewAI swarm orchestration
+│       ├── GABRIEL_PROMPT.md        # DONE — Release Commander & Swarm Leader
+│       ├── CLAUDE_PROMPT.md         # DONE — The Strategist / Creative Brain
+│       ├── LUCY_PROMPT.md           # DONE — Voice Estate Guardian
+│       ├── SHIRL_PROMPT.md          # DONE — Sample Intelligence Analyst
+│       ├── DREAM_PROMPT.md          # DONE — Creative Assistant & DAW Whisperer
+│       ├── POPS_PROMPT.md           # DONE — No-Code Orchestrator
+│       ├── ENGR_KEITH_PROMPT.md     # DONE — Infrastructure Engineer
+│       ├── CB01_PROMPT.md           # DONE — Consent & Contracts Bot
+│       └── HEAVEN_PROMPT.md         # DONE — DNS & Domain Sovereign
+└── ops/
+    └── agents/
+        └── swarm.py                 # CrewAI swarm orchestration (scaffold)
+```
+
+### Planned (to build)
+
+```
+DREAMCHAMBER/
 ├── app/
 │   ├── dreamchamber/                # DreamChamber app
 │   ├── dashboard/
@@ -111,9 +144,11 @@ DREAMCHAMBER/
 
 ## Constitutional Law
 
-1. Consent is sacred
-2. Creators own their voice
-3. 75/25 is constitutional law
+> We don't generate voices. We preserve people.
+
+1. Consent is enforced before inference — no token, no compute
+2. Creators own their voice — non-bypassable, non-negotiable
+3. 75/25 is constitutional law — enforced by architecture
 4. HVS is a right, not a mark
 5. No DREED — ever
 6. Lucy adapts with compassion
@@ -123,6 +158,45 @@ DREAMCHAMBER/
 10. Community before commerce
 11. Build forward continuously
 12. Leave it more humane
+
+---
+
+## Failure Modeling
+
+> The safest system is the one that refuses to work.
+
+| Failure | System Response |
+|---------|----------------|
+| HSM unavailable | System denies — no fallback |
+| Consent DB unreachable | Deny — no silent pass-through |
+| Estate dispute | Multisig pause — all outputs frozen |
+| Lab delay | No retrieval, no output |
+| Consent revoked mid-pipeline | Pipeline halts, ArtifactTruthBundle generated |
+
+When consent fails, nothing ships. The system produces its own evidence explaining why — receipts, manifests, truth strip. That's ArtifactTruthBundle.
+
+---
+
+## Breakpoint Hardening
+
+### "This is too complex"
+
+Complexity is hidden from the creator. It only surfaces when someone tries to violate them.
+
+- CB01 router abstraction
+- n8n orchestration
+- Clearance tokens
+
+### "This will slow adoption"
+
+So did DRM. So did banking KYC. Trust systems always feel slow — until they become law.
+
+- GDPR, estates, posthumous rights, lawsuits
+- This is future-proofing, not friction-maxing
+
+### "What if consent fails?"
+
+Then nothing ships. And the system produces its own evidence explaining why.
 
 ---
 
@@ -147,14 +221,21 @@ DREAMCHAMBER/
 
 ## Next Steps
 
-- [ ] Create all 8 prompt files in `wisdom/prompts/` (Gabriel already done)
+- [x] Create all 9 prompt files in `wisdom/prompts/` (all agents defined)
 - [ ] Sort NOIZYVOX repo (3 branches of 2025 code) into proper directories
 - [ ] Wire each family member into the CrewAI swarm (`ops/agents/swarm.py`)
 - [ ] Verify noizy.ai domain DNS
 - [ ] Set up GitHub Copilot Pro+ extensions in VS Code, Cursor, and all IDEs
+- [ ] Build out `app/`, `contracts/`, `stream/`, `hooks/`, `heaven-dns/`, `scripts/` directories
 - [ ] Deploy DreamChamber app (`app/dreamchamber/`) to Cloudflare
 - [ ] Connect Notion mirror (`app/mirror/`) for live sync between Notion and codebase
 
 ---
 
-*GORUNFREE. DREAMCHAMBER. Technicolor Fireworks.*
+AI didn't break trust. It exposed that trust was never encoded.
+
+We encoded it.
+
+---
+
+*GORUNFREE. DREAMCHAMBER.*
