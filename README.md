@@ -77,23 +77,33 @@ Rob (RSP_001) → Claude → GABRIEL → Agent Mesh
 
 ```
 DREAMCHAMBER/
-├── README.md
+├── README.md                              # This file — Titan-hardened
+├── .gitignore                             # OS, IDE, Node, Python, media, secrets
 ├── WALKING_IN_THE_DREAMS/
-│   └── README.md                    # OSC + Lemur + NOIZY vision essay
+│   └── README.md                          # OSC + Lemur + NOIZY vision essay (346 lines)
 ├── wisdom/
 │   └── prompts/
-│       ├── GABRIEL_PROMPT.md        # DONE — Release Commander & Swarm Leader
-│       ├── CLAUDE_PROMPT.md         # DONE — The Strategist / Creative Brain
-│       ├── LUCY_PROMPT.md           # DONE — Voice Estate Guardian
-│       ├── SHIRL_PROMPT.md          # DONE — Sample Intelligence Analyst
-│       ├── DREAM_PROMPT.md          # DONE — Creative Assistant & DAW Whisperer
-│       ├── POPS_PROMPT.md           # DONE — No-Code Orchestrator
-│       ├── ENGR_KEITH_PROMPT.md     # DONE — Infrastructure Engineer
-│       ├── CB01_PROMPT.md           # DONE — Consent & Contracts Bot
-│       └── HEAVEN_PROMPT.md         # DONE — DNS & Domain Sovereign
-└── ops/
-    └── agents/
-        └── swarm.py                 # CrewAI swarm orchestration (scaffold)
+│       ├── GABRIEL_PROMPT.md              # ✅ Release Commander & Swarm Leader
+│       ├── CLAUDE_PROMPT.md               # ✅ The Strategist / Creative Brain
+│       ├── LUCY_PROMPT.md                 # ✅ Voice Estate Guardian
+│       ├── SHIRL_PROMPT.md                # ✅ Sample Intelligence Analyst
+│       ├── DREAM_PROMPT.md                # ✅ Creative Assistant & DAW Whisperer
+│       ├── POPS_PROMPT.md                 # ✅ No-Code Orchestrator
+│       ├── ENGR_KEITH_PROMPT.md           # ✅ Infrastructure Engineer
+│       ├── CB01_PROMPT.md                 # ✅ Consent & Contracts Bot (Titan-hardened)
+│       └── HEAVEN_PROMPT.md               # ✅ DNS & Domain Sovereign
+├── ops/
+│   └── agents/
+│       └── swarm.py                       # CrewAI swarm orchestration (scaffold)
+├── scripts/
+│   └── rsync-dry-run-volumes.sh           # Infrastructure: volume scan & verify (253 lines)
+└── enterprise/
+    ├── README.md                          # Deployment checklist for new repos
+    └── blueprints/
+        ├── NOIZYVOX_README.md             # Ready-to-deploy README for NOIZYVOX repo
+        ├── NOIZYFISH_README.md            # Ready-to-deploy README for NOIZYFISH repo
+        ├── HVS_README.md                  # Ready-to-deploy README for HVS repo
+        └── PROFILE_README.md             # Ready-to-deploy README for RSPNOIZY profile
 ```
 
 ### Planned (to build)
@@ -222,11 +232,18 @@ Then nothing ships. And the system produces its own evidence explaining why.
 ## Next Steps
 
 - [x] Create all 9 prompt files in `wisdom/prompts/` (all agents defined)
-- [ ] Sort NOIZYVOX repo (3 branches of 2025 code) into proper directories
+- [x] Titan-harden README, CB01, consent language
+- [x] Merge all unique branch content to single source of truth
+- [x] Add `.gitignore`, `scripts/rsync-dry-run-volumes.sh`
+- [x] Create enterprise blueprints for NOIZYVOX, NOIZYFISH, HVS, Profile
+- [ ] Create NOIZYVOX repo (use `enterprise/blueprints/NOIZYVOX_README.md`)
+- [ ] Create NOIZYFISH repo (use `enterprise/blueprints/NOIZYFISH_README.md`)
+- [ ] Create HVS repo (use `enterprise/blueprints/HVS_README.md`)
+- [ ] Update RSPNOIZY profile README (use `enterprise/blueprints/PROFILE_README.md`)
+- [ ] Delete all 6 stale copilot branches after merge to main
 - [ ] Wire each family member into the CrewAI swarm (`ops/agents/swarm.py`)
 - [ ] Verify noizy.ai domain DNS
-- [ ] Set up GitHub Copilot Pro+ extensions in VS Code, Cursor, and all IDEs
-- [ ] Build out `app/`, `contracts/`, `stream/`, `hooks/`, `heaven-dns/`, `scripts/` directories
+- [ ] Build out `app/`, `contracts/`, `stream/`, `hooks/`, `heaven-dns/` directories
 - [ ] Deploy DreamChamber app (`app/dreamchamber/`) to Cloudflare
 - [ ] Connect Notion mirror (`app/mirror/`) for live sync between Notion and codebase
 
