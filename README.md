@@ -78,7 +78,8 @@ Rob (RSP_001) → Claude → GABRIEL → Agent Mesh
 ```
 DREAMCHAMBER/
 ├── README.md                              # This file — Titan-hardened
-├── .gitignore                             # OS, IDE, Node, Python, media, secrets
+├── INVENTORY.md                           # Full empire audit — every repo, branch, file
+├── .gitignore                             # Constitutional Media Block — audio, video, DAW, NLE, secrets
 ├── WALKING_IN_THE_DREAMS/
 │   └── README.md                          # OSC + Lemur + NOIZY vision essay (346 lines)
 ├── wisdom/

@@ -1,10 +1,16 @@
+# ============================================================
 # DREAMCHAMBER — MC96 Ecosystem
+# CONSTITUTIONAL MEDIA BLOCK
 # No audio. No video. No binaries. Code and docs only.
+# Media lives on THE AQUARIUM (34TB external) only.
+# Never on GOD system drive. Never in version control.
+# ============================================================
 
 # OS
 .DS_Store
 Thumbs.db
 Desktop.ini
+desktop.ini
 
 # IDE
 .vscode/
@@ -38,18 +44,87 @@ venv/
 logs/
 /tmp/dreamchamber-rsync-logs/
 
-# Media — NEVER committed. Lives on AQUARIUM.
+# ============================================================
+# AUDIO — NEVER COMMITTED
+# All audio lives on AQUARIUM. No exceptions.
+# ============================================================
 *.wav
 *.mp3
+*.aac
 *.flac
-*.aif
-*.aiff
 *.ogg
 *.m4a
+*.wma
+*.aiff
+*.aif
+*.alac
+*.opus
+*.mid
+*.midi
+*.ac3
+*.dts
+*.pcm
+*.raw
+*.caf
+*.amr
+*.ape
+*.wv
+*.dsf
+*.dff
+
+# ============================================================
+# VIDEO — NEVER COMMITTED
+# ============================================================
 *.mp4
 *.mov
 *.avi
 *.mkv
+*.wmv
+*.flv
+*.webm
+*.m4v
+*.mpg
+*.mpeg
+*.3gp
+*.3g2
+*.ts
+*.mts
+*.m2ts
+*.vob
+*.ogv
+*.divx
+*.asf
+*.rm
+*.rmvb
+*.f4v
+*.prores
+
+# ============================================================
+# DAW / NLE PROJECT FILES — reference media, never committed
+# ============================================================
+*.ptx
+*.ptf
+*.logicx
+*.band
+*.als
+*.flp
+*.rpp
+*.cpr
+*.npr
+*.sesx
+*.aup3
+*.prproj
+*.fcpxd
+*.drp
+
+# ============================================================
+# LARGE BINARY BLOBS
+# ============================================================
+*.iso
+*.dmg
+*.img
+*.bin
+*.dat
 
 # Archives
 *.zip
