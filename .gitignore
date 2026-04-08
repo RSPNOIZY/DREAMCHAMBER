@@ -83,3 +83,6 @@ publickey
 *.wgpub
 **/privatekey
 **/publickey
+
+# Postman local state
+.postman/

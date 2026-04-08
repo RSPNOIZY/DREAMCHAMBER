@@ -1,0 +1,47 @@
+# ═══════════════════════════════════════════════════════════════
+# NOIZY EMPIRE — Full Local Stack
+# n8n + STT + Postman Mock Server
+# Run: docker compose -f ops/docker-compose.yml up -d
+# ═══════════════════════════════════════════════════════════════
+
+services:
+  # ── n8n: Central Automation Brain ───────────────────────────
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: noizy-n8n
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - NODE_ENV=production
+      - WEBHOOK_URL=http://localhost:5678
+      - GENERIC_TIMEZONE=America/Toronto
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - N8N_PERSONALIZATION_ENABLED=false
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ${HOME}/NOIZYANTHROPIC/tools/n8n_workflows:/home/node/workflows:ro
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:5678/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── STT: Faster-Whisper Speech-to-Text ─────────────────────
+  stt:
+    image: fedirz/faster-whisper-server:latest-cpu
+    container_name: noizy-stt
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - hf_cache:/root/.cache/huggingface
+
+volumes:
+  n8n_data:
+    driver: local
+  hf_cache:
+    driver: local
