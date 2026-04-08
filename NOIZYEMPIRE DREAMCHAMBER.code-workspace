@@ -36,7 +36,10 @@
 		"vim.easymotionDimBackground": false,
 		"editor.formatOnSave": true,
 		"files.autoSave": "onFocusChange",
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.fontSize": 14
+		"editor.defaultFormatter": "vscode.github",
+		"editor.fontSize": 14,
+		"terminal.integrated.automationProfile.linux": {
+		
+		}
 	}
 }
