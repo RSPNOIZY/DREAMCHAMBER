@@ -96,7 +96,7 @@ OneDrive/
 
 # NOIZYEMPIRE Go monolith — 55K files, 1.6GB, tracked separately
 # Uncomment below ONLY after running: git rm -r --cached NOIZYEMPIRE/
-# NOIZYEMPIRE/
+NOIZYEMPIRE/
 
 # Duplicate/archive directories
 DUPES/
@@ -110,3 +110,12 @@ DUPES/
 
 # Gabriel database (binary)
 gabriel.db
+
+# VS Code workspace files (user-local, not shared)
+*.code-workspace
+
+# Binary documents in tracked dirs
+*.docx
+
+# Compressed files (from Go module cache)
+*.gz
