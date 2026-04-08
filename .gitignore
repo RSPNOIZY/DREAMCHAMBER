@@ -75,3 +75,11 @@ coverage/
 tmp/
 temp/
 *.tmp
+
+# WireGuard keys (NEVER COMMIT)
+privatekey
+publickey
+*.wgkey
+*.wgpub
+**/privatekey
+**/publickey
