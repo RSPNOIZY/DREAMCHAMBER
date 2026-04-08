@@ -86,3 +86,27 @@ publickey
 
 # Postman local state
 .postman/
+
+# ═══════════════════════════════════════════════════════════════════════════
+# HEAVY DIRECTORIES — DO NOT COMMIT (added 2026-04-08)
+# ═══════════════════════════════════════════════════════════════════════════
+
+# OneDrive mirror — 12GB music career archive, NOT source code
+OneDrive/
+
+# NOIZYEMPIRE Go monolith — 55K files, 1.6GB, tracked separately
+# Uncomment below ONLY after running: git rm -r --cached NOIZYEMPIRE/
+# NOIZYEMPIRE/
+
+# Duplicate/archive directories
+DUPES/
+
+# Database files (binary, not diffable)
+*.db
+*.sqlite
+*.sqlite3
+!schema.sql
+!seed.sql
+
+# Gabriel database (binary)
+gabriel.db
