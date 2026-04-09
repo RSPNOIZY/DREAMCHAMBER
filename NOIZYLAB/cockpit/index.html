@@ -210,18 +210,14 @@
 
   <div class="title">
     <b>GABRIEL</b>
-    <span>Operator Cockpit · GOD.local</span>
+    <span>SUPERSONIC Operator Cockpit · GOD.local</span>
+    <input id="global-search" placeholder="🔍 search empire (Cmd+K)" style="background:var(--panel-2);border:1px solid var(--border);color:var(--text);padding:2px 10px;border-radius:10px;font-size:11px;width:240px;-webkit-app-region:no-drag" />
     <span class="mission-pill" id="mission">⚔ NOIZY Empire</span>
     <span class="countdown" id="title-countdown">T- · ·</span>
   </div>
 
-  <nav class="activity">
-    <button class="active" title="Explorer">📁</button>
-    <button title="Search">🔍</button>
-    <button title="Source">⎇</button>
-    <button title="Run">▶</button>
-    <button title="Memory">🧠</button>
-    <button title="Settings">⚙</button>
+  <nav class="activity" id="sections-nav">
+    <!-- 12 sections injected at boot from /api/empire/sections -->
   </nav>
 
   <aside class="sidebar">
@@ -536,7 +532,96 @@ async function showFamily(id) {
   } catch (e) { term("events", "family fetch failed", "bad"); }
 }
 
+// ── 12 sections nav ───────────────────────────────────────────────────
+let activeSection = "agents";
+async function loadSections() {
+  try {
+    const r = await fetch(API + "/api/empire/sections");
+    const d = await r.json();
+    const html = d.sections.map(s =>
+      `<button data-section="${s.id}" title="${s.title} — ${s.tagline}" onclick="activateSection('${s.id}')">${s.icon}</button>`
+    ).join("");
+    document.getElementById("sections-nav").innerHTML = html;
+    activateSection(activeSection);
+  } catch (e) {
+    term("events", "sections load failed", "bad");
+  }
+}
+function activateSection(id) {
+  activeSection = id;
+  document.querySelectorAll('#sections-nav button').forEach(b =>
+    b.classList.toggle('active', b.dataset.section === id)
+  );
+  // For now: update sidebar header. Could swap sidebar contents per section later.
+  const labels = {
+    mission: "Mission · Critical Path",
+    brands: "Brand Worlds (6)",
+    agents: "Family · 33 Members",
+    infrastructure: "Cloudflare · Docker · k8s",
+    voice: "NOIZYVOX · AVAs · Audio",
+    archive: "NOIZYFISH · Aquarium",
+    research: "Neuro-Acoustic · Clinical",
+    learning: "NOIZYKIDZ · Curriculum",
+    governance: "75/25 · Never Clauses",
+    deploy: "Heaven · Landing",
+    memory: "MemCell · DAZEFLOW",
+    live_health: "Live Vitals · SSE",
+  };
+  const h = document.querySelector('.sidebar h3');
+  if (h) h.firstChild.textContent = labels[id] || "Explorer ";
+  term("events", "section: " + id, "info");
+}
+
+// ── Global search ─────────────────────────────────────────────────────
+async function doGlobalSearch(q) {
+  if (!q) return;
+  term("events", "🔍 search: " + q, "info");
+  try {
+    const r = await fetch(API + "/api/search?q=" + encodeURIComponent(q));
+    const d = await r.json();
+    const lines = [];
+    lines.push(`SEARCH RESULTS — "${q}"`);
+    lines.push("─".repeat(60));
+    if (d.family_count) {
+      lines.push(`\nFAMILY (${d.family_count}):`);
+      d.family.forEach(m => lines.push(`  ${m.tier.padEnd(10)} ${m.id.padEnd(20)} ${m.title || ''}`));
+    }
+    if (d.empire) {
+      const e = d.empire;
+      if (e.sections.length) { lines.push(`\nSECTIONS (${e.sections.length}):`); e.sections.forEach(s => lines.push(`  ${s.icon} ${s.title} — ${s.tagline}`)); }
+      if (e.identity.length) { lines.push(`\nIDENTITY LAYER (${e.identity.length}):`); e.identity.forEach(i => lines.push(`  · ${i.name} — ${i.what}`)); }
+      if (e.documents.length) { lines.push(`\nDOCUMENTS (${e.documents.length}):`); e.documents.forEach(x => lines.push(`  · ${x.name} (${x.where})`)); }
+      if (e.surfaces.length) { lines.push(`\nUI SURFACES (${e.surfaces.length}):`); e.surfaces.forEach(x => lines.push(`  · ${x.name} [${x.status}]`)); }
+      if (e.themes.length) { lines.push(`\nTHEMES:`); e.themes.forEach(t => lines.push(`  · ${t}`)); }
+    }
+    if (d.memcell_count) {
+      lines.push(`\nMEMCELL (${d.memcell_count}):`);
+      d.memcell.forEach(m => lines.push(`  ${m.ts}  ${m.a} → ${m.s}`));
+    }
+    if (!d.family_count && !d.memcell_count && !Object.values(d.empire).some(v => v.length)) {
+      lines.push("\n  (no results)");
+    }
+    document.getElementById("editor-body").textContent = lines.join("\n");
+  } catch (e) {
+    term("events", "search failed: " + e.message, "bad");
+  }
+}
+const gs = document.getElementById("global-search");
+if (gs) {
+  gs.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") doGlobalSearch(e.target.value.trim());
+  });
+}
+// Cmd+K focuses search
+document.addEventListener("keydown", (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+    e.preventDefault();
+    if (gs) gs.focus();
+  }
+});
+
 // ── Boot ───────────────────────────────────────────────────────────────
+loadSections();
 loadStatus();
 loadTree();
 loadFamily();

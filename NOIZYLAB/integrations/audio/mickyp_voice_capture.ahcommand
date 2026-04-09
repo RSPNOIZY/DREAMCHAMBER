@@ -1,0 +1,95 @@
+// mickyp_voice_capture.ahcommand
+// ─────────────────────────────────────────────────────────────────────────
+// Audio Hijack JavaScript command file for MICKY-P (MacBook Pro).
+// Double-click on MICKY-P (with Audio Hijack 4+ open) to build the voice
+// capture session that pipes mic input to a Loopback virtual device for
+// LAN bridging to GOD.
+//
+// Built by Gabriel for the NOIZY Empire — Real-Time Voice → DreamChamber IDE
+// Author: RSP_001 (orchestrated by Gabriel)
+// Spec:   Master Inclusion Blueprint v2.0 §I.1 (Logic Pro for Mac) + §II (MICKY-P)
+// Date:   2026-04-09 · T-8 to April 17
+// ─────────────────────────────────────────────────────────────────────────
+
+(function () {
+    var sessionName = "NOIZY · MICKY-P → GOD Voice Bridge";
+
+    // 1. Create or replace the session
+    var existing = app.sessions.filter(function (s) { return s.name === sessionName; });
+    if (existing.length > 0) {
+        app.alert("Session '" + sessionName + "' already exists. Open it from the Sessions list.");
+        return;
+    }
+
+    var session = app.createSession(sessionName);
+
+    // 2. INPUT BLOCK — system default mic (or pick Apollo if available)
+    var input = session.addBlock("Input Device");
+    input.position = { x: 60, y: 80 };
+    // Try to lock onto a quality input if present, else fall back to system default
+    var preferredInputs = ["Apollo", "U87", "Universal Audio", "MacBook Pro Microphone"];
+    var allInputs = app.inputDevices || [];
+    var picked = null;
+    for (var i = 0; i < preferredInputs.length; i++) {
+        for (var j = 0; j < allInputs.length; j++) {
+            if (allInputs[j].name.indexOf(preferredInputs[i]) !== -1) {
+                picked = allInputs[j];
+                break;
+            }
+        }
+        if (picked) break;
+    }
+    if (picked) {
+        input.device = picked;
+    }
+
+    // 3. METER BLOCK — visual feedback
+    var meter = session.addBlock("Peak/RMS Meters");
+    meter.position = { x: 220, y: 80 };
+
+    // 4. RECORDER BLOCK — capture to disk for the session manifest
+    var recorder = session.addBlock("Recorder");
+    recorder.position = { x: 380, y: 80 };
+    recorder.format = "AIFF";       // lossless, fast, no codec licensing
+    recorder.bitDepth = 24;
+    recorder.sampleRate = 48000;
+    recorder.savePath = "~/NOIZY/Sessions/MICKY-P-VOICE";  // gets created on first run
+
+    // 5. OUTPUT — Loopback virtual device "NOIZY-MICKY-P"
+    //     This becomes the source GOD subscribes to over the LAN.
+    //     If the user has not yet created the Loopback device, fall back
+    //     to system output and surface a friendly hint.
+    var output = session.addBlock("Output Device");
+    output.position = { x: 540, y: 80 };
+    var allOutputs = app.outputDevices || [];
+    var loopback = null;
+    for (var k = 0; k < allOutputs.length; k++) {
+        if (allOutputs[k].name === "NOIZY-MICKY-P" || allOutputs[k].name.indexOf("NOIZY") !== -1) {
+            loopback = allOutputs[k];
+            break;
+        }
+    }
+    if (loopback) {
+        output.device = loopback;
+    } else {
+        app.alert("Loopback device 'NOIZY-MICKY-P' not found.\n\n" +
+                  "Open Loopback.app → New Virtual Device → name it 'NOIZY-MICKY-P'.\n" +
+                  "Then re-run this .ahcommand to wire it in.\n\n" +
+                  "(Falling back to system output for now.)");
+    }
+
+    // 6. WIRE THE CHAIN: Input → Meter → Recorder → Output
+    session.connect(input, meter);
+    session.connect(meter, recorder);
+    session.connect(recorder, output);
+
+    // 7. Auto-start the session
+    session.run();
+
+    app.alert("✓ NOIZY · MICKY-P → GOD Voice Bridge is LIVE.\n\n" +
+              "Chain: " + (picked ? picked.name : "System Default") +
+              " → Meters → Recorder → " + (loopback ? loopback.name : "System Output") + "\n\n" +
+              "On GOD, subscribe to the Loopback device 'NOIZY-MICKY-P' over your LAN bridge\n" +
+              "(NDI, Dante Via, RTP, or AirPlay 2 — see family.get('micky_p').lan_options).\n\n" +
+              "Recordings saving to: ~/NOIZY/Sessions/MICKY-P-VOICE/");
+})();

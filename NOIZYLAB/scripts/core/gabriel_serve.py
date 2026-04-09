@@ -59,6 +59,7 @@ sys.path.insert(0, str(HERE))
 from MemCell_V3 import MemCell  # noqa: E402
 import linear_client  # noqa: E402
 import family  # noqa: E402
+import empire  # noqa: E402
 
 mc = MemCell()
 family.ensure_seeded()
@@ -312,6 +313,69 @@ class Handler(BaseHTTPRequestHandler):
             except Exception as e:
                 return self._json(500, {"error": str(e)})
             return self._json(200, {"path": str(target.relative_to(JAIL)), "content": content, "size": size})
+
+        if path == "/api/empire/sections":
+            return self._json(200, {"sections": empire.all_sections()})
+
+        if path == "/api/empire/themes":
+            return self._json(200, {"themes": empire.themes()})
+
+        if path == "/api/empire/identity":
+            return self._json(200, {"layer": empire.identity_layer()})
+
+        if path == "/api/empire/documents":
+            return self._json(200, {"documents": empire.documents()})
+
+        if path == "/api/empire/surfaces":
+            return self._json(200, {"surfaces": empire.surfaces()})
+
+        if path == "/api/empire/voice_topology":
+            return self._json(200, empire.voice_topology())
+
+        if path == "/api/plugins":
+            manifest_path = Path.home() / "NOIZYANTHROPIC/NOIZYLAB/memory/plugin_manifest.json"
+            if not manifest_path.exists():
+                return self._json(404, {"error": "manifest not found", "hint": "run plugin_scanner.py first"})
+            try:
+                with open(manifest_path) as f:
+                    data = json.load(f)
+                # Strip all_files from default response — it's huge. Add ?full=1 to get it.
+                if qs.get("full", ["0"])[0] != "1":
+                    data.pop("all_files", None)
+                return self._json(200, data)
+            except Exception as e:
+                return self._json(500, {"error": str(e)})
+
+        if path == "/api/plugins/vendor":
+            vendor = qs.get("name", [""])[0]
+            if not vendor:
+                return self._json(400, {"error": "?name= required"})
+            manifest_path = Path.home() / "NOIZYANTHROPIC/NOIZYLAB/memory/plugin_manifest.json"
+            if not manifest_path.exists():
+                return self._json(404, {"error": "manifest not found"})
+            with open(manifest_path) as f:
+                data = json.load(f)
+            files = [f for f in data.get("all_files", []) if f.get("vendor", "").lower() == vendor.lower()]
+            return self._json(200, {"vendor": vendor, "count": len(files), "files": files[:200]})
+
+        if path == "/api/search":
+            q = qs.get("q", [""])[0]
+            if not q:
+                return self._json(400, {"error": "?q= required"})
+            fam_results = family.find(q)
+            empire_results = empire.search(q)
+            memcell_results = [
+                e for e in mc.state["neural_state"]["short_term"]
+                if q.lower() in (e.get("a", "") + " " + e.get("s", "")).lower()
+            ][-20:]
+            return self._json(200, {
+                "query": q,
+                "family": fam_results,
+                "family_count": len(fam_results),
+                "empire": empire_results,
+                "memcell": memcell_results,
+                "memcell_count": len(memcell_results),
+            })
 
         if path == "/api/family":
             return self._json(200, {"members": family.all_members(), "stats": family.quick_stats()})
