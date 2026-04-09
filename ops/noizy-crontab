@@ -17,3 +17,9 @@ PATH=/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:/Users/m2ultra/.nvm/versions
 
 # Daily Standup Generation — 7:00 AM ET daily
 0 7 * * * /Users/m2ultra/NOIZYLAB/ops/noizy-cron.sh standup
+
+# Gabriel Watch — every hour, vitals + net + MemCell log
+0 * * * * /Users/m2ultra/NOIZYLAB/ops/noizy-cron.sh gabriel-watch
+
+# Gabriel Sync — every 30min, git push all NOIZY repos
+*/30 * * * * /Users/m2ultra/NOIZYLAB/ops/noizy-cron.sh gabriel-sync

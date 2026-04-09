@@ -30,7 +30,7 @@ echo "🏎️  RUNNING BANDWIDTH SPEED TEST..."
 echo "🗑️  CLEARING CACHES..."
 # Only clear safe caches, avoid deleting active app states if possible, but user asked for CLEAR.
 # We will target the User Caches.
-rm -rf "$HOME/Library/Caches/*" 2>/dev/null
+rm -rf "$HOME"/Library/Caches/* 2>/dev/null
 echo "✅ Caches Cleared."
 
 # 4. MemCell Logging

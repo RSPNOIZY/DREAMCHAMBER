@@ -1,0 +1,35 @@
+{
+  "neural_state": {
+    "short_term": [
+      {
+        "a": "status_report",
+        "s": "self",
+        "ctx": {},
+        "ts": "2026-04-09T13:36:23"
+      },
+      {
+        "a": "build_session",
+        "s": "gabriel_lightweight",
+        "ctx": {},
+        "ts": "2026-04-09T13:36:32"
+      },
+      {
+        "a": "vitals_check",
+        "s": "system",
+        "ctx": {},
+        "ts": "2026-04-09T13:36:32"
+      },
+      {
+        "a": "omega_boot_test",
+        "s": "gabriel",
+        "ctx": {
+          "note": "sibling import verification"
+        },
+        "ts": "2026-04-09T13:37:29"
+      }
+    ],
+    "patterns": [],
+    "vibe": "neutral"
+  },
+  "long_term": {}
+}

@@ -69,13 +69,42 @@ case "${1:-help}" in
     log "Test suite complete: ~$TOTAL tests, $FAILED suite failures"
     ;;
 
+  gabriel-watch)
+    log "Gabriel watch sweep starting..."
+    TURBO="$HOME/NOIZYANTHROPIC/NOIZYLAB/scripts/turbo"
+    GABRIEL="$HOME/bin/gabriel"
+
+    if [ -x "$TURBO/turbo_vitals.py" ]; then
+      "$TURBO/turbo_vitals.py" >> "$LOG_DIR/gabriel-watch-$DATE.log" 2>&1
+    fi
+    if [ -x "$TURBO/turbo_net_check.py" ]; then
+      "$TURBO/turbo_net_check.py" >> "$LOG_DIR/gabriel-watch-$DATE.log" 2>&1 || \
+        log "  WARN: network degraded"
+    fi
+    if [ -x "$GABRIEL" ]; then
+      "$GABRIEL" log cron_sweep gabriel-watch >> "$LOG_DIR/gabriel-watch-$DATE.log" 2>&1
+    fi
+    log "Gabriel watch sweep complete."
+    ;;
+
+  gabriel-sync)
+    log "Gabriel git sync (all repos) starting..."
+    TURBO="$HOME/NOIZYANTHROPIC/NOIZYLAB/scripts/turbo"
+    if [ -x "$TURBO/turbo_git_sync.sh" ]; then
+      zsh "$TURBO/turbo_git_sync.sh" >> "$LOG_DIR/gabriel-sync-$DATE.log" 2>&1
+    fi
+    log "Gabriel git sync complete."
+    ;;
+
   help|*)
     echo "NOIZY.AI Cron Runner"
     echo ""
-    echo "Usage: $0 {lucy-nightly|standup|test-all}"
+    echo "Usage: $0 {lucy-nightly|standup|test-all|gabriel-watch|gabriel-sync}"
     echo ""
-    echo "  lucy-nightly  Run Lucy's nightly analysis engine"
+    echo "  lucy-nightly   Run Lucy's nightly analysis engine"
     echo "  standup        Generate daily standup report"
     echo "  test-all       Run all smoke tests across all packages"
+    echo "  gabriel-watch  Vitals + network sweep, log to MemCell"
+    echo "  gabriel-sync   Parallel git sync of all NOIZY repos"
     ;;
 esac

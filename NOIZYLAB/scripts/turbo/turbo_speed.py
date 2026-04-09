@@ -19,7 +19,7 @@ def test_download_speed():
     # URL for a small test file (approx 10-20MB is good for quick check)
     # Using Cloudflare speed test file or similar reliable fast CDN.
     # 10MB file from valid source.
-    url = "http://speedtest.tele2.net/10MB.zip"
+    url = "https://speed.cloudflare.com/__down?bytes=10000000"
     file_size_mb = 10
     
     print(f"{SPEED} Testing Download Speed (Target: {file_size_mb}MB)...")
