@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/auv3-shared-noizy-receipts/.build/arm64-apple-macosx/debug/NOIZYReceiptsPackageTests.build/master.swiftdeps"
+  },
+  "/Users/m2ultra/NOIZYANTHROPIC/auv3-shared-noizy-receipts/.build/arm64-apple-macosx/debug/NOIZYReceiptsPackageTests.derived/runner.swift": {
+    "dependencies": "/Users/m2ultra/NOIZYANTHROPIC/auv3-shared-noizy-receipts/.build/arm64-apple-macosx/debug/NOIZYReceiptsPackageTests.build/runner.d",
+    "object": "/Users/m2ultra/NOIZYANTHROPIC/auv3-shared-noizy-receipts/.build/arm64-apple-macosx/debug/NOIZYReceiptsPackageTests.build/runner.swift.o",
+    "swiftmodule": "/Users/m2ultra/NOIZYANTHROPIC/auv3-shared-noizy-receipts/.build/arm64-apple-macosx/debug/NOIZYReceiptsPackageTests.build/runner~partial.swiftmodule",
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/auv3-shared-noizy-receipts/.build/arm64-apple-macosx/debug/NOIZYReceiptsPackageTests.build/runner.swiftdeps",
+    "diagnostics": "/Users/m2ultra/NOIZYANTHROPIC/auv3-shared-noizy-receipts/.build/arm64-apple-macosx/debug/NOIZYReceiptsPackageTests.build/runner.dia"
+  }
+}
