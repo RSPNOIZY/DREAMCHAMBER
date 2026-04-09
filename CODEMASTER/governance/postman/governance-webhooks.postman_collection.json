@@ -193,9 +193,9 @@
           "request": {
             "method": "GET",
             "url": {
-              "raw": "https://status.anthropic.com/api/v2/status.json",
+              "raw": "https://status.claude.com/api/v2/status.json",
               "protocol": "https",
-              "host": ["status", "anthropic", "com"],
+              "host": ["status", "claude", "com"],
               "path": ["api", "v2", "status.json"]
             },
             "description": "Anthropic API status. indicator='none' means all operational."

@@ -9,8 +9,8 @@
 GABRIEL="http://localhost:7777"
 LOG_DIR="$HOME/NOIZYLAB/CODEMASTER/logs"
 LOG="$LOG_DIR/anthropic_status.log"
-STATUS_URL="https://status.anthropic.com/api/v2/status.json"
-COMPONENTS_URL="https://status.anthropic.com/api/v2/components.json"
+STATUS_URL="https://status.claude.com/api/v2/status.json"
+COMPONENTS_URL="https://status.claude.com/api/v2/components.json"
 LAST_STATE_FILE="$LOG_DIR/.anthropic_last_state"
 
 mkdir -p "$LOG_DIR"
@@ -18,7 +18,7 @@ mkdir -p "$LOG_DIR"
 TS=$(date '+%Y-%m-%d %H:%M:%S')
 
 # Fetch status
-STATUS=$(curl -s --max-time 10 "$STATUS_URL" 2>/dev/null)
+STATUS=$(curl -sL --max-time 10 "$STATUS_URL" 2>/dev/null)
 if [ -z "$STATUS" ]; then
     echo "[$TS] ERROR: Could not reach status.anthropic.com" >> "$LOG"
     exit 1

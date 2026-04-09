@@ -42,7 +42,7 @@ except:
 " 2>/dev/null || echo "?")
 
 # ── Anthropic API status ──
-ANTHROPIC_RAW=$(curl -s --max-time 5 "https://status.anthropic.com/api/v2/status.json" 2>/dev/null)
+ANTHROPIC_RAW=$(curl -sL --max-time 5 "https://status.claude.com/api/v2/status.json" 2>/dev/null)
 ANTHROPIC_STATUS=$(echo "$ANTHROPIC_RAW" | python3 -c "
 import sys,json
 try:

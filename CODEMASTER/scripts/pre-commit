@@ -1,0 +1,56 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════
+# pre-commit hook for CODEMASTER
+# Validates shell syntax, JSON, and checks for secret leaks
+# Install: cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+# RSP_001 | NOIZY Empire | 2026
+# ═══════════════════════════════════════════════════════════════
+
+ERRORS=0
+
+echo "🔍 CODEMASTER pre-commit checks..."
+
+# 1. Shell syntax
+for f in $(git diff --cached --name-only --diff-filter=ACMR | grep '\.sh$'); do
+    if ! bash -n "$f" 2>/dev/null; then
+        echo "  ❌ Shell syntax error: $f"
+        ERRORS=$((ERRORS + 1))
+    fi
+done
+
+# 2. JSON syntax
+for f in $(git diff --cached --name-only --diff-filter=ACMR | grep '\.json$'); do
+    if ! python3 -m json.tool "$f" > /dev/null 2>&1; then
+        echo "  ❌ Invalid JSON: $f"
+        ERRORS=$((ERRORS + 1))
+    fi
+done
+
+# 3. Secret leak detection
+STAGED_CONTENT=$(git diff --cached --diff-filter=ACMR -p)
+if echo "$STAGED_CONTENT" | grep -qE 'sk-ant-api|PRIVATE KEY|gEP/THgC2K1'; then
+    echo "  ❌ Potential secret detected in staged changes!"
+    ERRORS=$((ERRORS + 1))
+fi
+
+# 4. Check for privatekey/publickey being staged
+if git diff --cached --name-only | grep -qE '^privatekey$|^publickey$'; then
+    echo "  ❌ BLOCKED: privatekey or publickey is staged for commit!"
+    ERRORS=$((ERRORS + 1))
+fi
+
+# 5. Old Anthropic URL check
+for f in $(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(sh|json)$'); do
+    if grep -q "status.anthropic.com" "$f" 2>/dev/null; then
+        echo "  ⚠️  $f still references status.anthropic.com (should be status.claude.com)"
+    fi
+done
+
+if [ "$ERRORS" -gt 0 ]; then
+    echo ""
+    echo "❌ Commit blocked: $ERRORS error(s) found. Fix and try again."
+    exit 1
+fi
+
+echo "  ✅ All checks passed"
+exit 0

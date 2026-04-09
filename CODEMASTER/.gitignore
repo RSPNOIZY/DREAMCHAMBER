@@ -9,6 +9,7 @@ publickey
 
 # Logs
 logs/
+logs/archive/
 news/
 
 # n8n persistent data

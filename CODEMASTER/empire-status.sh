@@ -8,7 +8,7 @@
 GABRIEL="http://localhost:7777"
 HEAVEN="https://heaven.noizylab.workers.dev"
 N8N="http://localhost:5678"
-ANTHROPIC="https://status.anthropic.com/api/v2/status.json"
+ANTHROPIC="https://status.claude.com/api/v2/status.json"
 
 GREEN='\033[0;32m'
 RED='\033[0;31m'
@@ -76,7 +76,7 @@ check_service "HEAVEN   (workers.dev)" "$HEAVEN/health" \
 
 # ── 5. Anthropic API ──
 TOTAL=$((TOTAL + 1))
-ANTH_RESP=$(curl -s --max-time 5 "$ANTHROPIC" 2>/dev/null)
+ANTH_RESP=$(curl -sL --max-time 5 "$ANTHROPIC" 2>/dev/null)
 if [ -n "$ANTH_RESP" ]; then
     ANTH_IND=$(echo "$ANTH_RESP" | python3 -c "
 import sys,json
