@@ -22,6 +22,14 @@ Endpoints:
   POST /api/tools/sync         — run turbo_git_sync
   POST /api/think              — body: {prompt, force?: 'claude'|'local'}
                                   → routes through claude-hybrid
+  POST /api/webhook/n8n        — inbound from n8n. Body: arbitrary JSON.
+                                  Auto-tracked to MemCell + SSE-broadcast.
+                                  Optional fields: action, subject, reflex.
+  POST /api/webhook/zapier     — same shape as n8n (separate route for
+                                  per-source filtering + auditing)
+  POST /api/webhook/generic    — open inbound from Slack/GitHub/curl/etc.
+  POST /api/webhook/out        — body: {url, payload, headers?} → Gabriel
+                                  fires an outbound POST. Logged to MemCell.
   GET  /api/tree?path=...      — directory listing (jail: ~/NOIZYANTHROPIC)
   GET  /api/file?path=...      — file read (jail + size cap)
   GET  /api/stream             — Server-Sent Events: vitals every 5s,
@@ -331,6 +339,44 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/tools/sync":
             script = TURBO / "turbo_git_sync.sh"
             return self._json(200, _run(["zsh", str(script)], timeout=300))
+
+        # ---- Webhook receivers ----
+        if path in ("/api/webhook/n8n", "/api/webhook/zapier", "/api/webhook/generic"):
+            source = path.rsplit("/", 1)[1]
+            action = body.get("action") or f"webhook_{source}"
+            subject = body.get("subject") or source
+            mc.track(action, subject, {"source": source, "payload": body})
+            _broadcast("webhook", {"source": source, "action": action, "subject": subject, "payload": body})
+            response: dict = {"ok": True, "source": source, "tracked": True}
+            # Optional reflex: if body has 'reflex': true, run the prompt through claude-hybrid
+            if body.get("reflex") and HYBRID and body.get("prompt"):
+                ctx = mc.inject_omniscience()
+                args = [HYBRID, f"{ctx}\n\n[from {source}]: {body['prompt']}\n\nGABRIEL:"]
+                result = _run(args, timeout=120)
+                response["thought"] = result.get("stdout", "").strip()
+            return self._json(200, response)
+
+        if path == "/api/webhook/out":
+            import urllib.request
+            url = body.get("url")
+            payload = body.get("payload", {})
+            headers = body.get("headers", {"Content-Type": "application/json"})
+            if not url:
+                return self._json(400, {"error": "url required"})
+            try:
+                req = urllib.request.Request(
+                    url,
+                    data=json.dumps(payload).encode(),
+                    headers=headers,
+                    method="POST",
+                )
+                with urllib.request.urlopen(req, timeout=15) as resp:
+                    rbody = resp.read().decode(errors="replace")[:2000]
+                    mc.track("webhook_out", url[:60], {"status": resp.status})
+                    return self._json(200, {"ok": True, "status": resp.status, "body": rbody})
+            except Exception as e:
+                mc.track("webhook_out_fail", url[:60], {"error": str(e)})
+                return self._json(502, {"ok": False, "error": str(e)})
 
         if path == "/api/think":
             prompt = body.get("prompt", "")

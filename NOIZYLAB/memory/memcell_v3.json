@@ -40,6 +40,20 @@
         "s": "smoke",
         "ctx": {},
         "ts": "2026-04-09T14:01:22"
+      },
+      {
+        "a": "status_report",
+        "s": "self",
+        "ctx": {},
+        "ts": "2026-04-09T14:49:48"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-09T14:49:48"
       }
     ],
     "patterns": [],
