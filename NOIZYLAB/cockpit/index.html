@@ -269,6 +269,10 @@ Mission: April 17, 2026 — Consent as executable code.
       <div class="stat-row"><span>Hybrid router</span><span class="v good" id="hybrid">—</span></div>
     </section>
     <section>
+      <h4>FAMILY <span class="badge" id="fam-count" style="background:var(--gold);color:#000;padding:1px 6px;border-radius:8px;font-size:10px;font-weight:700">…</span></h4>
+      <div id="fam-list" style="max-height:200px;overflow-y:auto;font-size:11px"></div>
+    </section>
+    <section>
       <h4>QUICK ACTIONS</h4>
       <div class="stat-row"><span>Vitals</span><span class="v" style="cursor:pointer" onclick="runTool('vitals')">▶ run</span></div>
       <div class="stat-row"><span>Network</span><span class="v" style="cursor:pointer" onclick="runTool('net')">▶ run</span></div>
@@ -492,9 +496,50 @@ $("mission").onclick = () => {
   });
 };
 
+// ── Family panel ──────────────────────────────────────────────────────
+async function loadFamily() {
+  try {
+    const r = await fetch(API + "/api/family");
+    const d = await r.json();
+    $("fam-count").textContent = d.stats.total;
+    const tierIcon = { human: "👤", ops: "⚔", sys: "🏛", builder: "🏗", ava: "🎤", partner: "🤝" };
+    const html = d.members.map(m => {
+      const icon = tierIcon[m.tier] || "·";
+      const mark = m.honoree ? "🕯" : "";
+      const title = (m.title || "").replace(/[<>]/g, "");
+      return `<div class="stat-row" style="cursor:pointer" title="${title}" onclick="showFamily('${m.id}')">
+        <span>${icon} ${m.short || m.name}${mark}</span>
+        <span class="v" style="font-size:9px">${m.tier}</span>
+      </div>`;
+    }).join("");
+    $("fam-list").innerHTML = html;
+  } catch (e) {
+    $("fam-list").innerHTML = '<div style="color:var(--bad)">family unavailable</div>';
+  }
+}
+async function showFamily(id) {
+  try {
+    const r = await fetch(API + "/api/family/get/" + id);
+    const m = await r.json();
+    $("editor-body").textContent = JSON.stringify(m, null, 2);
+    let tab = document.querySelector('.tab[data-id="fam-' + id + '"]');
+    if (!tab) {
+      tab = document.createElement("div");
+      tab.className = "tab";
+      tab.dataset.id = "fam-" + id;
+      tab.innerHTML = '👤 ' + (m.short || id) + ' <span class="close">×</span>';
+      $("tabs").appendChild(tab);
+    }
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    term("events", "opened family: " + id, "info");
+  } catch (e) { term("events", "family fetch failed", "bad"); }
+}
+
 // ── Boot ───────────────────────────────────────────────────────────────
 loadStatus();
 loadTree();
+loadFamily();
 connectStream();
 </script>
 </body>

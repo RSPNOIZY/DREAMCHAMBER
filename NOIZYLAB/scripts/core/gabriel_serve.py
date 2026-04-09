@@ -57,8 +57,11 @@ from urllib.parse import parse_qs, urlparse
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from MemCell_V3 import MemCell  # noqa: E402
+import linear_client  # noqa: E402
+import family  # noqa: E402
 
 mc = MemCell()
+family.ensure_seeded()
 
 # ── Constants ──────────────────────────────────────────────────────────────
 PORT = int(os.environ.get("GABRIEL_PORT", "9090"))
@@ -309,6 +312,63 @@ class Handler(BaseHTTPRequestHandler):
             except Exception as e:
                 return self._json(500, {"error": str(e)})
             return self._json(200, {"path": str(target.relative_to(JAIL)), "content": content, "size": size})
+
+        if path == "/api/family":
+            return self._json(200, {"members": family.all_members(), "stats": family.quick_stats()})
+
+        if path == "/api/family/stats":
+            return self._json(200, family.quick_stats())
+
+        if path == "/api/family/prompt":
+            return self._json(200, {"prompt": family.system_prompt_block()})
+
+        if path.startswith("/api/family/tier/"):
+            tier = path.rsplit("/", 1)[1]
+            return self._json(200, {"tier": tier, "members": family.by_tier(tier)})
+
+        if path.startswith("/api/family/find/"):
+            q = path.rsplit("/", 1)[1]
+            from urllib.parse import unquote
+            return self._json(200, {"query": unquote(q), "results": family.find(unquote(q))})
+
+        if path.startswith("/api/family/get/"):
+            mid = path.rsplit("/", 1)[1]
+            m = family.get(mid)
+            return self._json(200 if m else 404, m or {"error": "not found"})
+
+        if path == "/api/docker/ps":
+            r = _run(["docker", "ps", "--format", "{{json .}}"])
+            if not r["ok"]:
+                return self._json(503, r)
+            containers = []
+            for line in r["stdout"].strip().split("\n"):
+                if line:
+                    try: containers.append(json.loads(line))
+                    except: pass
+            return self._json(200, {"containers": containers, "count": len(containers)})
+
+        if path == "/api/docker/stats":
+            r = _run(["docker", "stats", "--no-stream", "--format", "{{json .}}"])
+            if not r["ok"]:
+                return self._json(503, r)
+            stats = []
+            for line in r["stdout"].strip().split("\n"):
+                if line:
+                    try: stats.append(json.loads(line))
+                    except: pass
+            return self._json(200, {"stats": stats})
+
+        if path == "/api/linear/issues":
+            return self._json(200, linear_client.list_issues(limit=int(qs.get("limit", ["25"])[0])))
+
+        if path == "/api/linear/critical":
+            # Try API first; fall back to local snapshot if no key
+            result = linear_client.critical_path()
+            if not result.get("ok"):
+                snap = Path.home() / "NOIZYANTHROPIC/NOIZYLAB/integrations/linear/critical_path.md"
+                if snap.exists():
+                    result = {"ok": True, "source": "snapshot", "markdown": snap.read_text(), "api_error": result.get("error")}
+            return self._json(200, result)
 
         if path == "/api/stream":
             return self._sse()
