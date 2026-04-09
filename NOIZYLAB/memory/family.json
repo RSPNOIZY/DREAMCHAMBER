@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-04-09T16:50:31",
+  "updated": "2026-04-09T16:55:39",
   "members": {
     "rsp_001": {
       "id": "rsp_001",
@@ -730,7 +730,7 @@
       "specialty": "ACTIVE second machine in the stack. Apple MacBook Pro. Dedicated to real-time voice capture \u2192 DreamChamber IDE on GOD. Carries Audio Hijack + Loopback for low-latency mic chain. Frees GOD's Apollo Quad for monitoring while MICKY-P handles input.",
       "role": "voice-capture-primary",
       "owner": "RSP_001",
-      "machine_class": "MacBook Pro (Apple Silicon)",
+      "machine_class": "MacBook Pro (Intel \u2014 Catalina 10.15 means pre-Apple-Silicon hardware)",
       "lan": {
         "ip": "10.0.0.100",
         "mac": "10:dd:b1:a1:e0:c0",
@@ -768,23 +768,53 @@
         "AirPlay 2: built-in, ~200ms latency \u2014 too slow for live monitoring, OK for review"
       ],
       "honors": "MICKY-P was the predecessor that carried the empire before GOD. Now it's promoted: lineage AND active duty. Its name stays \u2014 honoring Mickey, the original.",
+      "mission_profile_doc": "~/NOIZYANTHROPIC/NOIZYLAB/spec/MICKY_P_MISSION_PROFILE.md",
+      "ops_checklist_doc": "~/NOIZYANTHROPIC/NOIZYLAB/spec/MICKY_P_OPS_CHECKLIST.md",
       "scope_constraints": {
-        "macos_version": "Catalina 10.15 (Logic Pro for Mac requires 14.4+, so MICKY-P CANNOT run current Logic \u2014 that role lives on GOD)",
-        "audio_hijack": "Audio Hijack 4 supports macOS 10.15+ \u2014 confirmed compatible, this is MICKY-P's primary role",
-        "cloudflared": "DO NOT run Tunnel/Zero Trust here \u2014 cloudflared past 2025.6.0 segfaults on macOS Catalina 10.15.7. Tunnel stays on GOD only.",
-        "security_role": "Avoid public-facing or security-critical roles. Even with Apple's 2026-02-02 Security Update 2026-001 Catalina, this is not the right machine for the trust perimeter."
+        "macos_version": "Catalina 10.15 with Security Update 2026-001 (Feb 2 2026)",
+        "logic_pro_for_mac_blocker": "Current Logic Pro requires macOS 15.6 + Apple silicon \u2014 off the table on Catalina",
+        "audio_hijack_track": "Audio Hijack 3.8.13 (final Catalina-compatible version per Rogue Amoeba legacy page)",
+        "cloudflared_blocker": "cloudflared 2025.6.1+ segfaults on Catalina 10.15.7 (2025.6.0 was last known-working). Tunnel stays on GOD only.",
+        "security_role": "Avoid public-facing or security-critical roles even with the Feb 2026 security update."
       },
-      "approved_uses": [
-        "Apollo Quad / U87 \u2192 Audio Hijack capture/routing \u2192 LAN bridge \u2192 GOD (PRIMARY)",
-        "Legacy ingest + archive prep (clean old sessions, copy/archive, prep Aquarium uploads)",
-        "Notes/logging/operator companion (Docs, Notion, terminal logs, runbook review)",
-        "Light local utilities (shell scripts, SSH, browser dashboards, lightweight automation)"
+      "primary_jobs_priority_order": [
+        "1. Apollo Quad / U87 capture node",
+        "2. Audio Hijack 3.8.13 routing and recording",
+        "3. Archive janitor (rename, dedupe, checksum, batch prep)",
+        "4. Log console / docs terminal (SSH into GOD, dashboards, runbook execution)",
+        "5. Legacy compatibility reference machine"
       ],
-      "forbidden_uses": [
-        "Current Logic Pro for Mac (requires macOS 14.4+, Catalina too old)",
-        "Cloudflare Tunnel / cloudflared connector (segfault bug on Catalina 10.15.7)",
-        "Public-facing services or security perimeter roles",
-        "Heaven worker hosting, Receipt Spine primary node"
+      "software_keep": [
+        "Audio Hijack 3.8.13 (the audio backbone)",
+        "Finder, Preview, Notes, Terminal, Disk Utility, Activity Monitor",
+        "Modern browser (only if stable on this Catalina build)",
+        "SSH / rsync / scp",
+        "Text/markdown editor for logs+runbooks",
+        "Archive tools (rename, zip, checksum, dedupe)",
+        "Catalina-proven Audio/MIDI utilities (capture-supporting only, NOT a second DAW)"
+      ],
+      "software_remove_or_avoid": [
+        "Current Logic Pro for Mac (too new for Catalina)",
+        "cloudflared as persistent service (segfault bug)",
+        "Heavy always-on background agents",
+        "Old sync clients / tray apps / menu-bar clutter",
+        "Experimental security-critical internet-exposed services",
+        "Anything duplicating GOD's role (DAW / Heaven / Receipt Spine primary)"
+      ],
+      "service_layers": {
+        "1_audio_capture": "U87 mic monitoring \u00b7 Apollo Quad capture \u00b7 VoIP/session capture \u00b7 system audio capture \u00b7 stem export \u00b7 clean feed to GOD",
+        "2_archive_janitor": "Mount old drives \u00b7 sort/rename \u00b7 prep upload batches \u00b7 checksum verify \u00b7 clean handoff folders \u00b7 log archive actions",
+        "3_log_console": "SSH into GOD \u00b7 dashboard viewing \u00b7 runbook execution \u00b7 receipt review (read-only) \u00b7 operator notes",
+        "4_legacy_reference": "Inspect older assets \u00b7 check plugin/session deps \u00b7 document 'what opens where' \u00b7 capture legacy workflows before migrating"
+      },
+      "red_line_never": [
+        "NEVER host Heaven on MICKY-P",
+        "NEVER run primary Cloudflare Tunnel on MICKY-P",
+        "NEVER use as public/admin perimeter",
+        "NEVER treat as canonical Receipt Spine machine",
+        "NEVER make main Logic production machine",
+        "NEVER let modern app compatibility become critical here",
+        "NEVER overload with background services that reduce capture stability"
       ],
       "honoree": false
     },
