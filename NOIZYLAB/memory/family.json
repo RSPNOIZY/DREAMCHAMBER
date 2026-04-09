@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-04-09T15:47:32",
+  "updated": "2026-04-09T16:03:52",
   "members": {
     "rsp_001": {
       "id": "rsp_001",
@@ -954,6 +954,168 @@
       "language": "Swift",
       "consent_calls": "CONSENT_ORACLE.can_i_do() per audio buffer",
       "status": "\ud83d\udd6f PLANNED \u2014 depends on Heaven actually existing (Linear NOI-48)",
+      "honoree": true
+    },
+    "auv3_hvs_live_contour": {
+      "id": "auv3_hvs_live_contour",
+      "tier": "ops",
+      "name": "HVS Live Contour (AUv3)",
+      "short": "HVS Contour",
+      "title": "PROTOTYPING \u2014 Live Human Voice Signature meter (10 Fresh Ideas #6)",
+      "specialty": "Logic-side AUv3 meter/bridge. Live waveform + contour trace + emotional shape lane + authenticity score (cosine distance from RSP_001 prototype) + NOIZYVOX tag stream + status lights. The FIRST organ of the 5-layer Creator OS organism.",
+      "language": "Swift 6.2.4 + Accelerate (vDSP) + Core ML + AUAudioUnit",
+      "package_path": "~/NOIZYANTHROPIC/auv3-hvs-live-contour/",
+      "depends_on": [
+        "auv3-shared-noizy-consent (NOIZYConsent)"
+      ],
+      "files_built_today": [
+        "Package.swift",
+        "Sources/NOIZYHVSLiveContour/HVSFeatures.swift (vDSP feature extractor)",
+        "Sources/NOIZYHVSLiveContour/AuthenticityScorer.swift (cosine prototype scorer)",
+        "Sources/NOIZYHVSLiveContour/SessionManifest.swift (atomic JSON writer)",
+        "Sources/NOIZYHVSLiveContour/HVSBridgeAudioUnit.swift (AUAudioUnit shell)",
+        "XCODE_BUILD_README.md (Xcode-side click-through)"
+      ],
+      "compile_status": "\u2713 swift build clean (verified 2026-04-09)",
+      "spec": "HVS_LIVE_CONTOUR_AUv3_SPEC.md + HVS_LIVE_CONTOUR_IMPLEMENTATION_PLAN_v0.1.md",
+      "build_order": "PRIORITY 1 \u2014 first organ of the 5-layer organism",
+      "status": "\ud83d\udd28 PROTOTYPING \u2014 Phases 0/1/3/4 Swift compiles; Phase 2 (model) is offline work; Phase 5 needs Xcode AUv3 wrapper",
+      "honoree": false
+    },
+    "gabriel_swarm_panel": {
+      "id": "gabriel_swarm_panel",
+      "tier": "ops",
+      "name": "GABRIEL Swarm Panel",
+      "short": "Swarm",
+      "title": "PLANNED \u2014 Multi-agent orchestration pane (10 Fresh Ideas #7)",
+      "specialty": "Spin up GABRIEL/LUCY/POPS/SHIRL as parallel Logic sidechain processors \u2014 route stems to n8n for consent checks, D1 upserts, Zero Trust tunnel previews. Drag-drop reassigns agents mid-session. Each agent gets a lane: GABRIEL routing/decisions, LUCY logging/notes, POPS archive/lineage, SHIRL emotional/style.",
+      "build_order": "PRIORITY 2 \u2014 once HVS exists, agents have meaningful signal to act on",
+      "depends_on": [
+        "auv3_hvs_live_contour (signal source)",
+        "n8n",
+        "Heaven D1"
+      ],
+      "spec": "CREATOR_OS_MASTER.md \u00a710 + DREAMCHAMBER_5_FRESH_IDEAS.md batch 2",
+      "status": "\ud83d\udd6f PLANNED",
+      "honoree": true
+    },
+    "aquarium_eternal_vault": {
+      "id": "aquarium_eternal_vault",
+      "tier": "ops",
+      "name": "Aquarium Eternal Vault",
+      "short": "Aquarium",
+      "title": "PLANNED \u2014 100-year archive viewer + revoke cascade simulator (10 Fresh Ideas #8)",
+      "specialty": "Immutable 100-year archive viewer with R2/D1 fusion: timeline-scrubbable voice estates, royalty simulators (75/25 splits visualized as branching trees), and revoke cascade simulator showing downstream impacts. One-tap union-compliant export.",
+      "build_order": "PRIORITY 4 \u2014 wants strong signal + archive base first",
+      "depends_on": [
+        "R2 enabled (Linear NOI-49)",
+        "Heaven D1",
+        "Aquarium R2 bucket"
+      ],
+      "status": "\ud83d\udd6f PLANNED",
+      "honoree": true
+    },
+    "neuro_orchestrator": {
+      "id": "neuro_orchestrator",
+      "tier": "ops",
+      "name": "Neuro-Orchestrator",
+      "short": "Neuro",
+      "title": "PLANNED \u2014 MainStage polyvagal template rack (10 Fresh Ideas #9)",
+      "specialty": "Polyvagal/therapeutic audio engine as MainStage template rack. Mastoid Patch + Neural Earbud prototypes auto-calibrate to U87/Apollo inputs. Live A/B testing against FishMusicInc catalog via FTS5. Dashboard heatmaps engagement metrics.",
+      "build_order": "PRIORITY 5 \u2014 needs HVS signal base + Aquarium archive base",
+      "depends_on": [
+        "MainStage",
+        "research_sonic_aid",
+        "research_mastoid_patch",
+        "research_neural_earbud"
+      ],
+      "status": "\ud83d\udd6f PLANNED",
+      "honoree": true
+    },
+    "gorunfree_hyperloop": {
+      "id": "gorunfree_hyperloop",
+      "tier": "ops",
+      "name": "GORUNFREE Hyperloop",
+      "short": "Hyperloop",
+      "title": "PLANNED \u2014 Voice-shortcut full-stack action ecosystem (10 Fresh Ideas #10)",
+      "specialty": "iPhone 'GORUNFREE [command]' triggers full-stack actions. Example: 'GORUNFREE archive session' \u2192 Logic bounce \u2192 R2 upload \u2192 D1 consent log \u2192 DreamChamber light show \u2192 Wisdom Capsule update. Bind to iPad Control Center.",
+      "build_order": "PRIORITY 3 \u2014 turns the whole thing into commandable infrastructure",
+      "depends_on": [
+        "Siri Shortcuts",
+        "auv3_hvs_live_contour (signal)",
+        "lineage_auto_archive (target action)"
+      ],
+      "spec": "CREATOR_OS_MASTER.md \u00a75 (Layer 5 \u2014 Frictionless Execution)",
+      "status": "\ud83d\udd6f PLANNED \u2014 1st action: 'GORUNFREE archive session'",
+      "honoree": true
+    },
+    "auv3_consent_hud": {
+      "id": "auv3_consent_hud",
+      "tier": "ops",
+      "name": "AUv3 Consent HUD",
+      "short": "Consent HUD",
+      "title": "PROTOTYPING \u2014 Master-bus consent visualizer (5 Fresh Ideas #1)",
+      "specialty": "Real-time Consent Gateway visualizer in Logic Pro for Mac. Lights red on revocation, green on 75/25 royalty eligibility. One-tap proof bundle export to R2.",
+      "language": "Swift 6.2.4 + AUAudioUnit + async/await",
+      "package_path": "~/NOIZYANTHROPIC/auv3-consent-hud/",
+      "spec": "DREAMCHAMBER_5_FRESH_IDEAS.md \u00a71",
+      "depends_on": "Eventually Heaven /v1/can_i_do (currently stubbed for offline dev)",
+      "status": "\ud83d\udd6f PROTOTYPING \u2014 Swift package being built 2026-04-09",
+      "honoree": true
+    },
+    "polyvagal_dream_mode": {
+      "id": "polyvagal_dream_mode",
+      "tier": "ops",
+      "name": "Polyvagal Dream Mode",
+      "short": "Dream Mode",
+      "title": "PLANNED \u2014 Voice-activated sanctuary cockpit (5 Fresh Ideas #2)",
+      "specialty": "`gorunfree --sanctuary` or 'Hey Siri, dream mode'. Dims HomeKit lights \u2192 engages Neural Engine for polyvagal audio (Sonic Aid + Mastoid Patch DSP) \u2192 streams HVS analysis to Heaven D1.",
+      "trigger_paths": [
+        "gorunfree CLI",
+        "Siri Shortcut",
+        "iPhone Shortcuts app",
+        "iPad",
+        "Apple Watch"
+      ],
+      "spec": "DREAMCHAMBER_5_FRESH_IDEAS.md \u00a72",
+      "depends_on": "HomeKit accessory authorization, Core ML polyvagal model",
+      "status": "\ud83d\udd6f PLANNED \u2014 script stubbed at scripts/sanctuary/dream_mode.sh",
+      "honoree": true
+    },
+    "lineage_auto_archive": {
+      "id": "lineage_auto_archive",
+      "tier": "ops",
+      "name": "Lineage Auto-Archive",
+      "short": "Wisdom Capsule",
+      "title": "PLANNED \u2014 One-click Wisdom Capsule export (5 Fresh Ideas #3)",
+      "specialty": "Bundles Logic session + consent receipts + audit trail \u2192 SHA-256 hash \u2192 C2PA manifest \u2192 R2 'aquarium' bucket \u2192 auto-generates Keynote lineage report. The default save destination for everything that matters.",
+      "spec": "DREAMCHAMBER_5_FRESH_IDEAS.md \u00a73",
+      "depends_on": "R2 enabled (Linear NOI-49) and Heaven /v1/wisdom_capsule endpoint",
+      "status": "\ud83d\udd6f PLANNED \u2014 script stubbed at scripts/lineage/wisdom_capsule.sh",
+      "honoree": true
+    },
+    "agentic_voice_relay": {
+      "id": "agentic_voice_relay",
+      "tier": "ops",
+      "name": "Agentic Voice Relay",
+      "short": "Voice Relay",
+      "title": "PLANNED \u2014 Live agent sit-in on Apollo inputs (5 Fresh Ideas #4)",
+      "specialty": "GABRIEL + LUCY listen on Apollo Quad inputs in real time. Core ML phoneme scoring on Neural Engine \u2192 Heaven FTS5 search + royalty calc previews \u2192 iPad shortcut \u2192 spatial audio overlay through AirPods Pro head tracking.",
+      "spec": "DREAMCHAMBER_5_FRESH_IDEAS.md \u00a74",
+      "depends_on": "Heaven /v1/voice_relay endpoint (Heaven must exist \u2014 Linear NOI-48)",
+      "status": "\ud83d\udd6f PLANNED \u2014 script stubbed at scripts/voice_relay/relay.py",
+      "honoree": true
+    },
+    "zero_trust_flight_deck": {
+      "id": "zero_trust_flight_deck",
+      "tier": "ops",
+      "name": "Zero-Trust Flight Deck",
+      "short": "Flight Deck",
+      "title": "PLANNED \u2014 CF Zero Trust + 3D orrery dashboard (5 Fresh Ideas #5)",
+      "specialty": "Auto-generates Cloudflare Zero Trust policies from family registry device topology. One slider locks API tokens to rsp@noizy.ai. Exposes only /consent and /royalty publicly. Visualizes traffic as a 3D orrery of brands + nodes (Three.js / Metal).",
+      "spec": "DREAMCHAMBER_5_FRESH_IDEAS.md \u00a75",
+      "depends_on": "Phase B identity spine (Google Workspace as IdP), CF Zero Trust account",
+      "status": "\ud83d\udd6f PLANNED \u2014 script stubbed at scripts/flight_deck/zero_trust.py",
       "honoree": true
     },
     "auv3_neuro_acoustic_fx": {

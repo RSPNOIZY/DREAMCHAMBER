@@ -1,0 +1,27 @@
+{
+  "object" : {
+    "artifacts" : [
+
+    ],
+    "dependencies" : [
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "auv3-shared-noizy-consent",
+          "kind" : "fileSystem",
+          "location" : "/Users/m2ultra/NOIZYANTHROPIC/auv3-shared-noizy-consent",
+          "name" : "NOIZYConsent"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Users/m2ultra/NOIZYANTHROPIC/auv3-shared-noizy-consent"
+        },
+        "subpath" : "auv3-shared-noizy-consent"
+      }
+    ],
+    "prebuilts" : [
+
+    ]
+  },
+  "version" : 7
+}
