@@ -26,6 +26,20 @@
           "note": "sibling import verification"
         },
         "ts": "2026-04-09T13:37:29"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-09T14:01:21"
+      },
+      {
+        "a": "backend_test",
+        "s": "smoke",
+        "ctx": {},
+        "ts": "2026-04-09T14:01:22"
       }
     ],
     "patterns": [],

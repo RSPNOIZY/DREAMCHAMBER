@@ -8,9 +8,14 @@
 echo "🩺 MONITORING SYSTEM VITALS..."
 "$HOME/NOIZYANTHROPIC/NOIZYLAB/scripts/turbo/turbo_vitals.py"
 
-# 1. Run Global Optimizer
-echo "🚀 INITIATING SYSTEM OPTIMIZATION..."
-"$HOME/NOIZYANTHROPIC/NOIZYLAB/scripts/maintenance/FORCE_PERFECTION.sh"
+# 1. Run Global Optimizer (optional — skip cleanly if missing)
+FORCE_PERFECTION="$HOME/NOIZYANTHROPIC/NOIZYLAB/scripts/maintenance/FORCE_PERFECTION.sh"
+if [ -x "$FORCE_PERFECTION" ]; then
+    echo "🚀 INITIATING SYSTEM OPTIMIZATION..."
+    "$FORCE_PERFECTION"
+else
+    echo "ℹ️  FORCE_PERFECTION.sh not present — skipping optimizer step."
+fi
 
 # 2. Flush DNS Cache
 echo "🌊 FLUSHING DNS..."

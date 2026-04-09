@@ -2,11 +2,18 @@
 # turbo_mount_omen.sh
 # Connects the M2Ultra to the HP-OMEN (Gabriel's Body) via SMB.
 
-MOUNT_POINT="/Volumes/HP-OMEN"
-# DEFAULT SETTINGS - CHANGE THESE IF NEEDED OR PASS AS ARGS
-OMEN_USER="gabriel"
-OMEN_IP="192.168.1.100" # REPLACE WITH REAL IP
-SHARE_NAME="GABRIEL"
+MOUNT_POINT="${OMEN_MOUNT_POINT:-/Volumes/HP-OMEN}"
+# Override via env vars: OMEN_USER, OMEN_IP, OMEN_SHARE
+OMEN_USER="${OMEN_USER:-gabriel}"
+OMEN_IP="${OMEN_IP:-}"
+SHARE_NAME="${OMEN_SHARE:-GABRIEL}"
+
+if [ -z "$OMEN_IP" ]; then
+    echo "⚠️  OMEN_IP not set. Export it first:"
+    echo "    export OMEN_IP=10.0.0.xxx"
+    echo "    $0"
+    exit 1
+fi
 
 echo "🔗 INITIATING NEURAL LINK TO HP-OMEN..."
 
