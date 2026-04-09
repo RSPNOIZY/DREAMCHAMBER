@@ -1,7 +1,7 @@
-# ═══════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════
 # CODEMASTER .gitignore
 # RSP_001 | NOIZY Empire | 2026
-# ═══════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════
 
 # WireGuard keys — NEVER commit
 privatekey
@@ -11,7 +11,7 @@ publickey
 logs/
 news/
 
-# n8n persistent data (credentials, executions)
+# n8n persistent data
 governance/n8n/
 
 # Turbo pipeline artifacts
@@ -20,7 +20,15 @@ reports/
 
 # macOS
 .DS_Store
-._*
+**/.DS_Store
+
+# Environment
+.env
+.env.local
+config/.env
+
+# Node
+node_modules/
 
 # Python
 __pycache__/
@@ -28,13 +36,5 @@ __pycache__/
 .venv/
 venv/
 
-# Node
-node_modules/
-
-# State files
+# State files (created by monitors)
 logs/.anthropic_last_state
-
-# Editor
-*.swp
-*.swo
-*~
