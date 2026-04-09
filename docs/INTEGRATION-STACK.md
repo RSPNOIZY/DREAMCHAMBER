@@ -1,50 +1,74 @@
-# NOIZY Empire — Integration Stack
+# NOIZY Empire — Integration Stack v2
 
-> Docker + n8n + PostgreSQL + Linear + Notion + Zapier
+> Docker + n8n (Queue Mode) + PostgreSQL + Redis + Caddy + CF Workers
+> Linear + Notion + Zapier + GitHub Actions + Lucy + GABRIEL
 > Everything wired. Everything governed. Everything yours.
 
 ---
 
-## Architecture
+## Architecture v2
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    EXTERNAL SERVICES                             │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐       │
-│  │  Linear   │  │  Notion  │  │  Zapier  │  │  GitHub  │       │
-│  └─────┬────┘  └─────┬────┘  └─────┬────┘  └─────┬────┘       │
-│        │             │             │             │               │
-│        └─────────────┴──────┬──────┴─────────────┘               │
-│                             │                                    │
-│                    Webhooks / API Calls                           │
-│                             │                                    │
-│                    ┌────────▼────────┐                           │
-│                    │  Tunnel/Proxy   │  (cloudflared / ngrok)    │
-│                    └────────┬────────┘                           │
-└─────────────────────────────┼───────────────────────────────────┘
-                              │
-┌─────────────────────────────┼───────────────────────────────────┐
-│                     LOCAL DOCKER STACK                            │
-│                              │                                   │
-│  ┌───────────────────────────▼───────────────────────────────┐  │
-│  │                    n8n  (port 5678)                        │  │
-│  │  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────────────┐│  │
-│  │  │ ZAP 1-8 │ │ ZAP 9   │ │ ZAP 10  │ │ ZAP 11          ││  │
-│  │  │ Core    │ │ Linear  │ │ Zapier  │ │ Notion Dashboard ││  │
-│  │  │ Flows   │ │ ↔ Sync  │ │ Bridge  │ │ ↔ Linear+Deploy ││  │
-│  │  └─────────┘ └─────────┘ └─────────┘ └─────────────────┘│  │
-│  └──────┬────────────┬────────────┬──────────────────────────┘  │
-│         │            │            │                              │
-│  ┌──────▼──────┐ ┌───▼───┐ ┌─────▼─────┐ ┌────────────────┐   │
-│  │ PostgreSQL  │ │ Redis │ │  Heaven17  │ │ STT (Whisper)  │   │
-│  │ (persistent)│ │(cache)│ │  (GABRIEL) │ │ (port 8000)    │   │
-│  └─────────────┘ └───────┘ └───────────┘ └────────────────┘   │
-│                                                                  │
-│  ┌───────────────────────────────────────────────────────────┐  │
-│  │                    Lucy (n8n-bridge.ts)                     │  │
-│  │  Nightly reports → n8n action queue → workflow triggers    │  │
-│  └───────────────────────────────────────────────────────────┘  │
-└──────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────┐
+│                         EXTERNAL SERVICES                                │
+│  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐    │
+│  │ Linear │ │ Notion │ │ Zapier │ │ GitHub │ │ Stripe │ │ Voice  │    │
+│  └───┬────┘ └───┬────┘ └───┬────┘ └───┬────┘ └───┬────┘ └───┬────┘    │
+│      └──────────┴──────┬───┴──────────┴──────────┴──────────┘          │
+│                        │                                                │
+│              ┌─────────▼──────────┐    ┌────────────────────────┐       │
+│              │  Webhook Proxy     │    │  GitHub Actions        │       │
+│              │  (CF Worker Edge)  │    │  n8n-notify.yml        │       │
+│              │  HMAC verification │    │  Push/PR/Deploy/Issue  │       │
+│              │  KV queue + drain  │    └──────────┬─────────────┘       │
+│              └─────────┬──────────┘               │                     │
+│                        │  3-min drain loop        │                     │
+└────────────────────────┼──────────────────────────┼─────────────────────┘
+                         │                          │
+┌────────────────────────┼──────────────────────────┼─────────────────────┐
+│                  LOCAL DOCKER STACK (Queue Mode)   │                     │
+│                        │                          │                     │
+│  ┌─────────────────────▼──────────────────────────▼──────────────────┐  │
+│  │                    Caddy Reverse Proxy  (8080/8443)               │  │
+│  │              Security headers · Rate limiting · TLS               │  │
+│  └──────────────────────────────┬────────────────────────────────────┘  │
+│                                 │                                       │
+│  ┌──────────────────────────────▼────────────────────────────────────┐  │
+│  │                    n8n Main  (port 5678)                          │  │
+│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────────────┐│  │
+│  │  │ ZAP 1-8  │ │ ZAP 9    │ │ ZAP 10   │ │ ZAP 11              ││  │
+│  │  │ Core     │ │ Linear   │ │ Zapier   │ │ Notion Dashboard    ││  │
+│  │  │ Flows    │ │ ↔ Sync   │ │ Bridge   │ │ ↔ Linear+Deploy    ││  │
+│  │  └──────────┘ └──────────┘ └──────────┘ └──────────────────────┘│  │
+│  │  ┌──────────────────────────┐ ┌────────────────────────────────┐│  │
+│  │  │ ZAP 12 — Master Orch v2 │ │ ZAP 13 — Health Dashboard v2  ││  │
+│  │  │ Universal ingest router  │ │ 15-service health matrix      ││  │
+│  │  │ Proxy drain → normalize  │ │ Notion + GABRIEL alerts       ││  │
+│  │  └──────────────────────────┘ └────────────────────────────────┘│  │
+│  └──┬────────┬────────────┬───────────────────────────────────────┘  │
+│     │        │            │                                           │
+│  ┌──▼────┐ ┌─▼─────┐ ┌───▼────────┐ ┌────────────┐ ┌──────────┐   │
+│  │Postgre│ │ Redis │ │ n8n Worker │ │ pg-backup  │ │   STT    │   │
+│  │  SQL  │ │ (AOF) │ │ (queue)    │ │ daily/wk/  │ │(Whisper) │   │
+│  │       │ │       │ │ execution  │ │ monthly    │ │          │   │
+│  └───────┘ └───────┘ └────────────┘ └────────────┘ └──────────┘   │
+│                                                                      │
+│  ┌───────────────────────────────────────────────────────────────┐   │
+│  │                    Lucy Engine                                 │   │
+│  │  nightly-analysis.ts → n8n-bridge.ts (HTTP) → n8n webhooks   │   │
+│  │  Auto-creates Linear issues · Logs to Notion · Alerts GABRIEL │   │
+│  └───────────────────────────────────────────────────────────────┘   │
+│                                                                      │
+│  ┌────────────────────────────────┐  ┌─────────────────────────────┐│
+│  │ CF Workers (Edge)              │  │ Also Running                ││
+│  │  • Heaven17 (noizy.ai)        │  │  • Open WebUI (:3080)       ││
+│  │  • Consent Gateway             │  │  • RabbitMQ (:5672/15672)   ││
+│  │  • Webhook Proxy               │  │  • Qdrant (:6333/6334)     ││
+│  └────────────────────────────────┘  │  • Grafana (:3000)         ││
+│                                      │  • Neo4j (:7474/7687)      ││
+│                                      │  • Kind K8s (:6443)        ││
+│                                      └─────────────────────────────┘│
+└──────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -283,37 +307,127 @@ Your existing workflows, credentials, and execution history are preserved.
 
 ## File Structure
 
-```
+```text
 NOIZYANTHROPIC/
 ├── ops/
-│   ├── docker-compose.yml              ← Original (SQLite) stack
-│   ├── docker-compose.integration.yml  ← ★ New full integration stack
-│   ├── .env.integrations               ← ★ All API keys go here
-│   └── backups/                        ← SQLite backups (auto-created)
+│   ├── docker-compose.yml                ← Original (SQLite) stack
+│   ├── docker-compose.integration.yml    ← ★ v2: queue mode, Caddy, pg-backup
+│   ├── Caddyfile                         ← ★ Reverse proxy config
+│   ├── .env.integrations                 ← ★ All API keys (gitignored)
+│   ├── .secrets-audit.log                ← Generated by harden-secrets.sh
+│   └── backups/                          ← SQLite + PostgreSQL backups
 ├── tools/n8n_workflows/
-│   ├── 01_github_to_gabriel.json       ← ZAP 1
-│   ├── 02_stripe_to_ledger.json        ← ZAP 2
-│   ├── 03_voice_to_dreamchamber.json   ← ZAP 3
-│   ├── 04_health_monitor_alerts.json   ← ZAP 4
-│   ├── 05_notion_sync.json             ← ZAP 5
+│   ├── 01_github_to_gabriel.json         ← ZAP 1
+│   ├── 02_stripe_to_ledger.json          ← ZAP 2
+│   ├── 03_voice_to_dreamchamber.json     ← ZAP 3
+│   ├── 04_health_monitor_alerts.json     ← ZAP 4
+│   ├── 05_notion_sync.json              ← ZAP 5
 │   ├── 06_consent_revoke_killswitch.json ← ZAP 6
-│   ├── 07_notion_to_github_deploy.json ← ZAP 7
-│   ├── 08_ai_commit_validation.json    ← ZAP 8
-│   ├── 09_linear_sync.json             ← ★ ZAP 9 (NEW)
-│   ├── 10_zapier_bridge.json           ← ★ ZAP 10 (NEW)
-│   ├── 11_notion_project_dashboard.json ← ★ ZAP 11 (NEW)
+│   ├── 07_notion_to_github_deploy.json   ← ZAP 7
+│   ├── 08_ai_commit_validation.json      ← ZAP 8
+│   ├── 09_linear_sync.json              ← ★ ZAP 9
+│   ├── 10_zapier_bridge.json            ← ★ ZAP 10
+│   ├── 11_notion_project_dashboard.json  ← ★ ZAP 11
+│   ├── 12_master_orchestrator_v2.json    ← ★ ZAP 12 — Universal router
+│   ├── 13_health_dashboard_v2.json       ← ★ ZAP 13 — Full health matrix
 │   ├── dreamchamber_automation.json
 │   ├── github_deploy_pipeline.json
 │   ├── heaven_webhook.json
 │   ├── noizy_complete_webhook_orchestrator.json
 │   └── notion_sync_watcher.json
+├── workers/
+│   ├── heaven17/                         ← CF Worker: noizy.ai/*
+│   ├── consent-gateway/                  ← CF Worker: consent.noizy.ai/*
+│   └── webhook-proxy/                    ← ★ CF Worker: edge webhook queue
+│       ├── src/index.ts                  ← HMAC verify → KV queue → drain
+│       ├── wrangler.toml
+│       └── package.json
 ├── lucy/src/engine/
-│   └── n8n-bridge.ts                   ← Lucy → n8n action feed bridge
-└── scripts/
-    ├── setup-integrations.sh           ← ★ One-command setup
-    └── fix-noizylab-mx.sh              ← MX record fix (pending)
+│   ├── nightly-analysis.ts              ← Pattern recognition
+│   ├── n8n-bridge.ts                     ← ★ v2: HTTP delivery + Linear + Notion
+│   ├── run-nightly.ts                    ← Pipeline runner
+│   └── schemas/lucy-core.ts             ← Zod schemas
+├── .github/workflows/
+│   ├── deploy.yml                        ← Main deploy
+│   ├── heaven-deploy.yml                 ← Heaven17 deploy
+│   ├── consent-gateway-deploy.yml        ← Consent Gateway deploy
+│   ├── n8n-notify.yml                    ← ★ GitHub → n8n webhooks
+│   ├── ethics-gate.yml                   ← RSP governance check
+│   └── ... (12 total)
+├── scripts/
+│   ├── setup-integrations.sh             ← ★ One-command setup
+│   ├── bootstrap-n8n.sh                  ← ★ Import all workflows + creds
+│   ├── harden-secrets.sh                 ← ★ Generate & audit secrets
+│   ├── test-integrations.sh              ← ★ Smoke tests for all endpoints
+│   └── fix-noizylab-mx.sh               ← MX record fix (pending token)
+└── docs/
+    └── INTEGRATION-STACK.md              ← This file
 ```
 
 ---
 
-*RSP_001 | NOIZY Empire | Built with governance, wired with purpose.*
+## Operations Runbook
+
+### First-Time Setup
+
+```bash
+# 1. Generate all secrets
+./scripts/harden-secrets.sh
+
+# 2. Copy generated secrets into env file
+cp ops/.env.integrations ops/.env.integrations.bak
+nano ops/.env.integrations    # paste secrets from step 1
+
+# 3. Start the full stack
+./scripts/setup-integrations.sh
+
+# 4. Import all workflows + credentials
+./scripts/bootstrap-n8n.sh
+
+# 5. Run smoke tests
+./scripts/test-integrations.sh
+```
+
+### Daily Operations
+
+```bash
+# Check empire health
+curl -s localhost:5678/webhook/health-check | python3 -m json.tool
+
+# View n8n logs
+docker compose -f ops/docker-compose.integration.yml logs -f n8n
+
+# View execution queue
+docker compose -f ops/docker-compose.integration.yml logs -f n8n-worker
+
+# Check webhook proxy stats
+curl -s https://webhook-proxy.noizylab.workers.dev/stats
+
+# Run Lucy nightly manually
+cd lucy && npx ts-node src/engine/run-nightly.ts
+```
+
+### Troubleshooting
+
+```bash
+# Restart n8n only
+docker compose -f ops/docker-compose.integration.yml restart n8n n8n-worker
+
+# Check PostgreSQL
+docker exec -it noizy-postgres psql -U noizy -d n8n -c "SELECT count(*) FROM workflow_entity;"
+
+# Check Redis queue
+docker exec noizy-redis redis-cli INFO keyspace
+
+# Force drain webhook proxy
+curl -X POST https://webhook-proxy.noizylab.workers.dev/api/drain \
+  -H "X-Noizy-Key: $NOIZY_API_KEY"
+
+# Re-import a single workflow
+docker cp tools/n8n_workflows/12_master_orchestrator_v2.json noizy-n8n:/tmp/
+docker exec noizy-n8n n8n import:workflow --input=/tmp/12_master_orchestrator_v2.json
+```
+
+---
+
+*RSP_001 | NOIZY Empire Integration Stack v2 | Built with governance, wired with purpose.*

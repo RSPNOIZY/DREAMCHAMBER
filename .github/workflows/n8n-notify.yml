@@ -1,0 +1,132 @@
+name: n8n Webhook Notify
+
+# Fire webhooks to n8n on every significant event
+on:
+  push:
+    branches: [main, staging]
+  pull_request:
+    types: [opened, closed, synchronize, review_requested]
+  deployment_status:
+  workflow_run:
+    workflows: ["NOIZY Empire - Build · Test · Deploy", "heaven-deploy"]
+    types: [completed]
+  release:
+    types: [published]
+  issues:
+    types: [opened, closed, labeled]
+
+env:
+  # When running locally, n8n is behind a tunnel
+  # Set N8N_WEBHOOK_URL as a repository secret pointing to your tunnel/proxy URL
+  WEBHOOK_BASE: ${{ secrets.N8N_WEBHOOK_URL || 'https://webhook-proxy.noizylab.workers.dev' }}
+
+jobs:
+  notify-n8n:
+    name: Notify n8n
+    runs-on: ubuntu-latest
+    # Don't fail the overall CI if webhook delivery fails
+    continue-on-error: true
+    timeout-minutes: 2
+
+    steps:
+      - name: Build event payload
+        id: payload
+        run: |
+          EVENT_NAME="${{ github.event_name }}"
+          EVENT_ACTION="${{ github.event.action || 'push' }}"
+          
+          # Build a normalized event payload
+          cat > /tmp/payload.json <<PAYLOAD
+          {
+            "source": "github-actions",
+            "event": "${EVENT_NAME}",
+            "action": "${EVENT_ACTION}",
+            "repository": "${{ github.repository }}",
+            "ref": "${{ github.ref }}",
+            "sha": "${{ github.sha }}",
+            "actor": "${{ github.actor }}",
+            "workflow": "${{ github.workflow }}",
+            "run_id": ${{ github.run_id }},
+            "run_number": ${{ github.run_number }},
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "governance": {
+              "constitutional_check": true,
+              "source": "github-actions",
+              "pipeline": "noizy-empire"
+            }
+          }
+          PAYLOAD
+          
+          # Determine n8n webhook path based on event type
+          case "${EVENT_NAME}" in
+            push)
+              echo "webhook_path=github-push" >> $GITHUB_OUTPUT
+              ;;
+            pull_request)
+              echo "webhook_path=github-pr" >> $GITHUB_OUTPUT
+              ;;
+            deployment_status)
+              echo "webhook_path=github-deploy-status" >> $GITHUB_OUTPUT
+              ;;
+            workflow_run)
+              echo "webhook_path=github-ci-result" >> $GITHUB_OUTPUT
+              ;;
+            release)
+              echo "webhook_path=github-release" >> $GITHUB_OUTPUT
+              ;;
+            issues)
+              echo "webhook_path=github-issue" >> $GITHUB_OUTPUT
+              ;;
+            *)
+              echo "webhook_path=github-push" >> $GITHUB_OUTPUT
+              ;;
+          esac
+
+      - name: Send to n8n webhook proxy
+        run: |
+          WEBHOOK_URL="${{ env.WEBHOOK_BASE }}/webhook/${{ steps.payload.outputs.webhook_path }}"
+          
+          echo "📡 Sending ${{ github.event_name }} event to: ${WEBHOOK_URL}"
+          
+          HTTP_CODE=$(curl -s -o /tmp/response.txt -w "%{http_code}" \
+            -X POST \
+            -H "Content-Type: application/json" \
+            -H "X-GitHub-Event: ${{ github.event_name }}" \
+            -H "X-GitHub-Delivery: ${{ github.run_id }}" \
+            -H "X-Noizy-Pipeline: github-actions" \
+            -d @/tmp/payload.json \
+            --max-time 10 \
+            "${WEBHOOK_URL}" 2>/dev/null) || HTTP_CODE="000"
+          
+          echo "Response: HTTP ${HTTP_CODE}"
+          cat /tmp/response.txt 2>/dev/null || true
+          
+          if [ "${HTTP_CODE}" = "200" ] || [ "${HTTP_CODE}" = "201" ]; then
+            echo "✅ n8n webhook delivered successfully"
+          else
+            echo "⚠️ Webhook delivery returned HTTP ${HTTP_CODE} (non-blocking)"
+          fi
+
+      # Also notify Heaven17 directly for critical events
+      - name: Notify Heaven17 (deploys + releases only)
+        if: github.event_name == 'deployment_status' || github.event_name == 'release' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+        run: |
+          HEAVEN_URL="${{ secrets.HEAVEN17_URL || 'https://heaven17.noizylab.workers.dev' }}"
+          
+          curl -s -X POST \
+            -H "Content-Type: application/json" \
+            -H "X-Noizy-Key: ${{ secrets.NOIZY_API_KEY }}" \
+            -d '{
+              "event_type": "github_${{ github.event_name }}",
+              "actor_id": "GITHUB_CI",
+              "payload": {
+                "event": "${{ github.event_name }}",
+                "repo": "${{ github.repository }}",
+                "ref": "${{ github.ref }}",
+                "sha": "${{ github.sha }}",
+                "actor": "${{ github.actor }}",
+                "result": "${{ github.event.workflow_run.conclusion || 'completed' }}"
+              }
+            }' \
+            --max-time 10 \
+            "${HEAVEN_URL}/api/events" 2>/dev/null || echo "Heaven17 notification skipped"

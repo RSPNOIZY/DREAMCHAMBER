@@ -119,3 +119,6 @@ gabriel.db
 
 # Compressed files (from Go module cache)
 *.gz
+ops/.env.integrations
+.secrets-audit.log
+*.p12
