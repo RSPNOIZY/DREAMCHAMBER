@@ -10,11 +10,27 @@ account_id = "5f36aa9795348ea681d0b21910dfc82a"
 # Custom domain: Add noizy.ai zone to this account in CF dashboard
 # ═══════════════════════════════════════════════════════════════════════════
 
+# ── Workers AI (Edge Inference) ────────────────────────────────────────────
+# Models: @cf/meta/llama-3.1-8b-instruct, @cf/openai/whisper, 
+#          @cf/stabilityai/stable-diffusion-xl-base-1.0
+# Spectral analysis, voice fingerprinting, consent validation at the edge
+[ai]
+binding = "AI"
+
 # ── D1 Database ────────────────────────────────────────────────────────────
 [[d1_databases]]
 binding = "GABRIEL_DB"
 database_name = "gabriel_db"
 database_id = "a31d68e2-f2d4-4203-a803-8039fdff31cb"
+
+# ── R2 Object Storage (Voice Vault) ───────────────────────────────────────
+# SETUP: Enable R2 in CF Dashboard → create bucket → update bucket_name
+# Zero egress fees — critical for serving audio at scale
+# Contains: voice prints, spectral data, synthesis outputs, C2PA manifests
+[[r2_buckets]]
+binding = "VOICE_VAULT"
+bucket_name = "noizy-voice-vault"
+# preview_bucket_name = "noizy-voice-vault-preview"  # Uncomment after creation
 
 # ── KV Namespaces ──────────────────────────────────────────────────────────
 [[kv_namespaces]]
@@ -26,43 +42,44 @@ binding = "GABRIEL_VOICE"
 id = "16532a32b2e8455486cc966403f3442e"
 
 # ── Feature Flags KV (Edge Runtime Control) ──────────────────────────────
-# To create: wrangler login && npx wrangler kv namespace create "FEATURE_FLAGS"
-# Then replace the id below with the returned namespace ID
-# Feature flags enable <1ms runtime behavior changes without deploys
+# <1ms runtime behavior changes without deploys
+# IMPORTANT: Create on rsp@noizy.ai account after `wrangler login`:
+#   npx wrangler kv namespace create "FEATURE_FLAGS"
+# Then update the ID below
 [[kv_namespaces]]
 binding = "FEATURE_FLAGS"
-id = "FEATURE_FLAGS_PLACEHOLDER"  # SETUP: Create namespace, update this ID
+id = "FEATURE_FLAGS_PLACEHOLDER"  # SETUP: wrangler login → create → update ID
 
 # ── Gap Solver KV (GORUNFREE Absence Intelligence) ────────────────────────
-# To create: npx wrangler kv namespace create "GAP_SOLVER"
 # KV = fast hypothesis layer. D1 = durable truth. KV writes free, D1 writes earn.
+# IMPORTANT: Create on rsp@noizy.ai account after `wrangler login`:
+#   npx wrangler kv namespace create "GAP_SOLVER"
+# Then update the ID below
 [[kv_namespaces]]
 binding = "GAP_SOLVER"
-id = "GAP_SOLVER_PLACEHOLDER"  # SETUP: Create namespace, update this ID
+id = "GAP_SOLVER_PLACEHOLDER"  # SETUP: wrangler login → create → update ID
 
 # ── Environment Variables ──────────────────────────────────────────────────
 [vars]
 NOIZY_ENV = "production"
-NOIZY_VERSION = "17.9.0"
+NOIZY_VERSION = "18.0.0"
 FOUNDING_ACTOR_FLOOR = "85"
 STANDARD_ACTOR_FLOOR = "75"
+VOICE_VAULT_BUCKET = "noizy-voice-vault"
 
 # ── Observability ──────────────────────────────────────────────────────────
 [observability]
 enabled = true
 
 # ── Environments ───────────────────────────────────────────────────────────
-# Preview environment (for PRs and testing)
 [env.preview]
 name = "heaven-preview"
-vars = { NOIZY_ENV = "preview" }
+vars = { NOIZY_ENV = "preview", NOIZY_VERSION = "18.0.0" }
 
-# Canary environment (1-10% traffic)
 [env.canary]
 name = "heaven-canary"
-vars = { NOIZY_ENV = "canary" }
+vars = { NOIZY_ENV = "canary", NOIZY_VERSION = "18.0.0" }
 
-# Production environment (full traffic)
 [env.production]
 name = "heaven"
-vars = { NOIZY_ENV = "production" }
+vars = { NOIZY_ENV = "production", NOIZY_VERSION = "18.0.0" }

@@ -1,6 +1,6 @@
 {
   "name": "noizylab",
-  "version": "17.9.0",
+  "version": "18.0.0",
   "description": "NOIZY Empire — HEAVEN Consent Kernel + DreamChamber AI Platform",
   "private": true,
   "scripts": {
@@ -15,8 +15,8 @@
     "rollback": "./scripts/rollback.sh",
     "audit": "./scripts/export-audit-log.sh",
     "tail": "wrangler tail heaven",
-    "seed": "wrangler d1 execute gabriel_db --remote --file=seed.sql",
-    "schema": "wrangler d1 execute gabriel_db --remote --file=schema.sql",
+    "seed": "wrangler d1 execute gabriel_db --remote --file=sql/seed.sql",
+    "schema": "wrangler d1 execute gabriel_db --remote --file=sql/schema.sql",
     "health": "curl -s https://heaven.rsp-5f3.workers.dev/health | jq",
     "status": "./scripts/full-status.sh",
     "readiness": "bash scripts/deploy-readiness.sh",
@@ -39,7 +39,12 @@
     "multi-region": "./scripts/multi-region-health.sh",
     "change-freeze": "./scripts/change-freeze.sh",
     "promote": "./scripts/promote-variant.sh",
-    "postmortem": "./scripts/capture-postmortem.sh"
+    "postmortem": "./scripts/capture-postmortem.sh",
+    "r2:create": "wrangler r2 bucket create noizy-voice-vault",
+    "r2:list": "wrangler r2 bucket list",
+    "kv:create:flags": "wrangler kv namespace create FEATURE_FLAGS",
+    "kv:create:gap": "wrangler kv namespace create GAP_SOLVER",
+    "upgrade:wrangler": "npm install -g wrangler@latest"
   },
   "dependencies": {
     "docx": "^9.6.1",
