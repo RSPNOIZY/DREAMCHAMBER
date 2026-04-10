@@ -157,7 +157,7 @@
       "timestamp": "2026-03-27T17:47:07.188Z",
       "category": "critical-path",
       "source": "UPGRADE_LOG_MAR27",
-      "observation": "CF account email MUST change to rsplowman@icloud.com BEFORE touching GoDaddy — ever. This is PRIORITY 1. Go to dash.cloudflare.com → Profile → Email."
+      "observation": "CF account email MUST change to rsp@noizy.ai BEFORE touching GoDaddy — ever. This is PRIORITY 1. Go to dash.cloudflare.com → Profile → Email."
     },
     {
       "id": "L1774633626684",
@@ -360,7 +360,7 @@
       "timestamp": "2026-03-25T20:56:17.193Z",
       "category": "technical",
       "source": "seed",
-      "observation": "Cloudflare account login MUST be rsplowman@icloud.com (backend). It is currently rsp@noizyfish.com — this is a BLOCKING issue for GoDaddy migration."
+      "observation": "Cloudflare account login MUST be rsp@noizy.ai. It is currently rsp@noizyfish.com — this is a BLOCKING issue for GoDaddy migration."
     },
     {
       "id": "L_SEED_010",

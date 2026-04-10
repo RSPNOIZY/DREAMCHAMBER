@@ -239,7 +239,7 @@ console.log(`${G}  Turbo Pro:     config live in NOIZYLAB + MC96${R}`);
 console.log(`${B}${G}${'═'.repeat(60)}${R}\n`);
 
 console.log(`${B}⚡ ROB'S 4 ACTIONS REMAINING:${R}`);
-console.log(`${Y}  1.${R} CF email → rsplowman@icloud.com (browser)`);
+console.log(`${Y}  1.${R} CF email → rsp@noizy.ai (browser)`);
 console.log(`${Y}  2.${R} bash ~/Desktop/HEAVEN/DEPLOY_HEAVEN.sh (terminal)`);
 console.log(`${Y}  3.${R} GitHub + CF 2FA (browser)`);
 console.log(`${Y}  4.${R} ANTHROPIC_API_KEY → echo "sk-ant-..." >> ~/NOIZYLAB/.env\n`);

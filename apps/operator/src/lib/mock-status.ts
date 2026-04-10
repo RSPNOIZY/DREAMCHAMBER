@@ -63,8 +63,8 @@ export const systemStatus: SystemStatusItem[] = [
   {
     name: "noizy.ai domain",
     status: "BLOCKED",
-    blocker: "CF email must change to rsplowman@icloud.com before GoDaddy exit",
-    nextAction: "dash.cloudflare.com → Profile → Email → rsplowman@icloud.com",
+    blocker: "CF email must change to rsp@noizy.ai before GoDaddy exit",
+    nextAction: "dash.cloudflare.com → Profile → Email → rsp@noizy.ai",
     owner: "RSP_001",
     lastVerified: "2026-03-27T14:12:00Z",
   },
@@ -105,7 +105,7 @@ export const projectStatus: ProjectStatusItem[] = [
 ];
 
 export const alerts: AlertItem[] = [
-  { id: "alert-001", level: "critical", message: "CF email change required BEFORE any domain ops. dash.cloudflare.com → Profile → Email → rsplowman@icloud.com" },
+  { id: "alert-001", level: "critical", message: "CF email change required BEFORE any domain ops. dash.cloudflare.com → Profile → Email → rsp@noizy.ai" },
   { id: "alert-002", level: "critical", message: "ANTHROPIC_API_KEY missing from ~/NOIZYLAB/.env — Voice Bridge + GABRIEL speak() both blocked" },
   { id: "alert-003", level: "critical", message: "GitHub 2FA not enabled — account security risk" },
   { id: "alert-004", level: "warning",  message: "10 KV dead candidates flagged in KV_AUDIT_MAR27 — review before cleanup" },

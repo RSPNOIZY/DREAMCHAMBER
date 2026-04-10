@@ -129,7 +129,7 @@ npx wrangler tail noizy-consent-gateway --format=pretty
 | Blocker | Status | Manual Action Required |
 |---|---|---|
 | Wrangler OAuth expired | 🔴 BLOCKED | `npx wrangler login` — browser required |
-| CF email change | 🔴 BLOCKED | dash.cloudflare.com → Profile → Email → rsplowman@icloud.com |
+| CF email change | 🔴 BLOCKED | dash.cloudflare.com → Profile → Email → rsp@noizy.ai |
 | consent.noizy.ai route commented out | 🟡 PENDING | Uncomment in wrangler.jsonc after CF email change |
 | GitHub Actions secrets | 🟡 UNKNOWN | Add CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID to repo secrets |
 | Workers Vitest runtime upgrade | 🟡 IN PROGRESS | @cloudflare/vitest-pool-workers install |

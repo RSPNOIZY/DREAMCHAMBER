@@ -333,7 +333,7 @@ router.get('/queue', (req, res) => {
   const queueLearning = learnings.find(l => l.observation?.includes('URGENT_QUEUE'));
 
   const hardCodedQueue = [
-    { priority: 1, action: 'CF email → rsplowman@icloud.com', type: 'BROWSER', est: '5 min', blocker: true },
+    { priority: 1, action: 'CF email → rsp@noizy.ai', type: 'BROWSER', est: '5 min', blocker: true },
     { priority: 2, action: 'npx wrangler deploy (from ~/Desktop/HEAVEN/)', type: 'TERMINAL', est: '2 min', blocker: true },
     { priority: 3, action: 'GitHub + CF 2FA enable', type: 'BROWSER', est: '10 min', blocker: false },
     { priority: 4, action: "grep -r 'f75939d5' ~/repos/ → fix to 7b813205", type: 'TERMINAL', est: '5 min', blocker: false },

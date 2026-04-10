@@ -282,7 +282,7 @@ class GabrielProfile {
           timestamp: new Date().toISOString(),
           category: "technical",
           source: "seed",
-          observation: "Cloudflare account login MUST be rsplowman@icloud.com (backend). It is currently rsp@noizyfish.com — this is a BLOCKING issue for GoDaddy migration.",
+          observation: "Cloudflare account login MUST be rsp@noizy.ai. It is currently rsp@noizyfish.com — this is a BLOCKING issue for GoDaddy migration.",
         },
         {
           id: "L_SEED_010",
