@@ -2,8 +2,8 @@
   "_meta": {
     "observer": "NOIZY Full Observer v1.0",
     "machine": "GOD (M2 Ultra)",
-    "timestamp": "2026-04-11T00:10:32.139Z",
-    "epochMs": 1775866232139
+    "timestamp": "2026-04-11T04:10:38.388Z",
+    "epochMs": 1775880638388
   },
   "services": {
     "voice-bridge": {
@@ -29,7 +29,7 @@
     "audio-hijack": {
       "status": "RUNNING",
       "pid": "85635",
-      "cpu": "14.9%",
+      "cpu": "24.6%",
       "mem": "1.8%",
       "started": "6:46PM"
     },
@@ -295,6 +295,6 @@
       "available": "1.2Ti",
       "percentUsed": "1%"
     },
-    "uptime": "20:10  up 1 day,  8:49, 2 users, load averages: 10.47 10.39 11.23"
+    "uptime": "0:10  up 1 day, 12:49, 2 users, load averages: 19.37 18.88 20.55"
   }
 }
