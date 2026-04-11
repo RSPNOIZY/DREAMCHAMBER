@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  heaven:
+    build: .
+    ports:
+      - "8787:8787"
+    environment:
+      - NOIZY_KEY=${NOIZY_KEY:-dev-key-local}
+      - NOIZY_SECRET=${NOIZY_SECRET:-dev-secret-local}
+    volumes:
+      - ./heaven-worker/src:/app/heaven-worker/src
+      - heaven-data:/app/heaven-worker/.wrangler
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8787/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  heaven-data:
