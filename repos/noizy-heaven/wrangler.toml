@@ -72,7 +72,13 @@ id      = "6e888a017ebe4ba78ed7497c4929439b"
 binding = "KV_MEMCELL"
 id      = "9aa2511652ce4a2faeb106858f76df67"
 
+# ── Mesh Gateway ─────────────────────────────────────────────────────────────
+[vars]
+MESH_ORIGIN = "https://mesh.noizy.ai"   # CF Access-protected tunnel to GOD:9696
+
 # ── Secrets (set via: wrangler secret put KEY) ────────────────────────────────
 # ANTHROPIC_API_KEY
 # NOIZY_SECRET
 # NOIZY_KEY
+# CF_ACCESS_CLIENT_ID
+# CF_ACCESS_CLIENT_SECRET

@@ -9,6 +9,10 @@
  * Author: Robert Stephen Plowman / MC96ECO
  */
 
+// ── NOIZYSTREAM v2 Signaling (Durable Object) ────────────────────────────────
+export { SignalingRoom } from './signaling';
+import { handleStreamRoute } from './signaling';
+
 interface Env {
   DB_MEMORY:     D1Database;   // agent-memory — constitutional ledger
   DB_REPAIRS:    D1Database;   // noizylab-repairs
@@ -19,9 +23,13 @@ interface Env {
   KV_SESSIONS:   KVNamespace;
   KV_SUBMISSIONS:KVNamespace;
   KV_MEMCELL:    KVNamespace;
+  SIGNALING_ROOMS: DurableObjectNamespace;  // NOIZYSTREAM v2
   ANTHROPIC_API_KEY: string;
   NOIZY_SECRET:  string;
   NOIZY_KEY:     string;
+  CF_ACCESS_CLIENT_ID:     string;  // Cloudflare Access Service Token
+  CF_ACCESS_CLIENT_SECRET: string;  // Cloudflare Access Service Token
+  MESH_ORIGIN:             string;  // e.g. https://mesh.noizy.ai or http://127.0.0.1:9696
 }
 
 // ── CORS ──────────────────────────────────────────────────────────────────────
@@ -94,6 +102,60 @@ export default {
         hvs:       '75/25 perpetual',
         portals:   ['NOIZYVOX', 'NOIZYFISH', 'NOIZYKIDZ', 'NOIZYLAB', 'WISDOM', 'myFAMILY'],
       });
+    }
+
+    // ── Dispatch — forward to mesh via CF Access Service Token ─────────────
+    if (path === '/api/dispatch' && method === 'POST') {
+      const body = await request.json() as {
+        actor:    string;
+        device?:  string;
+        intent:   string;
+        target:   string;
+        context?: Record<string, unknown>;
+      };
+
+      if (!body.actor || !body.target || !body.intent) {
+        return json({ error: 'actor, target, and intent required' }, 400);
+      }
+
+      const meshOrigin = env.MESH_ORIGIN || 'http://127.0.0.1:9696';
+      const meshHeaders: Record<string, string> = {
+        'Content-Type': 'application/json',
+      };
+
+      // Attach CF Access Service Token headers when routing through Cloudflare Access
+      if (env.CF_ACCESS_CLIENT_ID && env.CF_ACCESS_CLIENT_SECRET) {
+        meshHeaders['CF-Access-Client-Id'] = env.CF_ACCESS_CLIENT_ID;
+        meshHeaders['CF-Access-Client-Secret'] = env.CF_ACCESS_CLIENT_SECRET;
+      }
+
+      try {
+        const meshRes = await fetch(`${meshOrigin}/dispatch`, {
+          method: 'POST',
+          headers: meshHeaders,
+          body: JSON.stringify(body),
+        });
+        const meshData = await meshRes.json();
+
+        await gabriel(env.DB_MEMORY, 'DISPATCH', body.actor, body.target, {
+          intent: body.intent,
+          device: body.device,
+          mesh_status: meshRes.status,
+        });
+
+        return json({
+          ok: meshRes.ok,
+          dispatch: meshData,
+          timestamp: new Date().toISOString(),
+        });
+      } catch (err) {
+        const detail = err instanceof Error ? err.message : 'Mesh unreachable';
+        await gabriel(env.DB_MEMORY, 'DISPATCH_ERROR', body.actor, body.target, {
+          intent: body.intent,
+          error: detail,
+        });
+        return json({ error: 'Mesh unreachable', detail }, 502);
+      }
     }
 
     // Email signup — public, no auth required
@@ -374,6 +436,12 @@ export default {
         });
 
         return json({ ok: true, key });
+      }
+
+      // ── NOIZYSTREAM v2 — /stream/* routes ──────────────────────────────
+      if (path.startsWith('/stream/')) {
+        const streamResponse = await handleStreamRoute(request, env, path);
+        if (streamResponse) return streamResponse;
       }
 
       return json({ error: 'Route not found' }, 404);

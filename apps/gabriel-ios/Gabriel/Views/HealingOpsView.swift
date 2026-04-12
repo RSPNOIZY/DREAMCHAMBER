@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct HealingView: View {
+struct HealingOpsView: View {
     @State private var beneficiaryId = ""
     @State private var selectedProtocol = "396hz_liberation"
     @State private var frequency: Double = 396
@@ -9,14 +9,7 @@ struct HealingView: View {
     @State private var elapsed: TimeInterval = 0
     @State private var timer: Timer?
     @State private var result: String?
-
-    private let protocols = [
-        "396hz_liberation",
-        "comfort_voice",
-        "grief_support",
-        "milestone_celebration",
-        "biometric_response",
-    ]
+    @State private var engine = GabrielEngine.shared
 
     private let frequencyPresets: [(String, Double)] = [
         ("396 Hz — Liberation", 396),
@@ -30,35 +23,13 @@ struct HealingView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 24) {
+                VStack(spacing: 20) {
                     // Frequency Ring
                     frequencyRing
 
-                    // Protocol Selection
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("HEALING PROTOCOL")
-                            .font(.caption)
-                            .foregroundStyle(.gray)
-                            .tracking(2)
-
-                        Picker("Protocol", selection: $selectedProtocol) {
-                            ForEach(protocols, id: \.self) { proto in
-                                Text(proto.replacingOccurrences(of: "_", with: " ").capitalized)
-                                    .tag(proto)
-                            }
-                        }
-                        .pickerStyle(.menu)
-                        .tint(.cyan)
-                    }
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(Color.white.opacity(0.03))
-                    )
-
-                    // Frequency Presets
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("FREQUENCY")
+                    // Frequency Selection
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("SOLFEGGIO FREQUENCIES")
                             .font(.caption)
                             .foregroundStyle(.gray)
                             .tracking(2)
@@ -69,14 +40,14 @@ struct HealingView: View {
                             } label: {
                                 HStack {
                                     Text(preset.0)
-                                        .foregroundStyle(frequency == preset.1 ? .cyan : .gray)
+                                        .foregroundStyle(frequency == preset.1 ? .orange : .gray)
                                     Spacer()
                                     if frequency == preset.1 {
                                         Image(systemName: "checkmark.circle.fill")
-                                            .foregroundStyle(.cyan)
+                                            .foregroundStyle(.orange)
                                     }
                                 }
-                                .padding(.vertical, 6)
+                                .padding(.vertical, 5)
                             }
                         }
                     }
@@ -86,8 +57,13 @@ struct HealingView: View {
                             .fill(Color.white.opacity(0.03))
                     )
 
-                    // Beneficiary & Duration
-                    VStack(alignment: .leading, spacing: 16) {
+                    // Session Config
+                    VStack(alignment: .leading, spacing: 14) {
+                        Text("SESSION")
+                            .font(.caption)
+                            .foregroundStyle(.gray)
+                            .tracking(2)
+
                         TextField("Beneficiary ID", text: $beneficiaryId)
                             .textFieldStyle(.plain)
                             .textInputAutocapitalization(.never)
@@ -102,7 +78,7 @@ struct HealingView: View {
                                 .font(.caption)
                                 .foregroundStyle(.gray)
                             Slider(value: $duration, in: 60...1800, step: 60)
-                                .tint(.cyan)
+                                .tint(.orange)
                         }
                     }
                     .padding()
@@ -111,15 +87,15 @@ struct HealingView: View {
                             .fill(Color.white.opacity(0.03))
                     )
 
-                    // Session Control
+                    // Controls
                     Button(action: toggleSession) {
                         HStack {
                             Image(systemName: isActive ? "stop.fill" : "play.fill")
-                            Text(isActive ? "End Session" : "Begin Session")
+                            Text(isActive ? "End Session" : "Begin Healing")
                         }
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(isActive ? Color.red : .cyan)
+                        .background(isActive ? Color.red : .orange)
                         .foregroundStyle(isActive ? .white : .black)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
@@ -127,7 +103,7 @@ struct HealingView: View {
 
                     if let result {
                         Text(result)
-                            .font(.caption)
+                            .font(.caption.monospaced())
                             .foregroundStyle(.green)
                             .padding()
                     }
@@ -142,20 +118,20 @@ struct HealingView: View {
     private var frequencyRing: some View {
         ZStack {
             Circle()
-                .stroke(Color.cyan.opacity(0.1), lineWidth: 3)
-                .frame(width: 180, height: 180)
+                .stroke(Color.orange.opacity(0.1), lineWidth: 3)
+                .frame(width: 160, height: 160)
 
             Circle()
                 .trim(from: 0, to: isActive ? CGFloat(elapsed / duration) : 0)
-                .stroke(Color.cyan, style: StrokeStyle(lineWidth: 3, lineCap: .round))
-                .frame(width: 180, height: 180)
+                .stroke(Color.orange, style: StrokeStyle(lineWidth: 3, lineCap: .round))
+                .frame(width: 160, height: 160)
                 .rotationEffect(.degrees(-90))
                 .animation(.linear(duration: 1), value: elapsed)
 
             VStack(spacing: 4) {
                 Text("\(Int(frequency))")
-                    .font(.system(size: 36, weight: .ultraLight, design: .monospaced))
-                    .foregroundStyle(.cyan)
+                    .font(.system(size: 32, weight: .ultraLight, design: .monospaced))
+                    .foregroundStyle(.orange)
                 Text("Hz")
                     .font(.caption)
                     .foregroundStyle(.gray)
@@ -163,12 +139,12 @@ struct HealingView: View {
                 if isActive {
                     Text(formatTime(elapsed))
                         .font(.caption.monospaced())
-                        .foregroundStyle(.cyan.opacity(0.6))
-                        .padding(.top, 4)
+                        .foregroundStyle(.orange.opacity(0.6))
+                        .padding(.top, 2)
                 }
             }
         }
-        .padding(.top, 20)
+        .padding(.top, 12)
     }
 
     private func formatTime(_ seconds: TimeInterval) -> String {
@@ -186,19 +162,21 @@ struct HealingView: View {
         } else {
             isActive = true
             elapsed = 0
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                elapsed += 1
-                if elapsed >= duration {
-                    isActive = false
-                    timer?.invalidate()
-                    timer = nil
-                    logSession()
+            engine.log(action: "Healing session started: \(Int(frequency)) Hz")
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
+                self.elapsed += 1
+                if self.elapsed >= self.duration {
+                    self.isActive = false
+                    self.timer?.invalidate()
+                    self.timer = nil
+                    self.logSession()
                 }
             }
         }
     }
 
     private func logSession() {
+        engine.log(action: "Healing session ended: \(Int(elapsed))s at \(Int(frequency)) Hz")
         Task {
             do {
                 let response = try await HeavenAPI.shared.logHealingSession(
@@ -216,6 +194,6 @@ struct HealingView: View {
 }
 
 #Preview {
-    HealingView()
+    HealingOpsView()
         .preferredColorScheme(.dark)
 }

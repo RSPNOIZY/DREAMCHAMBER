@@ -7,89 +7,89 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A10000010000000000000001 /* HeavenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000001; };
-		A10000010000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000002; };
-		A10000010000000000000003 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000003; };
-		A10000010000000000000004 /* FamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000004; };
-		A10000010000000000000005 /* HealingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000005; };
-		A10000010000000000000006 /* VoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000006; };
-		A10000010000000000000007 /* GabrielView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000007; };
-		A10000010000000000000008 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000008; };
-		A10000010000000000000009 /* HeavenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000009; };
-		A10000010000000000000010 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000010; };
-		A10000010000000000000011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000011; };
+		B10000010000000000000001 /* LucyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000001; };
+		B10000010000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000002; };
+		B10000010000000000000003 /* LucyDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000003; };
+		B10000010000000000000004 /* AnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000004; };
+		B10000010000000000000005 /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000005; };
+		B10000010000000000000006 /* DreamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000006; };
+		B10000010000000000000007 /* GabrielView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000007; };
+		B10000010000000000000008 /* LucySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000008; };
+		B10000010000000000000009 /* HeavenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000009; };
+		B10000010000000000000010 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000010; };
+		B10000010000000000000011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000011; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A20000010000000000000001 /* HeavenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavenApp.swift; sourceTree = "<group>"; };
-		A20000010000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		A20000010000000000000003 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		A20000010000000000000004 /* FamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyView.swift; sourceTree = "<group>"; };
-		A20000010000000000000005 /* HealingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealingView.swift; sourceTree = "<group>"; };
-		A20000010000000000000006 /* VoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceView.swift; sourceTree = "<group>"; };
-		A20000010000000000000007 /* GabrielView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GabrielView.swift; sourceTree = "<group>"; };
-		A20000010000000000000008 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		A20000010000000000000009 /* HeavenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavenAPI.swift; sourceTree = "<group>"; };
-		A20000010000000000000010 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		A20000010000000000000011 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A30000010000000000000001 /* Heaven.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heaven.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B20000010000000000000001 /* LucyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LucyApp.swift; sourceTree = "<group>"; };
+		B20000010000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B20000010000000000000003 /* LucyDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LucyDashboardView.swift; sourceTree = "<group>"; };
+		B20000010000000000000004 /* AnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisView.swift; sourceTree = "<group>"; };
+		B20000010000000000000005 /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
+		B20000010000000000000006 /* DreamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamsView.swift; sourceTree = "<group>"; };
+		B20000010000000000000007 /* GabrielView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GabrielView.swift; sourceTree = "<group>"; };
+		B20000010000000000000008 /* LucySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LucySettingsView.swift; sourceTree = "<group>"; };
+		B20000010000000000000009 /* HeavenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavenAPI.swift; sourceTree = "<group>"; };
+		B20000010000000000000010 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		B20000010000000000000011 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B30000010000000000000001 /* Lucy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lucy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		A40000010000000000000001 = {
+		B40000010000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				A40000010000000000000002 /* Heaven */,
-				A40000010000000000000006 /* Products */,
+				B40000010000000000000002 /* Lucy */,
+				B40000010000000000000006 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A40000010000000000000002 /* Heaven */ = {
+		B40000010000000000000002 /* Lucy */ = {
 			isa = PBXGroup;
 			children = (
-				A20000010000000000000001 /* HeavenApp.swift */,
-				A20000010000000000000002 /* ContentView.swift */,
-				A40000010000000000000003 /* Views */,
-				A40000010000000000000004 /* Services */,
-				A40000010000000000000005 /* Models */,
-				A20000010000000000000011 /* Assets.xcassets */,
+				B20000010000000000000001 /* LucyApp.swift */,
+				B20000010000000000000002 /* ContentView.swift */,
+				B40000010000000000000003 /* Views */,
+				B40000010000000000000004 /* Services */,
+				B40000010000000000000005 /* Models */,
+				B20000010000000000000011 /* Assets.xcassets */,
 			);
-			path = Heaven;
+			path = Lucy;
 			sourceTree = "<group>";
 		};
-		A40000010000000000000003 /* Views */ = {
+		B40000010000000000000003 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A20000010000000000000003 /* DashboardView.swift */,
-				A20000010000000000000004 /* FamilyView.swift */,
-				A20000010000000000000005 /* HealingView.swift */,
-				A20000010000000000000006 /* VoiceView.swift */,
-				A20000010000000000000007 /* GabrielView.swift */,
-				A20000010000000000000008 /* SettingsView.swift */,
+				B20000010000000000000003 /* LucyDashboardView.swift */,
+				B20000010000000000000004 /* AnalysisView.swift */,
+				B20000010000000000000005 /* InsightsView.swift */,
+				B20000010000000000000006 /* DreamsView.swift */,
+				B20000010000000000000007 /* GabrielView.swift */,
+				B20000010000000000000008 /* LucySettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		A40000010000000000000004 /* Services */ = {
+		B40000010000000000000004 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A20000010000000000000009 /* HeavenAPI.swift */,
+				B20000010000000000000009 /* HeavenAPI.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		A40000010000000000000005 /* Models */ = {
+		B40000010000000000000005 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A20000010000000000000010 /* Models.swift */,
+				B20000010000000000000010 /* Models.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		A40000010000000000000006 /* Products */ = {
+		B40000010000000000000006 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A30000010000000000000001 /* Heaven.app */,
+				B30000010000000000000001 /* Lucy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,38 +97,38 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A50000010000000000000001 /* Heaven */ = {
+		B50000010000000000000001 /* Lucy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A70000010000000000000003 /* Build configuration list for PBXNativeTarget "Heaven" */;
+			buildConfigurationList = B70000010000000000000003 /* Build configuration list for PBXNativeTarget "Lucy" */;
 			buildPhases = (
-				A60000010000000000000001 /* Sources */,
-				A60000010000000000000002 /* Resources */,
+				B60000010000000000000001 /* Sources */,
+				B60000010000000000000002 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Heaven;
-			productName = Heaven;
-			productReference = A30000010000000000000001 /* Heaven.app */;
+			name = Lucy;
+			productName = Lucy;
+			productReference = B30000010000000000000001 /* Lucy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A80000010000000000000001 /* Project object */ = {
+		B80000010000000000000001 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					A50000010000000000000001 = {
+					B50000010000000000000001 = {
 						CreatedOnToolsVersion = 16.0;
 					};
 				};
 			};
-			buildConfigurationList = A70000010000000000000001 /* Build configuration list for PBXProject "Heaven" */;
+			buildConfigurationList = B70000010000000000000001 /* Build configuration list for PBXProject "Lucy" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -136,49 +136,49 @@
 				en,
 				Base,
 			);
-			mainGroup = A40000010000000000000001;
-			productRefGroup = A40000010000000000000006 /* Products */;
+			mainGroup = B40000010000000000000001;
+			productRefGroup = B40000010000000000000006 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A50000010000000000000001 /* Heaven */,
+				B50000010000000000000001 /* Lucy */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A60000010000000000000002 /* Resources */ = {
+		B60000010000000000000002 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10000010000000000000011 /* Assets.xcassets in Resources */,
+				B10000010000000000000011 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A60000010000000000000001 /* Sources */ = {
+		B60000010000000000000001 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10000010000000000000001 /* HeavenApp.swift in Sources */,
-				A10000010000000000000002 /* ContentView.swift in Sources */,
-				A10000010000000000000003 /* DashboardView.swift in Sources */,
-				A10000010000000000000004 /* FamilyView.swift in Sources */,
-				A10000010000000000000005 /* HealingView.swift in Sources */,
-				A10000010000000000000006 /* VoiceView.swift in Sources */,
-				A10000010000000000000007 /* GabrielView.swift in Sources */,
-				A10000010000000000000008 /* SettingsView.swift in Sources */,
-				A10000010000000000000009 /* HeavenAPI.swift in Sources */,
-				A10000010000000000000010 /* Models.swift in Sources */,
+				B10000010000000000000001 /* LucyApp.swift in Sources */,
+				B10000010000000000000002 /* ContentView.swift in Sources */,
+				B10000010000000000000003 /* LucyDashboardView.swift in Sources */,
+				B10000010000000000000004 /* AnalysisView.swift in Sources */,
+				B10000010000000000000005 /* InsightsView.swift in Sources */,
+				B10000010000000000000006 /* DreamsView.swift in Sources */,
+				B10000010000000000000007 /* GabrielView.swift in Sources */,
+				B10000010000000000000008 /* LucySettingsView.swift in Sources */,
+				B10000010000000000000009 /* HeavenAPI.swift in Sources */,
+				B10000010000000000000010 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A90000010000000000000001 /* Debug */ = {
+		B90000010000000000000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -204,7 +204,7 @@
 			};
 			name = Debug;
 		};
-		A90000010000000000000002 /* Release */ = {
+		B90000010000000000000002 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -226,7 +226,7 @@
 			};
 			name = Release;
 		};
-		A90000010000000000000003 /* Debug */ = {
+		B90000010000000000000003 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -235,8 +235,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Heaven;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_CFBundleDisplayName = Lucy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -247,7 +247,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ai.noizy.heaven;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.noizy.lucy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -257,7 +257,7 @@
 			};
 			name = Debug;
 		};
-		A90000010000000000000004 /* Release */ = {
+		B90000010000000000000004 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -266,8 +266,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Heaven;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_CFBundleDisplayName = Lucy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -278,7 +278,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ai.noizy.heaven;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.noizy.lucy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -291,20 +291,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A70000010000000000000001 /* Build configuration list for PBXProject "Heaven" */ = {
+		B70000010000000000000001 /* Build configuration list for PBXProject "Lucy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A90000010000000000000001 /* Debug */,
-				A90000010000000000000002 /* Release */,
+				B90000010000000000000001 /* Debug */,
+				B90000010000000000000002 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A70000010000000000000003 /* Build configuration list for PBXNativeTarget "Heaven" */ = {
+		B70000010000000000000003 /* Build configuration list for PBXNativeTarget "Lucy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A90000010000000000000003 /* Debug */,
-				A90000010000000000000004 /* Release */,
+				B90000010000000000000003 /* Debug */,
+				B90000010000000000000004 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -312,5 +312,5 @@
 /* End XCConfigurationList section */
 
 	};
-	rootObject = A80000010000000000000001 /* Project object */;
+	rootObject = B80000010000000000000001 /* Project object */;
 }

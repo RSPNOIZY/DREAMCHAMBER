@@ -2,8 +2,8 @@
   "_meta": {
     "observer": "NOIZY Full Observer v1.0",
     "machine": "GOD (M2 Ultra)",
-    "timestamp": "2026-04-11T04:10:38.388Z",
-    "epochMs": 1775880638388
+    "timestamp": "2026-04-12T00:09:53.984Z",
+    "epochMs": 1775952593984
   },
   "services": {
     "voice-bridge": {
@@ -27,11 +27,7 @@
       "started": "Thu11AM"
     },
     "audio-hijack": {
-      "status": "RUNNING",
-      "pid": "85635",
-      "cpu": "24.6%",
-      "mem": "1.8%",
-      "started": "6:46PM"
+      "status": "DOWN"
     },
     "ollama": {
       "status": "RUNNING",
@@ -70,7 +66,7 @@
       "size": "12 GB"
     },
     {
-      "name": "noizy-mission-control:latest",
+      "name": "noizy-family-keeper:latest",
       "size": "3.3 GB"
     },
     {
@@ -78,11 +74,11 @@
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-family-keeper:latest",
+      "name": "noizy-wisdom-scribe:latest",
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-wisdom-scribe:latest",
+      "name": "noizy-mission-control:latest",
       "size": "3.3 GB"
     },
     {
@@ -90,15 +86,15 @@
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-gabriel-mind:latest",
-      "size": "3.3 GB"
-    },
-    {
       "name": "noizy-heaven-forger:latest",
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-vox-architect:latest",
+      "name": "noizy-gabriel-mind:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-kidz-worldbuilder:latest",
       "size": "3.3 GB"
     },
     {
@@ -106,7 +102,7 @@
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-kidz-worldbuilder:latest",
+      "name": "noizy-vox-architect:latest",
       "size": "3.3 GB"
     }
   ],
@@ -292,9 +288,9 @@
     "disk": {
       "total": "1.8Ti",
       "used": "10Gi",
-      "available": "1.2Ti",
+      "available": "1.1Ti",
       "percentUsed": "1%"
     },
-    "uptime": "0:10  up 1 day, 12:49, 2 users, load averages: 19.37 18.88 20.55"
+    "uptime": "20:10  up 2 days,  8:48, 2 users, load averages: 341.48 333.37 408.62"
   }
 }

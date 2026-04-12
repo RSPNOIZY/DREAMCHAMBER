@@ -122,3 +122,6 @@ gabriel.db
 ops/.env.integrations
 .secrets-audit.log
 *.p12
+.docker/
+*.mdb
+**/.build/

@@ -10,26 +10,25 @@ struct SettingsView: View {
 
     private let presetURLs = [
         ("Production", "https://heaven.rsp-5f3.workers.dev"),
-        ("Docker Local", "http://localhost:8787"),
-        ("Dev (wrangler)", "http://localhost:8787"),
+        ("Docker", "http://localhost:8787"),
+        ("Tunnel", "https://noizy.ai"),
     ]
 
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 24) {
+                VStack(spacing: 20) {
                     // Connection
-                    VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading, spacing: 14) {
                         Text("HEAVEN CONNECTION")
                             .font(.caption)
                             .foregroundStyle(.gray)
                             .tracking(2)
 
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: 6) {
                             Text("API Endpoint")
                                 .font(.caption)
                                 .foregroundStyle(.gray)
-
                             TextField("https://heaven.rsp-5f3.workers.dev", text: $baseURL)
                                 .textFieldStyle(.plain)
                                 .textInputAutocapitalization(.never)
@@ -40,7 +39,6 @@ struct SettingsView: View {
                                 .foregroundStyle(.white)
                         }
 
-                        // Preset buttons
                         HStack(spacing: 8) {
                             ForEach(presetURLs, id: \.0) { preset in
                                 Button(preset.0) {
@@ -51,19 +49,18 @@ struct SettingsView: View {
                                 .padding(.vertical, 6)
                                 .background(
                                     baseURL == preset.1
-                                        ? Color.cyan.opacity(0.2)
+                                        ? Color.orange.opacity(0.2)
                                         : Color.white.opacity(0.05)
                                 )
-                                .foregroundStyle(baseURL == preset.1 ? .cyan : .gray)
+                                .foregroundStyle(baseURL == preset.1 ? .orange : .gray)
                                 .clipShape(Capsule())
                             }
                         }
 
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: 6) {
                             Text("API Key")
                                 .font(.caption)
                                 .foregroundStyle(.gray)
-
                             SecureField("X-Noizy-Key", text: $apiKey)
                                 .textFieldStyle(.plain)
                                 .textInputAutocapitalization(.never)
@@ -82,7 +79,7 @@ struct SettingsView: View {
                                 }
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(.cyan)
+                                .background(.orange)
                                 .foregroundStyle(.black)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
@@ -90,8 +87,7 @@ struct SettingsView: View {
                             Button(action: testConnection) {
                                 HStack {
                                     if isTesting {
-                                        ProgressView()
-                                            .tint(.cyan)
+                                        ProgressView().tint(.orange)
                                     } else {
                                         Image(systemName: "antenna.radiowaves.left.and.right")
                                         Text("Test")
@@ -100,11 +96,11 @@ struct SettingsView: View {
                                 .frame(maxWidth: .infinity)
                                 .padding()
                                 .background(Color.white.opacity(0.05))
-                                .foregroundStyle(.cyan)
+                                .foregroundStyle(.orange)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.cyan.opacity(0.3), lineWidth: 1)
+                                        .stroke(Color.orange.opacity(0.3), lineWidth: 1)
                                 )
                             }
                             .disabled(isTesting)
@@ -134,23 +130,25 @@ struct SettingsView: View {
                             )
                     }
 
-                    // About
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("ABOUT")
+                    // About Gabriel
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("IDENTITY")
                             .font(.caption)
                             .foregroundStyle(.gray)
                             .tracking(2)
 
+                        aboutRow("App", value: "GABRIEL")
                         aboutRow("Version", value: "1.0.0")
-                        aboutRow("Bundle ID", value: "ai.noizy.heaven")
+                        aboutRow("Bundle", value: "ai.noizy.gabriel")
+                        aboutRow("Role", value: "Warrior Executor")
                         aboutRow("Author", value: "Robert Stephen Plowman")
                         aboutRow("Doctrine", value: "HVS 75/25 Perpetual")
                         aboutRow("Frequency", value: "396 Hz")
+                        aboutRow("Machine", value: "GOD.local (M2 Ultra)")
 
-                        Divider()
-                            .background(Color.gray.opacity(0.3))
+                        Divider().background(Color.gray.opacity(0.3))
 
-                        Text("Consent as executable code. Provenance as default. Revocation as sacred. Compensation as automatic.")
+                        Text("Military-calm. No hype. No cheerleading. No flattery. Gabriel ships things. Gabriel doesn't narrate about shipping things.")
                             .font(.caption)
                             .foregroundStyle(.gray)
                             .italic()
@@ -170,13 +168,9 @@ struct SettingsView: View {
 
     private func aboutRow(_ label: String, value: String) -> some View {
         HStack {
-            Text(label)
-                .font(.subheadline)
-                .foregroundStyle(.gray)
+            Text(label).font(.subheadline).foregroundStyle(.gray)
             Spacer()
-            Text(value)
-                .font(.subheadline)
-                .foregroundStyle(.white)
+            Text(value).font(.subheadline).foregroundStyle(.white)
         }
     }
 

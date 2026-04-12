@@ -1,15 +1,14 @@
 FROM node:20-alpine
 
-WORKDIR /app
+RUN apk add --no-cache curl
 
-# Install wrangler for local dev mode
-RUN npm install -g wrangler
+WORKDIR /app
 
 # Copy Heaven worker source
 COPY heaven-worker/ ./heaven-worker/
 
 WORKDIR /app/heaven-worker
-RUN npm install
+RUN npm install --omit=dev && npm install -g wrangler
 
 EXPOSE 8787
 

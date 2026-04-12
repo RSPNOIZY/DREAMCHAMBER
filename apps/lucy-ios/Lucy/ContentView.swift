@@ -4,14 +4,14 @@ struct ContentView: View {
     @State private var selectedTab: Tab = .dashboard
 
     enum Tab: String, CaseIterable {
-        case dashboard, family, voice, healing, gabriel, settings
+        case dashboard, analysis, insights, dreams, gabriel, settings
 
         var icon: String {
             switch self {
-            case .dashboard: return "square.grid.2x2"
-            case .family: return "person.3"
-            case .voice: return "waveform"
-            case .healing: return "heart.circle"
+            case .dashboard: return "moon.stars"
+            case .analysis: return "brain.head.profile"
+            case .insights: return "lightbulb"
+            case .dreams: return "sparkles"
             case .gabriel: return "shield.checkered"
             case .settings: return "gearshape"
             }
@@ -19,10 +19,10 @@ struct ContentView: View {
 
         var label: String {
             switch self {
-            case .dashboard: return "Empire"
-            case .family: return "Family"
-            case .voice: return "Voice"
-            case .healing: return "Healing"
+            case .dashboard: return "Lucy"
+            case .analysis: return "Analysis"
+            case .insights: return "Insights"
+            case .dreams: return "Dreams"
             case .gabriel: return "Gabriel"
             case .settings: return "Settings"
             }
@@ -34,12 +34,12 @@ struct ContentView: View {
             ForEach(Tab.allCases, id: \.self) { tab in
                 Group {
                     switch tab {
-                    case .dashboard: DashboardView()
-                    case .family: FamilyView()
-                    case .voice: VoiceView()
-                    case .healing: HealingView()
+                    case .dashboard: LucyDashboardView()
+                    case .analysis: AnalysisView()
+                    case .insights: InsightsView()
+                    case .dreams: DreamsView()
                     case .gabriel: GabrielView()
-                    case .settings: SettingsView()
+                    case .settings: LucySettingsView()
                     }
                 }
                 .tabItem {
@@ -48,7 +48,7 @@ struct ContentView: View {
                 .tag(tab)
             }
         }
-        .tint(Color("AccentColor"))
+        .tint(Color.purple)
     }
 }
 

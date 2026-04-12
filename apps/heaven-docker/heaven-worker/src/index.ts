@@ -19,31 +19,45 @@ interface Env {
   KV_SESSIONS:   KVNamespace;
   KV_SUBMISSIONS:KVNamespace;
   KV_MEMCELL:    KVNamespace;
-  ANTHROPIC_API_KEY: string;
+  ANTHROPIC_API_KEY?: string;
   NOIZY_SECRET:  string;
   NOIZY_KEY:     string;
 }
 
-// ── CORS ──────────────────────────────────────────────────────────────────────
-const CORS = {
-  'Access-Control-Allow-Origin':  'https://noizy.ai',
-  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Noizy-Key',
-  'Access-Control-Max-Age':       '86400',
-};
+// ── Validation ───────────────────────────────────────────────────────────────
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const UUID_RE  = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-function cors(): Response {
-  return new Response(null, { headers: CORS });
+function validEmail(email: string): boolean {
+  return EMAIL_RE.test(email);
 }
 
-function json(data: unknown, status = 200): Response {
+// ── CORS ─────────────────────────────────────────────────────────────────────
+function corsHeaders(request: Request): Record<string, string> {
+  const origin = request.headers.get('Origin') ?? '';
+  const allowed = origin === 'https://noizy.ai'
+    || origin.startsWith('http://localhost')
+    || origin.startsWith('http://127.0.0.1');
+  return {
+    'Access-Control-Allow-Origin':  allowed ? origin : 'https://noizy.ai',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Noizy-Key',
+    'Access-Control-Max-Age':       '86400',
+  };
+}
+
+function cors(request: Request): Response {
+  return new Response(null, { headers: corsHeaders(request) });
+}
+
+function json(request: Request, data: unknown, status = 200): Response {
   return new Response(JSON.stringify(data, null, 2), {
     status,
-    headers: { 'Content-Type': 'application/json', ...CORS },
+    headers: { 'Content-Type': 'application/json', ...corsHeaders(request) },
   });
 }
 
-// ── Gabriel: immutable constitutional audit trail ─────────────────────────────
+// ── Gabriel: immutable constitutional audit trail ────────────────────────────
 async function gabriel(
   db: D1Database,
   event_type: string,
@@ -67,25 +81,25 @@ async function gabriel(
   return id;
 }
 
-// ── Auth ──────────────────────────────────────────────────────────────────────
+// ── Auth ─────────────────────────────────────────────────────────────────────
 function authenticated(request: Request, env: Env): boolean {
   const key = request.headers.get('X-Noizy-Key');
   return !!key && key === env.NOIZY_KEY;
 }
 
-// ── Router ────────────────────────────────────────────────────────────────────
+// ── Router ───────────────────────────────────────────────────────────────────
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url    = new URL(request.url);
     const method = request.method;
     const path   = url.pathname;
 
-    if (method === 'OPTIONS') return cors();
+    if (method === 'OPTIONS') return cors(request);
 
     // ── Public routes ────────────────────────────────────────────────────────
 
     if (path === '/' || path === '/api/health') {
-      return json({
+      return json(request, {
         status:    'alive',
         service:   'HEAVEN',
         version:   '1.0.0',
@@ -99,7 +113,9 @@ export default {
     // Email signup — public, no auth required
     if (path === '/api/signup' && method === 'POST') {
       const { email } = await request.json() as { email?: string };
-      if (!email || !email.includes('@')) return json({ error: 'Invalid email' }, 400);
+      if (!email || !validEmail(email)) {
+        return json(request, { error: 'Invalid email address' }, 400);
+      }
       await env.KV_SIGNUPS.put(`signup:${email}`, JSON.stringify({
         email,
         signed_up_at: new Date().toISOString(),
@@ -107,12 +123,12 @@ export default {
         country: request.headers.get('CF-IPCountry') ?? 'unknown',
       }));
       await gabriel(env.DB_MEMORY, 'SIGNUP', null, null, { email });
-      return json({ ok: true });
+      return json(request, { ok: true });
     }
 
     // ── Protected routes ─────────────────────────────────────────────────────
     if (!authenticated(request, env)) {
-      return json({ error: 'Unauthorized. Sovereignty requires credentials.' }, 401);
+      return json(request, { error: 'Unauthorized. Sovereignty requires credentials.' }, 401);
     }
 
     try {
@@ -125,16 +141,24 @@ export default {
           email: string;
           display_name: string;
         };
-        if (!email || !display_name) return json({ error: 'email and display_name required' }, 400);
+        if (!email || !display_name) return json(request, { error: 'email and display_name required' }, 400);
+        if (!validEmail(email)) return json(request, { error: 'Invalid email address' }, 400);
 
         const id = crypto.randomUUID();
-        await env.DB_MEMORY.prepare(
-          `INSERT INTO family_members (id, email, display_name, hvs_acknowledged)
-           VALUES (?, ?, ?, 1)`
-        ).bind(id, email, display_name).run();
+        try {
+          await env.DB_MEMORY.prepare(
+            `INSERT INTO family_members (id, email, display_name, hvs_acknowledged)
+             VALUES (?, ?, ?, 1)`
+          ).bind(id, email, display_name).run();
+        } catch (err) {
+          if (err instanceof Error && err.message.includes('UNIQUE')) {
+            return json(request, { error: 'Email already registered' }, 409);
+          }
+          throw err;
+        }
 
         await gabriel(env.DB_MEMORY, 'FAMILY_MEMBER_REGISTERED', id, null, { email, display_name });
-        return json({ ok: true, member_id: id });
+        return json(request, { ok: true, member_id: id });
       }
 
       // Store consent matrix — the constitutional declaration
@@ -148,7 +172,7 @@ export default {
         };
 
         if (!body.member_id || !body.use_cases?.length || !body.beneficiary_ids?.length) {
-          return json({ error: 'member_id, use_cases, and beneficiary_ids required' }, 400);
+          return json(request, { error: 'member_id, use_cases, and beneficiary_ids required' }, 400);
         }
 
         const id         = crypto.randomUUID();
@@ -175,7 +199,7 @@ export default {
           perpetual:        !body.expires_at,
         });
 
-        return json({ ok: true, consent_id: id, c2pa_stamp });
+        return json(request, { ok: true, consent_id: id, c2pa_stamp });
       }
 
       // Register beneficiary access
@@ -186,6 +210,10 @@ export default {
           access_rules?:         Record<string, unknown>;
           granted_by:            string;
         };
+
+        if (!body.member_id || !body.beneficiary_member_id || !body.granted_by) {
+          return json(request, { error: 'member_id, beneficiary_member_id, and granted_by required' }, 400);
+        }
 
         const id = crypto.randomUUID();
         await env.DB_MEMORY.prepare(
@@ -204,7 +232,7 @@ export default {
           beneficiary:   body.beneficiary_member_id,
         });
 
-        return json({ ok: true, beneficiary_id: id });
+        return json(request, { ok: true, beneficiary_id: id });
       }
 
       // ── Voice — metadata only, audio stays on M2 Ultra ──────────────────
@@ -221,7 +249,11 @@ export default {
         };
 
         if (!body.member_id || !body.file_ref) {
-          return json({ error: 'member_id and file_ref required' }, 400);
+          return json(request, { error: 'member_id and file_ref required' }, 400);
+        }
+
+        if (body.sample_rate !== undefined && (body.sample_rate < 8000 || body.sample_rate > 192000)) {
+          return json(request, { error: 'sample_rate must be between 8000 and 192000' }, 400);
         }
 
         const id         = crypto.randomUUID();
@@ -250,7 +282,7 @@ export default {
           note:          'audio_local_only',
         });
 
-        return json({ ok: true, voice_id: id, c2pa_stamp });
+        return json(request, { ok: true, voice_id: id, c2pa_stamp });
       }
 
       // ── Messages — pre-recorded comfort, grief, milestone ───────────────
@@ -264,6 +296,10 @@ export default {
           duration_seconds?:   number;
           trigger_conditions?: Record<string, unknown>;
         };
+
+        if (!body.from_member_id || !body.to_beneficiary_ids?.length || !body.message_type || !body.file_ref) {
+          return json(request, { error: 'from_member_id, to_beneficiary_ids, message_type, and file_ref required' }, 400);
+        }
 
         const id = crypto.randomUUID();
         await env.DB_MEMORY.prepare(
@@ -285,7 +321,7 @@ export default {
           beneficiary_count: body.to_beneficiary_ids.length,
         });
 
-        return json({ ok: true, message_id: id });
+        return json(request, { ok: true, message_id: id });
       }
 
       // ── Healing sessions — biometric-triggered therapeutic protocol ──────
@@ -303,6 +339,18 @@ export default {
           outcome?:              string;
           consent_verified?:     boolean;
         };
+
+        if (!body.beneficiary_member_id || !body.protocol_type) {
+          return json(request, { error: 'beneficiary_member_id and protocol_type required' }, 400);
+        }
+
+        if (body.frequency_hz !== undefined && (body.frequency_hz <= 0 || body.frequency_hz > 20000)) {
+          return json(request, { error: 'frequency_hz must be between 1 and 20000' }, 400);
+        }
+
+        if (body.duration_seconds !== undefined && body.duration_seconds <= 0) {
+          return json(request, { error: 'duration_seconds must be positive' }, 400);
+        }
 
         const id = crypto.randomUUID();
         await env.DB_MEMORY.prepare(
@@ -331,14 +379,14 @@ export default {
           consent_verified: body.consent_verified,
         });
 
-        return json({ ok: true, session_id: id });
+        return json(request, { ok: true, session_id: id });
       }
 
       // ── Gabriel audit trail — read events for an actor ──────────────────
 
       if (path.startsWith('/api/gabriel/') && method === 'GET') {
         const actor_id = path.replace('/api/gabriel/', '');
-        if (!actor_id) return json({ error: 'actor_id required' }, 400);
+        if (!actor_id) return json(request, { error: 'actor_id required' }, 400);
 
         const result = await env.DB_MEMORY.prepare(
           `SELECT id, event_type, target_id, payload, logged_at
@@ -348,7 +396,7 @@ export default {
            LIMIT 100`
         ).bind(actor_id).all();
 
-        return json({ ok: true, actor_id, events: result.results });
+        return json(request, { ok: true, actor_id, events: result.results });
       }
 
       // ── Royalties — KV fast path ─────────────────────────────────────────
@@ -360,6 +408,14 @@ export default {
           amount_cents: number;
           source:       string;
         };
+
+        if (!body.artist_id || !body.track_id || !body.source) {
+          return json(request, { error: 'artist_id, track_id, and source required' }, 400);
+        }
+
+        if (typeof body.amount_cents !== 'number' || body.amount_cents <= 0) {
+          return json(request, { error: 'amount_cents must be a positive number' }, 400);
+        }
 
         const key = `royalty:${body.artist_id}:${Date.now()}`;
         await env.KV_ROYALTIES.put(key, JSON.stringify({
@@ -373,17 +429,19 @@ export default {
           source:       body.source,
         });
 
-        return json({ ok: true, key });
+        return json(request, { ok: true, key });
       }
 
-      return json({ error: 'Route not found' }, 404);
+      return json(request, { error: 'Route not found' }, 404);
 
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unknown error';
       await gabriel(env.DB_MEMORY, 'ERROR', null, null, {
         path, method, error: message,
-      }).catch(() => {/* don't let logging failure mask the original error */});
-      return json({ error: 'Internal error', detail: message }, 500);
+      }).catch((logErr) => {
+        console.error('Gabriel logging failed:', logErr);
+      });
+      return json(request, { error: 'Internal error' }, 500);
     }
   },
 };

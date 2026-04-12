@@ -186,13 +186,13 @@ struct HealingView: View {
         } else {
             isActive = true
             elapsed = 0
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                elapsed += 1
-                if elapsed >= duration {
-                    isActive = false
-                    timer?.invalidate()
-                    timer = nil
-                    logSession()
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
+                self.elapsed += 1
+                if self.elapsed >= self.duration {
+                    self.isActive = false
+                    self.timer?.invalidate()
+                    self.timer = nil
+                    self.logSession()
                 }
             }
         }

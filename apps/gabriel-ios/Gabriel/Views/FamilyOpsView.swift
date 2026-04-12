@@ -1,36 +1,35 @@
 import SwiftUI
 
-struct FamilyView: View {
+struct FamilyOpsView: View {
     @State private var email = ""
     @State private var displayName = ""
     @State private var isRegistering = false
     @State private var result: String?
     @State private var showError = false
     @State private var errorMessage = ""
+    @State private var engine = GabrielEngine.shared
 
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 24) {
+                VStack(spacing: 20) {
                     // Header
                     VStack(spacing: 8) {
                         Image(systemName: "person.3.fill")
-                            .font(.system(size: 48))
-                            .foregroundStyle(.cyan)
-
-                        Text("myFAMILY")
-                            .font(.title2.weight(.semibold))
+                            .font(.system(size: 40))
+                            .foregroundStyle(.orange)
+                        Text("myFAMILY OPS")
+                            .font(.title3.weight(.semibold))
                             .foregroundStyle(.white)
-
-                        Text("Constitutional foundation for voice legacy")
+                        Text("33 members across 6 tiers")
                             .font(.caption)
                             .foregroundStyle(.gray)
                     }
-                    .padding(.top, 20)
+                    .padding(.top, 12)
 
-                    // Register Form
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text("REGISTER FAMILY MEMBER")
+                    // Quick Register
+                    VStack(alignment: .leading, spacing: 14) {
+                        Text("REGISTER MEMBER")
                             .font(.caption)
                             .foregroundStyle(.gray)
                             .tracking(2)
@@ -55,8 +54,7 @@ struct FamilyView: View {
                         Button(action: register) {
                             HStack {
                                 if isRegistering {
-                                    ProgressView()
-                                        .tint(.black)
+                                    ProgressView().tint(.black)
                                 } else {
                                     Image(systemName: "person.badge.plus")
                                     Text("Register")
@@ -64,7 +62,7 @@ struct FamilyView: View {
                             }
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(.cyan)
+                            .background(.orange)
                             .foregroundStyle(.black)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                         }
@@ -78,23 +76,23 @@ struct FamilyView: View {
 
                     if let result {
                         Text(result)
-                            .font(.caption)
+                            .font(.caption.monospaced())
                             .foregroundStyle(.green)
                             .padding()
                     }
 
-                    // Consent Info
-                    VStack(alignment: .leading, spacing: 12) {
+                    // Consent Ops
+                    VStack(alignment: .leading, spacing: 10) {
                         Text("CONSENT KERNEL")
                             .font(.caption)
                             .foregroundStyle(.gray)
                             .tracking(2)
 
-                        consentRow(icon: "checkmark.shield", text: "Explicit consent before any synthesis")
-                        consentRow(icon: "arrow.uturn.backward.circle", text: "Instant revocation — Kill Switch")
-                        consentRow(icon: "clock.arrow.circlepath", text: "100-year estate preservation")
-                        consentRow(icon: "lock.shield", text: "C2PA provenance on every asset")
-                        consentRow(icon: "dollarsign.circle", text: "75/25 royalty split — perpetual")
+                        opRow(icon: "checkmark.shield.fill", text: "Pre-synthesis blocking active", color: .green)
+                        opRow(icon: "bolt.shield.fill", text: "Kill Switch armed — RSP_001", color: .red)
+                        opRow(icon: "signature", text: "C2PA stamps on all assets", color: .cyan)
+                        opRow(icon: "clock.arrow.circlepath", text: "100-year OAIS/PREMIS estate", color: .orange)
+                        opRow(icon: "dollarsign.circle.fill", text: "75/25 royalty split locked", color: .yellow)
                     }
                     .padding()
                     .background(
@@ -114,10 +112,10 @@ struct FamilyView: View {
         }
     }
 
-    private func consentRow(icon: String, text: String) -> some View {
-        HStack(spacing: 12) {
+    private func opRow(icon: String, text: String, color: Color) -> some View {
+        HStack(spacing: 10) {
             Image(systemName: icon)
-                .foregroundStyle(.cyan)
+                .foregroundStyle(color)
                 .frame(width: 24)
             Text(text)
                 .font(.subheadline)
@@ -133,6 +131,7 @@ struct FamilyView: View {
                     email: email, displayName: displayName
                 )
                 result = "Registered: \(response.memberId ?? "ok")"
+                engine.log(action: "Registered family member: \(displayName)")
                 email = ""
                 displayName = ""
             } catch {
@@ -145,6 +144,6 @@ struct FamilyView: View {
 }
 
 #Preview {
-    FamilyView()
+    FamilyOpsView()
         .preferredColorScheme(.dark)
 }

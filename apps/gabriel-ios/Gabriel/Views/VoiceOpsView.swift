@@ -1,68 +1,46 @@
 import SwiftUI
 
-struct VoiceView: View {
+struct VoiceOpsView: View {
     @State private var memberId = ""
     @State private var fileRef = ""
-    @State private var sampleRate = "48000"
-    @State private var bitDepth = "32"
     @State private var isSubmitting = false
     @State private var result: VoiceResponse?
     @State private var showError = false
     @State private var errorMessage = ""
+    @State private var engine = GabrielEngine.shared
 
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 24) {
-                    // Header
+                VStack(spacing: 20) {
+                    // Voice DNA Header
                     VStack(spacing: 8) {
-                        Image(systemName: "waveform.circle.fill")
-                            .font(.system(size: 48))
-                            .foregroundStyle(.cyan)
+                        waveformDisplay
 
-                        Text("NOIZY VOX")
-                            .font(.title2.weight(.semibold))
+                        Text("VOICE DNA")
+                            .font(.title3.weight(.semibold))
                             .foregroundStyle(.white)
 
-                        Text("Voice sovereignty & DNA registration")
+                        Text("Audio stays on GOD.local. Metadata only in Heaven.")
                             .font(.caption)
                             .foregroundStyle(.gray)
                     }
-                    .padding(.top, 20)
+                    .padding(.top, 12)
 
-                    // Waveform Visualization
-                    waveformVisual
-
-                    // Register Voice Form
-                    VStack(alignment: .leading, spacing: 16) {
+                    // Register
+                    VStack(alignment: .leading, spacing: 14) {
                         Text("REGISTER VOICE PROFILE")
                             .font(.caption)
                             .foregroundStyle(.gray)
                             .tracking(2)
 
                         inputField("Member ID", text: $memberId)
-                        inputField("File Reference (local path)", text: $fileRef)
-
-                        HStack(spacing: 12) {
-                            VStack(alignment: .leading) {
-                                Text("Sample Rate")
-                                    .font(.caption)
-                                    .foregroundStyle(.gray)
-                                inputField("Hz", text: $sampleRate)
-                            }
-                            VStack(alignment: .leading) {
-                                Text("Bit Depth")
-                                    .font(.caption)
-                                    .foregroundStyle(.gray)
-                                inputField("bits", text: $bitDepth)
-                            }
-                        }
+                        inputField("File Reference (local path on GOD)", text: $fileRef)
 
                         Button(action: registerVoice) {
                             HStack {
                                 if isSubmitting {
-                                    ProgressView()
-                                        .tint(.black)
+                                    ProgressView().tint(.black)
                                 } else {
                                     Image(systemName: "waveform.badge.plus")
                                     Text("Register Voice")
@@ -70,7 +48,7 @@ struct VoiceView: View {
                             }
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(.cyan)
+                            .background(.orange)
                             .foregroundStyle(.black)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                         }
@@ -84,16 +62,15 @@ struct VoiceView: View {
 
                     if let result {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("REGISTERED")
-                                .font(.caption)
+                            Label("REGISTERED", systemImage: "checkmark.seal.fill")
+                                .font(.caption.weight(.semibold))
                                 .foregroundStyle(.green)
-                                .tracking(2)
 
                             if let voiceId = result.voiceId {
-                                copyableField("Voice ID", value: voiceId)
+                                copyField("Voice ID", value: voiceId)
                             }
                             if let stamp = result.c2paStamp {
-                                copyableField("C2PA Stamp", value: stamp)
+                                copyField("C2PA Stamp", value: stamp)
                             }
                         }
                         .padding()
@@ -107,20 +84,22 @@ struct VoiceView: View {
                         )
                     }
 
-                    // Info
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Audio stays on GOD.local")
-                            .font(.caption.weight(.semibold))
-                            .foregroundStyle(.cyan)
-
-                        Text("Only metadata is stored in Heaven. Voice files never leave your M2 Ultra. C2PA provenance stamps ensure cryptographic proof of origin.")
+                    // Pipeline Status
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("PIPELINE STATUS")
                             .font(.caption)
                             .foregroundStyle(.gray)
+                            .tracking(2)
+
+                        pipelineRow("Voice Bridge", port: "8080", status: "READY")
+                        pipelineRow("Audio MCP", port: "—", status: "13 tools")
+                        pipelineRow("XTTS v2", port: "—", status: "DEFAULT")
+                        pipelineRow("C2PA Signing", port: "—", status: "ACTIVE")
                     }
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color.cyan.opacity(0.05))
+                            .fill(Color.white.opacity(0.03))
                     )
                 }
                 .padding()
@@ -135,21 +114,21 @@ struct VoiceView: View {
         }
     }
 
-    private var waveformVisual: some View {
+    private var waveformDisplay: some View {
         HStack(spacing: 3) {
-            ForEach(0..<30, id: \.self) { i in
+            ForEach(0..<40, id: \.self) { i in
                 RoundedRectangle(cornerRadius: 2)
-                    .fill(.cyan.opacity(0.6))
-                    .frame(width: 4, height: waveHeight(i))
+                    .fill(
+                        LinearGradient(
+                            colors: [.orange, .yellow],
+                            startPoint: .bottom,
+                            endPoint: .top
+                        )
+                    )
+                    .frame(width: 3, height: max(6, CGFloat(sin(Double(i) * 0.4) * 24 + 20)))
             }
         }
-        .frame(height: 60)
-        .padding(.vertical, 8)
-    }
-
-    private func waveHeight(_ index: Int) -> CGFloat {
-        let base = sin(Double(index) * 0.5) * 20 + 25
-        return max(8, CGFloat(base))
+        .frame(height: 50)
     }
 
     private func inputField(_ placeholder: String, text: Binding<String>) -> some View {
@@ -163,8 +142,8 @@ struct VoiceView: View {
             .foregroundStyle(.white)
     }
 
-    private func copyableField(_ label: String, value: String) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
+    private func copyField(_ label: String, value: String) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
             Text(label)
                 .font(.caption2)
                 .foregroundStyle(.gray)
@@ -175,16 +154,31 @@ struct VoiceView: View {
         }
     }
 
+    private func pipelineRow(_ name: String, port: String, status: String) -> some View {
+        HStack {
+            Text(name)
+                .font(.subheadline)
+                .foregroundStyle(.white)
+            if port != "—" {
+                Text(":\(port)")
+                    .font(.caption2.monospaced())
+                    .foregroundStyle(.gray)
+            }
+            Spacer()
+            Text(status)
+                .font(.caption2.weight(.semibold).monospaced())
+                .foregroundStyle(.orange)
+        }
+    }
+
     private func registerVoice() {
         isSubmitting = true
         Task {
             do {
                 result = try await HeavenAPI.shared.registerVoice(
-                    memberId: memberId,
-                    fileRef: fileRef,
-                    sampleRate: Int(sampleRate) ?? 48000,
-                    bitDepth: Int(bitDepth) ?? 32
+                    memberId: memberId, fileRef: fileRef
                 )
+                engine.log(action: "Voice profile registered: \(fileRef)")
             } catch {
                 errorMessage = error.localizedDescription
                 showError = true
@@ -195,6 +189,6 @@ struct VoiceView: View {
 }
 
 #Preview {
-    VoiceView()
+    VoiceOpsView()
         .preferredColorScheme(.dark)
 }

@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A50000010000000000000001"
-               BuildableName = "Heaven.app"
-               BlueprintName = "Heaven"
-               ReferencedContainer = "container:Heaven.xcodeproj">
+               BlueprintIdentifier = "B50000010000000000000001"
+               BuildableName = "Lucy.app"
+               BlueprintName = "Lucy"
+               ReferencedContainer = "container:Lucy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A50000010000000000000001"
-            BuildableName = "Heaven.app"
-            BlueprintName = "Heaven"
-            ReferencedContainer = "container:Heaven.xcodeproj">
+            BlueprintIdentifier = "B50000010000000000000001"
+            BuildableName = "Lucy.app"
+            BlueprintName = "Lucy"
+            ReferencedContainer = "container:Lucy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A50000010000000000000001"
-            BuildableName = "Heaven.app"
-            BlueprintName = "Heaven"
-            ReferencedContainer = "container:Heaven.xcodeproj">
+            BlueprintIdentifier = "B50000010000000000000001"
+            BuildableName = "Lucy.app"
+            BlueprintName = "Lucy"
+            ReferencedContainer = "container:Lucy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
