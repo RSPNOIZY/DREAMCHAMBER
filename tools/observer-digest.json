@@ -2,8 +2,8 @@
   "_meta": {
     "observer": "NOIZY Full Observer v1.0",
     "machine": "GOD (M2 Ultra)",
-    "timestamp": "2026-04-12T08:09:42.959Z",
-    "epochMs": 1775981382959
+    "timestamp": "2026-04-12T17:48:58.767Z",
+    "epochMs": 1776016138767
   },
   "services": {
     "voice-bridge": {
@@ -18,33 +18,45 @@
     },
     "gabriel-monitor": {
       "status": "RUNNING",
-      "pid": "697",
-      "cpu": "0.0%",
-      "mem": "0.0%",
-      "started": "Thu11AM"
+      "pid": "97627",
+      "cpu": "6.7%",
+      "mem": "0.1%",
+      "started": "1:48PM"
     },
     "voice-server": {
       "status": "RUNNING",
-      "pid": "671",
+      "pid": "97596",
       "cpu": "0.0%",
       "mem": "0.0%",
-      "started": "Thu11AM"
+      "started": "1:48PM"
     },
     "audio-hijack": {
       "status": "DOWN"
     },
     "ollama": {
       "status": "RUNNING",
-      "pid": "692",
+      "pid": "97620",
       "cpu": "0.0%",
       "mem": "0.0%",
-      "started": "Thu11AM"
+      "started": "1:48PM"
     },
     "voice-bridge-http": {
       "status": "UNREACHABLE"
     }
   },
   "ollamaModels": [
+    {
+      "name": "gemma4:e4b",
+      "size": "9.6 GB"
+    },
+    {
+      "name": "gemma4:26b",
+      "size": "17 GB"
+    },
+    {
+      "name": "gemma4:31b",
+      "size": "19 GB"
+    },
     {
       "name": "gemma3:latest",
       "size": "3.3 GB"
@@ -70,10 +82,6 @@
       "size": "12 GB"
     },
     {
-      "name": "noizy-wisdom-scribe:latest",
-      "size": "3.3 GB"
-    },
-    {
       "name": "noizy-family-keeper:latest",
       "size": "3.3 GB"
     },
@@ -86,7 +94,7 @@
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-dream-weaver:latest",
+      "name": "noizy-wisdom-scribe:latest",
       "size": "3.3 GB"
     },
     {
@@ -94,7 +102,15 @@
       "size": "3.3 GB"
     },
     {
+      "name": "noizy-dream-weaver:latest",
+      "size": "3.3 GB"
+    },
+    {
       "name": "noizy-gabriel-mind:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-vox-architect:latest",
       "size": "3.3 GB"
     },
     {
@@ -104,16 +120,18 @@
     {
       "name": "noizy-kidz-worldbuilder:latest",
       "size": "3.3 GB"
-    },
-    {
-      "name": "noizy-vox-architect:latest",
-      "size": "3.3 GB"
     }
   ],
   "gabriel": {
     "recentSessions": [],
     "activeTasks": [],
     "recentMemory": [
+      {
+        "key": "last_heartbeat",
+        "value": "2026-04-12T17:22:50.791Z",
+        "category": "system",
+        "updated_at": "2026-04-12 17:22:50"
+      },
       {
         "key": "daemon_start",
         "value": "2026-04-12T07:52:50.592Z",
@@ -130,29 +148,29 @@
     "estateMembers": [],
     "logs": {
       "gabriel.log": {
-        "lastModified": "2026-04-12T07:53:33.022Z",
-        "sizeBytes": 6880412,
+        "lastModified": "2026-04-12T17:48:28.474Z",
+        "sizeBytes": 6885996,
         "lines": [
-          "[2026-04-12T07:52:36.322Z] POST /agent/lucy/ask",
-          "[2026-04-12T07:52:36.354Z] LUCY error: Could not resolve authentication method. Expected either apiKey or authToken to be set. Or for one of the \"X-Api-Key\" or \"Authorization\" headers to be explicitly omitted",
-          "[2026-04-12T07:52:36.419Z] GET /n8n/status",
-          "[2026-04-12T07:52:50.578Z] SQLite DB ready (foreign_keys=ON): /Users/m2ultra/NOIZYLAB/gabriel.db",
-          "[2026-04-12T07:52:50.580Z] Master prompt loaded: /Users/m2ultra/NOIZYANTHROPIC/GABRIEL/prompts/GABRIEL_MASTER.md",
-          "[2026-04-12T07:52:50.581Z] Voice WebSocket ready at ws://0.0.0.0:9777/voice  AND  ws://0.0.0.0:9777/ws",
-          "[2026-04-12T07:52:50.588Z] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-          "[2026-04-12T07:52:50.588Z] GABRIEL DAEMON v2.0 — NOIZY EMPIRE · GORUNFREE",
-          "[2026-04-12T07:52:50.588Z] Port: 9777  Model: claude-opus-4-6  Voice: Daniel",
-          "[2026-04-12T07:52:50.588Z] DB: /Users/m2ultra/NOIZYLAB/gabriel.db",
-          "[2026-04-12T07:52:50.589Z] Anthropic SDK: ready",
-          "[2026-04-12T07:52:50.589Z] Auth: DISABLED — set GABRIEL_API_KEY to secure endpoints",
-          "[2026-04-12T07:52:50.589Z] ⚠ WARNING: No GABRIEL_API_KEY set — all endpoints are open. Set GABRIEL_API_KEY in ~/.zshrc for production.",
-          "[2026-04-12T07:52:50.589Z] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-          "[2026-04-12T07:52:50.592Z] SPEAK: GABRIEL online. GORUNFREE....",
-          "[2026-04-12T07:52:50.592Z] Morning brief scheduled in 127min",
-          "[2026-04-12T07:53:13.568Z] POST /agent/lucy/ask",
-          "[2026-04-12T07:53:13.639Z] LUCY error: Could not resolve authentication method. Expected either apiKey or authToken to be set. Or for one of the \"X-Api-Key\" or \"Authorization\" headers to be explicitly omitted",
-          "[2026-04-12T07:53:33.020Z] POST /command",
-          "[2026-04-12T07:53:33.021Z] Claude error: Could not resolve authentication method. Expected either apiKey or authToken to be set. Or for one of the \"X-Api-Key\" or \"Authorization\" headers to be explicitly omitted"
+          "[2026-04-12T14:51:58.816Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-12T14:52:50.736Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-12T15:21:58.827Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-12T15:22:50.748Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-12T15:51:58.838Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-12T15:52:50.759Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-12T16:21:58.850Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-12T16:22:50.770Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-12T16:51:58.862Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-12T16:52:50.780Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-12T17:21:58.874Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-12T17:22:50.791Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-12T17:48:28.061Z] Running with in-memory store (SQLite not available at known paths)",
+          "[2026-04-12T17:48:28.061Z] Running with in-memory store (SQLite not available at known paths)",
+          "[2026-04-12T17:48:28.283Z] Master prompt loaded: /Users/m2ultra/NOIZYANTHROPIC/GABRIEL/prompts/GABRIEL_MASTER.md",
+          "[2026-04-12T17:48:28.283Z] Master prompt loaded: /Users/m2ultra/NOIZYANTHROPIC/GABRIEL/prompts/GABRIEL_MASTER.md",
+          "[2026-04-12T17:48:28.304Z] Voice WebSocket ready at ws://0.0.0.0:7778/voice  AND  ws://0.0.0.0:7778/ws",
+          "[2026-04-12T17:48:28.304Z] Voice WebSocket ready at ws://0.0.0.0:7778/voice  AND  ws://0.0.0.0:7778/ws",
+          "[2026-04-12T17:48:28.472Z] SERVER ERROR: listen EADDRINUSE: address already in use 0.0.0.0:7778",
+          "[2026-04-12T17:48:28.472Z] SERVER ERROR: listen EADDRINUSE: address already in use 0.0.0.0:7778"
         ]
       },
       "noizyvox.log": {
@@ -305,6 +323,6 @@
       "available": "1.1Ti",
       "percentUsed": "1%"
     },
-    "uptime": "4:09  up 2 days, 16:48, 1 user, load averages: 30.77 28.79 38.31"
+    "uptime": "13:49  up 3 days,  2:27, 1 user, load averages: 836.61 306.15 126.67"
   }
 }
