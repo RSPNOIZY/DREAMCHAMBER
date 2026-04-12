@@ -262,6 +262,7 @@ export default {
         !path.startsWith("/webhooks") &&
         !path.startsWith("/provenance") &&
         !path.startsWith("/absence") &&
+        path !== "/api/dispatch" &&
         !authenticate(request, env)
       ) {
         return err("Unauthorized — provide X-NOIZY-Key header", 401);
@@ -294,6 +295,53 @@ export default {
         };
         await kvSet(kv, "health", data, 60); // cache 60s (KV minimum TTL)
         return json(data);
+      }
+
+      // ── Dispatch — forward to central-gateway mesh on GOD ──────────────────
+      if (path === "/api/dispatch" && method === "POST") {
+        const body = await request.json();
+        const { actor, device, intent, target, context: ctx } = body;
+        if (!actor || !target || !intent) {
+          return err("actor, target, and intent required");
+        }
+
+        const meshOrigin = env.MESH_ORIGIN || "http://127.0.0.1:9696";
+        const meshHeaders = { "Content-Type": "application/json" };
+
+        // CF Access Service Token headers (for tunnel-protected mesh)
+        if (env.CF_ACCESS_CLIENT_ID && env.CF_ACCESS_CLIENT_SECRET) {
+          meshHeaders["CF-Access-Client-Id"] = env.CF_ACCESS_CLIENT_ID;
+          meshHeaders["CF-Access-Client-Secret"] = env.CF_ACCESS_CLIENT_SECRET;
+        }
+
+        try {
+          const meshRes = await fetch(`${meshOrigin}/dispatch`, {
+            method: "POST",
+            headers: meshHeaders,
+            body: JSON.stringify(body),
+          });
+          const meshData = await meshRes.json();
+
+          await ledgerAppend(db, {
+            event_type: "DISPATCH",
+            actor_id: actor,
+            payload: { intent, target, device, mesh_status: meshRes.status },
+          });
+
+          return json({
+            ok: meshRes.ok,
+            dispatch: meshData,
+            timestamp: now(),
+          });
+        } catch (meshErr) {
+          const detail = meshErr instanceof Error ? meshErr.message : "Mesh unreachable";
+          await ledgerAppend(db, {
+            event_type: "DISPATCH_ERROR",
+            actor_id: actor,
+            payload: { intent, target, error: detail },
+          });
+          return json({ error: "Mesh unreachable", detail }, 502);
+        }
       }
 
       // ── Actors ──────────────────────────────────────────────────────────────

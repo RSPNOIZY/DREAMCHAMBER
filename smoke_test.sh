@@ -9,6 +9,11 @@ set -euo pipefail
 HEAVEN="${1:-https://heaven.rsp-5f3.workers.dev}"
 GABRIEL_PORT="${2:-9777}"
 GABRIEL="http://localhost:${GABRIEL_PORT}"
+
+# Auto-source .env if present
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+[ -f "$SCRIPT_DIR/.env" ] && source "$SCRIPT_DIR/.env"
+
 API_KEY="${NOIZY_API_KEY:-test}"
 
 PASS=0
