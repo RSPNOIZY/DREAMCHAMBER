@@ -2,15 +2,19 @@
   "_meta": {
     "observer": "NOIZY Full Observer v1.0",
     "machine": "GOD (M2 Ultra)",
-    "timestamp": "2026-04-12T00:09:53.984Z",
-    "epochMs": 1775952593984
+    "timestamp": "2026-04-12T08:09:42.959Z",
+    "epochMs": 1775981382959
   },
   "services": {
     "voice-bridge": {
       "status": "DOWN"
     },
     "gabriel-daemon": {
-      "status": "DOWN"
+      "status": "RUNNING",
+      "pid": "85436",
+      "cpu": "0.0%",
+      "mem": "0.0%",
+      "started": "3:52AM"
     },
     "gabriel-monitor": {
       "status": "RUNNING",
@@ -66,19 +70,19 @@
       "size": "12 GB"
     },
     {
-      "name": "noizy-family-keeper:latest",
-      "size": "3.3 GB"
-    },
-    {
-      "name": "noizy-consent-guardian:latest",
-      "size": "3.3 GB"
-    },
-    {
       "name": "noizy-wisdom-scribe:latest",
       "size": "3.3 GB"
     },
     {
+      "name": "noizy-family-keeper:latest",
+      "size": "3.3 GB"
+    },
+    {
       "name": "noizy-mission-control:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-consent-guardian:latest",
       "size": "3.3 GB"
     },
     {
@@ -94,11 +98,11 @@
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-kidz-worldbuilder:latest",
+      "name": "noizy-fish-cataloguer:latest",
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-fish-cataloguer:latest",
+      "name": "noizy-kidz-worldbuilder:latest",
       "size": "3.3 GB"
     },
     {
@@ -107,38 +111,48 @@
     }
   ],
   "gabriel": {
-    "recentSessions": [
-      {
-        "error": "Command failed: sqlite3 -json \"/Users/m2ultra/NOIZYLAB/gabriel.db\" \"SELECT role, substr(content, 1, 500) as content, ts FROM session_log ORDER BY id DESC LIMIT 15\"\nError: in prepare, no such table: session_log\n"
-      }
-    ],
-    "activeTasks": [
-      {
-        "error": "Command failed: sqlite3 -json \"/Users/m2ultra/NOIZYLAB/gabriel.db\" \"SELECT id, description, priority, status, created_at FROM tasks WHERE status != 'completed' ORDER BY created_at DESC LIMIT 20\"\nError: in prepare, no such table: tasks\n"
-      }
-    ],
+    "recentSessions": [],
+    "activeTasks": [],
     "recentMemory": [
       {
-        "error": "Command failed: sqlite3 -json \"/Users/m2ultra/NOIZYLAB/gabriel.db\" \"SELECT key, substr(value, 1, 300) as value, category, updated_at FROM memcell ORDER BY updated_at DESC LIMIT 10\"\nError: in prepare, no such table: memcell\n"
+        "key": "daemon_start",
+        "value": "2026-04-12T07:52:50.592Z",
+        "category": "system",
+        "updated_at": "2026-04-12 07:52:50"
       }
     ],
     "consent": [
       {
-        "error": "Command failed: sqlite3 -json \"/Users/m2ultra/NOIZYLAB/gabriel.db\" \"SELECT COUNT(*) as total, SUM(granted) as granted FROM consent_matrix\"\nError: in prepare, no such table: consent_matrix\n"
+        "total": 0,
+        "granted": null
       }
     ],
-    "estateMembers": [
-      {
-        "error": "Command failed: sqlite3 -json \"/Users/m2ultra/NOIZYLAB/gabriel.db\" \"SELECT hvs_id, full_name, relationship, status FROM estate_members ORDER BY created_at\"\nError: in prepare, no such table: estate_members\n"
-      }
-    ],
+    "estateMembers": [],
     "logs": {
       "gabriel.log": {
-        "lastModified": "2026-04-05T17:13:58.000Z",
-        "sizeBytes": 6876446,
+        "lastModified": "2026-04-12T07:53:33.022Z",
+        "sizeBytes": 6880412,
         "lines": [
-          "[2026-04-05T17:12:48.565Z] POST /memcell/health:alert:1775409168373",
-          "[2026-04-05T17:12:48.656Z] UNCAUGHT: attempt to write a readonly database"
+          "[2026-04-12T07:52:36.322Z] POST /agent/lucy/ask",
+          "[2026-04-12T07:52:36.354Z] LUCY error: Could not resolve authentication method. Expected either apiKey or authToken to be set. Or for one of the \"X-Api-Key\" or \"Authorization\" headers to be explicitly omitted",
+          "[2026-04-12T07:52:36.419Z] GET /n8n/status",
+          "[2026-04-12T07:52:50.578Z] SQLite DB ready (foreign_keys=ON): /Users/m2ultra/NOIZYLAB/gabriel.db",
+          "[2026-04-12T07:52:50.580Z] Master prompt loaded: /Users/m2ultra/NOIZYANTHROPIC/GABRIEL/prompts/GABRIEL_MASTER.md",
+          "[2026-04-12T07:52:50.581Z] Voice WebSocket ready at ws://0.0.0.0:9777/voice  AND  ws://0.0.0.0:9777/ws",
+          "[2026-04-12T07:52:50.588Z] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+          "[2026-04-12T07:52:50.588Z] GABRIEL DAEMON v2.0 — NOIZY EMPIRE · GORUNFREE",
+          "[2026-04-12T07:52:50.588Z] Port: 9777  Model: claude-opus-4-6  Voice: Daniel",
+          "[2026-04-12T07:52:50.588Z] DB: /Users/m2ultra/NOIZYLAB/gabriel.db",
+          "[2026-04-12T07:52:50.589Z] Anthropic SDK: ready",
+          "[2026-04-12T07:52:50.589Z] Auth: DISABLED — set GABRIEL_API_KEY to secure endpoints",
+          "[2026-04-12T07:52:50.589Z] ⚠ WARNING: No GABRIEL_API_KEY set — all endpoints are open. Set GABRIEL_API_KEY in ~/.zshrc for production.",
+          "[2026-04-12T07:52:50.589Z] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+          "[2026-04-12T07:52:50.592Z] SPEAK: GABRIEL online. GORUNFREE....",
+          "[2026-04-12T07:52:50.592Z] Morning brief scheduled in 127min",
+          "[2026-04-12T07:53:13.568Z] POST /agent/lucy/ask",
+          "[2026-04-12T07:53:13.639Z] LUCY error: Could not resolve authentication method. Expected either apiKey or authToken to be set. Or for one of the \"X-Api-Key\" or \"Authorization\" headers to be explicitly omitted",
+          "[2026-04-12T07:53:33.020Z] POST /command",
+          "[2026-04-12T07:53:33.021Z] Claude error: Could not resolve authentication method. Expected either apiKey or authToken to be set. Or for one of the \"X-Api-Key\" or \"Authorization\" headers to be explicitly omitted"
         ]
       },
       "noizyvox.log": {
@@ -291,6 +305,6 @@
       "available": "1.1Ti",
       "percentUsed": "1%"
     },
-    "uptime": "20:10  up 2 days,  8:48, 2 users, load averages: 341.48 333.37 408.62"
+    "uptime": "4:09  up 2 days, 16:48, 1 user, load averages: 30.77 28.79 38.31"
   }
 }
