@@ -40,7 +40,7 @@ Desktop.ini
 
 # IDE
 .idea/
-.vscode/
+# .vscode/ is tracked (project-level tasks, settings, extensions)
 *.swp
 *.swo
 *~

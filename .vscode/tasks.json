@@ -102,6 +102,71 @@
       "options": { "cwd": "${workspaceFolder}" },
       "group": "none",
       "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Smoke Test: Full Suite",
+      "type": "shell",
+      "command": "bash smoke_test.sh",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "GABRIEL: Start Daemon (9777)",
+      "type": "shell",
+      "command": "GABRIEL_PORT=9777 N8N_API_KEY=${N8N_API_KEY} node GABRIEL/daemon/gabriel-daemon.js",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "build",
+      "isBackground": true,
+      "presentation": { "reveal": "always", "panel": "dedicated", "group": "servers" },
+      "problemMatcher": []
+    },
+    {
+      "label": "n8n: Start (API enabled)",
+      "type": "shell",
+      "command": "N8N_PUBLIC_API_ENABLED=true PATH=\"$HOME/.npm-global/bin:$PATH\" n8n start",
+      "group": "build",
+      "isBackground": true,
+      "presentation": { "reveal": "always", "panel": "dedicated", "group": "servers" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Heaven: Deploy",
+      "type": "shell",
+      "command": "npx wrangler deploy --env=\"\"",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Heaven: Tail Logs",
+      "type": "shell",
+      "command": "npx wrangler tail heaven --format pretty",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "none",
+      "isBackground": true,
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Recovery: Full Pipeline",
+      "type": "shell",
+      "command": "make operate",
+      "options": { "cwd": "${workspaceFolder}/infra/recovery" },
+      "group": "none",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Tunnel: Install (requires cloudflared login)",
+      "type": "shell",
+      "command": "bash infra/tunnel/install-tunnel.sh",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "none",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
     }
   ]
 }
