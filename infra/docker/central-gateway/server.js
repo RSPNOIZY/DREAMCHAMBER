@@ -5,6 +5,8 @@
  */
 
 const http = require("node:http");
+const os = require("node:os");
+const { execSync } = require("node:child_process");
 const { dashboardHTML } = require("./dashboard.js");
 
 const PORT = parseInt(process.env.PORT || "9696", 10);
@@ -37,7 +39,41 @@ async function fetchJson(url, opts = {}) {
   }
 }
 
-// ── Health — aggregate all agents ────────────────────────────────────────────
+// ── System telemetry ────────────────────────────────────────────────────────
+
+function getSystemInfo() {
+  const cpus = os.cpus();
+  const totalMem = os.totalmem();
+  const freeMem = os.freemem();
+
+  // Disk free (macOS df)
+  let diskFreeGB = 0;
+  try {
+    const df = execSync("df -g / 2>/dev/null | tail -1", { encoding: "utf8" });
+    diskFreeGB = parseInt(df.trim().split(/\s+/)[3]) || 0;
+  } catch {}
+
+  // Logic Pro running?
+  let logicRunning = false;
+  try {
+    execSync("pgrep -f 'Logic Pro'", { encoding: "utf8" });
+    logicRunning = true;
+  } catch {}
+
+  return {
+    cpu_count: cpus.length,
+    cpu_model: cpus[0]?.model || "unknown",
+    memory_total_gb: Math.round(totalMem / 1073741824),
+    memory_free_gb: Math.round(freeMem / 1073741824),
+    memory_used_pct: Math.round(((totalMem - freeMem) / totalMem) * 100),
+    disk_free_gb: diskFreeGB,
+    logic_pro: logicRunning,
+    uptime_hours: Math.round(os.uptime() / 3600),
+    hostname: os.hostname(),
+  };
+}
+
+// ── Health — aggregate all agents + system ──────────────────────────────────
 
 async function handleHealth(res) {
   const checks = await Promise.all(
@@ -57,6 +93,7 @@ async function handleHealth(res) {
     status: allHealthy ? "healthy" : "degraded",
     service: "central-gateway",
     timestamp: new Date().toISOString(),
+    system: getSystemInfo(),
     agents: checks,
   });
 }

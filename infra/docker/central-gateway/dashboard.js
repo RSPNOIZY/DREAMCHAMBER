@@ -249,8 +249,10 @@ module.exports.dashboardHTML = `<!DOCTYPE html>
 <div class="sys-grid" id="sysGrid">
   <div class="sys-card"><div class="label">LOGIC PRO</div><div class="value" id="sysLogic">--</div></div>
   <div class="sys-card"><div class="label">DISK FREE</div><div class="value" id="sysDisk">--</div></div>
+  <div class="sys-card"><div class="label">MEMORY</div><div class="value" id="sysMem">--</div></div>
   <div class="sys-card"><div class="label">HEAVEN</div><div class="value" id="sysHeaven">--</div></div>
   <div class="sys-card"><div class="label">MESH</div><div class="value" id="sysMesh">--</div></div>
+  <div class="sys-card"><div class="label">UPTIME</div><div class="value" id="sysUptime">--</div></div>
 </div>
 
 <div class="section-title">LAST COMMAND</div>
@@ -312,6 +314,9 @@ function renderHealth(data) {
   $('sysMesh').textContent = healthyCount + '/' + data.agents.length;
   $('sysMesh').className = 'value ' + (healthyCount === data.agents.length ? 'green' : 'red');
 
+  // System telemetry from GOD
+  renderSystem(data.system);
+
   const grid = $('agentGrid');
   grid.innerHTML = data.agents.map(a => {
     const up = a.detail && a.detail.uptime ? fmtUptime(a.detail.uptime) : '--';
@@ -341,11 +346,23 @@ async function checkHeaven() {
   }
 }
 
-async function checkSystem() {
-  // Logic Pro detection and disk space would come from studio_health endpoint
-  // For now, show mesh status
-  $('sysLogic').textContent = '--';
-  $('sysDisk').textContent = '--';
+function renderSystem(sys) {
+  if (!sys) return;
+
+  // Logic Pro
+  $('sysLogic').textContent = sys.logic_pro ? 'OPEN' : 'OFF';
+  $('sysLogic').className = 'value ' + (sys.logic_pro ? 'green' : '');
+
+  // Disk
+  $('sysDisk').textContent = sys.disk_free_gb + 'GB';
+  $('sysDisk').className = 'value ' + (sys.disk_free_gb > 50 ? 'green' : 'red');
+
+  // Memory
+  $('sysMem').textContent = sys.memory_used_pct + '%';
+  $('sysMem').className = 'value ' + (sys.memory_used_pct < 85 ? 'green' : 'red');
+
+  // Uptime
+  $('sysUptime').textContent = sys.uptime_hours + 'h';
 }
 
 async function sendPing() {
@@ -377,7 +394,6 @@ function refresh() {
   toast('Refreshing...');
   fetchHealth();
   checkHeaven();
-  checkSystem();
 }
 
 async function emergencyStop() {
@@ -407,7 +423,6 @@ async function emergencyStop() {
 // ── Init ─────────────────────────────────────────
 fetchHealth();
 checkHeaven();
-checkSystem();
 setInterval(fetchHealth, POLL_MS);
 setInterval(checkHeaven, 30000);
 </script>
