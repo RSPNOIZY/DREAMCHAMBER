@@ -27,10 +27,11 @@ database_id = "a31d68e2-f2d4-4203-a803-8039fdff31cb"
 # SETUP: Enable R2 in CF Dashboard → create bucket → update bucket_name
 # Zero egress fees — critical for serving audio at scale
 # Contains: voice prints, spectral data, synthesis outputs, C2PA manifests
-[[r2_buckets]]
-binding = "VOICE_VAULT"
-bucket_name = "noizy-voice-vault"
-# preview_bucket_name = "noizy-voice-vault-preview"  # Uncomment after creation
+# ── R2 Object Storage (Voice Vault) — ENABLE R2 IN DASHBOARD FIRST ────────
+# [[r2_buckets]]
+# binding = "VOICE_VAULT"
+# bucket_name = "noizy-voice-vault"
+# preview_bucket_name = "noizy-voice-vault-preview"
 
 # ── KV Namespaces ──────────────────────────────────────────────────────────
 [[kv_namespaces]]
@@ -48,7 +49,7 @@ id = "16532a32b2e8455486cc966403f3442e"
 # Then update the ID below
 [[kv_namespaces]]
 binding = "FEATURE_FLAGS"
-id = "FEATURE_FLAGS_PLACEHOLDER"  # SETUP: wrangler login → create → update ID
+id = "88331123208c460eb26cb703d5a38c50"
 
 # ── Gap Solver KV (GORUNFREE Absence Intelligence) ────────────────────────
 # KV = fast hypothesis layer. D1 = durable truth. KV writes free, D1 writes earn.
@@ -57,7 +58,7 @@ id = "FEATURE_FLAGS_PLACEHOLDER"  # SETUP: wrangler login → create → update 
 # Then update the ID below
 [[kv_namespaces]]
 binding = "GAP_SOLVER"
-id = "GAP_SOLVER_PLACEHOLDER"  # SETUP: wrangler login → create → update ID
+id = "4941fb7967d14406bad7a252cd3d0a1e"
 
 # ── Environment Variables ──────────────────────────────────────────────────
 [vars]
@@ -66,6 +67,7 @@ NOIZY_VERSION = "18.0.0"
 FOUNDING_ACTOR_FLOOR = "85"
 STANDARD_ACTOR_FLOOR = "75"
 VOICE_VAULT_BUCKET = "noizy-voice-vault"
+MESH_ORIGIN = "http://127.0.0.1:9696"
 
 # ── Observability ──────────────────────────────────────────────────────────
 [observability]

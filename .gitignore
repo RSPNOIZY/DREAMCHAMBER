@@ -125,3 +125,27 @@ ops/.env.integrations
 .docker/
 *.mdb
 **/.build/
+
+# Recovery keys (NEVER COMMIT)
+.noizy/
+recovery-keys/
+
+# Cloudflare tunnel credentials
+.cloudflared/*.json
+.cloudflared/cert.pem
+
+# Audio recordings (binary, large)
+*.wav
+*.aiff
+*.flac
+*.mp3
+*.m4a
+!**/*.wav.example
+
+# Swift build artifacts
+DerivedData/
+*.xcuserstate
+*.xcuserdatad/
+
+# Recovery output (generated, machine-specific)
+Recovered/

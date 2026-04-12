@@ -300,7 +300,7 @@ export default {
       // ── Dispatch — forward to central-gateway mesh on GOD ──────────────────
       if (path === "/api/dispatch" && method === "POST") {
         const body = await request.json();
-        const { actor, device, intent, target, context: ctx } = body;
+        const { actor, device, intent, target } = body;
         if (!actor || !target || !intent) {
           return err("actor, target, and intent required");
         }

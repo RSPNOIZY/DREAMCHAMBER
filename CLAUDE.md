@@ -57,64 +57,88 @@ This is the NOIZY Empire. Two years of deep work. Treat it with that weight.
 
 ## WHAT'S LIVE NOW
 
-| System | Status | Location |
-|--------|--------|----------|
-| **Heaven v17.2.0** — Consent Kernel API | LIVE | `heaven.rsp-5f3.workers.dev` — 40 endpoints, myFamily + healing routes added |
-| **noizy.ai Landing** | LIVE | `noizy-landing.rsp-5f3.workers.dev` — 396 Hz universe, platinum wordmark |
-| **DreamChamber** — Multi-Model AI Command Center | LOCAL | Port 7777 — 11 providers, all streaming |
-| **Voice Bridge** — Phone → GOD.local | LOCAL | Port 8080 — Siri/Google → Power Automate → commands |
-| **DreamChamber Audio MCP** — Multi-AI voice mixing | BUILT | `dreamchamber-audio-mcp/` — 13 FastMCP tools |
-| **9 MCP Servers** | LIVE | `mcp/` — gabriel, lucy, heaven, engr-keith, dream, cb01, shirley, family, audio |
-| **10 Subagent Definitions** | LIVE | `.claude/agents/` — orchestrator + 9 specialists |
-| **21 Custom Skills** | LIVE | `.claude/skills/` — 11,909 lines across all domains |
-| **6 Prompt Templates** | LIVE | `.claude/prompts/` — deploy, onboard, status, endpoint, security, godaddy-exit |
+| System                                               | Status   | Location                                                                                  |
+| ---------------------------------------------------- | -------- | ----------------------------------------------------------------------------------------- |
+| **Heaven v18.0.0** — Consent Kernel API              | LIVE     | `heaven.rsp-5f3.workers.dev` — 43 endpoints, 19 D1 tables, 9 Never Clauses, auth enforced |
+| **GABRIEL Daemon v2.1** — Orchestration Intelligence | LIVE     | Port 9777 — voice pipeline, LUCY, n8n bridge, estate system, WebSocket                    |
+| **DreamChamber** — Multi-Model AI Command Center     | LOCAL    | Port 7777 — 11 providers, all streaming                                                   |
+| **LUCY iPad** — Archives + AQUARIUM                  | BUILT    | PWA at /lucy on GABRIEL, native SwiftUI app at `GABRIEL/ios/LUCY/`                        |
+| **NOIZYBEAST v4.0** — VS Code Extension              | COMPILED | 26 commands, voice trigger, GABRIEL send, Command Center                                  |
+| **n8n + MCP Bridge** — Agentic Factory               | LIVE     | Port 5678 + 24 MCP tools loaded in Claude Code                                            |
+| **noizy.ai Landing**                                 | LIVE     | `noizy-landing.rsp-5f3.workers.dev` — 396 Hz universe, platinum wordmark                  |
+| **Voice Pipeline** — mlx_whisper + Claude Towers     | LIVE     | Port 9777 — mic → Whisper → Claude (max/code/work) → TTS                                  |
+| **Recovery Spine** — Forensic-grade                  | FROZEN   | 12 scripts, 8-gate Makefile, Ed25519 sealing, 22/22 smoke tests                           |
+| **9 MCP Servers**                                    | LIVE     | `mcp/` — gabriel, lucy, heaven, engr-keith, dream, cb01, shirley, family, audio           |
+| **10 Subagent Definitions**                          | LIVE     | `.claude/agents/` — orchestrator + 9 specialists                                          |
+| **21 Custom Skills**                                 | LIVE     | `.claude/skills/` — 11,909 lines across all domains                                       |
+| **6 Prompt Templates**                               | LIVE     | `.claude/prompts/` — deploy, onboard, status, endpoint, security, godaddy-exit            |
 
 ## INFRASTRUCTURE IDs (AUTHORITATIVE — verified 2026-04-07)
 
 ```
 Account:         rsp@noizy.ai — 5f36aa9795348ea681d0b21910dfc82a ← CANONICAL
 Worker:          heaven @ heaven.rsp-5f3.workers.dev
-Version:         17.9.0 (ID: 5544ec8a-afa2-4b56-83ac-3b46d5529933)
+Version:         18.0.0 (ID: cf26faec-0719-4af7-86dc-f63942be0f24)
 Landing:         noizy-landing @ noizy-landing.rsp-5f3.workers.dev
-D1 Database:     gabriel_db — a31d68e2-f2d4-4203-a803-8039fdff31cb ← AUTHORITATIVE
+D1 Database:     gabriel_db — a31d68e2-f2d4-4203-a803-8039fdff31cb ← AUTHORITATIVE (19 tables)
 GABRIEL_KV:      f205b56a9914413da0ec454a9dc4c2bd
 GABRIEL_VOICE:   16532a32b2e8455486cc966403f3442e
-NOIZY_API_KEY:   in .env (NEVER COMMIT) — set via: npx wrangler secret put NOIZY_API_KEY
+NOIZY_API_KEY:   in .env (NEVER COMMIT) — set via: npx wrangler secret put NOIZY_API_KEY ← SET
+GABRIEL_PORT:    9777 (DreamChamber UI on 7777, GABRIEL daemon on 9777)
+N8N_PORT:        5678 (API enabled, MCP bridge active)
+OLLAMA_PORT:     11434
 PORTALS:         NOIZYVOX · NOIZYFISH · NOIZYKIDZ · NOIZYLAB · WISDOM · myFAMILY
-DEADLINE:        April 17, 2026 — 10 days
+DEADLINE:        April 17, 2026 — 5 days
+SMOKE TESTS:     22/22 passing — bash smoke_test.sh
 ```
 
 ## QUICK COMMANDS
 
 ```bash
-npx wrangler deploy                                     # Deploy Heaven (from NOIZYLAB/)
-npx wrangler secret put NOIZY_API_KEY                   # Lock auth — DO THIS
-npx wrangler secret put ANTHROPIC_API_KEY               # Enable Claude in Heaven
-npx wrangler d1 execute gabriel_db --remote --file seed.sql  # Seed DB
-bash smoke_test.sh                                      # 14 smoke tests
-cd dreamchamber && npm start                            # DreamChamber (7777)
-node voice-bridge-server.js                             # Voice Bridge (8080)
-cd noizy-landing && npx wrangler deploy                 # Deploy noizy.ai landing
+# ── Deploy ──
+npx wrangler deploy --env=""                            # Deploy Heaven v18
+npx wrangler d1 execute gabriel_db --remote --file src/schema.sql  # Push schema
+npx wrangler d1 execute gabriel_db --remote --file ops/migrations/001_audit_events.sql  # Audit tables
+
+# ── Verify ──
+bash smoke_test.sh                                      # 22/22 smoke tests (auto-sources .env)
 curl https://heaven.rsp-5f3.workers.dev/health         # Health check
 curl https://heaven.rsp-5f3.workers.dev/gabriel        # Full empire status + countdown
+
+# ── Local Services ──
+GABRIEL_PORT=9777 node GABRIEL/daemon/gabriel-daemon.js # GABRIEL daemon (9777)
+N8N_PUBLIC_API_ENABLED=true n8n start                   # n8n (5678)
+cd noizy-landing && npx wrangler deploy                 # Deploy noizy.ai landing
+
+# ── Secrets ──
+npx wrangler secret put NOIZY_API_KEY                   # Lock auth (in .env)
+npx wrangler secret put ANTHROPIC_API_KEY               # Enable Claude in Heaven
+
+# ── Recovery ──
+cd infra/recovery && make                               # Scan (default)
+cd infra/recovery && make operate                       # Full 8-gate pipeline
+cd infra/recovery && make seal-only                     # Sign manifests (Ed25519)
+
+# ── Tunnel (after cloudflared tunnel login) ──
+bash infra/tunnel/install-tunnel.sh                     # Create tunnel + DNS + LaunchAgent
 ```
 
 ## RULES DIRECTORY
 
 All detailed rules live in `.claude/rules/`. Claude loads them automatically.
 
-| File | Scope |
-|------|-------|
-| `identity.md` | Founding actor, mission, philosophy, vision |
-| `consent-kernel.md` | Never Clauses, HVS doctrine, Kill Switch, Covenant |
-| `heaven-api.md` | 55 endpoints, database schema, KV, infrastructure |
-| `dreamchamber.md` | 11 providers, streaming, Contact Sequence, Gabriel |
-| `deployment.md` | Deploy procedures, smoke tests, env vars, GoDaddy exit |
-| `voice-pipeline.md` | Voice bridge, Audio MCP, TTS, TaleSpin, Automator |
-| `coding-standards.md` | Prettier, ESLint, Black, patterns, security rules |
-| `monetization.md` | 75/25 royalties, union tiers, licensing, anti-exploitation |
-| `agents.md` | 10 AI agents, 9 MCP servers, 74 tools, DAZEFLOW, routing |
-| `hooks-and-webhooks.md` | Auto-format hook, session hook, webhook architecture |
+| File                    | Scope                                                      |
+| ----------------------- | ---------------------------------------------------------- |
+| `identity.md`           | Founding actor, mission, philosophy, vision                |
+| `consent-kernel.md`     | Never Clauses, HVS doctrine, Kill Switch, Covenant         |
+| `heaven-api.md`         | 55 endpoints, database schema, KV, infrastructure          |
+| `dreamchamber.md`       | 11 providers, streaming, Contact Sequence, Gabriel         |
+| `deployment.md`         | Deploy procedures, smoke tests, env vars, GoDaddy exit     |
+| `voice-pipeline.md`     | Voice bridge, Audio MCP, TTS, TaleSpin, Automator          |
+| `coding-standards.md`   | Prettier, ESLint, Black, patterns, security rules          |
+| `monetization.md`       | 75/25 royalties, union tiers, licensing, anti-exploitation |
+| `agents.md`             | 10 AI agents, 9 MCP servers, 74 tools, DAZEFLOW, routing   |
+| `hooks-and-webhooks.md` | Auto-format hook, session hook, webhook architecture       |
 
 ## SKILLS DIRECTORY (21 skills, 11,909 lines)
 
@@ -122,69 +146,69 @@ Custom skills in `.claude/skills/`. Invoke by name during operations.
 
 ### Operational Skills (5)
 
-| Skill | Purpose | Lines |
-|-------|---------|-------|
-| `noizy-deploy` | Full deploy procedures for all NOIZY services with safety checks | 139 |
-| `consent-audit` | 9-point Never Clause audit — MANDATORY before consent deploys | 147 |
-| `gabriel-ops` | Agent orchestration, dispatch, routing, mission templates | 167 |
-| `heaven-dev` | API development patterns, endpoint creation, D1/KV patterns | 232 |
-| `empire-status` | Complete infrastructure health check and status report | 181 |
+| Skill           | Purpose                                                          | Lines |
+| --------------- | ---------------------------------------------------------------- | ----- |
+| `noizy-deploy`  | Full deploy procedures for all NOIZY services with safety checks | 139   |
+| `consent-audit` | 9-point Never Clause audit — MANDATORY before consent deploys    | 147   |
+| `gabriel-ops`   | Agent orchestration, dispatch, routing, mission templates        | 167   |
+| `heaven-dev`    | API development patterns, endpoint creation, D1/KV patterns      | 232   |
+| `empire-status` | Complete infrastructure health check and status report           | 181   |
 
 ### DreamChamber Transcendence Skills (4)
 
-| Skill | Purpose | Lines |
-|-------|---------|-------|
-| `dreamchamber-multimodal` | Technical audio infrastructure, 9-agent routing, C2PA integration | 929 |
-| `dreamchamber-agent-personalities` | Nine distinct agent voices with authority, character, protocol | 683 |
-| `dreamchamber-sensory` | Multisensory architecture, 30-min narrative arc, 396 Hz ritual | 221 |
-| `dreamchamber-proof` | Cryptographic permanence, 3-layer watermarking, 100-year verification | 655 |
+| Skill                              | Purpose                                                               | Lines |
+| ---------------------------------- | --------------------------------------------------------------------- | ----- |
+| `dreamchamber-multimodal`          | Technical audio infrastructure, 9-agent routing, C2PA integration     | 929   |
+| `dreamchamber-agent-personalities` | Nine distinct agent voices with authority, character, protocol        | 683   |
+| `dreamchamber-sensory`             | Multisensory architecture, 30-min narrative arc, 396 Hz ritual        | 221   |
+| `dreamchamber-proof`               | Cryptographic permanence, 3-layer watermarking, 100-year verification | 655   |
 
 ### Strategic Skills (5)
 
-| Skill | Purpose | Lines |
-|-------|---------|-------|
-| `universal-protector-strategy` | Complete artist defense: 7 shields, enforcement playbook, alliances | 1,119 |
-| `advanced-cryptography` | C2PA, watermarking, Voice DNA vault, key management, post-quantum | 1,954 |
-| `adversarial-threat-modeling` | 10 threat categories, red team exercises, incident response, monitoring | 1,877 |
-| `adoption-and-scaling` | Growth psychology, onboarding funnel, 5-phase scaling, metrics | 747 |
-| `ten-year-strategic-roadmap` | 2026-2036 vision, financial projections, technology evolution | 290 |
+| Skill                          | Purpose                                                                 | Lines |
+| ------------------------------ | ----------------------------------------------------------------------- | ----- |
+| `universal-protector-strategy` | Complete artist defense: 7 shields, enforcement playbook, alliances     | 1,119 |
+| `advanced-cryptography`        | C2PA, watermarking, Voice DNA vault, key management, post-quantum       | 1,954 |
+| `adversarial-threat-modeling`  | 10 threat categories, red team exercises, incident response, monitoring | 1,877 |
+| `adoption-and-scaling`         | Growth psychology, onboarding funnel, 5-phase scaling, metrics          | 747   |
+| `ten-year-strategic-roadmap`   | 2026-2036 vision, financial projections, technology evolution           | 290   |
 
 ### Golden Constitutional Skills (5)
 
-| Skill | Purpose | Lines |
-|-------|---------|-------|
-| `golden-principles` | 7 immutable principles — the irreducible constitutional foundation | 186 |
-| `golden-rules-consent` | 7 rules: how consent becomes enforced technical reality | 580 |
-| `golden-rules-governance` | 8 rules: Guild of Artists democratic governance | 533 |
-| `golden-rules-agents` | 8 rules: Claude, GABRIEL, LUCY, SHIRL coordination | 476 |
-| `golden-skills-synthesis` | 4 integrated scenarios: how all elements work together | 398 |
+| Skill                     | Purpose                                                            | Lines |
+| ------------------------- | ------------------------------------------------------------------ | ----- |
+| `golden-principles`       | 7 immutable principles — the irreducible constitutional foundation | 186   |
+| `golden-rules-consent`    | 7 rules: how consent becomes enforced technical reality            | 580   |
+| `golden-rules-governance` | 8 rules: Guild of Artists democratic governance                    | 533   |
+| `golden-rules-agents`     | 8 rules: Claude, GABRIEL, LUCY, SHIRL coordination                 | 476   |
+| `golden-skills-synthesis` | 4 integrated scenarios: how all elements work together             | 398   |
 
 ### Infrastructure & Timeline Skills (2)
 
-| Skill | Purpose | Lines |
-|-------|---------|-------|
-| `deployment-critical-path` | Binding March 25 → April 17 timeline with daily milestones | 127 |
-| `godaddy-migration` | Complete GoDaddy → Cloudflare domain transfer + email routing | 268 |
+| Skill                      | Purpose                                                       | Lines |
+| -------------------------- | ------------------------------------------------------------- | ----- |
+| `deployment-critical-path` | Binding March 25 → April 17 timeline with daily milestones    | 127   |
+| `godaddy-migration`        | Complete GoDaddy → Cloudflare domain transfer + email routing | 268   |
 
 ## PROMPTS DIRECTORY
 
 Operational prompt templates in `.claude/prompts/`.
 
-| Prompt | Purpose |
-|--------|---------|
-| `deploy-heaven.md` | Step-by-step Heaven deploy with all safety gates |
-| `onboard-actor.md` | Register new human actor with Never Clause protections |
-| `morning-status.md` | Daily empire status check sequence |
-| `new-endpoint.md` | Create new Heaven API endpoint following all patterns |
-| `security-audit.md` | Full security audit with 9-point checklist |
-| `godaddy-exit.md` | GoDaddy migration plan — Step 0 is BLOCKING |
+| Prompt              | Purpose                                                |
+| ------------------- | ------------------------------------------------------ |
+| `deploy-heaven.md`  | Step-by-step Heaven deploy with all safety gates       |
+| `onboard-actor.md`  | Register new human actor with Never Clause protections |
+| `morning-status.md` | Daily empire status check sequence                     |
+| `new-endpoint.md`   | Create new Heaven API endpoint following all patterns  |
+| `security-audit.md` | Full security audit with 9-point checklist             |
+| `godaddy-exit.md`   | GoDaddy migration plan — Step 0 is BLOCKING            |
 
 ## HOOKS (AUTO-FIRE)
 
-| Hook | Event | Action |
-|------|-------|--------|
+| Hook                 | Event                    | Action                                         |
+| -------------------- | ------------------------ | ---------------------------------------------- |
 | `format-and-lint.sh` | PostToolUse (Edit/Write) | Prettier + ESLint + Black on every file change |
-| `session-start.sh` | SessionStart | Env check, audit log, node_modules verify |
+| `session-start.sh`   | SessionStart             | Env check, audit log, node_modules verify      |
 
 Configured in `.claude/settings.json`. No manual step. Every session. Every edit.
 
@@ -201,6 +225,7 @@ Configured in `.claude/settings.json`. No manual step. Every session. Every edit
 ## ACTIVE ROADMAP
 
 ### COMPLETED
+
 - [x] Contact Sequence animation (Three.js, 396 Hz)
 - [x] Streaming on all 7 providers
 - [x] C2PA content credentials on synth requests
@@ -228,6 +253,7 @@ Configured in `.claude/settings.json`. No manual step. Every session. Every edit
 - [x] **21-skill empire** — 11,909 lines of operational intelligence across all domains
 
 ### CRITICAL PATH → APRIL 17, 2026
+
 - [ ] **BLOCK 0**: GoDaddy exit — Change CF login to rsplowman@icloud.com → Transfer 4 domains → Email routing → Close GoDaddy
 - [ ] **BLOCK 1**: Deploy Heaven with real consent kernel (replace stub)
 - [ ] **BLOCK 2**: Enable Cloudflare R2 for voice storage
@@ -242,26 +268,26 @@ Configured in `.claude/settings.json`. No manual step. Every session. Every edit
 
 ## DECODER
 
-| Term | Meaning |
-|------|---------|
-| HVS | Human Voice Symphony — consent sovereignty system |
-| RSP_001 | Robert Stephen Plowman, Founding Actor |
-| GABRIEL | AI orchestration layer — the mind of the empire |
-| HEAVEN | Cloudflare Worker — HVS consent kernel API |
-| Never Clauses | Immovable prohibitions — burned into law |
-| Kill Switch | Instant revocation of any consent token |
-| Descendant | Synthetic voice model derived from a real human actor |
-| GOD.local | M2 Ultra Mac Studio — the processing core |
-| 396 Hz | RSP's personal frequency — liberation |
-| C2PA | Content Credentials — cryptographic provenance |
-| OAIS/PREMIS | Archival preservation metadata (100-year estate) |
-| SHIRLEY | Gemma 3 27B — Code & File Manager |
-| DAZEFLOW | Lucy's daily session tracking law |
-| Golden Principles | 7 immutable constitutional foundations — the irreducible core |
-| Guild of Artists | Democratic governance body — creators govern NOIZY |
-| Covenant | Pre-synthesis consent validator — blocks unauthorized synthesis |
-| Voice DNA | Encrypted spectral fingerprint of an enrolled human voice |
+| Term              | Meaning                                                         |
+| ----------------- | --------------------------------------------------------------- |
+| HVS               | Human Voice Symphony — consent sovereignty system               |
+| RSP_001           | Robert Stephen Plowman, Founding Actor                          |
+| GABRIEL           | AI orchestration layer — the mind of the empire                 |
+| HEAVEN            | Cloudflare Worker — HVS consent kernel API                      |
+| Never Clauses     | Immovable prohibitions — burned into law                        |
+| Kill Switch       | Instant revocation of any consent token                         |
+| Descendant        | Synthetic voice model derived from a real human actor           |
+| GOD.local         | M2 Ultra Mac Studio — the processing core                       |
+| 396 Hz            | RSP's personal frequency — liberation                           |
+| C2PA              | Content Credentials — cryptographic provenance                  |
+| OAIS/PREMIS       | Archival preservation metadata (100-year estate)                |
+| SHIRLEY           | Gemma 3 27B — Code & File Manager                               |
+| DAZEFLOW          | Lucy's daily session tracking law                               |
+| Golden Principles | 7 immutable constitutional foundations — the irreducible core   |
+| Guild of Artists  | Democratic governance body — creators govern NOIZY              |
+| Covenant          | Pre-synthesis consent validator — blocks unauthorized synthesis |
+| Voice DNA         | Encrypted spectral fingerprint of an enrolled human voice       |
 
 ---
 
-*"We are the new punk rockers: capitalist free thinkers who believe in peace, love, and understanding."*
+_"We are the new punk rockers: capitalist free thinkers who believe in peace, love, and understanding."_

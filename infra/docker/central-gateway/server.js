@@ -5,6 +5,7 @@
  */
 
 const http = require("node:http");
+const { dashboardHTML } = require("./dashboard.js");
 
 const PORT = parseInt(process.env.PORT || "9696", 10);
 
@@ -127,6 +128,14 @@ const server = http.createServer(async (req, res) => {
   const path = url.pathname;
 
   try {
+    if (path === "/dashboard" && req.method === "GET") {
+      res.writeHead(200, {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "no-store",
+      });
+      return res.end(dashboardHTML);
+    }
+
     if (path === "/health" && req.method === "GET") {
       return await handleHealth(res);
     }
