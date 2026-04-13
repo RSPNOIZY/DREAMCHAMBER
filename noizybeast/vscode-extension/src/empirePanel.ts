@@ -122,8 +122,8 @@ h2{color:#f59e0b;font-size:16px;margin-bottom:4px}
 <div class="card">
   <div class="card-title">⚙ Environment</div>
   <div class="env-list">
-    <div class="env-row"><span class="env-key">CF_ACCOUNT</span><span class="env-val">5ba03939f87a498d0bbed185ee123946</span></div>
-    <div class="env-row"><span class="env-key">HEAVEN</span><span class="env-val">heaven.noizylab.workers.dev (v17.2.0)</span></div>
+    <div class="env-row"><span class="env-key">CF_ACCOUNT</span><span class="env-val">5f36aa9795348ea681d0b21910dfc82a</span></div>
+    <div class="env-row"><span class="env-key">HEAVEN</span><span class="env-val">heaven.rsp-5f3.workers.dev (v17.2.0)</span></div>
     <div class="env-row"><span class="env-key">GABRIEL_LOCAL</span><span class="env-val">localhost:7777</span></div>
     <div class="env-row"><span class="env-key">D1_DB</span><span class="env-val">gabriel_db / fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa</span></div>
     <div class="env-row"><span class="env-key">OPERATOR</span><span class="env-val">RSP_001 — Robert Stephen Plowman</span></div>
@@ -156,11 +156,11 @@ check('8080',  'http://localhost:8080/health','');
 check('11434', 'http://localhost:11434/api/tags','');
 check('7778',  'http://localhost:7778/health','');
 // Edge — Heaven on Cloudflare
-check('heaven','https://heaven.noizylab.workers.dev/health','');
+check('heaven','https://heaven.rsp-5f3.workers.dev/health','');
 setInterval(()=>{
   check('7777',   'http://localhost:7777/health','');
   check('8080',   'http://localhost:8080/health','');
-  check('heaven', 'https://heaven.noizylab.workers.dev/health','');
+  check('heaven', 'https://heaven.rsp-5f3.workers.dev/health','');
 }, 30000);
 </script>
 </body></html>`;

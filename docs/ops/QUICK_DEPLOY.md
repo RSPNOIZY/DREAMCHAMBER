@@ -26,10 +26,10 @@ bash smoke_test.sh
 
 ```bash
 # Health check
-curl https://heaven.rsplowman.workers.dev/health | jq .
+curl https://heaven.rsp-5f3.workers.dev/health | jq .
 
 # Create actor
-curl -X POST https://heaven.rsplowman.workers.dev/api/v1/actors \
+curl -X POST https://heaven.rsp-5f3.workers.dev/api/v1/actors \
   -H "Content-Type: application/json" \
   -d '{"actor_id":"RSP_001","display_name":"Rob","is_founding":true}' | jq .
 ```

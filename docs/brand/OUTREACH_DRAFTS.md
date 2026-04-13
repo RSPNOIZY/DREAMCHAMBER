@@ -77,7 +77,7 @@ that makes those licenses technically real — not just contractual.
 
 Here's what we have live today:
 
-  NOIZYVOX / HEAVEN (heaven.noizylab.workers.dev):
+  NOIZYVOX / HEAVEN (heaven.rsp-5f3.workers.dev):
   - NCP v1.0: machine-readable consent tokens with scope, territory, expiry,
     revocation trigger (1-hour SLA enforcement)
   - Never Clauses: 9 hardcoded prohibitions that cannot be bypassed by anyone

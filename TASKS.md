@@ -69,6 +69,6 @@
 ## NOTES
 
 - gabriel_db ID: f75939d5-5747-4a9c-8ac2-7710201fda09
-- HEAVEN Worker URL (post-deploy): https://heaven.rsplowman.workers.dev
+- HEAVEN Worker URL (post-deploy): https://heaven.rsp-5f3.workers.dev
 - All ledger writes are immutable (triggers prevent UPDATE/DELETE)
 - RSP_001 Never Clauses apply to ALL descendants globally

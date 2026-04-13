@@ -230,7 +230,7 @@ python3 watermark-detect.py input.mp3 --output report.json
 Every synthesis request generates a C2PA credential automatically:
 
 ```
-POST https://heaven.noizylab.workers.dev/api/v1/synthesis
+POST https://heaven.rsp-5f3.workers.dev/api/v1/synthesis
 X-NOIZY-Key: [API key]
 Content-Type: application/json
 
@@ -264,7 +264,7 @@ RESPONSE:
 ### C2PA Retrieval: GET /api/v1/synth-requests/:id/c2pa
 
 ```
-GET https://heaven.noizylab.workers.dev/api/v1/synth-requests/SYN-2026-03-25-001/c2pa
+GET https://heaven.rsp-5f3.workers.dev/api/v1/synth-requests/SYN-2026-03-25-001/c2pa
 X-NOIZY-Key: [API key]
 
 RESPONSE:
@@ -728,7 +728,7 @@ ls -lh /Volumes/GOD/audio-archives/2026/03/25/
 │    └── Ledger Anchor (keccak256 hash chain)                     │
 │         │                                                        │
 │         ▼                                                        │
-│    Heaven (heaven.noizylab.workers.dev)                     │
+│    Heaven (heaven.rsp-5f3.workers.dev)                     │
 │    ├── D1: hvs_c2pa_manifests                                   │
 │    ├── D1: noizy_ledger                                         │
 │    ├── KV: GABRIEL_KV (cache)                                   │

@@ -3,7 +3,6 @@ description: Heaven Cloudflare Worker API — endpoints, database schema, KV nam
 paths:
   - "src/index.js"
   - "src/dashboard.js"
-  - "src/covenant.js"
   - "wrangler.toml"
   - "schema.sql"
   - "seed.sql"
@@ -13,16 +12,16 @@ paths:
 
 ## Live Infrastructure
 
-- **URL**: `https://heaven.noizylab.workers.dev`
+- **URL**: `https://heaven.rsp-5f3.workers.dev`
 - **Auth**: `X-NOIZY-Key` header (except /health, /dashboard, /)
-- **Source**: `src/index.js` (1,571 lines) + `src/dashboard.js` + `src/covenant.js`
-- **Version**: v3.5.0 — 55 authenticated REST endpoints
+- **Source**: `src/index.js` + `src/dashboard.js`
+- **Version**: v18.0.0 — 55 authenticated REST endpoints
 - **Deploy**: `npx wrangler deploy` from project root
 
 ## Infrastructure IDs (AUTHORITATIVE — updated 2026-03-30)
 
 ```
-Worker:        heaven @ heaven.noizylab.workers.dev
+Worker:        heaven @ heaven.rsp-5f3.workers.dev
 D1 Database:   gabriel_db — a31d68e2-f2d4-4203-a803-8039fdff31cb  ← LIVE
                ⚠️ f75939d5 = DEAD. Never use.
 GABRIEL_KV:    f205b56a9914413da0ec454a9dc4c2bd
@@ -82,7 +81,7 @@ Cache invalidation fires on all write operations.
 
 | Binding | ID | Purpose |
 |---------|-----|---------|
-| GABRIEL_KV | 68710a32a1814ce7994a5be532f871cc | Rate limiting + cache |
-| GABRIEL_VOICE | 28f2fdce465243759e7f5df6468c8228 | Voice asset storage |
+| GABRIEL_KV | f205b56a9914413da0ec454a9dc4c2bd | Rate limiting + cache |
+| GABRIEL_VOICE | 16532a32b2e8455486cc966403f3442e | Voice asset storage |
 
-Note: KV IDs in wrangler.toml may use different bindings. The IDs above are the Cloudflare account-level namespace IDs verified via API.
+Note: KV IDs match wrangler.toml bindings. Verified 2026-04-13.

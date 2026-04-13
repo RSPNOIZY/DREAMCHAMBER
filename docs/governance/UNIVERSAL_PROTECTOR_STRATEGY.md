@@ -162,7 +162,7 @@ async function validateSynthesis(req, env) {
 }
 ```
 
-**Verification**: Test with `curl https://heaven.noizylab.workers.dev/synthesis/validate -d '{"actor_id":"RSP_001","licensee_id":"evil.ai","use_case":"commercial_ads"}'` → must return `blocked: true`.
+**Verification**: Test with `curl https://heaven.rsp-5f3.workers.dev/synthesis/validate -d '{"actor_id":"RSP_001","licensee_id":"evil.ai","use_case":"commercial_ads"}'` → must return `blocked: true`.
 
 ---
 
@@ -289,7 +289,7 @@ Every synthesis output includes C2PA credentials proving:
         "never_clauses_checked": true,
         "covenant_signature": "sha256_hash_of_signed_covenant",
         "c2pa_signature": "rsa_2048_signature_over_manifest",
-        "verification_url": "https://heaven.noizylab.workers.dev/verify/c2pa/manifest_id"
+        "verification_url": "https://heaven.rsp-5f3.workers.dev/verify/c2pa/manifest_id"
     }
 }
 ```
@@ -761,7 +761,7 @@ Robert Stephen Plowman (RSP_001)
 rsp@noizyfish.com
 +1-XXX-XXX-XXXX
 NOIZY Labs
-heaven.noizylab.workers.dev
+heaven.rsp-5f3.workers.dev
 
 Signature: [Digital signature with timestamp]
 Date: [ISO date]

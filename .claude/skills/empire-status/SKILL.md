@@ -21,23 +21,23 @@ Run these checks in order. Report results as a structured status table.
 
 ```bash
 # Health check
-curl -s https://heaven.noizylab.workers.dev/health | jq .
+curl -s https://heaven.rsp-5f3.workers.dev/health | jq .
 
 # Endpoint count verification
 curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" \
-  https://heaven.noizylab.workers.dev/api/v1/stats | jq .
+  https://heaven.rsp-5f3.workers.dev/api/v1/stats | jq .
 
 # Never Clauses (must be 9 active)
 curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" \
-  https://heaven.noizylab.workers.dev/api/v1/never-clauses | jq '.data | length'
+  https://heaven.rsp-5f3.workers.dev/api/v1/never-clauses | jq '.data | length'
 
 # Actors (RSP_001 must exist)
 curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" \
-  https://heaven.noizylab.workers.dev/api/v1/actors | jq '.data[0].actor_id'
+  https://heaven.rsp-5f3.workers.dev/api/v1/actors | jq '.data[0].actor_id'
 
 # KPI Dashboard
 curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" \
-  https://heaven.noizylab.workers.dev/api/v1/kpi/trust | jq .
+  https://heaven.rsp-5f3.workers.dev/api/v1/kpi/trust | jq .
 ```
 
 ### 2. DreamChamber (Local AI Command Center)
@@ -110,7 +110,7 @@ Machine: GOD.local (M2 Ultra)
 Operator: RSP_001
 
 LIVE SYSTEMS:
-  [UP/DOWN] Heaven        — heaven.noizylab.workers.dev
+  [UP/DOWN] Heaven        — heaven.rsp-5f3.workers.dev
   [UP/DOWN] DreamChamber    — localhost:7777
   [UP/DOWN] Voice Bridge    — localhost:8080
   [UP/DOWN] noizy.ai        — noizy.ai (pending deploy)

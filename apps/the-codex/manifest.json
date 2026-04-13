@@ -17,7 +17,7 @@
     "health":       { "url": "http://localhost:9090",  "role": "monitoring" },
     "n8n":          { "url": "http://localhost:5678",  "role": "automation" },
     "ollama":       { "url": "http://localhost:11434", "role": "local_ai" },
-    "heaven":       { "url": "https://heaven.noizylab.workers.dev", "role": "consent_kernel" }
+    "heaven":       { "url": "https://heaven.rsp-5f3.workers.dev", "role": "consent_kernel" }
   },
   "agents": ["gabriel", "lucy", "pops", "dream", "shirl", "shirley", "cb01", "engr-keith", "voice-specialist", "test-runner"],
   "towers": ["max", "code", "work", "fast", "lucy", "pops", "dream", "shirl", "cb01", "heaven"],

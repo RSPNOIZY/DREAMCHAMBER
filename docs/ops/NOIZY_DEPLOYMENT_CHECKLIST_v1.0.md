@@ -129,7 +129,7 @@ wrangler secret put ANTHROPIC_API_KEY  # if not already set
 wrangler deploy
 
 # Smoke test
-curl https://heaven.noizylab.workers.dev/health
+curl https://heaven.rsp-5f3.workers.dev/health
 # Expected: {"status": "LIVE", ...}
 ```
 
@@ -146,7 +146,7 @@ nano ~/NOIZYLAB/dreamchamber/.env
 # Required vars (verify all present):
 # ANTHROPIC_API_KEY=sk-ant-...
 # NOIZY_API_KEY=...
-# HEAVEN_URL=https://heaven.noizylab.workers.dev
+# HEAVEN_URL=https://heaven.rsp-5f3.workers.dev
 # PORT=7777
 ```
 
@@ -189,7 +189,7 @@ curl -X POST https://noizy-consent-gateway.<subdomain>.workers.dev/consent/check
 ### Test 2: Register Creator + Check
 ```bash
 # Register a test creator in Heaven
-curl -X POST https://heaven.noizylab.workers.dev/api/v1/actors \
+curl -X POST https://heaven.rsp-5f3.workers.dev/api/v1/actors \
   -H "X-NOIZY-Key: $NOIZY_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"name": "Test Creator", "email": "test@noizy.ai", "role": "creator"}'
@@ -220,10 +220,10 @@ curl -X POST http://localhost:7777/api/gabriel/speak \
 
 ### Test 5: Heaven Health
 ```bash
-curl https://heaven.noizylab.workers.dev/health
+curl https://heaven.rsp-5f3.workers.dev/health
 # Expected: {"status": "LIVE", "db": "connected", ...}
 
-curl https://heaven.noizylab.workers.dev/gabriel
+curl https://heaven.rsp-5f3.workers.dev/gabriel
 # Expected: actor counts, consent token counts, never clause counts
 ```
 
@@ -304,7 +304,7 @@ pm2 logs dreamchamber --lines 50
 ```bash
 cd ~/NOIZYLAB
 wrangler deploy  # Redeploy
-curl https://heaven.noizylab.workers.dev/health
+curl https://heaven.rsp-5f3.workers.dev/health
 ```
 
 ### P1: D1 Schema Migration Needed
@@ -327,7 +327,7 @@ After completing all 9 steps, verify:
 
 ```bash
 # Full health check
-curl https://heaven.noizylab.workers.dev/health         # LIVE
+curl https://heaven.rsp-5f3.workers.dev/health         # LIVE
 curl http://localhost:7777/api/gabriel/status              # GABRIEL operational
 curl https://noizy-consent-gateway.*.workers.dev/health   # 200 OK
 

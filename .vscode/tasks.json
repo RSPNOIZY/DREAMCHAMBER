@@ -52,7 +52,7 @@
     {
       "label": "Heaven: Health Check",
       "type": "shell",
-      "command": "curl -s https://heaven.noizylab.workers.dev/health | python3 -m json.tool",
+      "command": "curl -s https://heaven.rsp-5f3.workers.dev/health | python3 -m json.tool",
       "options": { "cwd": "${workspaceFolder}" },
       "group": "test",
       "presentation": { "reveal": "always", "panel": "shared" }

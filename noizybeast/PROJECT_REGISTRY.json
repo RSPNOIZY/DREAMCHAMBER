@@ -12,7 +12,7 @@
       "role": "The Stripe of Creative Rights",
       "status": "BUILDING",
       "priority": 1,
-      "urls": { "live": "https://noizy.ai", "worker": "https://heaven.noizylab.workers.dev" },
+      "urls": { "live": "https://noizy.ai", "worker": "https://heaven.rsp-5f3.workers.dev" },
       "repo": "~/Desktop/HEAVEN",
       "worker": "HEAVEN",
       "cf_account": "5f36aa9795348ea681d0b21910dfc82a",

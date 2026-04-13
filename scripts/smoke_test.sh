@@ -4,7 +4,7 @@ set -euo pipefail
 # HEAVEN Smoke Test Suite v2
 # Validates all core NOIZY HVS Consent Kernel functionality
 
-BASE_URL="${HEAVEN_URL:-https://heaven.noizylab.workers.dev}"
+BASE_URL="${HEAVEN_URL:-https://heaven.rsp-5f3.workers.dev}"
 API_KEY="${NOIZY_API_KEY:-}"
 ACTOR_ID="RSP_001"
 

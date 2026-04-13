@@ -19,7 +19,7 @@ export const CFG = {
   synth:   'http://localhost:7780',
   codex:   'http://localhost:7782',
   ethics:  'http://localhost:7785',
-  cfAcct:  '5ba03939f87a498d0bbed185ee123946',
+  cfAcct:  '5f36aa9795348ea681d0b21910dfc82a',
   noizylab: process.env.NOIZYLAB || `${process.env.HOME}/NOIZYLAB`,
   operator: 'RSP_001',
 };

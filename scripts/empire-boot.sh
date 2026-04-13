@@ -28,7 +28,7 @@ echo ""
 
 # ── 1. HEAVEN STATUS ──────────────────────────────────
 echo -n "  Checking HEAVEN...  "
-HEALTH=$(curl -s --max-time 5 https://heaven.noizylab.workers.dev/health 2>/dev/null)
+HEALTH=$(curl -s --max-time 5 https://heaven.rsp-5f3.workers.dev/health 2>/dev/null)
 if echo "$HEALTH" | grep -q '"LIVE"'; then
     VERSION=$(echo "$HEALTH" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('version','?'))" 2>/dev/null)
     ACTORS=$(echo "$HEALTH" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('actors','?'))" 2>/dev/null)
@@ -98,10 +98,10 @@ fi
 # ── SUMMARY & DASHBOARD ──────────────────────────────────
 echo ""
 echo -e "${BOLD}  EMPIRE ENDPOINTS${RESET}"
-echo "  Landing:    https://heaven.noizylab.workers.dev"
-echo "  Dashboard:  https://heaven.noizylab.workers.dev/dashboard"
-echo "  GABRIEL:    https://heaven.noizylab.workers.dev/gabriel"
-echo "  Stats:      https://heaven.noizylab.workers.dev/api/v1/stats"
+echo "  Landing:    https://heaven.rsp-5f3.workers.dev"
+echo "  Dashboard:  https://heaven.rsp-5f3.workers.dev/dashboard"
+echo "  GABRIEL:    https://heaven.rsp-5f3.workers.dev/gabriel"
+echo "  Stats:      https://heaven.rsp-5f3.workers.dev/api/v1/stats"
 echo "  n8n:        http://localhost:5678"
 echo "  Voice API:  http://localhost:9099"
 echo ""

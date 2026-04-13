@@ -138,7 +138,7 @@ GABRIEL_VOICE_NAME=Daniel              # macOS TTS voice
 GABRIEL_SPEECH_RATE=180                # Words per minute
 
 # Heaven Consent Kernel
-HEAVEN_URL=https://heaven.noizylab.workers.dev
+HEAVEN_URL=https://heaven.rsp-5f3.workers.dev
 NOIZY_API_KEY=noizy-hvs-cabd17a58847543962bfe5a72b4a7798
 
 # Server
@@ -196,7 +196,7 @@ Once DreamChamber is running with an API key:
 ### Need help?
 - Review: `dreamchamber/API_KEYS_SETUP.md`
 - Check logs: DreamChamber terminal output
-- Verify: Heaven kernel online at https://heaven.noizylab.workers.dev/health
+- Verify: Heaven kernel online at https://heaven.rsp-5f3.workers.dev/health
 
 ---
 

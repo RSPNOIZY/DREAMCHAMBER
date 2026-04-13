@@ -9,7 +9,7 @@ Gabriel aggregates status from all agents and systems.
    - Ping GABRIEL/HP Omen (10.90.90.20) if reachable
    - Report machine status
 2. ENGR_KEITH: Heaven health
-   - `curl -s https://heaven.noizylab.workers.dev/health`
+   - `curl -s https://heaven.rsp-5f3.workers.dev/health`
    - Report endpoint count, D1 status, KV status
 3. DreamChamber status
    - `curl -s http://localhost:7777/health`

@@ -80,7 +80,7 @@
       "timestamp": "2026-04-08T14:30:00.000Z",
       "detail": {
         "version": "1.2.3",
-        "worker": "heaven.noizylab.workers.dev",
+        "worker": "heaven.rsp-5f3.workers.dev",
         "ledger_events": 847,
         "deploy_duration_s": 12
       }

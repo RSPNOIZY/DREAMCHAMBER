@@ -378,7 +378,7 @@ Result: System state snapshot saved, agents resume on RSP_001 signal
 
 7. HANDOFF
    ├─ Result reported to RSP_001
-   ├─ Endpoint live on heaven.noizylab.workers.dev
+   ├─ Endpoint live on heaven.rsp-5f3.workers.dev
    ├─ Task marked complete in DAZEFLOW
    └─ System idle, awaiting next dispatch
 ```

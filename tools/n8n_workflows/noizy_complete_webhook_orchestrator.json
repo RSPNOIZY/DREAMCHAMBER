@@ -116,7 +116,7 @@
     },
     {
       "parameters": {
-        "url": "https://heaven.noizylab.workers.dev/webhooks/{{ $json.source }}",
+        "url": "https://heaven.rsp-5f3.workers.dev/webhooks/{{ $json.source }}",
         "sendHeaders": true,
         "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }, { "name": "X-N8N-Source", "value": "noizy-empire-orchestrator" }] },
         "sendBody": true,
@@ -177,7 +177,7 @@
     },
     {
       "parameters": {
-        "url": "https://heaven.noizylab.workers.dev/health",
+        "url": "https://heaven.rsp-5f3.workers.dev/health",
         "options": { "timeout": 8000 }
       },
       "id": "heaven-ping",

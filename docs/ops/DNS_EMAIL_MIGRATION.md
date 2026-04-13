@@ -48,7 +48,7 @@
 │                                                                 │
 │  Public Contact: rsp@noizyfish.com                             │
 │                                                                 │
-│  Workers: heaven.noizylab.workers.dev                        │
+│  Workers: heaven.rsp-5f3.workers.dev                        │
 │     ──> api.noizyfish.com (custom domain)                      │
 │                                                                 │
 │  Team: RSP + Gabriel + Claude + Carolina                       │
@@ -188,7 +188,7 @@ routes = [
 Add a CNAME in Cloudflare DNS:
 | Type | Name | Content | Proxy |
 |------|------|---------|-------|
-| `CNAME` | `api` | `heaven.noizylab.workers.dev` | Proxied (orange cloud) |
+| `CNAME` | `api` | `heaven.rsp-5f3.workers.dev` | Proxied (orange cloud) |
 
 Then redeploy: `npx wrangler deploy`
 

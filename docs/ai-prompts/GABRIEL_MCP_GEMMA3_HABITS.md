@@ -12,7 +12,7 @@
 1. `curl http://localhost:7777/health` — verify DreamChamber alive
 2. `curl http://localhost:8080/health` — verify Voice Bridge alive
 3. `curl http://localhost:11434/api/tags` — verify Ollama/Gemma3 models loaded
-4. `curl https://heaven.noizylab.workers.dev/health` — verify CF kernel
+4. `curl https://heaven.rsp-5f3.workers.dev/health` — verify CF kernel
 5. GABRIEL speaks: *"Good morning. All stations checked."* (Jamie Premium)
 6. Open Audio Hijack → start "NOIZY Voice Capture" session
 **MCP Tool:** `gabriel_watch_status` — confirms what's being monitored
@@ -151,7 +151,7 @@ Rob's voice never touches the AI output channels. Clean isolation.
         "OLLAMA_URL": "http://localhost:11434",
         "GEMMA_MODEL": "gemma3:latest",
         "NOIZYLAB_DIR": "/Users/m2ultra/NOIZYLAB",
-        "CLOUDFLARE_ACCOUNT_ID": "5ba03939f87a498d0bbed185ee123946"
+        "CLOUDFLARE_ACCOUNT_ID": "5f36aa9795348ea681d0b21910dfc82a"
       }
     },
     "noizy-voice-bridge": {

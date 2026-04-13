@@ -200,7 +200,7 @@ async function cmdDeploy() {
     return;
   }
   console.log(C.yellow('Deploying HEAVEN...'));
-  console.log(C.dim(`Account: 5ba03939f87a498d0bbed185ee123946`));
+  console.log(C.dim(`Account: 5f36aa9795348ea681d0b21910dfc82a`));
   console.log(C.dim(`D1: agent-memory / 7b813205\n`));
   try {
     const out = execSync(`cd "${heavenDir}" && WRANGLER_HOME=$HOME/.wrangler npx wrangler deploy 2>&1`, { encoding: 'utf8', timeout: 60000 });

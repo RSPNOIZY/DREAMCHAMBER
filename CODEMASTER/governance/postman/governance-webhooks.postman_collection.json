@@ -179,7 +179,7 @@
           "request": {
             "method": "GET",
             "url": {
-              "raw": "https://heaven.noizylab.workers.dev/health",
+              "raw": "https://heaven.rsp-5f3.workers.dev/health",
               "protocol": "https",
               "host": ["heaven", "noizylab", "workers", "dev"],
               "path": ["health"]

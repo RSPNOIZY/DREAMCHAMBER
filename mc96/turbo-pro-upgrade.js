@@ -87,7 +87,7 @@ async function buildHeavenDeployScript() {
 set -e
 HEAVEN_DIR="$HOME/Desktop/HEAVEN"
 echo "⚡ HEAVEN DEPLOY — $(date)"
-echo "Account: 5ba03939f87a498d0bbed185ee123946"
+echo "Account: 5f36aa9795348ea681d0b21910dfc82a"
 echo "D1: agent-memory (7b813205-fd12-4a23-84a6-ce83bc49ec70)"
 echo ""
 
@@ -121,7 +121,7 @@ fi
 
 echo ""
 echo "✅ HEAVEN DEPLOY COMPLETE — $(date)"
-echo "Check: https://heaven.noizylab.workers.dev/health"
+echo "Check: https://heaven.rsp-5f3.workers.dev/health"
 `;
   fs.writeFileSync(`${heavenDir}/DEPLOY_HEAVEN.sh`, script, { mode: 0o755 });
   ok('DEPLOY_HEAVEN.sh written — run: bash ~/Desktop/HEAVEN/DEPLOY_HEAVEN.sh');

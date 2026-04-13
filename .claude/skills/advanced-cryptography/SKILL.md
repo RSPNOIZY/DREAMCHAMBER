@@ -41,7 +41,7 @@ C2PA (Coalition for Content Provenance and Authenticity) v2.2 is the authoritati
 // Heaven manifest generation
 function generateC2PAManifest(synthesis_event) {
   const claim = {
-    "iss": "https://heaven.noizylab.workers.dev",
+    "iss": "https://heaven.rsp-5f3.workers.dev",
     "iat": Math.floor(Date.now() / 1000),
     "entity": {
       "name": "NOIZY Empire",
@@ -392,8 +392,8 @@ async function handleSynthesisCreate(request, env) {
     synthesis_id: crypto.randomUUID(),
     content_hash: contentHash,
     manifest_id: manifestId,
-    audio_url: `https://heaven.noizylab.workers.dev/audio/${contentHash}`,
-    manifest_url: `https://heaven.noizylab.workers.dev/manifest/${manifestId}`
+    audio_url: `https://heaven.rsp-5f3.workers.dev/audio/${contentHash}`,
+    manifest_url: `https://heaven.rsp-5f3.workers.dev/manifest/${manifestId}`
   });
 }
 ```
@@ -1088,7 +1088,7 @@ Described in Section 1.6. JUMBF container with full C2PA provenance embedded or 
     <rdf:Description rdf:about=""
       xmlns:c2pa="http://c2pa.org/c2pa"
       c2pa:manifest_id="noizy-manifest-20260325-xyz"
-      c2pa:manifest_url="https://heaven.noizylab.workers.dev/manifest/xyz"
+      c2pa:manifest_url="https://heaven.rsp-5f3.workers.dev/manifest/xyz"
       c2pa:content_hash="sha384-hash-of-audio"
       c2pa:signed_timestamp="2026-03-25T14:30:00Z"
       c2pa:actor_id="RSP_001"

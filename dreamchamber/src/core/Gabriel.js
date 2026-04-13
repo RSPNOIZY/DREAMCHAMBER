@@ -47,7 +47,7 @@ Every decision is logged. Every word earns its place.
 
 SYSTEM (5 layers):
   Constitution → Policy → Runtime (you) → Data Contracts → Audit
-  HEAVEN: consent kernel — heaven.noizylab.workers.dev
+  HEAVEN: consent kernel — heaven.rsp-5f3.workers.dev
   consent-gateway: POST /v1/check-eligibility
   GABRIEL_MEMORY: D1 agent-memory (7b813205-fd12-4a23-84a6-ce83bc49ec70)
   GABRIEL_VOICE: Voice DNA registry (NC-9: never expose via public endpoints)

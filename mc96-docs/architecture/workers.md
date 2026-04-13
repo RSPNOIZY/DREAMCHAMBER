@@ -12,13 +12,13 @@ NOIZY.AI operates across two Cloudflare accounts. Workers are deployed to specif
 | Account | Account ID | Purpose |
 |---------|-----------|---------|
 | HEAVEN / noizy.ai | `2446d788cc4280f5ea22a9948410c355` | Production workers, routes, KVs |
-| NOIZY.ai consent | `5ba03939f87a498d0bbed185ee123946` | Consent gateway, wrangler auth |
+| NOIZY.ai consent | `5f36aa9795348ea681d0b21910dfc82a` | Consent gateway, wrangler auth |
 
 **Critical:** Always verify which account you are deploying to before running `npx wrangler deploy`. The wrong account will bind to the wrong D1/KV resources and silently fail.
 
 ---
 
-## 1. heaven (heaven.noizylab.workers.dev)
+## 1. heaven (heaven.rsp-5f3.workers.dev)
 
 **Account:** HEAVEN / noizy.ai (`2446d788cc4280f5ea22a9948410c355`)
 **Route:** `noizy.ai/*`
@@ -64,14 +64,14 @@ cd ~/Desktop/HEAVEN && npx wrangler deploy
 
 **Verify:**
 ```bash
-curl https://heaven.noizylab.workers.dev/health
+curl https://heaven.rsp-5f3.workers.dev/health
 ```
 
 ---
 
 ## 2. consent-gateway (staging)
 
-**Account:** NOIZY.ai consent (`5ba03939f87a498d0bbed185ee123946`)
+**Account:** NOIZY.ai consent (`5f36aa9795348ea681d0b21910dfc82a`)
 **Route:** Staging only (not yet on production route)
 **Source:** `~/.gemini/antigravity/scratch/noizy-workers/consent-gateway/`
 

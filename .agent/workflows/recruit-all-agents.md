@@ -7,7 +7,7 @@ Gabriel recruits and initializes all specialist agents for the current session.
 1. Announce session start: "GABRIEL online. Recruiting agents for NOIZYBEAST session."
 2. Check system status:
    - Verify DreamChamber is running on port 7777: `curl -s http://localhost:7777/health`
-   - Verify Heaven is reachable: `curl -s https://heaven.noizylab.workers.dev/health`
+   - Verify Heaven is reachable: `curl -s https://heaven.rsp-5f3.workers.dev/health`
    - Verify Ollama is running with Gemma 3: `curl -s http://localhost:11434/api/tags`
    - Check Voice Bridge on port 8080: `curl -s http://localhost:8080/health`
 3. Recruit LUCY — Session Organizer:

@@ -25,13 +25,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const CFG = {
-  account:    '5ba03939f87a498d0bbed185ee123946',
+  account:    '5f36aa9795348ea681d0b21910dfc82a',
   d1:         '7b813205-fd12-4a23-84a6-ce83bc49ec70',
   noizylab:   '/Users/m2ultra/NOIZYLAB',
   voiceBridge:'http://localhost:8080',
   dreamChamber:'http://localhost:7777',
   ollama:     'http://localhost:11434',
-  heaven:   'https://heaven.noizylab.workers.dev',
+  heaven:   'https://heaven.rsp-5f3.workers.dev',
   consentGW:  'https://noizy-consent-gateway.workers.dev',
 };
 
@@ -262,7 +262,7 @@ function checkAccountConflicts() {
     `${CFG.noizylab}/workers`,
     `${process.env.HOME}/.gemini/antigravity/scratch/noizy-workers`,
   ];
-  const STALE = '5ba03939f87a498d0bbed185ee123946';
+  const STALE = '5f36aa9795348ea681d0b21910dfc82a';
   let found = 0;
   for (const dir of dirs) {
     if (!fs.existsSync(dir)) continue;
@@ -365,7 +365,7 @@ async function runAIAnalysis() {
         model: 'claude-opus-4-5',
         max_tokens: 512,
         system: `You are GABRIEL, warrior executor of the NOIZY.AI empire. Operator: RSP_001 (Robert Stephen Plowman, Ottawa, Canada, C3 injury, voice-first). 
-Stack: MC96 | CF Workers | HVS | NCP | NOIZYVOX. Account: 5ba03939f87a498d0bbed185ee123946.
+Stack: MC96 | CF Workers | HVS | NCP | NOIZYVOX. Account: 5f36aa9795348ea681d0b21910dfc82a.
 The Plowman Standard: 75/25. Mission: consent-native infrastructure for the creative economy.
 Be military-calm. No fluff. Surface the top 3 actions to unblock the empire.`,
         messages: [{

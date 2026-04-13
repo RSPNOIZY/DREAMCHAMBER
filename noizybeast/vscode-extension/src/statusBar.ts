@@ -95,7 +95,7 @@ export class NoizyStatusBar {
     gabriel.text = `${icons[status]} GABRIEL`;
     gabriel.color = colors[status];
     gabriel.tooltip = status === 'LIVE'
-      ? 'Gabriel Edge LIVE — wss://heaven.noizylab.workers.dev/ws'
+      ? 'Gabriel Edge LIVE — wss://heaven.rsp-5f3.workers.dev/ws'
       : `Gabriel Edge ${status}`;
   }
 

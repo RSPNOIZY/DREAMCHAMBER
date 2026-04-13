@@ -322,7 +322,7 @@ function generateEmpireStatusEmail(date = new Date()) {
         <li><strong>Email:</strong> rsp@noizyfish.com</li>
         <li><strong>Domain:</strong> noisy.ai</li>
         <li><strong>Linear:</strong> https://linear.app/noizylab/project/noizy-critical-path-april-17-2026-5897795326db</li>
-        <li><strong>Heaven17 Worker:</strong> heaven.rsplowman.workers.dev (post-deploy)</li>
+        <li><strong>Heaven17 Worker:</strong> heaven.rsp-5f3.workers.dev (post-deploy)</li>
       </ul>
     </div>
 

@@ -48,7 +48,7 @@ Registered in: `~/.codeium/windsurf/mcp_config.json`
 
 | Service | Type | Location | Port / URL |
 |---|---|---|---|
-| **HEAVEN** | Cloudflare Worker | `src/index.js` | `https://heaven.noizylab.workers.dev` |
+| **HEAVEN** | Cloudflare Worker | `src/index.js` | `https://heaven.rsp-5f3.workers.dev` |
 | **gabriel_db** | D1 SQLite | Cloudflare | binding `GABRIEL_DB` (a31d68e2-f2d4-4203-a803-8039fdff31cb) |
 | **DreamChamber** | Node.js/Express | `dreamchamber/` | `:7777` |
 | **Voice Bridge** | Node.js/Express | `voice-bridge-server.js` | `:8080` |
@@ -102,7 +102,7 @@ Registered in: `~/.codeium/windsurf/mcp_config.json`
 | Var | Purpose |
 |---|---|
 | `NOIZY_API_KEY` | Heaven API auth (X-NOIZY-Key header) |
-| `HEAVEN_URL` | `https://heaven.noizylab.workers.dev` |
+| `HEAVEN_URL` | `https://heaven.rsp-5f3.workers.dev` |
 
 ### `dreamchamber/.env`
 | Var | Purpose |
@@ -190,7 +190,7 @@ Registered in: `~/.codeium/windsurf/mcp_config.json`
 | D1 Database | `GABRIEL_DB` | `a31d68e2-f2d4-4203-a803-8039fdff31cb` |
 | KV (rate limit + cache) | `GABRIEL_KV` | `f205b56a9914413da0ec454a9dc4c2bd` |
 | KV (voice assets) | `GABRIEL_VOICE` | `16532a32b2e8455486cc966403f3442e` |
-| Worker URL | — | `https://heaven.noizylab.workers.dev` |
+| Worker URL | — | `https://heaven.rsp-5f3.workers.dev` |
 | Worker version | — | `6c7a12c5` (last deployed) |
 
 ---
@@ -239,7 +239,7 @@ cd ~/NOIZYLAB/dreamchamber && npm run dev
 cd ~/NOIZYLAB && bash smoke_test.sh
 
 # Heaven health
-curl https://heaven.noizylab.workers.dev/health
+curl https://heaven.rsp-5f3.workers.dev/health
 
 # DreamChamber health (when running)
 curl http://localhost:7777/health

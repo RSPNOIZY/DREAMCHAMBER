@@ -61,7 +61,7 @@ const WATCHLIST_FILE = join(STATE_DIR, "watchlist.json");
 const DREAMCHAMBER_URL =
   process.env.DREAMCHAMBER_URL || "http://localhost:7777";
 const HEAVEN_URL =
-  process.env.HEAVEN_URL || "https://heaven.noizylab.workers.dev";
+  process.env.HEAVEN_URL || "https://heaven.rsp-5f3.workers.dev";
 
 function ensureState() {
   for (const dir of [STATE_DIR, CACHE_DIR, HANDOFF_DIR]) {

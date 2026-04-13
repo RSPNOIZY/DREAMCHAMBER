@@ -43,7 +43,7 @@
 3. Import collection: `NOIZY_EMPIRE_COMPLETE.postman_collection.json`
 4. Set environment variables:
    - `GOD` = `http://10.90.90.10`
-   - `HEAVEN` = `https://heaven.noizylab.workers.dev`
+   - `HEAVEN` = `https://heaven.rsp-5f3.workers.dev`
    - `VOICE_AUTH_TOKEN` = your token from `.env`
    - `NOIZY_API_KEY` = your Heaven API key
 5. All 50+ endpoints ready to fire from iPhone

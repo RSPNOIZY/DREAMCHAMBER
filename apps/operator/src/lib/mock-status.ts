@@ -133,7 +133,7 @@ export const currentMission = {
 
 export const infrastructure = {
   gabriel:     { url: "http://localhost:7777", status: "LIVE" as TruthStatus },
-  heaven:    { url: "https://heaven.noizylab.workers.dev", status: "LIVE" as TruthStatus },
+  heaven:    { url: "https://heaven.rsp-5f3.workers.dev", status: "LIVE" as TruthStatus },
   voiceBridge: { url: "http://localhost:8080", status: "BLOCKED" as TruthStatus },
   ollama:      { url: "http://localhost:11434", status: "LIVE" as TruthStatus },
   d1Memory:    { id: "7b813205-fd12-4a23-84a6-ce83bc49ec70", name: "agent-memory", status: "LIVE" as TruthStatus },

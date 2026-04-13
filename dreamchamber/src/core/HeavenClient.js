@@ -10,7 +10,7 @@ class HeavenClient {
     this.baseUrl =
       options.baseUrl ||
       process.env.HEAVEN_URL ||
-      "https://heaven.noizylab.workers.dev";
+      "https://heaven.rsp-5f3.workers.dev";
     this.apiKey = options.apiKey || process.env.NOIZY_API_KEY || "";
     this.enabled = !!this.apiKey;
   }

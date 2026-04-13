@@ -20,7 +20,7 @@ Never Clauses, ledger, rate table, union tiers, KPI, stats, audit.
 
 ### Health Checks
 ```bash
-curl https://heaven.noizylab.workers.dev/health
+curl https://heaven.rsp-5f3.workers.dev/health
 ```
 
 ### Post-Deploy Verification

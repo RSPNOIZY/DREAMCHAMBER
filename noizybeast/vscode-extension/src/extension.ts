@@ -15,7 +15,7 @@ let statusBar: NoizyStatusBar;
 let outputChannel: vscode.OutputChannel;
 
 // ── Gabriel Edge WebSocket — persistent connection to Heaven ───────────────
-const HEAVEN_WSS = 'wss://heaven.noizylab.workers.dev/ws';
+const HEAVEN_WSS = 'wss://heaven.rsp-5f3.workers.dev/ws';
 let gabrielWs: WebSocket | null = null;
 
 function connectGabrielEdge(ctx: vscode.ExtensionContext) {
@@ -23,7 +23,7 @@ function connectGabrielEdge(ctx: vscode.ExtensionContext) {
   try {
     gabrielWs = new WebSocket(HEAVEN_WSS);
     gabrielWs.onopen = () => {
-      log('Gabriel Edge CONNECTED — wss://heaven.noizylab.workers.dev/ws');
+      log('Gabriel Edge CONNECTED — wss://heaven.rsp-5f3.workers.dev/ws');
       statusBar?.setEdgeStatus('LIVE');
     };
     gabrielWs.onmessage = (e: MessageEvent) => {
@@ -229,7 +229,7 @@ async function gabrielPing() {
   if (gabrielWs?.readyState === WebSocket.OPEN) {
     sendToGabriel('ping');
     sendToGabriel('empire.status');
-    vscode.window.showInformationMessage('Gabriel Edge LIVE — wss://heaven.noizylab.workers.dev/ws');
+    vscode.window.showInformationMessage('Gabriel Edge LIVE — wss://heaven.rsp-5f3.workers.dev/ws');
     log('Gabriel Edge ping sent');
     return;
   }
@@ -512,7 +512,7 @@ function getCfg() {
     gabrielUrl:    c.get<string>('gabrielUrl','http://localhost:7777'),
     voiceBridgeUrl:c.get<string>('voiceBridgeUrl','http://localhost:8080'),
     ollamaUrl:     c.get<string>('ollamaUrl','http://localhost:11434'),
-    cfAccount:     c.get<string>('cfAccount','5ba03939f87a498d0bbed185ee123946'),
+    cfAccount:     c.get<string>('cfAccount','5f36aa9795348ea681d0b21910dfc82a'),
     operator:      c.get<string>('operator','RSP_001'),
     noizyLabPath:  c.get<string>('noizyLabPath','~/NOIZYLAB'),
     targetDate:    c.get<string>('targetDate','2026-04-17'),
@@ -540,8 +540,8 @@ h1{color:#f59e0b;font-size:18px;border-bottom:1px solid rgba(255,255,255,.1);pad
 <h1>⚡ NOIZYBEAST — Empire Status</h1>
 <div class="countdown">${d}d ${h}h<br><span style="font-size:14px;color:#94a3b8">to April 17, 2026</span></div>
 <div class="grid">
-  <div class="card"><div class="label">Heaven Edge</div><div class="val">heaven.noizylab.workers.dev v17.4.0</div></div>
-  <div class="card"><div class="label">Gabriel WSS</div><div class="val">wss://heaven.noizylab.workers.dev/ws</div></div>
+  <div class="card"><div class="label">Heaven Edge</div><div class="val">heaven.rsp-5f3.workers.dev v17.4.0</div></div>
+  <div class="card"><div class="label">Gabriel WSS</div><div class="val">wss://heaven.rsp-5f3.workers.dev/ws</div></div>
   <div class="card"><div class="label">Gabriel Local</div><div class="val">${cfg.gabrielUrl}</div></div>
   <div class="card"><div class="label">Voice Bridge</div><div class="val">${cfg.voiceBridgeUrl}</div></div>
   <div class="card"><div class="label">Operator</div><div class="val">${cfg.operator}</div></div>

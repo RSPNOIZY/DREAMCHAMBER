@@ -18,7 +18,7 @@
  *   h17_audit            — Enterprise audit report
  *
  * Requires: NOIZY_API_KEY env var (X-NOIZY-Key header)
- * URL: HEAVEN_URL env var (default: https://heaven.noizylab.workers.dev)
+ * URL: HEAVEN_URL env var (default: https://heaven.rsp-5f3.workers.dev)
  */
 
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -28,7 +28,7 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 
-const HEAVEN_URL = process.env.HEAVEN_URL || "https://heaven.noizylab.workers.dev";
+const HEAVEN_URL = process.env.HEAVEN_URL || "https://heaven.rsp-5f3.workers.dev";
 const NOIZY_API_KEY = process.env.NOIZY_API_KEY || "";
 
 async function h17(path, method = "GET", body = null) {

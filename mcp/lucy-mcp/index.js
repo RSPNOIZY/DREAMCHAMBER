@@ -63,7 +63,7 @@ const INTAKE_FILE = join(STATE_DIR, "intake.json");
 const ARCHIVE_DIR = join(STATE_DIR, "archive");
 
 const HEAVEN_URL =
-  process.env.HEAVEN_URL || "https://heaven.noizylab.workers.dev";
+  process.env.HEAVEN_URL || "https://heaven.rsp-5f3.workers.dev";
 const NOIZY_API_KEY = process.env.NOIZY_API_KEY || "";
 
 function ensureState() {

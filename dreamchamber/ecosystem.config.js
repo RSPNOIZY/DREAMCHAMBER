@@ -15,7 +15,7 @@ module.exports = {
         PORT: 7777,
         DEFAULT_MODEL: "claude-sonnet-4",
         PREFERRED_SEARCH_MODEL: "command-r-plus",
-        HEAVEN_URL: "https://heaven.noizylab.workers.dev",
+        HEAVEN_URL: "https://heaven.rsp-5f3.workers.dev",
         GABRIEL_VOICE_NAME: "Daniel",
         GABRIEL_SPEECH_RATE: "180",
       },

@@ -8,11 +8,11 @@ Steps:
 
 1. Check Heaven Worker (live Cloudflare edge)
 // turbo
-Run: `curl -s https://heaven.noizylab.workers.dev/health` from `/Users/m2ultra/NOIZYLAB`
+Run: `curl -s https://heaven.rsp-5f3.workers.dev/health` from `/Users/m2ultra/NOIZYLAB`
 
 2. Check Heaven Stats (requires auth)
 // turbo
-Run: `source .env && curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" https://heaven.noizylab.workers.dev/api/v1/stats` from `/Users/m2ultra/NOIZYLAB`
+Run: `source .env && curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" https://heaven.rsp-5f3.workers.dev/api/v1/stats` from `/Users/m2ultra/NOIZYLAB`
 
 3. Check DreamChamber (local)
 // turbo

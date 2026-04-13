@@ -35,7 +35,7 @@ const CFG = {
   d1Repairs:      '2bd4aa06-f9b2-4761-b235-e92e8a21fe45',
   ollama:         'http://localhost:11434',
   voiceBridge:    'http://localhost:8080',
-  heaven:       'https://heaven.noizylab.workers.dev',
+  heaven:       'https://heaven.rsp-5f3.workers.dev',
 };
 
 // Specialist crew definition

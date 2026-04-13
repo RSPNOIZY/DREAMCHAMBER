@@ -138,7 +138,7 @@ Attackers target the technical backbone of NOIZY:
 - D1 database compromise: SQL injection, privilege escalation, direct row manipulation
 - KV poisoning: corrupt cache entries (rate limits, consent tokens, actor profiles)
 - Worker injection: supply malicious wasm bundle to Cloudflare deployment
-- DNS hijacking: redirect heaven.noizylab.workers.dev to attacker-controlled server
+- DNS hijacking: redirect heaven.rsp-5f3.workers.dev to attacker-controlled server
 - Dependency attacks: compromised npm packages (Prettier, ESLint, etc.)
 
 **Likelihood**: 3/5 (Requires sophistication; Cloudflare has high baseline security)  

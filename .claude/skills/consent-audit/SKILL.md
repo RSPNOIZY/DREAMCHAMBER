@@ -129,17 +129,17 @@ grep -rn "synth\|synthesis" src/ | grep -v "covenant\|never_clause"
 ```bash
 # Verify all 9 Never Clauses are active
 curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" \
-  https://heaven.noizylab.workers.dev/api/v1/never-clauses | \
+  https://heaven.rsp-5f3.workers.dev/api/v1/never-clauses | \
   jq '[.data[] | select(.is_active == 1)] | length'
 # MUST return: 9
 
 # Check for any violations in ledger
 curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" \
-  https://heaven.noizylab.workers.dev/api/v1/ledger?event_type=NEVER_CLAUSE_VIOLATION | jq .
+  https://heaven.rsp-5f3.workers.dev/api/v1/ledger?event_type=NEVER_CLAUSE_VIOLATION | jq .
 
 # KPI trust score
 curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" \
-  https://heaven.noizylab.workers.dev/api/v1/kpi/trust | jq .
+  https://heaven.rsp-5f3.workers.dev/api/v1/kpi/trust | jq .
 ```
 
 ## Rules

@@ -31,7 +31,7 @@ Each AI Provider → Dedicated Loopback Channel → Audio Hijack → Mix Bus
 ## Key Files
 
 - `dreamchamber-audio-mcp/server.py` — FastMCP server (13 tools)
-- `voice-bridge-server.js` — Voice command bridge
+- `scripts/voice-bridge-server.js` — Voice command bridge
 - `dreamchamber/src/core/Gabriel.js` — Gabriel orchestration
 
 ## When Called

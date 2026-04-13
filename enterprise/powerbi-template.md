@@ -48,7 +48,7 @@ Expected JSON shape:
 Connect via **Web connector** or **Azure Blob** (export via scheduled Worker cron).
 
 ```
-GET https://heaven.noizylab.workers.dev/stats
+GET https://heaven.rsp-5f3.workers.dev/stats
 Headers:
   X-NOIZY-Key: <NOIZY_API_KEY>
 ```

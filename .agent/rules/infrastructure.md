@@ -4,7 +4,7 @@
 
 | System | Status | Location |
 |--------|--------|----------|
-| Heaven — Consent Kernel API | LIVE | heaven.noizylab.workers.dev — 55 endpoints, 25 tables + 9 views |
+| Heaven — Consent Kernel API | LIVE | heaven.rsp-5f3.workers.dev — 55 endpoints, 25 tables + 9 views |
 | DreamChamber — Multi-Model AI Command Center | LOCAL | Port 7777 — 11 providers, all streaming |
 | Voice Bridge — Phone → GOD.local | LOCAL | Port 8080 — Siri/Google → Power Automate → commands |
 | noizy.ai — Landing Page Worker | BUILT | noizy-landing/ — awaiting deploy |
@@ -66,7 +66,7 @@ bash smoke_test.sh                       # 14 smoke tests
 cd dreamchamber && npm start             # DreamChamber (7777)
 node voice-bridge-server.js              # Voice Bridge (8080)
 cd noizy-landing && npx wrangler deploy  # Deploy noizy.ai
-curl https://heaven.noizylab.workers.dev/health
+curl https://heaven.rsp-5f3.workers.dev/health
 ```
 
 ## Critical Path → April 17, 2026

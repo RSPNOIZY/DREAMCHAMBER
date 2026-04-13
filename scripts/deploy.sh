@@ -38,7 +38,7 @@ echo ""
 echo "🩺  Testing /health endpoint..."
 sleep 2
 
-HEALTH=$(curl -s https://heaven.noizylab.workers.dev/health 2>/dev/null || echo "{}")
+HEALTH=$(curl -s https://heaven.rsp-5f3.workers.dev/health 2>/dev/null || echo "{}")
 echo "$HEALTH" | python3 -m json.tool 2>/dev/null || echo "$HEALTH"
 
 echo ""

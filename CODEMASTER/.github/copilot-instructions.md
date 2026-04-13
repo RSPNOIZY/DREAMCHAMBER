@@ -5,7 +5,7 @@
 CODEMASTER is the **ops & automation hub** for the NOIZY Empire (monorepo: `NOIZYANTHROPIC`). It runs on a Mac M2 Ultra and orchestrates:
 
 - **GABRIEL** — local daemon at `http://localhost:7777` (health, `/speak`, `/memcell/*` endpoints). All alerts route through GABRIEL first, with macOS `say` as fallback.
-- **HEAVEN** — Cloudflare Worker at `heaven.noizylab.workers.dev` (ledger, deploy target).
+- **HEAVEN** — Cloudflare Worker at `heaven.rsp-5f3.workers.dev` (ledger, deploy target).
 - **Turbo Scripts** — shell + Python tooling in `turbo-scripts/` for network, git sync, system vitals, and repo maintenance.
 - **Governance** — policy-driven event system in `governance/` using Postman + n8n + Zapier.
 - **Scheduled monitors** — `CHECK_ANTHROPIC_STATUS.sh` (launchd, every 30min) and `AI_MORNING_NEWS.sh` (daily 10am briefing).
@@ -71,7 +71,7 @@ Policy-driven event system in `governance/`. Non-overlapping tool roles:
 | Service | URL | Health Check |
 |---------|-----|--------------|
 | GABRIEL | `http://localhost:7777` | `GET /health` |
-| HEAVEN | `https://heaven.noizylab.workers.dev` | `GET /health` |
+| HEAVEN | `https://heaven.rsp-5f3.workers.dev` | `GET /health` |
 | n8n | `http://localhost:5678` | Docker container |
 | Anthropic | `https://status.claude.com/api/v2/status.json` | indicator = `none` means OK |
 

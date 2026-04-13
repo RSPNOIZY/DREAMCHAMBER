@@ -39,7 +39,7 @@ npm run deploy
 npm run seed
 
 # View live dashboard
-open https://heaven.noizylab.workers.dev/dashboard
+open https://heaven.rsp-5f3.workers.dev/dashboard
 
 # Run smoke tests (13 tests)
 npm run smoke
@@ -77,7 +77,7 @@ npm run tail
 All `/api/v1/*` endpoints require the `X-NOIZY-Key` header:
 
 ```bash
-curl -H "X-NOIZY-Key: YOUR_KEY" https://heaven.noizylab.workers.dev/api/v1/actors
+curl -H "X-NOIZY-Key: YOUR_KEY" https://heaven.rsp-5f3.workers.dev/api/v1/actors
 ```
 
 Or use `Authorization: Bearer YOUR_KEY`.

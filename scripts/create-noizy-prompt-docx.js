@@ -54,7 +54,7 @@ const doc = new Document({
         spacing: { after: 100 },
       }),
       new Paragraph({
-        text: 'ID: 5ba03939f87a498d0bbed185ee123946',
+        text: 'ID: 5f36aa9795348ea681d0b21910dfc82a',
         spacing: { after: 100 },
       }),
       new Paragraph({
@@ -202,7 +202,7 @@ const doc = new Document({
         spacing: { after: 100 },
       }),
       new Paragraph({
-        text: 'Heaven Worker: heaven.noizylab.workers.dev (55 endpoints, 25 tables + 9 views)',
+        text: 'Heaven Worker: heaven.rsp-5f3.workers.dev (55 endpoints, 25 tables + 9 views)',
         spacing: { after: 50 },
         indent: { left: 720 },
       }),

@@ -268,7 +268,7 @@ class GabrielProfile {
           timestamp: new Date().toISOString(),
           category: "empire",
           source: "seed",
-          observation: "Heaven is LIVE at heaven.noizylab.workers.dev. Always verify with health check before claiming anything is broken.",
+          observation: "Heaven is LIVE at heaven.rsp-5f3.workers.dev. Always verify with health check before claiming anything is broken.",
         },
         {
           id: "L_SEED_008",

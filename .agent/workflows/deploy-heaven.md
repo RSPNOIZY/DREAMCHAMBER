@@ -18,7 +18,7 @@ Full deploy procedure with all safety gates. CB01 leads, ENGR_KEITH validates.
    - Any failure = STOP. Do not deploy.
 5. Deploy: `npx wrangler deploy`
 6. Post-deploy verification:
-   - `curl https://heaven.noizylab.workers.dev/health`
+   - `curl https://heaven.rsp-5f3.workers.dev/health`
    - Verify response contains `{ success: true }`
    - Check KV cache is warming
 7. LUCY: Log deploy event to DAZEFLOW

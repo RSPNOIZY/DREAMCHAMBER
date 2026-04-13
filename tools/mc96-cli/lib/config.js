@@ -30,7 +30,7 @@ export const ENDPOINTS = {
   noizystream:  'http://localhost:4040',
   voiceBridge:  'http://localhost:8080',
   ollama:       'http://localhost:11434',
-  heaven:       'https://heaven.noizylab.workers.dev',
+  heaven:       'https://heaven.rsp-5f3.workers.dev',
   empire:       'http://localhost:5500',
 };
 

@@ -57,7 +57,7 @@ The active Empire. Everything running now.
 │   ├── tests/voice/voice-dna.test.js ← 14-test Voice DNA suite
 │   └── gabriel-profile.json         ← RSP_001 adaptive learning profile
 ├── heaven/              ← Cloudflare Worker — Consent Kernel
-│   └── [live at heaven.noizylab.workers.dev]
+│   └── [live at heaven.rsp-5f3.workers.dev]
 ├── mcp/                   ← MCP servers (gabriel, lucy, heaven)
 ├── smoke_test.sh          ← 14-test smoke suite
 ├── deploy.sh              ← Production deploy script

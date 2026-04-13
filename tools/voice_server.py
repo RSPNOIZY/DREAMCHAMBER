@@ -33,7 +33,7 @@ if _venv.exists() and str(_venv) not in sys.path:
     sys.path.insert(0, str(_venv))
 
 PORT = 9099
-HEAVEN17 = "https://heaven.noizylab.workers.dev"
+HEAVEN17 = "https://heaven.rsp-5f3.workers.dev"
 
 EMPIRE_COMMANDS = {
     "deploy":     "cd ~/NOIZYLAB && wrangler deploy",

@@ -167,9 +167,9 @@
       <div class="card-title">HEAVEN</div>
       <div class="stat stat-purple" id="heaven-status">—</div>
       <div class="meta">
-        <a href="https://heaven.noizylab.workers.dev/health" target="_blank">Health</a> ·
-        <a href="https://heaven.noizylab.workers.dev/dashboard" target="_blank">Dashboard</a> ·
-        <a href="https://heaven.noizylab.workers.dev/gabriel" target="_blank">Gabriel</a>
+        <a href="https://heaven.rsp-5f3.workers.dev/health" target="_blank">Health</a> ·
+        <a href="https://heaven.rsp-5f3.workers.dev/dashboard" target="_blank">Dashboard</a> ·
+        <a href="https://heaven.rsp-5f3.workers.dev/gabriel" target="_blank">Gabriel</a>
       </div>
     </div>
 
@@ -255,7 +255,7 @@
         <tbody>
           <tr>
             <td>HEAVEN</td>
-            <td class="mono">heaven.noizylab.workers.dev</td>
+            <td class="mono">heaven.rsp-5f3.workers.dev</td>
             <td><span class="status-live" id="svc-heaven">●</span></td>
             <td>Consent kernel, ledger, dashboard</td>
           </tr>
@@ -313,10 +313,10 @@
       </div>
       <div class="card-title">Command Center</div>
       <div class="link-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-        <a href="https://heaven.noizylab.workers.dev/dashboard" class="link-btn" target="_blank">📊 HEAVEN Dashboard</a>
-        <a href="https://heaven.noizylab.workers.dev/health" class="link-btn" target="_blank">💚 System Health</a>
-        <a href="https://heaven.noizylab.workers.dev/api/v1/stats" class="link-btn" target="_blank">📈 Live Stats</a>
-        <a href="https://heaven.noizylab.workers.dev/api/v1/actors" class="link-btn" target="_blank">🎭 Voice Actors</a>
+        <a href="https://heaven.rsp-5f3.workers.dev/dashboard" class="link-btn" target="_blank">📊 HEAVEN Dashboard</a>
+        <a href="https://heaven.rsp-5f3.workers.dev/health" class="link-btn" target="_blank">💚 System Health</a>
+        <a href="https://heaven.rsp-5f3.workers.dev/api/v1/stats" class="link-btn" target="_blank">📈 Live Stats</a>
+        <a href="https://heaven.rsp-5f3.workers.dev/api/v1/actors" class="link-btn" target="_blank">🎭 Voice Actors</a>
         <a href="https://dash.cloudflare.com" class="link-btn" target="_blank">☁️ Cloudflare</a>
         <a href="https://github.com/noizylab" class="link-btn" target="_blank">🐙 GitHub</a>
       </div>
@@ -351,7 +351,7 @@ async function checkHealth(url, elId, label) {
 
 async function refresh() {
   // HEAVEN
-  const h = await checkHealth('https://heaven.noizylab.workers.dev/health', 'heaven-status', 'LIVE');
+  const h = await checkHealth('https://heaven.rsp-5f3.workers.dev/health', 'heaven-status', 'LIVE');
 
   // DreamChamber
   try {

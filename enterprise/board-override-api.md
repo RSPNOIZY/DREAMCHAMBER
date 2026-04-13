@@ -1,7 +1,7 @@
 # NOIZY Board Override API
 
 **Version:** 1.0  
-**Base URL:** `https://heaven.noizylab.workers.dev`  
+**Base URL:** `https://heaven.rsp-5f3.workers.dev`  
 **Auth:** `X-NOIZY-Key: <NOIZY_API_KEY>` + `X-Board-Token: <BOARD_JWT>`
 
 Board overrides allow Guild of Artists board members with sufficient quorum to override consent gateway decisions, escalate stuck records, or rotate board membership. All overrides are **immutably logged** in the audit trail.

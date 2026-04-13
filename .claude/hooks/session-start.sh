@@ -42,7 +42,7 @@ HEAVEN_STATUS="unknown"
 [ -d "$PROJECT_DIR/.claude/prompts" ] && PROMPTS_COUNT=$(ls "$PROJECT_DIR/.claude/prompts/"*.md 2>/dev/null | wc -l | tr -d ' ')
 
 # Heaven health check (2-second timeout, non-blocking)
-H17_RESPONSE=$(curl -s --max-time 2 "https://heaven.noizylab.workers.dev/health" 2>/dev/null)
+H17_RESPONSE=$(curl -s --max-time 2 "https://heaven.rsp-5f3.workers.dev/health" 2>/dev/null)
 if echo "$H17_RESPONSE" | grep -q '"success"' 2>/dev/null; then
     HEAVEN_STATUS="LIVE"
 else

@@ -3,7 +3,7 @@
     "prefix": "noizy-worker",
     "body": [
       "// ${1:name} — NOIZY.AI · RSP_001",
-      "// CF Account: 5ba03939f87a498d0bbed185ee123946",
+      "// CF Account: 5f36aa9795348ea681d0b21910dfc82a",
       "import { Hono } from 'hono';",
       "import type { Env } from './types';",
       "",

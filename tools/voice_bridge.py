@@ -46,8 +46,8 @@ DEVICE        = "cpu"      # Whisper is more stable on CPU even with MPS availab
 # ── WAKE WORDS → ACTIONS ──────────────────────────────────────────────────────
 COMMANDS = {
     "deploy":     "cd ~/NOIZYLAB && wrangler deploy",
-    "status":     "curl -s https://heaven.noizylab.workers.dev/health | python3 -m json.tool",
-    "health":     "curl -s https://heaven.noizylab.workers.dev/health | python3 -m json.tool",
+    "status":     "curl -s https://heaven.rsp-5f3.workers.dev/health | python3 -m json.tool",
+    "health":     "curl -s https://heaven.rsp-5f3.workers.dev/health | python3 -m json.tool",
     "archivist":  "python3 ~/NOIZYLAB/tools/archivist.py --report",
     "monitor":    "python3 ~/NOIZYLAB/tools/gabriel_monitor.py",
     "boot":       "~/NOIZYLAB/empire-boot.sh",

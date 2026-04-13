@@ -57,7 +57,7 @@ async function harvest() {
     'identity', 'GABRIEL.md'
   );
   await learn(
-    'GitHub: @Noizyfish. Cloudflare account: 5ba03939f87a498d0bbed185ee123946 (NOIZY.ai). D1: 10 databases — DO NOT create new without explicit GO. Workers AI: full access.',
+    'GitHub: @Noizyfish. Cloudflare account: 5f36aa9795348ea681d0b21910dfc82a (NOIZY.ai). D1: 10 databases — DO NOT create new without explicit GO. Workers AI: full access.',
     'infrastructure', 'GABRIEL.md'
   );
 
@@ -98,11 +98,11 @@ async function harvest() {
     'voice-pipeline', '2026-03-27'
   );
   await learn(
-    'HEAVEN Worker is LIVE at heaven.noizylab.workers.dev (HTTP 200 confirmed by MC96 diagnostic). Consent Gateway deployed. D1 gabriel_db has RSP_001, 5 consent tokens (3 active), 16 ledger events, 4 synth requests (2 BLOCKED — consent working).',
+    'HEAVEN Worker is LIVE at heaven.rsp-5f3.workers.dev (HTTP 200 confirmed by MC96 diagnostic). Consent Gateway deployed. D1 gabriel_db has RSP_001, 5 consent tokens (3 active), 16 ledger events, 4 synth requests (2 BLOCKED — consent working).',
     'cloudflare', '2026-03-27'
   );
   await learn(
-    'CF account conflict resolved: 5ba03939f87a498d0bbed185ee123946 is CANONICAL (NOIZY.ai account, wrangler authenticated). Fixed across 12 files. Path conflict resolved: robplowman → m2ultra across all MCP configs.',
+    'CF account conflict resolved: 5f36aa9795348ea681d0b21910dfc82a is CANONICAL (NOIZY.ai account, wrangler authenticated). Fixed across 12 files. Path conflict resolved: robplowman → m2ultra across all MCP configs.',
     'infrastructure', 'conflict-resolution'
   );
   await learn(

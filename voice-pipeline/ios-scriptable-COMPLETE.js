@@ -134,7 +134,7 @@ const SERVICES = [
   { name: "Voice Bridge", url: GOD + ":8080/health", port: 8080 },
   { name: "DreamChamber", url: GOD + ":7777/health", port: 7777 },
   { name: "GABRIEL",      url: GOD + ":7777/api/gabriel/v4/health", port: 7777 },
-  { name: "HEAVEN",     url: "https://heaven.noizylab.workers.dev/health", port: null },
+  { name: "HEAVEN",     url: "https://heaven.rsp-5f3.workers.dev/health", port: null },
 ];
 
 async function checkService(svc) {

@@ -7,7 +7,7 @@
 # ═══════════════════════════════════════════════════════════════
 
 GABRIEL="http://localhost:7777"
-HEAVEN="https://heaven.noizylab.workers.dev"
+HEAVEN="https://heaven.rsp-5f3.workers.dev"
 LOG_DIR="/tmp/noizylab-health"
 LOG="$LOG_DIR/healthcheck.log"
 HOUR=$(date +%H)

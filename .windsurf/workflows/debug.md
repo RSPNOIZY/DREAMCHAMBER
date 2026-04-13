@@ -24,7 +24,7 @@ Run: `node -e "const keys=['ANTHROPIC_API_KEY','JWT_SECRET','NOIZY_API_KEY','HEA
 
 5. Test the Heaven kernel connection
 // turbo
-Run: `source .env && curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" https://heaven.noizylab.workers.dev/health` from `/Users/m2ultra/NOIZYLAB`
+Run: `source .env && curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" https://heaven.rsp-5f3.workers.dev/health` from `/Users/m2ultra/NOIZYLAB`
 
 6. Test a basic Gabriel speak (if DreamChamber is running)
 // turbo

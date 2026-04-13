@@ -27,7 +27,7 @@ import { join } from "path";
 import { execSync } from "child_process";
 
 const HEAVEN_URL =
-  process.env.HEAVEN_URL || "https://heaven.noizylab.workers.dev";
+  process.env.HEAVEN_URL || "https://heaven.rsp-5f3.workers.dev";
 const PROJECT_ROOT =
   process.env.NOIZY_PROJECT_ROOT || join(process.env.HOME, "NOIZYLAB");
 

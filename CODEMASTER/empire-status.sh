@@ -6,7 +6,7 @@
 # ═══════════════════════════════════════════════════════════════
 
 GABRIEL="http://localhost:7777"
-HEAVEN="https://heaven.noizylab.workers.dev"
+HEAVEN="https://heaven.rsp-5f3.workers.dev"
 N8N="http://localhost:5678"
 ANTHROPIC="https://status.claude.com/api/v2/status.json"
 

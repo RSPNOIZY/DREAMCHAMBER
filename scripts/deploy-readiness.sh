@@ -140,11 +140,11 @@ if ! $QUICK; then
   echo -e "${CYAN}[8/8] Live Endpoint Checks${NC}"
   for endpoint in "health" "gabriel" "dashboard"; do
     STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-      "https://heaven.noizylab.workers.dev/$endpoint" 2>/dev/null || echo "000")
+      "https://heaven.rsp-5f3.workers.dev/$endpoint" 2>/dev/null || echo "000")
     if [ "$STATUS" = "200" ]; then
-      check "true" "heaven.noizylab.workers.dev/$endpoint → $STATUS"
+      check "true" "heaven.rsp-5f3.workers.dev/$endpoint → $STATUS"
     else
-      warn_check "false" "heaven.noizylab.workers.dev/$endpoint → $STATUS"
+      warn_check "false" "heaven.rsp-5f3.workers.dev/$endpoint → $STATUS"
     fi
   done
   echo ""

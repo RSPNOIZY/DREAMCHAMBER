@@ -251,7 +251,7 @@ Pre-flight check:
 ✓ Consent Auditor: Legal readiness confirmed
 ✓ All 14 smoke tests cached and ready
 
-Deploying to heaven.noizylab.workers.dev...
+Deploying to heaven.rsp-5f3.workers.dev...
 [progress: 15%]... [50%]... [100%]
 
 Post-deployment verification:

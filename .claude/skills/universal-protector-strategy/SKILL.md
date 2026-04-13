@@ -233,7 +233,7 @@ Every NOIZY synthesis request returns with attached C2PA manifest containing:
 {
   "manifest": {
     "alg": "HS256",
-    "iss": "heaven.noizylab.workers.dev",
+    "iss": "heaven.rsp-5f3.workers.dev",
     "iat": 1711353600,
     "claim_generator": "NOIZY v1.0",
     "assertions": [
@@ -348,7 +348,7 @@ RSP_001 (founding actor) has absolute authority to revoke any consent token:
 
 ```bash
 # Via API:
-POST /heaven.noizylab.workers.dev/tokens/{token_id}/revoke
+POST /heaven.rsp-5f3.workers.dev/tokens/{token_id}/revoke
 X-NOIZY-Key: [foundation_key]
 Content-Type: application/json
 {

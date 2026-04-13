@@ -197,7 +197,7 @@ if (!covenantResult.valid) {
 D1:          gabriel_db — a31d68e2-f2d4-4203-a803-8039fdff31cb
 GABRIEL_KV:  f205b56a9914413da0ec454a9dc4c2bd
 GABRIEL_VOICE: 16532a32b2e8455486cc966403f3442e
-Worker URL:  https://heaven.noizylab.workers.dev
+Worker URL:  https://heaven.rsp-5f3.workers.dev
 ```
 
 ## Testing New Endpoints
@@ -209,21 +209,21 @@ Worker URL:  https://heaven.noizylab.workers.dev
 npx wrangler deploy
 
 # 2. Test unauthenticated (should 401)
-curl -s https://heaven.noizylab.workers.dev/api/v1/your-endpoint | jq .
+curl -s https://heaven.rsp-5f3.workers.dev/api/v1/your-endpoint | jq .
 
 # 3. Test authenticated
 curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" \
-  https://heaven.noizylab.workers.dev/api/v1/your-endpoint | jq .
+  https://heaven.rsp-5f3.workers.dev/api/v1/your-endpoint | jq .
 
 # 4. Test write
 curl -s -X POST -H "X-NOIZY-Key: $NOIZY_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"field": "value"}' \
-  https://heaven.noizylab.workers.dev/api/v1/your-endpoint | jq .
+  https://heaven.rsp-5f3.workers.dev/api/v1/your-endpoint | jq .
 
 # 5. Verify ledger entry
 curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" \
-  https://heaven.noizylab.workers.dev/api/v1/ledger?limit=1 | jq .
+  https://heaven.rsp-5f3.workers.dev/api/v1/ledger?limit=1 | jq .
 ```
 
 ## Rules

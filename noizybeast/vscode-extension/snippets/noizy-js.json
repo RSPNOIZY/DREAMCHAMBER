@@ -3,7 +3,7 @@
     "prefix": "noizy-consent",
     "body": [
       "// NOIZY Consent Check — ${1:description}",
-      "const consentResult = await fetch('${2:https://heaven.noizylab.workers.dev}/api/v1/consent-tokens', {",
+      "const consentResult = await fetch('${2:https://heaven.rsp-5f3.workers.dev}/api/v1/consent-tokens', {",
       "  headers: { 'X-NOIZY-Key': process.env.NOIZY_KEY }",
       "});",
       "const consent = await consentResult.json();",
@@ -15,7 +15,7 @@
     "prefix": "noizy-never",
     "body": [
       "// Never Clause Guard — SACRED BOUNDARY",
-      "const neverClauses = await fetch('${1:https://heaven.noizylab.workers.dev}/api/v1/actors/${2:RSP_001}/never-clauses', {",
+      "const neverClauses = await fetch('${1:https://heaven.rsp-5f3.workers.dev}/api/v1/actors/${2:RSP_001}/never-clauses', {",
       "  headers: { 'X-NOIZY-Key': process.env.NOIZY_KEY }",
       "});",
       "const clauses = await neverClauses.json();",
@@ -31,7 +31,7 @@
     "prefix": "noizy-ledger",
     "body": [
       "// Immutable Ledger Entry",
-      "await fetch('${1:https://heaven.noizylab.workers.dev}/api/v1/ledger', {",
+      "await fetch('${1:https://heaven.rsp-5f3.workers.dev}/api/v1/ledger', {",
       "  method: 'POST',",
       "  headers: {",
       "    'Content-Type': 'application/json',",

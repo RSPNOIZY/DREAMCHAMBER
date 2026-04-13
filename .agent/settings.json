@@ -34,7 +34,7 @@
   },
   "services": {
     "dreamchamber": "http://localhost:7777",
-    "heaven": "https://heaven.noizylab.workers.dev",
+    "heaven": "https://heaven.rsp-5f3.workers.dev",
     "voiceBridge": "http://localhost:8080",
     "ollama": "http://localhost:11434"
   }

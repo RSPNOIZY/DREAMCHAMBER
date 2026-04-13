@@ -36,9 +36,9 @@
 
 | Resource | URL / Path | Auth |
 |----------|-----------|------|
-| Heaven (live) | `https://heaven.noizylab.workers.dev` | `X-NOIZY-Key` |
-| Heaven health | `https://heaven.noizylab.workers.dev/health` | None |
-| Heaven GABRIEL status | `https://heaven.noizylab.workers.dev/gabriel` | `X-NOIZY-Key` |
+| Heaven (live) | `https://heaven.rsp-5f3.workers.dev` | `X-NOIZY-Key` |
+| Heaven health | `https://heaven.rsp-5f3.workers.dev/health` | None |
+| Heaven GABRIEL status | `https://heaven.rsp-5f3.workers.dev/gabriel` | `X-NOIZY-Key` |
 | DreamChamber / GABRIEL | `http://localhost:7777/api/gabriel/speak` | None (local) |
 | DreamChamber status | `http://localhost:7777/api/gabriel/status` | None (local) |
 | Consent Gateway (deploy pending) | `https://noizy-consent-gateway.*.workers.dev` | `X-NOIZY-Key` |
@@ -155,7 +155,7 @@
 
 ```bash
 # 1. Heaven health
-curl https://heaven.noizylab.workers.dev/health
+curl https://heaven.rsp-5f3.workers.dev/health
 
 # 2. GABRIEL status
 curl http://localhost:7777/api/gabriel/status

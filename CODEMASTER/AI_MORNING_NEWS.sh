@@ -25,7 +25,7 @@ except:
     print('?')
 " 2>/dev/null || echo "?")
 
-HEAVEN_HEALTH=$(curl -s --max-time 5 "https://heaven.noizylab.workers.dev/health" 2>/dev/null)
+HEAVEN_HEALTH=$(curl -s --max-time 5 "https://heaven.rsp-5f3.workers.dev/health" 2>/dev/null)
 HEAVEN_VER=$(echo "$HEAVEN_HEALTH" | python3 -c "
 import sys,json
 try:

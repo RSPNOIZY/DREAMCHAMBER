@@ -101,5 +101,5 @@ Configure in Claude Code / Windsurf MCP settings:
 
 ## LUCY — DAZEFLOW Law
 
-1 day = 1 chat = 1 truth. Log sessions via `lucy_dazeflow_log`. State stored in `lucy-state/`.
+1 day = 1 chat = 1 truth. Log sessions via `lucy_dazeflow_log`. State stored in `~/NOIZYLAB/lucy-state/`.
 All significant actions across all agents should be logged to DAZEFLOW.

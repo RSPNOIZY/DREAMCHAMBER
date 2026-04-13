@@ -9,7 +9,7 @@ Deploy the Heaven Consent Kernel API to Cloudflare Workers with full safety chec
 3. Check for exposed secrets: `grep -r "NOIZY_API_KEY\|sk-" src/ --include="*.js"`
 4. Run `npx wrangler deploy`
 5. Run `bash smoke_test.sh` — all 14 tests must pass
-6. Verify health: `curl -s https://heaven.noizylab.workers.dev/health | jq .`
+6. Verify health: `curl -s https://heaven.rsp-5f3.workers.dev/health | jq .`
 7. Verify Never Clauses: must return 9 active
 8. Log the deploy to DAZEFLOW via Lucy
 

@@ -21,8 +21,8 @@
 - ~/.gemini/antigravity/scratch/ (working scratch — not enterprise)
 
 ## CF Infrastructure (Two Accounts)
-- HEAVEN account: 5ba03939f87a498d0bbed185ee123946
-- CF Auth account: 5ba03939f87a498d0bbed185ee123946
+- HEAVEN account: 5f36aa9795348ea681d0b21910dfc82a
+- CF Auth account: 5f36aa9795348ea681d0b21910dfc82a
 - D1 CANONICAL: agent-memory / 7b813205-fd12-4a23-84a6-ce83bc49ec70
 
 ## GABRIEL State

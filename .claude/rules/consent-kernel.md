@@ -43,7 +43,7 @@ These are **immovable**. No code path may bypass, weaken, or reinterpret them.
 
 ## Covenant Validation (9 checks)
 
-The Covenant validator (`src/covenant.js`) runs on every synth request:
+The Covenant validator (inline in `src/index.js`) runs on every synth request:
 1. Actor exists and is active (`hvs_actors WHERE is_active = 1`)
 2. Descendant belongs to actor (`hvs_descendants WHERE actor_id = ?`)
 3. Consent token is valid and not expired (`expires_at > datetime('now')`)

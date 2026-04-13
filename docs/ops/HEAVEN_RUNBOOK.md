@@ -1,6 +1,6 @@
 # HEAVEN — "Make NOIZY.AI Real Today" Runbook
 
-Production URL: `https://heaven.noizylab.workers.dev`
+Production URL: `https://heaven.rsp-5f3.workers.dev`
 
 ## 0) Pre-flight checks
 
@@ -30,7 +30,7 @@ bash deploy.sh
 ## 2) Verify deployment — Health check
 
 ```bash
-curl -sS https://heaven.noizylab.workers.dev/health | jq .
+curl -sS https://heaven.rsp-5f3.workers.dev/health | jq .
 ```
 
 Expected response:
@@ -50,7 +50,7 @@ Expected response:
 ## 3) Create founding actor RSP_001
 
 ```bash
-curl -X POST https://heaven.noizylab.workers.dev/api/v1/actors \
+curl -X POST https://heaven.rsp-5f3.workers.dev/api/v1/actors \
   -H "Content-Type: application/json" \
   -d '{
     "actor_id": "RSP_001",
@@ -66,13 +66,13 @@ curl -X POST https://heaven.noizylab.workers.dev/api/v1/actors \
 ## 4) Verify actor exists
 
 ```bash
-curl -sS https://heaven.noizylab.workers.dev/api/v1/actors/RSP_001 | jq .
+curl -sS https://heaven.rsp-5f3.workers.dev/api/v1/actors/RSP_001 | jq .
 ```
 
 ## 5) Create consent token
 
 ```bash
-curl -X POST https://heaven.noizylab.workers.dev/api/v1/consent-tokens \
+curl -X POST https://heaven.rsp-5f3.workers.dev/api/v1/consent-tokens \
   -H "Content-Type: application/json" \
   -d '{
     "actor_id": "RSP_001",
@@ -92,7 +92,7 @@ echo "TOKEN_ID: $TOKEN_ID"
 ## 6) Test synth request (should pass)
 
 ```bash
-curl -X POST https://heaven.noizylab.workers.dev/api/v1/synth-requests \
+curl -X POST https://heaven.rsp-5f3.workers.dev/api/v1/synth-requests \
   -H "Content-Type: application/json" \
   -d "{
     \"actor_id\": \"RSP_001\",
@@ -108,7 +108,7 @@ Expected: `"status": "approved"`
 ## 7) Test kill switch (revoke consent)
 
 ```bash
-curl -X POST "https://heaven.noizylab.workers.dev/api/v1/consent-tokens/$TOKEN_ID/revoke" \
+curl -X POST "https://heaven.rsp-5f3.workers.dev/api/v1/consent-tokens/$TOKEN_ID/revoke" \
   -H "Content-Type: application/json" \
   -d '{
     "reason": "Testing kill switch functionality"
@@ -128,7 +128,7 @@ Expected response:
 ## 8) Verify kill switch worked (synth should fail)
 
 ```bash
-curl -X POST https://heaven.noizylab.workers.dev/api/v1/synth-requests \
+curl -X POST https://heaven.rsp-5f3.workers.dev/api/v1/synth-requests \
   -H "Content-Type: application/json" \
   -d "{
     \"actor_id\": \"RSP_001\",
@@ -145,7 +145,7 @@ Expected: `403 Forbidden` with error message about no valid consent token
 
 Create new token first:
 ```bash
-curl -X POST https://heaven.noizylab.workers.dev/api/v1/consent-tokens \
+curl -X POST https://heaven.rsp-5f3.workers.dev/api/v1/consent-tokens \
   -H "Content-Type: application/json" \
   -d '{
     "actor_id": "RSP_001",
@@ -158,7 +158,7 @@ TOKEN_ID2=$(cat consent_token2.json | jq -r .consent_token.token_id)
 
 Try political content (should be blocked):
 ```bash
-curl -X POST https://heaven.noizylab.workers.dev/api/v1/synth-requests \
+curl -X POST https://heaven.rsp-5f3.workers.dev/api/v1/synth-requests \
   -H "Content-Type: application/json" \
   -d "{
     \"actor_id\": \"RSP_001\",
@@ -174,7 +174,7 @@ Expected: `403 Forbidden` with Never Clause block message
 ## 10) Check ledger (audit trail)
 
 ```bash
-curl -sS "https://heaven.noizylab.workers.dev/api/v1/ledger?actor_id=RSP_001&limit=10" | jq .
+curl -sS "https://heaven.rsp-5f3.workers.dev/api/v1/ledger?actor_id=RSP_001&limit=10" | jq .
 ```
 
 Should show all events:
@@ -189,7 +189,7 @@ Should show all events:
 
 When you have Voice DNA ready:
 ```bash
-curl -X POST https://heaven.noizylab.workers.dev/api/v1/actors/RSP_001/voice-dna \
+curl -X POST https://heaven.rsp-5f3.workers.dev/api/v1/actors/RSP_001/voice-dna \
   -H "Content-Type: application/json" \
   -d '{
     "dna_id": "RSP_001_DNA_001",

@@ -585,7 +585,7 @@ export function landingHTML() {
     <a href="#brands">Empire</a>
     <a href="#gospel">Gospel</a>
     <a href="#constitutional">Constitutional</a>
-    <a href="https://heaven.noizylab.workers.dev/dashboard">GABRIEL</a>
+    <a href="https://heaven.rsp-5f3.workers.dev/dashboard">GABRIEL</a>
     <a href="mailto:hello@noizy.ai" class="nav-cta">Contact</a>
   </nav>
 </header>
@@ -610,7 +610,7 @@ export function landingHTML() {
 
   <div class="hero-ctas">
     <a href="#brands" class="btn btn-gold">Explore the Empire</a>
-    <a href="https://heaven.noizylab.workers.dev/api/v1/actors" class="btn btn-outline">View the Ledger</a>
+    <a href="https://heaven.rsp-5f3.workers.dev/api/v1/actors" class="btn btn-outline">View the Ledger</a>
   </div>
 
   <div class="live-pill">
@@ -625,7 +625,7 @@ export function landingHTML() {
 
   <div class="brands-grid">
 
-    <a href="https://heaven.noizylab.workers.dev" class="brand-card card-noizy">
+    <a href="https://heaven.rsp-5f3.workers.dev" class="brand-card card-noizy">
       <span class="brand-tag">Mothership</span>
       <div class="brand-name">NOIZY.AI</div>
       <div class="brand-tagline">Consent Infrastructure</div>
@@ -636,7 +636,7 @@ export function landingHTML() {
       </div>
     </a>
 
-    <a href="https://heaven.noizylab.workers.dev/api/v1/licensees" class="brand-card card-noizylab">
+    <a href="https://heaven.rsp-5f3.workers.dev/api/v1/licensees" class="brand-card card-noizylab">
       <span class="brand-tag">Revenue Engine</span>
       <div class="brand-name">NOIZYLAB</div>
       <div class="brand-tagline">Device Repair · Ottawa</div>
@@ -647,7 +647,7 @@ export function landingHTML() {
       </div>
     </a>
 
-    <a href="https://heaven.noizylab.workers.dev" class="brand-card card-noizykidz">
+    <a href="https://heaven.rsp-5f3.workers.dev" class="brand-card card-noizykidz">
       <span class="brand-tag">Soul Mission</span>
       <div class="brand-name">NOIZYKIDZ</div>
       <div class="brand-tagline">Haptic Music · Deaf &amp; Autism</div>
@@ -658,7 +658,7 @@ export function landingHTML() {
       </div>
     </a>
 
-    <a href="https://heaven.noizylab.workers.dev" class="brand-card card-noizyfish">
+    <a href="https://heaven.rsp-5f3.workers.dev" class="brand-card card-noizyfish">
       <span class="brand-tag">Legacy Vault</span>
       <div class="brand-name">NOIZYFISH INC.</div>
       <div class="brand-tagline">Fish Music Inc. · The Aquarium</div>
@@ -669,7 +669,7 @@ export function landingHTML() {
       </div>
     </a>
 
-    <a href="https://heaven.noizylab.workers.dev/api/v1/actors" class="brand-card card-noizyvox">
+    <a href="https://heaven.rsp-5f3.workers.dev/api/v1/actors" class="brand-card card-noizyvox">
       <span class="brand-tag">Voice Platform</span>
       <div class="brand-name">NOIZYVOX</div>
       <div class="brand-tagline">A.I.V.A. — Voice Army</div>
@@ -698,7 +698,7 @@ export function landingHTML() {
       <div class="gospel-line">Some artists paint all their pictures in their heads. <em>NOIZY is the transmission cable.</em></div>
     </div>
 
-    <a href="https://heaven.noizylab.workers.dev/api/v1/stats" class="btn btn-gold">Read the Ledger</a>
+    <a href="https://heaven.rsp-5f3.workers.dev/api/v1/stats" class="btn btn-gold">Read the Ledger</a>
   </div>
 </section>
 
@@ -813,10 +813,10 @@ export function landingHTML() {
   <p class="footer-canon">Ottawa, Canada · Est. 2026 · RSP_001 Sovereign · GABRIEL Online</p>
 
   <div class="footer-links">
-    <a href="https://heaven.noizylab.workers.dev">HEAVEN API</a>
-    <a href="https://heaven.noizylab.workers.dev/dashboard">GABRIEL Dashboard</a>
-    <a href="https://heaven.noizylab.workers.dev/api/v1/stats">Live Stats</a>
-    <a href="https://heaven.noizylab.workers.dev/health">System Health</a>
+    <a href="https://heaven.rsp-5f3.workers.dev">HEAVEN API</a>
+    <a href="https://heaven.rsp-5f3.workers.dev/dashboard">GABRIEL Dashboard</a>
+    <a href="https://heaven.rsp-5f3.workers.dev/api/v1/stats">Live Stats</a>
+    <a href="https://heaven.rsp-5f3.workers.dev/health">System Health</a>
     <a href="mailto:hello@noizy.ai">hello@noizy.ai</a>
     <a href="mailto:fairtrade@noizy.ai">Fair Trade AI</a>
   </div>

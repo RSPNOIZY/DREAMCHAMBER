@@ -11,7 +11,7 @@ from datetime import datetime
 from pathlib import Path
 import time
 
-HEAVEN17 = "https://heaven.noizylab.workers.dev"
+HEAVEN17 = "https://heaven.rsp-5f3.workers.dev"
 HEADERS = {"User-Agent": "EMPIRE-DASHBOARD/1.0"}
 
 def fetch_json(url: str) -> dict:

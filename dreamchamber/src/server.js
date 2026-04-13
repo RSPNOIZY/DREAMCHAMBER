@@ -138,7 +138,7 @@ app.use(
       "http://10.90.90.10:7777",
       "http://10.90.90.10:9090",
       "http://10.90.90.40:7777",  // DaFixer
-      "https://heaven.noizylab.workers.dev",
+      "https://heaven.rsp-5f3.workers.dev",
       "https://noizy.ai",
     ],
     credentials: true,

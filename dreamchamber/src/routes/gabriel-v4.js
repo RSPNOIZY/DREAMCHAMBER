@@ -56,7 +56,7 @@ const CREW = {
     domains:  ['deploy', 'infrastructure', 'health', 'dns', 'cloudflare', 'wrangler'],
     system:   `You are CB01 of NOIZY.AI. Operations, deployments, Cloudflare Workers, DNS, infrastructure.
 RSP_001 (Robert, C3 injury, voice-first) is your operator. Always report status clearly.
-Current infra: CF Account 5ba03939f87a, D1: agent-memory (7b813205), HEAVEN: heaven.noizylab.workers.dev`,
+Current infra: CF Account 5ba03939f87a, D1: agent-memory (7b813205), HEAVEN: heaven.rsp-5f3.workers.dev`,
   },
   'LUCY': {
     role:     'Memory Archivist & Knowledge Keeper',
@@ -228,7 +228,7 @@ router.get('/health', async (req, res) => {
     ready:      apiKey,
   }));
 
-  const heavenUrl = 'https://heaven.noizylab.workers.dev/health';
+  const heavenUrl = 'https://heaven.rsp-5f3.workers.dev/health';
   let heavenStatus = null;
   try {
     const r = await fetch(heavenUrl, { signal: AbortSignal.timeout(5000) });

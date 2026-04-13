@@ -12,7 +12,7 @@ const Anthropic = require("@anthropic-ai/sdk");
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
-const HEAVEN_URL = process.env.HEAVEN_URL || "https://heaven.noizylab.workers.dev";
+const HEAVEN_URL = process.env.HEAVEN_URL || "https://heaven.rsp-5f3.workers.dev";
 const NOIZY_API_KEY = process.env.NOIZY_API_KEY;
 const MAX_CONTENT_CHARS = 50_000;
 

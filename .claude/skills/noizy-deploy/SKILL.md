@@ -38,14 +38,14 @@ cat wrangler.toml | grep database_id
 npx wrangler deploy
 
 # 3. Health check
-curl -s https://heaven.noizylab.workers.dev/health | jq .
+curl -s https://heaven.rsp-5f3.workers.dev/health | jq .
 
 # 4. Smoke tests (14 tests with auth)
 bash smoke_test.sh
 
 # 5. Verify ledger
 curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" \
-  https://heaven.noizylab.workers.dev/api/v1/ledger?limit=5 | jq .
+  https://heaven.rsp-5f3.workers.dev/api/v1/ledger?limit=5 | jq .
 ```
 
 ### noizy.ai Landing Page
@@ -94,19 +94,19 @@ After every deploy, run this sequence:
 
 ```bash
 # 1. Health
-curl -s https://heaven.noizylab.workers.dev/health | jq '.success'
+curl -s https://heaven.rsp-5f3.workers.dev/health | jq '.success'
 
 # 2. Actor check (RSP_001 must exist)
 curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" \
-  https://heaven.noizylab.workers.dev/api/v1/actors | jq '.data[0].actor_id'
+  https://heaven.rsp-5f3.workers.dev/api/v1/actors | jq '.data[0].actor_id'
 
 # 3. Never Clauses (must return 9)
 curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" \
-  https://heaven.noizylab.workers.dev/api/v1/never-clauses | jq '.data | length'
+  https://heaven.rsp-5f3.workers.dev/api/v1/never-clauses | jq '.data | length'
 
 # 4. KPIs
 curl -s -H "X-NOIZY-Key: $NOIZY_API_KEY" \
-  https://heaven.noizylab.workers.dev/api/v1/kpi/trust | jq .
+  https://heaven.rsp-5f3.workers.dev/api/v1/kpi/trust | jq .
 ```
 
 ## Rollback Procedure
@@ -123,7 +123,7 @@ npx wrangler rollback
 
 | Resource | ID |
 |----------|-----|
-| Worker | heaven @ heaven.noizylab.workers.dev |
+| Worker | heaven @ heaven.rsp-5f3.workers.dev |
 | D1 Database | gabriel_db — `a31d68e2-f2d4-4203-a803-8039fdff31cb` |
 | GABRIEL_KV | `f205b56a9914413da0ec454a9dc4c2bd` |
 | GABRIEL_VOICE | `16532a32b2e8455486cc966403f3442e` |

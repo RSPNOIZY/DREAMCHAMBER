@@ -9,7 +9,7 @@
       "args": ["n8n-mcp@latest"],
       "env": {
         "N8N_API_URL": "http://localhost:5678",
-        "N8N_API_KEY": "${N8N_API_KEY}",
+        "N8N_API_KEY": "n8n_d3241906d1b3e44ce97b730092b02d744ee7e993d30d5889c790a9f78c6067f4",
         "MCP_MODE": "stdio",
         "LOG_LEVEL": "error",
         "DISABLE_CONSOLE_OUTPUT": "true",

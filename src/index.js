@@ -3,7 +3,7 @@
  * Cloudflare Worker — gabriel_db D1 backend
  *
  * Author: Robert Stephen Plowman (RSP_001)
- * Version: 17.9.0 — April 2026 (GORUNFREE + EDGE CORE live)
+ * Version: 18.0.0 — April 2026 (GORUNFREE + EDGE CORE live)
  *
  * Consent as executable code.
  * Provenance as default.
@@ -1316,7 +1316,7 @@ export default {
             WISDOM:     "Elder legacy — inheritable voice archive — 100-year estate",
             myFAMILY:   "Love in code — consent-native — deployed when needed",
           },
-          kernel: "heaven.noizylab.workers.dev",
+          kernel: "heaven.rsp-5f3.workers.dev",
           days_to_deadline: Math.ceil(
             (new Date("2026-04-17").getTime() - Date.now()) / 86400000,
           ),
@@ -1781,7 +1781,7 @@ export default {
         const upgradeHeader = request.headers.get("Upgrade");
         if (!upgradeHeader || upgradeHeader.toLowerCase() !== "websocket") {
           return json({
-            endpoint: "wss://heaven.noizylab.workers.dev/ws",
+            endpoint: "wss://heaven.rsp-5f3.workers.dev/ws",
             protocol: "WebSocket",
             usage: "Connect and send JSON: {type, payload}",
             types: ["ping","command","voice","consent.check","empire.status","heal.trigger"],

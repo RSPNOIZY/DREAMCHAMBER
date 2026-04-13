@@ -72,7 +72,7 @@ This was the original GABRIEL database. It was split into the three databases ab
 
 #### gabriel_db (`fc0edd97...`)
 
-**Account:** NOIZY.ai consent (`5ba03939f87a498d0bbed185ee123946`)
+**Account:** NOIZY.ai consent (`5f36aa9795348ea681d0b21910dfc82a`)
 **Tables:** 31
 **Purpose:** consent-gateway data — consent records, audit trails, rate limiting state
 

@@ -122,7 +122,7 @@
       "timestamp": "2026-03-27T17:52:02.180Z",
       "category": "infrastructure",
       "source": "UPGRADE_MAR27_SESSION2",
-      "observation": "HEAVEN account_id CORRECTED to 5ba03939f87a498d0bbed185ee123946 — this is the HEAVEN/noizy.ai account. wrangler cache 5ba03939 is NOIZY.ai consent-gateway account. Two separate CF accounts in the empire."
+      "observation": "HEAVEN account_id CORRECTED to 5f36aa9795348ea681d0b21910dfc82a — this is the HEAVEN/noizy.ai account. wrangler cache 5ba03939 is NOIZY.ai consent-gateway account. Two separate CF accounts in the empire."
     },
     {
       "id": "L1774633629207",
@@ -213,14 +213,14 @@
       "timestamp": "2026-03-27T17:43:36.523Z",
       "category": "infrastructure",
       "source": "conflict-resolution",
-      "observation": "CF account conflict resolved: 5ba03939f87a498d0bbed185ee123946 is CANONICAL (NOIZY.ai account, wrangler authenticated). Fixed across 12 files. Path conflict resolved: robplowman → m2ultra across all MCP configs."
+      "observation": "CF account conflict resolved: 5f36aa9795348ea681d0b21910dfc82a is CANONICAL (NOIZY.ai account, wrangler authenticated). Fixed across 12 files. Path conflict resolved: robplowman → m2ultra across all MCP configs."
     },
     {
       "id": "L1774633416522",
       "timestamp": "2026-03-27T17:43:36.522Z",
       "category": "cloudflare",
       "source": "2026-03-27",
-      "observation": "HEAVEN Worker is LIVE at heaven.noizylab.workers.dev (HTTP 200 confirmed by MC96 diagnostic). Consent Gateway deployed. D1 gabriel_db has RSP_001, 5 consent tokens (3 active), 16 ledger events, 4 synth requests (2 BLOCKED — consent working)."
+      "observation": "HEAVEN Worker is LIVE at heaven.rsp-5f3.workers.dev (HTTP 200 confirmed by MC96 diagnostic). Consent Gateway deployed. D1 gabriel_db has RSP_001, 5 consent tokens (3 active), 16 ledger events, 4 synth requests (2 BLOCKED — consent working)."
     },
     {
       "id": "L1774633416521",
@@ -276,7 +276,7 @@
       "timestamp": "2026-03-27T17:43:36.510Z",
       "category": "infrastructure",
       "source": "GABRIEL.md",
-      "observation": "GitHub: @Noizyfish. Cloudflare account: 5ba03939f87a498d0bbed185ee123946 (NOIZY.ai). D1: 10 databases — DO NOT create new without explicit GO. Workers AI: full access."
+      "observation": "GitHub: @Noizyfish. Cloudflare account: 5f36aa9795348ea681d0b21910dfc82a (NOIZY.ai). D1: 10 databases — DO NOT create new without explicit GO. Workers AI: full access."
     },
     {
       "id": "L1774633416508",
@@ -346,7 +346,7 @@
       "timestamp": "2026-03-25T20:56:17.193Z",
       "category": "empire",
       "source": "seed",
-      "observation": "Heaven is LIVE at heaven.noizylab.workers.dev. Always verify with health check before claiming anything is broken."
+      "observation": "Heaven is LIVE at heaven.rsp-5f3.workers.dev. Always verify with health check before claiming anything is broken."
     },
     {
       "id": "L_SEED_008",

@@ -15,7 +15,7 @@
   "targetDate": "2026-04-17",
 
   "portals": {
-    "NOIZY.ai":     { "role": "consent-native infrastructure layer",         "status": "live",     "url": "https://heaven.noizylab.workers.dev", "worker": "heaven v17.4.0" },
+    "NOIZY.ai":     { "role": "consent-native infrastructure layer",         "status": "live",     "url": "https://heaven.rsp-5f3.workers.dev", "worker": "heaven v17.4.0" },
     "NOIZYVOX":     { "role": "voice sovereignty + consent capture",         "status": "building", "url": "noizyvox.com",          "worker": "noizyvox" },
     "NOIZYFISH":    { "role": "888-title catalogue, C2PA stamped, 75/25",    "status": "active",   "url": "noizyfish.com",         "worker": null },
     "NOIZYKIDZ":    { "role": "Rhythm Root Island, neurodivergent kids",     "status": "building", "url": "noizykidz.com",         "worker": null },
@@ -31,8 +31,8 @@
     "d1_repairs":    "75bba892-80a8-46f2-a552-610f38bcb36d",
     "d1_noizyai":    "ebcf576f-51e3-4e3d-829e-219f8fe6001c",
     "gabriel_local": "http://GOD.local:7777",
-    "gabriel_edge":  "wss://heaven.noizylab.workers.dev/ws",
-    "heaven":        "https://heaven.noizylab.workers.dev",
+    "gabriel_edge":  "wss://heaven.rsp-5f3.workers.dev/ws",
+    "heaven":        "https://heaven.rsp-5f3.workers.dev",
     "heaven_version":"17.4.0",
     "landing":       "https://noizy-landing.noizylab.workers.dev",
     "voiceBridge":   "http://GOD.local:8080",

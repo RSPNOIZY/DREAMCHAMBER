@@ -126,7 +126,7 @@ git init
 git add .
 git commit -m "feat: Heaven v17.5.0 — NOIZY HVS Consent Kernel API
 
-Cloudflare Worker — heaven.noizylab.workers.dev
+Cloudflare Worker — heaven.rsp-5f3.workers.dev
 - 40 endpoints: actors, consent tokens, synthesis, kill switch
 - Never Clauses enforcement
 - myFamily.AI routes (consent-native voice legacy)

@@ -73,7 +73,7 @@ check_service "N8N :5678"         "http://localhost:5678/healthz"    '"ok"'
 
 $JSON || { echo ""; echo -e "${B}${C}CLOUDFLARE EDGE${NC}"; }
 check_service "Heaven (edge)"     "https://heaven17.noizylab.workers.dev/health" '"LIVE"'
-check_service "Webhooks"          "https://heaven.noizylab.workers.dev/webhooks/status" '"operational"'
+check_service "Webhooks"          "https://heaven.rsp-5f3.workers.dev/webhooks/status" '"operational"'
 
 # ── Wrangler Auth ─────────────────────────────────────────────────────
 $JSON || { echo ""; echo -e "${B}${C}AUTH & TOOLS${NC}"; }

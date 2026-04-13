@@ -233,7 +233,7 @@ This creates an unbreakable chain from audio file → consent token → creator 
 
 NCP v1.0 is live in production at:
 
-- **API**: heaven.noizylab.workers.dev
+- **API**: heaven.rsp-5f3.workers.dev
 - **Consent token endpoint**: POST /api/v1/consent-tokens
 - **Kill Switch**: POST /api/v1/consent-tokens/:id/revoke
 - **Validation**: enforced in POST /api/v1/synth-requests (Never Clause check)

@@ -5,7 +5,7 @@ Run a complete NOIZY Empire status check at the start of every work session.
 ## Sequence
 
 1. **Health Checks**
-   - `curl -s https://heaven.noizylab.workers.dev/health | jq .`
+   - `curl -s https://heaven.rsp-5f3.workers.dev/health | jq .`
    - `curl -s http://localhost:7777/health` (DreamChamber — may be down)
    - `curl -s http://localhost:8080/health` (Voice Bridge — may be down)
 

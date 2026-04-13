@@ -68,10 +68,10 @@ This is the NOIZY Empire. Two years of deep work. Treat it with that weight.
 | **noizy.ai Landing**                                 | LIVE     | `noizy-landing.rsp-5f3.workers.dev` — 396 Hz universe, platinum wordmark                  |
 | **Voice Pipeline** — mlx_whisper + Claude Towers     | LIVE     | Port 9777 — mic → Whisper → Claude (max/code/work) → TTS                                  |
 | **Recovery Spine** — Forensic-grade                  | FROZEN   | 12 scripts, 8-gate Makefile, Ed25519 sealing, 22/22 smoke tests                           |
-| **9 MCP Servers**                                    | LIVE     | `mcp/` — gabriel, lucy, heaven, engr-keith, dream, cb01, shirley, family, audio           |
+| **12 MCP Servers**                                   | LIVE     | `mcp/` — gabriel, lucy, heaven, engr-keith, dream, cb01, shirley, family, shortcuts, consent-oracle, synthesis-oracle + audio |
 | **10 Subagent Definitions**                          | LIVE     | `.claude/agents/` — orchestrator + 9 specialists                                          |
 | **21 Custom Skills**                                 | LIVE     | `.claude/skills/` — 11,909 lines across all domains                                       |
-| **6 Prompt Templates**                               | LIVE     | `.claude/prompts/` — deploy, onboard, status, endpoint, security, godaddy-exit            |
+| **9 Prompt Templates**                               | LIVE     | `.claude/prompts/` — deploy, onboard, status, endpoint, security, godaddy-exit, gabriel-boot, gabriel-release-commander, gpt-release-auditor |
 
 ## INFRASTRUCTURE IDs (AUTHORITATIVE — verified 2026-04-07)
 
@@ -139,6 +139,7 @@ All detailed rules live in `.claude/rules/`. Claude loads them automatically.
 | `monetization.md`       | 75/25 royalties, union tiers, licensing, anti-exploitation |
 | `agents.md`             | 10 AI agents, 9 MCP servers, 74 tools, DAZEFLOW, routing   |
 | `hooks-and-webhooks.md` | Auto-format hook, session hook, webhook architecture       |
+| `contact.md`            | Universal contact email, domain strategy, email routing    |
 
 ## SKILLS DIRECTORY (21 skills, 11,909 lines)
 

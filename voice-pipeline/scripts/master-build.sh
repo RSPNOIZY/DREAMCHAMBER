@@ -46,7 +46,7 @@ cat > "$CLAUDE_CONFIG" << 'MCPEOF'
       "command": "node",
       "args": ["/Users/m2ultra/NOIZYLAB/mcp/lucy-mcp/index.js"],
       "env": {
-        "HEAVEN_URL": "https://heaven.noizylab.workers.dev",
+        "HEAVEN_URL": "https://heaven.rsp-5f3.workers.dev",
         "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB"
       }
     },
@@ -54,14 +54,14 @@ cat > "$CLAUDE_CONFIG" << 'MCPEOF'
       "command": "node",
       "args": ["/Users/m2ultra/NOIZYLAB/mcp/heaven-mcp/index.js"],
       "env": {
-        "HEAVEN_URL": "https://heaven.noizylab.workers.dev"
+        "HEAVEN_URL": "https://heaven.rsp-5f3.workers.dev"
       }
     },
     "engr-keith-mcp": {
       "command": "node",
       "args": ["/Users/m2ultra/NOIZYLAB/mcp/engr-keith-mcp/index.js"],
       "env": {
-        "HEAVEN_URL": "https://heaven.noizylab.workers.dev",
+        "HEAVEN_URL": "https://heaven.rsp-5f3.workers.dev",
         "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB"
       }
     },
@@ -76,7 +76,7 @@ cat > "$CLAUDE_CONFIG" << 'MCPEOF'
       "command": "node",
       "args": ["/Users/m2ultra/NOIZYLAB/mcp/cb01-mcp/index.js"],
       "env": {
-        "HEAVEN_URL": "https://heaven.noizylab.workers.dev",
+        "HEAVEN_URL": "https://heaven.rsp-5f3.workers.dev",
         "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB"
       }
     },
@@ -101,7 +101,7 @@ cat > "$CLAUDE_CONFIG" << 'MCPEOF'
         "OLLAMA_URL": "http://localhost:11434",
         "GEMMA_MODEL": "gemma3:latest",
         "NOIZYLAB_DIR": "/Users/m2ultra/NOIZYLAB",
-        "CLOUDFLARE_ACCOUNT_ID": "5ba03939f87a498d0bbed185ee123946"
+        "CLOUDFLARE_ACCOUNT_ID": "5f36aa9795348ea681d0b21910dfc82a"
       }
     },
     "noizy-voice-bridge": {
@@ -195,7 +195,7 @@ check "Heaven Worker"        "test -f $NOIZYLAB/workers/consent-gateway/src/inde
 check "Voice pipeline scripts" "test -f $NOIZYLAB/voice-pipeline/voice-pipeline.sh"
 check "Gemma3 MCP server"      "test -f $NOIZYLAB/mcp-gemma3/server.js"
 check "D1 schema"              "test -f $NOIZYLAB/mcp-gemma3/../voice-pipeline/../schema.sql"
-check "CF Account ID"          "echo 5ba03939f87a498d0bbed185ee123946"
+check "CF Account ID"          "echo 5f36aa9795348ea681d0b21910dfc82a"
 check "Anthropic key in env"   "test -n '$ANTHROPIC_API_KEY' || grep -q ANTHROPIC $NOIZYLAB/NOIZYANTHROPIC/NOIZYLAB/.env 2>/dev/null"
 
 echo ""

@@ -378,7 +378,7 @@
         },
         "noizybeast.cfAccount": {
           "type": "string",
-          "default": "5ba03939f87a498d0bbed185ee123946",
+          "default": "5f36aa9795348ea681d0b21910dfc82a",
           "description": "Cloudflare Account ID"
         },
         "noizybeast.operator": {
@@ -408,12 +408,12 @@
         },
         "noizybeast.heavenEdgeUrl": {
           "type": "string",
-          "default": "https://heaven.noizylab.workers.dev",
+          "default": "https://heaven.rsp-5f3.workers.dev",
           "description": "Heaven edge worker URL (Cloudflare)"
         },
         "noizybeast.gabrielWssUrl": {
           "type": "string",
-          "default": "wss://heaven.noizylab.workers.dev/ws",
+          "default": "wss://heaven.rsp-5f3.workers.dev/ws",
           "description": "Gabriel Edge WebSocket URL"
         }
       }

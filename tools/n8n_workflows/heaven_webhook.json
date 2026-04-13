@@ -53,7 +53,7 @@
     },
     {
       "parameters": {
-        "url": "https://heaven.noizylab.workers.dev/gabriel",
+        "url": "https://heaven.rsp-5f3.workers.dev/gabriel",
         "options": {}
       },
       "id": "fetch-gabriel",
@@ -67,7 +67,7 @@
     },
     {
       "parameters": {
-        "url": "https://heaven.noizylab.workers.dev/api/v1/stats",
+        "url": "https://heaven.rsp-5f3.workers.dev/api/v1/stats",
         "options": {}
       },
       "id": "fetch-stats",
@@ -128,7 +128,7 @@
     },
     {
       "parameters": {
-        "url": "https://heaven.noizylab.workers.dev/health",
+        "url": "https://heaven.rsp-5f3.workers.dev/health",
         "options": {}
       },
       "id": "health-ping",

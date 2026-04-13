@@ -485,7 +485,7 @@ router.get("/heaven/enterprise/audit", async (req, res) => {
 router.get("/heaven/gabriel", async (req, res) => {
   try {
     const r = await fetch(
-      `${process.env.HEAVEN_URL || "https://heaven.noizylab.workers.dev"}/gabriel`,
+      `${process.env.HEAVEN_URL || "https://heaven.rsp-5f3.workers.dev"}/gabriel`,
     );
     if (!r.ok) return res.status(r.status).json({ error: `Heaven ${r.status}` });
     res.json(await r.json());

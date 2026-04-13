@@ -16,7 +16,7 @@ Run: `bash deploy.sh` from `/Users/m2ultra/NOIZYLAB`
 
 3. Verify the deployment is healthy
 // turbo
-Run: `curl -s https://heaven.noizylab.workers.dev/health | python3 -m json.tool` from `/Users/m2ultra/NOIZYLAB`
+Run: `curl -s https://heaven.rsp-5f3.workers.dev/health | python3 -m json.tool` from `/Users/m2ultra/NOIZYLAB`
 
 4. Run the smoke test suite to confirm all 14 endpoints pass
 Run: `bash smoke_test.sh` from `/Users/m2ultra/NOIZYLAB`

@@ -49,7 +49,7 @@ Set up in iPhone Shortcuts app:
 → Shortcut: HTTP POST to `http://[M2_IP]:9099/command` with body `{"action":"deploy"}`
 
 **"Hey Siri, Empire Status"**
-→ Shortcut: HTTP GET `https://heaven.noizylab.workers.dev/gabriel`
+→ Shortcut: HTTP GET `https://heaven.rsp-5f3.workers.dev/gabriel`
 
 **"Hey Siri, Boot Empire"**
 → Shortcut: SSH to GOD, run `~/NOIZYLAB/empire-boot.sh`
@@ -66,7 +66,7 @@ iPad also shows up as audio input via Continuity — `NOIZYIPAD` on GOD.
 - Freeform visual architecture boards (pinned permanently)
 - AirDrop screenshots from GOD → iPad cards
 - Real-time annotation as decisions are made
-- 4 pinned Safari tabs: Cloudflare, heaven.noizylab.workers.dev, GitHub, localhost:5678
+- 4 pinned Safari tabs: Cloudflare, heaven.rsp-5f3.workers.dev, GitHub, localhost:5678
 
 ### iPad as Second Voice Input
 ```python
@@ -163,7 +163,7 @@ RSP_001 speaks → iPhone/iPad mic
 ```
 Name: GABRIEL
 Action: Get Contents of URL
-  URL: https://heaven.noizylab.workers.dev/gabriel
+  URL: https://heaven.rsp-5f3.workers.dev/gabriel
   Method: GET
 Action: Show Result (formatted JSON)
 ```
@@ -182,7 +182,7 @@ Action: Show Result
 ```
 Name: Empire Health
 Action: Get Contents of URL
-  URL: https://heaven.noizylab.workers.dev/health
+  URL: https://heaven.rsp-5f3.workers.dev/health
 Action: Get Dictionary Value: status
 Action: Show Result
 ```

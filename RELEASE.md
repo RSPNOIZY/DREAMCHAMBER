@@ -31,7 +31,7 @@ find ~/NOIZYLAB/workers -name "wrangler.toml" -o -name "wrangler.jsonc" | grep -
 ## B. Authenticate Wrangler
 ```bash
 npx wrangler whoami
-# Expected: rsp@noizyfish.com | Account: NOIZY.ai | 5ba03939f87a498d0bbed185ee123946
+# Expected: rsp@noizyfish.com | Account: NOIZY.ai | 5f36aa9795348ea681d0b21910dfc82a
 # If BLOCKED: npx wrangler login  (browser required)
 ```
 
@@ -65,10 +65,10 @@ cd ~/NOIZYLAB/workers/cb01-router && npm test
 ```bash
 cd ~/NOIZYLAB
 npx wrangler whoami                          # confirm auth
-npx wrangler deploy                          # deploys to heaven.noizylab.workers.dev
+npx wrangler deploy                          # deploys to heaven.rsp-5f3.workers.dev
 sleep 5
-curl -s https://heaven.noizylab.workers.dev/health | python3 -m json.tool
-curl -s https://heaven.noizylab.workers.dev/webhooks/status
+curl -s https://heaven.rsp-5f3.workers.dev/health | python3 -m json.tool
+curl -s https://heaven.rsp-5f3.workers.dev/webhooks/status
 ```
 
 ### Consent Gateway — staging first
@@ -112,7 +112,7 @@ curl -s -X POST https://noizy-consent-gateway.workers.dev/verify \
 curl -s -H "X-NOIZY-Key: $API_KEY" https://noizy-consent-gateway.workers.dev/__proof | python3 -m json.tool
 
 # Webhook status (Heaven)
-curl -s https://heaven.noizylab.workers.dev/webhooks/status
+curl -s https://heaven.rsp-5f3.workers.dev/webhooks/status
 ```
 
 ## H. Tail Logs (Workers Observability)

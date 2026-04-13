@@ -1,13 +1,13 @@
 {
   "info": {
     "name": "NOIZY EMPIRE — Complete API Collection",
-    "description": "Every endpoint across the NOIZY Empire.\niPhone → Postman → Webhooks → ALL services.\n\nGOD.local = 10.90.90.10\nHeaven edge = heaven.noizylab.workers.dev\n\nRSP_001 | GORUNFREE | 2026",
+    "description": "Every endpoint across the NOIZY Empire.\niPhone → Postman → Webhooks → ALL services.\n\nGOD.local = 10.90.90.10\nHeaven edge = heaven.rsp-5f3.workers.dev\n\nRSP_001 | GORUNFREE | 2026",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
     { "key": "GOD", "value": "http://10.90.90.10" },
     { "key": "GOD_LOCAL", "value": "http://localhost" },
-    { "key": "HEAVEN", "value": "https://heaven.noizylab.workers.dev" },
+    { "key": "HEAVEN", "value": "https://heaven.rsp-5f3.workers.dev" },
     { "key": "NOIZY_API_KEY", "value": "{{NOIZY_API_KEY}}" },
     { "key": "VOICE_AUTH_TOKEN", "value": "{{VOICE_AUTH_TOKEN}}" },
     { "key": "NOIZYSTREAM_TOKEN", "value": "{{NOIZYSTREAM_TOKEN}}" }

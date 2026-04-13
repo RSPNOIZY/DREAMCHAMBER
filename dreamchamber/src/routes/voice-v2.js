@@ -27,7 +27,7 @@ const execAsync = promisify(exec);
 const execFileAsync = promisify(execFile);
 
 // ── HEAVEN Consent + NOIZYVOX Integration ─────────────────────
-const HEAVEN_URL   = process.env.HEAVEN_URL || 'https://heaven.noizylab.workers.dev';
+const HEAVEN_URL   = process.env.HEAVEN_URL || 'https://heaven.rsp-5f3.workers.dev';
 const NOIZYVOX_URL = process.env.NOIZYVOX_URL || 'http://localhost:8420';
 const NOIZY_API_KEY = process.env.NOIZY_API_KEY || '';
 

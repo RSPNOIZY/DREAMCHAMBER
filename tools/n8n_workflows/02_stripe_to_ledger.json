@@ -13,7 +13,7 @@
     },
     {
       "parameters": {
-        "url": "https://heaven.noizylab.workers.dev/api/v1/ledger/append",
+        "url": "https://heaven.rsp-5f3.workers.dev/api/v1/ledger/append",
         "sendHeaders": true,
         "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }, { "name": "X-NOIZY-Key", "value": "={{ $env.NOIZY_API_KEY }}" }] },
         "sendBody": true, "specifyBody": "json",

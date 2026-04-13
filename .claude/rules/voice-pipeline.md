@@ -1,7 +1,7 @@
 ---
 description: Voice pipeline — voice bridge, audio MCP, TTS, Automator workflows, Rogue Amoeba suite.
 paths:
-  - "voice-bridge-server.js"
+  - "scripts/voice-bridge-server.js"
   - "dreamchamber-audio-mcp/**/*.py"
   - "power-automate-flows/**"
 ---
@@ -16,7 +16,7 @@ Rob speaks → Siri/Google → Power Automate → Voice Bridge (8080) → Comman
 
 ## Voice Bridge Server
 
-- **File**: `voice-bridge-server.js` (323 lines)
+- **File**: `scripts/voice-bridge-server.js` (323 lines)
 - **Port**: 8080 on GOD.local
 - **Auth**: Bearer token (`VOICE_AUTH_TOKEN`)
 - **Commands**: claude, deploy, dreamchamber, compare, status, cascade
@@ -45,7 +45,7 @@ FastMCP server for multi-AI voice collaboration. Controls:
 - RSP voice performances (50-150 WAV files)
 - Original music compositions (20-40 files)
 - All TaleSpin audio is RSP_001's IP
-- Discovery script: `talespin-finder.sh`
+- Discovery script: `scripts/talespin-finder.sh`
 
 ## Audio Configuration
 

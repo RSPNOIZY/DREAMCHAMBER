@@ -1,7 +1,7 @@
 # Heaven Deployment Runbook
 
 > GABRIEL Self-Healing Loop Knowledge Base
-> Worker: heaven (heaven.noizylab.workers.dev)
+> Worker: heaven (heaven.rsp-5f3.workers.dev)
 > Route: noizy.ai/*
 > Account: HEAVEN / noizy.ai (2446d788cc4280f5ea22a9948410c355)
 > Last updated: 2026-04-03
@@ -100,7 +100,7 @@ This deploys to the `noizy.ai/*` route on the HEAVEN account.
 ### 1. Health check
 
 ```bash
-curl https://heaven.noizylab.workers.dev/health
+curl https://heaven.rsp-5f3.workers.dev/health
 ```
 
 **Expected:** HTTP 200 with JSON body containing version, status, and uptime.
@@ -108,7 +108,7 @@ curl https://heaven.noizylab.workers.dev/health
 ### 2. Version check
 
 ```bash
-curl https://heaven.noizylab.workers.dev/version
+curl https://heaven.rsp-5f3.workers.dev/version
 ```
 
 **Expected:** Should return the new version number (v17.7.x or higher).
@@ -116,7 +116,7 @@ curl https://heaven.noizylab.workers.dev/version
 ### 3. Consent endpoint check
 
 ```bash
-curl https://heaven.noizylab.workers.dev/consent/status
+curl https://heaven.rsp-5f3.workers.dev/consent/status
 ```
 
 **Expected:** HTTP 200 (or 401 if auth required). Should NOT return 500 or connection errors.
@@ -150,7 +150,7 @@ This immediately reverts to the previous Worker version. All D1 and KV bindings 
 
 ### After rollback
 
-1. Verify health: `curl https://heaven.noizylab.workers.dev/health`
+1. Verify health: `curl https://heaven.rsp-5f3.workers.dev/health`
 2. Check the Cloudflare dashboard error rate
 3. Investigate the failure in the deployed code
 4. Fix, test (77 tests must pass), and re-deploy

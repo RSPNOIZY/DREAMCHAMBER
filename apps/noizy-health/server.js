@@ -22,7 +22,7 @@ const SERVICES = [
   { name: 'Command Center',port: 8888,  path: '/',               key: null,      tier: 'support' },
   { name: 'Ollama',        port: 11434, path: '/api/tags',       key: 'models',  tier: 'core' },
   { name: 'n8n',           port: 5678,  path: '/healthz',        key: 'ok',      tier: 'support' },
-  { name: 'Heaven (edge)', port: null,  path: null, url: 'https://heaven.noizylab.workers.dev/health', key: 'LIVE', tier: 'critical' },
+  { name: 'Heaven (edge)', port: null,  path: null, url: 'https://heaven.rsp-5f3.workers.dev/health', key: 'LIVE', tier: 'critical' },
   { name: 'DreamChamber',  port: 7780,  path: '/health',         key: 'healthy', tier: 'critical' },
   { name: 'NOIZYVOX Engine',port: 8420, path: '/',               key: 'NOIZYVOX', tier: 'critical' },
   { name: 'NOIZYSTREAM Ctl',port: 7778, path: '/health',         key: 'ok',      tier: 'core' },

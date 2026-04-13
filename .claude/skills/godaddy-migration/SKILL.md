@@ -90,7 +90,7 @@ D1 Database: `godaddy-escape-tracker` — `dfe9343e-c84c-49fd-8a02-052f37a7155b`
 9. Enable 2FA (Authenticator app) if not already active
 10. **CRITICAL**: `rsp@noizyfish.com` remains the PUBLIC contact. Only the Cloudflare LOGIN changes to backend.
 
-**Verification**: `curl https://heaven.noizylab.workers.dev/health` should still respond.
+**Verification**: `curl https://heaven.rsp-5f3.workers.dev/health` should still respond.
 
 **DONE signal**: Tell me "Step 0 complete" and I will update the escape tracker.
 
@@ -208,7 +208,7 @@ dig MX noizy.ai +short
 
 **Email test**: Send a test email to `rsp@noizyfish.com` from a different account. Confirm it arrives at `rsplowman@icloud.com` (backend inbox).
 
-**Worker test**: `curl https://heaven.noizylab.workers.dev/health`
+**Worker test**: `curl https://heaven.rsp-5f3.workers.dev/health`
 
 **Dashboard access test**: Log in with `rsplowman@icloud.com`, verify all zones visible. Public contact remains `rsp@noizyfish.com`.
 

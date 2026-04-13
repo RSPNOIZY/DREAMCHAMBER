@@ -1,12 +1,12 @@
 {
   "info": {
     "name": "HEAVEN API v17.6.0",
-    "description": "NOIZY HVS Consent Kernel API — heaven.noizylab.workers.dev\n\nConstitutional infrastructure for human creativity.\n75/25 perpetual. Gabriel watching. GORUNFREE.\n\nAuth: Set X-NOIZY-Key header or Authorization: Bearer <key>",
+    "description": "NOIZY HVS Consent Kernel API — heaven.rsp-5f3.workers.dev\n\nConstitutional infrastructure for human creativity.\n75/25 perpetual. Gabriel watching. GORUNFREE.\n\nAuth: Set X-NOIZY-Key header or Authorization: Bearer <key>",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "noizy-empire"
   },
   "variable": [
-    { "key": "base_url", "value": "https://heaven.noizylab.workers.dev", "type": "string" },
+    { "key": "base_url", "value": "https://heaven.rsp-5f3.workers.dev", "type": "string" },
     { "key": "noizy_key", "value": "{{NOIZY_API_KEY}}", "type": "string" },
     { "key": "local_url", "value": "http://localhost:8787", "type": "string" }
   ],
@@ -255,7 +255,7 @@
           "request": {
             "method": "GET",
             "url": "{{base_url}}/ws",
-            "description": "Returns WSS endpoint info. Connect via: wss://heaven.noizylab.workers.dev/ws\n\nMessage types: ping, empire.status, consent.check, heal.trigger, voice"
+            "description": "Returns WSS endpoint info. Connect via: wss://heaven.rsp-5f3.workers.dev/ws\n\nMessage types: ping, empire.status, consent.check, heal.trigger, voice"
           }
         }
       ]

@@ -27,12 +27,12 @@ This is the official, universal contact email for all NOIZY Empire communication
 ### Business & Partnerships
 - **Email**: rsp@noizy.ai
 - **Website**: noizy.ai (pending deployment)
-- **API**: heaven.noizylab.workers.dev
+- **API**: heaven.rsp-5f3.workers.dev
 
 ### Technical Support
 - **Email**: rsp@noizy.ai
 - **Documentation**: CLAUDE.md, HEAVEN_RUNBOOK.md
-- **Status**: heaven.noizylab.workers.dev/health
+- **Status**: heaven.rsp-5f3.workers.dev/health
 
 ## Domain Strategy
 

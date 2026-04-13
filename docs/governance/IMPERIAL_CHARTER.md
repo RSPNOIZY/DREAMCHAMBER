@@ -30,7 +30,7 @@ These are structural. They sit at the top of every repo, prompt, and operator ma
 | **NOIZY.AI** | Command Center | GABRIEL | LIVE | noizy.ai | NOIZY-ai/NOIZYLAB |
 | **DreamChamber** | Sacred Interface | GABRIEL | LIVE (:7777) | dreamchamber.noizy.ai | NOIZY-ai/NOIZYLAB |
 | **GABRIEL** | Guardian Strategist | RSP_001 | LIVE | — | NOIZY-ai/NOIZYLAB |
-| **HEAVEN** | Routing & Orchestration | ENGR_KEITH | LIVE (edge) | heaven.noizylab.workers.dev | NOIZY-ai/NOIZYLAB |
+| **HEAVEN** | Routing & Orchestration | ENGR_KEITH | LIVE (edge) | heaven.rsp-5f3.workers.dev | NOIZY-ai/NOIZYLAB |
 | **NOIZY PROOF** | Truth Engine | CB01 | BUILT | proof.noizy.ai | NOIZY-ai/NOIZYLAB |
 | **Consent Gateway** | Legal Boundary Wall | CB01 | STAGING | consent.noizy.ai | NOIZY-ai/NOIZYLAB |
 | **NOIZYFISH** | Provenance-Native Music Engine | GABRIEL | ACTIVE | noizyfish.com | NOIZY-ai/NOIZYLAB |
