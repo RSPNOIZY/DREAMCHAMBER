@@ -8,7 +8,7 @@
 # ═══════════════════════════════════════════════════════════════
 
 PROJECT_DIR="${CLAUDE_PROJECT_DIR:-$(pwd)}"
-TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+TIMESTAMP=$(date +"%Y-%m-%dT%H:%M:%S")
 DATE_SHORT=$(date +"%Y-%m-%d")
 
 # ─── Persist environment variables ───
