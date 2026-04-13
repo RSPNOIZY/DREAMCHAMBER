@@ -2,8 +2,8 @@
   "_meta": {
     "observer": "NOIZY Full Observer v1.0",
     "machine": "GOD (M2 Ultra)",
-    "timestamp": "2026-04-13T04:10:28.556Z",
-    "epochMs": 1776053428556
+    "timestamp": "2026-04-13T08:10:21.214Z",
+    "epochMs": 1776067821214
   },
   "services": {
     "voice-bridge": {
@@ -82,6 +82,10 @@
       "size": "12 GB"
     },
     {
+      "name": "noizy-consent-guardian:latest",
+      "size": "3.3 GB"
+    },
+    {
       "name": "noizy-family-keeper:latest",
       "size": "3.3 GB"
     },
@@ -90,11 +94,11 @@
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-consent-guardian:latest",
+      "name": "noizy-wisdom-scribe:latest",
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-wisdom-scribe:latest",
+      "name": "noizy-gabriel-mind:latest",
       "size": "3.3 GB"
     },
     {
@@ -103,10 +107,6 @@
     },
     {
       "name": "noizy-dream-weaver:latest",
-      "size": "3.3 GB"
-    },
-    {
-      "name": "noizy-gabriel-mind:latest",
       "size": "3.3 GB"
     },
     {
@@ -128,9 +128,9 @@
     "recentMemory": [
       {
         "key": "last_heartbeat",
-        "value": "2026-04-13T03:52:50.999Z",
+        "value": "2026-04-13T07:52:51.083Z",
         "category": "system",
-        "updated_at": "2026-04-13 03:52:51"
+        "updated_at": "2026-04-13 07:52:51"
       },
       {
         "key": "daemon_start",
@@ -148,29 +148,11 @@
     "estateMembers": [],
     "logs": {
       "gabriel.log": {
-        "lastModified": "2026-04-13T03:52:50.999Z",
-        "sizeBytes": 6892146,
+        "lastModified": "2026-04-13T08:10:10.811Z",
+        "sizeBytes": 6907689,
         "lines": [
-          "[2026-04-13T01:48:28.565Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T01:48:28.565Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T01:51:59.042Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T01:52:50.957Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T02:18:28.576Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T02:18:28.576Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T02:21:59.053Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T02:22:50.967Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T02:48:28.876Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T02:48:28.876Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T02:51:59.065Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T02:52:50.978Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T03:18:29.128Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T03:18:29.128Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T03:21:59.076Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T03:22:50.988Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T03:48:29.144Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T03:48:29.144Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T03:51:59.087Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T03:52:50.998Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE"
+          "[2026-04-13T07:51:59.172Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-13T07:52:51.082Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE"
         ]
       },
       "noizyvox.log": {
@@ -323,6 +305,6 @@
       "available": "1.1Ti",
       "percentUsed": "1%"
     },
-    "uptime": "0:10  up 3 days, 12:49, 2 users, load averages: 826.12 385.57 633.19"
+    "uptime": "4:10  up 3 days, 16:49, 2 users, load averages: 9.83 10.76 13.11"
   }
 }
