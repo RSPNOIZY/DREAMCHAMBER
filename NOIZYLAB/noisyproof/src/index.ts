@@ -16,7 +16,7 @@ export interface Env {
 const app = new Hono();
 
 app.use('*', cors({
-  origin: ['https://noizy.ai', 'https://proof.noisy.io', 'https://vox.noisy.io'],
+  origin: ['https://noizy.ai', 'https://heaven.rsp-5f3.workers.dev', 'https://vox.noisy.io'],
   allowMethods: ['GET', 'POST', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization'],
 }));

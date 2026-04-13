@@ -38,7 +38,7 @@ Never reverse this order.
 |---|---|---|---|
 | **NOIZY.ai** | Consent-native infrastructure layer | BUILDING | noizy.ai |
 | **NOIZYVOX** | Voice identity & synthesis platform | BUILDING | noizyvox.com |
-| **NOIZYLAB** | Enterprise dev environment | ACTIVE | noizylab.workers.dev |
+| **NOIZYLAB** | Enterprise dev environment | ACTIVE | rsp-5f3.workers.dev |
 | **NOIZYKIDZ** | Creator education platform | PLANNED | noizykidz.com |
 | **LIFELUV** | Creator lifestyle & community | PLANNED | lifeluv.com |
 | **FISH MUSIC** | Noizyfish music publishing | ACTIVE | noizyfish.com |

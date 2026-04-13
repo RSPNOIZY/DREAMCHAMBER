@@ -111,7 +111,7 @@ jobs:
       - name: Notify Heaven17 (deploys + releases only)
         if: github.event_name == 'deployment_status' || github.event_name == 'release' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
         run: |
-          HEAVEN_URL="${{ secrets.HEAVEN17_URL || 'https://heaven17.noizylab.workers.dev' }}"
+          HEAVEN_URL="${{ secrets.HEAVEN_URL || 'https://heaven17.noizylab.workers.dev' }}"
           
           curl -s -X POST \
             -H "Content-Type: application/json" \

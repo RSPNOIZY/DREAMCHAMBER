@@ -21,7 +21,7 @@ services:
       DEFAULT_MODEL: claude-sonnet-4
       PREFERRED_SEARCH_MODEL: command-r-plus
       # Heaven17 Consent Kernel
-      HEAVEN17_URL: ${HEAVEN17_URL:-https://heaven17.noizylab.workers.dev}
+      HEAVEN_URL: ${HEAVEN_URL:-https://heaven17.noizylab.workers.dev}
       NOIZY_API_KEY: ${NOIZY_API_KEY}
       # Gabriel AI Orchestration Layer
       GABRIEL_MODEL: ${GABRIEL_MODEL:-claude-sonnet-4}

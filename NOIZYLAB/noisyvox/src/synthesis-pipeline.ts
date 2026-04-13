@@ -5,7 +5,7 @@ export class SynthesisPipeline {
 
   constructor(env: any) {
     this.consentIntegration = new ConsentIntegration(
-      env.NOISY_PROOF_API_URL || 'https://proof.noisy.io'
+      env.NOISY_PROOF_API_URL || 'https://heaven.rsp-5f3.workers.dev'
     );
   }
 

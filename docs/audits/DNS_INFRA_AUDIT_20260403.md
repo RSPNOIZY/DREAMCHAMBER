@@ -115,7 +115,7 @@ The infrastructure is fragmented. Of 9 domains in the NOIZY portfolio, only 3 ar
 | noizy-coming-soon | ❌ Not found | Missing |
 | deploy | ✅ Present | Created Dec 2, 2025 — single worker in account |
 
-**Only 1 of 4 expected workers exists.** The "deploy" worker was created Dec 2, 2025. The three workers documented in CLAUDE.md (noisyvox at vox.noisy.io, noisyproof at proof.noisy.io, noizy-coming-soon) are not deployed to Cloudflare.
+**Only 1 of 4 expected workers exists.** The "deploy" worker was created Dec 2, 2025. The three workers documented in CLAUDE.md (noisyvox at vox.noisy.io, noisyproof at heaven.rsp-5f3.workers.dev, noizy-coming-soon) are not deployed to Cloudflare.
 
 ---
 

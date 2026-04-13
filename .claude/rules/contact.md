@@ -39,7 +39,7 @@ This is the official, universal contact email for all NOIZY Empire communication
 ### Active Domains
 - **noizyfish.com** — Primary brand domain, email host
 - **noizy.ai** — Landing page, marketing
-- **noizylab.workers.dev** — Heaven API (Cloudflare subdomain)
+- **rsp-5f3.workers.dev** — Heaven API (Cloudflare subdomain)
 
 ### Email Routing
 - **rsp@noizy.ai** → Primary inbox (Cloudflare Email Routing → rsplowman@icloud.com)

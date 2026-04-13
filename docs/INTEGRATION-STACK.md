@@ -61,7 +61,7 @@
 │                                                                      │
 │  ┌────────────────────────────────┐  ┌─────────────────────────────┐│
 │  │ CF Workers (Edge)              │  │ Also Running                ││
-│  │  • Heaven17 (noizy.ai)        │  │  • Open WebUI (:3080)       ││
+│  │  • Heaven (noizy.ai)        │  │  • Open WebUI (:3080)       ││
 │  │  • Consent Gateway             │  │  • RabbitMQ (:5672/15672)   ││
 │  │  • Webhook Proxy               │  │  • Qdrant (:6333/6334)     ││
 │  └────────────────────────────────┘  │  • Grafana (:3000)         ││
@@ -199,7 +199,7 @@ Zapier sends POST to /webhook/zapier-bridge
     Payment  → Write to Consent Ledger
     Notify   → Forward to notification pipeline
     General  → Log to Notion Events DB
-  → All events also forwarded to Heaven17
+  → All events also forwarded to Heaven
   → Respond OK to Zapier
 ```
 
@@ -241,8 +241,8 @@ Every 5 minutes:
 | `GITHUB_TOKEN` | GitHub | For GitHub | Fine-grained personal access token |
 | `GITHUB_OWNER` | GitHub | For GitHub | GitHub org/user (default: noizyfish) |
 | `ZAPIER_CATCH_HOOK_URL` | Zapier | For Zapier | Outbound hook URL to Zapier |
-| `NOIZY_API_KEY` | Heaven17 | ✓ | NOIZY empire API key |
-| `HEAVEN17_URL` | Heaven17 | ✓ | Heaven17 worker URL |
+| `NOIZY_API_KEY` | Heaven | ✓ | NOIZY empire API key |
+| `HEAVEN_URL` | Heaven | ✓ | Heaven worker URL |
 | `WEBHOOK_TUNNEL_URL` | n8n | For external | Public tunnel URL for webhooks |
 
 ---
@@ -349,7 +349,7 @@ NOIZYANTHROPIC/
 │   └── schemas/lucy-core.ts             ← Zod schemas
 ├── .github/workflows/
 │   ├── deploy.yml                        ← Main deploy
-│   ├── heaven-deploy.yml                 ← Heaven17 deploy
+│   ├── heaven-deploy.yml                 ← Heaven deploy
 │   ├── consent-gateway-deploy.yml        ← Consent Gateway deploy
 │   ├── n8n-notify.yml                    ← ★ GitHub → n8n webhooks
 │   ├── ethics-gate.yml                   ← RSP governance check
@@ -401,7 +401,7 @@ docker compose -f ops/docker-compose.integration.yml logs -f n8n
 docker compose -f ops/docker-compose.integration.yml logs -f n8n-worker
 
 # Check webhook proxy stats
-curl -s https://webhook-proxy.noizylab.workers.dev/stats
+curl -s https://webhook-proxy.rsp-5f3.workers.dev/stats
 
 # Run Lucy nightly manually
 cd lucy && npx ts-node src/engine/run-nightly.ts
@@ -420,7 +420,7 @@ docker exec -it noizy-postgres psql -U noizy -d n8n -c "SELECT count(*) FROM wor
 docker exec noizy-redis redis-cli INFO keyspace
 
 # Force drain webhook proxy
-curl -X POST https://webhook-proxy.noizylab.workers.dev/api/drain \
+curl -X POST https://webhook-proxy.rsp-5f3.workers.dev/api/drain \
   -H "X-Noizy-Key: $NOIZY_API_KEY"
 
 # Re-import a single workflow

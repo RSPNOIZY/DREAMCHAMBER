@@ -214,7 +214,7 @@ echo -e "${BOLD}Verify these are set in your docker-compose:${NC}"
 echo ""
 
 REQUIRED_VARS=(
-  "HEAVEN17_URL"
+  "HEAVEN_URL"
   "NOIZY_API_KEY"
   "NOTION_API_KEY"
   "NOTION_EVENTS_DB_ID"

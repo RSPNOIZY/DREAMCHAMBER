@@ -34,7 +34,7 @@ MODELS_DIR = NOIZYLAB / "models"
 MODELS_DIR.mkdir(exist_ok=True)
 
 # ── HEAVEN17 LEDGER ──────────────────────────────────────────────────────────
-HEAVEN17_URL = "https://heaven17.noizylab.workers.dev"
+HEAVEN_URL = "https://heaven.rsp-5f3.workers.dev"
 
 def ledger_record(event_type: str, actor_id: str, payload: dict):
     """Log to the immutable HEAVEN17 ledger — constitutional traceability."""
@@ -46,7 +46,7 @@ def ledger_record(event_type: str, actor_id: str, payload: dict):
             "payload": payload
         }).encode()
         req = urllib.request.Request(
-            f"{HEAVEN17_URL}/api/v1/ledger/append",
+            f"{HEAVEN_URL}/api/v1/ledger/append",
             data=data,
             headers={"Content-Type": "application/json"},
             method="POST"
@@ -281,7 +281,7 @@ def health_check():
     print("=" * 55)
     print(f"  Status: {'ALL SYSTEMS SOVEREIGN' if all_ok else 'DEGRADED — CHECK ABOVE'}")
     print(f"  Device: M2 Ultra | {DEVICE.upper()} | Constitutional")
-    print(f"  Heaven17: {HEAVEN17_URL}")
+    print(f"  Heaven: {HEAVEN_URL}")
     print("=" * 55)
     return all_ok
 

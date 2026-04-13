@@ -19,7 +19,7 @@
     "NOIZYVOX":     { "role": "voice sovereignty + consent capture",         "status": "building", "url": "noizyvox.com",          "worker": "noizyvox" },
     "NOIZYFISH":    { "role": "888-title catalogue, C2PA stamped, 75/25",    "status": "active",   "url": "noizyfish.com",         "worker": null },
     "NOIZYKIDZ":    { "role": "Rhythm Root Island, neurodivergent kids",     "status": "building", "url": "noizykidz.com",         "worker": null },
-    "NOIZYLAB":     { "role": "sonic healing, binaural protocols, AirPlay",  "status": "live",     "url": "noizylab.workers.dev",  "worker": "noizylab" },
+    "NOIZYLAB":     { "role": "sonic healing, binaural protocols, AirPlay",  "status": "live",     "url": "rsp-5f3.workers.dev",  "worker": "noizylab" },
     "WISDOM":       { "role": "elder legacy, 100-year voice archive",        "status": "building", "url": "noizy.ai/wisdom",       "worker": null },
     "myFAMILY":     { "role": "love in code, consent-native elder care",     "status": "live",     "url": "noizy.ai/family",       "worker": "heaven" },
     "DREAMCHAMBER": { "role": "AI shell, 11 providers, streaming",           "status": "local",    "url": "GOD.local:7777",        "worker": null }
@@ -34,7 +34,7 @@
     "gabriel_edge":  "wss://heaven.rsp-5f3.workers.dev/ws",
     "heaven":        "https://heaven.rsp-5f3.workers.dev",
     "heaven_version":"17.4.0",
-    "landing":       "https://noizy-landing.noizylab.workers.dev",
+    "landing":       "https://noizy-landing.rsp-5f3.workers.dev",
     "voiceBridge":   "http://GOD.local:8080",
     "ollama":        "http://GOD.local:11434"
   },

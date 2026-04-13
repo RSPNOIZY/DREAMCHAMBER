@@ -58,7 +58,7 @@ compensationAutomatic: true
 | Brand | Domain | Purpose | Status |
 |-------|---------|---------|--------|
 | **NOIZY.AI** | `noizy.ai` | Intelligence Layer & A.I.V.A. (AI Voice Agent) — the consent-native creative gateway | 🟡 Active/Deploying |
-| **NOIZYLAB** | `noizylab.com` *(+ `noizylab.workers.dev`)* | Development & Research HQ — all infra lives here | 🟢 Active |
+| **NOIZYLAB** | `noizylab.com` *(+ `rsp-5f3.workers.dev`)* | Development & Research HQ — all infra lives here | 🟢 Active |
 | **NOIZYVOX** | `noizyvox.com` | Sovereign Voice Consent Platform — captures, stores, enforces voice rights | 🔨 Building |
 | **NOIZYFISH** | `noizyfish.com` *(+ `fish.noisy.io`)* | Living Legacy Vault + Creative Services Hub — museum-grade catalog | 🔨 Building |
 | **NOIZYKIDZ** | `noizykidz.com` | Haptic Music Education for children | 📋 Planned |
@@ -75,7 +75,7 @@ compensationAutomatic: true
 | `api.noizy.ai` | Email AI Worker (noizyempire-email-ai) |
 | `webhooks.noizy.ai` | Webhook Proxy Worker |
 | `vox.noisy.io` | NoisyVox voice platform |
-| `proof.noisy.io` | NoisyProof provenance system |
+| `heaven.rsp-5f3.workers.dev` | NoisyProof provenance system |
 | `fish.noisy.io` | NoisyFish legacy vault |
 | `box.noisy.io` | NoisyBox (A.I.V.A.) — digital voice talent agency |
 
@@ -284,7 +284,7 @@ GET  /api/v1/enterprise/audit — Enterprise audit view
 | **Route (prod)** | `vox.noisy.io/*` (custom domain) |
 | **DB Binding** | `DB` → `noisy-vox` (`ea110bf3-5ad0-4dd3-ae3a-2ef05fc052ac`) |
 | **Service Binding** | `PROOF` → `noisyproof` |
-| **NOISY_PROOF_API_URL** | `https://proof.noisy.io` |
+| **NOISY_PROOF_API_URL** | `https://heaven.rsp-5f3.workers.dev` |
 
 ---
 
@@ -294,7 +294,7 @@ GET  /api/v1/enterprise/audit — Enterprise audit view
 | **Name** | `noisyproof` |
 | **File** | `NOIZYANTHROPIC/NOIZYLAB/noisyproof/wrangler.toml` → `src/index.ts` |
 | **CF Account** | `5f36aa9795348ea681d0b21910dfc82a` |
-| **Route (prod)** | `proof.noisy.io/*` (custom domain) |
+| **Route (prod)** | `heaven.rsp-5f3.workers.dev/*` (custom domain) |
 | **DB Binding** | `DB` → `noisyproof` (`be3e1a74-9bab-4f48-975a-0d8a912f6592`) |
 | **KV Binding** | `KV` → `d4ee2982306b486495189216402d8442` |
 
@@ -309,7 +309,7 @@ GET  /api/v1/enterprise/audit — Enterprise audit view
 | **Route (prod)** | `fish.noisy.io/*` (custom domain) |
 | **DB Binding** | `DB` → `noizyfish` (`PLACEHOLDER_NOIZYFISH_DB_ID` — ⚠️ CREATE NEEDED) |
 | **Service Binding** | `PROOF` → `noisyproof` |
-| **NOISY_PROOF_API_URL** | `https://proof.noisy.io` |
+| **NOISY_PROOF_API_URL** | `https://heaven.rsp-5f3.workers.dev` |
 | **NOISY_BOX_API_URL** | `https://box.noisy.io` |
 | **Hardcoded Invariants** | `ROYALTY_FLOOR=0.75`, `GORUNFREE_TITHE=0.01`, `ATTRIBUTION_LOCKED=true` |
 
@@ -453,9 +453,9 @@ gap_solver_entries — GORUNFREE absence intelligence
 | `GABRIEL_URL` | `http://GOD.local:7777` | vox-noizy-ai |
 | `VOICE_BRIDGE_URL` | `http://GOD.local:8080` | vox-noizy-ai |
 | `STT_URL` | `http://GOD.local:8000` | vox-noizy-ai |
-| `HEAVEN_DNS_URL` | `https://heaven-dns.noizylab.workers.dev` | lab-noizy-ai |
+| `HEAVEN_DNS_URL` | `https://heaven-dns.rsp-5f3.workers.dev` | lab-noizy-ai |
 | `N8N_WEBHOOK_BASE` | `https://noizy.app.n8n.cloud/webhook` | lab, hooks |
-| `CONSENT_GATEWAY_URL` | `https://consent-gateway.noizylab.workers.dev` | vox, hooks, fish |
+| `CONSENT_GATEWAY_URL` | `https://consent-gateway.rsp-5f3.workers.dev` | vox, hooks, fish |
 | `NOIZYSTREAM_URL` | `http://GOD.local:7778` | fish-noizy-ai |
 | `OLLAMA_URL` | `http://localhost:11434` | Claude Proxy |
 
@@ -627,7 +627,7 @@ bash scripts/smoke-test.sh                              # 8. Smoke test
 - **GORUNFREE Tithe** — 1% of every transaction auto-donated to the community
 
 ### 🏗️ Infra Ideas
-- **Heaven-DNS Worker** — Dedicated DNS intelligence layer (`heaven-dns.noizylab.workers.dev`)
+- **Heaven-DNS Worker** — Dedicated DNS intelligence layer (`heaven-dns.rsp-5f3.workers.dev`)
 - **EdgeGovernor** — Cryptographic intent enforcement with time-bounded single-use tokens for high-risk ops
 - **NOIZYNET Handshake** — CF Worker ↔ GOD.local secure tunnel via Cloudflare Access (ZeroTrust)
 - **Lucy iOS App** — Native offline-first iOS app, JavaScriptCore runtime, ZeroTrust tunneling

@@ -4,7 +4,7 @@
  * Receives webhooks from Linear, GitHub, Zapier, Notion
  * at a public Cloudflare URL and queues them for local n8n.
  * 
- * Routes: webhook-proxy.noizylab.workers.dev/*
+ * Routes: webhook-proxy.rsp-5f3.workers.dev/*
  * 
  * Strategy:
  *   1. Receive webhook at edge

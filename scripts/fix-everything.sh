@@ -107,9 +107,9 @@ echo "════════════════════════�
 echo ""
 
 if [[ -f "CLAUDE.md" ]]; then
-  # Update noizylab.workers.dev references to rsp-5f3.workers.dev
-  if grep -q "noizylab.workers.dev" CLAUDE.md; then
-    warning "CLAUDE.md has old noizylab.workers.dev URLs - updating..."
+  # Update rsp-5f3.workers.dev references to rsp-5f3.workers.dev
+  if grep -q "rsp-5f3.workers.dev" CLAUDE.md; then
+    warning "CLAUDE.md has old rsp-5f3.workers.dev URLs - updating..."
     sed -i.bak 's/heaven\.noizylab\.workers\.dev/heaven.rsp-5f3.workers.dev/g' CLAUDE.md
     sed -i.bak 's/noizy-landing\.noizylab\.workers\.dev/noizy-landing.rsp-5f3.workers.dev/g' CLAUDE.md
     success "CLAUDE.md URLs updated to rsp-5f3.workers.dev"

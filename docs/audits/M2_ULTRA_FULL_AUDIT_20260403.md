@@ -67,7 +67,7 @@
 - `mcp/` — MCP server configs (14 items)
 - `mcp-gemma3/` — Gemma3 MCP server
 - `modelfiles/` — Ollama model files (13 items)
-- `noisyproof/` — Cloudflare Worker (proof.noisy.io)
+- `noisyproof/` — Cloudflare Worker (heaven.rsp-5f3.workers.dev)
 - `noizy-landing/` — Landing page
 - `noizybeast/` — NoizyBeast IDE
 - `noizyempire-claude/` — Claude integration

@@ -5,7 +5,7 @@ import { SynthesisPipeline } from '../synthesis-pipeline';
 const app = new Hono();
 
 app.use('*', cors({
-  origin: ['https://noizy.ai', 'https://vox.noisy.io', 'https://proof.noisy.io'],
+  origin: ['https://noizy.ai', 'https://vox.noisy.io', 'https://heaven.rsp-5f3.workers.dev'],
   allowMethods: ['GET', 'POST', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization'],
 }));
@@ -39,7 +39,7 @@ app.get('/readiness', async (c) => {
 
   // Check noisyproof service binding
   try {
-    const proofUrl = (c.env as any).NOISY_PROOF_API_URL || 'https://proof.noisy.io';
+    const proofUrl = (c.env as any).NOISY_PROOF_API_URL || 'https://heaven.rsp-5f3.workers.dev';
     checks.noisyproof = { ok: true, detail: proofUrl };
   } catch (e: any) {
     checks.noisyproof = { ok: false, detail: e.message };
@@ -93,7 +93,7 @@ app.post('/v1/synthesize', async (c) => {
   return c.json({
     audio_url: result.audioUrl,
     fingerprint_id: result.fingerprintId,
-    provenance_url: `https://proof.noisy.io/provenance/${result.fingerprintId}`
+    provenance_url: `https://heaven.rsp-5f3.workers.dev/provenance/${result.fingerprintId}`
   });
 });
 
@@ -115,7 +115,7 @@ app.get('/v1/consent/check/:voiceModelId', async (c) => {
   }
 
   // Call noisyproof consent engine via service binding or HTTP
-  const proofUrl = (c.env as any).NOISY_PROOF_API_URL || 'https://proof.noisy.io';
+  const proofUrl = (c.env as any).NOISY_PROOF_API_URL || 'https://heaven.rsp-5f3.workers.dev';
   const proofKey = (c.env as any).NOISY_PROOF_API_KEY || apiKey;
   const resp = await fetch(`${proofUrl}/consent/check`, {
     method: 'POST',
@@ -184,7 +184,7 @@ async function getVoicesWithConsentStatus(
     }>();
 
   // Check consent for each model via noisyproof
-  const proofUrl = env.NOISY_PROOF_API_URL || "https://proof.noisy.io";
+  const proofUrl = env.NOISY_PROOF_API_URL || "https://heaven.rsp-5f3.workers.dev";
   const proofKey = env.NOISY_PROOF_API_KEY;
 
   const results = await Promise.allSettled(

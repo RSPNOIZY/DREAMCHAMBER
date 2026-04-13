@@ -16,8 +16,8 @@ fi
 
 # Defaults
 N8N_BASE="${N8N_WEBHOOK_URL:-http://localhost:5678/webhook}"
-PROXY_BASE="${WEBHOOK_PROXY_URL:-https://webhook-proxy.noizylab.workers.dev}"
-HEAVEN17_BASE="${HEAVEN17_URL:-https://noizy.ai}"
+PROXY_BASE="${WEBHOOK_PROXY_URL:-https://webhook-proxy.rsp-5f3.workers.dev}"
+HEAVEN17_BASE="${HEAVEN_URL:-https://noizy.ai}"
 CONSENT_BASE="https://consent.noizy.ai"
 API_KEY="${NOIZY_API_KEY:-test-key}"
 HMAC_SECRET="${WEBHOOK_HMAC_SECRET:-test-secret}"

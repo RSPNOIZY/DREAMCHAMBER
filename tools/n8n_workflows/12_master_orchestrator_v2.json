@@ -180,7 +180,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "={{ $env.HEAVEN17_URL }}/api/events",
+        "url": "={{ $env.HEAVEN_URL }}/api/events",
         "sendHeaders": true,
         "headerParameters": { "parameters": [{ "name": "X-Noizy-Key", "value": "={{ $env.NOIZY_API_KEY }}" }] },
         "sendBody": true,
@@ -235,7 +235,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://webhook-proxy.noizylab.workers.dev/api/drain",
+        "url": "https://webhook-proxy.rsp-5f3.workers.dev/api/drain",
         "sendHeaders": true,
         "headerParameters": { "parameters": [{ "name": "X-Noizy-Key", "value": "={{ $env.NOIZY_API_KEY }}" }] },
         "options": { "response": { "response": { "neverError": true } } }

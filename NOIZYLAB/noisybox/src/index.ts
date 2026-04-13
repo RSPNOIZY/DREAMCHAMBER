@@ -17,7 +17,7 @@ const app = new Hono<{ Bindings: Env }>();
 
 // --- CORS ---
 app.use('*', cors({
-  origin: ['https://noizy.ai', 'https://box.noisy.io', 'https://proof.noisy.io', 'https://fish.noisy.io'],
+  origin: ['https://noizy.ai', 'https://box.noisy.io', 'https://heaven.rsp-5f3.workers.dev', 'https://fish.noisy.io'],
   allowMethods: ['GET', 'POST', 'PUT', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization'],
 }));

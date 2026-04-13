@@ -118,7 +118,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "={{ $env.HEAVEN17_URL }}/api/events",
+        "url": "={{ $env.HEAVEN_URL }}/api/events",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [

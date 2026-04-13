@@ -146,7 +146,7 @@ class GoRunFreeHandler(BaseHTTPRequestHandler):
             self.send_json({
                 "server": "GORUNFREE Voice Server",
                 "version": "1.0.0",
-                "heaven17": health,
+                "heaven": health,
                 "audio_devices": len(list_audio_devices()),
                 "timestamp": datetime.now().isoformat(),
             })

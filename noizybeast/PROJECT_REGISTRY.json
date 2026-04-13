@@ -42,7 +42,7 @@
       "role": "Internal platform, DreamChamber, GABRIEL, all MCPs",
       "status": "ACTIVE",
       "priority": 1,
-      "urls": { "live": "https://noizylab.workers.dev" },
+      "urls": { "live": "https://rsp-5f3.workers.dev" },
       "repo": "~/NOIZYLAB",
       "local_services": ["GABRIEL :7777", "Voice Bridge :8080", "Ollama :11434", "Dashboard :9090"],
       "next": "HEAVEN deploy to bring noizy.ai live"

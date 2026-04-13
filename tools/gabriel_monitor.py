@@ -19,7 +19,7 @@ import urllib.error
 from datetime import datetime
 from pathlib import Path
 
-HEAVEN17 = "https://heaven17.noizylab.workers.dev"
+HEAVEN17 = "https://heaven.rsp-5f3.workers.dev"
 VENV_AUDIO = Path.home() / "NOIZYLAB/venv/audio-stack"
 
 # Inject venv into path so audio libs resolve regardless of which Python runs this
@@ -87,7 +87,7 @@ def gather_status() -> dict:
 
     return {
         "timestamp": ts,
-        "heaven17": {
+        "heaven": {
             "online":  health is not None,
             "version": health.get("version") if health else None,
             "actors":  health.get("actors", 0) if health else 0,
@@ -117,7 +117,7 @@ def gather_status() -> dict:
 
 def print_dashboard(s: dict):
     ts = datetime.fromisoformat(s["timestamp"]).strftime("%Y-%m-%d %H:%M:%S")
-    h = s["heaven17"]
+    h = s["heaven"]
     g = s["gabriel"]
     a = s["audio_stack"]
 
@@ -178,7 +178,7 @@ def print_dashboard(s: dict):
     print(f"\n  {c('bold','EMPIRE STATUS')}")
     print(f"  {'Brands':20s} {' · '.join(e['brands'])}")
     print(f"  {'D1 Databases':20s} {e['d1_databases']} live")
-    print(f"  {'Workers':20s} {c('green','DEPLOYED')} → heaven17.noizylab.workers.dev")
+    print(f"  {'Workers':20s} {c('green','DEPLOYED')} → heaven.rsp-5f3.workers.dev")
     print(f"  {'Sovereignty':20s} {c('gold', e['sovereignty'])}")
 
     print(f"\n{c('bold','═'*60)}\n")

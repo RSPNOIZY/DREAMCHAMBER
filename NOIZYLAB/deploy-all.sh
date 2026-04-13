@@ -51,5 +51,5 @@ else
 fi
 echo ""
 echo "APIs Ready:"
-echo "  Proof: https://proof.noisy.io"
+echo "  Proof: https://heaven.rsp-5f3.workers.dev"
 echo "  Vox: https://vox.noisy.io"
