@@ -2,8 +2,8 @@
   "_meta": {
     "observer": "NOIZY Full Observer v1.0",
     "machine": "GOD (M2 Ultra)",
-    "timestamp": "2026-04-13T16:10:24.543Z",
-    "epochMs": 1776096624543
+    "timestamp": "2026-04-13T20:09:53.209Z",
+    "epochMs": 1776110993209
   },
   "services": {
     "voice-bridge": {
@@ -14,21 +14,21 @@
       "pid": "97636",
       "cpu": "0.0%",
       "mem": "0.0%",
-      "started": "1:48PM"
+      "started": "Sun01PM"
     },
     "gabriel-monitor": {
       "status": "RUNNING",
       "pid": "97627",
       "cpu": "0.0%",
       "mem": "0.0%",
-      "started": "1:48PM"
+      "started": "Sun01PM"
     },
     "voice-server": {
       "status": "RUNNING",
       "pid": "97596",
       "cpu": "0.0%",
       "mem": "0.0%",
-      "started": "1:48PM"
+      "started": "Sun01PM"
     },
     "audio-hijack": {
       "status": "DOWN"
@@ -38,7 +38,7 @@
       "pid": "97620",
       "cpu": "0.0%",
       "mem": "0.1%",
-      "started": "1:48PM"
+      "started": "Sun01PM"
     },
     "voice-bridge-http": {
       "status": "UNREACHABLE"
@@ -78,11 +78,11 @@
       "size": "20 GB"
     },
     {
-      "name": "codestral:latest",
-      "size": "12 GB"
+      "name": "noizy-consent-guardian:latest",
+      "size": "3.3 GB"
     },
     {
-      "name": "noizy-wisdom-scribe:latest",
+      "name": "noizy-family-keeper:latest",
       "size": "3.3 GB"
     },
     {
@@ -90,11 +90,7 @@
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-consent-guardian:latest",
-      "size": "3.3 GB"
-    },
-    {
-      "name": "noizy-family-keeper:latest",
+      "name": "noizy-wisdom-scribe:latest",
       "size": "3.3 GB"
     },
     {
@@ -114,11 +110,11 @@
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-vox-architect:latest",
+      "name": "noizy-fish-cataloguer:latest",
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-fish-cataloguer:latest",
+      "name": "noizy-vox-architect:latest",
       "size": "3.3 GB"
     }
   ],
@@ -128,9 +124,9 @@
     "recentMemory": [
       {
         "key": "last_heartbeat",
-        "value": "2026-04-13T15:52:51.254Z",
+        "value": "2026-04-13T19:52:51.338Z",
         "category": "system",
-        "updated_at": "2026-04-13 15:52:51"
+        "updated_at": "2026-04-13 19:52:51"
       },
       {
         "key": "daemon_start",
@@ -148,11 +144,11 @@
     "estateMembers": [],
     "logs": {
       "gabriel.log": {
-        "lastModified": "2026-04-13T16:10:10.961Z",
-        "sizeBytes": 6950294,
+        "lastModified": "2026-04-13T20:09:41.038Z",
+        "sizeBytes": 6971375,
         "lines": [
-          "[2026-04-13T15:51:59.343Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T15:52:51.254Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE"
+          "[2026-04-13T19:51:59.433Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-13T19:52:51.337Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE"
         ]
       },
       "noizyvox.log": {
@@ -305,6 +301,6 @@
       "available": "1.1Ti",
       "percentUsed": "1%"
     },
-    "uptime": "12:10  up 4 days, 49 mins, 1 user, load averages: 11.28 10.50 11.24"
+    "uptime": "16:09  up 4 days,  4:48, 1 user, load averages: 109.22 106.17 95.16"
   }
 }

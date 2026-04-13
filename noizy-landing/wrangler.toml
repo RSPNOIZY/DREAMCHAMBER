@@ -4,7 +4,19 @@ main = "src/index.js"
 compatibility_date = "2025-01-01"
 workers_dev = true
 
-routes = [
-  { pattern = "noizy.ai/*", zone_name = "noizy.ai" },
-  { pattern = "noizy.ai", zone_name = "noizy.ai" }
-]
+# Custom domain — Worker IS the origin, auto-creates DNS + SSL
+# www.noizy.ai already live via API
+[[routes]]
+pattern = "www.noizy.ai"
+custom_domain = true
+
+# Route-based fallback for root domain
+# Root requires proxied DNS record (A 192.0.2.1 or AAAA 100::)
+# Once nameservers are fixed or existing DNS deleted, switch to custom_domain
+[[routes]]
+pattern = "noizy.ai/*"
+zone_name = "noizy.ai"
+
+[[routes]]
+pattern = "noizy.ai"
+zone_name = "noizy.ai"

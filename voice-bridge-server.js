@@ -1,1 +1,1 @@
-/Users/m2ultra/NOIZYANTHROPIC/scripts/voice-bridge-server.js
+/Users/m2ultra/NOIZYANTHROPIC/mcp/voice-bridge/voice-bridge-server.mjs
