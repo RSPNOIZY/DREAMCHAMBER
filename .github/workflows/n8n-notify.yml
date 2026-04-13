@@ -18,7 +18,7 @@ on:
 env:
   # When running locally, n8n is behind a tunnel
   # Set N8N_WEBHOOK_URL as a repository secret pointing to your tunnel/proxy URL
-  WEBHOOK_BASE: ${{ secrets.N8N_WEBHOOK_URL || 'https://webhook-proxy.noizylab.workers.dev' }}
+  WEBHOOK_BASE: ${{ secrets.N8N_WEBHOOK_URL || 'https://webhook-proxy.rsp-5f3.workers.dev' }}
 
 jobs:
   notify-n8n:
@@ -111,7 +111,7 @@ jobs:
       - name: Notify Heaven17 (deploys + releases only)
         if: github.event_name == 'deployment_status' || github.event_name == 'release' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
         run: |
-          HEAVEN_URL="${{ secrets.HEAVEN_URL || 'https://heaven17.noizylab.workers.dev' }}"
+          HEAVEN_URL="${{ secrets.HEAVEN_URL || 'https://heaven17.rsp-5f3.workers.dev' }}"
           
           curl -s -X POST \
             -H "Content-Type: application/json" \

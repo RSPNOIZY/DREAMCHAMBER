@@ -1,0 +1,12 @@
+# ═══════════════════════════════════════════════════════════════
+# NOIZY EMPIRE — Terraform Variables
+# Copy to noizy.tfvars and fill in values
+# NEVER commit noizy.tfvars (contains secrets)
+# ═══════════════════════════════════════════════════════════════
+
+cloudflare_api_token  = "your-cloudflare-api-token-here"
+cloudflare_account_id = "5f36aa9795348ea681d0b21910dfc82a"
+gcp_project_id        = "noizy-empire-01"
+gcp_region            = "us-central1"
+admin_email           = "rsplowman@icloud.com"
+public_email          = "rsp@noizy.ai"
