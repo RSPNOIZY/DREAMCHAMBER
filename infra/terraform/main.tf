@@ -1,5 +1,5 @@
 # ═══════════════════════════════════════════════════════════════
-# NOIZY EMPIRE — Terraform Infrastructure Plan
+# NOIZY EMPIRE — Terraform Infrastructure Plan (Modular)
 # Cloudflare + Google Workspace + GCP
 # ═══════════════════════════════════════════════════════════════
 #
@@ -86,36 +86,6 @@ provider "google" {
 # ─── Locals ──────────────────────────────────────────────────
 
 locals {
-  domains = {
-    "noizy.ai" = {
-      description = "Primary AI platform"
-      email_routing = false # Google Workspace handles email
-      landing_page  = true
-    }
-    "noizyfish.com" = {
-      description = "Master brand"
-      email_routing = true
-      landing_page  = false
-    }
-    "fishmusicinc.com" = {
-      description = "Legacy music entity"
-      email_routing = true
-      landing_page  = false
-    }
-    "noizyfish.ca" = {
-      description = "Canadian alias"
-      email_routing = true
-      landing_page  = false
-    }
-  }
-
-  email_addresses = {
-    "noizy.ai"         = ["rsp", "hello", "support", "gabriel"]
-    "noizyfish.com"    = ["rsp", "hello", "carolina"]
-    "fishmusicinc.com" = ["rsp", "info"]
-    "noizyfish.ca"     = ["rsp"]
-  }
-
   google_mx_records = {
     "aspmx.l.google.com"      = 1
     "alt1.aspmx.l.google.com" = 5
@@ -125,131 +95,121 @@ locals {
   }
 }
 
-# ─── Cloudflare Zones (data sources — zones already exist) ──
+# ═══════════════════════════════════════════════════════════════
+# CLOUDFLARE ZONES
+# ═══════════════════════════════════════════════════════════════
 
-data "cloudflare_zone" "domains" {
-  for_each   = local.domains
-  name       = each.key
-  account_id = var.cloudflare_account_id
+module "zone_noizy_ai" {
+  source = "./modules/cloudflare-zone"
+
+  domain              = "noizy.ai"
+  account_id          = var.cloudflare_account_id
+  dmarc_email         = var.public_email
+  spf_record          = "v=spf1 include:_spf.google.com include:_spf.mx.cloudflare.net ~all"
+  mx_records          = local.google_mx_records
+  create_dummy_record = true # Required for Worker route activation
 }
 
-# ─── DMARC Records ──────────────────────────────────────────
+module "zone_noizyfish_com" {
+  source = "./modules/cloudflare-zone"
 
-resource "cloudflare_record" "dmarc" {
-  for_each = local.domains
-
-  zone_id = data.cloudflare_zone.domains[each.key].id
-  name    = "_dmarc"
-  type    = "TXT"
-  content = "v=DMARC1; p=quarantine; rua=mailto:${var.public_email}; pct=100"
-  ttl     = 3600
+  domain      = "noizyfish.com"
+  account_id  = var.cloudflare_account_id
+  dmarc_email = var.public_email
+  spf_record  = "v=spf1 include:_spf.mx.cloudflare.net ~all"
 }
 
-# ─── SPF Records (for CF Email Routing domains) ─────────────
+module "zone_fishmusicinc_com" {
+  source = "./modules/cloudflare-zone"
 
-resource "cloudflare_record" "spf_cf" {
-  for_each = { for k, v in local.domains : k => v if v.email_routing }
-
-  zone_id = data.cloudflare_zone.domains[each.key].id
-  name    = "@"
-  type    = "TXT"
-  content = "v=spf1 include:_spf.mx.cloudflare.net ~all"
-  ttl     = 3600
+  domain      = "fishmusicinc.com"
+  account_id  = var.cloudflare_account_id
+  dmarc_email = var.public_email
+  spf_record  = "v=spf1 include:_spf.mx.cloudflare.net ~all"
 }
 
-# ─── SPF for Google Workspace (noizy.ai) ────────────────────
+module "zone_noizyfish_ca" {
+  source = "./modules/cloudflare-zone"
 
-resource "cloudflare_record" "spf_google" {
-  zone_id = data.cloudflare_zone.domains["noizy.ai"].id
-  name    = "@"
-  type    = "TXT"
-  content = "v=spf1 include:_spf.google.com include:_spf.mx.cloudflare.net ~all"
-  ttl     = 3600
+  domain      = "noizyfish.ca"
+  account_id  = var.cloudflare_account_id
+  dmarc_email = var.public_email
+  spf_record  = "v=spf1 include:_spf.mx.cloudflare.net ~all"
 }
 
-# ─── Google Workspace MX Records (noizy.ai only) ────────────
+# ═══════════════════════════════════════════════════════════════
+# CLOUDFLARE WORKERS
+# ═══════════════════════════════════════════════════════════════
 
-resource "cloudflare_record" "google_mx" {
-  for_each = local.google_mx_records
+module "worker_heaven" {
+  source = "./modules/cloudflare-worker"
 
-  zone_id  = data.cloudflare_zone.domains["noizy.ai"].id
-  name     = "@"
-  type     = "MX"
-  content  = each.key
-  priority = each.value
-  ttl      = 3600
+  account_id  = var.cloudflare_account_id
+  worker_name = "heaven"
+  script_path = "${path.module}/../../src/index.js"
+
+  d1_bindings = {
+    GABRIEL_DB = "a31d68e2-f2d4-4203-a803-8039fdff31cb"
+  }
+
+  kv_bindings = {
+    GABRIEL_KV    = "f205b56a9914413da0ec454a9dc4c2bd"
+    GABRIEL_VOICE = "16532a32b2e8455486cc966403f3442e"
+  }
+
+  env_vars = {
+    NOIZY_ENV            = "production"
+    NOIZY_VERSION        = "18.0.0"
+    FOUNDING_ACTOR_FLOOR = "85"
+    STANDARD_ACTOR_FLOOR = "75"
+    VOICE_VAULT_BUCKET   = "noizy-voice-vault"
+  }
 }
 
-# ─── Cloudflare Workers ─────────────────────────────────────
+module "worker_landing" {
+  source = "./modules/cloudflare-worker"
 
-# Heaven — Consent Kernel API
-resource "cloudflare_worker_script" "heaven" {
-  account_id = var.cloudflare_account_id
-  name       = "heaven"
-  content    = file("${path.module}/../../src/index.js")
-  module     = true
+  account_id  = var.cloudflare_account_id
+  worker_name = "noizy-landing"
+  script_path = "${path.module}/../../noizy-landing/src/index.js"
+
+  routes = {
+    "noizy.ai/*" = { zone_id = module.zone_noizy_ai.zone_id }
+    "noizy.ai"   = { zone_id = module.zone_noizy_ai.zone_id }
+  }
 }
 
-# Landing page route (noizy.ai → noizy-landing worker)
-resource "cloudflare_worker_route" "landing" {
-  zone_id     = data.cloudflare_zone.domains["noizy.ai"].id
-  pattern     = "noizy.ai/*"
-  script_name = "noizy-landing"
+# ═══════════════════════════════════════════════════════════════
+# GCP / GOOGLE WORKSPACE
+# ═══════════════════════════════════════════════════════════════
+
+module "gcp_workspace" {
+  source = "./modules/gcp-workspace"
+
+  project_name = "NOIZY Empire"
+  project_id   = var.gcp_project_id
 }
 
-resource "cloudflare_worker_route" "landing_root" {
-  zone_id     = data.cloudflare_zone.domains["noizy.ai"].id
-  pattern     = "noizy.ai"
-  script_name = "noizy-landing"
+# ═══════════════════════════════════════════════════════════════
+# OUTPUTS
+# ═══════════════════════════════════════════════════════════════
+
+output "zones" {
+  value = {
+    "noizy.ai"         = { id = module.zone_noizy_ai.zone_id, status = module.zone_noizy_ai.status, ns = module.zone_noizy_ai.nameservers }
+    "noizyfish.com"    = { id = module.zone_noizyfish_com.zone_id, status = module.zone_noizyfish_com.status }
+    "fishmusicinc.com" = { id = module.zone_fishmusicinc_com.zone_id, status = module.zone_fishmusicinc_com.status }
+    "noizyfish.ca"     = { id = module.zone_noizyfish_ca.zone_id, status = module.zone_noizyfish_ca.status }
+  }
 }
 
-# ─── GCP Project & APIs ─────────────────────────────────────
-
-resource "google_project" "noizy" {
-  name       = "NOIZY Empire"
-  project_id = var.gcp_project_id
-}
-
-resource "google_project_service" "cloud_ai_companion" {
-  project = google_project.noizy.project_id
-  service = "cloudaicompanion.googleapis.com"
-
-  disable_dependent_services = false
-}
-
-resource "google_project_service" "workspace_apis" {
-  for_each = toset([
-    "admin.googleapis.com",
-    "gmail.googleapis.com",
-    "drive.googleapis.com",
-    "calendar-json.googleapis.com",
-    "docs.googleapis.com",
-    "sheets.googleapis.com",
-  ])
-
-  project = google_project.noizy.project_id
-  service = each.value
-
-  disable_dependent_services = false
-}
-
-# ─── Outputs ─────────────────────────────────────────────────
-
-output "cloudflare_zones" {
-  value = { for k, v in data.cloudflare_zone.domains : k => v.id }
-}
-
-output "dmarc_records" {
-  value = { for k, v in cloudflare_record.dmarc : k => v.hostname }
+output "workers" {
+  value = {
+    heaven  = module.worker_heaven.worker_name
+    landing = module.worker_landing.worker_name
+  }
 }
 
 output "gcp_project" {
-  value = google_project.noizy.project_id
-}
-
-output "worker_routes" {
-  value = {
-    landing      = cloudflare_worker_route.landing.pattern
-    landing_root = cloudflare_worker_route.landing_root.pattern
-  }
+  value = module.gcp_workspace.project_id
 }

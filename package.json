@@ -47,6 +47,8 @@
     "upgrade:wrangler": "npm install -g wrangler@latest"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "body-parser": "^2.2.2",
     "docx": "^9.6.1",
     "express": "^5.2.1"
   },

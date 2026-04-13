@@ -4,8 +4,7 @@ main = "src/index.js"
 compatibility_date = "2025-01-01"
 workers_dev = true
 
-# Routes activate after noizy.ai zone is transferred to this CF account (BLOCK 0)
-# routes = [
-#   { pattern = "noizy.ai/*", zone_name = "noizy.ai" },
-#   { pattern = "noizy.ai", zone_name = "noizy.ai" }
-# ]
+routes = [
+  { pattern = "noizy.ai/*", zone_name = "noizy.ai" },
+  { pattern = "noizy.ai", zone_name = "noizy.ai" }
+]
