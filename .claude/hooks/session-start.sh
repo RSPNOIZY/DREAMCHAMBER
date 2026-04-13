@@ -13,8 +13,8 @@ DATE_SHORT=$(date +"%Y-%m-%d")
 
 # ─── Persist environment variables ───
 if [ -n "$CLAUDE_ENV_FILE" ]; then
-    echo "export NOIZY_PROJECT_ROOT=$PROJECT_DIR" >> "$CLAUDE_ENV_FILE"
-    echo "export NOIZY_SESSION_START=$TIMESTAMP" >> "$CLAUDE_ENV_FILE"
+    echo "export NOIZY_PROJECT_ROOT=\"$PROJECT_DIR\"" >> "$CLAUDE_ENV_FILE"
+    echo "export NOIZY_SESSION_START=\"$TIMESTAMP\"" >> "$CLAUDE_ENV_FILE"
     echo "export GABRIEL_BOOT=true" >> "$CLAUDE_ENV_FILE"
 fi
 
