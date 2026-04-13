@@ -2,8 +2,8 @@
   "_meta": {
     "observer": "NOIZY Full Observer v1.0",
     "machine": "GOD (M2 Ultra)",
-    "timestamp": "2026-04-13T08:10:21.214Z",
-    "epochMs": 1776067821214
+    "timestamp": "2026-04-13T12:10:21.265Z",
+    "epochMs": 1776082221265
   },
   "services": {
     "voice-bridge": {
@@ -82,7 +82,7 @@
       "size": "12 GB"
     },
     {
-      "name": "noizy-consent-guardian:latest",
+      "name": "noizy-wisdom-scribe:latest",
       "size": "3.3 GB"
     },
     {
@@ -90,15 +90,15 @@
       "size": "3.3 GB"
     },
     {
+      "name": "noizy-consent-guardian:latest",
+      "size": "3.3 GB"
+    },
+    {
       "name": "noizy-mission-control:latest",
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-wisdom-scribe:latest",
-      "size": "3.3 GB"
-    },
-    {
-      "name": "noizy-gabriel-mind:latest",
+      "name": "noizy-dream-weaver:latest",
       "size": "3.3 GB"
     },
     {
@@ -106,7 +106,11 @@
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-dream-weaver:latest",
+      "name": "noizy-gabriel-mind:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-vox-architect:latest",
       "size": "3.3 GB"
     },
     {
@@ -116,10 +120,6 @@
     {
       "name": "noizy-fish-cataloguer:latest",
       "size": "3.3 GB"
-    },
-    {
-      "name": "noizy-vox-architect:latest",
-      "size": "3.3 GB"
     }
   ],
   "gabriel": {
@@ -128,9 +128,9 @@
     "recentMemory": [
       {
         "key": "last_heartbeat",
-        "value": "2026-04-13T07:52:51.083Z",
+        "value": "2026-04-13T11:52:51.168Z",
         "category": "system",
-        "updated_at": "2026-04-13 07:52:51"
+        "updated_at": "2026-04-13 11:52:51"
       },
       {
         "key": "daemon_start",
@@ -148,11 +148,11 @@
     "estateMembers": [],
     "logs": {
       "gabriel.log": {
-        "lastModified": "2026-04-13T08:10:10.811Z",
-        "sizeBytes": 6907689,
+        "lastModified": "2026-04-13T12:10:10.884Z",
+        "sizeBytes": 6929174,
         "lines": [
-          "[2026-04-13T07:51:59.172Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T07:52:51.082Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE"
+          "[2026-04-13T11:51:59.257Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-13T11:52:51.167Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE"
         ]
       },
       "noizyvox.log": {
@@ -305,6 +305,6 @@
       "available": "1.1Ti",
       "percentUsed": "1%"
     },
-    "uptime": "4:10  up 3 days, 16:49, 2 users, load averages: 9.83 10.76 13.11"
+    "uptime": "8:10  up 3 days, 20:49, 2 users, load averages: 13.04 12.15 12.23"
   }
 }
