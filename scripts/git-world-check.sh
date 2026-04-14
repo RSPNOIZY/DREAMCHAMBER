@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+# Optional override:
+#   NOIZY_PROJECT_ROOT=/absolute/path/to/repo bash scripts/git-world-check.sh --strict
 
 set -euo pipefail
 
@@ -67,6 +70,8 @@ quarantine_roots=(
   "Recovered"
 )
 
+quarantine_pattern="$(printf '%s\n' "${quarantine_roots[@]}" | sed 's/[.[\*^$()+?{|]/\\&/g' | paste -sd'|' -)"
+
 present_quarantine_roots=()
 for root in "${quarantine_roots[@]}"; do
   if [[ -e "$root" ]]; then
@@ -85,7 +90,7 @@ if [[ -n "$DIFF_BASE" ]]; then
   else
     changed_files="$(git diff --name-only "$DIFF_BASE...HEAD" --)"
     if [[ -n "$changed_files" ]]; then
-      blocked_changes="$(printf '%s\n' "$changed_files" | grep -E '^(\.worktrees/|\.claude/worktrees/|NOIZYLAB/|NOIZY-MONO/|repos/|OneDrive/|DUPES/|Recovered/|\.gitmodules$)' || true)"
+      blocked_changes="$(printf '%s\n' "$changed_files" | grep -E "^(\.worktrees/|\.claude/worktrees/|(${quarantine_pattern})/|\.gitmodules$)" || true)"
       if [[ -n "$blocked_changes" ]]; then
         fail "The diff touches quarantined roots, worktree paths, or .gitmodules. Move or extract them instead."
         printf '%s\n' "$blocked_changes"
