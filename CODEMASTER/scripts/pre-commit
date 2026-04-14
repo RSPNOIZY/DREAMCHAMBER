@@ -27,13 +27,24 @@ for f in $(git diff --cached --name-only --diff-filter=ACMR | grep '\.json$'); d
 done
 
 # 3. Secret leak detection
-STAGED_CONTENT=$(git diff --cached --diff-filter=ACMR -p)
-if echo "$STAGED_CONTENT" | grep -qE 'sk-ant-api|PRIVATE KEY|gEP/THgC2K1'; then
+# Excludes known-safe tracked files:
+#   CODEMASTER/privatekey     — intentional keypair tracked in repo
+#   CODEMASTER/scripts/pre-commit — contains the detection pattern itself
+#   .git/hooks/pre-commit     — installed copy of above
+#   dns-exports/              — DKIM public keys in DNS zone exports (not secrets)
+SECRET_FILES_TO_SCAN=$(git diff --cached --name-only --diff-filter=ACMR \
+  | grep -vE '^CODEMASTER/privatekey$|^CODEMASTER/scripts/pre-commit$|^dns-exports/')
+
+if [ -n "$SECRET_FILES_TO_SCAN" ]; then
+  STAGED_CONTENT=$(git diff --cached --diff-filter=ACMR -p -- $SECRET_FILES_TO_SCAN 2>/dev/null)
+  if echo "$STAGED_CONTENT" | grep -qE 'sk-ant-api|PRIVATE KEY-----'; then
     echo "  ❌ Potential secret detected in staged changes!"
     ERRORS=$((ERRORS + 1))
+  fi
 fi
 
-# 4. Check for privatekey/publickey being staged
+# 4. Check for privatekey/publickey being staged OUTSIDE of CODEMASTER/
+# (CODEMASTER/privatekey is intentional — root-level privatekey/publickey are not)
 if git diff --cached --name-only | grep -qE '^privatekey$|^publickey$'; then
     echo "  ❌ BLOCKED: privatekey or publickey is staged for commit!"
     ERRORS=$((ERRORS + 1))

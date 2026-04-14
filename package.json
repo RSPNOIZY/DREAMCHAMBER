@@ -1,7 +1,7 @@
 {
   "name": "noizylab",
   "version": "18.0.0",
-  "description": "NOIZY Empire — HEAVEN Consent Kernel + DreamChamber AI Platform",
+  "description": "NOIZY Empire \u2014 HEAVEN Consent Kernel + DreamChamber AI Platform",
   "private": true,
   "scripts": {
     "dev": "wrangler dev",
@@ -44,7 +44,17 @@
     "r2:list": "wrangler r2 bucket list",
     "kv:create:flags": "wrangler kv namespace create FEATURE_FLAGS",
     "kv:create:gap": "wrangler kv namespace create GAP_SOLVER",
-    "upgrade:wrangler": "npm install -g wrangler@latest"
+    "upgrade:wrangler": "npm install -g wrangler@latest",
+    "session:new": "node packages/session-proof/cli.mjs new --mode local",
+    "session:seal": "node packages/session-proof/cli.mjs seal",
+    "session:verify": "node packages/session-proof/cli.mjs verify",
+    "session:export": "node packages/session-proof/cli.mjs export",
+    "recall:index": "node packages/session-recall/cli.mjs index --all",
+    "recall:search": "node packages/session-recall/cli.mjs search",
+    "recall:stats": "node packages/session-recall/cli.mjs stats",
+    "bridge:bootstrap": "bash apps/voice-bridge-http/scripts/bootstrap-gcp.sh",
+    "bridge:deploy": "cd apps/voice-bridge-http && gcloud run deploy noizy-voice-bridge --source . --region us-central1 --project gen-lang-client-0531202734 --no-allow-unauthenticated",
+    "bridge:logs": "gcloud run services logs read noizy-voice-bridge --region us-central1 --project gen-lang-client-0531202734 --limit 50"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",

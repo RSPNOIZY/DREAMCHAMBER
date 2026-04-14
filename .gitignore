@@ -149,3 +149,16 @@ DerivedData/
 
 # Recovery output (generated, machine-specific)
 Recovered/
+
+# ── Session Proof & Recall ──────────────────────────────────
+# Session artifacts are tamper-evident exports — git is NOT the store
+.session/
+!.session/.gitkeep
+
+# ── Voice Bridge HTTP ───────────────────────────────────────
+apps/voice-bridge-http/.env.local
+apps/voice-bridge-http/node_modules/
+
+# ── OpenCode ────────────────────────────────────────────────
+# config.json is tracked (no secrets) — token is via env var only
+# .opencode/config.json  <-- DO NOT IGNORE, this is the operator config
