@@ -2,8 +2,8 @@
   "_meta": {
     "observer": "NOIZY Full Observer v1.0",
     "machine": "GOD (M2 Ultra)",
-    "timestamp": "2026-04-14T00:10:18.848Z",
-    "epochMs": 1776125418848
+    "timestamp": "2026-04-14T04:39:13.483Z",
+    "epochMs": 1776141553483
   },
   "services": {
     "voice-bridge": {
@@ -11,38 +11,37 @@
     },
     "gabriel-daemon": {
       "status": "RUNNING",
-      "pid": "97636",
+      "pid": "801",
       "cpu": "0.0%",
       "mem": "0.0%",
-      "started": "Sun01PM"
+      "started": "12:37AM"
     },
     "gabriel-monitor": {
       "status": "RUNNING",
-      "pid": "97627",
+      "pid": "796",
       "cpu": "0.0%",
-      "mem": "0.0%",
-      "started": "Sun01PM"
+      "mem": "0.1%",
+      "started": "12:37AM"
     },
     "voice-server": {
       "status": "RUNNING",
-      "pid": "97596",
+      "pid": "770",
       "cpu": "0.0%",
       "mem": "0.0%",
-      "started": "Sun01PM"
+      "started": "12:37AM"
     },
     "audio-hijack": {
       "status": "DOWN"
     },
     "ollama": {
       "status": "RUNNING",
-      "pid": "97620",
+      "pid": "791",
       "cpu": "0.0%",
-      "mem": "0.1%",
-      "started": "Sun01PM"
+      "mem": "0.0%",
+      "started": "12:37AM"
     },
     "voice-bridge-http": {
-      "status": "RESPONDED",
-      "raw": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n<hr>\n<address>Apach"
+      "status": "UNREACHABLE"
     }
   },
   "ollamaModels": [
@@ -83,10 +82,6 @@
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-wisdom-scribe:latest",
-      "size": "3.3 GB"
-    },
-    {
       "name": "noizy-mission-control:latest",
       "size": "3.3 GB"
     },
@@ -95,11 +90,11 @@
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-dream-weaver:latest",
+      "name": "noizy-wisdom-scribe:latest",
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-gabriel-mind:latest",
+      "name": "noizy-dream-weaver:latest",
       "size": "3.3 GB"
     },
     {
@@ -107,7 +102,11 @@
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-kidz-worldbuilder:latest",
+      "name": "noizy-gabriel-mind:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-vox-architect:latest",
       "size": "3.3 GB"
     },
     {
@@ -115,7 +114,7 @@
       "size": "3.3 GB"
     },
     {
-      "name": "noizy-vox-architect:latest",
+      "name": "noizy-kidz-worldbuilder:latest",
       "size": "3.3 GB"
     }
   ],
@@ -125,9 +124,9 @@
     "recentMemory": [
       {
         "key": "last_heartbeat",
-        "value": "2026-04-13T23:52:51.425Z",
+        "value": "2026-04-14T03:52:51.506Z",
         "category": "system",
-        "updated_at": "2026-04-13 23:52:51"
+        "updated_at": "2026-04-14 03:52:51"
       },
       {
         "key": "daemon_start",
@@ -145,11 +144,19 @@
     "estateMembers": [],
     "logs": {
       "gabriel.log": {
-        "lastModified": "2026-04-14T00:10:11.120Z",
-        "sizeBytes": 6992534,
+        "lastModified": "2026-04-14T04:37:30.088Z",
+        "sizeBytes": 7014694,
         "lines": [
-          "[2026-04-13T23:51:59.523Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
-          "[2026-04-13T23:52:51.423Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE"
+          "[2026-04-14T04:18:29.701Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T04:18:29.701Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T04:37:29.395Z] Running with in-memory store (SQLite not available at known paths)",
+          "[2026-04-14T04:37:29.395Z] Running with in-memory store (SQLite not available at known paths)",
+          "[2026-04-14T04:37:29.843Z] Master prompt loaded: /Users/m2ultra/NOIZYANTHROPIC/GABRIEL/prompts/GABRIEL_MASTER.md",
+          "[2026-04-14T04:37:29.843Z] Master prompt loaded: /Users/m2ultra/NOIZYANTHROPIC/GABRIEL/prompts/GABRIEL_MASTER.md",
+          "[2026-04-14T04:37:29.938Z] Voice WebSocket ready at ws://0.0.0.0:7778/voice  AND  ws://0.0.0.0:7778/ws",
+          "[2026-04-14T04:37:29.938Z] Voice WebSocket ready at ws://0.0.0.0:7778/voice  AND  ws://0.0.0.0:7778/ws",
+          "[2026-04-14T04:37:30.087Z] SERVER ERROR: listen EADDRINUSE: address already in use 0.0.0.0:7778",
+          "[2026-04-14T04:37:30.087Z] SERVER ERROR: listen EADDRINUSE: address already in use 0.0.0.0:7778"
         ]
       },
       "noizyvox.log": {
@@ -298,10 +305,10 @@
   "system": {
     "disk": {
       "total": "1.8Ti",
-      "used": "10Gi",
+      "used": "11Gi",
       "available": "1.1Ti",
-      "percentUsed": "1%"
+      "percentUsed": "2%"
     },
-    "uptime": "20:10  up 4 days,  8:49, 1 user, load averages: 19.07 24.49 46.90"
+    "uptime": "0:39  up 3 mins, 1 user, load averages: 835.33 326.07 129.94"
   }
 }
