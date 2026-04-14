@@ -11,6 +11,16 @@ on:
       - ".github/workflows/heaven-deploy.yml"
   workflow_dispatch:
     inputs:
+      environment:
+        description: "Wrangler environment to deploy"
+        required: false
+        default: "production"
+        type: choice
+        options:
+          - dev
+          - preview
+          - canary
+          - production
       skip_smoke:
         description: "Skip post-deploy smoke test"
         required: false
@@ -26,6 +36,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: false
+          fetch-depth: 1
 
       - name: Setup Node 20
         uses: actions/setup-node@v4
@@ -45,38 +58,98 @@ jobs:
       - name: Validate Worker syntax
         run: node --check src/index.js
 
+      # ── Secret preflight ────────────────────────────────────────
+      - name: Verify Cloudflare secrets are present
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          test -n "$CLOUDFLARE_API_TOKEN" || { echo "❌ Missing secret: CLOUDFLARE_API_TOKEN — add it in Settings → Secrets and variables → Actions"; exit 1; }
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "❌ Missing secret: CLOUDFLARE_ACCOUNT_ID — add it in Settings → Secrets and variables → Actions"; exit 1; }
+          echo "✅ Cloudflare secrets are present"
+
+      # ── Wrangler diagnostics ────────────────────────────────────
+      - name: Wrangler diagnostics
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_SEND_METRICS: "false"
+        run: |
+          npx --yes wrangler@3 --version
+          npx --yes wrangler@3 whoami
+
+      # ── Resolve deployment environment ─────────────────────────
+      - name: Resolve deploy environment
+        id: deploy-env
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            ENV_NAME="${{ inputs.environment }}"
+          else
+            ENV_NAME="production"
+          fi
+          echo "env_name=$ENV_NAME" >> "$GITHUB_OUTPUT"
+          echo "▶ Deploying environment: $ENV_NAME"
+
       # ── Deploy HEAVEN ───────────────────────────────────────────
       - name: Deploy HEAVEN Worker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: npx wrangler deploy
+          WRANGLER_SEND_METRICS: "false"
+        run: npx --yes wrangler@3 deploy --env "${{ steps.deploy-env.outputs.env_name }}"
 
-      # ── Post-deploy smoke test ──────────────────────────────────
-      - name: Smoke test — health endpoint
-        if: ${{ inputs.skip_smoke != 'true' }}
+      # ── Compute smoke test base URL ─────────────────────────────
+      - name: Compute base URL
+        id: base-url
         run: |
-          sleep 5
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            https://heaven.rsp-5f3.workers.dev/health)
-          echo "HEAVEN /health → HTTP $STATUS"
-          test "$STATUS" = "200" || exit 1
+          ENV_NAME="${{ steps.deploy-env.outputs.env_name }}"
+          if [ "$ENV_NAME" = "production" ]; then
+            BASE="https://heaven.rsp-5f3.workers.dev"
+          else
+            BASE="https://heaven-${ENV_NAME}.rsp-5f3.workers.dev"
+          fi
+          echo "base=$BASE" >> "$GITHUB_OUTPUT"
+          echo "▶ Smoke test base URL: $BASE"
+
+      # ── Post-deploy smoke tests ─────────────────────────────────
+      - name: Smoke test — health endpoint
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.skip_smoke != true }}
+        run: |
+          BASE="${{ steps.base-url.outputs.base }}"
+          for i in 1 2 3 4 5; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$BASE/health" || true)
+            echo "Attempt $i: /health → HTTP $STATUS"
+            [ "$STATUS" = "200" ] && exit 0
+            sleep 5
+          done
+          echo "❌ /health did not return 200 after 5 attempts"
+          exit 1
 
       - name: Smoke test — Gabriel status
-        if: ${{ inputs.skip_smoke != 'true' }}
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.skip_smoke != true }}
         run: |
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            https://heaven.rsp-5f3.workers.dev/gabriel)
-          echo "HEAVEN /gabriel → HTTP $STATUS"
-          test "$STATUS" = "200" || exit 1
+          BASE="${{ steps.base-url.outputs.base }}"
+          for i in 1 2 3 4 5; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$BASE/gabriel" || true)
+            echo "Attempt $i: /gabriel → HTTP $STATUS"
+            [ "$STATUS" = "200" ] && exit 0
+            sleep 5
+          done
+          echo "❌ /gabriel did not return 200 after 5 attempts"
+          exit 1
 
       - name: Smoke test — API v1
-        if: ${{ inputs.skip_smoke != 'true' }}
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.skip_smoke != true }}
         run: |
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            https://heaven.rsp-5f3.workers.dev/api/v1)
-          echo "HEAVEN /api/v1 → HTTP $STATUS"
-          test "$STATUS" = "200" || exit 1
+          BASE="${{ steps.base-url.outputs.base }}"
+          for i in 1 2 3 4 5; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$BASE/api/v1" || true)
+            echo "Attempt $i: /api/v1 → HTTP $STATUS"
+            [ "$STATUS" = "200" ] && exit 0
+            sleep 5
+          done
+          echo "❌ /api/v1 did not return 200 after 5 attempts"
+          exit 1
 
       # ── Proof bundle ────────────────────────────────────────────
       - name: Generate HEAVEN Proof Bundle
@@ -94,6 +167,7 @@ jobs:
               git_sha: '${{ github.sha }}',
               git_ref: '${{ github.ref_name }}',
               run_id: '${{ github.run_id }}',
+              deploy_env: '${{ steps.deploy-env.outputs.env_name }}',
             },
             routing_contract: {
               public: ['/health', '/dashboard', '/', '/gabriel'],

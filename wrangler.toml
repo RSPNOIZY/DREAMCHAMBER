@@ -72,6 +72,10 @@ MESH_ORIGIN = "http://127.0.0.1:9696"
 enabled = true
 
 # ── Environments ───────────────────────────────────────────────────────────
+[env.dev]
+name = "heaven-dev"
+vars = { NOIZY_ENV = "dev", NOIZY_VERSION = "18.0.0-dev" }
+
 [env.preview]
 name = "heaven-preview"
 vars = { NOIZY_ENV = "preview", NOIZY_VERSION = "18.0.0" }

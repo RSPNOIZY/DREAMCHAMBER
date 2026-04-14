@@ -162,3 +162,6 @@ apps/voice-bridge-http/node_modules/
 # ── OpenCode ────────────────────────────────────────────────
 # config.json is tracked (no secrets) — token is via env var only
 # .opencode/config.json  <-- DO NOT IGNORE, this is the operator config
+
+# ── Claude worktrees (local-only git worktrees — never track in git) ─────────
+.claude/worktrees/
