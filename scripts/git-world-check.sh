@@ -70,7 +70,7 @@ quarantine_roots=(
   "Recovered"
 )
 
-quarantine_pattern="$(printf '%s\n' "${quarantine_roots[@]}" | sed 's/[.[\*^$()+?{|]/\\&/g' | paste -sd'|' -)"
+quarantine_pattern="$(printf '%s\n' "${quarantine_roots[@]}" | sed 's/[][\\.*^$()+?{|]/\\&/g' | paste -sd'|' -)"
 
 present_quarantine_roots=()
 for root in "${quarantine_roots[@]}"; do
@@ -97,10 +97,6 @@ if [[ -n "$DIFF_BASE" ]]; then
       fi
     fi
   fi
-fi
-
-if (( STRICT == 1 )) && (( status != 0 )); then
-  exit "$status"
 fi
 
 if (( status != 0 )); then
