@@ -1,6 +1,6 @@
 ## Summary
 
-- 
+-
 
 ## System of Record
 
