@@ -4,7 +4,7 @@ This file is the canonical Git operating policy for the NOIZY Empire.
 
 ## 1. Canonical model
 
-- `/home/runner/work/NOIZYANTHROPIC/NOIZYANTHROPIC` is the **integration monorepo**.
+- This repository is the **integration monorepo**.
 - The integration monorepo owns orchestration, shared standards, cross-repo CI, governance, and extraction policy.
 - Product and platform code that can stand on its own must move to a standalone GitHub repo under **`github.com/NOIZY-ai`**.
 - Until the integration repo itself is transferred, `RSPNOIZY/NOIZYANTHROPIC` remains the active coordination repo, not the long-term home for every product tree.
@@ -95,5 +95,5 @@ Ad hoc temp-copy export flows are deprecated. Extraction must follow a documente
 
 ## 12. Operational references
 
-- GitHub consolidation bootstrap: `/home/runner/work/NOIZYANTHROPIC/NOIZYANTHROPIC/github-consolidation/GITHUB_PUSH_PLAN.md`
-- Repo inventory and classifications: `/home/runner/work/NOIZYANTHROPIC/NOIZYANTHROPIC/docs/governance/GIT_WORLD_INVENTORY.md`
+- GitHub consolidation bootstrap: `github-consolidation/GITHUB_PUSH_PLAN.md`
+- Repo inventory and classifications: `docs/governance/GIT_WORLD_INVENTORY.md`

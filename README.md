@@ -16,8 +16,8 @@ HEAVEN is the core consent kernel for NOIZY.AI — a voice actor rights manageme
   - `NOIZY-ai/noizyfish`
   - `NOIZY-ai/noizybeast`
   - `NOIZY-ai/noizy.ai`
-- Repo policy: `/home/runner/work/NOIZYANTHROPIC/NOIZYANTHROPIC/docs/governance/GIT_WORLD.md`
-- Folder inventory: `/home/runner/work/NOIZYANTHROPIC/NOIZYANTHROPIC/docs/governance/GIT_WORLD_INVENTORY.md`
+- Repo policy: `docs/governance/GIT_WORLD.md`
+- Folder inventory: `docs/governance/GIT_WORLD_INVENTORY.md`
 
 ## Architecture
 

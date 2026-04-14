@@ -1,6 +1,6 @@
 # Git World Inventory
 
-This file classifies the major top-level folders currently present in `/home/runner/work/NOIZYANTHROPIC/NOIZYANTHROPIC`.
+This file classifies the major top-level folders currently present in this repository.
 
 ## Integration-owned now
 

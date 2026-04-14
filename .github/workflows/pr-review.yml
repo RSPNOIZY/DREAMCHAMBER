@@ -90,8 +90,13 @@ jobs:
 
       - name: PR system-of-record declaration required
         run: |
-          echo "${{ github.event.pull_request.body }}" | grep -q "## System of Record" || {
-            echo "PR must declare the system of record"
+          BODY="$(printf '%s' "${{ github.event.pull_request.body }}")"
+          echo "$BODY" | grep -q "## System of Record" || {
+            echo "PR must include the System of Record section"
+            exit 1
+          }
+          echo "$BODY" | grep -Eq '^- \[x\] This (repository is the system of record for the changed paths\.|PR only changes integration/docs/CI for code owned elsewhere\.)' || {
+            echo "PR must mark one System of Record checkbox"
             exit 1
           }
 

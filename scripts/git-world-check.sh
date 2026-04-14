@@ -39,6 +39,11 @@ warn() {
   echo "::warning::$1"
 }
 
+escape_for_grep_pattern() {
+  # Escape grep -E metacharacters so literal path names can be joined into one safe alternation.
+  printf '%s\n' "$1" | sed 's/[][\\.*^$()+?{|]/\\&/g'
+}
+
 gitlinks="$(git ls-files -s | awk '$1 == 160000 {print $4}')"
 if [[ -n "$gitlinks" ]]; then
   fail "Tracked gitlinks/submodules are not allowed in the integration repo."
@@ -70,7 +75,7 @@ quarantine_roots=(
   "Recovered"
 )
 
-quarantine_pattern="$(printf '%s\n' "${quarantine_roots[@]}" | sed 's/[][\\.*^$()+?{|]/\\&/g' | paste -sd'|' -)"
+quarantine_pattern="$(for root in "${quarantine_roots[@]}"; do escape_for_grep_pattern "$root"; done | paste -sd'|' -)"
 
 present_quarantine_roots=()
 for root in "${quarantine_roots[@]}"; do
@@ -86,7 +91,7 @@ fi
 
 if [[ -n "$DIFF_BASE" ]]; then
   if ! git rev-parse --verify "$DIFF_BASE" >/dev/null 2>&1; then
-    fail "Diff base '$DIFF_BASE' could not be resolved. Verify the branch exists or check the --diff-base argument."
+    fail "Diff base '$DIFF_BASE' could not be resolved. Verify the ref exists or check the --diff-base argument."
   else
     changed_files="$(git diff --name-only "$DIFF_BASE...HEAD" --)"
     if [[ -n "$changed_files" ]]; then
