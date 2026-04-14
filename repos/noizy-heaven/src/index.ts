@@ -93,7 +93,8 @@ export default {
     // ── Public routes ────────────────────────────────────────────────────────
 
     if (path === '/' || path === '/api/health') {
-      return json({
+      // ⚡ NO gabriel() call here — health is a pure read with zero writes
+      return new Response(JSON.stringify({
         status:    'alive',
         service:   'HEAVEN',
         version:   '1.0.0',
@@ -101,6 +102,13 @@ export default {
         gabriel:   'watching',
         hvs:       '75/25 perpetual',
         portals:   ['NOIZYVOX', 'NOIZYFISH', 'NOIZYKIDZ', 'NOIZYLAB', 'WISDOM', 'myFAMILY'],
+      }, null, 2), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Cache-Control': 'no-store',
+        },
       });
     }
 

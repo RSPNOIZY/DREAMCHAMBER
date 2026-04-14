@@ -24,14 +24,12 @@ database_name = "gabriel_db"
 database_id = "a31d68e2-f2d4-4203-a803-8039fdff31cb"
 
 # ── R2 Object Storage (Voice Vault) ───────────────────────────────────────
-# SETUP: Enable R2 in CF Dashboard → create bucket → update bucket_name
 # Zero egress fees — critical for serving audio at scale
 # Contains: voice prints, spectral data, synthesis outputs, C2PA manifests
-# ── R2 Object Storage (Voice Vault) — ENABLE R2 IN DASHBOARD FIRST ────────
-# [[r2_buckets]]
-# binding = "VOICE_VAULT"
-# bucket_name = "noizy-voice-vault"
-# preview_bucket_name = "noizy-voice-vault-preview"
+[[r2_buckets]]
+binding = "VOICE_VAULT"
+bucket_name = "noizy-voice-vault"
+preview_bucket_name = "noizy-voice-vault-preview"
 
 # ── KV Namespaces ──────────────────────────────────────────────────────────
 [[kv_namespaces]]

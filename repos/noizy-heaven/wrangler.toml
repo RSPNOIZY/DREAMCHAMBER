@@ -34,17 +34,17 @@ new_classes = ["SignalingRoom"]
 [[d1_databases]]
 binding       = "DB_MEMORY"
 database_name = "agent-memory"
-database_id   = "7b813205-fd12-4a23-84a6-ce83bc49ec70"
+database_id   = "bc2f9abc-f49d-4818-9bde-8fc647c359e3"
 
 [[d1_databases]]
 binding       = "DB_REPAIRS"
-database_name = "noizylab-repairs"
-database_id   = "2bd4aa06-f9b2-4761-b235-e92e8a21fe45"
+database_name = "noizy-prod"
+database_id   = "cd6cae46-e5cd-42b6-a97a-5d0e576c1c2a"
 
 [[d1_databases]]
 binding       = "DB_AQUARIUM"
 database_name = "aquarium-archive"
-database_id   = "e6f98279-656b-4f7a-979d-9197821193f5"
+database_id   = "01212e89-5422-4e45-a03a-f0a54495674e"
 
 # ── KV Namespaces (HEAVEN account) ───────────────────────────────────────────
 
