@@ -86,7 +86,7 @@ fi
 
 if [[ -n "$DIFF_BASE" ]]; then
   if ! git rev-parse --verify "$DIFF_BASE" >/dev/null 2>&1; then
-    fail "Diff base '$DIFF_BASE' could not be resolved."
+    fail "Diff base '$DIFF_BASE' could not be resolved. Verify the branch exists or check the --diff-base argument."
   else
     changed_files="$(git diff --name-only "$DIFF_BASE...HEAD" --)"
     if [[ -n "$changed_files" ]]; then
