@@ -1,8 +1,23 @@
-# NOIZYLAB — The NOIZY Empire
+# NOIZYANTHROPIC — NOIZY Empire Integration Repo
 
 > **Consent as executable code. Provenance as default. Revocation as sacred. Compensation as automatic.**
 
 HEAVEN is the core consent kernel for NOIZY.AI — a voice actor rights management platform built on Cloudflare's edge infrastructure. Zero servers, zero monthly cost, global latency.
+
+## Git World
+
+- This repository is the **integration monorepo** for the empire.
+- Permanent residents here are orchestration, shared standards, governance, cross-repo CI, extraction policy, and integration tooling.
+- Standalone product/platform ownership is moving to the GitHub org **`NOIZY-ai`**.
+- Current target standalone repos:
+  - `NOIZY-ai/heaven`
+  - `NOIZY-ai/gabriel`
+  - `NOIZY-ai/noizyvox`
+  - `NOIZY-ai/noizyfish`
+  - `NOIZY-ai/noizybeast`
+  - `NOIZY-ai/noizy.ai`
+- Repo policy: `/home/runner/work/NOIZYANTHROPIC/NOIZYANTHROPIC/docs/governance/GIT_WORLD.md`
+- Folder inventory: `/home/runner/work/NOIZYANTHROPIC/NOIZYANTHROPIC/docs/governance/GIT_WORLD_INVENTORY.md`
 
 ## Architecture
 

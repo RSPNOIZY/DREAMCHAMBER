@@ -165,3 +165,8 @@ apps/voice-bridge-http/node_modules/
 
 # ── Claude worktrees (local-only git worktrees — never track in git) ─────────
 .claude/worktrees/
+.worktrees/
+
+# Legacy detached gitlink paths (local-only, never track)
+MC96ECO/
+turbo-console-log/

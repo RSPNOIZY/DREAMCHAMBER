@@ -21,12 +21,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: false
 
       - name: Setup Node 20
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
+
+      - name: "GATE 0 — Git World Hygiene"
+        run: bash scripts/git-world-check.sh --strict
 
       # ── GATE 1: Config format check ────────────────────────────────────────
       - name: "GATE 1 — Config Format"
