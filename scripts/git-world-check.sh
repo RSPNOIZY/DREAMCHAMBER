@@ -44,7 +44,7 @@ escape_for_grep_pattern() {
   printf '%s\n' "$1" | sed 's/[][\\.*^$()+?{|]/\\&/g'
 }
 
-gitlinks="$(git ls-files -s | awk '$1 == 160000 {print $4}')"
+gitlinks="$(git ls-files -s | awk '$1 ~ /^160000$/ {print $4}')"
 if [[ -n "$gitlinks" ]]; then
   fail "Tracked gitlinks/submodules are not allowed in the integration repo."
   printf '%s\n' "$gitlinks"
@@ -75,7 +75,9 @@ quarantine_roots=(
   "Recovered"
 )
 
-quarantine_pattern="$(for root in "${quarantine_roots[@]}"; do escape_for_grep_pattern "$root"; done | paste -sd'|' -)"
+quarantine_pattern="$(for root in "${quarantine_roots[@]}"; do
+  escape_for_grep_pattern "$root"
+done | awk 'BEGIN { ORS=""; first=1 } { if (!first) printf "|" ; printf "%s", $0; first=0 }')"
 
 present_quarantine_roots=()
 for root in "${quarantine_roots[@]}"; do
