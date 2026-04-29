@@ -1,0 +1,12 @@
+name = "heaven-live"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[kv_namespaces]]
+binding = "HEAVEN_KV"
+id = "1f88de7bc13b4fb9984887bb0d0aa200"
+
+# Secrets — set via CLI before deploying:
+#   wrangler secret put DISCORD_WEBHOOK_URL
+#   wrangler secret put HEAVEN_API_KEY
