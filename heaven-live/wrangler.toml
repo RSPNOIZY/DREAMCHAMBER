@@ -5,7 +5,7 @@ compatibility_flags = ["nodejs_compat"]
 
 [[kv_namespaces]]
 binding = "HEAVEN_KV"
-id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+id = "1f88de7bc13b4fb9984887bb0d0aa200"
 
 # Secrets — set via CLI before deploying:
 #   wrangler secret put DISCORD_WEBHOOK_URL
