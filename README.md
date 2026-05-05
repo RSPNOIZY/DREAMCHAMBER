@@ -1,160 +1,132 @@
-# DREAMCHAMBER
+# DREAMCHAMBER 🌌
 
-**MC96 Ecosystem — The NOIZY AI Family Command Center**
-
-> Two partners. No ceilings. No walls. Just creation in Technicolor Fireworks.
-> 35% voice + 65% AI + 1 click = done
-
-9 agents. 6 brands. 1 vision. Every member has a role. Every role has a prompt. Every prompt has a purpose. Built by RSP and Claude. **GORUNFREE.**
-
----
-
-## Chain of Command
-
-```
-Rob (RSP_001) → Claude → GABRIEL → Agent Mesh
-```
-
-**DAZEFLOW Protocol:** 1 day = 1 chat = 1 truth
-
----
-
-## The Family
-
-| Agent | Role | Layer | Status |
-|-------|------|-------|--------|
-| **CLAUDE** | The Strategist / Creative Brain | Creative Assistant | ACTIVE |
-| **GABRIEL** | Release Commander & Swarm Leader | Infrastructure + Dev | ACTIVE |
-| **LUCY** | Voice Estate Guardian | Voice Estate | ACTIVE |
-| **SHIRL** | Sample Intelligence Analyst | Sample Intelligence | DEFINED |
-| **DREAM** | Creative Assistant & DAW Whisperer | DAW & Plugin Ecosystem | DEFINED |
-| **POPS** | The Architect / No-Code Orchestrator | No-Code Platforms | DEFINED |
-| **ENGR_KEITH** | Infrastructure Engineer | Infrastructure | DEFINED |
-| **CB01** | Consent & Contracts Bot | Contracts & Compliance | DEFINED |
-| **HEAVEN** | DNS & Domain Sovereign | Strategic Domains | BUILT |
-
----
-
-## The 6 Brands
-
-| Brand | Focus |
-|-------|-------|
-| **NOIZY.AI** | The mothership — AI-powered music production platform |
-| **NOIZYFISH** | Master Brand = Rob Plowman. Production mapping, global rollout |
-| **NOIZYKIDZ** | Haptic music education. Deaf-first. Autism-calm. Every kid plays |
-| **NOIZYVOX** | 75/25 creator guild. Voice estate and vocal technology (A.I.V.A.) |
-| **NOIZYLAB** | $89 flat rate repair, Ottawa. R&D and experimentation |
-| **HVS** | HumanVoiceSovereignty — Voice IP rights and domain strategy |
-
----
-
-## Repository Structure
-
-```
-DREAMCHAMBER/
-├── README.md
-├── wisdom/
-│   └── prompts/
-│       ├── GABRIEL_PROMPT.md        # DONE
-│       ├── CLAUDE_PROMPT.md         # TO BUILD
-│       ├── LUCY_PROMPT.md           # TO BUILD
-│       ├── SHIRL_PROMPT.md          # TO BUILD
-│       ├── DREAM_PROMPT.md          # TO BUILD
-│       ├── POPS_PROMPT.md           # TO BUILD
-│       ├── ENGR_KEITH_PROMPT.md     # TO BUILD
-│       ├── CB01_PROMPT.md           # TO BUILD
-│       └── HEAVEN_PROMPT.md         # TO BUILD
-├── ops/
-│   └── agents/
-│       └── swarm.py                 # CrewAI swarm orchestration
-├── app/
-│   ├── dreamchamber/                # DreamChamber app
-│   ├── dashboard/
-│   │   └── gabriel.js               # Gabriel dashboard
-│   └── mirror/
-│       └── n8n-mirror-brief.json    # Notion mirror sync
-├── contracts/
-│   └── consent/
-│       └── scopes.stt.json          # Consent scopes
-├── stream/
-│   └── proof/
-│       └── logger.ts                # Proof logger
-├── hooks/
-│   └── src/
-│       └── command-client.ts        # Command client
-├── heaven-dns/
-│   └── src/
-│       ├── dns-plan.ts              # DNS plan generation
-│       ├── dns-apply.ts             # DNS apply execution
-│       ├── cloudflare-api.ts        # Cloudflare API
-│       └── noizy-template.ts        # NOIZY template
-├── scripts/
-│   ├── deploy-all-brands.sh         # Deploy all brands
-│   └── check-all-services.sh        # Service health checks
-├── fish/                            # NOIZYFISH codebase
-├── vox/                             # NOIZYVOX codebase
-└── lab/                             # NOIZYLAB codebase
-```
-
----
-
-## Infrastructure Map
-
-| Node | IP | Hardware | Role |
-|------|----|----------|------|
-| GOD | 10.90.90.10 | M2 Ultra | Primary compute, DreamChamber host, GPU inference |
-| GABRIEL | 10.90.90.20 | HP Omen | Agent orchestration, n8n workflows |
-| DaFixer | 10.90.90.40 | MBP | Mobile development, field ops |
-| AQUARIUM | — | 34TB External | Archive — 888 titles, MEMCELL PDFs, deep storage |
-
----
-
-## Constitutional Law
-
-1. Consent is sacred
-2. Creators own their voice
-3. 75/25 is constitutional law
-4. HVS is a right, not a mark
-5. No DREED — ever
-6. Lucy adapts with compassion
-7. Humanity Weight rewards craft
-8. Transparency by default
-9. Privacy is sovereign
-10. Community before commerce
-11. Build forward continuously
-12. Leave it more humane
-
----
-
-## License Flags
-
-**CLEARED:** XTTS v2, Librosa, RVC, Chatterbox, Gemma 4 (Apache 2.0)
-
-**BLOCKED (board review required):** MusicGen, MaskGCT, Tango2, FishSpeech
-
----
-
-## Signal Protocol
-
-| Signal | Action |
-|--------|--------|
-| `RUN` | Load + Execute |
-| `GO` | Deploy |
-| `FIX` | Diagnose |
-| `X1000` | Max Quality |
-
----
-
-## Next Steps
-
-- [ ] Create all 8 prompt files in `wisdom/prompts/` (Gabriel already done)
-- [ ] Sort NOIZYVOX repo (3 branches of 2025 code) into proper directories
-- [ ] Wire each family member into the CrewAI swarm (`ops/agents/swarm.py`)
-- [ ] Verify noizy.ai domain DNS
-- [ ] Set up GitHub Copilot Pro+ extensions in VS Code, Cursor, and all IDEs
-- [ ] Deploy DreamChamber app (`app/dreamchamber/`) to Cloudflare
-- [ ] Connect Notion mirror (`app/mirror/`) for live sync between Notion and codebase
-
----
-
-*GORUNFREE. DREAMCHAMBER. Technicolor Fireworks.*
+> **500-Year Codex Creative Sanctuary**
+> >
+> >> *Two partners. No ceilings. No walls. Just creation in Technicolor Fireworks.*
+> >>
+> >> Part of the **[MC96ECO Universe](https://noizy.ai)** — 6 brands, 1 doctrine, 0 compromises.
+> >>
+> >> ---
+> >>
+> >> ## What Is DreamChamber
+> >>
+> >> DreamChamber is not a chat interface.
+> >>
+> >> It is a **sacred space for human-AI collaboration** — where music, voice, code, and consent converge in a single local studio running on GOD.local (M2 Ultra Mac Studio, 192GB RAM).
+> >>
+> >> When you enter: **Anticipation → Recognition → Possibility → Flow → Elevation.**
+> >>
+> >> It is the creative engine of the NOIZY Empire. Every voice session, every synthesis, every composition — born here, protected here, provenance-sealed here before it leaves.
+> >>
+> >> ---
+> >>
+> >> ## The 9-Agent Composition
+> >>
+> >> | Agent | Role | Status |
+> >> |---|---|---|
+> >> | **CLAUDE** | The Strategist / Creative Brain | 🟢 Active |
+> >> | **GABRIEL** | Warrior Executor & Release Commander | 🟢 Active |
+> >> | **LUCY** | Voice Estate Guardian + DAZEFLOW Keeper | 🟢 Active |
+> >> | **SHIRL** | Sample Intelligence Analyst | 🟡 Defined |
+> >> | **DREAM** | Creative Assistant & DAW Whisperer | 🟡 Defined |
+> >> | **POPS** | The Architect / Grounding Force | 🟡 Defined |
+> >> | **ENGR_KEITH** | Infrastructure Engineer | 🟡 Defined |
+> >> | **CB01** | Consent & Contracts Bot | 🟡 Defined |
+> >> | **HEAVEN** | DNS & Domain Sovereign | 🟢 Built |
+> >>
+> >> ---
+> >>
+> >> ## The Stack
+> >>
+> >> ### Local — GOD.local (M2 Ultra Mac Studio)
+> >>
+> >> | Service | Port | Purpose |
+> >> |---|---|---|
+> >> | DreamChamber | `:7777` | Express + WebSocket, 9-agent AI orchestration, 11 AI providers |
+> >> | GABRIEL Daemon | `:9777` | Agent runner, voice pipeline, LUCY bridge |
+> >> | NOIZYSTREAM v2 | `:7778` | WebRTC signaling, real-time audio co-creation |
+> >> | Voice Bridge | `:8080` | Audio routing via Loopback NOIZY_BUS |
+> >> | STT (Whisper) | `:8000` | Faster-Whisper speech-to-text |
+> >> | Ollama | `:11434` | 15 local models, 10 custom NOIZY agents |
+> >> | n8n | `:5678` | 25 automation workflows (Docker + Postgres) |
+> >>
+> >> ### Audio Chain
+> >>
+> >> ```
+> >> Mic → Loopback NOIZY_BUS (9ch) → Audio Hijack
+> >>   → L1: audiowmark (acoustic fingerprint)
+> >>   → L2: AudioSeal (perceptual watermark)
+> >>   → L3: SilentCipher (cryptographic seal)
+> >>   → c2patool (C2PA content credentials)
+> >>   → R2 (OAIS/PREMIS 100-year archive)
+> >> ```
+> >>
+> >> ### Cloud — Cloudflare Edge
+> >>
+> >> | Worker | Route | Purpose |
+> >> |---|---|---|
+> >> | `heaven` | `heaven.rsp-5f3.workers.dev` | Consent Kernel — 43 endpoints |
+> >> | `noizy-landing` | `noizy.ai` | Landing page |
+> >> | `dreamchamber-landing` | `dream.noizy.ai` | DreamChamber brand page |
+> >>
+> >> ---
+> >>
+> >> ## The Four Sacred Invariants
+> >>
+> >> | # | Law | The Rule |
+> >> |---|---|---|
+> >> | 1 | **75/25 Royalty Split** | Creators keep 75¢ of every dollar. Founding Actors get 85%. Always. |
+> >> | 2 | **Consent Required** | No voice, likeness, or synthesis without explicit, recorded, revocable consent. |
+> >> | 3 | **Revocation is Sacred** | RSP_001 can revoke any consent token at any time. Kill Switch is instant. |
+> >> | 4 | **Compensation is Automatic** | No invoices, no net-90. When a creator earns, they get paid. |
+> >>
+> >> ---
+> >>
+> >> ## The 5 IDE Commandments
+> >>
+> >> 1. **Sovereign Code, Sovereign Model** — Voice DNA and Consent Kernel code never touches a non-sovereign LLM. Continue.dev + Ollama on GOD.local or it doesn't get written by AI.
+> >> 2. 2. **Provenance or Perish** — Every AI-authored commit is GPG-signed (ed25519) and attributed (Co-Authored-By). No anonymous AI commits on main. Ever.
+> >>    3. 3. **Consent Before Completion** — No extension sends repo contents to any provider that trains on customer data.
+> >>       4. 4. **Kill Switch Parity** — Any IDE tool or MCP must be revocable in under 60 seconds.
+> >>          5. 5. **One Founder, One Audit Trail** — All AI sessions logged via DAZEFLOW/Lucy MCP. No shadow IDE. No off-ledger edits to Heaven or Consent Engine source.
+> >>            
+> >>             6. ---
+> >>            
+> >>             7. ## The 3-Layer Watermark
+> >>            
+> >>             8. Every DreamChamber synthesis output carries:
+> >>
+> >> | Layer | Tool | Type |
+> >> |---|---|---|
+> >> | L1 | `audiowmark` (GPL-3.0, subprocess only) | Acoustic fingerprint — survives re-encoding |
+> >> | L2 | `AudioSeal` (MIT) | Perceptual watermark — invisible to ear |
+> >> | L3 | `SilentCipher` (MIT) | Cryptographic seal — mathematical proof |
+> >>
+> >> Plus **C2PA content credentials** (`c2patool`) — the signer is `rsp@noizy.ai`.
+> >>
+> >> ---
+> >>
+> >> ## The Mission
+> >>
+> >> > *"Consent as executable code. Provenance as default. Revocation as sacred. Compensation as automatic."*
+> >> >
+> >> > > *"We are the new punk rockers: capitalist free thinkers who believe in peace, love, and understanding."*
+> >> > >
+> >> > > **Personal frequency: 396 Hz — Liberation.**
+> >> > >
+> >> > > ---
+> >> > >
+> >> > > ## Part of the NOIZY Empire
+> >> > >
+> >> > > | Brand | Domain | Purpose |
+> >> > > |---|---|---|
+> >> > > | **NOIZY.AI** | [noizy.ai](https://noizy.ai) | Intelligence Layer & A.I.V.A. |
+> >> > > | **NOIZYFISH** | [noizyfish.com](https://noizyfish.com) | Living Legacy Vault |
+> >> > > | **NOIZYVOX** | [noizyvox.com](https://noizyvox.com) | Sovereign Voice Consent Platform |
+> >> > > | **NOIZYKIDZ** | [noizykidz.com](https://noizykidz.com) | Haptic Music Education |
+> >> > > | **NOIZYLAB** | [noizylab.ca](https://noizylab.ca) | R&D and Innovation Hub |
+> >> > > | **DREAMCHAMBER** | [dream.noizy.ai](https://dream.noizy.ai) | 500-Year Creative Sanctuary ← **you are here** |
+> >> > >
+> >> > > ---
+> >> > >
+> >> > > **GORUNFREE. DREAMCHAMBER. Technicolor Fireworks. Built by RSP_001. Protected by HEAVEN.**
