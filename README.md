@@ -119,19 +119,19 @@
 > >> > > ## 
 ---
 
-## The NOIZY Empire -- 10 Brands. One Doctrine. Zero Compromises.
+## Part of the NOIZY Empire
 
-| Brand | Domain | Purpose |
-|---|---|---|
-| NOIZY.AI | noizy.ai | Intelligence Layer + A.I.V.A. |
-| NOIZYFISH | noizyfish.com | Living Legacy Vault |
-| NOIZYKIDZ | noizykidz.com | Haptic Music Education |
-| NOIZYVOX | noizyvox.com | Sovereign Voice Consent Platform |
-| NOIZYLAB | noizylab.ca | R&D and Innovation Hub |
-| FISHMUSICINC | fishmusicinc.com | Music Catalog + Licensing |
-| DREAMCHAMBER | dream.noizy.ai | 500-Year Creative Sanctuary -- you are here |
-| THE-OLD-GUARD | theoldguard.noizy.ai | ResurrectionOS + Charitable Deployment |
-| NOIZYWORLD | noizyworld.com | 10-Year Sovereign Commerce System |
-| 2NDACT | 2ndact.noizy.ai | Universal Bridge App |
+| Brand | Role |
+|---|---|
+| [NOIZY.AI](https://noizy.ai) | Sovereign AI infrastructure |
+| [NOIZYFISH](https://noizyfish.com) | Producer ecosystem |
+| [NOIZYKIDZ](https://noizykidz.com) | Youth division |
+| [NOIZYVOX](https://noizyvox.com) | Voice + schema core |
+| [NOIZYLAB](https://noizylab.ca) | Research + shared tooling |
+| [DREAMCHAMBER](https://github.com/RSPNOIZY/DREAMCHAMBER) | Creative residency |
+| [THE-OLD-GUARD](https://github.com/RSPNOIZY/THE-OLD-GUARD) | Legacy artist catalog |
+| [THE-GATHERING](https://github.com/RSPNOIZY/THE-GATHERING) | Community gathering point |
+| [NOIZYANTHROPIC](https://github.com/RSPNOIZY/NOIZYANTHROPIC) | AI governance + doctrine |
+| [THE-AQUARIUM](https://github.com/RSPNOIZY/THE-AQUARIUM) | Audio vault -- CLIENT#1 RSP001 |
 
-**GORUNFREE. DREAMCHAMBER. Technicolor Fireworks. Built by RSP_001. Protected by HEAVEN.**
+**killSwitchHolder:** RSP_001 | **covenant:** 75/25 | **canon:** noizy.ai
