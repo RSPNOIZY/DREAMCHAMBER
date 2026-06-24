@@ -170,3 +170,4 @@ apps/voice-bridge-http/node_modules/
 # Legacy detached gitlink paths (local-only, never track)
 MC96ECO/
 turbo-console-log/
+qwen-code/
